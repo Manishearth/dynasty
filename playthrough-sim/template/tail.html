@@ -1,0 +1,338 @@
+</script>
+<script>
+const ALL=JSON.parse(document.getElementById('data').textContent);
+let D,E,RS,SH,RO,NM,ACT, cur=0, curRound=0, curGame=0;
+
+/* ---------- game selector ---------- */
+const gamesEl=document.getElementById('games');
+ALL.games.forEach((g,i)=>{
+  const b=document.createElement('button'); b.className='game';
+  b.innerHTML='<b>'+esc(g.meta.title)+'</b><span class="long">'+esc(g.meta.subtitle)+'</span><span class="brief">'+esc(g.meta.short)+'</span>';
+  b.onclick=()=>loadGame(i,true);
+  gamesEl.appendChild(b);
+});
+function loadGame(i,push){
+  curGame=i; D=ALL.games[i]; E=D.entries; RS=D.rounds; SH=D.short; RO=D.role; NM=D.names;
+  ACT=new Set(D.active.map(String));
+  [...gamesEl.children].forEach((b,j)=>{b.classList.toggle('on',j===i);b.setAttribute('aria-pressed',j===i);});
+  document.getElementById('blurb').textContent=D.meta.blurb;
+  const n=(D.need[Object.keys(D.need)[0]]||[]).length;
+  document.getElementById('objtitle').textContent='Objectives — '+(n?WORDS[n]+' pieces and 20 million':'');
+  tabs.innerHTML='';
+  RS.forEach((r,k)=>{const b=document.createElement('button');
+    b.textContent='Year '+r.n; b.onclick=()=>{showRound(k);select(r.start);};
+    tabs.appendChild(b);});
+  const fb=document.createElement('button'); fb.textContent='Result';
+  fb.onclick=()=>{showRound(RS.length);select(E.length-1);}; tabs.appendChild(fb);
+  document.getElementById('legend').innerHTML='';
+  cur=0; showRound(0);
+  if(push){try{history.replaceState(null,'','#'+D.meta.key);}catch(e){}}
+}
+const WORDS={4:'four',5:'five',3:'three'};
+
+/* ---------- transcript ---------- */
+const tabs=document.getElementById('tabs');
+const script=document.getElementById('script');
+function showRound(i){
+  curRound=i;
+  [...tabs.children].forEach((b,j)=>b.classList.toggle('on',j===i));
+  script.innerHTML='';
+  if(i===RS.length){renderFinal();return;}
+  const r=RS[i], end=(i+1<RS.length)?RS[i+1].start:E.length;
+  const h=document.createElement('div'); h.className='yr-head';
+  h.innerHTML='<h2>Year '+r.n+' — '+esc(r.title)+'</h2>'+
+    '<div class="card-txt"><b>I Ching</b>'+esc(r.card)+'</div>';
+  script.appendChild(h);
+  for(let k=r.start;k<end;k++) script.appendChild(node(k));
+  select(cur>=r.start&&cur<end?cur:r.start);
+}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function label(h,fallback){return h.length>1?'At the table':(h[0].w?h[0].w+' is thinking':fallback);}
+function node(k){
+  const e=E[k], wrap=document.createElement('div'); wrap.className='ent';
+  if(e.k==='say'){
+    const d=document.createElement('div');
+    d.className='say'; d.dataset.i=k; if(e.h){d.tabIndex=0;d.setAttribute('role','button');}
+    d.innerHTML='<span class="who">'+esc(e.who||'')+'</span><span class="'+(e.h?'hasnote':'')+'">“'+esc(e.t)+'”</span>';
+    if(e.h) attach(d,e.h,label(e.h,(e.who||'')+' is thinking'));
+    d.onclick=()=>select(k);
+    wrap.appendChild(d);
+  }else if(e.k==='lot'){
+    const det=document.createElement('details'); det.className='lot';
+    const sum=document.createElement('summary');
+    sum.className='act lotsum'; sum.dataset.i=k;
+    sum.innerHTML='<div class="lotrow"><span class="lotmark">LOT</span><span class="'+(e.h?'hasnote':'')+'">'+
+      esc(e.t)+'</span><span class="bidcount">'+e.bids.length+(e.bids.length===1?' bid':' bids')+' <b>▾</b></span></div>';
+    if(e.h) attach(sum,e.h,label(e.h,'Behind the move'));
+    sum.addEventListener('click',()=>select(k));
+    det.appendChild(sum);
+    const bx=document.createElement('div'); bx.className='bids';
+    e.bids.forEach(b=>{
+      const r=document.createElement('div'); r.className='bid'+(b.amt===null?' pass':'');
+      if(b.h){r.tabIndex=0;r.setAttribute('role','button');}
+      r.innerHTML='<span class="who">'+esc(b.who)+'</span><span class="'+(b.h?'hasnote':'')+'">“'+esc(b.t)+'”</span>';
+      if(b.h) attach(r,b.h,label(b.h,b.who+' is thinking'));
+      bx.appendChild(r);
+    });
+    det.appendChild(bx); wrap.appendChild(det);
+  }else{
+    const b=document.createElement('button');
+    b.className='act'+(e.big?' big':''); b.dataset.i=k;
+    b.innerHTML='<span class="'+(e.h?'hasnote':'')+'">'+esc(e.t)+'</span><span class="arrow">▸</span>';
+    if(e.h) attach(b,e.h,label(e.h,'Behind the move'));
+    b.onclick=()=>select(k);
+    wrap.appendChild(b);
+  }
+  return wrap;
+}
+/* ---------- tooltip ---------- */
+const tip=document.getElementById('tip');
+const TOUCH=window.matchMedia('(hover: none)').matches||('ontouchstart' in window);
+document.body.classList.toggle('touch',TOUCH);
+let tipLock=false;
+function hideTip(){tip.classList.remove('on','pinned');tipLock=false;}
+function attach(el,text,lab){
+  const body=()=>Array.isArray(text)
+    ? text.map(x=>'<p class="th">'+(x.w?'<b>'+esc(x.w)+'</b>':'')+esc(x.t)+'</p>').join('')
+    : '<p class="th">'+esc(text)+'</p>';
+  const paint=()=>{tip.innerHTML='<i>'+esc(lab)+'</i>'+body()+
+    (TOUCH?'<button class="tipx" aria-label="Close">Close</button>':'');};
+  if(TOUCH){
+    el.addEventListener('click',()=>{
+      paint(); tip.classList.add('on','pinned'); tipLock=true;
+      setTimeout(()=>{tipLock=false;},0);
+    });
+    return;
+  }
+  const move=ev=>{const x=(ev.clientX||60),y=(ev.clientY||60);
+    const w=tip.offsetWidth,h=tip.offsetHeight;
+    tip.style.left=Math.min(x+16,innerWidth-w-10)+'px';
+    tip.style.top=Math.min(Math.max(y-h/2,8),innerHeight-h-8)+'px';};
+  const show=ev=>{paint();tip.classList.add('on');move(ev);};
+  el.addEventListener('mouseenter',show); el.addEventListener('mousemove',move);
+  el.addEventListener('mouseleave',()=>tip.classList.remove('on'));
+  el.addEventListener('focus',()=>{const r=el.getBoundingClientRect();show({clientX:r.right,clientY:r.top+20});});
+  el.addEventListener('blur',()=>tip.classList.remove('on'));
+}
+document.addEventListener('click',e=>{
+  if(!TOUCH||tipLock)return;
+  if(e.target.closest('.tip')&&!e.target.classList.contains('tipx'))return;
+  if(e.target.closest('[data-i],.bid'))return;
+  hideTip();
+});
+tip.addEventListener('click',e=>{if(e.target.classList.contains('tipx'))hideTip();});
+
+/* ---------- selection & board ---------- */
+function select(k){
+  cur=k;
+  document.querySelectorAll('.act,.say,.lotsum').forEach(n=>n.classList.toggle('on',+n.dataset.i===k));
+  paint(E[k]);
+}
+function paint(e){
+  const s=e.state, hl=new Set(e.hl||[]);
+  drawMap(s,hl); drawWorks(s); drawPlayers(s,hl); drawObjectives(s);
+}
+/* piece glyphs: one SVG per piece in images/, shared with the rulebook */
+const IMG={CH:'customs-house',LD:'land-deed-scroll',BB:'bamboo-brush',DJ:'dragon-jar',WB:'wooden-bowl',VA:'vase'};
+const WORKIMG={'Summer Palace':'summer-palace','Winter Palace':'winter-palace','Marble Pagoda':'marble-pagoda',
+  irr2:'irrigation',res3:'reservoir',res7:'reservoir'};
+function gsrc(n){return 'images/'+n+'.svg';}
+function gimg(x,y,w,n,white){return '<image href="'+gsrc(n)+'" x="'+x+'" y="'+y+'" width="'+w+'" height="'+w+'"'+
+  (white?' style="filter:brightness(0) invert(1)"':'')+'/>';}
+function gpiece(n,text){return '<span class="piece"><img src="'+gsrc(n)+'" alt="">'+text+'</span>';}
+const CW=13, CH_=13;
+const WALLCOLS={'3':[7,13],'2':[14,20],'1':[21,26]};
+const CANALPOS={'1':[[5,22],[5,23]],'4':[[9,17],[9,18]],'5':[[8,22],[8,23]],'6':[[12,16],[12,17]]};
+const WORKPOS={irr2:[5,15],res3:[6,8],res7:[16,8]};
+function cell(r,c,fill,extra){return '<rect x="'+(c*CW+1.5)+'" y="'+(r*CH_+1.5)+'" width="'+(CW-3)+'" height="'+(CH_-3)+'" fill="'+fill+'"'+(extra||'')+'/>';}
+function drawMap(s,hl){
+  const G=D.grid, R=G.length, C=G[0].length;
+  const W=C*CW, H=R*CH_;
+  let svg='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="The board">'+
+    '<defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">'+
+    '<rect width="6" height="6" fill="#E6DFCB"/><line x1="0" y1="0" x2="0" y2="6" stroke="#D3CAB2" stroke-width="2.4"/></pattern></defs>';
+  const FILL={'S':'#E3EEF9','W':'#EFEADC','n':'#F2EDDF','.':'#EAE3D0','8':'#EAE3D0'};
+  for(let r=0;r<R;r++)for(let c=0;c<C;c++){
+    const g=G[r][c]; let f=FILL[g]||'#F7F2E4';
+    if(/[1-8]/.test(g)&&!ACT.has(g)) f='url(#hatch)';
+    else if(hl.has(+g)) f='#FBEFC9';
+    svg+='<rect x="'+(c*CW)+'" y="'+(r*CH_)+'" width="'+CW+'" height="'+CH_+
+         '" fill="'+f+'" stroke="#D6CEB8" stroke-width=".5"/>';
+  }
+  for(let r=0;r<R;r++)for(let c=0;c<C;c++){
+    const g=G[r][c], x=c*CW, y=r*CH_;
+    const edge=(rr,cc)=>(rr<0||cc<0||rr>=R||cc>=C||G[rr][cc]!==g);
+    let d='';
+    if(edge(r-1,c)) d+='M'+x+' '+y+'h'+CW;
+    if(edge(r+1,c)) d+='M'+x+' '+(y+CH_)+'h'+CW;
+    if(edge(r,c-1)) d+='M'+x+' '+y+'v'+CH_;
+    if(edge(r,c+1)) d+='M'+(x+CW)+' '+y+'v'+CH_;
+    if(d) svg+='<path d="'+d+'" stroke="#16150F" stroke-width="1.4" fill="none"/>';
+  }
+  svg+='<path d="M'+(0*CW)+' '+(9.5*CH_)+' C '+(5*CW)+' '+(8*CH_)+', '+(6*CW)+' '+(12*CH_)+
+       ', '+(11*CW)+' '+(11.4*CH_)+' S '+(19*CW)+' '+(7*CH_)+', '+(24*CW)+' '+(5*CH_)+
+       ' L '+(27*CW)+' '+(3*CH_)+'" fill="none" stroke="#175FB5" stroke-width="3.4" opacity=".75" stroke-linecap="round"/>';
+  /* the wall: four links above each of provinces 3, 2 and 1 */
+  for(const p in WALLCOLS){
+    const [a,b]=WALLCOLS[p], w=(b-a+1)*CW/4, built=(s.pw.wall||{})[p]||0, owed=ACT.has(p);
+    for(let i=0;i<4;i++){
+      const x=a*CW+i*w+1, on=i<built;
+      svg+='<rect x="'+x+'" y="1.5" width="'+(w-2)+'" height="'+(CH_-3)+'" fill="'+(on?'#16150F':'none')+
+        '" stroke="#16150F" stroke-width="1"'+(owed?'':' stroke-dasharray="2 2" opacity=".35"')+'/>';
+    }
+  }
+  [['Summer Palace',21],['Winter Palace',23],['Marble Pagoda',25]].forEach(([n,c])=>{
+    if(s.pw[n]) svg+=cell(2,c,'#C8291A')+gimg(c*CW+2.5,2*CH_+2.5,CW-5,WORKIMG[n],true);
+  });
+  for(const p in CANALPOS){
+    const n=(s.pw.canal||{})[p]||0;
+    CANALPOS[p].forEach(([r,c],i)=>{
+      if(i<n) svg+='<rect x="'+(c*CW+1)+'" y="'+(r*CH_+4)+'" width="'+(CW-2)+'" height="5" fill="#175FB5"/>';
+      else if(ACT.has(p)) svg+='<rect x="'+(c*CW+1)+'" y="'+(r*CH_+4)+'" width="'+(CW-2)+'" height="5" fill="none" stroke="#175FB5" stroke-width=".8" stroke-dasharray="2 1.5"/>';
+    });
+  }
+  for(const k in WORKPOS){
+    const [r,c]=WORKPOS[k];
+    if(s.pw[k]) svg+=cell(r,c,'#175FB5')+gimg(c*CW+2.5,r*CH_+2.5,CW-5,WORKIMG[k],true);
+  }
+  for(const k in s.board){
+    const [r,c]=k.split(',').map(Number), v=s.board[k], x=c*CW, y=r*CH_;
+    if(v.raid) svg+='<rect x="'+(x+1)+'" y="'+(y+1)+'" width="'+(CW-2)+'" height="'+(CH_-2)+
+      '" fill="#F2416F" opacity=".75"/>';
+    if(v.realia) svg+=gimg(x+1.5,y+1.5,CW-3,IMG[v.realia],v.raid);
+    if(v.soldier) svg+='<circle cx="'+(x+CW-3.5)+'" cy="'+(y+3.5)+'" r="2.4" fill="#16150F"/>';
+    if(v.own_soldier) svg+='<circle cx="'+(x+CW/2)+'" cy="'+(y+CH_/2)+'" r="3" fill="#175FB5"/>';
+  }
+  const LBL={'1':[23.5,4],'2':[17,4],'3':[10,4],'4':[17,8.5],'5':[23.5,10.6],'6':[17,14.6],'7':[10,14.6],'8':[3.5,8]};
+  for(const p in LBL){
+    const [c,r]=LBL[p], on=ACT.has(p), who=on?SH[s.seat[p]]:'empty';
+    svg+='<text x="'+(c*CW)+'" y="'+(r*CH_)+'" text-anchor="middle" font-family="Helvetica Neue,Arial" '+
+      'font-size="11" font-weight="'+(on?700:400)+'" fill="'+(on?'#16150F':'#8A8270')+'" opacity=".9">'+p+' '+esc(who)+'</text>';
+  }
+  svg+='<text x="'+(28.5*CW)+'" y="'+(9*CH_)+'" text-anchor="middle" font-size="9" fill="#175FB5" '+
+    'font-family="Courier New" transform="rotate(90 '+(28.5*CW)+' '+(9*CH_)+')">THE SEA</text>';
+  svg+='</svg>';
+  document.getElementById('map').innerHTML=svg;
+  if(!document.getElementById('legend').innerHTML){
+    let L=gpiece('customs-house','Customs&nbsp;House')+gpiece('land-deed-scroll','Land&nbsp;Deed')+
+      gpiece('bamboo-brush','Bamboo&nbsp;Brush')+gpiece('dragon-jar','Dragon&nbsp;Jar')+
+      gpiece('wooden-bowl','Wooden&nbsp;Bowl')+gpiece('vase','Vase')+
+      '<span class="sw raid"></span>raided&nbsp;square'+
+      (ACT.has('8')?'<span class="sw sol"></span>Warlord&nbsp;soldier<span class="sw osol"></span>bought&nbsp;soldier':'')+
+      '<span class="sw imp"><img src="'+gsrc('summer-palace')+'" alt=""></span>palace&nbsp;or&nbsp;pagoda'+
+      '<span class="sw can"></span>canal'+
+      '<span class="sw wat"><img src="'+gsrc('reservoir')+'" alt=""></span>reservoir&nbsp;or&nbsp;irrigation'+
+      (D.active.length<8?'<span class="sw empty"></span>province&nbsp;not&nbsp;in&nbsp;play':'');
+    document.getElementById('legend').innerHTML=L;
+  }
+}
+function drawObjectives(s){
+  let h='';
+  D.active.forEach(p=>{
+    const who=s.seat[p];
+    if(p===1){
+      h+='<div class="obj"><span class="on">'+esc(SH[who])+'</span><span class="objnote">no set — must build</span></div>'; return;
+    }
+    if(p===8){
+      const others=D.active.filter(q=>q!==8).map(q=>s.seat[q]), rob=s.rob||{};
+      const n=others.filter(o=>rob[o]).length;
+      h+='<div class="obj"><span class="on">'+esc(SH[who])+'</span><span class="pips">'+
+        others.map(o=>'<i class="'+(rob[o]?'f r':'')+'" title="'+esc(NM[o])+(rob[o]?' — raided: '+esc(D.rname[rob[o]]||rob[o]):'')+'">'+esc(SH[o].slice(0,3))+'</i>').join('')+
+        '</span><span class="objn'+(n===others.length?' done':'')+'">'+n+'/'+others.length+'</span></div>';
+      return;
+    }
+    const need=D.need[p]||[], got=s.held[who]||{};
+    const n=need.filter(t=>got[t]).length;
+    h+='<div class="obj"><span class="on">'+esc(SH[who])+'</span><span class="pips">'+
+      need.map(t=>'<i class="'+(got[t]?'f':'')+'" title="'+D.rname[t]+'"><img src="'+gsrc(IMG[t])+'" alt="'+D.rname[t]+'"></i>').join('')+
+      '</span><span class="objn'+(n===need.length?' done':'')+'">'+n+'/'+need.length+'</span></div>';
+  });
+  document.getElementById('obj').innerHTML=h;
+}
+function builtCount(s,name){
+  if(name==='Great Wall') return Object.values(s.pw.wall).reduce((a,b)=>a+b,0);
+  if(name==='Grand Canal') return Object.values(s.pw.canal).reduce((a,b)=>a+b,0);
+  return ({'Province 2 Irrigation':s.pw.irr2,'Province 3 Reservoir':s.pw.res3,'Province 7 Reservoir':s.pw.res7})[name] ?? (s.pw[name]||0);
+}
+function drawWorks(s){
+  let html='', paid=0, total=0;
+  D.owed.forEach(([n,t,cost])=>{const d=Math.min(builtCount(s,n),t); paid+=d*cost; total+=t*cost;
+    html+='<div>'+n+' <span style="float:right">'+d+'/'+t+'</span><div class="bar"><i style="width:'+(t?100*d/t:0)+'%"></i></div></div>';});
+  html+='<div class="worktot">'+paid+' of '+total+' million built</div>';
+  document.getElementById('works').innerHTML=html;
+}
+function drawPlayers(s,hl){
+  let rows='<tr><th>#</th><th>Role</th><th>Player</th><th class="n">Grain</th></tr>';
+  D.active.forEach(p=>{
+    const who=s.seat[p]; const g=s.grain[who];
+    rows+='<tr class="'+(hl.has(p)?'moved':'')+'"><td>'+p+'</td><td>'+RO[p]+'</td><td>'+esc(NM[who])+
+      '</td><td class="n '+(g<0?'neg':'')+'">'+g+'</td></tr>';
+  });
+  rows+='<tr class="pile"><td></td><td colspan="2">Harvest Pile</td><td class="n">'+s.pile+'</td></tr>';
+  document.getElementById('res').innerHTML=rows;
+}
+function renderFinal(){
+  let h='<div class="final"><h2>The result</h2><p>'+esc(D.results_note)+'</p>'+
+    '<div class="tablewrap"><table><tr><th>Player</th><th>Started</th><th>Finished</th><th>Result</th><th>Grain</th></tr>';
+  D.results.forEach(r=>{h+='<tr><td><b>'+esc(r.name)+'</b></td><td>'+r.start+' · '+r.startrole+'</td><td>'+
+    r.fin+' · '+r.finrole+'</td><td class="v-'+r.verdict+'">'+r.verdict.toUpperCase()+'</td>'+
+    '<td class="n" style="text-align:right;font-family:var(--mono)'+(r.grain<0?';color:#C8291A;font-weight:700':'')+'">'+r.grain+'</td></tr>';});
+  h+='</table></div>'+D.epilogue.map(p=>'<p style="margin-top:1rem">'+esc(p)+'</p>').join('')+'</div>';
+  script.innerHTML=h;
+}
+/* ---------- nav ---------- */
+function step(d){
+  let k=cur+d; if(k<0||k>=E.length)return;
+  let ri=0; for(let i=0;i<RS.length;i++) if(k>=RS[i].start) ri=i;
+  if(ri!==curRound) showRound(ri);
+  select(k);
+  const el=document.querySelector('[data-i="'+k+'"]');
+  if(el) el.scrollIntoView({block:'center',behavior:'smooth'});
+}
+document.getElementById('prev').onclick=()=>step(-1);
+document.getElementById('next').onclick=()=>step(1);
+addEventListener('keydown',e=>{
+  if(e.target.closest&&e.target.closest('input,textarea'))return;
+  if(e.key==='ArrowRight'){step(1);e.preventDefault();}
+  if(e.key==='ArrowLeft'){step(-1);e.preventDefault();}});
+function fromHash(){return Math.max(0,ALL.games.findIndex(g=>'#'+g.meta.key===location.hash));}
+addEventListener('hashchange',()=>{const i=fromHash(); if(i!==curGame) loadGame(i,false);});
+/* ---------- piece glyphs in running text ---------- */
+/* Every piece name the page writes gets its glyph in front (the board legend
+   is keyed to the board's own marks, so it is left alone). The names come from
+   tools/add_glyphs.py (build.py fills them in), so the page and the rulebook agree. */
+const TERMS=/*PIECE_TERMS*/[];
+const TERM_RE=new RegExp('\\b(?:'+TERMS.map(t=>'('+t[0]+')').join('|')+')\\b','g');
+function glyphText(node){
+  const t=node.nodeValue; TERM_RE.lastIndex=0;
+  if(!TERM_RE.test(t))return;
+  TERM_RE.lastIndex=0;
+  const frag=document.createDocumentFragment(); let last=0, m;
+  while((m=TERM_RE.exec(t))){
+    const gi=m.slice(1).findIndex(x=>x!==undefined);
+    frag.appendChild(document.createTextNode(t.slice(last,m.index)));
+    const sp=document.createElement('span'); sp.className='piece';
+    sp.innerHTML='<img src="'+gsrc(TERMS[gi][1])+'" alt="">'; sp.appendChild(document.createTextNode(m[0]));
+    frag.appendChild(sp); last=m.index+m[0].length;
+  }
+  frag.appendChild(document.createTextNode(t.slice(last)));
+  node.parentNode.replaceChild(frag,node);
+}
+function glyphs(root){
+  if(root.nodeType===3){
+    const p=root.parentElement;
+    if(p&&!p.closest('svg,script,style,.piece,title,.legend'))glyphText(root);
+    return;
+  }
+  if(root.nodeType!==1||root.closest('svg,script,style,.piece,.legend'))return;
+  const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>
+    n.parentElement.closest('svg,script,style,.piece,.legend')?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT});
+  const list=[]; while(w.nextNode())list.push(w.currentNode);
+  list.forEach(glyphText);
+}
+new MutationObserver(ms=>ms.forEach(m=>m.addedNodes.forEach(glyphs)))
+  .observe(document.body,{childList:true,subtree:true});
+glyphs(document.body);
+loadGame(fromHash(),false);
+</script>
+</body></html>
