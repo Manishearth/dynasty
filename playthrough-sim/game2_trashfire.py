@@ -689,6 +689,22 @@ say("Graham","It's already started.", TH(
  ("Graham","Sixty, and it pays back twenty a year forever. In year seven she had six hundred million. It was never that she couldn't afford it. It's that a wall looks like a reign and a ditch looks like a chore."),
  ("Silke","Give him four years and somebody will be counting his deferrals."),
  ("Noah","I'll start now. It's what the chair is for.")))
+say("Graham","Before anyone goes home: can this still be saved? I want the answer on the record.", TH(
+ ("Graham","The crown has a hundred and fifty-two, and the ditch takes sixty of it. After that Province 1 loses twenty on a good harvest and forty-five on an average one, canal and Reina's two squares included. And there's no tax coming: on the best harvest the deck has, Paddy's income is nought and everyone else's is below it."),
+ ("Paddy","Rent isn't income. I checked. It's why I wanted it guaranteed.")))
+say("Noah","Then land. It's the one thing on this board that still pays: twenty a square, twenty back every year.", TH(
+ ("Noah","And I can't buy any. Three links above Province 2, and the book wants four before my strip opens. Paddy's the same. A link each is eighty, out of a crown with ninety-two once the ditch is dug."),
+ ("Paddy","A hundred and twenty-four in hand, and the only thing worth buying is behind a wall nobody can afford to finish.")))
+say("Clark","Rich and I can't buy anything at all. We're in debt.", TH(
+ ("Clark","A hundred and one down. Every bag I'm given goes to the pile first. I'm a spectator with a booklet."),
+ ("Rich","Sixty-nine down. Same row of seats.")))
+say("Silke","And there are two doubling cards still in the deck. The next one makes us six hundred million.", TH(
+ ("Silke","I keep the chart. At six hundred million a peasant loses a hundred and forty on a good harvest. No amount of sea fixes that."),
+ ("Reina","I'd buy the Warlord's sand with my sixty if the crown paid its share. Then he'd be choosing between my squares and his ditch, with ninety-two.")))
+say("Graham","Four hundred and twenty left to build. Four hundred and twenty-seven between the five of us who can still pay, and every one of us loses grain every year. I'm calling it. We can't cope.", TH(
+ ("Graham","That's the second ending, and it isn't a die roll. It's this sum, said out loud, and nobody at the table able to make it come out."),
+ ("Rob","Nobody asked whether I can cope. I can. I'm on minus one and I've got four soldiers."),
+ ("Noah","Three Wall links, six canal sections and Province 7's reservoir. I checked his sum. It's right, and I wish it weren't.")))
 act("The game ends in collapse, not completion: nine of twelve Wall links, two of eight canal sections, the irrigation system and one of the two reservoirs. Final standings by social position.", TH(
  ("Noah","Nobody built the public works, so this is the second ending: we could not solve the problems the game set us. It was never really a question of playing better."),
  ("Graham","Three of the four who climbed started as peasants. Three of the four upper-class players fell, and the one who rose was the Scholar who kept the count. I'd call that a moral except the ditch still isn't dug."),
@@ -699,4 +715,5 @@ RESULT = export(
  "The game ended in collapse rather than completion. Players are ranked by the province they finished in against the one they drew.",
  ["Three of the four who improved their position began as peasants. Three of the four upper-class players fell. The Emperor fell furthest — from Province 1 to Province 7, into the wheat fields whose reservoir she never built.",
   "Robert Land finished exactly where he started, having caused most of it, and never entered the social order at all, which was the one thing he needed to do to win.",
-  "Nobody at this table could pay for the public works and feed the population as it grew. That is the second ending the General Instructions describe: the players could not solve the problems the game set them."])
+  "Nobody at this table could pay for the public works and feed the population as it grew. That is the second ending the General Instructions describe: the players could not solve the problems the game set them.",
+  "The table chose to stop. With every income below zero there was no tax to collect; new land, the one thing that still paid, was shut to Provinces 2 and 3 until the Wall above them was finished, and to the two players in debt. The works left cost 420 million, about what the five solvent players held between them, and their grain fell every year. Graham did the sum out loud and called it."])
