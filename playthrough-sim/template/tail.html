@@ -20,7 +20,7 @@ function loadGame(i,push){
   document.getElementById('objtitle').textContent='Objectives — '+(n?WORDS[n]+' pieces and 20 million':'');
   tabs.innerHTML='';
   RS.forEach((r,k)=>{const b=document.createElement('button');
-    b.textContent='Year '+r.n; b.onclick=()=>{showRound(k);select(r.start);};
+    b.textContent=r.n?'Year '+r.n:'Setup'; b.onclick=()=>{showRound(k);select(r.start);};
     tabs.appendChild(b);});
   const fb=document.createElement('button'); fb.textContent='Result';
   fb.onclick=()=>{showRound(RS.length);select(E.length-1);}; tabs.appendChild(fb);
@@ -40,8 +40,8 @@ function showRound(i){
   if(i===RS.length){renderFinal();return;}
   const r=RS[i], end=(i+1<RS.length)?RS[i+1].start:E.length;
   const h=document.createElement('div'); h.className='yr-head';
-  h.innerHTML='<h2>Year '+r.n+' — '+esc(r.title)+'</h2>'+
-    '<div class="card-txt"><b>I Ching</b>'+esc(r.card)+'</div>';
+  h.innerHTML='<h2>'+(r.n?'Year '+r.n:'Setup')+' — '+esc(r.title)+'</h2>'+
+    '<div class="card-txt"><b>'+(r.n?'I Ching':'The table')+'</b>'+esc(r.card)+'</div>';
   script.appendChild(h);
   for(let k=r.start;k<end;k++) script.appendChild(node(k));
   select(cur>=r.start&&cur<end?cur:r.start);
@@ -130,7 +130,7 @@ function select(k){
 }
 function paint(e){
   const s=e.state, hl=new Set(e.hl||[]);
-  drawMap(s,hl); drawWorks(s); drawPlayers(s,hl); drawObjectives(s);
+  drawMap(s,hl,e.mv); drawWorks(s); drawPlayers(s,hl); drawObjectives(s);
 }
 /* piece glyphs: one SVG per piece in images/, shared with the rulebook */
 const IMG={CH:'customs-house',LD:'land-deed-scroll',BB:'bamboo-brush',DJ:'dragon-jar',WB:'wooden-bowl',VA:'vase'};
@@ -140,89 +140,116 @@ function gsrc(n){return 'images/'+n+'.svg';}
 function gimg(x,y,w,n,white){return '<image href="'+gsrc(n)+'" x="'+x+'" y="'+y+'" width="'+w+'" height="'+w+'"'+
   (white?' style="filter:brightness(0) invert(1)"':'')+'/>';}
 function gpiece(n,text){return '<span class="piece"><img src="'+gsrc(n)+'" alt="">'+text+'</span>';}
-const CW=13, CH_=13;
-const WALLCOLS={'3':[7,13],'2':[14,20],'1':[21,26]};
-const CANALPOS={'1':[[5,22],[5,23]],'4':[[9,17],[9,18]],'5':[[8,22],[8,23]],'6':[[12,16],[12,17]]};
-const WORKPOS={irr2:[5,15],res3:[6,8],res7:[16,8]};
-function cell(r,c,fill,extra){return '<rect x="'+(c*CW+1.5)+'" y="'+(r*CH_+1.5)+'" width="'+(CW-3)+'" height="'+(CH_-3)+'" fill="'+fill+'"'+(extra||'')+'/>';}
-function drawMap(s,hl){
-  const G=D.grid, R=G.length, C=G[0].length;
-  const W=C*CW, H=R*CH_;
+const CW=13;
+/* squares are named like 'H12': row letter A-V, column 1-30 */
+function sqrc(q){return [q.charCodeAt(0)-65, +q.slice(1)-1];}
+function sqxy(q){const [r,c]=sqrc(q); return [(c+.5)*CW,(r+.5)*CW];}
+function pathd(pts){return pts.map((p,i)=>(i?'L':'M')+(p[0]*CW).toFixed(1)+' '+(p[1]*CW).toFixed(1)).join('');}
+/* province labels, in grid units, placed clear of the printed works */
+const LBL={'1':[19.5,7.6],'2':[14,8.6],'3':[11.2,11.6],'4':[21.4,11.6],'5':[22.3,15.4],'6':[22.2,18.1],'7':[15.5,16.6],'8':[4.2,13]};
+function drawMap(s,hl,mv){
+  const G=D.grid, R=G.length, C=G[0].length, M=D.map;
+  const W=C*CW, H=R*CW;
   let svg='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="The board">'+
     '<defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">'+
-    '<rect width="6" height="6" fill="#E6DFCB"/><line x1="0" y1="0" x2="0" y2="6" stroke="#D3CAB2" stroke-width="2.4"/></pattern></defs>';
-  const FILL={'S':'#E3EEF9','W':'#EFEADC','n':'#F2EDDF','.':'#EAE3D0','8':'#EAE3D0'};
+    '<rect width="6" height="6" fill="#E6DFCB"/><line x1="0" y1="0" x2="0" y2="6" stroke="#D3CAB2" stroke-width="2.4"/></pattern>'+
+    '<marker id="ahW" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0L6 3L0 6z" fill="#16150F"/></marker>'+
+    '<marker id="ahB" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0L6 3L0 6z" fill="#175FB5"/></marker></defs>';
+  const FILL={'S':'#E3EEF9','B':'#E2DAC4','n':'#F2EDDF','8':'#EAE3D0'};
   for(let r=0;r<R;r++)for(let c=0;c<C;c++){
     const g=G[r][c]; let f=FILL[g]||'#F7F2E4';
-    if(/[1-8]/.test(g)&&!ACT.has(g)) f='url(#hatch)';
+    if(/[1-7]/.test(g)&&!ACT.has(g)) f='url(#hatch)';
     else if(hl.has(+g)) f='#FBEFC9';
-    svg+='<rect x="'+(c*CW)+'" y="'+(r*CH_)+'" width="'+CW+'" height="'+CH_+
-         '" fill="'+f+'" stroke="#D6CEB8" stroke-width=".5"/>';
+    svg+='<rect x="'+(c*CW)+'" y="'+(r*CW)+'" width="'+CW+'" height="'+CW+
+         '" fill="'+f+'"'+(g==='S'?'':' stroke="#D6CEB8" stroke-width=".5"')+'/>';
   }
+  /* borders between regions: heavy round provinces, light elsewhere */
   for(let r=0;r<R;r++)for(let c=0;c<C;c++){
-    const g=G[r][c], x=c*CW, y=r*CH_;
-    const edge=(rr,cc)=>(rr<0||cc<0||rr>=R||cc>=C||G[rr][cc]!==g);
+    const g=G[r][c], x=c*CW, y=r*CW, prov=/[1-7]/.test(g);
+    const edge=(rr,cc)=>(rr>=0&&cc>=0&&rr<R&&cc<C&&G[rr][cc]!==g&&(prov||/[1-7]/.test(G[rr][cc])||rr>r||cc>c));
     let d='';
     if(edge(r-1,c)) d+='M'+x+' '+y+'h'+CW;
-    if(edge(r+1,c)) d+='M'+x+' '+(y+CH_)+'h'+CW;
-    if(edge(r,c-1)) d+='M'+x+' '+y+'v'+CH_;
-    if(edge(r,c+1)) d+='M'+(x+CW)+' '+y+'v'+CH_;
-    if(d) svg+='<path d="'+d+'" stroke="#16150F" stroke-width="1.4" fill="none"/>';
+    if(edge(r+1,c)) d+='M'+x+' '+(y+CW)+'h'+CW;
+    if(edge(r,c-1)) d+='M'+x+' '+y+'v'+CW;
+    if(edge(r,c+1)) d+='M'+(x+CW)+' '+y+'v'+CW;
+    if(d) svg+='<path d="'+d+'" stroke="'+(prov?'#16150F':'#B9AF95')+'" stroke-width="'+(prov?1.4:.8)+'" fill="none"/>';
   }
-  svg+='<path d="M'+(0*CW)+' '+(9.5*CH_)+' C '+(5*CW)+' '+(8*CH_)+', '+(6*CW)+' '+(12*CH_)+
-       ', '+(11*CW)+' '+(11.4*CH_)+' S '+(19*CW)+' '+(7*CH_)+', '+(24*CW)+' '+(5*CH_)+
-       ' L '+(27*CW)+' '+(3*CH_)+'" fill="none" stroke="#175FB5" stroke-width="3.4" opacity=".75" stroke-linecap="round"/>';
-  /* the wall: four links above each of provinces 3, 2 and 1 */
-  for(const p in WALLCOLS){
-    const [a,b]=WALLCOLS[p], w=(b-a+1)*CW/4, built=(s.pw.wall||{})[p]||0, owed=ACT.has(p);
-    for(let i=0;i<4;i++){
-      const x=a*CW+i*w+1, on=i<built;
-      svg+='<rect x="'+x+'" y="1.5" width="'+(w-2)+'" height="'+(CH_-3)+'" fill="'+(on?'#16150F':'none')+
-        '" stroke="#16150F" stroke-width="1"'+(owed?'':' stroke-dasharray="2 2" opacity=".35"')+'/>';
-    }
-  }
-  [['Summer Palace',21],['Winter Palace',23],['Marble Pagoda',25]].forEach(([n,c])=>{
-    if(s.pw[n]) svg+=cell(2,c,'#C8291A')+gimg(c*CW+2.5,2*CH_+2.5,CW-5,WORKIMG[n],true);
-  });
-  for(const p in CANALPOS){
-    const n=(s.pw.canal||{})[p]||0;
-    CANALPOS[p].forEach(([r,c],i)=>{
-      if(i<n) svg+='<rect x="'+(c*CW+1)+'" y="'+(r*CH_+4)+'" width="'+(CW-2)+'" height="5" fill="#175FB5"/>';
-      else if(ACT.has(p)) svg+='<rect x="'+(c*CW+1)+'" y="'+(r*CH_+4)+'" width="'+(CW-2)+'" height="5" fill="none" stroke="#175FB5" stroke-width=".8" stroke-dasharray="2 1.5"/>';
+  for(const k in M.rivers) svg+='<path d="'+pathd(M.rivers[k])+'" fill="none" stroke="#175FB5" stroke-width="2.6" opacity=".7" stroke-linecap="round" stroke-linejoin="round"/>';
+  /* the Wall: four printed links above each of provinces 3, 2 and 1 */
+  for(const p in M.wall){
+    const built=(s.pw.wall||{})[p]||0, owed=ACT.has(p);
+    M.wall[p].forEach(([a,b],i)=>{
+      const on=i<built;
+      svg+='<line x1="'+a[0]*CW+'" y1="'+a[1]*CW+'" x2="'+b[0]*CW+'" y2="'+b[1]*CW+'" stroke="#16150F" stroke-linecap="round" stroke-width="'+
+        (on?3.4:1.6)+'"'+(on?'':' stroke-dasharray="2 2" opacity="'+(owed?.7:.3)+'"')+'/>';
     });
   }
-  for(const k in WORKPOS){
-    const [r,c]=WORKPOS[k];
-    if(s.pw[k]) svg+=cell(r,c,'#175FB5')+gimg(c*CW+2.5,r*CH_+2.5,CW-5,WORKIMG[k],true);
+  /* the Grand Canal: two printed sections in each of provinces 1, 4, 5 and 6 */
+  for(const p in M.canal){
+    const built=(s.pw.canal||{})[p]||0, owed=ACT.has(p);
+    M.canal[p].forEach((pts,i)=>{
+      const on=i<built;
+      svg+='<path d="'+pathd(pts)+'" fill="none" stroke="#175FB5" stroke-linecap="round" stroke-width="'+(on?3.6:1.4)+'"'+
+        (on?'':' stroke-dasharray="2 1.5" opacity="'+(owed?.8:.3)+'"')+'/>';
+    });
+  }
+  /* palaces on their squares; cut-outs over the squares they cover */
+  for(const k in (s.at||{})){
+    const q=s.at[k], rcs=q.map(sqrc);
+    const r0=Math.min(...rcs.map(v=>v[0])), r1=Math.max(...rcs.map(v=>v[0])), c0=Math.min(...rcs.map(v=>v[1])), c1=Math.max(...rcs.map(v=>v[1]));
+    const x=c0*CW, y=r0*CW, w=(c1-c0+1)*CW, h=(r1-r0+1)*CW, pal=!/^(irr|res)/.test(k);
+    svg+='<rect x="'+(x+1)+'" y="'+(y+1)+'" width="'+(w-2)+'" height="'+(h-2)+'" fill="'+(pal?'#C8291A':'#175FB5')+'"'+(pal?'':' opacity=".85" rx="2"')+'/>';
+    const g=Math.min(w,h)-5;
+    svg+=gimg(x+(w-g)/2,y+(h-g)/2,g,WORKIMG[k],true);
   }
   for(const k in s.board){
-    const [r,c]=k.split(',').map(Number), v=s.board[k], x=c*CW, y=r*CH_;
-    if(v.raid) svg+='<rect x="'+(x+1)+'" y="'+(y+1)+'" width="'+(CW-2)+'" height="'+(CH_-2)+
+    const v=s.board[k], [r,c]=sqrc(k), x=c*CW, y=r*CW;
+    if(v.raid) svg+='<rect x="'+(x+1)+'" y="'+(y+1)+'" width="'+(CW-2)+'" height="'+(CW-2)+
       '" fill="#F2416F" opacity=".75"/>';
     if(v.realia) svg+=gimg(x+1.5,y+1.5,CW-3,IMG[v.realia],v.raid);
-    if(v.soldier) svg+='<circle cx="'+(x+CW-3.5)+'" cy="'+(y+3.5)+'" r="2.4" fill="#16150F"/>';
-    if(v.own_soldier) svg+='<circle cx="'+(x+CW/2)+'" cy="'+(y+CH_/2)+'" r="3" fill="#175FB5"/>';
   }
-  const LBL={'1':[23.5,4],'2':[17,4],'3':[10,4],'4':[17,8.5],'5':[23.5,10.6],'6':[17,14.6],'7':[10,14.6],'8':[3.5,8]};
+  /* this line's soldier moves, as arrows */
+  (mv||[]).forEach(([a,b,side])=>{
+    const [x1,y1]=sqxy(a),[x2,y2]=sqxy(b), dx=x2-x1, dy=y2-y1, L=Math.hypot(dx,dy), k=(L-4.5)/L;
+    svg+='<line x1="'+x1+'" y1="'+y1+'" x2="'+(x1+dx*k)+'" y2="'+(y1+dy*k)+'" stroke="'+(side==='W'?'#16150F':'#175FB5')+
+      '" stroke-width="1.4" marker-end="url(#ah'+side+')"/>';
+  });
+  const at={}; (s.sol||[]).forEach(v=>{(at[v[2]]=at[v[2]]||[]).push(v);});
+  for(const q in at){
+    const [x,y]=sqxy(q), n=at[q].length;
+    at[q].forEach((v,i)=>{
+      const ox=n>1?(i-(n-1)/2)*4:0;
+      svg+='<circle cx="'+(x+ox)+'" cy="'+y+'" r="3.2" fill="'+(v[1]==='W'?'#16150F':'#175FB5')+'" stroke="#fff" stroke-width=".9">'+
+        '<title>'+esc(v[0])+'</title></circle>';
+    });
+  }
   for(const p in LBL){
-    const [c,r]=LBL[p], on=ACT.has(p), who=on?SH[s.seat[p]]:'empty';
-    svg+='<text x="'+(c*CW)+'" y="'+(r*CH_)+'" text-anchor="middle" font-family="Helvetica Neue,Arial" '+
-      'font-size="11" font-weight="'+(on?700:400)+'" fill="'+(on?'#16150F':'#8A8270')+'" opacity=".9">'+p+' '+esc(who)+'</text>';
+    const [x,y]=LBL[p], on=ACT.has(p), who=on?SH[s.seat[p]]:(p==='8'?'empty':'empty');
+    svg+='<text x="'+(x*CW)+'" y="'+(y*CW)+'" text-anchor="middle" font-family="Helvetica Neue,Arial" '+
+      'font-size="10" font-weight="'+(on?700:400)+'" fill="'+(on?'#16150F':'#8A8270')+'" stroke="#F7F2E4" stroke-width="2.6" paint-order="stroke">'+
+      p+' '+esc(who)+'</text>';
   }
-  svg+='<text x="'+(28.5*CW)+'" y="'+(9*CH_)+'" text-anchor="middle" font-size="9" fill="#175FB5" '+
-    'font-family="Courier New" transform="rotate(90 '+(28.5*CW)+' '+(9*CH_)+')">THE SEA</text>';
+  svg+='<text x="'+(27.6*CW)+'" y="'+(13*CW)+'" text-anchor="middle" font-size="8" fill="#175FB5" letter-spacing="2" '+
+    'font-family="Courier New" transform="rotate(90 '+(27.6*CW)+' '+(13*CW)+')">THE SEA</text>';
+  svg+='<text x="'+(9*CW)+'" y="'+(1.7*CW)+'" text-anchor="middle" font-size="8" fill="#8A8270" letter-spacing="2" '+
+    'font-family="Courier New">BEYOND THE WALL</text>';
   svg+='</svg>';
   document.getElementById('map').innerHTML=svg;
   if(!document.getElementById('legend').innerHTML){
+    const owe=n=>D.owed.some(o=>o[0]===n);
+    const sys=owe('Province 2 Irrigation System')&&(owe('Province 3 Reservoir')||owe('Province 7 Reservoir'))?'irrigation&nbsp;system&nbsp;or&nbsp;reservoir':
+      (owe('Province 2 Irrigation System')?'irrigation&nbsp;system':'reservoir');
     let L=gpiece('customs-house','Customs&nbsp;House')+gpiece('land-deed-scroll','Land&nbsp;Deed')+
       gpiece('bamboo-brush','Bamboo&nbsp;Brush')+gpiece('dragon-jar','Dragon&nbsp;Jar')+
       gpiece('wooden-bowl','Wooden&nbsp;Bowl')+gpiece('vase','Vase')+
-      '<span class="sw raid"></span>raided&nbsp;square'+
-      (ACT.has('8')?'<span class="sw sol"></span>Warlord&nbsp;soldier<span class="sw osol"></span>bought&nbsp;soldier':'')+
-      '<span class="sw imp"><img src="'+gsrc('summer-palace')+'" alt=""></span>palace&nbsp;or&nbsp;pagoda'+
-      '<span class="sw can"></span>canal'+
-      '<span class="sw wat"><img src="'+gsrc('reservoir')+'" alt=""></span>reservoir&nbsp;or&nbsp;irrigation'+
-      (D.active.length<8?'<span class="sw empty"></span>province&nbsp;not&nbsp;in&nbsp;play':'');
+      '<span><span class="sw raid"></span>raided&nbsp;square</span>'+
+      (ACT.has('8')?'<span><span class="sw sol"></span>Warlord&nbsp;soldier</span><span><span class="sw osol"></span>bought&nbsp;soldier</span>':'')+
+      '<span><span class="sw imp"><img src="'+gsrc('summer-palace')+'" alt=""></span>palace&nbsp;or&nbsp;pagoda</span>'+
+      '<span><span class="sw wal"></span>Wall&nbsp;link</span>'+
+      '<span><span class="sw can"></span>canal</span>'+
+      '<span><span class="sw riv"></span>river</span>'+
+      '<span><span class="sw wat"><img src="'+gsrc(owe('Province 2 Irrigation System')&&!owe('Province 3 Reservoir')&&!owe('Province 7 Reservoir')?'irrigation':'reservoir')+'" alt=""></span>'+sys+'</span>'+
+      (D.active.length<8?'<span><span class="sw empty"></span>province&nbsp;not&nbsp;in&nbsp;play</span>':'');
     document.getElementById('legend').innerHTML=L;
   }
 }
@@ -252,7 +279,7 @@ function drawObjectives(s){
 function builtCount(s,name){
   if(name==='Great Wall') return Object.values(s.pw.wall).reduce((a,b)=>a+b,0);
   if(name==='Grand Canal') return Object.values(s.pw.canal).reduce((a,b)=>a+b,0);
-  return ({'Province 2 Irrigation':s.pw.irr2,'Province 3 Reservoir':s.pw.res3,'Province 7 Reservoir':s.pw.res7})[name] ?? (s.pw[name]||0);
+  return ({'Province 2 Irrigation System':s.pw.irr2,'Province 3 Reservoir':s.pw.res3,'Province 7 Reservoir':s.pw.res7})[name] ?? (s.pw[name]||0);
 }
 function drawWorks(s){
   let html='', paid=0, total=0;

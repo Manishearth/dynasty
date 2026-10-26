@@ -10,11 +10,15 @@ Two kinds of number identify people, and mixing them up is the most common mista
 pid(seat) gives the player sitting in a seat; sid(player) gives the seat a player is in.
 Functions that take deltas or `give()` use player ids; everything else takes seats.
 """
-import re as _re
+import re as _re, json as _json, os as _os
 
-NAMES = {1:"Reina Osorio",2:"Clark Grafton",3:"Richard Baron",4:"Ken Nakamura",
-         5:"Silke Weber",6:"Paddy Doyle",7:"Graham Garner",8:"Robert Land"}
-SHORT = {1:"Reina",2:"Clark",3:"Rich",4:"Ken",5:"Silke",6:"Paddy",7:"Graham",8:"Rob"}
+# The cast, keyed by the seat each person drew on the first evening. Their names are puns
+# on those provinces. In a game where the booklets fall differently, setup(cast=...) says
+# who drew which seat, and NAMES/SHORT are re-keyed by player id for that game.
+CAST_NAMES = {1:"Reina Osorio",2:"Clark Grafton",3:"Richard Baron",4:"Noah Lott",
+              5:"Silke Weber",6:"Paddy Doyle",7:"Graham Garner",8:"Robert Land"}
+CAST_SHORT = {1:"Reina",2:"Clark",3:"Rich",4:"Noah",5:"Silke",6:"Paddy",7:"Graham",8:"Rob"}
+NAMES, SHORT = dict(CAST_NAMES), dict(CAST_SHORT)
 ROLE  = {1:"Emperor",2:"Official",3:"Gentry",4:"Scholar",5:"Silk Peasant",
          6:"Rice Peasant",7:"Wheat Peasant",8:"Warlord"}
 REALIA = {2:"CH",3:"LD",4:"BB",5:"DJ",6:"WB",7:"VA"}
@@ -50,43 +54,155 @@ def _norm(h, default=""):
     if m: return [{"w":m.group(1),"t":m.group(2)}]
     return [{"w":default,"t":h}]
 
+# ------------------------------------------------------------------ the map
+# The board is ../map.json: 22 rows A-V, 30 columns 1-30, a square named like "H12".
+# Grid characters: 1-7 a province, 8 the Warlord's territory, n the strip below the
+# Wall, B beyond the Wall, S the sea. Paths (rivers, Wall links, canal sections) are in
+# grid units: (0,0) is the top-left corner of A1, one unit per square.
+_MAP = _json.load(open(_os.path.join(globals().get("SIM_DIR", "."), "..", "map.json"), encoding="utf-8"))
+GRID = _MAP["grid"]
+ROWS, COLS = len(GRID), len(GRID[0])
+UNDEVELOPED = "8n"           # where the Warlord's army may start (Section 4)
+# No soldier stands in the sea: Note 15 has Provinces 4 and 5 reachable only through
+# the gap in the west, which is true only if the coast is closed to soldiers.
+RIVERS = _MAP["rivers"]      # {"north": path, "south": path}
+WALL_LINKS = {p:[l for l in sorted(_MAP["great_wall_links"], key=lambda l:l["link"]) if l["above_province"]==str(p)]
+              for p in (1,2,3)}
+CANAL_SECTIONS = {p:[s for s in sorted(_MAP["grand_canal_sections"], key=lambda s:s["section"]) if s["province"]==str(p)]
+                  for p in (1,4,5,6)}
+PALACES = ("Summer Palace","Winter Palace","Marble Pagoda")
+CUTOUT = {"irr2":(2,(1,2),"the Province 2 Irrigation System"),
+          "res3":(3,(2,3),"the Province 3 Reservoir"),
+          "res7":(7,(2,2),"the Province 7 Reservoir")}   # key: (province, size, name)
+
+def rc(name):
+    """'H12' -> (row, col), both from 0. Refuses a square that isn't on the board."""
+    m = _re.fullmatch(r"([A-Z])(\d{1,2})", name or "")
+    assert m, f"not a square: {name!r}"
+    r, c = ord(m.group(1))-65, int(m.group(2))-1
+    assert 0 <= r < ROWS and 0 <= c < COLS, f"{name} is off the board"
+    return r, c
+def sqname(r, c): return f"{chr(65+r)}{c+1}"
+def region(name):
+    r, c = rc(name); return GRID[r][c]
+def prov(name):
+    """The province a square is in, or None for undeveloped land, beyond the Wall or the sea."""
+    g = region(name); return int(g) if g in "1234567" else None
+def dist(a, b):
+    """Rounds a soldier needs to walk from a to b, diagonals allowed."""
+    (r1,c1),(r2,c2) = rc(a), rc(b); return max(abs(r1-r2), abs(c1-c2))
+def _orth(a, b):
+    (r1,c1),(r2,c2) = rc(a), rc(b); return abs(r1-r2)+abs(c1-c2) == 1
+def squares(p):
+    """Every square of province p (or region character p), in reading order."""
+    return [sqname(r,c) for r in range(ROWS) for c in range(COLS) if GRID[r][c] == str(p)]
+
+def _centre(name):
+    r, c = rc(name); return (c+.5, r+.5)
+def _ccw(a, b, c): return (b[0]-a[0])*(c[1]-a[1]) - (b[1]-a[1])*(c[0]-a[0])
+def _segx(p1, p2, q1, q2):
+    return _ccw(q1,q2,p1)*_ccw(q1,q2,p2) < 0 and _ccw(p1,p2,q1)*_ccw(p1,p2,q2) < 0
+def _cuts(a, b, path):
+    """Does the step from square a to square b (centre to centre) cross this path?"""
+    p1, p2 = _centre(a), _centre(b)
+    return any(_segx(p1, p2, path[i], path[i+1]) for i in range(len(path)-1))
+
+def tolls(a, b):
+    """The transportation fees a Warlord soldier owes for the step a -> b, as
+    [(province, what was crossed)]. 5 each, paid to the province (Section 14, Note 15):
+    a river pays the province the soldier steps into, nothing if that's undeveloped land;
+    a built Wall link, canal section or cut-out pays the province it belongs to.
+    An unoccupied province is owed nothing (Note 4)."""
+    out = []
+    to = prov(b)
+    for name, path in RIVERS.items():
+        if _cuts(a, b, path) and to in ACTIVE: out.append((to, f"the {name} river"))
+    for p, links in WALL_LINKS.items():
+        for l in links[:pw["wall"][p]]:
+            if _cuts(a, b, [l["from"], l["to"]]) and p in ACTIVE: out.append((p, "the Great Wall"))
+    for p, secs in CANAL_SECTIONS.items():
+        for s in secs[:pw["canal"][p]]:
+            if _cuts(a, b, s["path"]) and p in ACTIVE: out.append((p, "the Grand Canal"))
+    for k, (p, _, name) in CUTOUT.items():
+        if b in pw_at.get(k, ()) and p in ACTIVE: out.append((p, name))
+    return out
+
 # ------------------------------------------------------------------ setup
-def setup(active, key, title, subtitle, blurb, short=""):
+def setup(active, key, title, subtitle, blurb, short="", cast=None):
     """Start a game. active: the seats in play. key: URL fragment (#key).
     title/subtitle/short: the game selector button. blurb: the line under the header.
-    Deals 60 grain to everyone, fills each province's realia stock by player count,
-    and takes the starting grain out of a 2,500-million Harvest Pile."""
-    global ACTIVE, PLAYERS, seat, grain, stock, held, bonus, raids, pw, board
-    global pile, ENTRIES, ROUNDS, META, MULT, CUR_Q, CUR_INC, CUR_HARV
-    global dis_next, used_cards, pending_bonus, warlord_got
+    cast: {seat: short name} for who drew which booklet; by default everyone draws the
+    seat they drew on the first evening. A player id is still the seat drawn.
+    The table starts empty: the Setup round (R(0, ...)) deals the grain, takes the
+    starting stock out of the box and places the Warlord's army."""
+    global ACTIVE, PLAYERS, seat, grain, stock, held, bonus, raids, pw, pw_at, board
+    global pile, ENTRIES, ROUNDS, META, MULT, CUR_Q, CUR_INC, CUR_HARV, CUR_ROUND
+    global dis_next, used_cards, pending_bonus, warlord_got, SOLDIERS, ARMY, NORAID
+    global _troops_round, _done, _named, NAMES, SHORT
     ACTIVE = sorted(active)
+    who = cast or {s:CAST_SHORT[s] for s in ACTIVE}
+    assert sorted(who) == sorted(active) and len(set(who.values())) == len(who), "one person per seat"
+    key_of = {v:k for k,v in CAST_SHORT.items()}
+    NAMES = {s:CAST_NAMES[key_of[w]] for s,w in who.items()}
+    SHORT = {s:w for s,w in who.items()}
     PLAYERS = list(ACTIVE)
     seat = {s:s for s in ACTIVE}
-    grain = {p:60.0 for p in PLAYERS}
-    pile = PILE_START - 60*len(PLAYERS)
-    n = len(ACTIVE)
+    grain = {p:0.0 for p in PLAYERS}
+    pile = PILE_START
     stock = {}
-    for s in ACTIVE:
-        if s in REALIA:
-            if n <= 5:   stock[s] = {REALIA[s]:1, NEVER[s]:2}
-            elif n == 6: stock[s] = {REALIA[s]:2}
-            else:        stock[s] = {REALIA[s]:4}
     held = {p:{} for p in PLAYERS}
     bonus = {s:0 for s in ACTIVE}
     pending_bonus = {}
     raids = {s:0 for s in range(1,9)}
     pw = {"Summer Palace":0,"Winter Palace":0,"Marble Pagoda":0,
           "wall":{1:0,2:0,3:0},"canal":{1:0,4:0,5:0,6:0},"irr2":0,"res3":0,"res7":0}
-    board = {}
+    pw_at = {}             # work key -> the squares it stands on
+    board = {}             # square -> {"realia", "owner"} and/or {"raid": True}
+    SOLDIERS = {}          # id -> {"side": "W" or "B", "owner", "sq", "home", "moved"}
+    ARMY = (4 if len(ACTIVE) >= 8 else 2) if 8 in ACTIVE else 0
+    NORAID = {}            # round -> provinces the Warlord may not raid this round
+    _troops_round = None
+    _done = set(); _named = set()
     ENTRIES = []; ROUNDS = []
-    MULT = 1; CUR_Q = {}; CUR_INC = {}; CUR_HARV = {}
+    MULT = 1; CUR_Q = {}; CUR_INC = {}; CUR_HARV = {}; CUR_ROUND = None
     dis_next = {s:0 for s in ACTIVE}
     used_cards = set()
-    global warlord_got, ROB_N, rob_pos
     warlord_got = {}
-    ROB_N = (4 if len(ACTIVE) >= 8 else 2) if 8 in ACTIVE else 0
-    rob_pos = []
     META = dict(key=key, title=title, subtitle=subtitle, blurb=blurb, short=short)
+
+def deal_grain(text, hover=None):
+    """Setup: the Harvest Pile deals every player 60 (Section 4)."""
+    global pile
+    assert CUR_ROUND == 0 and "grain" not in _done
+    _done.add("grain")
+    pile -= 60*len(PLAYERS)
+    act(text, hover, {p:60 for p in PLAYERS}, map_hl=list(ACTIVE))
+
+def take_stock(text, hover=None):
+    """Setup: each realia province takes its starting stock out of the box. It waits
+    beside the board until it's auctioned (Note 9). At 4-5 players: one of its own and
+    two of its NEVER type; at 6, two of its own; at 7 or more, four of its own."""
+    assert CUR_ROUND == 0 and "stock" not in _done
+    _done.add("stock")
+    n = len(ACTIVE)
+    for s in ACTIVE:
+        if s in REALIA:
+            if n <= 5:   stock[s] = {REALIA[s]:1, NEVER[s]:2}
+            elif n == 6: stock[s] = {REALIA[s]:2}
+            else:        stock[s] = {REALIA[s]:4}
+    act(text, hover, map_hl=[s for s in ACTIVE if s in REALIA])
+
+def place_army(at, text, hover=None):
+    """Setup: the Warlord stands his soldiers on squares of undeveloped land.
+    at: {soldier id: square}; the ids are W1, W2, ... and there must be one per soldier
+    (four at eight players, two at five or six)."""
+    assert CUR_ROUND == 0 and 8 in ACTIVE and "army" not in _done
+    assert sorted(at) == [f"W{i}" for i in range(1, ARMY+1)], f"the Warlord has {ARMY} soldiers: W1..W{ARMY}"
+    for i, q in at.items():
+        assert region(q) in UNDEVELOPED, f"{i} must start on undeveloped land, not {q}"
+        SOLDIERS[i] = dict(side="W", owner=pid(8), sq=q, home=8, moved=None)
+    _done.add("army")
+    act(text, hover, map_hl=[8])
 
 def need_for(s):
     """The realia types the player in seat s must collect, by player count."""
@@ -102,7 +218,7 @@ def owed():
     o = [["Summer Palace",1,20],["Winter Palace",1,20],["Marble Pagoda",1,20]]
     w = sum(4 for s in (1,2,3) if s in ACTIVE); o.append(["Great Wall",w,40])
     c = sum(2 for s in (1,4,5,6) if s in ACTIVE); o.append(["Grand Canal",c,40])
-    if 2 in ACTIVE: o.append(["Province 2 Irrigation",1,30])
+    if 2 in ACTIVE: o.append(["Province 2 Irrigation System",1,30])
     if 3 in ACTIVE: o.append(["Province 3 Reservoir",1,80])
     if 7 in ACTIVE: o.append(["Province 7 Reservoir",1,60])
     return o
@@ -110,7 +226,7 @@ def owed():
 def built_count(name):
     if name == "Great Wall": return sum(pw["wall"].values())
     if name == "Grand Canal": return sum(pw["canal"].values())
-    return {"Province 2 Irrigation":pw["irr2"],"Province 3 Reservoir":pw["res3"],
+    return {"Province 2 Irrigation System":pw["irr2"],"Province 3 Reservoir":pw["res3"],
             "Province 7 Reservoir":pw["res7"]}.get(name, pw.get(name, 0))
 
 def all_built():
@@ -138,8 +254,10 @@ def snap():
                 stock={str(s):dict(v) for s,v in stock.items()},
                 raids={str(k):v for k,v in raids.items()},
                 pw={k:(dict((str(a),b) for a,b in v.items()) if isinstance(v,dict) else v) for k,v in pw.items()},
+                at={k:list(v) for k,v in pw_at.items()},
                 bonus={str(k):v for k,v in bonus.items()},
                 board={k:dict(v) for k,v in board.items()},
+                sol=[[i, s["side"], s["sq"], s["owner"]] for i,s in SOLDIERS.items()],
                 pile=round(pile,2), mult=MULT,
                 rob={str(k):v for k,v in warlord_got.items()})
 
@@ -147,24 +265,31 @@ def _apply(d):
     for k,v in (d or {}).items():
         grain[k] = round(grain[k]+v, 2)
 
-def act(text, hover=None, deltas=None, map_hl=None, pile_delta=0, big=False):
+def act(text, hover=None, deltas=None, map_hl=None, pile_delta=0, big=False, moves=None):
     """A game event: a bold, clickable line in the transcript.
     deltas: {player_id: grain change}. pile_delta: change to the Harvest Pile.
-    map_hl: seats to highlight on the board. big: style as a turning point."""
+    map_hl: seats to highlight on the board. big: style as a turning point.
+    moves: [[from, to, side]] soldier steps to draw as arrows (set by march/troops)."""
     global pile
     _apply(deltas); pile = round(pile+pile_delta, 2)
     ENTRIES.append(dict(k="act", t=text, h=_norm(hover), who=None,
         d={str(k):v for k,v in (deltas or {}).items()}, hl=map_hl or [],
-        state=snap(), big=big))
+        state=snap(), big=big, mv=moves or []))
 
 def say(who, text, hover=None):
     """Table talk: an in-character line. Changes nothing. hover is the thought behind it."""
-    ENTRIES.append(dict(k="say", t=text, h=_norm(hover, who), who=who, d={}, hl=[], state=snap()))
+    ENTRIES.append(dict(k="say", t=text, h=_norm(hover, who), who=who, d={}, hl=[], state=snap(), mv=[]))
 
 # ------------------------------------------------------------------ rounds
 def R(n, title, card=None, card_text=None):
-    """Start a round. card is a key in CARDS (None for round one)."""
-    global MULT, CUR_Q
+    """Start a round. n=0 is the Setup round. card is a key in CARDS (None for rounds 0 and 1)."""
+    global MULT, CUR_Q, CUR_ROUND
+    if n == 1:
+        missing = {"grain","stock"} - _done
+        if ARMY: missing |= {"army"} - _done
+        assert not missing, f"setup isn't finished: {sorted(missing)}"
+    assert CUR_ROUND is None or n == CUR_ROUND+1, f"round {n} follows round {CUR_ROUND}"
+    CUR_ROUND = n
     for s,v in pending_bonus.items(): bonus[s] += v
     pending_bonus.clear()
     q = None
@@ -236,15 +361,46 @@ def salaries(pay=None, text=None, hover=None):
         map_hl=[1]+list(pay.keys()))
 
 PW_BONUS = {"irr2":(2,10),"res3":(3,20),"res7":(7,20)}
-def build(name, cost, split, wall=None, canal=None, key=None, hover=None, text=None):
-    """split: {seat: amount}. wall/canal: {seat: n}. key: 'Summer Palace', 'irr2', ..."""
+def _work_at(q):
+    for k, sqs in pw_at.items():
+        if q in sqs: return k
+    return None
+def _rect(spec):
+    """'P14:Q15' -> every square in that rectangle."""
+    a, b = spec.split(":")
+    (r1,c1),(r2,c2) = rc(a), rc(b)
+    return [sqname(r,c) for r in range(min(r1,r2), max(r1,r2)+1) for c in range(min(c1,c2), max(c1,c2)+1)], \
+           (abs(r1-r2)+1, abs(c1-c2)+1)
+
+def build(name, cost, split, wall=None, canal=None, key=None, hover=None, text=None, at=None):
+    """split: {seat: amount}. wall/canal: {seat: n}. key: 'Summer Palace', 'irr2', ...
+    at: where a palace ('G20') or a cut-out ('P14:Q15') goes; the Wall and the Canal
+    have printed places on the map, built in link and section order."""
     d = {}
     for s,a in split.items(): d[pid(s)] = d.get(pid(s),0)-a
     assert abs(sum(split.values())-cost) < 1e-6, (name, cost, split)
-    for s,n in (wall or {}).items(): pw["wall"][s] += n
+    for s,n in (wall or {}).items():
+        assert s in WALL_LINKS and pw["wall"][s]+n <= 4, f"only four Wall links above Province {s}"
+        pw["wall"][s] += n
     for s,n in (canal or {}).items():
+        assert s in CANAL_SECTIONS and pw["canal"][s]+n <= 2, f"only two canal sections in Province {s}"
         pw["canal"][s] += n; pending_bonus[s] = pending_bonus.get(s,0)+10*n
     if key:
+        assert not pw[key], f"{key} is already built"
+        if key in PALACES:
+            assert at and prov(at) == 1, f"the {key} goes on a square in Province 1, not {at}"
+            sqs = [at]
+        elif key in CUTOUT:
+            p, size, label = CUTOUT[key]
+            assert at, f"say where {label} goes: at='P14:Q15'"
+            sqs, dims = _rect(at)
+            assert sorted(dims) == sorted(size), f"{label} is {size[0]} x {size[1]}, not {dims[0]} x {dims[1]}"
+            assert all(prov(q) == p for q in sqs), f"{label} must lie inside Province {p}"
+        else: sqs = []
+        for q in sqs:
+            assert not board.get(q,{}).get("realia"), f"{q} holds realia"
+            assert not _work_at(q), f"{q} already holds {_work_at(q)}"
+        if sqs: pw_at[key] = sqs
         pw[key] = 1
         if key in PW_BONUS:
             s,b = PW_BONUS[key]; pending_bonus[s] = pending_bonus.get(s,0)+b
@@ -253,7 +409,8 @@ def build(name, cost, split, wall=None, canal=None, key=None, hover=None, text=N
         d, map_hl=list(split.keys()))
 
 def disaster(s, text, hover=None):
-    """Play the next personal disaster in seat s's booklet."""
+    """Play the next personal disaster in seat s's booklet. The Warlord's first two
+    stop raids this round (on 5-7, then everywhere); the engine refuses a raid that breaks that."""
     global pile
     i = dis_next[s] % 3; dis_next[s] += 1
     kind, v = DISASTERS[s][i]
@@ -263,23 +420,49 @@ def disaster(s, text, hover=None):
     elif kind == "frac_harvest": amt = round(CUR_HARV[s]*v, 2)
     elif kind == "frac_grain": amt = round(max(0, grain[p])*v, 2)
     else: amt = 0
+    if s == 8 and i == 0: NORAID[CUR_ROUND] = {5,6,7}
+    if s == 8 and i == 1: NORAID[CUR_ROUND] = set(range(1,8))
     act(f"{SHORT[p]}'s disaster #{i+1}: {text}" + (f" — {amt:g} to the Harvest Pile." if amt else ""),
         hover, {p:-amt} if amt else None, map_hl=[s], pile_delta=amt)
     return kind
 
-def lot(sell, typ, ladder, hover=None):
-    """ladder: list of (bidder_seat, amount|None, text|None, hover|None). Last numeric bid wins."""
+# ------------------------------------------------------------------ realia
+def _place(code, owner, at):
+    """A bought or traded piece goes on a square of its owner's province at once (Note 9)."""
+    s = sid(owner)
+    ok = region(at) == "8" if s == 8 else prov(at) == s
+    assert ok, f"{SHORT[owner]}'s {RNAME[code]} must go in Province {s}, not {at}"
+    cell = board.get(at, {})
+    assert not cell.get("realia"), f"{at} already holds a {RNAME[cell.get('realia','')] if cell.get('realia') else ''}"
+    assert not cell.get("raid"), f"{at} has been raided; realia can't go there"
+    assert not _work_at(at), f"{at} is under {_work_at(at)}"
+    board[at] = dict(cell, realia=code, owner=owner)
+
+def _lift(code, owner):
+    for k, v in board.items():
+        if v.get("realia") == code and v.get("owner") == owner:
+            v.pop("realia"); v.pop("owner")
+            if not v: del board[k]
+            return k
+    raise AssertionError(f"{SHORT[owner]} has no {RNAME[code]} on the board")
+
+def lot(sell, typ, ladder, hover=None, at=None):
+    """Auction one piece of typ from seat sell's stock. ladder: B(...) bids; the last
+    numeric bid wins. at: the square in the winner's province where they place it."""
     global pile
+    assert stock.get(sell,{}).get(typ), f"Province {sell} has no {RNAME[typ]} in stock"
+    assert at, f"say where the winner puts the {RNAME[typ]}: at='H12'"
     bids = []
     for b,amt,txt,hov in ladder:
         bids.append(dict(who=SHORT[pid(b)], t=txt or (spell(amt)+"." if amt is not None else "Out."),
                          h=_norm(hov, SHORT[pid(b)]), amt=amt))
     win = [r for r in ladder if r[1] is not None][-1]
     wb, price = win[0], win[1]
+    assert wb != sell and wb != 1, "neither the seller nor the Emperor bids"
     stock[sell][typ] -= 1
     if stock[sell][typ] <= 0: del stock[sell][typ]
     held[pid(wb)][typ] = held[pid(wb)].get(typ,0)+1
-    place(wb, typ, pid(wb))
+    _place(typ, pid(wb), at)
     d = {pid(wb):-price}
     d[pid(sell)] = d.get(pid(sell),0) + price*0.25
     pile = round(pile + price*0.75, 2)
@@ -290,70 +473,32 @@ def lot(sell, typ, ladder, hover=None):
     h = h + [{"w":"","t":note}]
     ENTRIES.append(dict(k="lot", t=f"{RNAME[typ]} — {SHORT[pid(wb)]} takes it for {price:g}.",
         h=h, who=None, bids=bids, d={str(k):v for k,v in d.items()},
-        hl=[sell, wb], state=snap()))
+        hl=[sell, wb], state=snap(), mv=[]))
 
 def B(seat, amt, text=None, th=None):
     """One bid in a lot ladder. amt=None is a pass. text defaults to the amount in words."""
     return (seat, amt, text, th)
 
-def raid(rows, text="Robert Land raids.", hover=None):
-    """rows: [(seat, tribute)]. Marks an unraided square per row and moves a soldier there.
-    Tribute is 5, or 10 in Province 1. The script must respect the soldier count."""
-    d = {}; txt = []
-    for s,amt in rows:
-        raids[s] += 1; mark_raid(s)
-        d[pid(s)] = d.get(pid(s),0)-amt; d[pid(8)] = d.get(pid(8),0)+amt
-        txt.append(f"Province {s} pays {amt:g}")
-    act(text, hover or ("A raided square can never be raided again. "+", ".join(txt)+"."),
-        d, map_hl=[s for s,_ in rows]+[8])
-
-PALACE_CELL = {"Summer Palace":(2,21),"Winter Palace":(2,23),"Marble Pagoda":(2,25)}
-def raid_take(s, typ, text, hover=None):
-    """The Warlord raids a square in seat s holding realia typ and takes the piece."""
-    p = pid(s)
-    for k,v in list(board.items()):
-        if v.get("realia")==typ and v.get("owner")==p and not v.get("raid"):
-            v.pop("realia"); v.pop("owner",None); v["raid"]=True; _move_soldier(k); break
-    else:
-        mark_raid(s)
-    raids[s] += 1
-    held[p][typ] -= 1
-    if held[p][typ] <= 0: del held[p][typ]
-    held[pid(8)][typ] = held[pid(8)].get(typ,0)+1
-    place(8, typ, pid(8))
-    warlord_got[p] = typ
-    act(text, hover, None, map_hl=[s,8])
-
-def raid_palace(name, text, hover=None):
-    """The Warlord raids the square holding one of the Emperor's buildings; the Emperor pays its cost."""
-    r,c = PALACE_CELL[name]; k = f"{r},{c}"
-    cell = board.get(k,{}); cell["raid"]=True; board[k]=cell; _move_soldier(k)
-    raids[1] += 1
-    warlord_got[pid(1)] = name
-    act(text, hover, {pid(1):-20, pid(8):20}, map_hl=[1,8])
-
-def sell_soldiers(buyers, text, hover=None):
-    """Each seat in buyers pays the Warlord 20 for a soldier; he keeps 5, 15 to the pile."""
-    global pile
-    d = {}
-    for s in buyers:
-        d[pid(s)] = d.get(pid(s),0)-20; d[pid(8)] = d.get(pid(8),0)+5
-        place_soldier(s)
-    act(text, hover, d, map_hl=list(buyers)+[8], pile_delta=15*len(buyers))
-
-def give(frm, to, typ):
+def give(frm, to, typ, at):
     """Move one piece of realia between players (by player id) for a private trade.
-    The grain side of the trade is a separate act() with deltas."""
+    at: the square in the new owner's province. The grain is a separate act()."""
+    assert held[frm].get(typ), f"{SHORT[frm]} holds no {RNAME[typ]}"
+    _lift(typ, frm)
     held[frm][typ] -= 1
     if held[frm][typ] <= 0: del held[frm][typ]
     held[to][typ] = held[to].get(typ,0)+1
-    for k,v in list(board.items()):
-        if v.get("realia")==typ and v.get("owner")==frm and not v.get("raid"):
-            del board[k]; break
-    place(sid(to), typ, to)
+    _place(typ, to, at)
 
-def swap(a, b, note, hover=None, draw=60, check=True):
-    """Player in seat a replaces player in seat b. check=False for a Chaos acclamation."""
+def _unplace_all(p):
+    for k,v in list(board.items()):
+        if v.get("owner") == p:
+            v.pop("realia"); v.pop("owner")
+            if not v: del board[k]
+
+def swap(a, b, note, hover=None, draw=60, check=True, at=None):
+    """Player in seat a replaces player in seat b. check=False for a Chaos acclamation.
+    at: where the mover's pieces go in the new province, {code: square or [squares]}.
+    Bought soldiers stay with the player who bought them."""
     global pile
     pa, pb = pid(a), pid(b)
     if check:
@@ -365,6 +510,8 @@ def swap(a, b, note, hover=None, draw=60, check=True):
             assert grain[pa] >= 20, f"{SHORT[pa]} needs 20 grain in hand, has {grain[pa]}"
         if b == 1: assert a in (2,3,4,8), "only the Official, Gentry, Scholar or Warlord may take the throne"
         if a in (5,6,7): assert b in (2,3,4,5,6,7), "a peasant may replace the Gentry, Scholar, Official or a peasant"
+    assert not [i for i,s in SOLDIERS.items() if s["owner"] == pb and s["side"] == "B"], \
+        f"{SHORT[pb]} owns soldiers; the engine has no ruling for a displaced player's soldiers"
     if b in REALIA:                       # pieces native to the new seat go back to auction
         t = REALIA[b]
         if t in held[pa]:
@@ -378,13 +525,16 @@ def swap(a, b, note, hover=None, draw=60, check=True):
         o = home(t)
         stock.setdefault(o,{}); stock[o][t] = stock[o].get(t,0)+c
     held[pb] = {}
-    unplace_all(pb); unplace_all(pa)
+    _unplace_all(pb); _unplace_all(pa)
     grain[pa] = round(grain[pa]+grain[pb], 2); grain[pb] = 0.0
     take = min(draw, max(0,pile)); grain[pb] = round(grain[pb]+take, 2); pile = round(pile-take, 2)
     seat[a], seat[b] = pb, pa
-    for t,c in held[pa].items():
-        for _ in range(c): place(b, t, pa)
-    ENTRIES.append(dict(k="act", t=note, h=_norm(hover), who=None, d={}, hl=[a,b], state=snap(), big=True))
+    want = {t:([v] if isinstance(v,str) else list(v)) for t,v in (at or {}).items()}
+    assert {t:len(v) for t,v in want.items()} == {t:c for t,c in held[pa].items()}, \
+        f"say where {SHORT[pa]}'s pieces go: {held[pa]}"
+    for t, sqs in want.items():
+        for q in sqs: _place(t, pa, q)
+    ENTRIES.append(dict(k="act", t=note, h=_norm(hover), who=None, d={}, hl=[a,b], state=snap(), big=True, mv=[]))
 
 WORD = "zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty".split()
 def spell(n):
@@ -394,65 +544,126 @@ def spell(n):
     t = {20:"Twenty",30:"Thirty",40:"Forty",50:"Fifty",60:"Sixty",70:"Seventy",80:"Eighty",90:"Ninety"}
     return t[n-n%10] + ("-"+WORD[n%10] if n%10 else "")
 
-# ------------------------------------------------------------------ board
-COLS, ROWS = 30, 17
-def _reg(r,c):
-    if c >= 27: return 'S' if r >= 2 else '.'
-    if r == 0: return 'W' if 7 <= c <= 26 else '.'
-    if r == 1: return 'n' if 7 <= c <= 26 else '.'
-    if c <= 6: return '8'
-    if 2 <= r <= 6:  return '3' if c <= 13 else ('2' if c <= 20 else '1')
-    if 7 <= r <= 10: return '3' if c <= 13 else ('4' if c <= 20 else '5')
-    if 11 <= r <= 13:return '7' if c <= 13 else ('6' if c <= 20 else '5')
-    return '7' if c <= 13 else '6'
-GRID = [[_reg(r,c) for c in range(COLS)] for r in range(ROWS)]
-CELLS = {str(p):[(r,c) for r in range(ROWS) for c in range(COLS) if GRID[r][c]==str(p)] for p in range(1,9)}
+# ------------------------------------------------------------------ soldiers
+# Every soldier stands on a square and moves at most one square a round, diagonals
+# included (Section 14, Note 15). The Warlord's soldiers are W1, W2, ...; a bought
+# soldier is named after its buyer: Reina1, Reina2, Paddy1, ...
 
-# squares the page draws public works on; pieces and raids never land here
-RESERVED = {(2,21),(2,23),(2,25),(5,22),(5,23),(9,17),(9,18),(8,22),(8,23),(12,16),(12,17),(5,15),(6,8),(16,8)}
-def _free(p, want_realia=False):
-    for (r,c) in CELLS[str(p)]:
-        if (r,c) in RESERVED: continue
-        k = f"{r},{c}"; cell = board.get(k,{})
-        if want_realia and cell.get("realia") and not cell.get("raid"): return k
-        if not want_realia and not cell.get("realia") and not cell.get("raid") and not cell.get("own_soldier"): return k
-    return None
-def place(p, typ, owner):
-    """Put a piece on the first free square in seat p (purchased realia must be placed)."""
-    k = _free(p)
-    if k: board[k] = {"realia":typ, "owner":owner}
-def unplace_all(p):
-    for k,v in list(board.items()):
-        if v.get("realia") and not v.get("raid") and v.get("owner")==p: del board[k]
-def _move_soldier(k):
-    rob_pos.append(k)
-    while len(rob_pos) > ROB_N:
-        old = rob_pos.pop(0)
-        if old in board: board[old].pop("soldier", None)
-    if k in board: board[k]["soldier"] = True
+def rob_n():
+    """The Warlord's soldiers still in play."""
+    return sum(1 for s in SOLDIERS.values() if s["side"] == "W")
 
-def mark_raid(p, take=False):
-    k = _free(p, want_realia=take) or _free(p)
-    if k:
-        cell = board.get(k,{}); cell["raid"] = True; board[k] = cell
-        if take: cell.pop("realia", None)
-        _move_soldier(k)
+def _at(q, side=None):
+    return [i for i,s in SOLDIERS.items() if s["sq"] == q and (side is None or s["side"] == side)]
 
-def capture_soldier(text, hover=None):
-    """One of the Warlord's soldiers is captured and removed from play."""
-    global ROB_N
-    ROB_N -= 1
-    if rob_pos:
-        old = rob_pos.pop(0)
-        if old in board: board[old].pop("soldier", None)
-    act(text, hover, None, map_hl=[8])
-def place_soldier(p):
-    """A bought soldier, drawn in blue, on the last free square of seat p."""
-    for (r,c) in reversed(CELLS[str(p)]):
-        if (r,c) in RESERVED: continue
-        k = f"{r},{c}"
-        if not board.get(k,{}).get("soldier") and not board.get(k,{}).get("own_soldier"):
-            cell = board.get(k,{}); cell["own_soldier"] = True; board[k] = cell; return
+def _step(i, to):
+    s = SOLDIERS.get(i)
+    assert s, f"no soldier {i}"
+    assert CUR_ROUND and CUR_ROUND >= 1, "soldiers move from Round One"
+    assert s["moved"] != CUR_ROUND, f"{i} has already moved this round"
+    frm = s["sq"]
+    assert region(to) != "S", f"{i} can't go into the sea at {to}"
+    assert dist(frm, to) == 1, f"{i} is on {frm}; {to} is {dist(frm,to)} squares away, and a soldier moves one square a round"
+    return s, frm
+
+def _capture(i, frm, to, side):
+    """i moves onto a square held by the other side: legal only horizontally or vertically."""
+    foes = _at(to, "B" if side == "W" else "W")
+    if not foes: return None
+    assert _orth(frm, to), f"{i} can't capture on {to} from {frm}: captures are horizontal or vertical, never diagonal"
+    assert len(foes) == 1, f"{to} holds {len(foes)} soldiers"
+    del SOLDIERS[foes[0]]
+    return foes[0]
+
+def march(moves, text=None, hover=None, take=None):
+    """The Warlord moves. moves: {soldier: square}, one square each, before any province's
+    soldiers move this round. A soldier that steps onto an un-raided square of an occupied
+    province raids it: 5, or 10 in Province 1; a palace square costs the Emperor 20.
+    take: {soldier: (code, square)} to take the realia on the raided square as tribute,
+    placing it on a square of the Warlord's territory. Tolls are paid automatically."""
+    assert 8 in ACTIVE
+    assert _troops_round != CUR_ROUND, "the Warlord moves before the provinces' soldiers"
+    take = take or {}
+    d = {}; w = pid(8); notes = []; mv = []; hl = {8}
+    def pay(p, amt):
+        d[p] = d.get(p,0) - amt; d[w] = d.get(w,0) + amt
+    for i, to in moves.items():
+        s, frm = _step(i, to)
+        assert s["side"] == "W", f"{i} isn't the Warlord's"
+        got = _capture(i, frm, to, "W")
+        if got: notes.append(f"{i} captures {got} on {to}.")
+        for p, what in tolls(frm, to):
+            d[w] = d.get(w,0) - 5; d[pid(p)] = d.get(pid(p),0) + 5
+            notes.append(f"{i} crosses {what}: 5 to {SHORT[pid(p)]}.")
+            hl.add(p)
+        s["sq"] = to; s["moved"] = CUR_ROUND
+        mv.append([frm, to, "W"])
+        p = prov(to); cell = board.get(to, {})
+        raids_here = p in ACTIVE and not cell.get("raid")
+        assert raids_here or i not in take, f"{i} doesn't raid {to}, so it can't take anything there"
+        if not raids_here: continue
+        assert p not in NORAID.get(CUR_ROUND, ()), f"the Warlord's disaster forbids raiding Province {p} this round"
+        hl.add(p); payer = pid(p); work = _work_at(to)
+        if work in PALACES:
+            pay(payer, 20); warlord_got[payer] = work
+            notes.append(f"{i} raids the {work} on {to}: the Emperor pays the cost of the structure, 20.")
+        elif i in take:
+            code, where = take[i]
+            assert cell.get("realia") == code and cell.get("owner") == payer, f"{to} holds no {RNAME[code]} of {SHORT[payer]}'s"
+            cell.pop("realia"); cell.pop("owner")
+            held[payer][code] -= 1
+            if not held[payer][code]: del held[payer][code]
+            held[w][code] = held[w].get(code,0) + 1
+            _place(code, w, where)
+            warlord_got[payer] = code
+            notes.append(f"{i} raids {to} and takes {SHORT[payer]}'s {RNAME[code]}.")
+        else:
+            amt = 10 if p == 1 else 5
+            pay(payer, amt)
+            notes.append(f"{i} raids {to} in Province {p}: {amt} from {SHORT[payer]}.")
+        cell["raid"] = True; board[to] = cell
+        raids[p] += 1
+    h = _norm(hover) or []
+    if notes: h = h + [{"w":"","t":" ".join(notes)}]
+    act(text or "Robert Land moves.", h or None, d, map_hl=sorted(hl), moves=mv)
+
+def sell_soldiers(buys, text, hover=None):
+    """buys: [(seat, square), ...]; each pays the Warlord 20 for a soldier standing on
+    that square of the buyer's province. He keeps 5 of each and 15 goes to the pile."""
+    global pile
+    d = {}; w = pid(8)
+    for s, q in buys:
+        p = pid(s)
+        assert prov(q) == s, f"a bought soldier starts in its buyer's province: {q} isn't in Province {s}"
+        assert not _at(q, "W"), f"a Warlord soldier stands on {q}"
+        assert all(SOLDIERS[o]["owner"] == p for o in _at(q)), f"another player's soldier stands on {q}"
+        n = 1
+        while f"{SHORT[p]}{n}" in _named: n += 1
+        SOLDIERS[f"{SHORT[p]}{n}"] = dict(side="B", owner=p, sq=q, home=s, moved=None)
+        _named.add(f"{SHORT[p]}{n}")
+        d[p] = d.get(p,0)-20; d[w] = d.get(w,0)+5
+    act(text, hover, d, map_hl=[s for s,_ in buys]+[8], pile_delta=15*len(buys))
+
+def troops(moves, text, hover=None):
+    """A province's soldiers move, after the Warlord's (Section 14). moves: {soldier: square}.
+    A bought soldier can't move until the Warlord has raided the province it was bought in.
+    Stepping horizontally or vertically onto a Warlord soldier captures it."""
+    global _troops_round
+    mv = []; notes = []
+    for i, to in moves.items():
+        s, frm = _step(i, to)
+        assert s["side"] == "B", f"{i} is the Warlord's"
+        assert raids[s["home"]] > 0, f"{i} can't move until the Warlord has raided Province {s['home']}"
+        others = [o for o in _at(to, "B") if SOLDIERS[o]["owner"] != s["owner"]]
+        assert not others, f"{to} holds another player's soldier"
+        got = _capture(i, frm, to, "B")
+        if got: notes.append(f"{i} captures the Warlord's {got} on {to}.")
+        s["sq"] = to; s["moved"] = CUR_ROUND
+        mv.append([frm, to, "B"])
+    _troops_round = CUR_ROUND
+    h = _norm(hover) or []
+    if notes: h = h + [{"w":"","t":" ".join(notes)}]
+    act(text, h or None, None, map_hl=sorted({prov(m[1]) or 8 for m in mv}), moves=mv)
 
 # ------------------------------------------------------------------ export
 def export(results_note, epilogue):
@@ -470,4 +681,6 @@ def export(results_note, epilogue):
         rname=RNAME, need={str(s):need_for(s) for s in ACTIVE if s in REALIA},
         owed=owed(), entries=ENTRIES, rounds=ROUNDS, results=res,
         results_note=results_note, epilogue=epilogue,
-        grid=[''.join(r) for r in GRID])
+        grid=GRID, map=dict(rivers=RIVERS, coast=_MAP["coast"],
+            wall={str(p):[[l["from"], l["to"]] for l in v] for p,v in WALL_LINKS.items()},
+            canal={str(p):[s["path"] for s in v] for p,v in CANAL_SECTIONS.items()}))

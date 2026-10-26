@@ -2,7 +2,7 @@
 
 Everything in `engine.py` and `cards.py`, grouped by purpose. Every name is a global inside a game script.
 
-**Conventions used below.** *seat* is a province, 1–8. *player* is a player id — the seat that player drew at setup. *hover* is a string, a `"Name: thought"` string, or a list from `TH(...)`. Every function that records an entry takes a full state snapshot at that moment; see [`page-format.md`](page-format.md#state-snapshots) for what a snapshot holds.
+**Conventions used below.** *seat* is a province, 1–8. *player* is a player id — the seat that player drew at setup. *square* is a board square named like `"H12"`: row letter A–V, column 1–30. *hover* is a string, a `"Name: thought"` string, or a list from `TH(...)`. Every function that records an entry takes a full state snapshot at that moment; see [`page-format.md`](page-format.md#state-snapshots) for what a snapshot holds.
 
 - [Constants](#constants)
 - [Game state](#game-state)
@@ -12,7 +12,7 @@ Everything in `engine.py` and `cards.py`, grouped by purpose. Every name is a gl
 - [Public works](#public-works)
 - [Realia and auctions](#realia-and-auctions)
 - [Seat changes](#seat-changes)
-- [The Warlord](#the-warlord)
+- [Soldiers](#soldiers)
 - [Disasters](#disasters)
 - [Queries](#queries)
 - [The board](#the-board)
@@ -23,7 +23,8 @@ Everything in `engine.py` and `cards.py`, grouped by purpose. Every name is a gl
 
 | Name | Value |
 |---|---|
-| `NAMES`, `SHORT` | Player id → full name and short name. 1 Reina Osorio, 2 Clark Grafton, 3 Richard Baron (Rich), 4 Ken Nakamura, 5 Silke Weber, 6 Paddy Doyle, 7 Graham Garner, 8 Robert Land (Rob). |
+| `CAST_NAMES`, `CAST_SHORT` | The eight friends, keyed by the seat each drew on the first evening: 1 Reina Osorio, 2 Clark Grafton, 3 Richard Baron (Rich), 4 Noah Lott, 5 Silke Weber, 6 Paddy Doyle, 7 Graham Garner, 8 Robert Land (Rob). |
+| `NAMES`, `SHORT` | Player id → full name and short name for *this* game. `setup()` builds them from its `cast`. |
 | `ROLE` | Seat → role: Emperor, Official, Gentry, Scholar, Silk/Rice/Wheat Peasant, Warlord. |
 | `REALIA` | Seat → the realia native to it: 2 `CH`, 3 `LD`, 4 `BB`, 5 `DJ`, 6 `WB`, 7 `VA`. |
 | `NEVER` | Seat → the realia type that seat's objective never asks for: 2 `DJ`, 3 `WB`, 4 `VA`, 5 `CH`, 6 `BB`, 7 `LD`. At 4–5 players each province also starts holding two of these. |
@@ -32,9 +33,12 @@ Everything in `engine.py` and `cards.py`, grouped by purpose. Every name is a gl
 | `HARV` | Seat → harvest by quality: `{"good": 100, "avg": 75, "bad": 50}`, or 40/30/20 for Province 8. |
 | `DISASTERS` | Seat → its three personal disasters in booklet order (see [Disasters](#disasters)). |
 | `PILE_START` | 2,500 — the value of the physical Harvest Pile. |
-| `PW_BONUS` | The irrigation and reservoirs' bonuses: `irr2` → Province 2 +10, `res3` → Province 3 +20, `res7` → Province 7 +20. |
-| `PALACE_CELL` | Where each palace is drawn: row 2, columns 21, 23 and 25. |
-| `GRID`, `CELLS`, `COLS`, `ROWS`, `RESERVED` | The 30 × 17 board (see [The board](#the-board)). |
+| `PW_BONUS` | The water works' bonuses: `irr2` → Province 2 +10, `res3` → Province 3 +20, `res7` → Province 7 +20. |
+| `PALACES` | `("Summer Palace", "Winter Palace", "Marble Pagoda")` — the Emperor's three buildings. |
+| `CUTOUT` | Work key → `(province, size, name)`: `irr2` 1 × 2, `res3` 2 × 3, `res7` 2 × 2. |
+| `GRID`, `ROWS`, `COLS` | The board from `../map.json`: 22 strings of 30 characters (see [The board](#the-board)). |
+| `RIVERS`, `WALL_LINKS`, `CANAL_SECTIONS` | The rivers, the twelve Wall links (by the province they stand above) and the eight canal sections (by province), as paths in grid units, from `map.json`. |
+| `UNDEVELOPED` | `"8n"` — the regions where the Warlord's army may start. |
 
 ## Game state
 
@@ -52,37 +56,52 @@ These globals are created by `setup()` and changed by everything else. Read them
 | `bonus` | `{seat: int}` | Permanent harvest bonus from public works, in effect this round. |
 | `pending_bonus` | `{seat: int}` | Bonuses from works built this round; added to `bonus` when the next round starts. |
 | `pw` | dict | What's built: `"Summer Palace"`, `"Winter Palace"`, `"Marble Pagoda"`, `irr2`, `res3`, `res7` as 0/1; `wall` as `{1: n, 2: n, 3: n}` links above each province; `canal` as `{1: n, 4: n, 5: n, 6: n}` sections in each. |
+| `pw_at` | `{key: [square]}` | The squares each palace and cut-out stands on. |
 | `raids` | `{seat: n}` | Squares raided in each province. |
-| `board` | `{"r,c": {...}}` | What's on each square (see [The board](#the-board)). |
+| `board` | `{square: {...}}` | Realia and raid markers on each square (see [The board](#the-board)). |
+| `SOLDIERS` | `{id: {...}}` | Every soldier in play: `side` (`"W"` for the Warlord's, `"B"` for bought), `owner` (player id), `sq`, `home` (the province it was bought in), `moved` (the round it last moved). |
+| `ARMY` | int | The Warlord's starting soldiers: 4 at eight players, 2 at five or six, 0 with no Warlord. |
+| `NORAID` | `{round: {seat}}` | Provinces the Warlord's disaster forbids him to raid that round. |
 | `MULT` | float | The population multiple: 1, 1.5, 2, 3, … |
+| `CUR_ROUND` | int | The round in progress; 0 is Setup. |
 | `CUR_Q` | `{seat: "good"/"avg"/"bad"}` | This round's harvest quality. |
 | `CUR_INC`, `CUR_HARV` | `{seat: float}` | This round's income and gross harvest, set by `harvest()`. |
 | `warlord_got` | `{player: code or palace}` | The Warlord's objective so far: what he has raided from whom. |
-| `ROB_N` | int | The Warlord's soldiers still in play. |
 | `ENTRIES`, `ROUNDS` | lists | The transcript and the round index. |
 
 ## Setup and rounds
 
-### `setup(active, key, title, subtitle, blurb, short="")`
+### `setup(active, key, title, subtitle, blurb, short="", cast=None)`
 
-Start a game. Resets all state.
+Start a game. Resets all state. The table starts empty: no grain dealt, no stock out of the box, no soldiers on the board. The Setup round does those.
 
 - `active` — the seats in play, e.g. `[1,2,3,4]`.
 - `key` — the game's id in the page address (`#key`).
 - `title`, `subtitle`, `short` — the game-selector button; `short` replaces `subtitle` on phones.
 - `blurb` — the paragraph under the page header.
-
-Effects: everyone has 60 grain; the pile is 2,500 less the grain dealt; each realia province's `stock` is set by player count — at 4–5 players, one of its own and two of its `NEVER` type; at 6, two of its own; at 7 or more, four of its own. The Warlord gets four soldiers at 8 players, two otherwise.
+- `cast` — `{seat: short name}`: who drew which booklet. By default each person draws the seat they drew on the first evening. A player id is always the seat drawn, so `pid`, `sid` and deltas work the same either way.
 
 ### `R(n, title, card=None, card_text=None)`
 
-Start round `n`. Applies any bonuses pending from last round's works, then draws `card` — a key in `CARDS` — setting `CUR_Q` from the card's harvest and multiplying `MULT` for a population card. A card already drawn this game raises an error.
+Start round `n`. Rounds go 0, 1, 2, … in order; 0 is the Setup round, shown as the Setup tab. Applies any bonuses pending from last round's works, then draws `card` — a key in `CARDS` — setting `CUR_Q` from the card's harvest and multiplying `MULT` for a population card. A card already drawn this game raises an error. Starting round 1 raises an error if the Setup round hasn't dealt the grain, taken the stock and placed the Warlord's army.
 
-For round one pass `card=None` and the text to show as `card_text`. Records a round marker (not an entry).
+For rounds 0 and 1 pass `card=None` and the text to show as `card_text`: for Setup, a line about the table; for round 1, that the 60 is the first harvest. Records a round marker (not an entry).
+
+### `deal_grain(text, hover=None)`
+
+Setup only. The Harvest Pile deals every player 60 (Section 4).
+
+### `take_stock(text, hover=None)`
+
+Setup only. Each realia province takes its starting stock out of the box: at 4–5 players one of its own and two of its `NEVER` type; at 6, two of its own; at 7 or more, four of its own. The stock waits beside the board until it's auctioned (Note 9).
+
+### `place_army(at, text, hover=None)`
+
+Setup only. The Warlord stands his soldiers on undeveloped land. `at` is `{id: square}` with ids `W1`, `W2`, … — exactly one per soldier — and every square must be Warlord's territory (`8`) or the strip below the Wall (`n`).
 
 ## Recording entries
 
-### `act(text, hover=None, deltas=None, map_hl=None, pile_delta=0, big=False)`
+### `act(text, hover=None, deltas=None, map_hl=None, pile_delta=0, big=False, moves=None)`
 
 A game event — a bold, clickable line.
 
@@ -90,6 +109,7 @@ A game event — a bold, clickable line.
 - `pile_delta` — change to the Harvest Pile.
 - `map_hl` — seats to highlight on the board.
 - `big` — style the line as a turning point (seat changes use this).
+- `moves` — `[[from, to, side]]` soldier steps to draw as arrows. `march` and `troops` fill this in; scripts rarely need it.
 
 ### `say(who, text, hover=None)`
 
@@ -119,35 +139,36 @@ The Emperor pays `pay` — `{seat: amount}` — defaulting to 5 each to Province
 
 ## Public works
 
-### `build(name, cost, split, wall=None, canal=None, key=None, hover=None, text=None)`
+### `build(name, cost, split, wall=None, canal=None, key=None, hover=None, text=None, at=None)`
 
 One public-works project.
 
 - `split` — `{seat: amount}`; must sum to `cost`.
 - `key` — for single works: `"Summer Palace"`, `"Winter Palace"`, `"Marble Pagoda"`, `"irr2"`, `"res3"`, `"res7"`.
-- `wall` — `{seat: links}` built above provinces 1, 2 or 3.
-- `canal` — `{seat: sections}` built in provinces 1, 4, 5 or 6. Each section adds 10 to that province's harvest from next round.
+- `at` — where a single work stands. A palace takes one square of Province 1: `at="H24"`. A cut-out takes a rectangle of its own province, written corner to corner: `at="R14:S15"`. Its size must match `CUTOUT` (either way round). Neither may cover a square holding realia or another work.
+- `wall` — `{seat: links}` built above provinces 1, 2 or 3, at most four each. Links are drawn in the order printed on the map.
+- `canal` — `{seat: sections}` built in provinces 1, 4, 5 or 6, at most two each. Each section adds 10 to that province's harvest from next round.
 - `text` — replaces "Public works: *name* — *cost* paid."
 
-The engine does **not** check prerequisites or the one-project-per-round rule.
+Use the names `"Province 2 Irrigation System"`, `"Province 3 Reservoir"` and `"Province 7 Reservoir"`. The engine does **not** check prerequisites or the one-project-per-round rule.
 
 ### `owed()`, `built_count(name)`, `all_built()`
 
-`owed()` lists `[name, count, cost each]` for every work owed at this table: the three palaces, four Wall links per occupied province among 1–3, two canal sections per occupied province among 1, 4, 5 and 6, and each irrigation or reservoir whose province is occupied. `built_count(name)` counts what's built; `all_built()` is true when everything owed stands.
+`owed()` lists `[name, count, cost each]` for every work owed at this table: the three palaces, four Wall links per occupied province among 1–3, two canal sections per occupied province among 1, 4, 5 and 6, and each irrigation system or reservoir whose province is occupied. `built_count(name)` counts what's built; `all_built()` is true when everything owed stands.
 
 ## Realia and auctions
 
-### `lot(sell, typ, ladder, hover=None)`
+### `lot(sell, typ, ladder, hover=None, at=None)`
 
-Auction one piece of `typ` from seat `sell`'s stock. `ladder` is a list of `B(...)` bids; the last numeric bid wins. The winner pays the price, the seller receives a quarter, three quarters go to the pile, and the piece is placed on a square in the winner's province. A commission note is appended to `hover`.
+Auction one piece of `typ` from seat `sell`'s stock. `ladder` is a list of `B(...)` bids; the last numeric bid wins. The winner pays the price, the seller receives a quarter, three quarters go to the pile, and the piece is placed at once on `at`, a square of the winner's province (Note 9). `at` is required, and the hover should say why the winner chose it. The engine refuses a square outside the winner's province, a square already holding realia, a raided square, or one under a palace or cut-out; it also refuses a lot the seller has no stock for, and a winning bid by the seller or the Emperor. A commission note is appended to `hover`.
 
 ### `B(seat, amt, text=None, th=None)`
 
 One bid. `amt=None` is a pass. `text` defaults to the amount spelled out ("Twenty-two.") or "Out." for a pass. `th` is the bidder's hover; a plain string is attributed to the bidder.
 
-### `give(frm, to, typ)`
+### `give(frm, to, typ, at)`
 
-Move one piece between **players** for a private trade, and re-place it on the board. Record the grain with a separate `act(..., deltas)` after it.
+Move one piece between **players** for a private trade: it's lifted from its square and placed at once on `at` in the new owner's province. Record the grain with a separate `act(..., deltas)` after it.
 
 ### `need_for(seat)`
 
@@ -159,37 +180,45 @@ Where a returned piece goes: its native province, or, if that province is empty,
 
 ## Seat changes
 
-### `swap(a, b, note, hover=None, draw=60, check=True)`
+### `swap(a, b, note, hover=None, draw=60, check=True, at=None)`
 
 The player in seat `a` replaces the player in seat `b`.
 
-With `check=True` (the default) it first asserts that the mover holds everything `need_for(a)` requires, has at least 20 grain, and may move to `b`: only seats 2, 3, 4 and 8 may take Province 1; a peasant may only take 2–7. Use `check=False` for a Chaos acclamation.
+With `check=True` (the default) it first asserts that the mover holds everything `need_for(a)` requires, has at least 20 grain, and may move to `b`: only seats 2, 3, 4 and 8 may take Province 1; a peasant may only take 2–7. Use `check=False` for a Chaos acclamation. It also refuses if the displaced player owns bought soldiers, which no ruling covers yet.
 
-Then: pieces native to `b` held by the mover return to `b`'s stock; if `b` is the throne, all the mover's pieces return home; the displaced player returns everything; the mover takes all of the displaced player's grain; the displaced player draws `draw` (60) from the pile, or what's left if the pile is lower; the seats swap; the mover's pieces are re-placed in the new province. Records a `big` act.
+Then: pieces native to `b` held by the mover return to `b`'s stock; if `b` is the throne, all the mover's pieces return home; the displaced player returns everything; the mover takes all of the displaced player's grain; the displaced player draws `draw` (60) from the pile, or what's left if the pile is lower; the seats swap; the mover's remaining pieces go on squares of the new province, given by `at` as `{code: square}` or `{code: [squares]}`, one per piece. Bought soldiers stay with their owner and where they stand. Records a `big` act.
 
-## The Warlord
+## Soldiers
 
-### `raid(rows, text="Robert Land raids.", hover=None)`
+Every soldier stands on a square and moves at most one square a round, diagonals included (Section 14, Note 15). The Warlord's soldiers are `W1`, `W2`, …; a bought soldier is named after its buyer: `Reina1`, `Reina2`, `Paddy1`. No soldier may enter the sea.
 
-`rows` — `[(seat, tribute)]`. For each: an unraided square in that province is marked, a Warlord soldier moves there, and the province's player pays `tribute` to the Warlord. Use 10 for Province 1 and 5 elsewhere.
+### `march(moves, text=None, hover=None, take=None)`
 
-### `raid_take(seat, typ, text, hover=None)`
+The Warlord moves. `moves` is `{soldier: square}`, each one square from where it stands; any soldier left out stands still. Call `march` more than once in a round to narrate soldiers separately, but each soldier moves once per round, and all of them before any province's soldiers move (`troops`).
 
-The Warlord raids the square holding the player's `typ` piece and takes it. The piece moves to the Warlord, the square is marked raided, and the raid is recorded in `warlord_got`.
+For each step, in order:
 
-### `raid_palace(name, text, hover=None)`
+1. **Capture.** A step onto a square holding a bought soldier captures it, and is only allowed horizontally or vertically.
+2. **Tolls.** 5 for each river, built Wall link, built canal section or cut-out the step crosses (see `tolls()`), paid to the province concerned.
+3. **Raid.** A step onto an un-raided square of an occupied province raids it: 5 from that province's player, or 10 in Province 1; on a palace square, the Emperor pays the structure's cost, 20, and the palace counts toward the Warlord's objective. To take the realia on the square instead, pass `take={soldier: (code, square)}`: the piece moves to the Warlord, onto that square of his territory, and counts toward his objective. A raid the Warlord's disaster forbids this round raises an error. A step onto undeveloped land, a raided square or a square of an empty province raids nothing.
 
-The Warlord raids a palace square; the Emperor pays him 20, the structure's cost. Recorded in `warlord_got`.
+Records one act with every grain change, the moves drawn as arrows, and a note of each capture, toll and raid appended to the hover.
 
-### `sell_soldiers(buyers, text, hover=None)`
+### `sell_soldiers(buys, text, hover=None)`
 
-Each seat in `buyers` (repeat a seat to buy two) pays 20; the Warlord keeps 5 of each and 15 goes to the pile. A blue soldier is drawn in the buyer's province.
+`buys` is `[(seat, square), ...]`. Each buyer pays the Warlord 20 for a soldier that stands on that square of the buyer's own province; he keeps 5 of each and 15 goes to the pile. The square must not hold a Warlord soldier or another player's soldier.
 
-### `capture_soldier(text, hover=None)`
+### `troops(moves, text, hover=None)`
 
-The Warlord loses a soldier: `ROB_N` drops by one and the oldest soldier disappears from the board.
+Bought soldiers move, after the Warlord's (Section 5). `moves` is `{soldier: square}`, one square each. A soldier can't move until the Warlord has raided the province it was bought in. A step onto a Warlord soldier captures it, horizontally or vertically only; a step onto another player's soldier is refused.
 
-The engine moves soldiers onto raided squares and keeps only the last `ROB_N` of them on the board, but it does **not** stop a script from raiding more squares than the Warlord has soldiers.
+### `rob_n()`
+
+The Warlord's soldiers still in play.
+
+### `tolls(a, b)`
+
+The fees a Warlord soldier would owe for the step `a → b`, as `[(province, what was crossed)]`. A step crosses a river, Wall link or canal section when the line between the two squares' centres cuts it; it crosses a cut-out when it lands on one of its squares. Rivers pay the province stepped into, and nothing when that's undeveloped land; works pay the province they belong to. An unoccupied province is owed nothing. `march` calls this; scripts can call it to plan a route.
 
 ## Disasters
 
@@ -203,9 +232,11 @@ Play the next disaster in `seat`'s booklet; after the third, it starts again. Th
 | `frac_income` | A fraction of this round's income (Officials, Rice and Wheat Peasants) |
 | `frac_harvest` | A fraction of this round's gross harvest (Silk Peasant) |
 | `frac_grain` | A fraction of the player's grain (Gentry, Scholar, Warlord) |
-| `noraid` | Nothing paid — the Warlord can't raid Provinces 5–7 this round. **The script must comply.** |
+| `noraid` | Nothing paid |
 
 The amount goes to the Harvest Pile, and the line reads "*Name*'s disaster #*n*: *text* — *amount* to the Harvest Pile." Write `text` as the event itself; the engine adds the number and the cost.
+
+The Warlord's first disaster forbids raids on Provinces 5–7 this round, and his second forbids raids anywhere this round; `march` refuses a raid that breaks either. His soldiers may still walk onto squares that don't raid.
 
 | Seat | #1 | #2 | #3 |
 |---|---|---|---|
@@ -228,31 +259,34 @@ Disasters follow the seat, not the player: someone who moves into a province con
 | `sid(player)` | The seat a player is in. |
 | `income(seat, q=None)` | The seat's income this round, or at quality `q`. |
 | `spell(n)` | A number in words, as used for default bid text: "Twenty-two". |
+| `rc(square)`, `sqname(r, c)` | Square name ↔ (row, column) from 0. `rc` refuses a square off the board. |
+| `region(square)` | The square's character in `GRID`. |
+| `prov(square)` | The province 1–7 a square is in, or `None`. |
+| `squares(p)` | Every square of province (or region character) `p`. |
+| `dist(a, b)` | Rounds a soldier needs to walk from `a` to `b`. |
 
 ## The board
 
-The page draws a 30-column × 17-row grid. `GRID[row][col]` is one character:
+`GRID` is `map.json`'s grid: 22 rows (A–V) of 30 columns (1–30). Each square is one character:
 
 | Character | Region |
 |---|---|
-| `1`–`8` | A province |
-| `W` | The Great Wall strip (row 0, columns 7–26) |
-| `n` | New land below the Wall (row 1) |
-| `S` | The sea (columns 27–29) |
-| `.` | Margin |
+| `1`–`7` | A province |
+| `8` | The Warlord's territory |
+| `n` | The strip below the Great Wall |
+| `B` | Beyond the Wall |
+| `S` | The sea |
 
-Each square in `board` (keyed `"row,col"`) may hold:
+Each square in `board` (keyed by its name) may hold:
 
 | Key | Meaning |
 |---|---|
 | `realia`, `owner` | A piece and the player who owns it |
 | `raid` | The square has been raided and can never be raided again |
-| `soldier` | One of the Warlord's live soldiers is here |
-| `own_soldier` | A soldier someone bought from the Warlord |
 
-`place(seat, code, player)` puts a piece on the province's first free square; `place_soldier(seat)` puts a bought soldier on its last free square; `mark_raid(seat, take=False)` raids its first free (or, with `take`, first piece-holding) square; `unplace_all(player)` lifts a player's pieces off the board.
+Soldiers live in `SOLDIERS`, works in `pw` and `pw_at`. The Wall and the Canal have printed places on the map, so the board needs only their counts; palaces and cut-outs stand where `build(at=...)` put them.
 
-`RESERVED` lists the squares where the page draws palaces, canal sections, irrigation and reservoirs. Pieces and raids never land there. **If you move a public-works drawing position in `template/tail.html` (`CANALPOS`, `WORKPOS`, the palace columns), update `RESERVED` to match.**
+`trace.py game.py --board N` prints the board after entry `N` as text, with every soldier and piece listed — the quickest way to plan a march.
 
 ## Ending
 
@@ -266,7 +300,7 @@ Scoring follows Section 18: a player who finishes in a lower-numbered province t
 
 `cards.py` defines `CARDS`, a dictionary of the twenty I Ching cards. Each entry has:
 
-- `text` — the card's wording, exactly as printed;
+- `text` — the card's wording, from the reworded deck in `../i-ching.json`;
 - `q` — the harvest: `"good"`, `"avg"` or `"bad"` for everyone, or a `{seat: quality}` dictionary for split cards;
 - `pop` — for population cards only, the multiplier (2 or 1.5).
 
@@ -288,4 +322,4 @@ Scoring follows Section 18: a player who finishes in a lower-numbered province t
 | `careless` | good | every player plays a disaster |
 | `goodevil` | good | 2, 4, 6, 8 play a disaster |
 
-The engine applies the harvest and the population change. It does not enforce the cards' own caps ("if this card has been played twice, collect a good harvest instead"): drawing a third doubling card or a second half card would multiply the population anyway. Don't draw them, or the population will pass the 600-million ceiling the cards set.
+The engine applies the harvest and the population change. It does not enforce the cards' own caps ("if the population has already doubled twice, collect a good harvest instead"): drawing a third doubling card or a second half card would multiply the population anyway. Don't draw them, or the population will pass the 600-million ceiling the cards set.

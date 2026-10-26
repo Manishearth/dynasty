@@ -5,14 +5,18 @@ See README.md and docs/ in this folder.
 """
 import json, sys, os
 HERE = os.path.dirname(os.path.abspath(__file__))
-GAMES = ["game1_full.py", "game2_peasant.py", "game3_short.py"]
+GAMES = ["game1_full.py", "game2_peasant.py", "game3_short.py", "game4_complete.py", "game5_six.py"]
 
-def run(game):
-    ns = {}
-    for f in ("cards.py", "engine.py", game):
+def run_ns(game):
+    """Run one game script in a fresh namespace and return the namespace."""
+    ns = {"SIM_DIR": HERE}
+    for f in ("cards.py", "engine.py", os.path.basename(game)):
         p = os.path.join(HERE, f)
         exec(compile(open(p, encoding="utf-8").read(), p, "exec"), ns)
-    return ns["RESULT"]
+    return ns
+
+def run(game):
+    return run_ns(game)["RESULT"]
 
 def main(out):
     games = [run(g) for g in GAMES if os.path.exists(os.path.join(HERE, g))]

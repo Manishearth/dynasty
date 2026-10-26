@@ -1,6 +1,6 @@
 # The page: build pipeline and data format
 
-`playthrough.html` is one self-contained file: HTML and CSS, a JSON block holding all three games, and the JavaScript that renders them. Nothing is fetched at runtime, so the file works from disk, from GitHub Pages, or as an email attachment.
+`playthrough.html` is one self-contained file: HTML and CSS, a JSON block holding every game, and the JavaScript that renders them. Nothing is fetched at runtime, so the file works from disk, from GitHub Pages, or as an email attachment.
 
 - [The build](#the-build)
 - [The data format](#the-data-format)
@@ -43,21 +43,27 @@ The build is deterministic: the same scripts always produce a byte-identical pag
       "rname":   { "CH": "Customs House", … },
       "need":    { "2": ["LD","BB","DJ","WB","VA"], … },   // seat → realia required
       "owed":    [["Summer Palace",1,20], ["Great Wall",12,40], …],  // [name, count, cost each]
-      "rounds":  [ { "n": 1, "title": "The first year", "card": "No card is drawn…",
+      "rounds":  [ { "n": 0, "title": "Eight strangers to the box", "card": "All eight provinces…",
                      "start": 0, "mult": 1 }, … ],
       "entries": [ … ],                       // see below
       "results": [ { "name": "Reina Osorio", "short": "Reina", "start": 1, "startrole": "Emperor",
                      "fin": 7, "finrole": "Wheat Peasant", "verdict": "lost", "grain": 60.0 }, … ],
       "results_note": "The game ended in collapse…",
       "epilogue": ["Three of the four who improved…", …],
-      "grid": ["......WWWWWW…", …]             // 17 strings of 30 characters
+      "grid": ["BBBBBBBBBBBBBBBBBBBBBBBBBBBSSS", …],   // map.json's 22 rows of 30 squares
+      "map":  { "rivers": {"north": [[x,y], …], "south": […]},  // paths in grid units
+                "coast": [[x,y], …],
+                "wall":  { "1": [[[x,y],[x,y]], …], … },        // four links above each of 1, 2, 3
+                "canal": { "1": [[[x,y], …], …], … } }          // two sections in each of 1, 4, 5, 6
     },
     …
   ]
 }
 ```
 
-`rounds[i].start` is the index of the round's first entry; a round runs until the next round's `start`. `mult` is the population multiple during that round.
+`rounds[i].start` is the index of the round's first entry; a round runs until the next round's `start`. `mult` is the population multiple during that round. Round `n: 0` is the Setup round; its `card` is a line about the table rather than an I Ching card.
+
+In `grid`, each character is a region: `1`–`7` a province, `8` the Warlord's territory, `n` the strip below the Wall, `B` beyond the Wall, `S` the sea. Paths in `map` are in grid units: (0, 0) is the top-left corner of A1, one unit per square.
 
 ## Entries
 
@@ -71,6 +77,7 @@ Every entry has these fields:
 | `who` | For `say`, the speaker's short name; otherwise `null` |
 | `d` | Grain changes on this line, `{player: delta}` — informational |
 | `hl` | Seats to highlight on the board |
+| `mv` | Soldier steps made on this line, `[[from, to, side]]`, drawn as arrows; `side` is `"W"` for the Warlord's, `"B"` for a bought soldier |
 | `state` | The full game state after this line (below) |
 
 `act` entries may also have `"big": true` (a turning point, styled differently). `lot` entries also have `bids`: a list of `{"who", "t", "h", "amt"}`, where `amt` is `null` for a pass.
@@ -85,27 +92,29 @@ Every entry has these fields:
 | `stock` | `{seat: {code: n}}` | Realia waiting to be auctioned |
 | `raids` | `{seat: n}` | Squares raided per province |
 | `pw` | object | Public works built: palaces and `irr2`/`res3`/`res7` as 0/1, `wall` and `canal` as `{seat: n}` |
+| `at` | `{key: [square]}` | The squares each palace and cut-out stands on |
 | `bonus` | `{seat: n}` | Harvest bonus in effect |
-| `board` | `{"row,col": {realia, owner, raid, soldier, own_soldier}}` | Every occupied square |
+| `board` | `{square: {realia, owner, raid}}` | Every square holding realia or a raid marker, keyed like `"H12"` |
+| `sol` | `[[id, side, square, owner]]` | Every soldier in play |
 | `pile` | number | The Harvest Pile |
 | `mult` | number | Population multiple |
 | `rob` | `{player: code or palace}` | The Warlord's objective progress |
 
 All dictionary keys are strings, as JSON requires; the page converts with `+key` or `String(n)` where needed.
 
-Snapshots are complete rather than incremental: any entry can be shown on its own, which is what makes clicking a line in the middle of a year work. The cost is size — about 670 KB for 395 entries, almost all of it snapshots.
+Snapshots are complete rather than incremental: any entry can be shown on its own, which is what makes clicking a line in the middle of a year work. The cost is size, almost all of it snapshots.
 
 ## How the page uses the data
 
 **Game selector.** One button per game, from `meta`. Choosing a game sets the address fragment to `#key`; opening the page with a fragment, or changing it, loads that game.
 
-**Year tabs.** One per round, plus Result. A tab shows the round's header (title and card text) and its entries.
+**Tabs.** Setup, then one per year, then Result. A tab shows the round's header (title, and the card text or, for Setup, the table) and its entries.
 
 **Selecting an entry.** Clicking a line — or stepping with the arrow keys or the Step buttons — draws that entry's `state` in the side panel:
 
 | Panel | Drawn from |
 |---|---|
-| Board | `grid` for the regions (provinces not in `active` are hatched); `pw` for the Wall, palaces, canals and reservoirs; `board` for pieces, raid squares and soldiers; `hl` for highlighted provinces |
+| Board | `grid` for the regions (provinces not in `active` are hatched); `map` for the rivers, and for the Wall links and canal sections, solid when `pw` says they're built and dashed while owed; `at` for palaces and cut-outs; `board` for pieces and raid squares; `sol` for soldiers; `mv` for this line's moves; `hl` for highlighted provinces |
 | Objectives | `need` and `held` for each realia province; `rob` for the Warlord |
 | Public works | `owed` against `pw`, with a running total in millions |
 | Players | `seat`, `grain` and the pile |
@@ -123,9 +132,9 @@ Snapshots are complete rather than incremental: any entry can be shown on its ow
 | Colours, type, layout | The CSS in `template/head.html`. The palette is the variables at the top of `:root`. |
 | The header, panel titles, hint text | The markup at the end of `template/head.html` |
 | Rendering, panels, interaction | The script in `template/tail.html` |
-| Where public works are drawn | `WALLCOLS`, `CANALPOS`, `WORKPOS` and the palace columns in `template/tail.html` — **and** `RESERVED` and `PALACE_CELL` in `engine.py`, so pieces never land on them |
-| The board's regions | `_reg()` in `engine.py`; the page draws whatever `grid` contains |
-| Province labels on the map | `LBL` in `template/tail.html` |
+| The board's geography | `../map.json`, through `tools/build_map.py`. The engine and the page both read it; nothing is copied by hand. |
+| How the board is drawn | `drawMap()` in `template/tail.html` |
+| Province labels on the map | `LBL` in `template/tail.html`, in grid units |
 
 After any change, rebuild and check the page on a phone-width window as well as a desktop one; the layout switches to a single column below 900 px and to compact game buttons below 640 px.
 
