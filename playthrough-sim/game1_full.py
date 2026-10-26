@@ -617,16 +617,17 @@ say("Graham","Then I'll say it. I revolt.", TH(
 say("Graham","The Emperor has delayed too long in building Public Works. The Emperor cannot control the Warlord. The Emperor will not subsidise new harvest — she said so last year, to Silke, out loud. Three causes. The book needs one.", TH(
  ("Graham","Reading them straight off the page. This isn't a mood, it's a rules citation, and every person here has the same list printed in their own booklet."),
  ("Noah","He's quoting the rulebook at her. There's no answer to that. There's *procedurally* no answer to that.")))
-say("Clark","Agreed. I've held three chairs in this game and I'm poorer in each one.", TH(
- ("Clark","Costs me nothing — I'm in debt with a peasant's card. Though I'd have voted the other way in year six. Being robbed twice by the rules makes a democrat of a man."),
- ("Noah","The most cynical player at this table just voted on principle and I don't entirely believe it.")))
+say("Clark","Agreed. And here's a fourth cause, Majesty: me. Twenty-four million in debt to the Harvest Pile, and a peasant's card that says I revolt when the alternative is starvation. The book counts a debt as starving.", TH(
+ ("Clark","Three chairs in this game and I'm poorer in each one. I sold my last Brush to the pile this morning and I still owe it twenty-four. Costs me nothing to vote — I can't spend anything anyway. Though I'd have voted the other way in year six. Being robbed twice by the rules makes a democrat of a man."),
+ ("Noah","He's citing himself as a cause. It's the most Clark thing that has ever happened, and it's in the rulebook."),
+ ("Reina","I can't even answer that one with grain. A debt is the one cause the treasury can't buy off: anything I slipped him would go straight to the pile to pay what he owes.")))
 say("Rich","Agreed. She built her own canal and the peasants' reservoir is still a drawing.", TH(
  ("Rich","I paid forty toward my own reservoir when I was Gentry. Now I'm in Province 6 paying seven a year to a man who used to grow rice. I'd like the table shaken, please."),
  ("Paddy","He's voting to burn it down because I put his rent up. Fair enough.")))
 say("Silke","Agreed. I keep the population chart. It says this ends one way.")
 act("REVOLT. Four players stand against the throne. The price of revolt is CHAOS: no tax, no salaries, no public works until a new Emperor emerges.", TH(
  ("Reina","Four. I needed them to only ever find two."),
- ("Graham","Three causes, four voices, and none of us had to invent a single one of them."),
+ ("Graham","Four causes, counting Clark's debt, four voices, and none of us had to invent a single one of them."),
  ("Noah","I'm not in the coalition and I'm not defending her either. Officials survive by being useful to whoever's next.")),
  map_hl=[1,4,5,6,7])
 say("Reina","Eleven years I kept this country from him.",
