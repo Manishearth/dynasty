@@ -40,22 +40,22 @@ Added on 2026-10-26 at Manish's request: a **Running the round** card, a script 
 - **Back, "Money and building":** money at a glance (every fixed number, as a definition list), the Harvest Pile in and out, and the public works table. This is the densest card. It uses the `.dense` styles to fit, so check it first after any edit.
 
 **Running the round** (ink header, like the general card). For whoever runs the round: usually the Emperor, or whoever is teaching.
-- **Front:** the nine steps, each with who acts, a line in quotes to read aloud ("Scholar, turn the top card and read it to us.") and what to check before moving on. This face is tight (about 27 px free).
+- **Front:** the nine steps, each with who acts, a line in quotes to read aloud ("Scholar, turn the top card and read it to us.") and what to check before moving on. This face is tight (about 9 px free).
 - **Back:** Round One, what changes during Chaos (Note 17 and the Chaos clarifications in `RULINGS.md`), a checkbox list for the end of the round (population counter, works pay from next round, debt, realia waiting for auction, is every work built), and an "any time" box.
 
 **Province card.**
 - **Front:** a one-line character sketch in italics, what to do each round, the objective by player count (4–5, 6, 7+), the province's starting realia (including the pair it never needs at 4–5 players), and who the player may replace. Then a card-specific extra, if any: "Beware the Warlord" for the Emperor, "Your army" for the Warlord. Last, the three personal disasters as a short title plus the cost.
 - **Back:** the income table (larger type: it's the most-read thing on the card), the public works owed, with cost, who pays and the yearly bonus, and when and where new harvest squares can be bought.
 
-**Header colours by class.** General: ink. Emperor: vermilion. Official, Gentry and Scholar: dark. Peasants: walnut. Warlord: slate. Each header carries a FRONT or BACK tag so the halves can be told apart once cut.
+**Header colours by class.** General: ink. Emperor: vermilion. Official, Gentry and Scholar: dark. Peasants: walnut. Warlord: slate. The colour is a thin bar above the title, and the title and FRONT/BACK tag are in the same colour. Each header carries the tag so the halves can be told apart once cut. The headers used to be solid bands; they were thinned on 2026-10-26 to save ink and to keep thin paper from soaking (Manish: "I'm mostly thinking of solid colors"). The screen and print versions look the same.
 
-**Glyphs.** Every piece name gets its glyph from `images/` via `add_glyphs.py`, the same as the rulebook and the playthrough. Glyphs in the coloured headers are drawn white.
+**Glyphs.** Every piece name gets its glyph from `images/` via `add_glyphs.py`, the same as the rulebook and the playthrough.
 
 ## Printing
 
 - **Screen:** each card shows its front and back side by side.
-- **Print:** landscape letter, no margins, two cards per sheet, six sheets. Two general cards come first, then two Running the round cards (one for the person running the round, one spare for whoever teaches), then Provinces 1–2, 3–4, 5–6 and 7–8. On each back sheet the two cards are swapped, so the backs line up when the page is printed **double-sided, flipped on the short edge**. The page tells people to switch to the long edge if the backs come out upside down. **This hasn't been tested on a real printer.**
-- **Fit:** every card must fit its 5.5 × 8.5 in box with no overflow. To check, render the page in a headless browser and compare each `.screen .card`'s `scrollHeight` with its `clientHeight`. Also measure the gap between the last section and the footer. Then print to PDF with `preferCSSPageSize` and look at the sheets. The tightest faces are Running the round's front (about 27 px free), the general back (about 39 px) and the general front (about 43 px). Free space is the footer gap less the last section's bottom margin (about 11 px, 8 px on the dense general back).
+- **Print:** landscape letter, no page margins (each card keeps at least 0.2 in of its own padding, so nothing runs to the paper edge), two cards per sheet, six sheets. Two general cards come first, then two Running the round cards (one for the person running the round, one spare for whoever teaches), then Provinces 1–2, 3–4, 5–6 and 7–8. On each back sheet the two cards are swapped, so the backs line up when the page is printed **double-sided, flipped on the short edge**. The page tells people to switch to the long edge if the backs come out upside down. **This hasn't been tested on a real printer.**
+- **Fit:** every card must fit its 5.5 × 8.5 in box with no overflow. To check, render the page in a headless browser and compare each `.screen .card`'s `scrollHeight` with its `clientHeight`. Also measure the gap between the last section and the footer. Then print to PDF with `preferCSSPageSize` and look at the sheets. The tightest faces are Running the round's front (about 9 px free), the general back (about 28 px) and the general front (about 30 px). Free space is the footer gap less the last section's bottom margin (about 11 px, 8 px on the dense general back).
 
 ## Where the content comes from
 

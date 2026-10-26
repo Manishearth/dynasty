@@ -19,18 +19,18 @@ body{margin:0;background:var(--canvas);color:var(--ink);font:16px/1.5 "Helvetica
 .pairlabel{font:700 .8rem var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--soft);
   text-align:center;margin:0 0 .6rem}
 .card{width:5.5in;height:8.5in;background:var(--paper);display:flex;flex-direction:column;
-  padding:.28in .3in .2in;font-size:9.6pt;line-height:1.34;overflow:hidden;position:relative;
+  padding:.25in .3in .2in;font-size:9.6pt;line-height:1.34;overflow:hidden;position:relative;
   box-shadow:0 1px 0 rgba(0,0,0,.2)}
 @media (max-width:760px){.card{width:100%;height:auto}}
-.ch{display:flex;justify-content:space-between;align-items:flex-start;color:#fff;
-  margin:-.28in -.3in .12in;padding:.2in .3in .14in}
-.ch.general{background:var(--ink)}.ch.imperial{background:var(--verm)}
-.ch.upper{background:#2B2A24}.ch.lower{background:var(--walnut)}.ch.outside{background:var(--slate)}
-.ch h2{margin:0;font-size:15pt;letter-spacing:.06em;text-transform:uppercase}
-.ch p{margin:.15em 0 0;font:8pt var(--mono);letter-spacing:.06em;opacity:.9}
-.ch .side{font:700 7pt var(--mono);letter-spacing:.16em;text-transform:uppercase;border:1px solid rgba(255,255,255,.6);
-  padding:.2em .5em;margin-top:.2em}
-.ch .piece img{filter:brightness(0) invert(1)}
+/* card header: a thin bar in the tier's colour rather than a solid band, to save ink */
+.ch{display:flex;justify-content:space-between;align-items:flex-start;
+  margin:0 0 .1in;padding:.07in 0 .06in;border-top:.09in solid var(--tier);border-bottom:1.5px solid var(--ink)}
+.ch.general{--tier:var(--ink)}.ch.imperial{--tier:var(--verm)}
+.ch.upper{--tier:#2B2A24}.ch.lower{--tier:var(--walnut)}.ch.outside{--tier:var(--slate)}
+.ch h2{margin:0;font-size:15pt;letter-spacing:.06em;text-transform:uppercase;color:var(--tier)}
+.ch p{margin:.15em 0 0;font:8pt var(--mono);letter-spacing:.06em;color:var(--soft)}
+.ch .side{font:700 7pt var(--mono);letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--tier);
+  color:var(--tier);padding:.2em .5em;margin-top:.2em}
 section{margin:0 0 .11in}
 h3{margin:0 0 .05in;font:700 7.6pt var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--verm);
   border-bottom:1.5px solid var(--ink);padding-bottom:.03in}
@@ -54,7 +54,7 @@ ol.turn .n{flex:none;width:.2in;height:.2in;border-radius:50%;background:var(--v
 ol.turn b{font-size:9.6pt}
 ol.turn .who{font:7pt var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--soft);margin-left:.08in}
 ol.turn p{margin:.01in 0 0;font-size:8.6pt}
-.anytime{font-size:8.6pt;background:#F4EFE2;padding:.05in .08in;margin-top:.06in}
+.anytime{font-size:8.6pt;border:1px solid var(--rule);padding:.05in .08in;margin-top:.06in}
 dl.money{display:grid;grid-template-columns:auto 1fr;gap:.015in .1in;margin:0;font-size:8.4pt}
 dl.money dt{font-weight:700;white-space:nowrap}dl.money dd{margin:0}
 ul.duties{margin:0;padding-left:1.1em}ul.duties li{margin:0 0 .025in}
@@ -83,7 +83,7 @@ ol.dis li span{margin-right:.4em}ol.dis li b{white-space:nowrap}
   .print{display:block}
   .sheet{width:11in;height:8.5in;display:flex;break-after:page;page-break-after:always}
   .sheet .card{box-shadow:none;border-right:1px dashed #BBB}
-  .card,.ch,.anytime{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .card,ol.turn .n{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 
 /* ---------- piece glyphs ---------- */
