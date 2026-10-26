@@ -199,7 +199,7 @@ sell_back(2, ["BB"], "Clark sells his Bamboo Brush back to the Harvest Pile for 
 harvest()
 ```
 
-If they're still short, their grain goes negative. That's a debt: they can't bid, deal, pay toward a public work, buy soldiers or change seats until it's paid. At the next auction, after the provinces' lots, the pile auctions what it bought back with `lot(PILE, ...)`, or the table lets it sit ("Nobody bids"). Debt is pressure, not decoration: let it show in who can't bid and who sells what.
+If they're still short, their grain goes negative. That's a debt: they can't bid, deal, pay toward a public work, buy soldiers or change seats until it's paid. At the next auction, after the provinces' lots, the pile auctions what it bought back with `lot(PILE, ...)`, or the table lets it sit ("Nobody bids"). Debt is pressure, not decoration: let it show in who can't bid and who sells what. It's also a cause for revolt (rulebook Section 16): a player in debt is facing starvation, so a revolt can cite the debt.
 
 ## Private trades
 
@@ -351,6 +351,7 @@ Before building:
 - [ ] One public-works project per round.
 - [ ] Every bidder needs the piece and can afford the bid.
 - [ ] Before any payment that would sink a player, they sell back realia (`sell_back`), and voluntary payments are marked `deal=True`.
+- [ ] A revolt cites a listed cause, and two other players agree. Debt counts as one.
 - [ ] Every number in dialogue or thoughts matches the trace at that line, including distances on the board ("three squares from his soldier").
 
 After building:

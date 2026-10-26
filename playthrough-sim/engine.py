@@ -268,7 +268,8 @@ def snap():
 # (sell_back); only then may grain go negative, as a debt to the pile. A player in
 # debt is locked out of voluntary spending: bids, purchases, trades, bribes, shares
 # of public works, soldiers, seat changes. Grain received pays the debt first, which
-# a single signed number does by itself.
+# a single signed number does by itself. A debt is also a cause for revolt (Section 16);
+# revolts are the script's to write, so the engine only records the debt.
 
 def _apply(d):
     for k,v in (d or {}).items():

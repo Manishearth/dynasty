@@ -77,7 +77,7 @@ These rules matter, but checking them would need information the ledger doesn't 
 | The Harvest Pile auctions every piece it holds at the next auction, after the provinces' lots | Note 7 |
 | Card effects other than harvest and population (levies, disasters, imperial charity) | Section 15 |
 | Development of new land and sea only after the population has doubled | Section 13 |
-| Revolt needs two other players to agree on a listed cause | Section 16 |
+| Revolt needs two other players to agree on a listed cause; while any player is in debt, the debt is itself a cause | Section 16, Note 7 |
 | Chaos stops tax, salaries and public works until a new Emperor emerges | Note 17 |
 | Sensible play on the board: a bought soldier left level with a Warlord soldier can be captured, because he moves first | Section 14 |
 
@@ -89,7 +89,7 @@ The original materials leave some questions open. Where the engine needed an ans
 |---|---|---|
 | Is tax owed on a negative income? | No | Note 8 |
 | How many of each piece exist at 4–5 players? | One of each province's own type, two of its never-needed type | Section 10, Note 9 |
-| What happens when grain runs out? | Sell realia back first, then debt; a player in debt can't spend; the mover in a seat change takes a debt with the grain; a Chaos acclamation may seat a player in debt | Note 7 |
+| What happens when grain runs out? | Sell realia back first, then debt; a player in debt can't spend; the mover in a seat change takes a debt with the grain; a Chaos acclamation may seat a player in debt; and a debt is a cause for revolt | Note 7 |
 | Is unsold stock on the map? | No; a piece is placed on a square the moment it's bought or traded, so raids can't take stock | Note 10 |
 | Where does a returned piece go if its home province is empty? | To the province that started the game holding it | Note 12 |
 | Is the Province 1 Wall owed when Provinces 2 and 3 are empty? | Yes — four links | Appendix A, Emperor's booklet |

@@ -25,7 +25,7 @@ These are the numbered notes, as of this writing. Appendix D has the full text a
 | 4 | What about unoccupied provinces? | The crown need not build there (Emperor's booklet). Their realia stays in the box, and no rent is owed for an empty peasant province |
 | 5 | What order does a round go in? | The can's Order of Play, with rents (start of round), salaries (end of round) and provincial soldiers (after the Warlord moves) slotted in from the booklets |
 | 6 | The printed income tables end at inconsistent populations | Consumption is always proportional to population. Tables are indexed by multiple (×1 to ×6); the cards cap the nation at 600 million, which is ×6 |
-| 7 | What happens when a payment would take a player's grain below zero? | Sell before you sink: sell realia back to the Harvest Pile at 2 each, your choice of pieces, until the payment is covered or you have none left; then the shortfall is a debt to the pile. In debt you can't bid, buy, trade, give grain, pay toward a public work, buy soldiers or change provinces, and grain received pays the debt first. Scoring is unchanged. See "Running out of grain" below |
+| 7 | What happens when a payment would take a player's grain below zero? | Sell before you sink: sell realia back to the Harvest Pile at 2 each, your choice of pieces, until the payment is covered or you have none left; then the shortfall is a debt to the pile. In debt you can't bid, buy, trade, give grain, pay toward a public work, buy soldiers or change provinces, and grain received pays the debt first. A player in debt counts as facing starvation, so debt is a seventh cause for revolt. Scoring is unchanged. See "Running out of grain" below |
 | 8 | Is tax owed on a negative income? | No |
 | 9 | What is the extra realia each province starts with at 4–5 players? | A pattern, not a ruling. It's always the one type that province never needs: 2 and 5 swap, and 3 → 6 → 4 → 7 → 3 form a ring |
 | 10 | Is unsold stock on the map? | No. A piece goes on a square in the buyer's province the moment it's bought or traded. Returned pieces rejoin their province's unsold stock. Otherwise the Warlord could raid most of his objective in Round Two |
@@ -142,10 +142,11 @@ The details, settled by Manish on 2026-10-25:
 - **A Chaos acclamation is allowed in debt.** It isn't a player completing a set; the table chooses. The new Emperor takes the imperial reserve, which pays the debt first. Game 1's ending relies on this.
 - **A bid must be covered by grain in hand.** Buying is locked out in debt, so a purchase can never be what puts a player there.
 - **A displaced player's debt passes to the mover.** The mover takes all of the displaced player's grain, whatever its sign; the displaced player then draws 60 from the pile as usual.
+- **Debt is a cause for revolt.** A player in debt counts as facing starvation, which the peasants' booklets name as the one thing that drives them to revolt ("only if the alternative is death or starvation"). So while any player is in debt, the debt is a seventh cause, alongside the six in Section 16. It still needs two other players to agree, and the player in debt may be the one revolting. Manish added this on 2026-10-25.
 
 **Why.** Nothing in the originals covers it. Note 8 covers only tax on a negative income. The hints: the Rice Peasant's fire ("you must borrow grain"), the General Instructions' "deficit spending program", and the peasants who revolt "only if the alternative is death or starvation".
 
-**Recorded in** rulebook Section 8 and Note 7, with the hints in Appendix D; `playthrough-sim/engine.py` (`sell_back`, `lot(PILE, ...)`, the debt guards).
+**Recorded in** rulebook Section 8 and Note 7, with the hints in Appendix D, and the seventh cause in Section 16; `playthrough-sim/engine.py` (`sell_back`, `lot(PILE, ...)`, the debt guards).
 
 ## I Ching cards
 
