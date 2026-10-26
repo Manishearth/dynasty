@@ -76,9 +76,18 @@ These follow from the rules rather than overriding them, so they get a plain sen
 
 ### New harvest squares
 
-**Ruling.** Only after that province's population has doubled (24 million for Provinces 2–4, 28 million for 1 and 5–7). Provinces 2 and 3 must also have all four Wall links above them built. Each square costs 20 from the Harvest Pile and yields 20 every round afterwards; the cost and the yield are negotiated with the Emperor.
+**Ruling.** Only after that province's population has doubled (24 million for Provinces 2–4, 28 million for 1 and 5–7). Provinces 2 and 3 must also have all four Wall links above them built. Each square costs 20 from the Harvest Pile and yields 20 every round afterwards, starting with the next round's harvest; the cost and the yield are negotiated with the Emperor.
 
-**Recorded in** rulebook Section 13 and every province's reference card.
+The details, settled by Manish on 2026-10-25:
+
+- **No limit.** A province may buy any number of squares in a round, every round. The purchases aren't the round's one public-works project (Note 13): the Emperor still builds a project as well.
+- **Late by design.** Because a province's population must first double, this route only opens late in the game, once a doubling card has come. A square repays its cost in one round, so once it opens it's the best investment on the board.
+- **A bought square is part of its province.** The Warlord can raid it, and a soldier stepping onto one raids it; it counts for tolls and Note 4 like the province's own squares. Squares in the sea are out of every soldier's reach.
+- **The Emperor must share the cost.** "The cost must be shared with the Emperor": the playthrough engine requires the crown to pay some part of every province's purchase (the crown's own squares it pays alone).
+
+Two readings the playthroughs add, from the booklets' wording: each province develops the ground its booklet names (2 and 3 the strip below the Wall, 4 and 5 the sea, 6 the sea or the Warlord's land, 7 the Warlord's land, 1 the strip or the sea), and each square must touch the province or a square it has already bought.
+
+**Recorded in** rulebook Section 13, every province's reference card, and `playthrough-sim/engine.py` (`buy_land`).
 
 ### A palace raid counts toward the Warlord's objective
 
@@ -155,7 +164,7 @@ The deck in `i-ching.json` is reworded. Its effects follow the 1969 cards, and t
 | Card | Question | Ruling |
 |---|---|---|
 | Population Doubles (×3) | The original says "if this card has been played twice" | Read as "if the population has already doubled twice". A doubling takes effect at most twice in a game, matching the 600 million cap (Note 6) |
-| Population Grows by Half (×2) | "if this card has been played once before" | The increase by half takes effect once in a game |
+| Population Grows by Half (×2) | "if this card has been played once before" | The increase by half takes effect once in a game. The playthrough engine enforces both caps: a capped card is just a good harvest |
 | The Canal Gives Way | "you must pay the Emperor 2 million" / "the Emperor must start over" | "You" is the province player. Where both of a province's canal sections are finished, that province pays the Emperor 2. Where one section stands, the Emperor must rebuild it. Unfinished work is lost |
 | The Wall Is Breached | Are links destroyed? | No. Provinces 1–3 each pay 5 for repairs; a province with no Wall built above it pays 2 to the Harvest Pile instead |
 | Storms and Raiders | Must a province with no public works still pay the 2? | Yes. The card names Provinces 4–7 and says each pays |
@@ -184,7 +193,7 @@ The engine in `playthrough-sim/` makes some assumptions so it can keep a ledger.
 - **Warlord's objective:** one piece of realia per player; a later raid on the same player replaces the earlier entry.
 - **Every soldier is tracked square by square.** The engine refuses a step longer than one square, a second move in a round, a province's soldiers moving before the Warlord's, a bought soldier moving before its province is raided, a diagonal capture, and a raid the Warlord's disaster forbids. Tolls and raids are computed from the squares, not chosen by the script.
 - **The Warlord's disasters.** "No raids on Provinces 5, 6 or 7" and "no raids this year" stop raids only; his soldiers may still walk onto squares that don't raid.
-- **New evenings, new booklets.** Each playthrough after the first three deals the booklets afresh (`setup(cast=...)`); a player id is still the seat that player drew.
+- **Every playthrough is its own game.** The same eight names appear in each, every player in the province their name puns on, and nothing carries from one game to another.
 
 ### Readings the playthroughs rely on
 

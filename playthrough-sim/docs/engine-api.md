@@ -23,8 +23,8 @@ Everything in `engine.py` and `cards.py`, grouped by purpose. Every name is a gl
 
 | Name | Value |
 |---|---|
-| `CAST_NAMES`, `CAST_SHORT` | The eight friends, keyed by the seat each drew on the first evening: 1 Reina Osorio, 2 Clark Grafton, 3 Richard Baron (Rich), 4 Noah Tall, 5 Silke Weber, 6 Paddy Doyle, 7 Graham Garner, 8 Robert Land (Rob). |
-| `NAMES`, `SHORT` | Player id → full name and short name for *this* game. `setup()` builds them from its `cast`. |
+| `NAMES`, `SHORT` | Player id → full name and short name. Every player sits in the province their name puns on: 1 Reina Osorio, 2 Clark Grafton, 3 Richard Baron (Rich), 4 Noah Tall, 5 Silke Weber, 6 Paddy Doyle, 7 Graham Garner, 8 Robert Land (Rob). |
+| `LAND_WHERE` | Province → the regions it may develop as new land: 1 `nS`, 2 and 3 `n`, 4 and 5 `S`, 6 `S8`, 7 `8`. |
 | `ROLE` | Seat → role: Emperor, Official, Gentry, Scholar, Silk/Rice/Wheat Peasant, Warlord. |
 | `REALIA` | Seat → the realia native to it: 2 `CH`, 3 `LD`, 4 `BB`, 5 `DJ`, 6 `WB`, 7 `VA`. |
 | `NEVER` | Seat → the realia type that seat's objective never asks for: 2 `DJ`, 3 `WB`, 4 `VA`, 5 `CH`, 6 `BB`, 7 `LD`. At 4–5 players each province also starts holding two of these. |
@@ -59,6 +59,7 @@ These globals are created by `setup()` and changed by everything else. Read them
 | `pw_at` | `{key: [square]}` | The squares each palace and cut-out stands on. |
 | `raids` | `{seat: n}` | Squares raided in each province. |
 | `board` | `{square: {...}}` | Realia and raid markers on each square (see [The board](#the-board)). |
+| `land` | `{square: seat}` | New harvest squares and the province that bought each. |
 | `SOLDIERS` | `{id: {...}}` | Every soldier in play: `side` (`"W"` for the Warlord's, `"B"` for bought), `owner` (player id), `sq`, `home` (the province it was bought in), `moved` (the round it last moved). |
 | `ARMY` | int | The Warlord's starting soldiers: 4 at eight players, 2 at five or six, 0 with no Warlord. |
 | `NORAID` | `{round: {seat}}` | Provinces the Warlord's disaster forbids him to raid that round. |
@@ -71,7 +72,7 @@ These globals are created by `setup()` and changed by everything else. Read them
 
 ## Setup and rounds
 
-### `setup(active, key, title, subtitle, blurb, short="", cast=None)`
+### `setup(active, key, title, subtitle, blurb, short="")`
 
 Start a game. Resets all state. The table starts empty: no grain dealt, no stock out of the box, no soldiers on the board. The Setup round does those.
 
@@ -79,11 +80,10 @@ Start a game. Resets all state. The table starts empty: no grain dealt, no stock
 - `key` — the game's id in the page address (`#key`).
 - `title`, `subtitle`, `short` — the game-selector button; `short` replaces `subtitle` on phones.
 - `blurb` — the paragraph under the page header.
-- `cast` — `{seat: short name}`: who drew which booklet. By default each person draws the seat they drew on the first evening. A player id is always the seat drawn, so `pid`, `sid` and deltas work the same either way.
 
 ### `R(n, title, card=None, card_text=None)`
 
-Start round `n`. Rounds go 0, 1, 2, … in order; 0 is the Setup round, shown as the Setup tab. Applies any bonuses pending from last round's works, then draws `card` — a key in `CARDS` — setting `CUR_Q` from the card's harvest and multiplying `MULT` for a population card. A card already drawn this game raises an error. Starting round 1 raises an error if the Setup round hasn't dealt the grain, taken the stock and placed the Warlord's army.
+Start round `n`. The population cards obey their own caps: a doubling takes effect at most twice and never past ×6, the increase by half once; past that the card is only a good harvest. Rounds go 0, 1, 2, … in order; 0 is the Setup round, shown as the Setup tab. Applies any bonuses pending from last round's works, then draws `card` — a key in `CARDS` — setting `CUR_Q` from the card's harvest and multiplying `MULT` for a population card. A card already drawn this game raises an error. Starting round 1 raises an error if the Setup round hasn't dealt the grain, taken the stock and placed the Warlord's army.
 
 For rounds 0 and 1 pass `card=None` and the text to show as `card_text`: for Setup, a line about the table; for round 1, that the 60 is the first harvest. Records a round marker (not an entry).
 
@@ -151,6 +151,10 @@ One public-works project.
 - `text` — replaces "Public works: *name* — *cost* paid."
 
 Use the names `"Province 2 Irrigation System"`, `"Province 3 Reservoir"` and `"Province 7 Reservoir"`. The engine does **not** check prerequisites or the one-project-per-round rule.
+
+### `buy_land(seat, squares, split, text, hover=None)`
+
+Province `seat` buys new harvest squares from the Harvest Pile (Section 13): 20 each, any number, in the Public Works step, alongside the round's one project. `split` is `{seat: amount}` summing to 20 per square, and the Emperor must pay some part of every province's purchase. The engine refuses it before the population has doubled, for Provinces 2 and 3 before all four Wall links above them stand, on a region the province's booklet doesn't name (`LAND_WHERE`), or on a square that doesn't touch the province or land it has already bought. Each square adds 20 to the province's harvest from the next round, and becomes part of the province: a Warlord soldier stepping onto it raids it.
 
 ### `owed()`, `built_count(name)`, `all_built()`
 
@@ -273,6 +277,8 @@ Disasters follow the seat, not the player: someone who moves into a province con
 | `rc(square)`, `sqname(r, c)` | Square name ↔ (row, column) from 0. `rc` refuses a square off the board. |
 | `region(square)` | The square's character in `GRID`. |
 | `prov(square)` | The province 1–7 a square is in, or `None`. |
+| `owner(square)` | The province a square belongs to, counting new land. |
+| `squares_of(p)` | A province's own squares and the new land it has bought. |
 | `squares(p)` | Every square of province (or region character) `p`. |
 | `dist(a, b)` | Rounds a soldier needs to walk from `a` to `b`. |
 

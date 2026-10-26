@@ -21,6 +21,7 @@ Section and note numbers refer to `rulebook.html`. Every ruling, including the e
 | Tax | `rate × income`, nothing on negative income (Section 9, Note 8). |
 | Rent | A flat rate from each occupied peasant province to the Gentry (Section 5). |
 | Auctions | The seller keeps a quarter; three quarters go to the Harvest Pile (Section 10). A lot of realia sold back to the pile pays the whole price to the pile. |
+| New land | 20 a square into the Harvest Pile; 20 a round more harvest for the province from the next round (Section 13). |
 | Running out of grain | A piece sold back to the pile pays 2 and joins the pile's stock; a shortfall left after selling is a debt, carried as negative grain that every receipt pays down (Note 7). |
 | Soldier sales | 20 each; the Warlord keeps 5 and 15 goes to the pile (Section 14). |
 | Raids | From the square a Warlord soldier steps onto: 5, or 10 in Province 1; a palace costs the Emperor 20; realia may be taken instead. Nothing in an empty province (Note 4). |
@@ -52,6 +53,8 @@ The build stops with an error naming the player and the problem if a script:
 | Places bought or traded realia anywhere but an empty, un-raided square of the owner's province | Section 10, Note 10 |
 | Puts a palace outside Province 1, or a cut-out of the wrong size or outside its province, or either on realia | Sections 2 and 12 |
 | Builds more than four Wall links above a province or two canal sections in one | Section 12 |
+| Buys new land before the population has doubled, before the Wall above Provinces 2 or 3 is finished, in the wrong region, not touching the province, or without the Emperor sharing the cost | Section 13 |
+| Lets a population card pass its own cap (two doublings, one increase by half, 600 million) | The cards |
 | Auctions a piece the seller doesn't have, or lets the seller or the Emperor win a lot | Section 10 |
 | Makes a payment that would put a player in debt while they still hold realia | Note 7 |
 | Lets a player in debt bid, pay a share of a public work, buy a soldier, change seats (other than by Chaos acclamation) or pay in a voluntary deal; or lets anyone bid or deal beyond the grain in hand | Note 7 |
@@ -89,6 +92,8 @@ The original materials leave some questions open. Where the engine needed an ans
 |---|---|---|
 | Is tax owed on a negative income? | No | Note 8 |
 | How many of each piece exist at 4–5 players? | One of each province's own type, two of its never-needed type | Section 10, Note 9 |
+| How much new land can a province buy, and is it the round's project? | Any number of squares, every round; it isn't the one project | Section 13, `RULINGS.md` |
+| Can the Warlord raid new land? | Yes: a bought square is part of its province | Section 13 |
 | What happens when grain runs out? | Sell realia back first, then debt; a player in debt can't spend; the mover in a seat change takes a debt with the grain; a Chaos acclamation may seat a player in debt; and a debt is a cause for revolt | Note 7 |
 | Is unsold stock on the map? | No; a piece is placed on a square the moment it's bought or traded, so raids can't take stock | Note 10 |
 | Where does a returned piece go if its home province is empty? | To the province that started the game holding it | Note 12 |
@@ -122,7 +127,6 @@ The board is `../map.json`, the same geometry as `../map.svg`: 30 × 22 squares,
 - **Disasters follow the seat.** A player who moves into a province continues its booklet's disasters where the last occupant left off. The booklets don't say; this is the simpler reading.
 - **One Warlord objective entry per player.** `warlord_got` keeps one entry per player — the most recent piece raided from them — because the Warlord's objective is one piece from each.
 - **Reclaiming raided squares isn't modelled** (Note 14). No playthrough needs it.
-- **New land and sea aren't modelled** (Section 13). No playthrough develops any.
 
 ## The Harvest Pile
 

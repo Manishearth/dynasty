@@ -12,7 +12,7 @@ What's still to do, what's waiting on Manish, and the known issues. Take an item
 
 - **Read games 4 and 5 for voice.** They were drafted by parallel agents and checked by an independent review for rules, numbers and continuity, but deserve a read for flow and banter like the first three got.
 - **Province labels on the board** sit at fixed spots (`LBL` in `playthrough-sim/template/tail.html`) and sometimes overlap a piece or a cut-out. Readable, but could be smarter.
-- **Not modelled:** reclaiming a raided square (Note 14) and developing new land or sea (Section 13). No game needs them yet; a game that does will need engine support.
+- **Not modelled:** reclaiming a raided square (Note 14). No game needs it yet.
 
 ## The rulebook
 

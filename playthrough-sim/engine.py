@@ -12,13 +12,11 @@ Functions that take deltas or `give()` use player ids; everything else takes sea
 """
 import re as _re, json as _json, os as _os
 
-# The cast, keyed by the seat each person drew on the first evening. Their names are puns
-# on those provinces. In a game where the booklets fall differently, setup(cast=...) says
-# who drew which seat, and NAMES/SHORT are re-keyed by player id for that game.
-CAST_NAMES = {1:"Reina Osorio",2:"Clark Grafton",3:"Richard Baron",4:"Noah Tall",
-              5:"Silke Weber",6:"Paddy Doyle",7:"Graham Garner",8:"Robert Land"}
-CAST_SHORT = {1:"Reina",2:"Clark",3:"Rich",4:"Noah",5:"Silke",6:"Paddy",7:"Graham",8:"Rob"}
-NAMES, SHORT = dict(CAST_NAMES), dict(CAST_SHORT)
+# The cast, keyed by player id: the seat each one draws. Their names are puns on those
+# provinces, and in every game each player sits in their own.
+NAMES = {1:"Reina Osorio",2:"Clark Grafton",3:"Richard Baron",4:"Noah Tall",
+         5:"Silke Weber",6:"Paddy Doyle",7:"Graham Garner",8:"Robert Land"}
+SHORT = {1:"Reina",2:"Clark",3:"Rich",4:"Noah",5:"Silke",6:"Paddy",7:"Graham",8:"Rob"}
 ROLE  = {1:"Emperor",2:"Official",3:"Gentry",4:"Scholar",5:"Silk Peasant",
          6:"Rice Peasant",7:"Wheat Peasant",8:"Warlord"}
 REALIA = {2:"CH",3:"LD",4:"BB",5:"DJ",6:"WB",7:"VA"}
@@ -88,6 +86,9 @@ def region(name):
 def prov(name):
     """The province a square is in, or None for undeveloped land, beyond the Wall or the sea."""
     g = region(name); return int(g) if g in "1234567" else None
+def owner(name):
+    """The province a square belongs to: its own, or the one that bought it as new land."""
+    return prov(name) or land.get(name)
 def dist(a, b):
     """Rounds a soldier needs to walk from a to b, diagonals allowed."""
     (r1,c1),(r2,c2) = rc(a), rc(b); return max(abs(r1-r2), abs(c1-c2))
@@ -114,7 +115,7 @@ def tolls(a, b):
     a built Wall link, canal section or cut-out pays the province it belongs to.
     An unoccupied province is owed nothing (Note 4)."""
     out = []
-    to = prov(b)
+    to = owner(b)
     for name, path in RIVERS.items():
         if _cuts(a, b, path) and to in ACTIVE: out.append((to, f"the {name} river"))
     for p, links in WALL_LINKS.items():
@@ -128,23 +129,17 @@ def tolls(a, b):
     return out
 
 # ------------------------------------------------------------------ setup
-def setup(active, key, title, subtitle, blurb, short="", cast=None):
+def setup(active, key, title, subtitle, blurb, short=""):
     """Start a game. active: the seats in play. key: URL fragment (#key).
     title/subtitle/short: the game selector button. blurb: the line under the header.
-    cast: {seat: short name} for who drew which booklet; by default everyone draws the
-    seat they drew on the first evening. A player id is still the seat drawn.
+    Each player sits in their own province: the player id is the seat.
     The table starts empty: the Setup round (R(0, ...)) deals the grain, takes the
     starting stock out of the box and places the Warlord's army."""
-    global ACTIVE, PLAYERS, seat, grain, stock, held, bonus, raids, pw, pw_at, board, pile_stock
+    global ACTIVE, PLAYERS, seat, grain, stock, held, bonus, raids, pw, pw_at, board, pile_stock, land, pop_cards
     global pile, ENTRIES, ROUNDS, META, MULT, CUR_Q, CUR_INC, CUR_HARV, CUR_ROUND
     global dis_next, used_cards, pending_bonus, warlord_got, SOLDIERS, ARMY, NORAID
-    global _troops_round, _done, _named, NAMES, SHORT
+    global _troops_round, _done, _named
     ACTIVE = sorted(active)
-    who = cast or {s:CAST_SHORT[s] for s in ACTIVE}
-    assert sorted(who) == sorted(active) and len(set(who.values())) == len(who), "one person per seat"
-    key_of = {v:k for k,v in CAST_SHORT.items()}
-    NAMES = {s:CAST_NAMES[key_of[w]] for s,w in who.items()}
-    SHORT = {s:w for s,w in who.items()}
     PLAYERS = list(ACTIVE)
     seat = {s:s for s in ACTIVE}
     grain = {p:0.0 for p in PLAYERS}
@@ -159,6 +154,8 @@ def setup(active, key, title, subtitle, blurb, short="", cast=None):
           "wall":{1:0,2:0,3:0},"canal":{1:0,4:0,5:0,6:0},"irr2":0,"res3":0,"res7":0}
     pw_at = {}             # work key -> the squares it stands on
     board = {}             # square -> {"realia", "owner"} and/or {"raid": True}
+    land = {}              # new harvest square -> the province that bought it (Section 13)
+    pop_cards = {2: 0, 1.5: 0}   # population changes that have taken effect, by kind
     SOLDIERS = {}          # id -> {"side": "W" or "B", "owner", "sq", "home", "moved"}
     ARMY = (4 if len(ACTIVE) >= 8 else 2) if 8 in ACTIVE else 0
     NORAID = {}            # round -> provinces the Warlord may not raid this round
@@ -259,6 +256,7 @@ def snap():
                 at={k:list(v) for k,v in pw_at.items()},
                 bonus={str(k):v for k,v in bonus.items()},
                 board={k:dict(v) for k,v in board.items()},
+                land={k:v for k,v in land.items()},
                 sol=[[i, s["side"], s["sq"], s["owner"]] for i,s in SOLDIERS.items()],
                 pile=round(pile,2), mult=MULT,
                 rob={str(k):v for k,v in warlord_got.items()})
@@ -321,7 +319,13 @@ def R(n, title, card=None, card_text=None):
         used_cards.add(card)
         c = CARDS[card]; card_text = c["text"]
         q = c["q"]
-        if c.get("pop"): MULT = MULT * c["pop"]
+        pop = c.get("pop")
+        # The cards' own caps (RULINGS.md): a doubling takes effect at most twice and never
+        # past 600 million (x6); the increase by half takes effect once. Otherwise the
+        # card is only a good harvest.
+        if pop == 2 and (pop_cards[2] >= 2 or MULT * 2 > 6): pop = None
+        if pop == 1.5 and pop_cards[1.5] >= 1: pop = None
+        if pop: MULT = MULT * pop; pop_cards[pop] += 1
     if isinstance(q, str): q = {s:q for s in ACTIVE}
     CUR_Q = q or {}
     ROUNDS.append(dict(n=n, title=title, card=card_text, start=len(ENTRIES), mult=MULT))
@@ -432,6 +436,42 @@ def build(name, cost, split, wall=None, canal=None, key=None, hover=None, text=N
     act(text or f"Public works: {name} — {cost:g} paid.",
         hover or ("Cost split: "+", ".join(f"{SHORT[pid(s)]} {a:g}" for s,a in split.items())+"."),
         d, map_hl=list(split.keys()))
+
+LAND_WHERE = {1:"nS", 2:"n", 3:"n", 4:"S", 5:"S", 6:"S8", 7:"8"}   # where each province may develop (its booklet)
+def buy_land(s, squares, split, text, hover=None):
+    """Province s buys new harvest squares from the Harvest Pile (Section 13), 20 each,
+    any number in a round, alongside the round's one public work. Only once the
+    population has at least doubled, and for Provinces 2 and 3 once all four Wall links
+    above them stand. split: {seat: amount} summing to 20 per square; the Emperor must
+    share the cost. Each square sits on the undeveloped land or sea the province's
+    booklet names, touching the province or a square it has already bought, and adds
+    20 to the province's harvest from the next round. It becomes part of the province:
+    the Warlord can raid it."""
+    global pile
+    assert CUR_ROUND and CUR_ROUND >= 1
+    assert s in ACTIVE and s in LAND_WHERE, f"Province {s} can't develop new land"
+    assert MULT >= 2, f"the population must have doubled before anyone develops (it's x{MULT:g})"
+    if s in (2, 3): assert pw["wall"][s] == 4, f"Province {s} needs all four Wall links above it first"
+    cost = 20*len(squares)
+    assert abs(sum(split.values())-cost) < 1e-6, (cost, split)
+    if s != 1: assert split.get(1, 0) > 0, "the cost must be shared with the Emperor"
+    mine = set(squares_of(s))
+    for q in squares:
+        assert region(q) in LAND_WHERE[s], f"Province {s} develops {LAND_WHERE[s]!r} squares, not {q}"
+        assert q not in land, f"{q} has already been developed"
+        assert any(dist(q, m) == 1 for m in mine), f"{q} doesn't touch Province {s} or its new land"
+        mine.add(q)
+    for t,a in split.items():
+        if a > 0: _spend(pid(t), a, f"pay toward new land in Province {s}")
+    for q in squares: land[q] = s
+    pending_bonus[s] = pending_bonus.get(s,0) + 20*len(squares)
+    act(text, hover or ("Cost split: "+", ".join(f"{SHORT[pid(t)]} {a:g}" for t,a in split.items())+
+        f". 20 a square into the Harvest Pile; each yields 20 a round from next year."),
+        {pid(t):-a for t,a in split.items()}, map_hl=[s], pile_delta=cost)
+
+def squares_of(s):
+    """Province s's own squares and the new land it has bought."""
+    return squares(s) + [q for q,o in land.items() if o == s]
 
 def disaster(s, text, hover=None):
     """Play the next personal disaster in seat s's booklet. The Warlord's first two
@@ -648,7 +688,7 @@ def march(moves, text=None, hover=None, take=None):
             hl.add(p)
         s["sq"] = to; s["moved"] = CUR_ROUND
         mv.append([frm, to, "W"])
-        p = prov(to); cell = board.get(to, {})
+        p = owner(to); cell = board.get(to, {})
         raids_here = p in ACTIVE and not cell.get("raid")
         assert raids_here or i not in take, f"{i} doesn't raid {to}, so it can't take anything there"
         if not raids_here: continue

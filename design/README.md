@@ -6,7 +6,7 @@ The living design documents for the Dynasty revival: what the project is, what M
 |---|---|
 | [`project.md`](project.md) | What the project is, every file in the repo, how to build it, the copyright constraints, and how parallel sessions share the repo |
 | [`design-intent.md`](design-intent.md) | Manish's standing preferences for the rulebook and the playthroughs. Treat these as requirements. |
-| [`cast.md`](cast.md) | The eight friends in the playthroughs: names (they're puns), how each one thinks, and what happened to them on each evening |
+| [`cast.md`](cast.md) | The eight friends in the playthroughs: names (they're puns), how each one thinks, and what happened to them in each game |
 | [`history.md`](history.md) | A chronological log of requests and decisions, with Manish's own wording where it matters |
 | [`open-work.md`](open-work.md) | Work still to do, open questions, and known issues |
 | [`lessons.md`](lessons.md) | Mistakes caught along the way, worth not repeating |

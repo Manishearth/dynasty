@@ -1,13 +1,13 @@
 # playthrough-sim
 
-The scripts that generate `../playthrough.html`: five annotated games of Dynasty, played by the same group of friends on five evenings, on the real board.
+The scripts that generate `../playthrough.html`: five annotated games of Dynasty on the real board. The same eight friends play each one, every player in the province their name puns on, and each game stands alone.
 
 | Game | Table | Length | How it ends |
 |---|---|---|---|
 | `game1_full.py` | All eight provinces | 12 years | A revolt, then Chaos; a wheat farmer becomes Emperor |
 | `game2_peasant.py` | Emperor, three peasants, Warlord | 9 years | Every public work is built — the survival ending |
 | `game3_short.py` | Emperor, Official, Gentry, Scholar | 8 rounds | The short-game rule; the Official takes the throne |
-| `game4_complete.py` | All eight provinces, booklets dealt afresh | 10 years | Every public work is built — the first survival ending at eight players |
+| `game4_complete.py` | All eight provinces | 10 years | A compact, a land rush after the doubling, and every public work built |
 | `game5_six.py` | Emperor, Official, Gentry, two peasants, Warlord | 10 years | The Warlord completes his objective and takes the throne |
 
 These are **authored** games, not simulated ones. A person wrote every choice: what each player bids, where they put each piece, where every soldier walks, what they say and what they're thinking. The engine does all the arithmetic and refuses illegal moves, so every number on the page comes from the rules, but the outcome is the author's.

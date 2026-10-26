@@ -50,7 +50,7 @@ These are Manish's standing preferences, gathered from the conversations. Treat 
 - **Thoughts (hovers) are the players, not the characters**: people who know they're playing a board game. They reason about rules, count pieces, count squares, quote booklets and enjoy the bit, the way a tabletop RPG player who also likes strategy thinks. Use **several voices** per note: a move plus the reactions of the people it lands on.
 - **Full names in the players table, short names in the transcript.**
 - **Every number quoted in dialogue or thoughts must match the ledger** (`trace.py`), and every distance must match the board. Changing anything early in a game shifts everything after it.
-- The games are **evenings in order** with the same friends, and they remember the earlier ones. A player can refer only to evenings they played in. Don't repeat a joke from an earlier evening unless a character is quoting it on purpose.
+- **Every playthrough is its own game.** The same eight people play each one, every player in the province their name puns on, and nobody remembers another game: keep each bit of banter within the game it's in. (Manish, 2026-10-25: "Don't think of these as multiple sequential playthroughs with persistent personalities, each one is an independent playthrough.")
 - **The Setup tab** is a short scene (8–12 entries) following rulebook Section 4 and Appendix A for that player count: booklets drawn, grain dealt, stock beside the board, the Warlord's army placed, the Harvest Pile set out, the I Ching shuffled, cut-outs made. Each game gives it its own flavour.
 
 **Rules fidelity**
@@ -81,5 +81,5 @@ Provinces 7 and 3 are the frontier. Province 1 faces the strip below the Wall. P
 1. **Full game**: 8 players, 12 years, ends in revolt and Chaos; Graham takes the throne.
 2. **Peasant game**: 5 players (the Emperor, three peasants, the Warlord), 9 years. It ends in **survival**: every public work gets built, with Reina still on the throne.
 3. **Short game**: 4 players (the upper group), the 8-round short-game rule; Clark, the Official, takes the throne.
-4. **Long game**: 8 players with the booklets dealt afresh, 10 years; a compact to build everything, and it gets built.
+4. **Long game**: 8 players, 10 years; a compact to build everything, a land rush when the population doubles, and it all gets built.
 5. **Six-player game**: 6 players, 10 years; the Warlord completes his objective and takes the throne.

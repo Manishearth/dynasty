@@ -10,6 +10,7 @@ A game script is a sequence of calls in play order. The engine keeps the books; 
 - [The three kinds of entry](#the-three-kinds-of-entry)
 - [Auctions](#auctions)
 - [Running out of grain](#running-out-of-grain)
+- [New land](#new-land)
 - [Private trades](#private-trades)
 - [Changing seats](#changing-seats)
 - [Soldiers](#soldiers)
@@ -57,7 +58,7 @@ Writing `{2: -5, 1: 5}` there would charge Clark — player 2 — who had alread
 ```python
 setup([1,5,6,7,8], "peasant", "The peasant game",
       "Five players · nine years · everything gets built",
-      "A second evening, same friends. ...",
+      "The Emperor and three peasants, and the Warlord. ...",
       short="5 players · 9 years")
 ```
 
@@ -67,7 +68,6 @@ setup([1,5,6,7,8], "peasant", "The peasant game",
 | `key` | The game's id in the page address: `playthrough.html#peasant` opens this game. |
 | `title`, `subtitle`, `short` | The game-selector button: title, the full subtitle, and the short subtitle used on phones. |
 | `blurb` | The paragraph under the header. |
-| `cast` | Optional `{seat: short name}`: who drew which booklet. Leave it out and everyone draws the seat they drew on the first evening, as in the first three games; games 4 and 5 deal them afresh. |
 
 `setup` leaves the table empty. **The Setup round** (round 0, the Setup tab on the page) is a short scene, usually 8–12 entries, that follows rulebook Section 4 and Appendix A for the player count. Three calls do the bookkeeping, and the engine won't start Round One until they have run:
 
@@ -201,6 +201,17 @@ harvest()
 
 If they're still short, their grain goes negative. That's a debt: they can't bid, deal, pay toward a public work, buy soldiers or change seats until it's paid. At the next auction, after the provinces' lots, the pile auctions what it bought back with `lot(PILE, ...)`, or the table lets it sit ("Nobody bids"). Debt is pressure, not decoration: let it show in who can't bid and who sells what. It's also a cause for revolt (rulebook Section 16): a player in debt is facing starvation, so a revolt can cite the debt.
 
+## New land
+
+Once the population has doubled, provinces may buy new harvest squares (rulebook Section 13): any number, every round, alongside the round's project, with the Emperor paying part of every purchase.
+
+```python
+# Year 8 of the long game: the doubling has come, and the land rush starts.
+buy_land(4, ["K25", "J25", "K26"], {4: 45, 1: 15}, "New land: Silke buys three squares of sea for Province 4 ...", hover)
+```
+
+A square costs 20 and yields 20 a round from the next round, so it pays for itself in a year; once the doubling card comes, land is the best buy on the board and the incomes the doubling wrecked depend on it. The squares go where the booklet says, touching the province: sea is safe from soldiers, the Warlord's land isn't.
+
 ## Private trades
 
 The rules allow trading at any time. A trade is a `give()` for the piece and an `act()` for the grain — in that order, so the snapshot shows the piece moved:
@@ -324,17 +335,7 @@ The page has two registers, and keeping them apart is most of what makes it read
 
 **Names.** The transcript uses short names (Reina, Clark, Rich, Noah, Silke, Paddy, Graham, Rob); the players table uses full names. That's automatic — just write short names in `say` and in thoughts.
 
-**The evenings happen in order.** The same friends play game 1, then 2, 3, 4 and 5, and they remember. A player can refer to an earlier evening only if they played in it:
-
-| Evening | Who played | Who sat out |
-|---|---|---|
-| 1, the full game | everyone, each in the province their name puns on | — |
-| 2, the peasant game | Reina, Silke, Paddy, Graham, Rob | Clark, Rich, Noah |
-| 3, the short game | Reina, Clark, Rich, Noah | Silke, Paddy, Graham, Rob |
-| 4, the long game | everyone, booklets dealt afresh | — |
-| 5, the six-player game | Rob, Silke, Clark, Reina, Graham, Noah | Rich, Paddy |
-
-So in game 3 it's Clark's second time, not his third; and Rob was the Warlord on evenings 1 and 2 only.
+**Every game is its own game.** The same eight people play each one, each in the province their name puns on, but nobody remembers another game. Keep every joke and callback inside the game it's in.
 
 ## Checklist
 
@@ -362,7 +363,7 @@ After building:
 ## Adding a game
 
 1. Copy the shortest script, `game3_short.py`, to `gameN_something.py`.
-2. Change the `setup` call: seats in play, a new `key`, titles and blurb, and a `cast` if the booklets fall differently this evening.
+2. Change the `setup` call: seats in play, a new `key`, titles and blurb.
 3. Write its Setup round.
 4. Add the file name to `GAMES` in `build.py`.
 5. Write it, tracing as you go. Record any new ruling in `../../RULINGS.md`.

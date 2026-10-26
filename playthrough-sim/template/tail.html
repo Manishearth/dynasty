@@ -163,6 +163,11 @@ function drawMap(s,hl,mv){
     if(/[1-7]/.test(g)&&!ACT.has(g)) svg+='<rect x="'+(c*CW)+'" y="'+(r*CW)+'" width="'+CW+'" height="'+CW+'" fill="url(#hatch)" opacity=".7"/>';
     else if(hl.has(+g)) svg+='<rect x="'+(c*CW)+'" y="'+(r*CW)+'" width="'+CW+'" height="'+CW+'" fill="#FFF6C8" opacity=".55"/>';
   }
+  /* new harvest squares (Section 13): the rulebook's blue squares */
+  for(const q in (s.land||{})){
+    const [r,c]=sqrc(q);
+    svg+='<rect x="'+(c*CW+1)+'" y="'+(r*CW+1)+'" width="'+(CW-2)+'" height="'+(CW-2)+'" fill="#4F8FD8" fill-opacity=".55" stroke="#175FB5" stroke-width=".9"><title>New harvest square, Province '+s.land[q]+'</title></rect>';
+  }
   /* the Wall: four printed links above each of provinces 3, 2 and 1, drawn as on the map once built */
   for(const p in M.wall){
     const built=(s.pw.wall||{})[p]||0, owed=ACT.has(p);
@@ -233,6 +238,7 @@ function drawMap(s,hl,mv){
       '<span><span class="sw wal"></span>Wall&nbsp;link</span>'+
       '<span><span class="sw can"></span>canal</span>'+
       '<span><span class="sw riv"></span>river</span>'+
+      (ALL.games[curGame].entries.some(e=>Object.keys(e.state.land||{}).length)?'<span><span class="sw land"></span>new&nbsp;harvest&nbsp;square</span>':'')+
       '<span><span class="sw wat"><img src="'+gsrc(owe('Province 2 Irrigation System')&&!owe('Province 3 Reservoir')&&!owe('Province 7 Reservoir')?'irrigation':'reservoir')+'" alt=""></span>'+sys+'</span>'+
       (D.active.length<8?'<span><span class="sw empty"></span>province&nbsp;not&nbsp;in&nbsp;play</span>':'');
     document.getElementById('legend').innerHTML=L;

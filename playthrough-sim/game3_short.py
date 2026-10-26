@@ -1,18 +1,18 @@
 # Game 3 — the short game. Four players, the upper provinces, eight rounds.
 setup([1,2,3,4], "short", "The short game",
       "Four players · eight rounds · a race for the throne",
-      "A third evening, short on time. Just the Emperor and the three upper provinces — no Warlord, no peasants, so no rent and no raids. The table agrees to stop after eight rounds and score from where everyone's sitting.", short="4 players · 8 rounds")
+      "Short on time. Just the Emperor and the three upper provinces — no Warlord, no peasants, so no rent and no raids. The table agrees to stop after eight rounds and score from where everyone's sitting.", short="4 players · 8 rounds")
 
 # ============================== SETUP ==============================
 R(0, "Eight rounds", None, "Four players: the Emperor, the Official, the Gentry and the Scholar (rulebook Section 4 and Appendix A). No Warlord, so nobody raids and no soldiers are sold; no peasants, so no rent. Nothing is owed to Provinces 5, 6 or 7.")
-act("Four booklets go in the box: the upper group. Shuffled and drawn, they fall the way they fell on the first night.", TH(
- ("Reina","The Emperor, for the third evening running. I'm starting to think the box knows me."),
- ("Clark","Official again. Last time I left this chair for Province 4 and then Province 5, both times at somebody else's invitation."),
- ("Noah","Scholar again. I've still got the swallow notes. Well. I've still got the candle.")), map_hl=[1,2,3,4])
+act("Four booklets go in the box: the upper group. Shuffled and drawn.", TH(
+ ("Reina","The Emperor. Three players who each want my chair, and eight rounds to get it."),
+ ("Clark","Official. My booklet practically instructs me to skim. I'm going to take it seriously."),
+ ("Noah","Scholar. Worst income, best information. I read the cards.")), map_hl=[1,2,3,4])
 act("The table agrees to the short game: eight rounds, then score by province.", TH(
  ("Noah","Eight rounds means nobody finishes the public works — eight hundred and ten million of them, with only three of us paying tax. This is a game about who's sitting where at the end."),
  ("Clark","Then it's a game about the throne. Three of us can take it. Only one of us will."),
- ("Reina","Eight rounds of being the one they're all trying to replace. The first night I lasted eleven years; last week I held it for nine. Eight is fine.")), map_hl=[1,2,3,4])
+ ("Reina","Eight rounds of being the one they're all trying to replace. Eight is fine.")), map_hl=[1,2,3,4])
 say("Rich","No peasants. Nobody to collect rent from. What exactly does a landlord do in this game?", TH(
  ("Rich","Bank the Harvest Pile and fawn. My card says I'm a fawner. I'm going to be the best fawner this table has ever seen."),
  ("Reina","He's going to be a problem. He's already being charming.")))
@@ -25,7 +25,7 @@ take_stock("Clark, Rich and Noah take their realia out of the box: one piece of 
  ("Rich","Three single pieces and three people who each need two. Somebody's going to be holding the piece somebody else needs. Probably me."),
  ("Reina","Three of them, and only one throne. My favourite arithmetic.")))
 act("Noah shuffles the twenty I Ching cards. Clark cuts out the Province 2 Irrigation System, one square by two; Rich cuts out the Province 3 Reservoir, two by three.", TH(
- ("Clark","One by two. Last game mine was the first water work built. I'd like that to be a tradition."),
+ ("Clark","One by two. The cheapest water work in the book, which means it's the one that gets built."),
  ("Rich","Two by three. The biggest cut-out in the box, for a landlord with no tenants."),
  ("Noah","No Warlord tonight. For once it doesn't matter where anybody puts anything.")), map_hl=[2,3,4])
 
@@ -33,11 +33,11 @@ act("Noah shuffles the twenty I Ching cards. Clark cuts out the Province 2 Irrig
 R(1, "Eight rounds", None, "No card is drawn. The 60 million each player holds is the first harvest.")
 CUR_INC.update({s:60 for s in ACTIVE})
 say("Reina","Thirty per cent. And Clark — the irrigation, this year. Fifteen each.", TH(
- ("Reina","Third evening. I know what order to build in now: whatever raises somebody's harvest, first. Clark's ditch raises his income, which raises my tax. It's the cheapest good thing on the list."),
+ ("Reina","I know what order to build in: whatever raises somebody's harvest, first. Clark's ditch raises his income, which raises my tax. It's the cheapest good thing on the list."),
  ("Clark","She's opening with my ditch. She's either learned something or she's buying me. Both, probably.")))
 say("Clark","I'll collect it personally, Majesty.", TH(
- ("Clark","Same line as the first night. It got a laugh then too."),
- ("Noah","Two games and he hasn't changed the sentence. Respect, I suppose.")))
+ ("Clark","Personally. You learn a lot watching people count out tax."),
+ ("Noah","He said 'personally' the way a man says 'privately'.")))
 taxes(.30)
 build("Province 2 Irrigation System", 30, {1:15,2:15}, key="irr2", at="I13:I14", hover=TH(
  ("Clark","I13 and I14, below my pieces. No Warlord to charge a toll, so I've put it where it waters the most squares I'm looking at."),
@@ -61,15 +61,15 @@ salaries()
 R(2, "A careless year", "careless")
 harvest()
 disaster(1,"the Arabian horse throws her. The trainer is lashed twenty times.", TH(
- ("Reina","Third evening, third time this horse has thrown me."),
+ ("Reina","Four, and a trainer who gets lashed for it. The Emperor's disasters are other people's."),
  ("Rich","At this point the trainer should be lashing the horse.")))
 disaster(2,"the chariot drops a wheel on a garrison inspection. He pays the crippled driver's pension.", TH(
- ("Clark","Four. Second time I've paid this pension. That driver is doing very well out of me."),
+ ("Clark","Four for a pension. That driver is doing very well out of me."),
  ("Noah","There are no garrisons — there's no Warlord. He's inspecting troops that aren't there.")))
 disaster(3,"the head chef retires and is promised a house and a pension.", TH(
  ("Rich","Five, and there are no peasants to grumble that their buffalo got nothing. A very quiet chef retirement."),))
 disaster(4,"the candle, the fire, the lost notes on the migratory habits of the swallow.", TH(
- ("Noah","Second time I've lost the swallow book. I'm beginning to think I'm not meant to write it."),
+ ("Noah","A whole book on swallows, and the candle read it first."),
  ("Clark","He should write a book about losing the swallow book.")))
 taxes(.40)
 say("Reina","Rich, your reservoir. Forty and forty.", TH(
@@ -104,7 +104,7 @@ say("Reina","The Winter Palace. Twenty.", TH(
  ("Reina","Not for me — it's the key to Noah's canal. Nothing in Province 4 gets built until this stands."),
  ("Noah","She's unlocking my canal. Noted. Appreciated. Not enough to change how I bid.")))
 build("Winter Palace", 20, {1:20}, key="Winter Palace", at="H20", hover=TH(
- ("Reina","H20. On the first night I hid my palaces at the bottom of the province from a man with four soldiers. Tonight there's nobody to hide from, so it goes in the middle where I can see it."),
+ ("Reina","H20. With no Warlord there's nobody to hide from, so it goes in the middle where I can see it."),
  ("","Reina pays the 20.")))
 lot(2,"CH",[
  B(3,10), B(4,14), B(3,18,"Eighteen."),
@@ -187,11 +187,11 @@ salaries()
 R(6, "The Wall is breached", "breach")
 harvest()
 act("The card's levy: the Wall is attacked, but none has been built, so Provinces 1, 2 and 3 each pay 2 to the Harvest Pile for damages.", TH(
- ("Reina","Damages to a wall that doesn't exist. On the first night I'd have been fixing three links. This game there's nothing to breach."),
+ ("Reina","Damages to a wall that doesn't exist. There's nothing to breach."),
  ("Rich","I'm the banker. I'm paying myself two million for damages to nothing.")),
  {1:-2,2:-2,3:-2}, map_hl=[1,2,3], pile_delta=6)
 disaster(4,"his translations invent so many new words that the Emperor docks half of four years' salary.", TH(
- ("Noah","Ten. Same disaster as the first night, same Emperor. She's got very good at docking my salary for a card."),
+ ("Noah","Ten. Half my salary for four years, docked by a card. She's going to say it wasn't her."),
  ("Reina","I don't dock anything. I've given up saying so.")))
 taxes(.50)
 say("Noah","Majesty, he'll sell. It's on his card: he takes advantage of anyone foolish enough not to watch him.", TH(
@@ -214,7 +214,7 @@ harvest()
 taxes(.50)
 build("Great Wall — 2 links, above Provinces 2 and 3", 80, {1:40,2:20,3:20}, wall={2:1,3:1})
 say("Reina","Two links of the Wall. Somebody has to start it.", TH(
- ("Reina","Seventh round of eight, with everything productive built. A wall's the only thing left on my list. The first night I built it first, last week I built it last, and tonight I'm building it with what's left."),
+ ("Reina","Seventh round of eight, with everything productive built. A wall's the only thing left on my list. I'm building it with what's left."),
  ("Clark","She's spending the treasury on bricks. I'd have kept some back.")))
 say("Clark","Rich. Seventy. And you keep the commission on whatever you sell me next.", TH(
  ("Clark","Seventy, and I'll have every bag of her treasury the moment I sit down. It's not my money I'm spending, really — it's hers, a round early."),
@@ -228,14 +228,14 @@ act("Richard Baron sells the Bamboo Brush to Clark Grafton for 70.", TH(
  ("Rich","Twenty-six to buy it, forty from the Emperor to keep it, seventy from Clark to sell it. A hundred and ten in, for a brush I paid twenty-six for and could never use."),
  ("Clark","Four of four, and twenty in hand. More than twenty.")), {2:-70, 3:70}, map_hl=[2,3], deal=True)
 swap(2,1,"Clark Grafton declares a complete set and declares himself Emperor. Clark takes the throne of Province 1; Reina becomes Official of Province 2.", TH(
- ("Clark","Return all my realia, keep my own grain, and the Emperor must give me her entire reserve. Official to Emperor in seven rounds. On the first night I was robbed down three provinces by the rules; tonight the rules have handed me the country."),
- ("Reina","He takes the treasury and I take his chair and sixty from the pile. Three evenings: Wheat Peasant, Emperor, Official. I've been everything except a winner twice."),
+ ("Clark","Return all my realia, keep my own grain, and the Emperor must give me her entire reserve. Official to Emperor in seven rounds. The rules have handed me the country."),
+ ("Reina","He takes the treasury and I take his chair and sixty from the pile. Emperor to Official in one swap."),
  ("Noah","And now I need the Scroll Clark just handed back to Rich. Rich has the Scroll. Rich has everything.")))
 say("Reina","I'll collect it personally, Majesty.", TH(
- ("Reina","His line. I've been waiting since the first night to say it to him."),
+ ("Reina","His line. I've been waiting all night to say it to him."),
  ("Clark","She's going to skim. Everyone knows she's going to skim. Her card practically instructs her to.")))
 say("Clark","My card says I'm just and reasonably compassionate.", TH(
- ("Clark","The last time a card told me who to be, I'd just been robbed. This one's better."),
+ ("Clark","A card telling me who to be. This one's better than the last."),
  ("Rich","He's going to be insufferable for one round.")))
 salaries()
 

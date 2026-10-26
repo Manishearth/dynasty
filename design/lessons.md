@@ -18,7 +18,8 @@ Mistakes caught along the way, worth not repeating. Add to this when something s
 **Numbers and voice**
 - **Re-check every quoted number after any edit**, because everything downstream shifts. `trace.py` prints the ledger line by line. Earlier slips: the chest at 16 instead of 14, Reina at −80 instead of −60, miscounted rungs in one of Clark's auctions, "three links left" when there were six.
 - **Distances and geometry are numbers too.** "Three squares from his soldier", "at an angle", "the deepest square", "the south coast" all have to match the board. The reviews caught a dozen of these.
-- **Players remember only evenings they played in**, and only what happened. Check claims like "the Warlord for three evenings" or "the horse threw me twice" against `cast.md`. Don't reuse an earlier evening's joke by accident.
+- **Each game stands alone.** The games were once written as a series of evenings with cross-game callbacks and a reshuffled cast; Manish asked for independent games with everyone in their own province. Keep banter inside one game.
+- **Population cards have caps.** Game 4 once drew both "half" cards and multiplied twice; the second should only have been a good harvest. The engine now enforces the caps.
 
 **Page**
 - Changing the hash must switch games (there's a `hashchange` listener).
