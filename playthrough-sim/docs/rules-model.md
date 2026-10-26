@@ -18,9 +18,9 @@ Section and note numbers refer to `rulebook.html`. Every ruling, including the e
 |---|---|
 | Income | `harvest + public-works bonus − consumption × population multiple` (Section 7). Harvest is 100/75/50, or 40/30/20 for the Warlord; consumption is 40, 60 for the Emperor and 20 for the Warlord. |
 | Population | The multiple starts at 1 and is multiplied by each population card drawn: × 2 or × 1.5. |
-| Tax | `rate × income`, nothing on negative income (Section 9, Note 8). |
+| Tax | `rate × income` rounded down to the half million, nothing on negative income (Section 9, Note 8). |
 | Rent | A flat rate from each occupied peasant province to the Gentry (Section 5). |
-| Auctions | The seller keeps a quarter; three quarters go to the Harvest Pile (Section 10). A lot of realia sold back to the pile pays the whole price to the pile. |
+| Auctions | The seller keeps a quarter of the price rounded down to the half million; the rest goes to the Harvest Pile (Section 10). A lot of realia sold back to the pile pays the whole price to the pile. |
 | New land | 20 a square into the Harvest Pile; 20 a round more harvest for the province from the next round (Section 13). |
 | Running out of grain | A piece sold back to the pile pays 2 and joins the pile's stock; a shortfall left after selling is a debt, carried as negative grain that every receipt pays down (Note 7). |
 | Soldier sales | 20 each; the Warlord keeps 5 and 15 goes to the pile (Section 14). |
@@ -28,7 +28,8 @@ Section and note numbers refer to `rulebook.html`. Every ruling, including the e
 | Tolls | 5 for each river, built Wall link, built canal section or cut-out a Warlord soldier's step crosses (Section 14, Note 16). |
 | Captures | A step onto an enemy soldier's square, horizontally or vertically, removes it (Note 15). |
 | Public-works bonuses | Canal sections +10 each to their province; the Province 2 irrigation system +10; the reservoirs in 3 and 7 +20. They start the round **after** the work is built. |
-| Disasters | The next one in the seat's booklet, with fractional amounts computed from the actual income, harvest or grain. |
+| Disasters | The next one in the seat's booklet, with fractional amounts computed from the actual income, harvest or grain and rounded down to the half million. |
+| Rounding | Every computed payment (commission, tax, fractional disaster) rounds down to a multiple of 0.5, in the payer's favour: `pay_down` (Section 8). |
 | Seat changes | Who returns which pieces, the transfer of the displaced player's grain, and the 60 drawn from the pile (Section 11). |
 | Starting stock and objectives | By player count, from the booklets (Section 10, Section 11). |
 | Public works owed | Only works in occupied provinces (Note 4). |
@@ -91,6 +92,7 @@ The original materials leave some questions open. Where the engine needed an ans
 | Question | Ruling | Where |
 |---|---|---|
 | Is tax owed on a negative income? | No | Note 8 |
+| How are fractional payments rounded? | Down to the half million, in the payer's favour | Section 8, `RULINGS.md` |
 | How many of each piece exist at 4–5 players? | One of each province's own type, two of its never-needed type | Section 10, Note 9 |
 | How much new land can a province buy, and is it the round's project? | Any number of squares, every round; it isn't the one project | Section 13, `RULINGS.md` |
 | Can the Warlord raid new land? | Yes: a bought square is part of its province | Section 13 |
@@ -133,6 +135,6 @@ The board is `../map.json`, the same geometry as `../map.svg`: 30 × 22 squares,
 The pile is a real bank. It starts at 2,500 million — the face value of the bags in the box — and the Setup round deals 60 from it to each player.
 
 **Out:** every positive income, the 60 dealt at setup, and 60 to each player displaced by a seat change.
-**In:** every negative income, three quarters of each auction price, 15 of each soldier sale, disasters, repair levies, and damages.
+**In:** every negative income, each auction price less the seller's commission, 15 of each soldier sale, disasters, repair levies, and damages.
 
 Early in a game, when harvests outrun consumption, the pile drains. Once the population grows, incomes go negative and the whole country pays into it. In the full game the pile reaches its lowest point in Year 9 and is fuller by the end than it had been since Year 2 — the bank is the one thing in the country that gets richer as everyone starves. `trace.py` prints the pile on every line.

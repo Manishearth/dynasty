@@ -230,7 +230,7 @@ say("Graham","Robert. The Brush.", TH(
  ("Graham","I've got everything else, and he's got his raid on me counted already. The Brush is just furniture to him now."),
  ("Rob","He's right, and he knows he's right, so the price is the only interesting part left.")))
 say("Rob","Thirty-five.", TH(
- ("Rob","He's got a hundred and forty-odd and a reservoir. Thirty-five is what it's worth to a man who's about to take the best province in the country."),
+ ("Rob","He's got a hundred and forty and a reservoir. Thirty-five is what it's worth to a man who's about to take the best province in the country."),
  ("Silke","The best province in the country. That's mine. He's pricing my seat.")))
 give(8, 7, "BB", at="P15")
 act("Graham Garner buys back his Bamboo Brush from Robert Land for 35, and puts it on P15.", TH(

@@ -157,6 +157,14 @@ The details, settled by Manish on 2026-10-25:
 
 **Recorded in** rulebook Section 8 and Note 7, with the hints in Appendix D, and the seventh cause in Section 16; `playthrough-sim/engine.py` (`sell_back`, `lot(PILE, ...)`, the debt guards).
 
+### Rounding to the half million
+
+**Ruling.** Every payment worked out as a fraction rounds down to the half million, in favour of whoever pays. That covers the auction commission (the seller keeps a quarter of the price rounded down; the Harvest Pile takes the rest, so a sale of 9 gives 2 and 7, of 7 gives 1.5 and 5.5, of 5 gives 1 and 4), the tax (each player's rate × income rounded down), and the personal disasters that take a half or a third of income, harvest or grain. The Warlord's soldier commission is a quarter of 20, so it never needs rounding.
+
+**Why.** The smallest bag in the box is half a million, so a quarter million can't change hands. Rounding in the payer's favour means nobody is ever asked for grain the rules didn't strictly demand. Set by Manish on 2026-10-25.
+
+**Recorded in** rulebook Section 8 (the general rule), restated in Sections 9 (tax), 10 (commission) and 15 (disasters) and in the worked round (Appendix B); `playthrough-sim/engine.py` (`pay_down`).
+
 ## I Ching cards
 
 The deck in `i-ching.json` is reworded. Its effects follow the 1969 cards, and these are the readings it settles on.
@@ -188,6 +196,7 @@ The deck in `i-ching.json` is reworded. Its effects follow the 1969 cards, and t
 The engine in `playthrough-sim/` makes some assumptions so it can keep a ledger. They're listed in full in `playthrough-sim/docs/rules-model.md` under "Rulings the engine relies on" and "Simplifications". The ones a table would also meet:
 
 - **Debt follows Note 7.** The engine refuses a payment that would put a player in debt while they still hold realia (the script must call `sell_back` first), refuses bids, purchases, voluntary deals (`act(..., deal=True)`), shares of public works and soldier purchases by a player in debt or beyond their grain, and refuses a seat change by a player in debt, except a Chaos acclamation.
+- **Payments round down to the half million.** Commissions, tax and fractional disasters go through `pay_down`, so no ledger ever shows a quarter million.
 - **Disasters follow the seat.** A player who moves into a province carries on that booklet's disasters where the last occupant left off.
 - **The Harvest Pile is finite.** It starts at 2,500 million, the face value of the bags in the box, less the 60 dealt to each player.
 - **Warlord's objective:** one piece of realia per player; a later raid on the same player replaces the earlier entry.

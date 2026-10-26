@@ -160,7 +160,7 @@ lot(7,"VA",[
    ("Clark","Seven costs me nothing and costs her everything. I'd have gone to twenty. We are not bidding with the same money and we both know it."),
    ("Silke","One million. He beat me by one million on purpose."),
    ("Rob","Now that's proper villainy. I'm supposed to be the villain here."))),
- B(5,None,"...","I could go to eight. He'd go to nine. He's got forty-four and I've got a bad harvest.")],
+ B(5,None,"...","I could go to eight. He'd go to nine. He's got fifty-odd and I've got a bad harvest.")],
  hover='Clark puts it on J15, beside his Bowl.', at='J15')
 say("Rob","The Official and the Gentry this year, I think. The rich pay better.", TH(
  ("Rob","The one real bit of strategy I've got. Five million's five million from anyone, but a raided square can never be raided again — so I'm spending my supply of virgin squares on people who'll still be solvent in year ten. Never waste a raid on a peasant you intend to bankrupt."),
@@ -598,7 +598,7 @@ act("Every province pays into the Harvest Pile. The bank is the only thing in th
  ("Rich","Ten years I banked it and it only ever went down. He holds it twelve months and the whole country pays him."),
  ("Graham","The harvest goes into the pile and the pile doesn't eat.")), map_hl=[3])
 sell_back(7, ["BB", "LD"], "Graham sells his Bamboo Brush and his Land Deed Scroll back to the Harvest Pile for 2 each, to pay the rent.", TH(
- ("Graham","Three and a half short of the seven Paddy wants. The rule makes me sell before I can owe. The Brush I bought for six in year one and the Scroll for eight in year two: the first two pieces of a set I was never going to finish."),
+ ("Graham","Four short of the seven Paddy wants. The rule makes me sell before I can owe. The Brush I bought for six in year one and the Scroll for eight in year two: the first two pieces of a set I was never going to finish."),
  ("Paddy","Four million back from the pile, and seven of it comes straight to me. I'm aware of how that looks."),
  ("Reina","He's selling his furniture to pay a landlord, in front of the woman he blames for it. He's doing it slowly on purpose.")))
 rents(7, hover="Paddy's new rate. The peasants were already negative before they paid it; Graham sold two pieces to cover his.")

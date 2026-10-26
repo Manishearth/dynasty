@@ -164,7 +164,7 @@ Province `seat` buys new harvest squares from the Harvest Pile (Section 13): 20 
 
 ### `lot(sell, typ, ladder, hover=None, at=None)`
 
-Auction one piece of `typ` from seat `sell`'s stock. `ladder` is a list of `B(...)` bids; the last numeric bid wins. The winner pays the price, the seller receives a quarter, three quarters go to the pile, and the piece is placed at once on `at`, a square of the winner's province (Note 10). `at` is required, and the hover should say why the winner chose it. The engine refuses a square outside the winner's province, a square already holding realia, a raided square, or one under a palace or cut-out; it also refuses a lot the seller has no stock for, and a winning bid by the seller or the Emperor. A commission note is appended to `hover`.
+Auction one piece of `typ` from seat `sell`'s stock. `ladder` is a list of `B(...)` bids; the last numeric bid wins. The winner pays the price, the seller receives a quarter rounded down to the half million (`pay_down`), the rest goes to the pile, and the piece is placed at once on `at`, a square of the winner's province (Note 10). `at` is required, and the hover should say why the winner chose it. The engine refuses a square outside the winner's province, a square already holding realia, a raided square, or one under a palace or cut-out; it also refuses a lot the seller has no stock for, and a winning bid by the seller or the Emperor. A commission note is appended to `hover`.
 
 ### Running out of grain (Note 7)
 

@@ -81,7 +81,7 @@ lot(4,"BB",[
 lot(5,"DJ",[
  B(3,5), B(7,7,"Seven.", TH(
    ("Graham","Seven for a Jar. Silke's the seller, and I'm happy to buy from her."),
-   ("Silke","I get a quarter. One seventy-five. My first honest money of the night.")))],
+   ("Silke","I get a quarter. One and a half. My first honest money of the night.")))],
  at="Q14", hover="Graham puts it on Q14, at the far end of Province 7 from his soldier at T18. Four squares from him, which in Province 7 is a long way.")
 lot(6,"WB",[
  B(4,4), B(5,6,"Six.","Six. One Bowl. Paddy's selling, and I'll be friendly with Paddy, because Paddy's rice fields sit between my silk and the desert.")],
@@ -89,7 +89,7 @@ lot(6,"WB",[
 lot(7,"VA",[
  B(2,5), B(6,7,"Seven.", TH(
    ("Paddy","Seven for a Vase. He ran the auction like a sale at a vicarage."),
-   ("Graham","I'm the seller. I get one seventy-five. I used to get the whole tax take. I'm enjoying this more than I did then.")))],
+   ("Graham","I'm the seller. I get one and a half. I used to get the whole tax take. I'm enjoying this more than I did then.")))],
  at="R22", hover="Paddy puts it on R22, the middle row of Province 6. T row under him is desert all the way along; the middle is the furthest he can get.")
 say("Rob","This year: G14 in Province 2, F19 in Province 1, L16 in Province 3, and S18, which is Graham's reservoir. I'll pay for crossing it.", TH(
  ("Rob","Four raids, announced. I'm not bluffing. I'm reading you the itinerary."),
@@ -425,7 +425,7 @@ say("Paddy","L24, L25, M24, M25. The top corner of Province 5.", TH(
  ("Silke","He's using me as his back door. I'm flattered. I'm also charging him nothing, which is new.")))
 lot(3,"LD",[
  B(7,4,"Four.", TH(
-   ("Rich","Four for the Scroll. Start again. I need one of everything except a Vase, and I've got one Scroll and sixty-odd million."),
+   ("Rich","Four for the Scroll. Start again. I need one of everything except a Vase, and I've got one Scroll and sixty million."),
    ("Graham","I'm the seller. I get a quarter. I used to be the Gentry buying these for nine.")))],
  at="P15", hover="Rich puts it on P15, beside Graham's old soldier on Q15. It isn't his soldier, but it stands next to his Scroll, and Rob doesn't know whose side it's on.")
 act("Silke puts up the Brush she handed back, Paddy the Jars, Noah the Bowl, Rich the Vase. Nobody bids.", TH(
@@ -558,7 +558,7 @@ say("Clark","Minuted, with a star: the Great Wall, all twelve links. This year: 
 buy_land(3, ["G9", "G10", "G11"], {3:45, 1:15}, "New land: with the Wall above Province 3 finished, Graham buys three squares of the strip below it, G9, G10 and G11, the crown paying 15.", TH(
  ("Graham","The Wall's done, so the strip is mine to farm. Forty-five, and sixty a year from next year. I've waited since last year's card."),
  ("Rob","The strip below the Wall, right by my western soldier's road. I'll announce it next year.")))
-say("Clark","I can't, Majesty. Nine and three-quarters. The fifteen is more than I have.", TH(
+say("Clark","I can't, Majesty. Nine and a half. The fifteen is more than I have.", TH(
  ("Clark","The Wall above Province 2 is finished, so the strip is open to me at last, and I'm the one person at the table who can't afford my share. The doubling put the Official at minus ten a year and a barge took ten more."),
  ("Reina","The Official, locked out of the land by the Wall and then by his own purse. I'd lend it to him if the compact let me.")))
 act("Paddy puts up the Jars, Noah the Bowl, Rich the Vase. Nobody bids.", TH(
@@ -579,7 +579,7 @@ say("Silke","Steady weather. Neither feast nor famine: an average harvest.", TH(
  ("Silke","Average, at three times the people. Every peasant with new land is above water. Clark has none, and he isn't."),
  ("Reina","Three doubling cards were in the deck, and one came. We built on it instead of starving on it. That's the trick.")))
 sell_back(2, ["LD", "BB", "DJ", "WB", "VA"], "Clark sells his whole set back to the Harvest Pile: Scroll, Brush, Jar, Bowl and Vase, for 2 each.", TH(
- ("Clark","Minus thirty-five on the harvest, and fourteen and three-quarters in hand. The rule says sell before I sink. Five pieces at two each: the whole set, and I still end ten in debt."),
+ ("Clark","Minus thirty-five on the harvest, and fourteen and a half in hand. The rule says sell before I sink. Five pieces at two each: the whole set, and I still end ten and a half in debt."),
  ("Reina","The complete set, the one that could have had my chair any year since the fifth, gone to the bank for ten. He never declared, and now he can't."),
  ("Rich","Ten million for a complete set. The pile has never had a better day.")))
 harvest()

@@ -10,7 +10,7 @@ Two kinds of number identify people, and mixing them up is the most common mista
 pid(seat) gives the player sitting in a seat; sid(player) gives the seat a player is in.
 Functions that take deltas or `give()` use player ids; everything else takes seats.
 """
-import re as _re, json as _json, os as _os
+import re as _re, json as _json, os as _os, math as _math
 
 # The cast, keyed by player id: the seat each one draws. Their names are puns on those
 # provinces, and in every game each player sits in their own.
@@ -367,7 +367,7 @@ def taxes(rate, skip=(8,), collector=None, hover=None, extra=None):
     for s in ACTIVE:
         if s == 1 or s in skip: continue
         inc = CUR_INC[s] + (extra or {}).get(s,0)
-        t = round(max(0,inc)*rate, 2)
+        t = pay_down(max(0,inc)*rate)
         if t: d[pid(s)] = d.get(pid(s),0)-t; d[e] = d.get(e,0)+t
         lines.append(f"{SHORT[pid(s)]} {t:g}")
     who = collector or ("The Official collects the tax" if 2 in ACTIVE else "The tax is collected")
@@ -481,9 +481,9 @@ def disaster(s, text, hover=None):
     kind, v = DISASTERS[s][i]
     p = pid(s)
     if kind == "fixed": amt = v
-    elif kind == "frac_income": amt = round(max(0, CUR_INC[s])*v, 2)
-    elif kind == "frac_harvest": amt = round(CUR_HARV[s]*v, 2)
-    elif kind == "frac_grain": amt = round(max(0, grain[p])*v, 2)
+    elif kind == "frac_income": amt = pay_down(max(0, CUR_INC[s])*v)
+    elif kind == "frac_harvest": amt = pay_down(CUR_HARV[s]*v)
+    elif kind == "frac_grain": amt = pay_down(max(0, grain[p])*v)
     else: amt = 0
     if s == 8 and i == 0: NORAID[CUR_ROUND] = {5,6,7}
     if s == 8 and i == 1: NORAID[CUR_ROUND] = set(range(1,8))
@@ -510,6 +510,11 @@ def _lift(code, owner):
             if not v: del board[k]
             return k
     raise AssertionError(f"{SHORT[owner]} has no {RNAME[code]} on the board")
+
+def pay_down(x):
+    """A computed payment rounds down to the half million, in the payer's favour
+    (rulebook, The Harvest Pile): commissions, tax, and the fractional disasters."""
+    return _math.floor(round(x, 6) * 2) / 2
 
 PILE = 0   # lot(PILE, ...): the Harvest Pile auctions realia sold back to it
 def lot(sell, typ, ladder, hover=None, at=None):
@@ -538,10 +543,11 @@ def lot(sell, typ, ladder, hover=None, at=None):
         pile = round(pile + price, 2)
         note = f"{SHORT[pid(wb)]} pays {price:g}, all of it to the Harvest Pile."
     else:
-        d[pid(sell)] = d.get(pid(sell),0) + price*0.25
-        pile = round(pile + price*0.75, 2)
-        note = (f"{SHORT[pid(wb)]} pays {price:g}. {SHORT[pid(sell)]} keeps {price*0.25:g} as commission; "
-                f"{price*0.75:g} goes to the Harvest Pile.")
+        com = pay_down(price*0.25)
+        d[pid(sell)] = d.get(pid(sell),0) + com
+        pile = round(pile + price - com, 2)
+        note = (f"{SHORT[pid(wb)]} pays {price:g}. {SHORT[pid(sell)]} keeps {com:g} as commission; "
+                f"{price - com:g} goes to the Harvest Pile.")
     _apply(d)
     h = _norm(hover) or []
     h = h + [{"w":"","t":note}]

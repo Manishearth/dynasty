@@ -323,10 +323,10 @@ say("Clark","Ninety.", TH(
  ("Rob","He's right. It is cheap.")))
 say("Rob","A hundred and ten.")
 say("Clark","A hundred and fifteen.", TH(
- ("Clark","That leaves me twenty-four and three-quarters. The booklet wants twenty in hand when I declare. I've got four and three-quarters of room."),
+ ("Clark","That leaves me twenty-four and a half. The booklet wants twenty in hand when I declare. I've got four and a half of room."),
  ("Graham","He's bidding to the decimal place.")))
 say("Rob","A hundred and twenty.", TH(
- ("Rob","He can't. A hundred and twenty would leave him nineteen and three-quarters. The twenty-in-hand rule just bid against him."),
+ ("Rob","He can't. A hundred and twenty would leave him nineteen and a half. The twenty-in-hand rule just bid against him."),
  ("Clark","Out. Beaten by a rule I've read a hundred times.")))
 act("Rich takes Rob's hundred and twenty and leaves his Land Deed Scroll unguarded on S13.", TH(
  ("Rich","A hundred and twenty for not buying a soldier."),
@@ -436,5 +436,5 @@ act("The table calls it there. A Warlord has completed his objective and taken t
 RESULT = export(
  "The Warlord completed his objective — a different piece of realia raided from every other player — and changed places with the Emperor. The table stopped there, and every player is scored by the province they finished in against the one they drew.",
  ["Rob announced every move a year before he made it. What mattered was where he stood. He took the Emperor's palace by walking at it for five years, and he took Clark's Vase from the strip under the Wall without ever raiding his province, so that neither of his soldiers was allowed to move.",
-  "The peasants paid ransom. Silke and Graham each put a piece beside the Warlord's soldier in the first year so he would take it and leave, and Rob sold Silke's Customs House to Graham, who used it to complete his set and take Rich's chair. Rich, now a wheat farmer, auctioned off the fate of his own Scroll between the Official, the Emperor and the Warlord, and took Rob's hundred and twenty for leaving it unguarded — a quarter of a million more than Clark could pay and still keep twenty in hand.",
+  "The peasants paid ransom. Silke and Graham each put a piece beside the Warlord's soldier in the first year so he would take it and leave, and Rob sold Silke's Customs House to Graham, who used it to complete his set and take Rich's chair. Rich, now a wheat farmer, auctioned off the fate of his own Scroll between the Official, the Emperor and the Warlord, and took Rob's hundred and twenty for leaving it unguarded — half a million more than Clark could pay and still keep twenty in hand.",
   "Reina Osorio refused to buy soldiers, paid sixty in tribute for one palace, and finishes the evening in the desert."])
