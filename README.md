@@ -8,6 +8,7 @@ The original scans can be found on https://manishearth.net/dynasty/.
 
 | File | What it is |
 |---|---|
+| `index.html` | The landing page: links to everything below and to the original scans |
 | `rulebook.html` | The rules, rewritten as one modern rulebook |
 | `RULINGS.md` | Every rules question settled so far, with reasons. Add yours here |
 | `playthrough.html` | Five annotated example games: two at eight players, a four-player short game, a five-player peasant game and a six-player game |
