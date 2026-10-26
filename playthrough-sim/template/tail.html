@@ -280,7 +280,8 @@ function drawPlayers(s,hl){
     rows+='<tr class="'+(hl.has(p)?'moved':'')+'"><td>'+p+'</td><td>'+RO[p]+'</td><td>'+esc(NM[who])+
       '</td><td class="n '+(g<0?'neg':'')+'">'+g+'</td></tr>';
   });
-  rows+='<tr class="pile"><td></td><td colspan="2">Harvest Pile</td><td class="n">'+s.pile+'</td></tr>';
+  const back=Object.entries(s.pile_stock||{}).map(([t,n])=>D.rname[t]+(n>1?' ×'+n:'')).join(', ');   /* realia sold back (Note 7) */
+  rows+='<tr class="pile"><td></td><td colspan="2">Harvest Pile'+(back?' <small>· holds '+esc(back)+'</small>':'')+'</td><td class="n">'+s.pile+'</td></tr>';
   document.getElementById('res').innerHTML=rows;
 }
 function renderFinal(){

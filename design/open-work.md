@@ -12,11 +12,11 @@ What's still to do, what's waiting on Manish, and the known issues. Take an item
 
 - **Read games 4 and 5 for voice.** They were drafted by parallel agents and checked by an independent review for rules, numbers and continuity, but deserve a read for flow and banter like the first three got.
 - **Province labels on the board** sit at fixed spots (`LBL` in `playthrough-sim/template/tail.html`) and sometimes overlap a piece or a cut-out. Readable, but could be smarter.
-- **Not modelled:** reclaiming a raided square (Note 13) and developing new land or sea (Section 13). No game needs them yet; a game that does will need engine support.
+- **Not modelled:** reclaiming a raided square (Note 14) and developing new land or sea (Section 13). No game needs them yet; a game that does will need engine support.
 
 ## The rulebook
 
-- **Section 19**: the short-game paragraph ends with `<span class="cost">Note 18</span>`, but `.cost` chips are for sums of money. It should probably be a plain reference. Flag it to the rulebook session rather than fixing it silently.
+- **Section 19**: the short-game paragraph ends with `<span class="cost">Note 19</span>`, but `.cost` chips are for sums of money. It should probably be a plain reference. Flag it to the rulebook session rather than fixing it silently.
 - **Appendix B, the worked round**, has the Warlord pay the Rice Peasant a river toll on the way to raid Province 6 in Round One. On the real map no river lies between the desert and Province 6, so the example may want a different province.
 
 ## The reference cards

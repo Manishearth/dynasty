@@ -410,7 +410,7 @@ act("Noah Tall buys Robert Land's spare Vase for 30 million and puts it on L22, 
  ("Noah","Thirty for the Vase he paid twenty for, and I'd have gone to fifty. It completes me. Silke needs one too, and if she'd got to Rob first she'd be the one sitting where I'm about to."),
  ("Silke","That was mine. That was mine twice now."),
  ("Rob","Bought both spares for twenty-five. Just sold one for thirty. I'd like everyone to note the return on that.")),
- {4:-30,8:30}, map_hl=[4,8])
+ {4:-30,8:30}, map_hl=[4,8], deal=True)
 say("Rob","Pleasure doing business. That's the Vase gone. One bowl left that nobody's using, and it's mine.",
  "The other spare is the only thing standing between two different players and a completed set, and I intend to hold it until someone bleeds for it.")
 say("Silke","That was mine.", TH(
@@ -587,19 +587,27 @@ R(11, "Drought", "blight")
 say("Silke","Average harvest. Everyone.", TH(
  ("Silke","I read it out and watched eight people do the same subtraction. At three hundred million an average harvest is negative for every province on this map. Including hers. Nobody has taxable income. Nobody."),
  ("Noah","So the treasury gets zero. Not 'less'. Zero."),
- ("Rob","Ha!")))
+  ("Rob","Ha!")))
+sell_back(2, ["BB"], "Clark sells his Bamboo Brush back to the Harvest Pile for 2. It's all he owns, and the harvest is about to take more than he has.", TH(
+ ("Clark","Sell before you sink, the rule says. Seventy-five against a hundred and twenty: forty-five short before the bag's even opened. I had twenty-six. The Brush is two of the nineteen I'm about to owe."),
+ ("Silke","Four for it in year nine, two back in year eleven. That's the rate for hope in this country now."),
+ ("Paddy","I'm the bank. I've just bought a Brush I'll never sell.")))
 harvest()
 act("Every province pays into the Harvest Pile. The bank is the only thing in the country getting richer.", TH(
  ("Paddy","I took over the bank last year and this is the first round it's grown. Everyone's paying it. I'm the one counting."),
  ("Rich","Ten years I banked it and it only ever went down. He holds it twelve months and the whole country pays him."),
  ("Graham","The harvest goes into the pile and the pile doesn't eat.")), map_hl=[3])
-rents(7, hover="Paddy's new rate. The peasants were already negative before they paid it.")
+sell_back(7, ["BB", "LD"], "Graham sells his Bamboo Brush and his Land Deed Scroll back to the Harvest Pile for 2 each, to pay the rent.", TH(
+ ("Graham","Three and a half short of the seven Paddy wants. The rule makes me sell before I can owe. The Brush I bought for six in year one and the Scroll for eight in year two: the first two pieces of a set I was never going to finish."),
+ ("Paddy","Four million back from the pile, and seven of it comes straight to me. I'm aware of how that looks."),
+ ("Reina","He's selling his furniture to pay a landlord, in front of the woman he blames for it. He's doing it slowly on purpose.")))
+rents(7, hover="Paddy's new rate. The peasants were already negative before they paid it; Graham sold two pieces to cover his.")
 act("Reina Osorio declares the tax. Every province reports a negative income. She collects nothing.", TH(
  ("Reina","Zero. Not a bag. And it isn't a bad roll — it's a rule. No tax on a negative income, and at this population nobody will have a positive one again unless somebody builds something."),
  ("Graham","That's the moment. Not the harvest, not the rent. The moment the state stopped being able to reach anybody."),
  ("Silke","Eleven years of collecting and today the empire earned nothing at all.")), map_hl=[1,2,3,4,5,6,7])
 say("Reina","Then we borrow against next year.", TH(
- ("Reina","There is no borrowing rule. I said it because the alternative was silence, and an emperor who says nothing at a moment like this is finished."),
+ ("Reina","The only borrowing in the rules is sinking into debt to the pile once you've nothing left to sell, and a crown in debt can't build. I said it because the alternative was silence, and an emperor who says nothing at a moment like this is finished."),
  ("Noah","There's no next year to borrow against and she knows I know.")))
 say("Noah","Majesty, there is no next year to borrow against. I kept the count for six years. It only goes one way.")
 say("Graham","Then I'll say it. I revolt.", TH(
@@ -630,13 +638,24 @@ lot(2,"CH",[B(6,2,"Two.","Two for a Customs House. I need all five again and I h
  hover='Rich puts it on Q24, where Paddy used to keep his.', at='Q24')
 lot(3,"LD",[B(6,2,"Two.","And a Scroll. My own Scroll, which I used to sell. I'm buying back my own furniture at a discount.")],
  hover='Rich puts it on Q23, next to it.', at='Q23')
-act("Nobody bids on the returned Brush, Jar or Vase.", TH(
+act("Nobody bids on the returned Brush, Jar or Vase, or on the two Brushes and the Scroll the Harvest Pile has just bought back.", TH(
  ("Silke","The Jar's the last piece I need. Two million and I could claim the throne by the book. The throne of a country with no income, in the year nobody has a harvest. Graham counted for ten years. It's his."),
  ("Noah","Same answer as two years ago. I'm not buying the chair the count ends in."),
- ("Rob","I could buy all three. I'd rather watch.")), map_hl=[4,5,7])
+ ("Rob","I could buy all six. I'd rather watch."),
+ ("Clark","Nobody in debt may bid. That's me. It'll be Graham by the rent.")), map_hl=[4,5,7])
 
 # ============================== YEAR 12 ==============================
 R(12, "Chaos", "dribble1")
+sell_back(3, ["CH", "LD"], "Rich sells the Customs House and the Scroll he bought last year back to the Harvest Pile for 2 each.", TH(
+ ("Rich","Bought for two, sold for two. The harvest is going to take seventy off me and I've got four. Four of it comes from selling my own Scroll back to the bank I used to run."),
+ ("Paddy","He sold them to me as the pile. I sold them to him as the Gentry. They've never left the room.")))
+sell_back(7, ["CH", "DJ"], "Graham sells his last two pieces, the Customs House and the Dragon Jar, back to the Harvest Pile.", TH(
+ ("Graham","Everything I owned at the start of the round is in the pile now. A wheat farmer with nothing to sell, and a claim to the throne."),
+ ("Noah","He's going into the acclamation with empty hands. It's a better look than he knows.")))
+sell_back(8, ["WB", "WB"], "Robert Land sells both his Wooden Bowls back to the Harvest Pile for 2 each.", TH(
+ ("Rob","Eighty for one of these in year eight, five for the other in year three. Four back. The rivers took thirty off me in tolls and the harvest wants its share, and the rule says sell before you sink. I'd like it recorded that I sold the most expensive bowl in history for two."),
+ ("Graham","The bowl that ended my set. Two million. I'm not even going to enjoy it. I'm enjoying it a bit."),
+ ("Rich","He paid eighty to stop me finishing. It's in the pile now, and by next year's auction I'll be in debt and not allowed to bid on it.")))
 harvest()
 rents(7, hover="Chaos stops taxes and salaries. It does not stop rent.")
 say("Rob","Most soldiers. By the book, that's a claim.", TH(

@@ -235,7 +235,7 @@ say("Rob","Thirty-five.", TH(
 give(8, 7, "BB", at="P15")
 act("Graham Garner buys back his Bamboo Brush from Robert Land for 35, and puts it on P15.", TH(
  ("Graham","Thirty-five for a Brush I bought for six. Rob made thirty-five on a piece of wood by standing next to it for two years and then on it."),
- ("Rob","I'd like that sentence carved on something.")), {pid(7):-35, pid(8):35}, map_hl=[7,8])
+ ("Rob","I'd like that sentence carved on something.")), {pid(7):-35, pid(8):35}, map_hl=[7,8], deal=True)
 swap(7,5,"Graham Garner declares a complete set and replaces Silke Weber. Graham becomes Silk Peasant of Province 5; Silke becomes Wheat Peasant of Province 7.", TH(
  ("Graham","Hand back the Jar — it's native to Province 5 — keep the rest, and take every bag Silke's holding. Wheat to silk in five years. My Customs House, Brush and Bowl go on O26, P25 and P26, at the sea end where Silke kept hers. And the province I'm leaving has the reservoir Reina built for me, which is now Silke's reservoir."),
  ("Silke","He's taken my seat, my grain and my canal, and given me his reservoir. It's the best thing in Province 7 and it's the only reason I'm not furious."),

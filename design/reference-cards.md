@@ -54,8 +54,8 @@ Every number mirrors the rulebook and `RULINGS.md`, but **the script hardcodes t
 | `MONEY`, `PILE_OUT`, `PILE_IN` | Fixed sums; the Harvest Pile | Sections 7–14 |
 | `WORKS`, `OWED`, `OWED_NOTE` | Public works, costs, who pays, bonuses | Section 12, each province's booklet section |
 | `STATS`, `income_table()` | Population, consumption and harvest; the income rows ×1 to ×6 | Section 7, Note 6 |
-| `NEED45`, `STUCK` | Objectives at 4–5 players; the pair each province never needs | Sections 10–11, Note 8 |
-| `DUTIES`, `REPLACE`, `NEWLAND`, `EXTRA` | Each round's duties; seat changes; new land; the extras | Part Two, Sections 11, 13, 14, Note 10 |
+| `NEED45`, `STUCK` | Objectives at 4–5 players; the pair each province never needs | Sections 10–11, Note 9 |
+| `DUTIES`, `REPLACE`, `NEWLAND`, `EXTRA` | Each round's duties; seat changes; new land; the extras | Part Two, Sections 11, 13, 14, Note 11 |
 | `CHARACTER`, `DISASTERS` | Character sketches; personal disasters | Part Two |
 
 **Copyright.** The character sketches and disaster titles are short paraphrases in our own words, not booklet text. Keep them that way: no quoting the booklets on the cards.

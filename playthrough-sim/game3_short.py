@@ -180,7 +180,7 @@ say("Rich","Your Majesty has my word. For the rest of your reign.", TH(
 act("Reina Osorio pays Richard Baron 40 to hold the Bamboo Brush for the rest of her reign.", TH(
  ("Reina","Money well spent. Possibly."),
  ("Clark","She's paid him forty to say no to me. So he has a price. Now we know it's above forty.")),
- {1:-40,3:40}, map_hl=[1,3])
+ {1:-40,3:40}, map_hl=[1,3], deal=True)
 salaries()
 
 # ============================== YEAR 6 ==============================
@@ -226,7 +226,7 @@ say("Rich","Done.", TH(
 give(3, 2, "BB", at="H12")
 act("Richard Baron sells the Bamboo Brush to Clark Grafton for 70.", TH(
  ("Rich","Twenty-six to buy it, forty from the Emperor to keep it, seventy from Clark to sell it. A hundred and ten in, for a brush I paid twenty-six for and could never use."),
- ("Clark","Four of four, and twenty in hand. More than twenty.")), {2:-70, 3:70}, map_hl=[2,3])
+ ("Clark","Four of four, and twenty in hand. More than twenty.")), {2:-70, 3:70}, map_hl=[2,3], deal=True)
 swap(2,1,"Clark Grafton declares a complete set and declares himself Emperor. Clark takes the throne of Province 1; Reina becomes Official of Province 2.", TH(
  ("Clark","Return all my realia, keep my own grain, and the Emperor must give me her entire reserve. Official to Emperor in seven rounds. On the first night I was robbed down three provinces by the rules; tonight the rules have handed me the country."),
  ("Reina","He takes the treasury and I take his chair and sixty from the pile. Three evenings: Wheat Peasant, Emperor, Official. I've been everything except a winner twice."),

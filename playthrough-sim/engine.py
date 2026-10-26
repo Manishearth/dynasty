@@ -63,7 +63,7 @@ _MAP = _json.load(open(_os.path.join(globals().get("SIM_DIR", "."), "..", "map.j
 GRID = _MAP["grid"]
 ROWS, COLS = len(GRID), len(GRID[0])
 UNDEVELOPED = "8n"           # where the Warlord's army may start (Section 4)
-# No soldier stands in the sea: Note 15 has Provinces 4 and 5 reachable only through
+# No soldier stands in the sea: Note 16 has Provinces 4 and 5 reachable only through
 # the gap in the west, which is true only if the coast is closed to soldiers.
 RIVERS = _MAP["rivers"]      # {"north": path, "south": path}
 WALL_LINKS = {p:[l for l in sorted(_MAP["great_wall_links"], key=lambda l:l["link"]) if l["above_province"]==str(p)]
@@ -109,7 +109,7 @@ def _cuts(a, b, path):
 
 def tolls(a, b):
     """The transportation fees a Warlord soldier owes for the step a -> b, as
-    [(province, what was crossed)]. 5 each, paid to the province (Section 14, Note 15):
+    [(province, what was crossed)]. 5 each, paid to the province (Section 14, Note 16):
     a river pays the province the soldier steps into, nothing if that's undeveloped land;
     a built Wall link, canal section or cut-out pays the province it belongs to.
     An unoccupied province is owed nothing (Note 4)."""
@@ -135,7 +135,7 @@ def setup(active, key, title, subtitle, blurb, short="", cast=None):
     seat they drew on the first evening. A player id is still the seat drawn.
     The table starts empty: the Setup round (R(0, ...)) deals the grain, takes the
     starting stock out of the box and places the Warlord's army."""
-    global ACTIVE, PLAYERS, seat, grain, stock, held, bonus, raids, pw, pw_at, board
+    global ACTIVE, PLAYERS, seat, grain, stock, held, bonus, raids, pw, pw_at, board, pile_stock
     global pile, ENTRIES, ROUNDS, META, MULT, CUR_Q, CUR_INC, CUR_HARV, CUR_ROUND
     global dis_next, used_cards, pending_bonus, warlord_got, SOLDIERS, ARMY, NORAID
     global _troops_round, _done, _named, NAMES, SHORT
@@ -150,6 +150,7 @@ def setup(active, key, title, subtitle, blurb, short="", cast=None):
     grain = {p:0.0 for p in PLAYERS}
     pile = PILE_START
     stock = {}
+    pile_stock = {}        # realia sold back to the Harvest Pile, auctioned at the next auction
     held = {p:{} for p in PLAYERS}
     bonus = {s:0 for s in ACTIVE}
     pending_bonus = {}
@@ -180,7 +181,7 @@ def deal_grain(text, hover=None):
 
 def take_stock(text, hover=None):
     """Setup: each realia province takes its starting stock out of the box. It waits
-    beside the board until it's auctioned (Note 9). At 4-5 players: one of its own and
+    beside the board until it's auctioned (Note 10). At 4-5 players: one of its own and
     two of its NEVER type; at 6, two of its own; at 7 or more, four of its own."""
     assert CUR_ROUND == 0 and "stock" not in _done
     _done.add("stock")
@@ -234,7 +235,7 @@ def all_built():
 
 def home(t):
     """Where a returned piece goes: its native province, or, if that province is empty,
-    the province that started the game holding it (rulebook Note 11)."""
+    the province that started the game holding it (rulebook Note 12)."""
     native = [k for k,v in REALIA.items() if v==t][0]
     if native in ACTIVE: return native
     for s in ACTIVE:
@@ -252,6 +253,7 @@ def snap():
                 seat={str(s):seat[s] for s in ACTIVE},
                 held={str(p):dict(held[p]) for p in PLAYERS},
                 stock={str(s):dict(v) for s,v in stock.items()},
+                pile_stock=dict(pile_stock),
                 raids={str(k):v for k,v in raids.items()},
                 pw={k:(dict((str(a),b) for a,b in v.items()) if isinstance(v,dict) else v) for k,v in pw.items()},
                 at={k:list(v) for k,v in pw_at.items()},
@@ -261,16 +263,36 @@ def snap():
                 pile=round(pile,2), mult=MULT,
                 rob={str(k):v for k,v in warlord_got.items()})
 
+# Negative grain ("sell before you sink"): a payment that would take a player below
+# zero must first be covered by selling realia back to the Harvest Pile at 2 each
+# (sell_back); only then may grain go negative, as a debt to the pile. A player in
+# debt is locked out of voluntary spending: bids, purchases, trades, bribes, shares
+# of public works, soldiers, seat changes. Grain received pays the debt first, which
+# a single signed number does by itself.
+
 def _apply(d):
     for k,v in (d or {}).items():
-        grain[k] = round(grain[k]+v, 2)
+        after = round(grain[k]+v, 2)
+        assert not (v < 0 and after < 0 and held[k]), \
+            f"{SHORT[k]} would go into debt ({after:g}) while holding {held[k]}: sell_back() first"
+        grain[k] = after
 
-def act(text, hover=None, deltas=None, map_hl=None, pile_delta=0, big=False, moves=None):
+def _spend(p, amount, what):
+    """A voluntary payment: refused in debt, or beyond the grain in hand."""
+    assert grain[p] >= 0, f"{SHORT[p]} is in debt ({grain[p]:g}) and can't {what}"
+    assert amount <= grain[p] + 1e-9, f"{SHORT[p]} has {grain[p]:g} and can't {what} for {amount:g}"
+
+def act(text, hover=None, deltas=None, map_hl=None, pile_delta=0, big=False, moves=None, deal=False):
     """A game event: a bold, clickable line in the transcript.
     deltas: {player_id: grain change}. pile_delta: change to the Harvest Pile.
     map_hl: seats to highlight on the board. big: style as a turning point.
-    moves: [[from, to, side]] soldier steps to draw as arrows (set by march/troops)."""
+    moves: [[from, to, side]] soldier steps to draw as arrows (set by march/troops).
+    deal: the payments are voluntary (a trade, a bribe, a gift), so a payer in debt,
+    or one paying more than they hold, is refused."""
     global pile
+    if deal:
+        for k,v in (deltas or {}).items():
+            if v < 0: _spend(k, -v, "pay in a deal")
     _apply(deltas); pile = round(pile+pile_delta, 2)
     ENTRIES.append(dict(k="act", t=text, h=_norm(hover), who=None,
         d={str(k):v for k,v in (deltas or {}).items()}, hl=map_hl or [],
@@ -379,6 +401,8 @@ def build(name, cost, split, wall=None, canal=None, key=None, hover=None, text=N
     d = {}
     for s,a in split.items(): d[pid(s)] = d.get(pid(s),0)-a
     assert abs(sum(split.values())-cost) < 1e-6, (name, cost, split)
+    for s,a in split.items():
+        if a > 0: _spend(pid(s), a, f"pay a share of {name}")
     for s,n in (wall or {}).items():
         assert s in WALL_LINKS and pw["wall"][s]+n <= 4, f"only four Wall links above Province {s}"
         pw["wall"][s] += n
@@ -428,7 +452,7 @@ def disaster(s, text, hover=None):
 
 # ------------------------------------------------------------------ realia
 def _place(code, owner, at):
-    """A bought or traded piece goes on a square of its owner's province at once (Note 9)."""
+    """A bought or traded piece goes on a square of its owner's province at once (Note 10)."""
     s = sid(owner)
     ok = region(at) == "8" if s == 8 else prov(at) == s
     assert ok, f"{SHORT[owner]}'s {RNAME[code]} must go in Province {s}, not {at}"
@@ -446,34 +470,56 @@ def _lift(code, owner):
             return k
     raise AssertionError(f"{SHORT[owner]} has no {RNAME[code]} on the board")
 
+PILE = 0   # lot(PILE, ...): the Harvest Pile auctions realia sold back to it
 def lot(sell, typ, ladder, hover=None, at=None):
-    """Auction one piece of typ from seat sell's stock. ladder: B(...) bids; the last
-    numeric bid wins. at: the square in the winner's province where they place it."""
+    """Auction one piece of typ from seat sell's stock, or from the Harvest Pile's
+    with sell=PILE. ladder: B(...) bids; the last numeric bid wins. at: the square in
+    the winner's province where they place it. A bid must be covered by the bidder's
+    grain, and nobody in debt may bid."""
     global pile
-    assert stock.get(sell,{}).get(typ), f"Province {sell} has no {RNAME[typ]} in stock"
+    src = pile_stock if sell == PILE else stock.get(sell,{})
+    assert src.get(typ), f"{'The Harvest Pile' if sell == PILE else 'Province %d' % sell} has no {RNAME[typ]} to sell"
     assert at, f"say where the winner puts the {RNAME[typ]}: at='H12'"
     bids = []
     for b,amt,txt,hov in ladder:
+        if amt is not None: _spend(pid(b), amt, f"bid {amt:g}")
         bids.append(dict(who=SHORT[pid(b)], t=txt or (spell(amt)+"." if amt is not None else "Out."),
                          h=_norm(hov, SHORT[pid(b)]), amt=amt))
     win = [r for r in ladder if r[1] is not None][-1]
     wb, price = win[0], win[1]
     assert wb != sell and wb != 1, "neither the seller nor the Emperor bids"
-    stock[sell][typ] -= 1
-    if stock[sell][typ] <= 0: del stock[sell][typ]
+    src[typ] -= 1
+    if src[typ] <= 0: del src[typ]
     held[pid(wb)][typ] = held[pid(wb)].get(typ,0)+1
     _place(typ, pid(wb), at)
     d = {pid(wb):-price}
-    d[pid(sell)] = d.get(pid(sell),0) + price*0.25
-    pile = round(pile + price*0.75, 2)
+    if sell == PILE:
+        pile = round(pile + price, 2)
+        note = f"{SHORT[pid(wb)]} pays {price:g}, all of it to the Harvest Pile."
+    else:
+        d[pid(sell)] = d.get(pid(sell),0) + price*0.25
+        pile = round(pile + price*0.75, 2)
+        note = (f"{SHORT[pid(wb)]} pays {price:g}. {SHORT[pid(sell)]} keeps {price*0.25:g} as commission; "
+                f"{price*0.75:g} goes to the Harvest Pile.")
     _apply(d)
-    note = (f"{SHORT[pid(wb)]} pays {price:g}. {SHORT[pid(sell)]} keeps {price*0.25:g} as commission; "
-            f"{price*0.75:g} goes to the Harvest Pile.")
     h = _norm(hover) or []
     h = h + [{"w":"","t":note}]
     ENTRIES.append(dict(k="lot", t=f"{RNAME[typ]} — {SHORT[pid(wb)]} takes it for {price:g}.",
         h=h, who=None, bids=bids, d={str(k):v for k,v in d.items()},
-        hl=[sell, wb], state=snap(), mv=[]))
+        hl=[s for s in (sell, wb) if s], state=snap(), mv=[]))
+
+def sell_back(p, codes, text, hover=None):
+    """Player p sells pieces of realia back to the Harvest Pile at 2 each, lifting them
+    off the board into the pile's own stock, which it auctions at the next auction
+    (lot(PILE, ...)). Before a payment would put p in debt, the script must sell enough
+    of p's pieces to cover it, or all of them; p chooses which, and the hover says why."""
+    for t in codes:
+        assert held[p].get(t), f"{SHORT[p]} holds no {RNAME[t]} to sell back"
+        _lift(t, p)
+        held[p][t] -= 1
+        if not held[p][t]: del held[p][t]
+        pile_stock[t] = pile_stock.get(t,0) + 1
+    act(text, hover, {p: 2*len(codes)}, map_hl=[sid(p)], pile_delta=-2*len(codes))
 
 def B(seat, amt, text=None, th=None):
     """One bid in a lot ladder. amt=None is a pass. text defaults to the amount in words."""
@@ -498,7 +544,9 @@ def _unplace_all(p):
 def swap(a, b, note, hover=None, draw=60, check=True, at=None):
     """Player in seat a replaces player in seat b. check=False for a Chaos acclamation.
     at: where the mover's pieces go in the new province, {code: square or [squares]}.
-    Bought soldiers stay with the player who bought them."""
+    Bought soldiers stay with the player who bought them. The mover takes the displaced
+    player's grain whatever its sign, so a debt passes to the mover; the displaced player
+    draws 60 from the pile. A Chaos acclamation (check=False) may seat a player in debt."""
     global pile
     pa, pb = pid(a), pid(b)
     if check:
@@ -508,6 +556,7 @@ def swap(a, b, note, hover=None, draw=60, check=True, at=None):
             missing = [t for t in need_for(a) if not held[pa].get(t)]
             assert not missing, f"{SHORT[pa]} can't change seats; missing {missing}"
             assert grain[pa] >= 20, f"{SHORT[pa]} needs 20 grain in hand, has {grain[pa]}"
+        assert grain[pa] >= 0, f"{SHORT[pa]} is in debt and can't change seats"
         if b == 1: assert a in (2,3,4,8), "only the Official, Gentry, Scholar or Warlord may take the throne"
         if a in (5,6,7): assert b in (2,3,4,5,6,7), "a peasant may replace the Gentry, Scholar, Official or a peasant"
     assert not [i for i,s in SOLDIERS.items() if s["owner"] == pb and s["side"] == "B"], \
@@ -546,7 +595,7 @@ def spell(n):
 
 # ------------------------------------------------------------------ soldiers
 # Every soldier stands on a square and moves at most one square a round, diagonals
-# included (Section 14, Note 15). The Warlord's soldiers are W1, W2, ...; a bought
+# included (Section 14, Note 16). The Warlord's soldiers are W1, W2, ...; a bought
 # soldier is named after its buyer: Reina1, Reina2, Paddy1, ...
 
 def rob_n():
@@ -637,6 +686,7 @@ def sell_soldiers(buys, text, hover=None):
         assert prov(q) == s, f"a bought soldier starts in its buyer's province: {q} isn't in Province {s}"
         assert not _at(q, "W"), f"a Warlord soldier stands on {q}"
         assert all(SOLDIERS[o]["owner"] == p for o in _at(q)), f"another player's soldier stands on {q}"
+        _spend(p, 20, "buy a soldier")
         n = 1
         while f"{SHORT[p]}{n}" in _named: n += 1
         SOLDIERS[f"{SHORT[p]}{n}"] = dict(side="B", owner=p, sq=q, home=s, moved=None)

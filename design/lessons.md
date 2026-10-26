@@ -7,12 +7,12 @@ Mistakes caught along the way, worth not repeating. Add to this when something s
 - **Key grain changes by player, not seat.** `act()` takes changes keyed by player id. Use `pid(seat)`. One card effect paid the wrong person because it used a seat number.
 - **Mutate state before recording the entry.** Each entry snapshots the state *after* the line.
 - **Let the guards bite.** The seat-change guard caught Paddy swapping with 17.5 grain (the rule is 20). The fix was to change the story: a raid moved from Province 6 to Province 5. Don't weaken the guard.
-- **Raids never take unsold stock**, only pieces placed on squares (Note 9). Game 1 once had an illegal seizure of stock.
-- **Returned pieces from empty provinces** go to the province that started with them (`home()`, Note 11), and **returned pieces are auctioned again at the next auction step**. Two games left returned pieces sitting in stock for years.
+- **Raids never take unsold stock**, only pieces placed on squares (Note 10). Game 1 once had an illegal seizure of stock.
+- **Returned pieces from empty provinces** go to the province that started with them (`home()`, Note 12), and **returned pieces are auctioned again at the next auction step**. Two games left returned pieces sitting in stock for years.
 - **One piece a round per seller, until the stock is empty.** A seller once put up two pieces in one round; another province's stock was never offered again.
 - **Players act on their own sets.** Several players silently passed up the one piece that would complete their set, and some bid on pieces they already owned. If a player declines, the hover says why; that's often a good beat (Noah refusing the throne in game 1).
 - **The crown pays for what the booklet says it pays for.** A draft charged the peasants for their own canal sections; only some works are negotiable.
-- **Plan soldiers on the board before writing the dialogue.** Under Note 15 the Warlord can only raid where a soldier steps, so a raid schedule written for the story ("Province 3 one year, Province 5 the next") may be impossible. Use `trace.py --board N` and `dist()`. Remember the Warlord moves first: a bought soldier left straight beside his soldier gets captured.
+- **Plan soldiers on the board before writing the dialogue.** Under Note 16 the Warlord can only raid where a soldier steps, so a raid schedule written for the story ("Province 3 one year, Province 5 the next") may be impossible. Use `trace.py --board N` and `dist()`. Remember the Warlord moves first: a bought soldier left straight beside his soldier gets captured.
 - **Tolls add up.** Re-routing game 1 cost Rob 30 in tolls and left him in debt. Let the players notice instead of routing around it.
 
 **Numbers and voice**

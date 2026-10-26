@@ -9,6 +9,7 @@ A game script is a sequence of calls in play order. The engine keeps the books; 
 - [A round, in order](#a-round-in-order)
 - [The three kinds of entry](#the-three-kinds-of-entry)
 - [Auctions](#auctions)
+- [Running out of grain](#running-out-of-grain)
 - [Private trades](#private-trades)
 - [Changing seats](#changing-seats)
 - [Soldiers](#soldiers)
@@ -92,7 +93,7 @@ CUR_INC.update({s: 60 for s in ACTIVE})
 
 Every piece in the game stands on a real square of `../map.json`, named like `H12`: row letter A–V, column 1–30. **Placement is a choice**, and the script makes it:
 
-- A bought or traded piece of realia goes on a square of the buyer's province at once (Note 9): `lot(..., at="Q16")`, `give(..., at="P15")`, `swap(..., at={"CH": "L25", ...})`.
+- A bought or traded piece of realia goes on a square of the buyer's province at once (Note 10): `lot(..., at="Q16")`, `give(..., at="P15")`, `swap(..., at={"CH": "L25", ...})`.
 - The Emperor's palaces go on squares of Province 1: `build(..., key="Winter Palace", at="H24")`.
 - A cut-out covers a rectangle of its province at its suggested size: `build(..., key="res7", at="R14:S15")` for the 2 × 2 Province 7 reservoir.
 - The Wall and the Canal have printed places on the map; they need no `at`.
@@ -124,7 +125,7 @@ salaries()                                   # 9. Official and Scholar, 5 each
 
 `taxes(rate)` charges each province (except the Emperor's, and the Warlord's unless you pass `skip=()`) `rate × income`, and pays it to whoever holds Province 1. With no Official at the table, pass `collector="Reina collects the tax herself"` to change the wording.
 
-`build(name, cost, split, ...)` records one public work. `split` is `{seat: amount}` and must add up to `cost`. Pass what was built — `key="Summer Palace"`, `key="res7"`, `wall={1: 2}`, `canal={5: 2}` — so the board and the works panel update and the bonus starts next round. The rulebook allows one project per round, and a project may be several sections of the same work (Note 12).
+`build(name, cost, split, ...)` records one public work. `split` is `{seat: amount}` and must add up to `cost`. Pass what was built — `key="Summer Palace"`, `key="res7"`, `wall={1: 2}`, `canal={5: 2}` — so the board and the works panel update and the bonus starts next round. The rulebook allows one project per round, and a project may be several sections of the same work (Note 13).
 
 `salaries()` pays the Official and Scholar 5 each, at the end of the round. In a game without them, pass appointees: `salaries({7: 5}, text="Reina pays Graham 5.")`.
 
@@ -188,6 +189,18 @@ Two things the engine doesn't check, so check them yourself:
 
 When nobody bids, don't call `lot` — record it as an `act` ("Nobody bids on the Brush.") and leave the piece in stock.
 
+## Running out of grain
+
+When a payment would take a player below zero, they must first sell realia back to the Harvest Pile (rulebook Note 7). Write it before the payment, with the player choosing the pieces:
+
+```python
+# Year 11 of the full game: the drought harvest is about to sink Clark.
+sell_back(2, ["BB"], "Clark sells his Bamboo Brush back to the Harvest Pile for 2. ...", hover)
+harvest()
+```
+
+If they're still short, their grain goes negative. That's a debt: they can't bid, deal, pay toward a public work, buy soldiers or change seats until it's paid. At the next auction, after the provinces' lots, the pile auctions what it bought back with `lot(PILE, ...)`, or the table lets it sit ("Nobody bids"). Debt is pressure, not decoration: let it show in who can't bid and who sells what.
+
 ## Private trades
 
 The rules allow trading at any time. A trade is a `give()` for the piece and an `act()` for the grain — in that order, so the snapshot shows the piece moved:
@@ -195,7 +208,7 @@ The rules allow trading at any time. A trade is a `give()` for the piece and an 
 ```python
 give(8, 7, "BB", at="P15")             # player ids: Rob hands Graham the Brush, which goes on P15
 act("Graham Garner buys back his Bamboo Brush from Robert Land for 35, and puts it on P15.", hover,
-    {pid(7): -35, pid(8): 35}, map_hl=[7, 8])
+    {pid(7): -35, pid(8): 35}, map_hl=[7, 8], deal=True)
 ```
 
 ## Changing seats
@@ -205,7 +218,7 @@ swap(7, 5, "Graham Garner declares a complete set and replaces Silke Weber. ..."
      at={"CH": "O26", "BB": "P25", "WB": "P26"})
 ```
 
-`swap(a, b, note, hover, at=...)` moves the player in seat `a` into seat `b`. Before doing anything it checks that the player in seat `a` holds every piece seat `a` requires, has 20 grain in hand, and is allowed to move to seat `b` (rulebook Section 11 and Note 10). If any check fails, the build stops with the reason.
+`swap(a, b, note, hover, at=...)` moves the player in seat `a` into seat `b`. Before doing anything it checks that the player in seat `a` holds every piece seat `a` requires, has 20 grain in hand, and is allowed to move to seat `b` (rulebook Section 11 and Note 11). If any check fails, the build stops with the reason.
 
 It then does what the booklets say: the mover hands back pieces native to the new seat (and everything, if becoming Emperor); the displaced player hands back everything; the mover takes all of the displaced player's grain; the displaced player draws 60 from the Harvest Pile. The mover's remaining pieces go onto the squares in `at`, one per piece, in the new province. Bought soldiers stay with the player who bought them, where they stand.
 
@@ -215,7 +228,7 @@ After a swap, seat numbers and player ids diverge. Re-read [Seats and players](#
 
 ## Soldiers
 
-Every soldier stands on a square and moves at most one square a round, in any direction, diagonals included (Section 14, Note 15). The engine tracks them all and refuses an illegal move, the way it refuses an illegal seat change.
+Every soldier stands on a square and moves at most one square a round, in any direction, diagonals included (Section 14, Note 16). The engine tracks them all and refuses an illegal move, the way it refuses an illegal seat change.
 
 | Call | What happens |
 |---|---|
@@ -337,6 +350,7 @@ Before building:
 - [ ] Prerequisites: the Winter Palace before canals in 4, 5 and 6; the Summer Palace before the Wall and the Province 1 canal.
 - [ ] One public-works project per round.
 - [ ] Every bidder needs the piece and can afford the bid.
+- [ ] Before any payment that would sink a player, they sell back realia (`sell_back`), and voluntary payments are marked `deal=True`.
 - [ ] Every number in dialogue or thoughts matches the trace at that line, including distances on the board ("three squares from his soldier").
 
 After building:

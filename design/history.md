@@ -53,18 +53,18 @@ A chronological log of requests and decisions. Quotes are Manish's own words. Ea
 
 - "realia are supposed to be placed on the map." The rule was already in Section 10, from the booklets.
 - Then the question was whether unsold starting stock goes on the map. Manish: "putting them on the map worries me about the lack of space (especially with large reservoirs), putting them off the map makes it unclear when they go on, and it allows players to hide stuff from the warlord. thoughts?"
-- After the analysis: "okay, that works!", which became Note 9.
+- After the analysis: "okay, that works!", which became Note 10.
 
 ## Latest round
 
 - "let's consistently call it reservoir. Please update the rulebook and the playthroughs". Clarified: **only Provinces 3 and 7**; Province 2 stays Irrigation System.
-- "during setup, and in the realia page under starting stock, we should highlight that players must place realia immediately on the board". Clarified: **bought pieces go on at once**, which keeps Note 9.
+- "during setup, and in the realia page under starting stock, we should highlight that players must place realia immediately on the board". Clarified: **bought pieces go on at once**, which keeps Note 10.
 - Playthrough requests (done in the Claude Code session below):
   - "Playthroughs should have a setup tab that shows the players setting things up"
   - "Replace Ken Nakamura with Noah Lott"
   - "The folder now has an accurate map, rather than a representational one. Can the playthroughs be improved to use this? This may change the game flow, please carefully recheck that the game runs the same."
 - "Do rulebook work first so I can continue improving the rulebook in a second conversation." Done: the naming and placement edits.
-- Warlord movement: Claude raised the booklet's two sentences and asked. Manish chose "Discuss first", then, after the analysis, "Yeah, update the rulebook first". Note 15 is now one square a round.
+- Warlord movement: Claude raised the booklet's two sentences and asked. Manish chose "Discuss first", then, after the analysis, "Yeah, update the rulebook first". Note 16 is now one square a round.
 - "We shall migrate to claude code. Can you make a handoff folder … I don't want to lose any design intent. Do not yet hand off the prompt, let us discuss the task first". That produced this folder, then called `handoff/`, with a task prompt for Claude Code.
 
 ## The first Claude Code session (2026-10-25)
@@ -74,7 +74,7 @@ The handoff prompt asked for four changes to the playthroughs: the Reservoir nam
 - **Rules questions asked first.** River tolls go to the province stepped into, nothing in undeveloped land; a Wall link or canal section is crossed when a step cuts its line, a cut-out when a soldier steps on it, and palaces aren't crossed; soldiers of one owner may share a square. On a bought soldier after a seat change Manish asked "Which makes more sense in the game mechanics?"; the answer was that it stays with the player who bought it, like grain. All recorded in `RULINGS.md`.
 - "why back up the sim page? can you make a git commit instead?" — a baseline commit before the rework, instead of scratch copies.
 - "note that other conversations are working on other files here so be careful modifying non-playthrough stuff" — see "Working in parallel" in `project.md`.
-- A draft of the re-routed peasant game and its Setup tab was shown first. Manish confirmed the judgement calls: "Yes on the sea. Yes on works tolls. yes on raids, yes on realia" — soldiers can't enter the sea (Note 15's "only through the gap" depends on it), a soldier stepping onto an un-raided province square always raids it, realia can't go on raided squares or under works.
+- A draft of the re-routed peasant game and its Setup tab was shown first. Manish confirmed the judgement calls: "Yes on the sea. Yes on works tolls. yes on raids, yes on realia" — soldiers can't enter the sea (Note 16's "only through the gap" depends on it), a soldier stepping onto an un-raided province square always raids it, realia can't go on raided squares or under works.
 - "You should continue till completion. Also, design a fourth game that has 8 players and runs to full public works completion, and a fifth game that works with 6 players (and ends however you'd like). Continue to noodle on improving the flow of the games and having good banter and internal thought process." Games 4 and 5 were written; game 4 deals the booklets afresh (`setup(cast=...)`), game 5 ends with the Warlord on the throne.
 - From the rulebook session: a raid on a canal, irrigation or reservoir square is an ordinary raid, and the Wall can't be raided; and `RULINGS.md` became the single list of rulings, which every session now adds to.
 - Two independent reviews checked the games against the rules and the ledger. They found auction-rule slips (pieces not re-auctioned, players passing up the piece that completes their set without a reason), canal costs charged to the wrong provinces, and many quoted numbers and cross-evening references that were off. All were fixed.
@@ -105,3 +105,9 @@ The handoff prompt asked for four changes to the playthroughs: the Reservoir nam
 - "Yes, make the wide tables fit on phone screens." Tables tighten their padding and header type at 640px and below; every table fits at 375px.
 - "Also please use the new fancy map in the rulebook instead of the 'representative' one". Section 3 now shows `map.svg`. On that map the Warlord's land also borders Provinces 4 and 5, so the expansion paragraph says so.
 - "Also when done rename to rulebook.html". `combined-dynasty-rulebook.html` is now `rulebook.html`, and every reference to it was updated.
+
+## Running out of grain (2026-10-25)
+
+- Manish chose "sell before you sink" (the task in `handoff/PROMPT-negative-grain.md`): sell realia back to the Harvest Pile first, then debt, and a player in debt is locked out of spending. The details he settled: a piece sold back "should go to the harvest pile and auctioned off during auction. harvest pile auctions off all unused pieces during the next auction"; a Chaos acclamation may seat a player in debt; a bid must be covered by grain in hand; a displaced player's debt passes to the mover.
+- "You can also make rulebook changes. Make sure to add all of these to RULINGS." It became rulebook Note 7 (Section 8, with an Appendix D entry); the old Notes 7–19 are now 8–20 everywhere they're cited. `RULINGS.md` records it, with two new open questions (a negative Emperor's salaries, selling soldiers back).
+- The engine enforces it (`sell_back`, `lot(PILE, ...)`, `act(..., deal=True)`, the debt guards). Only game 1 ever runs out: Clark, Graham, Rich and Rob now sell their last pieces in Years 11 and 12 before sinking, and the Harvest Pile ends the game holding them.

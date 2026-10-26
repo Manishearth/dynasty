@@ -66,6 +66,7 @@ The engine raises an error, naming the player and the reason, if a script:
 - raids where the Warlord's disaster forbids it;
 - puts a piece of realia, a palace or a cut-out on a square it can't occupy: outside the owner's province, on a raided square, on another piece or under a work;
 - changes seats without the complete set for that seat and 20 grain in hand;
+- makes a payment that would put a player in debt while they still hold realia, or lets a player in debt, or beyond their grain, bid, deal, pay toward a public work or buy a soldier (rulebook Note 7);
 - puts a peasant on the throne, or lets anyone but the Official, Gentry, Scholar or Warlord take it;
 - splits a public work so the shares don't add up to its cost.
 
@@ -75,7 +76,7 @@ It also does these automatically, so the script can't get them wrong:
 - plays personal disasters in booklet order, computing the fractional ones from the actual income, harvest or grain;
 - starts public-works bonuses on the round after a work is built;
 - runs the Harvest Pile as a real bank that starts at 2,500 million, pays out harvests, and takes back negative years;
-- returns pieces to their province when a player is replaced, and sends any piece whose province is empty back to the province that started with it (rulebook Note 11);
+- returns pieces to their province when a player is replaced, and sends any piece whose province is empty back to the province that started with it (rulebook Note 12);
 - scores the game by Section 18 of the rulebook, including the rule that an Emperor still on the throne has won.
 
 Some rules can't be checked from the ledger alone and are the script's responsibility — prerequisite buildings, one project a round, order of play, card effects other than harvest and population. [`docs/rules-model.md`](docs/rules-model.md) lists them. Every ruling the engine relies on is also in [`../RULINGS.md`](../RULINGS.md).

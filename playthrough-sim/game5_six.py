@@ -188,7 +188,7 @@ build("Winter Palace", 20, {1:20}, key="Winter Palace", at="G26")
 give(8, 7, "DJ", at="O16")
 act("Graham buys back his Dragon Jar from Noah for 15, and puts it on O16.", TH(
  ("Graham","Fifteen for the Jar I paid eight for. Ransom has a price."),
- ("Noah","And it isn't counted against me. He paid; I raided. The raid's on the books.")), {pid(7):-15, pid(8):15}, map_hl=[7,8])
+ ("Noah","And it isn't counted against me. He paid; I raided. The raid's on the books.")), {pid(7):-15, pid(8):15}, map_hl=[7,8], deal=True)
 act("Noah sells Reina's Customs House to the highest bidder. Reina offers 20; Graham offers 30.", TH(
  ("Reina","Twenty is everything I can spare. He'll go higher."),
  ("Graham","Thirty. It completes me. I'm sorry, Reina. No — I'm not, quite."),
@@ -197,7 +197,7 @@ give(8, 7, "CH", at="O15")
 act("Graham buys Reina's old Customs House from Noah for 30, and puts it on O15.", TH(
  ("Graham","Scroll, Jar, Customs House. Three of three, and more than twenty in hand."),
  ("Clark","He's looking at me."),
- ("Silke","He's looking at both of us. Either chair will do.")), {pid(7):-30, pid(8):30}, map_hl=[7,8])
+ ("Silke","He's looking at both of us. Either chair will do.")), {pid(7):-30, pid(8):30}, map_hl=[7,8], deal=True)
 swap(7,3,"Graham Garner declares a complete set and replaces Clark Grafton. Graham becomes Gentry of Province 3; Clark becomes Wheat Peasant of Province 7.", TH(
  ("Graham","Hand back the Scroll — it's native to Province 3 — keep the Jar and the Customs House, and take every bag Clark's holding. They go on K11 and L10, next to where his were, at the far west of the province. Wheat to landlord. I bank the pile now."),
  ("Clark","Robbed by the rules again. Twice in the full game, and now tonight: somebody climbing over me with every bag I own in their pocket."),
@@ -269,7 +269,7 @@ say("Noah","Clark. I'll sell you the Scroll. Eight.", TH(
 give(8, 3, "LD", at="S13")
 act("Clark buys the Land Deed Scroll from Noah for 8, and puts it on S13, the far corner of Province 7.", TH(
  ("Clark","S13. The corner Graham used. Three squares from his soldier, with the reservoir in the way."),
- ("Noah","Three squares. Thank you, Clark.")), {pid(7):-8, pid(8):8}, map_hl=[7,8])
+ ("Noah","Three squares. Thank you, Clark.")), {pid(7):-8, pid(8):8}, map_hl=[7,8], deal=True)
 salaries({2:5, 5:5}, text="Rob pays Silke 5 and Reina 5.")
 
 # ============================== YEAR 6 ==============================

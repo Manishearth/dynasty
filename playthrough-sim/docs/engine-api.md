@@ -93,7 +93,7 @@ Setup only. The Harvest Pile deals every player 60 (Section 4).
 
 ### `take_stock(text, hover=None)`
 
-Setup only. Each realia province takes its starting stock out of the box: at 4–5 players one of its own and two of its `NEVER` type; at 6, two of its own; at 7 or more, four of its own. The stock waits beside the board until it's auctioned (Note 9).
+Setup only. Each realia province takes its starting stock out of the box: at 4–5 players one of its own and two of its `NEVER` type; at 6, two of its own; at 7 or more, four of its own. The stock waits beside the board until it's auctioned (Note 10).
 
 ### `place_army(at, text, hover=None)`
 
@@ -160,13 +160,24 @@ Use the names `"Province 2 Irrigation System"`, `"Province 3 Reservoir"` and `"P
 
 ### `lot(sell, typ, ladder, hover=None, at=None)`
 
-Auction one piece of `typ` from seat `sell`'s stock. `ladder` is a list of `B(...)` bids; the last numeric bid wins. The winner pays the price, the seller receives a quarter, three quarters go to the pile, and the piece is placed at once on `at`, a square of the winner's province (Note 9). `at` is required, and the hover should say why the winner chose it. The engine refuses a square outside the winner's province, a square already holding realia, a raided square, or one under a palace or cut-out; it also refuses a lot the seller has no stock for, and a winning bid by the seller or the Emperor. A commission note is appended to `hover`.
+Auction one piece of `typ` from seat `sell`'s stock. `ladder` is a list of `B(...)` bids; the last numeric bid wins. The winner pays the price, the seller receives a quarter, three quarters go to the pile, and the piece is placed at once on `at`, a square of the winner's province (Note 10). `at` is required, and the hover should say why the winner chose it. The engine refuses a square outside the winner's province, a square already holding realia, a raided square, or one under a palace or cut-out; it also refuses a lot the seller has no stock for, and a winning bid by the seller or the Emperor. A commission note is appended to `hover`.
+
+### Running out of grain (Note 7)
+
+A payment that would take a player below zero must first be covered by selling realia back to the Harvest Pile. Every payment the engine makes checks this: if the player would end in debt while still holding a piece, the build stops and names them. Grain may then go negative; that's a debt, and anything the player receives pays it down.
+
+- `sell_back(player, codes, text, hover=None)` — the player sells those pieces back at 2 each. They come off the board into `pile_stock`. Sell enough to cover the coming payment, or everything; the hover says which pieces and why.
+- `lot(PILE, typ, ladder, ...)` — the Harvest Pile auctions a piece it holds (`PILE` is 0). The whole price goes to the pile. Run the pile's lots after the provinces' lots at the next auction.
+- `act(..., deal=True)` — marks the payments in an act as voluntary: a trade, a bribe, a gift. A payer in debt, or one paying more than they hold, is refused. Leave it off for payments owed (levies, card effects).
+- A bid, a share of a public work and a soldier purchase are all voluntary: each is refused from a player in debt or beyond their grain.
 
 ### `B(seat, amt, text=None, th=None)`
 
 One bid. `amt=None` is a pass. `text` defaults to the amount spelled out ("Twenty-two.") or "Out." for a pass. `th` is the bidder's hover; a plain string is attributed to the bidder.
 
 ### `give(frm, to, typ, at)`
+
+Use `act(..., deal=True)` for the grain side of a trade, so the debt guard applies.
 
 Move one piece between **players** for a private trade: it's lifted from its square and placed at once on `at` in the new owner's province. Record the grain with a separate `act(..., deltas)` after it.
 
@@ -176,7 +187,7 @@ The realia codes the player in `seat` must collect. At 4–5 players: every type
 
 ### `home(code)`
 
-Where a returned piece goes: its native province, or, if that province is empty, the province that started the game holding it (rulebook Note 11).
+Where a returned piece goes: its native province, or, if that province is empty, the province that started the game holding it (rulebook Note 12).
 
 ## Seat changes
 
@@ -186,11 +197,11 @@ The player in seat `a` replaces the player in seat `b`.
 
 With `check=True` (the default) it first asserts that the mover holds everything `need_for(a)` requires, has at least 20 grain, and may move to `b`: only seats 2, 3, 4 and 8 may take Province 1; a peasant may only take 2–7. Use `check=False` for a Chaos acclamation. It also refuses if the displaced player owns bought soldiers, which no ruling covers yet.
 
-Then: pieces native to `b` held by the mover return to `b`'s stock; if `b` is the throne, all the mover's pieces return home; the displaced player returns everything; the mover takes all of the displaced player's grain; the displaced player draws `draw` (60) from the pile, or what's left if the pile is lower; the seats swap; the mover's remaining pieces go on squares of the new province, given by `at` as `{code: square}` or `{code: [squares]}`, one per piece. Bought soldiers stay with their owner and where they stand. Records a `big` act.
+Then: pieces native to `b` held by the mover return to `b`'s stock; if `b` is the throne, all the mover's pieces return home; the displaced player returns everything; the mover takes all of the displaced player's grain, debt included; the displaced player draws `draw` (60) from the pile, or what's left if the pile is lower; the seats swap; the mover's remaining pieces go on squares of the new province, given by `at` as `{code: square}` or `{code: [squares]}`, one per piece. Bought soldiers stay with their owner and where they stand. Records a `big` act.
 
 ## Soldiers
 
-Every soldier stands on a square and moves at most one square a round, diagonals included (Section 14, Note 15). The Warlord's soldiers are `W1`, `W2`, …; a bought soldier is named after its buyer: `Reina1`, `Reina2`, `Paddy1`. No soldier may enter the sea.
+Every soldier stands on a square and moves at most one square a round, diagonals included (Section 14, Note 16). The Warlord's soldiers are `W1`, `W2`, …; a bought soldier is named after its buyer: `Reina1`, `Reina2`, `Paddy1`. No soldier may enter the sea.
 
 ### `march(moves, text=None, hover=None, take=None)`
 
