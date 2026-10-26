@@ -62,4 +62,4 @@ Every number mirrors the rulebook and `RULINGS.md`, but **the script hardcodes t
 
 ## Relation to the rulebook
 
-Rulebook Appendix C ("Player reference cards") has small per-role cards. These cards cover everything in it and more. Replacing Appendix C with a link to this page is Manish's call.
+The rulebook used to carry small per-role cards as its Appendix C. Manish removed them on 2026-10-25; the rulebook's contents now link to this page instead.

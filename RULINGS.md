@@ -42,7 +42,7 @@ These are the numbered notes, as of this writing. Appendix D has the full text a
 
 ## Clarifications
 
-These follow from the rules rather than overriding them, so they get a plain sentence in the rulebook (or none) rather than a numbered note. Rulebook Appendix D lists each one in its Clarifications table, and its I Ching table mirrors the card readings below: when you add or change one here, change it there too.
+These follow from the rules rather than overriding them, so they get a plain sentence in the rulebook (or none) rather than a numbered note. Rulebook Appendix E lists each one in its Clarifications table, and its I Ching table mirrors the card readings below: when you add or change one here, change it there too.
 
 ### Raiding a public work
 
@@ -163,7 +163,7 @@ The details, settled by Manish on 2026-10-25:
 
 **Why.** The smallest bag in the box is half a million, so a quarter million can't change hands. Rounding in the payer's favour means nobody is ever asked for grain the rules didn't strictly demand. Set by Manish on 2026-10-25.
 
-**Recorded in** rulebook Section 8 (the general rule), restated in Sections 9 (tax), 10 (commission) and 15 (disasters) and in the worked round (Appendix B); `playthrough-sim/engine.py` (`pay_down`).
+**Recorded in** rulebook Section 8 (the general rule), restated in Sections 9 (tax), 10 (commission) and 15 (disasters) and in the worked round (Appendix C); `playthrough-sim/engine.py` (`pay_down`).
 
 ## I Ching cards
 
