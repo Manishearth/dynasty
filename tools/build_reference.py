@@ -16,6 +16,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "..", "reference-cards.html")
 sys.path.insert(0, HERE)
 import add_glyphs  # noqa: E402
+from glyphs import GLYPHS  # noqa: E402
 
 E = html.escape
 
@@ -29,6 +30,9 @@ PLURAL = {2: "Customs Houses", 3: "Land Deed Scrolls", 4: "Bamboo Brushes",
           5: "Dragon Jars", 6: "Wooden Bowls", 7: "Vases"}
 ROLE = {1: "Emperor", 2: "Official", 3: "Gentry / Landholder", 4: "Scholar",
         5: "Silk Peasant", 6: "Rice Peasant", 7: "Wheat Peasant", 8: "Warlord"}
+# The emblem in a province card's header: the realia it sells, or the Emperor's Winter Palace.
+MARK = {1: "winter-palace", 2: "customs-house", 3: "land-deed-scroll", 4: "bamboo-brush",
+        5: "dragon-jar", 6: "wooden-bowl", 7: "vase"}
 CLASS = {1: "imperial", 2: "upper", 3: "upper", 4: "upper",
          5: "lower", 6: "lower", 7: "lower", 8: "outside"}
 
@@ -116,7 +120,7 @@ SCRIPT = [
      "One rate for everyone, 10% to 90%."),
     ("Tax paid", "Official",
      "Pay the Official your share of this year’s harvest income.",
-     "Harvest income only: no rent, salaries, commissions or tolls. Rounded down to the half million. A loss pays nothing; the Emperor pays none; the Warlord may refuse. The Official hands it all over."),
+     "Harvest income only: no rent, salaries, commissions or tolls. Rounded down to the half million. A loss pays nothing; the Emperor pays none; the Warlord may refuse. The Official then hands all of it to the Emperor."),
     ("Public Works", "Emperor",
      "Emperor, what are you building?",
      "One project: any number of sections of one work. Palaces before what needs them; nothing else built means the Marble Pagoda. Cost shares paid; new harvest squares bought from the Pile."),
@@ -213,9 +217,9 @@ OWED = {
         ("Marble Pagoda", "20", "You", "—"),
         ("Great Wall, 12 links over 1, 2, 3", "40 each", "Share with 2 and 3", "—"),
         ("Grand Canal, 2 sections in 1", "40 each", "You", "+10 each"),
-        ("Grand Canal, 2 each in 4, 5, 6", "40 each", "You in 5 and 6; share in 4", "+10 each"),
-        ("Irrigation System in 2", "30", "Share", "+10"),
-        ("Reservoir in 3", "80", "Share", "+20"),
+        ("Grand Canal, 2 each in 4, 5, 6", "40 each", "You in 5 and 6; share with 4", "+10 each"),
+        ("Irrigation System in 2", "30", "Share with 2", "+10"),
+        ("Reservoir in 3", "80", "Share with 3", "+20"),
         ("Reservoir in 7", "60", "You", "+20")],
     2: [("Irrigation System", "30", "Share with the Emperor", "+10"),
         ("Great Wall, 4 links above you", "40 each", "Share with the Emperor", "—")],
@@ -302,9 +306,14 @@ def table(head, rows, cls=""):
     return f'<table class="{cls}"><thead><tr>{h}</tr></thead><tbody>{b}</tbody></table>'
 
 
-def head(title, sub, kind, side):
-    return (f'<header class="ch {kind}"><div><h2>{title}</h2><p>{sub}</p></div>'
-            f'<span class="side">{side}</span></header>')
+def head(title, sub, kind, side, p=None):
+    """A province card shows its emblem where the others show FRONT or BACK."""
+    if p in MARK:
+        corner = (f'<svg class="mark" viewBox="0 0 10 10" aria-hidden="true">'
+                  f'<path d="{GLYPHS[MARK[p]][2]}" fill-rule="evenodd" fill="currentColor"/></svg>')
+    else:
+        corner = f'<span class="side">{side}</span>'
+    return f'<header class="ch {kind}"><div><h2>{title}</h2><p>{sub}</p></div>{corner}</header>'
 
 
 def foot():
@@ -388,7 +397,7 @@ def player_front(p):
     pop, eats, h = STATS[p]
     sub = f"Province {p} · population {pop} · eats {eats} · harvest {h[0]}/{h[1]}/{h[2]}"
     duties = "".join(f"<li>{E(d)}</li>" for d in DUTIES[p])
-    return (head(f"{p} · {E(ROLE[p])}", sub, CLASS[p], "front") +
+    return (head(f"{p} · {E(ROLE[p])}", sub, CLASS[p], "front", p) +
             f'<p class="char">{E(CHARACTER[p])}</p>'
             f'<section><h3>Each round</h3><ul class="duties">{duties}</ul></section>'
             f'<section><h3>Your objective</h3>{objective(p)}{start_stock(p)}</section>'
@@ -416,7 +425,7 @@ def player_back(p):
     if NEWLAND[p]:
         nl = (f'<section><h3>New harvest squares</h3><p><b>Only available once your population has doubled (×2).</b> {E(NEWLAND[p])} '
               '20 each from the Pile, +20 every round after. Share cost and yield with the Emperor.</p></section>')
-    return (head(f"{p} · {E(ROLE[p])}", "Income, works and new land", CLASS[p], "back") +
+    return (head(f"{p} · {E(ROLE[p])}", "Income, works and new land", CLASS[p], "back", p) +
             f'<section><h3>Your income each year</h3>{inc}'
             '<p class="small">Income = harvest − what your people eat + what your works add'
             + ('' if p == 8 else ' + 20 per new harvest square you own') + '. '
@@ -453,6 +462,7 @@ body{margin:0;background:var(--canvas);color:var(--ink);font:16px/1.5 "Helvetica
 .ch p{margin:.15em 0 0;font:8pt var(--mono);letter-spacing:.06em;color:var(--soft)}
 .ch .side{font:700 7pt var(--mono);letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--tier);
   color:var(--tier);padding:.2em .5em;margin-top:.2em}
+.ch .mark{flex:none;width:.42in;height:.42in;color:var(--tier)}
 section{margin:0 0 .11in}
 h3{margin:0 0 .05in;font:700 7.6pt var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--verm);
   border-bottom:1.5px solid var(--ink);padding-bottom:.03in}
