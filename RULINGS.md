@@ -4,7 +4,7 @@ Every rules question this project has settled, in one place. The 1969 game sprea
 
 **Everyone working on this repo, human or Claude, adds their rulings here.** That includes clarifications that never become a numbered rulebook note, and the assumptions the playthrough engine makes. If you decide how a rule works, write it down here before you build on it. If a question comes up that you can't settle from the sources, put it under [Open questions](#open-questions) and ask Manish. Don't invent an answer.
 
-Each entry gives the question, the ruling, the reasoning, and where it's recorded. "Note N" means the numbered note in `combined-dynasty-rulebook.html`: a pink box where the rule applies, repeated in Appendix D with the original wording. Notes are numbered in reading order, so adding one renumbers every later note. When that happens, update this file and every `Note N` reference in `playthrough-sim/`.
+Each entry gives the question, the ruling, the reasoning, and where it's recorded. "Note N" means the numbered note in `rulebook.html`: a pink box where the rule applies, repeated in Appendix D with the original wording. Notes are numbered in reading order, so adding one renumbers every later note. When that happens, update this file and every `Note N` reference in `playthrough-sim/`.
 
 - [Rulebook notes](#rulebook-notes)
 - [Clarifications](#clarifications)

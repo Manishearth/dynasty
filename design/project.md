@@ -4,7 +4,7 @@
 
 The goal is a modern, unofficial revival:
 
-1. **A modern rulebook** (`combined-dynasty-rulebook.html`). General concepts first (Part One), then one section per province (Part Two), then appendices: setup by player count, a worked round, reference cards, and editor's notes and rulings.
+1. **A modern rulebook** (`rulebook.html`). General concepts first (Part One), then one section per province (Part Two), then appendices: setup by player count, a worked round, reference cards, and editor's notes and rulings.
 2. **A single list of rulings** (`RULINGS.md`). Every question the originals leave open, how it was settled and why, including the assumptions the playthrough engine makes, plus the open questions waiting for Manish.
 3. **Annotated playthroughs** (`playthrough.html`). Five complete games played by the same group of eight friends on five evenings, on the real board, shown year by year with a Setup tab first. Each line is an action or a piece of in-character dialogue, and hovering shows what the players were thinking. A board, an objectives tracker, public works and player panels follow along.
 4. **Reusable, copyright-clean assets.** A redrawn map (`map.svg`, `map.json`), a reworded I Ching card list (`i-ching.html`, `i-ching.json`), printable reference cards (`reference-cards.html`), and piece glyphs (`images/`).
@@ -22,7 +22,7 @@ The repo is `C:\Users\manishearth\dev\dynasty-new`, pushed to GitHub as `Manishe
 
 | Path | What it is | Made by |
 |---|---|---|
-| `combined-dynasty-rulebook.html` | The rulebook; one self-contained HTML file | Manish's rewrite, edited by several sessions |
+| `rulebook.html` | The rulebook; one self-contained HTML file | Manish's rewrite, edited by several sessions |
 | `RULINGS.md` | Every ruling, clarification and engine assumption, with reasons; the open rules questions | Every session adds to it |
 | `design/` | These design documents | Every session keeps them current |
 | `playthrough.html` | Generated. Never edit by hand; rebuild it | `playthrough-sim/build.py` |
@@ -43,7 +43,7 @@ The repo is `C:\Users\manishearth\dev\dynasty-new`, pushed to GitHub as `Manishe
 python3 playthrough-sim/build.py                       # rebuild playthrough.html (all five games)
 python3 playthrough-sim/trace.py game1_full.py          # ledger: everyone's grain after every line
 python3 playthrough-sim/trace.py game1_full.py --board 57   # the board after entry 57
-python3 tools/add_glyphs.py combined-dynasty-rulebook.html  # re-run after editing rulebook text
+python3 tools/add_glyphs.py rulebook.html  # re-run after editing rulebook text
 python3 tools/build_map.py                              # regenerate map.svg, map-board.svg, map.json
 python3 tools/build_events.py                           # regenerate i-ching.html / .json
 python3 tools/build_reference.py                        # regenerate reference-cards.html

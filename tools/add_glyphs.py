@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Put a piece glyph (images/*.svg) in front of every mention of a piece.
 
-Usage: python3 tools/add_glyphs.py combined-dynasty-rulebook.html
+Usage: python3 tools/add_glyphs.py rulebook.html
 Idempotent: earlier glyph markup is stripped before it is re-added.
 
 HTML text gets an <img> of images/<glyph>.svg. Labels inside inline SVG

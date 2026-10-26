@@ -81,6 +81,14 @@ thead th{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-tran
 td.n,th.n{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums}
 tbody tr:last-child td{border-bottom:1.5px solid var(--ink)}
 .neg{color:var(--vermilion)}
+@media screen and (max-width:640px){
+  table{font-size:.84rem}
+  th,td{padding:.38rem .3rem}
+  th:first-child,td:first-child{padding-left:0}
+  th:last-child,td:last-child{padding-right:0}
+  thead th{font-size:.64rem;letter-spacing:.03em}
+  td .piece{white-space:normal}
+}
 
 /* ---------- devices ---------- */
 .note{
@@ -99,7 +107,7 @@ tbody tr:last-child td{border-bottom:1.5px solid var(--ink)}
 .who{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);padding-top:.18rem}
 @media (max-width:640px){.steps li{grid-template-columns:1.6rem 1fr;gap:.5rem}.who{grid-column:2;padding:0}}
 figure{margin:1.6rem 0;padding:0}
-figure svg{width:100%;height:auto;display:block}
+figure svg,figure img{width:100%;height:auto;display:block}
 figcaption{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;color:var(--ink-soft);margin-top:.5rem;text-transform:uppercase}
 .key{display:flex;flex-wrap:wrap;gap:.4rem 1.3rem;font-family:var(--mono);font-size:.74rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 1.2rem}
 .key span::before{content:"";display:inline-block;width:.7rem;height:.7rem;margin-right:.4rem;vertical-align:-1px}
@@ -121,6 +129,33 @@ figcaption{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;color:v
 .toc .t-num{font-family:var(--mono);color:var(--vermilion);margin-right:.5rem;font-size:.8rem}
 .toc .t-part{font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);border:0;padding-top:1rem}
 
+/* ---------- following contents: a sidebar when wide, a bar when narrow (built by the script at the end) ---------- */
+.follow{display:none}
+.follow nav a{display:flex;text-decoration:none;color:var(--ink);font-size:.84rem;line-height:1.3;padding:.3rem .6rem .3rem .9rem;border-left:3px solid transparent}
+.follow nav a:hover{color:var(--vermilion)}
+.follow nav a.on{border-left-color:var(--vermilion);background:var(--paper);font-weight:700}
+.follow nav .t-num{flex:none;width:1.7rem;font-family:var(--mono);font-size:.74rem;color:var(--vermilion)}
+.follow nav .t-part{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);padding:1.1rem .6rem .3rem .9rem}
+.follow-bar{display:none}
+@media screen and (min-width:76rem){
+  body.has-follow{padding-left:16rem}
+  .follow{display:block;position:fixed;top:0;left:0;bottom:0;width:16rem;overflow-y:auto;padding:1.4rem 0 2rem;border-right:1px solid var(--rule)}
+  .follow-title{font-family:var(--display);font-weight:700;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;padding:0 .9rem .4rem;margin:0 .9rem .2rem 0;border-bottom:2px solid var(--ink)}
+}
+@media screen and (max-width:75.99rem){
+  html.has-follow{scroll-padding-top:3.4rem}
+  .follow-bar{display:flex;position:fixed;top:0;left:0;right:0;z-index:10;align-items:center;gap:.7rem;width:100%;height:2.8rem;padding:0 1rem;border:0;border-bottom:2px solid var(--ink);background:var(--paper);color:var(--ink);font:inherit;text-align:left;cursor:pointer}
+  .follow-bar .lbl{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vermilion);flex:none}
+  .follow-bar .cur{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:.92rem;font-weight:700}
+  .follow-bar .chev{flex:none;font-size:.8rem;transition:transform .15s}
+  .follow-bar[aria-expanded="true"] .chev{transform:rotate(180deg)}
+  body.has-follow .wrap{padding-top:4.4rem}
+  .follow.open{display:block;position:fixed;top:2.8rem;left:0;right:0;z-index:10;max-height:calc(100vh - 2.8rem);overflow-y:auto;padding:.3rem 0 1rem;background:var(--canvas);border-bottom:2px solid var(--ink);box-shadow:0 6px 18px rgba(0,0,0,.18)}
+  .follow-title{display:none}
+  .follow nav a{font-size:.95rem;padding:.5rem 1rem}
+  .follow nav .t-part{padding-left:1rem}
+}
+
 /* ---------- cards ---------- */
 .card{border:1.5px solid var(--ink);padding:1.2rem 1.4rem;margin:0 0 1.2rem;break-inside:avoid}
 .card h3{margin-top:0}
@@ -140,7 +175,9 @@ figcaption{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;color:v
   h3,h4{break-after:avoid}
   table,figure,.card,.note,.steps li{break-inside:avoid}
   a{color:var(--ink);text-decoration:none}
-  .noprint{display:none}
+  .noprint,.follow,.follow-bar{display:none !important}
+  body.has-follow{padding-left:0}
+  body.has-follow .wrap{padding-top:0}
   .band a{background:#fff}
   .band a.on{background:var(--vermilion);-webkit-print-color-adjust:exact;print-color-adjust:exact}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
@@ -274,56 +311,10 @@ figcaption{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;color:v
   <div class="sec-head"><span class="sec-num">3</span><h2>The map</h2></div>
   <p>The map holds seven bordered provinces — the developed land, the ground that already produces a harvest — and three kinds of undeveloped land: the Warlord's territory in the west, the strip below the <span class="piece"><img src="images/great-wall.svg" alt="">Great Wall</span> in the north, and the sea to the east.</p>
   <figure>
-  <svg viewBox="0 0 820 470" role="img" aria-label="Schematic of the Dynasty map">
-    <defs>
-      <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-        <path d="M20 0H0V20" fill="none" stroke="#DCD5C2" stroke-width="1"/>
-      </pattern>
-    </defs>
-    <rect x="10" y="10" width="800" height="450" fill="url(#grid)" stroke="#16150F" stroke-width="3"/>
-    <!-- great wall -->
-    <rect x="200" y="14" width="530" height="34" fill="#fff" stroke="#16150F" stroke-width="1.5"/>
-    <g stroke="#16150F" stroke-width="1.5">
-      <path d="M288 14v34M376 14v34M464 14v34M552 14v34M640 14v34"/>
-    </g>
-    <text x="465" y="36" text-anchor="middle" font-family="Courier New, monospace" font-size="13" letter-spacing="3">THE <tspan class="pg" data-g="great-wall" dx="1.1em">GREAT WALL</tspan> · 12 LINKS</text>
-    <!-- new land strip -->
-    <rect x="200" y="48" width="530" height="40" fill="#fff" stroke="#16150F" stroke-width="1.5" stroke-dasharray="5 4"/>
-    <text x="465" y="73" text-anchor="middle" font-family="Courier New, monospace" font-size="12" letter-spacing="2" fill="#5C584A">NEW LAND — OPENS WHEN 4 LINKS ARE BUILT ABOVE YOU</text>
-    <!-- undeveloped west -->
-    <rect x="14" y="14" width="186" height="442" fill="#EFEADC" stroke="#16150F" stroke-width="1.5"/>
-    <text x="107" y="215" text-anchor="middle" font-family="Helvetica Neue,Helvetica,Arial" font-size="16" font-weight="700" letter-spacing="1">UNDEVELOPED</text>
-    <text x="107" y="236" text-anchor="middle" font-family="Helvetica Neue,Helvetica,Arial" font-size="16" font-weight="700" letter-spacing="1">LAND</text>
-    <text x="107" y="262" text-anchor="middle" font-family="Courier New, monospace" font-size="12" fill="#5C584A">Province 8</text>
-    <text x="107" y="279" text-anchor="middle" font-family="Courier New, monospace" font-size="12" fill="#5C584A">Warlord territory</text>
-    <!-- sea -->
-    <rect x="730" y="14" width="76" height="442" fill="#E3EEF9" stroke="#175FB5" stroke-width="1.5"/>
-    <text x="768" y="250" text-anchor="middle" font-family="Helvetica Neue,Helvetica,Arial" font-size="15" font-weight="700" fill="#175FB5" transform="rotate(90 768 250)" letter-spacing="4">THE SEA</text>
-    <!-- provinces -->
-    <g font-family="Helvetica Neue,Helvetica,Arial" font-size="15" font-weight="700" text-anchor="middle">
-      <rect x="200" y="88" width="178" height="122" fill="#fff" stroke="#16150F" stroke-width="1.5"/>
-      <text x="289" y="140">3</text><text x="289" y="162" font-size="12" font-weight="400">Gentry</text>
-      <rect x="378" y="88" width="176" height="122" fill="#fff" stroke="#16150F" stroke-width="1.5"/>
-      <text x="466" y="140">2</text><text x="466" y="162" font-size="12" font-weight="400">Official</text>
-      <rect x="554" y="88" width="176" height="122" fill="#fff" stroke="#16150F" stroke-width="1.5"/>
-      <text x="642" y="140">1</text><text x="642" y="162" font-size="12" font-weight="400">Emperor</text>
-      <rect x="200" y="210" width="178" height="122" fill="#fff" stroke="#16150F" stroke-width="1.5"/>
-      <text x="289" y="262">7</text><text x="289" y="284" font-size="12" font-weight="400">Wheat Peasant</text>
-      <rect x="378" y="210" width="176" height="122" fill="#fff" stroke="#16150F" stroke-width="1.5"/>
-      <text x="466" y="262">4</text><text x="466" y="284" font-size="12" font-weight="400">Scholar</text>
-      <rect x="554" y="210" width="176" height="122" fill="#fff" stroke="#16150F" stroke-width="1.5"/>
-      <text x="642" y="262">5</text><text x="642" y="284" font-size="12" font-weight="400">Silk Peasant</text>
-      <rect x="378" y="332" width="352" height="124" fill="#fff" stroke="#16150F" stroke-width="1.5"/>
-      <text x="554" y="386">6</text><text x="554" y="408" font-size="12" font-weight="400">Rice Peasant</text>
-      <rect x="200" y="332" width="178" height="124" fill="#EFEADC" stroke="#16150F" stroke-width="1.5" stroke-dasharray="5 4"/>
-      <text x="289" y="390" font-size="12" font-weight="400" fill="#5C584A">undeveloped</text>
-    </g>
-    <!-- river -->
-    <path d="M200 300 C 300 250, 340 360, 430 330 S 600 200, 700 170 L 730 150" fill="none" stroke="#175FB5" stroke-width="7" stroke-linecap="round" opacity=".85"/>
-  </svg>
-  <figcaption>Representative schematic</figcaption>
+  <img src="map.svg" alt="Map of Dynasty: seven provinces on a 30 by 22 grid, with the Warlord's undeveloped land in the west, the Great Wall in the north, the sea in the east and the river between them">
+  <figcaption>The board · 30 × 22 squares, rows A–V, columns 1–30</figcaption>
   </figure>
-  <p><strong>Who can expand where.</strong> Provinces 1, 2 and 3 push north into the strip below the <span class="piece"><img src="images/great-wall.svg" alt="">Great Wall</span>. Provinces 1, 4, 5 and 6 border the sea. Provinces 3, 6 and 7 border the Warlord's undeveloped land in the west — so peasant expansion is a land grab into Warlord territory, which the rules nowhere forbid and the Warlord will nowhere welcome.</p>
+  <p><strong>Who can expand where.</strong> Provinces 1, 2 and 3 push north into the strip below the <span class="piece"><img src="images/great-wall.svg" alt="">Great Wall</span>. Provinces 1, 4, 5 and 6 border the sea. Provinces 3, 4, 5, 6 and 7 border the Warlord's undeveloped land, which runs down the west and along the south — so peasant expansion is a land grab into Warlord territory, which the rules nowhere forbid and the Warlord will nowhere welcome.</p>
   <p><strong>The grid does not produce anything.</strong> Your harvest is the same whether your province holds thirty squares or sixty. The squares exist to place realia, mark raids, move soldiers, and hold new harvest squares. Province size on the map is scenery; only the numbers in Section 7 feed anybody.</p>
   <p><strong>The river</strong> runs from the western territory across the middle of the country to the sea. It matters for one rule: the Warlord pays a toll every time a soldier crosses it (Section 14).</p>
 </section>
@@ -1434,6 +1425,58 @@ figcaption{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;color:v
 </section>
 
 </div>
+
+<script id="follow-toc">
+(function(){
+var toc=document.querySelector('.toc');
+if(!toc)return;
+var side=document.createElement('aside'),bar=document.createElement('button'),nav=toc.cloneNode(true);
+nav.className='';nav.id='follow-nav';
+side.className='follow';
+side.innerHTML='<div class="follow-title">Contents</div>';
+side.appendChild(nav);
+bar.type='button';bar.className='follow-bar';
+bar.setAttribute('aria-controls','follow-nav');bar.setAttribute('aria-expanded','false');
+bar.innerHTML='<span class="lbl">Contents</span><span class="cur"></span><span class="chev" aria-hidden="true">&#9662;</span>';
+document.body.insertBefore(side,document.body.firstChild);
+document.body.insertBefore(bar,side);
+document.body.classList.add('has-follow');
+document.documentElement.classList.add('has-follow');
+
+var cur=bar.querySelector('.cur');
+function setOpen(o){
+  side.classList.toggle('open',o);bar.setAttribute('aria-expanded',o?'true':'false');
+  if(o&&on)side.scrollTop=on.offsetTop-side.clientHeight/3;
+}
+bar.addEventListener('click',function(){setOpen(!side.classList.contains('open'));});
+nav.addEventListener('click',function(e){if(e.target.closest('a[href]'))setOpen(false);});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')setOpen(false);});
+document.addEventListener('click',function(e){if(!side.contains(e.target)&&!bar.contains(e.target))setOpen(false);});
+
+// Mark the section being read: the last one whose top has passed a line near the top of the window.
+var links=[].slice.call(nav.querySelectorAll('a[href^="#"]'));
+var targets=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));});
+var on=null;
+function update(){
+  var line=window.innerHeight*0.3,best=-1;
+  for(var i=0;i<targets.length;i++){if(targets[i]&&targets[i].getBoundingClientRect().top<=line)best=i;}
+  var a=best<0?null:links[best];
+  if(a===on)return;
+  if(on)on.classList.remove('on');
+  on=a;
+  if(!a){cur.textContent='';return;}
+  a.classList.add('on');
+  var n=a.querySelector('.t-num');
+  cur.textContent=(n?n.textContent+' · ':'')+a.textContent.slice(n?n.textContent.length:0);
+  var r=a.getBoundingClientRect(),s=side.getBoundingClientRect();
+  if(r.top<s.top||r.bottom>s.bottom)a.scrollIntoView({block:'nearest'});
+}
+var queued=false;
+window.addEventListener('scroll',function(){if(!queued){queued=true;requestAnimationFrame(function(){queued=false;update();});}},{passive:true});
+window.addEventListener('resize',update);
+update();
+})();
+</script>
 
 <script id="piece-glyphs">
 (function(){

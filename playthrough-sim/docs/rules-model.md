@@ -2,7 +2,7 @@
 
 The engine is a ledger and a referee, not an opponent. It computes every number the rules determine and refuses moves the rules forbid, and it leaves every *choice* — bids, tax rates, which work to build and where, which square to march to, what to say — to the script. This document says exactly where that line falls, and which rulings it depends on.
 
-Section and note numbers refer to `combined-dynasty-rulebook.html`. Every ruling, including the engine's own assumptions, is also listed in [`../../RULINGS.md`](../../RULINGS.md), which is the master list. Add a new ruling there first.
+Section and note numbers refer to `rulebook.html`. Every ruling, including the engine's own assumptions, is also listed in [`../../RULINGS.md`](../../RULINGS.md), which is the master list. Add a new ruling there first.
 
 - [Computed by the engine](#computed-by-the-engine)
 - [Enforced by the engine](#enforced-by-the-engine)

@@ -3,7 +3,7 @@
 
 One general card (turn order, realia, money, the Harvest Pile, public works)
 and one card per province (income table, duties, objective, what you are owed,
-new land, personal disasters). Numbers follow combined-dynasty-rulebook.html.
+new land, personal disasters). Numbers follow rulebook.html.
 
 Run from the repo root:  python3 tools/build_reference.py
 Pure Python, no dependencies. Piece glyphs are added by tools/add_glyphs.py.

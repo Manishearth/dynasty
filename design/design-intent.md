@@ -11,7 +11,7 @@ These are Manish's standing preferences, gathered from the conversations. Treat 
 - **Don't overwrite parallel work.** Another session may be editing the rulebook, the map or the rulings. Stay inside your task's files, and check before writing (see "Working in parallel" in `project.md`).
 - **Record rulings.** Every rules decision, clarification or engine assumption goes in `RULINGS.md` with a short reason; anything the sources can't settle goes under its Open questions for him.
 
-## The rulebook (`combined-dynasty-rulebook.html`)
+## The rulebook (`rulebook.html`)
 
 **Structure and voice**
 - A modern rulebook: general concepts first (Part One, Sections 1–19), then one section per province (Part Two, Sections 20–27), then appendices. A: setting up by player count. B: a worked round. C: player reference cards. D: editor's notes and rulings.

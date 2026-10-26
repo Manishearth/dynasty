@@ -98,3 +98,10 @@ The handoff prompt asked for four changes to the playthroughs: the Reservoir nam
 - "Would it be possible to use the fancier map.svg-like rendering in the playthrough? of course with the stuff around the borders removed and the labels removed. It might be worth splitting map.svg into layers somehow so that it can be reused this way." `tools/build_map.py` now draws the map as named layers; `map.svg` stacks them all, and `map-board.svg` holds only the ground, which the playthrough uses as its board. The page keeps its own small player labels.
 - "I don't think we need a local preview server since you can just give me links to open in my browser. Clean that up." `.claude/launch.json` is gone; give Manish `file:///` links.
 
+
+## The rulebook's contents, phone tables and map (2026-10-25)
+
+- "For the instructions can you have the table of contents follow as a sidebar when scrolling on desktop (and perhaps have a topbar that can be clicked on mobile). it should remain printable". A script at the end of the rulebook copies the Contents list into a fixed sidebar (76rem and wider) or a tap-to-open bar (narrower), marking the section being read. Both are hidden in print; the Contents page still prints.
+- "Yes, make the wide tables fit on phone screens." Tables tighten their padding and header type at 640px and below; every table fits at 375px.
+- "Also please use the new fancy map in the rulebook instead of the 'representative' one". Section 3 now shows `map.svg`. On that map the Warlord's land also borders Provinces 4 and 5, so the expansion paragraph says so.
+- "Also when done rename to rulebook.html". `combined-dynasty-rulebook.html` is now `rulebook.html`, and every reference to it was updated.
