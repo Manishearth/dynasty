@@ -169,6 +169,8 @@ header .piece img{filter:brightness(0) invert(1)}
 .final th{font:700 .66rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--soft)}
 .v-won{color:#1B7A3F;font-weight:700}.v-lost{color:var(--verm);font-weight:700}.v-held{color:var(--soft)}
 .hint{font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;color:var(--soft);margin:.6rem 0 0}
+.hint-touch,body.touch .hint-mouse{display:none}
+body.touch .hint-touch{display:block}
 
 .games{display:flex;gap:.5rem;margin:1rem 0 0;overflow-x:auto;padding-bottom:.15rem}
 .game{flex:none;text-align:left;border:1.5px solid rgba(255,255,255,.55);background:transparent;color:#fff;
@@ -223,7 +225,8 @@ table.res tr.pile td{color:var(--soft);font-style:italic;border-bottom:0}
       <button id="prev">‹ Step back</button>
       <button id="next">Step forward ›</button>
     </div>
-    <p class="hint">Click any action to scrub the board. Hover an underlined line for the player's own reasoning, and a Δ for what changed hands. Arrow keys work too.</p>
+    <p class="hint hint-mouse">Click any action to scrub the board. Hover an underlined line for the player's own reasoning, and a Δ for what changed hands. Arrow keys work too.</p>
+    <p class="hint hint-touch">Tap any action to scrub the board. Tap a line marked ⊙ for the player's own reasoning, and a Δ for what changed hands.</p>
   </aside>
 </div>
 <div class="tip" id="tip"></div>
