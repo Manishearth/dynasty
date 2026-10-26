@@ -36,13 +36,13 @@ These are the numbered notes, as of this writing. Appendix D has the full text a
 | 15 | Booklets: soldiers capture horizontally only. General Instructions: horizontally and vertically | The General Instructions win: capture orthogonally, never diagonally. Movement may be diagonal |
 | 16 | How far do the Warlord's soldiers move? | One square a round, like every soldier. "Anywhere" means no square is off limits. Every crossing of a river or public work costs 5 |
 | 17 | What does Chaos stop? | No tax, salaries or public works until a new Emperor emerges. Harvests continue and the Warlord still raids |
-| 18 | How is the game scored? | Final province against starting province, grain surplus as the tiebreak. An Emperor still on the throne has won |
+| 18 | How is the game scored? | Final province against starting province, grain surplus as the tiebreak. An Emperor still on the throne has won, and so has a Warlord who has entered the social order at all |
 | 19 | The eight-round short game | An addition, not a reading of the rules. Agree before setup; score as normal |
 | 20 | The Scholar's realia at six players (missing from the booklet) | Two Bamboo Brushes, like every other province |
 
 ## Clarifications
 
-These follow from the rules rather than overriding them, so they get a plain sentence in the rulebook (or none) rather than a numbered note.
+These follow from the rules rather than overriding them, so they get a plain sentence in the rulebook (or none) rather than a numbered note. Rulebook Appendix D lists each one in its Clarifications table, and its I Ching table mirrors the card readings below: when you add or change one here, change it there too.
 
 ### Raiding a public work
 

@@ -162,6 +162,22 @@ figcaption{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;color:v
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
 @media (max-width:700px){.grid2{grid-template-columns:1fr}}
 
+/* ---------- explainer's cheat sheet (Appendix E) ---------- */
+h3 .h-num{font-family:var(--mono);color:var(--vermilion);margin-right:.5rem}
+.see{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);font-weight:400;margin-left:.4rem}
+.see a{color:var(--ink-soft)}
+.say{list-style:none;margin:0 0 1rem;padding:0}
+.say li{position:relative;padding:.32rem 0 .32rem 1.7rem;margin:0;border-top:1px solid #ECE7DA;font-size:.95rem}
+.say li:last-child{border-bottom:1px solid #ECE7DA}
+.say li::before{content:"";position:absolute;left:0;top:.66rem;width:.8rem;height:.8rem;border:1.5px solid var(--ink-soft)}
+.say.plain li{padding-left:0}
+.say.plain li::before{display:none}
+.say li.must::before{border-color:var(--vermilion);background:#FBE3E0}
+.legend{font-size:.86rem;color:var(--ink-soft)}
+.legend i{display:inline-block;width:.75rem;height:.75rem;border:1.5px solid var(--vermilion);background:#FBE3E0;vertical-align:-1px;margin-right:.3rem}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:0 2rem}
+@media (max-width:760px){.cols{grid-template-columns:1fr}}
+
 /* ---------- print ---------- */
 @media print{
   @page{size:letter;margin:16mm 15mm}
@@ -173,7 +189,7 @@ figcaption{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;color:v
   .cover hr{border-top-color:var(--ink)}
   .wordmark{color:var(--vermilion)}
   h3,h4{break-after:avoid}
-  table,figure,.card,.note,.steps li{break-inside:avoid}
+  table,figure,.card,.note,.steps li,.say li{break-inside:avoid}
   a{color:var(--ink);text-decoration:none}
   .noprint,.follow,.follow-bar{display:none !important}
   body.has-follow{padding-left:0}
@@ -244,6 +260,7 @@ figcaption{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;color:v
     <a href="#apb"><span class="t-num">B</span>A worked round</a>
     <a href="#apc"><span class="t-num">C</span>Player reference cards</a>
     <a href="#apd"><span class="t-num">D</span>Editor's notes and rulings</a>
+    <a href="#ape"><span class="t-num">E</span>Explainer's cheat sheet</a>
   </nav>
   <h4>How to read the colors</h4>
   <div class="key">
@@ -1361,7 +1378,7 @@ figcaption{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;color:v
 <section class="sheet" id="apd">
   <p class="eyebrow">Appendix D</p>
   <div class="sec-head"><span class="sec-num">D</span><h2>Editor's notes and rulings</h2></div>
-  <p>The 1969 edition scattered its rules across eight booklets, a sheet of General Instructions and the printing on the can, and the three do not always agree. Every ruling below is a decision made in reconstructing this text. The original wording is given so you can overrule it at your own table.</p>
+  <p>The 1969 edition scattered its rules across eight booklets, a sheet of General Instructions and the printing on the can, and the three do not always agree. Every ruling below is a decision made in reconstructing this text. The original wording is given so you can overrule it at your own table. The numbered notes come first; after them come the smaller clarifications and the readings of the I Ching cards, which follow from the rules rather than overriding them.</p>
 
   <h3>Note 1 · Province numbering on the can</h3>
   <p>The can lists "Province 5 — Warlord" and "6, 7, 8 — Peasants," and its four-player alternate group reads "1, 6, 7, 8 — Peasant." The map and all eight booklets number the peasants 5, 6, 7 and place the Warlord in the undeveloped land as Province 8. <strong>The booklets and map win.</strong> The can preserves an earlier numbering; the player-count table has been renumbered.</p>
@@ -1388,7 +1405,7 @@ figcaption{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;color:v
   <p>Every printed table's population column runs ×1, ×1½, ×2, ×3, ×4 — then jumps. The 12-million provinces end at 72, which is ×6 and consistent. The 14-million provinces end at 112, which is ×8, but with consumption of 240, which is ×6; the Emperor's ends at 112 with consumption 360, also ×6. <strong>Consumption is always proportional to population.</strong> The tables in Section 7 are indexed by multiple rather than headcount, which removes the discrepancy. The I Ching cards settle it independently: they cap the nation at 600 million, which is ×6 of the starting 100 million, so the ×8 figures could never have been reached.</p>
 
   <h3>Note 7 · Running out of grain</h3>
-  <p>No booklet, the General Instructions or the can says what happens when a payment would take a player's grain below zero; Note 8 covers only tax on a negative <em>income</em>. The nearest hints are the Rice Peasant's fire, "So that your family can survive for one year, you must borrow grain"; the General Instructions' suggestion that players "create your own 'Domino Theory,' or deficit spending program, a surtax"; and the peasants, who "will revolt against the Emperor only if your life is threatened, only if the alternative is death or starvation." So borrowing exists, and running out is meant to hurt. <strong>Sell before you sink:</strong> a player who owes more than they hold first sells realia back to the Harvest Pile at 2 million a piece, their choice of pieces, until the payment is covered or nothing is left; only then does grain go below zero, as a debt to the pile. A player in debt may not bid, buy, trade, give grain, pay toward a public work, buy soldiers or change provinces, and all grain received pays the debt first. Pieces sold back are auctioned by the pile at the next auction. Scoring is unchanged. <strong>A player in debt counts as facing starvation</strong>, which the peasants' booklets name as the one reason they revolt, so while any player is in debt the debt is a seventh cause for revolt (Section 16), still needing two other players to agree. A table that prefers the old free-and-easy reading can let grain go negative with no consequence; the game still works, but debt stops mattering.</p>
+  <p>No booklet, the General Instructions or the can says what happens when a payment would take a player's grain below zero; Note 8 covers only tax on a negative <em>income</em>. The nearest hints are the Rice Peasant's fire, "So that your family can survive for one year, you must borrow grain"; the General Instructions' suggestion that players "create your own 'Domino Theory,' or deficit spending program, a surtax"; and the peasants, who "will revolt against the Emperor only if your life is threatened, only if the alternative is death or starvation." So borrowing exists, and running out is meant to hurt. <strong>Sell before you sink:</strong> a player who owes more than they hold first sells realia back to the Harvest Pile at 2 million a piece, their choice of pieces, until the payment is covered or nothing is left; only then does grain go below zero, as a debt to the pile. A player in debt may not bid, buy, trade, give grain, pay toward a public work, buy soldiers or change provinces, and all grain received pays the debt first. Pieces sold back join the pile's own stock, and the pile auctions them at the next auction, after the provinces' lots, keeping the whole price. A bid must be covered by grain in hand, so buying can never put a player in debt. A player who takes over a province takes over the displaced player's grain, debt included; a player the table acclaims Emperor during Chaos may take the throne in debt, and the imperial reserve pays it off. Scoring is unchanged. <strong>A player in debt counts as facing starvation</strong>, which the peasants' booklets name as the one reason they revolt, so while any player is in debt the debt is a seventh cause for revolt (Section 16), still needing two other players to agree; the player in debt may be the one who revolts. A table that prefers the old free-and-easy reading can let grain go negative with no consequence; the game still works, but debt stops mattering.</p>
 
   <h3>Note 8 · Tax on a negative income</h3>
   <p>Not addressed anywhere. <strong>A player with negative income pays no tax.</strong> The Income Tax Schedule is income × rate and has no rows below zero.</p>
@@ -1421,13 +1438,214 @@ figcaption{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;color:v
   <p>The rules say the nation is leaderless until a new Emperor emerges, without saying what leaderless means. <strong>While Chaos lasts, no tax is declared, no salaries are paid and no Public Works are built.</strong> Harvests are still distributed and the Warlord still rides. This gives the revolt a real price, which is what the word is doing there.</p>
 
   <h3>Note 18 · Scoring at the end</h3>
-  <p>The can says the winner or winners are those who improve their social position, and the General Instructions say the object is survival. Neither gives a procedure. <strong>Rank by final province number against starting province number</strong>, as set out in Section 18, with grain surplus as the tiebreak. Both sources treat finishing where you began as a success rather than a defeat, and this scoring keeps that.</p>
+  <p>The can says the winner or winners are those who improve their social position, and the General Instructions say the object is survival. Neither gives a procedure. <strong>Rank by final province number against starting province number</strong>, as set out in Section 18, with grain surplus as the tiebreak. <strong>An Emperor still on the throne has won</strong>, since that is the Emperor's objective, and so has a Warlord who has entered the social order at all. Both sources treat finishing where you began as a success rather than a defeat, and this scoring keeps that.</p>
 
   <h3>Note 19 · The eight-round short game</h3>
   <p>The original has no turn limit: it ends when the Public Works are finished or when the players stop coping. Both endings can take a very long day. <strong>A table may agree before setup to stop after eight rounds and score from where everyone is sitting.</strong> This is an addition, not a reading of the rules — but it changes nothing inside the game, and Section 18's scoring already works from any stopping point, since it compares each player's final province with the one they drew.</p>
 
   <h3>Note 20 · The Scholar's realia at six players</h3>
   <p>Booklet 4 lists the Scholar's own realia for 4–5 players and for 7 or more, but the six-player line is missing from the printing. Every other province holds two of its own type at six. <strong>The Scholar starts with two <span class="piece"><img src="images/bamboo-brush.svg" alt="">Bamboo Brushes</span>.</strong></p>
+
+  <h3>Clarifications</h3>
+  <p>These follow from the rules rather than overriding them, so they get a plain sentence in the text, or none, instead of a numbered note.</p>
+  <table>
+    <thead><tr><th>Question</th><th>Ruling</th></tr></thead>
+    <tbody>
+      <tr><td>Raiding a public work</td><td>A raid on a square holding the <span class="piece"><img src="images/grand-canal.svg" alt="">Grand Canal</span>, the <span class="piece"><img src="images/irrigation.svg" alt="">irrigation system</span> or a <span class="piece"><img src="images/reservoir.svg" alt="">Reservoir</span> is an ordinary raid: 5, or 10 in Province 1. The work is undamaged. Only realia and the Emperor's three buildings have special raid outcomes.</td></tr>
+      <tr><td>Raiding the <span class="piece"><img src="images/great-wall.svg" alt="">Great Wall</span></td><td>It can't be raided: the Wall stands outside every province. A Warlord soldier crossing a link pays the 5 toll like any public work.</td></tr>
+      <tr><td>A palace raid and the Warlord's objective</td><td>It counts. The palaces are the Emperor's realia, and the Emperor pays the structure's cost.</td></tr>
+      <tr><td>The cut-outs</td><td>No single correct size; the suggestions are 1 × 2 for Province 2, 2 × 2 for Province 7 and 2 × 3 for Province 3. A cut-out goes on empty squares of its own province, not on realia. It counts as a public work for the crossing toll, but it isn't realia.</td></tr>
+      <tr><td>New harvest squares</td><td>Only after that province's population has doubled, and for Provinces 2 and 3 only once the four Wall links above them stand. 20 each from the Pile; +20 a round from the next harvest. No limit, every round, and not the round's one project. The Emperor must pay some share of each purchase. Each square goes on the ground the booklet names, touching the province or a square already bought, and becomes part of the province: it can be raided, and squares in the sea are out of every soldier's reach.</td></tr>
+      <tr><td>The Province 1 Wall when Provinces 2 and 3 are empty</td><td>Still owed: Note 4 excuses only unoccupied provinces, and Province 1 is occupied.</td></tr>
+      <tr><td>Which rivers charge a toll, and who is paid</td><td>Both rivers. A Warlord soldier pays 5 for each river its step crosses, to the province whose square it steps onto. A step onto undeveloped land or beyond the Wall pays nobody, and an unoccupied province is owed nothing.</td></tr>
+      <tr><td>Crossing a public work</td><td>A Wall link or <span class="piece"><img src="images/grand-canal.svg" alt="">canal</span> section is crossed when a step, centre to centre, cuts its printed line; a cut-out when a soldier steps onto one of its squares. Palaces aren't crossed: landing on one is a raid. The toll goes to the work's own province, and only built works charge.</td></tr>
+      <tr><td>The sea</td><td>No soldier may stand on a sea square.</td></tr>
+      <tr><td>Moving onto a square</td><td>A Warlord soldier stepping onto an un-raided square of an occupied province must raid it. Undeveloped land, a raided square or an unoccupied province's square raids nothing. Any soldier may stand still. One owner's soldiers may share a square; an enemy's square can be entered only by capturing, straight on.</td></tr>
+      <tr><td>Placing pieces</td><td>Realia can't go on a raided square or under a palace or cut-out, and a palace or cut-out can't go on realia. A soldier may stand on realia. Realia the Warlord takes goes on a square of the Warlord's territory. Wall links and <span class="piece"><img src="images/grand-canal.svg" alt="">canal</span> sections are built in the order printed on the map.</td></tr>
+      <tr><td>Bought soldiers after a seat change</td><td>A soldier belongs to the player who bought it and stays where it stands. It still can't move until the province it was bought in has been raided.</td></tr>
+      <tr><td>Rounding</td><td>Every payment worked out as a fraction rounds down to the half million, in the payer's favour: commissions, tax, and the disasters that take a half or a third (Section 8).</td></tr>
+    </tbody>
+  </table>
+
+  <h3>The I Ching cards</h3>
+  <p>The cards' effects follow the 1969 deck. Where a card leaves a question, this is the reading.</p>
+  <table>
+    <thead><tr><th>Card</th><th>Question</th><th>Ruling</th></tr></thead>
+    <tbody>
+      <tr><td>Population Doubles (×3)</td><td>"If this card has been played twice"</td><td>Read as "if the population has already doubled twice". A doubling takes effect at most twice, matching the 600 million cap (Note 6).</td></tr>
+      <tr><td>Population Grows by Half (×2)</td><td>"If this card has been played once before"</td><td>The increase by half takes effect once. A card past its cap is just a good harvest.</td></tr>
+      <tr><td>The Canal Gives Way</td><td>Who pays, and what is lost?</td><td>Where both of a province's <span class="piece"><img src="images/grand-canal.svg" alt="">canal</span> sections stand, that province's player pays the Emperor 2. Where one stands, the Emperor must rebuild it. Unfinished work is lost.</td></tr>
+      <tr><td>The Wall Is Breached</td><td>Are links destroyed?</td><td>No. Provinces 1–3 each pay 5 for repairs; a province with no Wall built above it pays 2 to the Harvest Pile instead.</td></tr>
+      <tr><td>Storms and Raiders</td><td>Must a province with no public works pay?</td><td>Yes: the card names Provinces 4–7 and each pays its 2, to the Harvest Pile.</td></tr>
+      <tr><td>Imperial Charity</td><td>Where is the "Emperor's Treasure Chest"?</td><td>The Emperor's own reserve, not the Harvest Pile.</td></tr>
+      <tr><td>The Emperor's Share</td><td>What is split 50/50?</td><td>The extra harvest a province's public works produce that round.</td></tr>
+      <tr><td>Public Utility Tax</td><td>Does the Emperor pay it?</td><td>No; the Emperor collects it. 2 from every other occupied province, and 2 more from each of those with a public work.</td></tr>
+      <tr><td>Any card</td><td>A named province is empty</td><td>Its part of the card is skipped: nobody pays, nobody plays its disaster.</td></tr>
+    </tbody>
+  </table>
+
+</section>
+
+
+<!-- ================= APPENDIX E ================= -->
+<section class="sheet" id="ape">
+  <p class="eyebrow">Appendix E</p>
+  <div class="sec-head"><span class="sec-num">E</span><h2>Explainer's cheat sheet</h2></div>
+  <p class="lede">Everything the table needs to hear before the first card, in the order to say it. Each player's booklet covers the rest: read the booklets after this, not instead of it.</p>
+  <p class="legend"><i></i>Filled boxes are the ones new players most often get wrong. Say them twice.</p>
+
+  <!-- 1 -->
+  <h3><span class="h-num">1</span>Set up while you talk <span class="see"><a href="#s4">§4</a> · <a href="#apa">App. A</a></span></h3>
+  <ul class="say">
+    <li>Pick the provinces for your player count (table at the end). Shuffle those booklets face down; each player draws one.</li>
+    <li>Everyone gets <strong>60 million</strong>. That is Round One's harvest.</li>
+    <li>Each province takes its starting realia and keeps it <strong>beside the board</strong>, not on it.</li>
+    <li>The Warlord places their army (2 soldiers at 5–6 players, 4 at 8) anywhere on undeveloped land. The other colour is stock for sale.</li>
+    <li>The Gentry sets out the Harvest Pile; the Scholar shuffles the I Ching face down. Make the paper cut-outs for the water works owed at this table.</li>
+  </ul>
+
+  <!-- 2 -->
+  <h3><span class="h-num">2</span>The pitch <span class="see"><a href="#s1">§1</a></span></h3>
+  <ul class="say">
+    <li>The object is <strong>survival</strong>. The population will grow; the harvest won't. Public Works are the only way out, and they need the Emperor's money and everyone's cooperation.</li>
+    <li>No dice. Prices, bribes, cost shares, rents and alliances are all settled by talking, at any time.</li>
+    <li class="must">Your <strong>personality is a rule</strong>. Play your booklet's character: a generous Official or a Gentry who forgets the rent isn't playing the game. <span class="see"><a href="#s17">§17</a></span></li>
+    <li>Winning means <strong>moving up</strong> the ranks of the provinces. Several people can win at once.</li>
+  </ul>
+
+  <!-- 3 -->
+  <h3><span class="h-num">3</span>Grain and the bank <span class="see"><a href="#s8">§8</a></span></h3>
+  <ul class="say">
+    <li>All money is grain, counted in millions. The smallest bag is half a million.</li>
+    <li>The <strong>Harvest Pile</strong> is the bank, run by the Gentry. It pays harvests and takes fines.</li>
+    <li class="must">The Pile is <strong>not</strong> the Emperor's money. Tax goes into the Emperor's own reserve, which pays for Public Works and salaries.</li>
+    <li>Any fraction (tax, commission, a half or a third) <strong>rounds down</strong> to the half million, in the payer's favour.</li>
+  </ul>
+
+  <!-- 4 -->
+  <h3><span class="h-num">4</span>A round is a year <span class="see"><a href="#s5">§5</a></span></h3>
+  <ol class="steps">
+    <li><span class="who">Scholar</span><span><strong>I Ching.</strong> Turn a card, read it, apply population changes and personal disasters.</span></li>
+    <li><span class="who">Gentry</span><span><strong>Harvest.</strong> Pay everyone from the Pile, plus Public Works bonuses.</span></li>
+    <li><span class="who">Peasants</span><span><strong>Rent</strong> to the Gentry, at least 5, but only if the Gentry asks.</span></li>
+    <li><span class="who">Emperor</span><span><strong>Tax declared</strong>: one rate, 10–90%, the same for everyone.</span></li>
+    <li><span class="who">Official</span><span><strong>Tax paid</strong> on this year's income, to the Emperor. Negative income pays nothing.</span></li>
+    <li><span class="who">Emperor</span><span><strong>Public Works</strong>: build one project. Cost shares and land purchases are negotiated now.</span></li>
+    <li><span class="who">All, in order</span><span><strong>Auction</strong>: each province sells one realia. The Warlord raids instead.</span></li>
+    <li><span class="who">Provinces</span><span><strong>Soldiers</strong>: after the Warlord's, bought soldiers move one square.</span></li>
+    <li><span class="who">Emperor</span><span><strong>Salaries</strong>: at least 5 each to the Official and the Scholar.</span></li>
+  </ol>
+  <ul class="say">
+    <li class="must"><strong>Round One starts at step 4.</strong> The 60 everyone holds was the harvest, and no card is turned.</li>
+  </ul>
+
+  <!-- 5 -->
+  <h3><span class="h-num">5</span>Why everyone ends up hungry <span class="see"><a href="#s7">§7</a> · <a href="#s15">§15</a></span></h3>
+  <ul class="say">
+    <li><strong>Income = harvest + Public Works bonuses − consumption.</strong> Read it off the table in your booklet.</li>
+    <li class="must">The harvest is <strong>fixed</strong>: 100 / 75 / 50 for good, average and bad (the Warlord 40 / 30 / 20). The size of your province on the map changes nothing.</li>
+    <li class="must">Consumption grows with population. When a card doubles the population, everyone's consumption doubles and nobody's harvest does.</li>
+    <li>Five of the twenty cards raise the population (three double it, two add half), up to ×6. The deck is never reshuffled: it is the game's clock.</li>
+    <li>When a card calls a <strong>personal disaster</strong>, play your booklet's next one, in order 1 → 2 → 3, then start again. No choosing.</li>
+  </ul>
+
+  <!-- 6 -->
+  <h3><span class="h-num">6</span>Realia: how you climb <span class="see"><a href="#s10">§10</a> · <a href="#s11">§11</a></span></h3>
+  <ul class="say">
+    <li>Each upper-class and peasant province makes one kind of realia and must <strong>auction one piece every round</strong> until its stock is gone. Minimum bid 2.</li>
+    <li>The seller keeps <strong>a quarter</strong> of the price; the rest goes to the Pile. <strong>The Emperor never bids.</strong></li>
+    <li class="must">A bought or traded piece goes onto a square <strong>in the buyer's province at once</strong>, and stays there. On the board it can be raided.</li>
+    <li>Your <strong>objective</strong> is a set of other people's realia plus 20 in grain. Your booklet lists it.</li>
+    <li>Complete it and you may swap seats: take the throne (Official, Gentry, Scholar or Warlord) or replace another player your booklet names. The displaced player draws 60 from the Pile and plays their new character.</li>
+    <li class="must">A <strong>Peasant can't become Emperor directly</strong>. Climb into an upper-class seat first, then complete that seat's set.</li>
+    <li>At 4–5 players you also hold a pair of a realia you'll never need. Sell it: someone else does need it.</li>
+  </ul>
+
+  <!-- 7 -->
+  <h3><span class="h-num">7</span>Public Works: the way out <span class="see"><a href="#s12">§12</a></span></h3>
+  <ul class="say">
+    <li>The Emperor builds <strong>one project a round</strong>. Several sections of the same work count as one project.</li>
+    <li>Canal sections add 10 a round to their province; the <span class="piece"><img src="images/irrigation.svg" alt="">irrigation system</span> 10; each <span class="piece"><img src="images/reservoir.svg" alt="">Reservoir</span> 20. A bonus starts with the <strong>next</strong> round's harvest.</li>
+    <li>The <span class="piece"><img src="images/summer-palace.svg" alt="">Summer Palace</span> comes before the Wall and the Province 1 <span class="piece"><img src="images/grand-canal.svg" alt="">canal</span>; the <span class="piece"><img src="images/winter-palace.svg" alt="">Winter Palace</span> before the <span class="piece"><img src="images/grand-canal.svg" alt="">canal</span> in Provinces 4, 5 and 6. In a round with no system to build, the Emperor builds the <span class="piece"><img src="images/marble-pagoda.svg" alt="">Marble Pagoda</span>.</li>
+    <li>The crown pays alone for the <span class="piece"><img src="images/grand-canal.svg" alt="">canal</span> in 5 and 6 and the <span class="piece"><img src="images/reservoir.svg" alt="">Reservoir</span> in 7. <strong>Everything else is haggled</strong> between the Emperor and the province.</li>
+    <li>Building every work owed at this table <strong>ends the game</strong>. Works in empty provinces aren't owed.</li>
+  </ul>
+
+  <!-- 8 -->
+  <h3><span class="h-num">8</span>New harvest squares <span class="see"><a href="#s13">§13</a></span></h3>
+  <ul class="say">
+    <li class="must">Locked until <strong>your population has doubled</strong>. Provinces 2 and 3 also need all four Wall links above them.</li>
+    <li>Then buy any number, any round: 20 each from the Pile, +20 every round after. Share the cost with the Emperor, who will want a share of the harvest.</li>
+    <li>They're the best investment in the game, and the only income that keeps up with population.</li>
+  </ul>
+
+  <!-- 9 -->
+  <h3><span class="h-num">9</span>The Warlord and soldiers <span class="see"><a href="#s14">§14</a></span></h3>
+  <p class="legend">Skip at 4 and 7 players: there is no Warlord.</p>
+  <ul class="say">
+    <li>Every soldier, the Warlord's too, moves <strong>one square a round</strong>, diagonals allowed. Nobody stands in the sea.</li>
+    <li>A Warlord soldier stepping onto an un-raided province square <strong>raids</strong> it: 5 tribute, 10 in Province 1. That square can never be raided again.</li>
+    <li>Raiding realia: the Warlord takes 5, the piece, or its cost. Raiding a palace: the Emperor pays its full cost, 20.</li>
+    <li>Crossing a river or a built public work costs the Warlord 5 a soldier, paid to that province.</li>
+    <li>The Warlord <strong>must sell</strong> soldiers to anyone, at 20 each, keeping a quarter.</li>
+    <li class="must">A bought soldier <strong>can't move until the Warlord has raided your province</strong>, and then moves after the Warlord's. Capture is straight only, never diagonal.</li>
+    <li>The Warlord's objective: raid a different piece of realia from each player. Then they may take any seat, the throne included.</li>
+  </ul>
+
+  <!-- 10 -->
+  <h3><span class="h-num">10</span>Running out of grain <span class="see"><a href="#s8">§8</a> · Note 7</span></h3>
+  <ul class="say">
+    <li>Can't pay? First sell realia back to the Pile at 2 a piece. Still short, and you're <strong>in debt</strong> to the Pile.</li>
+    <li>In debt you can't bid, buy, trade, give grain, pay toward works, buy soldiers or change seats. Everything you receive pays the debt first.</li>
+  </ul>
+
+  <!-- 11 -->
+  <h3><span class="h-num">11</span>Revolt and Chaos <span class="see"><a href="#s16">§16</a></span></h3>
+  <ul class="say">
+    <li>Anyone may revolt at any time if <strong>two other players agree</strong> the Emperor is guilty of one of the causes: unjust, taxes too high, reserve too low, works too slow, can't control the Warlord, won't fund new land. Or any player is in debt.</li>
+    <li>Revolt brings <strong>Chaos</strong>: no tax, salaries or building until the table acclaims a new Emperor, the one with the most grain, friends or soldiers. Harvests still come, and the Warlord still rides.</li>
+    <li>This is how the table polices the Emperor. There's no other referee.</li>
+  </ul>
+
+  <!-- 12 -->
+  <h3><span class="h-num">12</span>How it ends <span class="see"><a href="#s18">§18</a> · <a href="#s19">§19</a></span></h3>
+  <ul class="say">
+    <li><strong>Survival</strong>: every work owed is built. Or <strong>collapse</strong>: the table can't cope any more, and nobody wins.</li>
+    <li>Compare your seat now with the seat you drew. A lower number is a win, the same is survival, a higher number is a loss. An Emperor still on the throne wins; a Warlord who got into any province wins.</li>
+    <li>Ties go to the bigger grain pile. Agreed a short game? It ends after eight rounds, scored the same way.</li>
+  </ul>
+
+  <h3>By player count</h3>
+  <table>
+    <thead><tr><th>Players</th><th>Provinces</th><th>Say also</th></tr></thead>
+    <tbody>
+      <tr><td class="n">4</td><td>1–4, or 1 and the three Peasants</td><td>No Warlord: skip part 9. In the peasant game nobody pays rent, and the Emperor names a banker, a tax collector and a card reader.</td></tr>
+      <tr><td class="n">5</td><td>Either four, plus the Warlord</td><td>The Warlord has 2 soldiers.</td></tr>
+      <tr><td class="n">6</td><td>1, 2, 3, the Warlord, two Peasants</td><td>No Scholar: the Emperor appoints a card reader and pays them the Scholar's salary. You need one piece from each other realia province.</td></tr>
+      <tr><td class="n">7</td><td>1–7</td><td>No Warlord: skip part 9. You need one piece of every realia but your own.</td></tr>
+      <tr><td class="n">8</td><td>All eight</td><td>The Warlord has 4 soldiers. Every work in the book is owed.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="cols">
+    <div>
+      <h4>Leave to the booklets</h4>
+      <ul class="say plain">
+        <li>Each player's exact objective and who they may replace</li>
+        <li>Their three personal disasters</li>
+        <li>Their own income table and works owed</li>
+        <li>Their personality, word for word</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Before the first card</h4>
+      <ul class="say">
+        <li>Give everyone time to read their booklet: allow about 45 minutes</li>
+        <li>A full game runs 5–8 hours at 8 players. Agree now if you want the short game</li>
+        <li>Deals can start now: nothing waits for a step</li>
+      </ul>
+    </div>
+  </div>
 
   <hr style="border:0;border-top:1.5px solid var(--ink);margin:2.5rem 0 1.2rem">
   <p style="font-family:var(--mono);font-size:.8rem;line-height:1.9;color:var(--ink-soft)">

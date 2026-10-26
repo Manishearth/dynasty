@@ -4,7 +4,7 @@
 
 The goal is a modern, unofficial revival:
 
-1. **A modern rulebook** (`rulebook.html`). General concepts first (Part One), then one section per province (Part Two), then appendices: setup by player count, a worked round, reference cards, and editor's notes and rulings.
+1. **A modern rulebook** (`rulebook.html`). General concepts first (Part One), then one section per province (Part Two), then appendices: setup by player count, a worked round, reference cards, editor's notes and rulings, and an explainer's cheat sheet.
 2. **A single list of rulings** (`RULINGS.md`). Every question the originals leave open, how it was settled and why, including the assumptions the playthrough engine makes, plus the open questions waiting for Manish.
 3. **Annotated playthroughs** (`playthrough.html`). Five independent games played by the same eight friends, each in the province their name puns on, on the real board, shown year by year with a Setup tab first. Each line is an action or a piece of in-character dialogue, and hovering shows what the players were thinking. A board, an objectives tracker, public works and player panels follow along.
 4. **Reusable, copyright-clean assets.** A redrawn map (`map.svg`, `map.json`), a reworded I Ching card list (`i-ching.html`, `i-ching.json`), printable reference cards (`reference-cards.html`), and piece glyphs (`images/`).

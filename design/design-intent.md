@@ -14,7 +14,7 @@ These are Manish's standing preferences, gathered from the conversations. Treat 
 ## The rulebook (`rulebook.html`)
 
 **Structure and voice**
-- A modern rulebook: general concepts first (Part One, Sections 1–19), then one section per province (Part Two, Sections 20–27), then appendices. A: setting up by player count. B: a worked round. C: player reference cards. D: editor's notes and rulings.
+- A modern rulebook: general concepts first (Part One, Sections 1–19), then one section per province (Part Two, Sections 20–27), then appendices. A: setting up by player count. B: a worked round. C: player reference cards. D: editor's notes and rulings, followed by tables of the clarifications and I Ching readings from `RULINGS.md`. E: the explainer's cheat sheet, a checklist of what to tell new players, in teaching order.
 - Manish's own wording, not the booklets' (see copyright in `project.md`). Short original quotes sit in `.orig` blocks with a `<cite>`.
 - **No gendered pronouns in the rulebook.** Use "you", "the player" or singular "they". (The playthroughs are different: there the players are people with names.)
 - Don't add text about mobile UI to documents. The page should just work on phones without saying so.
