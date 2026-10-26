@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Generate reference-cards.html: two-sided, half-letter reference cards.
 
-One general card (turn order, realia, money, the Harvest Pile, public works)
-and one card per province (income table, duties, objective, what you are owed,
+One general card (turn order, realia, money, the Harvest Pile, public works),
+one "Running the round" card (a script for whoever runs the round) and one card per province (income table, duties, objective, what you are owed,
 new land, personal disasters). Numbers follow rulebook.html.
 
 Run from the repo root:  python3 tools/build_reference.py
@@ -53,13 +53,13 @@ TURN = [
     ("Scholar", "I Ching",
      "Turn the top card and read it aloud. Apply any population change and any Personal Disasters it calls for."),
     ("Gentry", "Harvest",
-     "Pay every player the harvest the card names, from the Harvest Pile, plus what their Public Works add."),
+     "Pay every player the harvest the card names, from the Harvest Pile, plus what their Public Works and new harvest squares add."),
     ("Peasants", "Rent",
      "Each Peasant pays the Gentry at least 5 — only if the Gentry asks."),
     ("Emperor", "Tax declared",
      "One percentage for everyone, 10% to 90%."),
     ("Official", "Tax paid",
-     "Everyone pays that share of this year's income to the Official, who hands it to the Emperor. No tax on a loss."),
+     "Everyone but the Emperor pays that share of this year's harvest income to the Official, who hands it to the Emperor. No tax on a loss."),
     ("Emperor", "Public Works",
      "Build one project. Cost-shares and new harvest squares are negotiated and bought now."),
     ("All, from Province 1 up", "Auction",
@@ -72,7 +72,7 @@ TURN = [
 
 MONEY = [
     ("Harvest", "Good 100 · average 75 · bad 50. Warlord 40 · 30 · 20."),
-    ("Tax", "10–90% of income, set by the Emperor. Nothing owed on a loss."),
+    ("Tax", "10–90% of harvest income only. None on a loss or from the Emperor."),
     ("Rent", "5 or more from each Peasant to the Gentry, if demanded."),
     ("Salaries", "5 or more each to the Official and the Scholar."),
     ("Auction", "Minimum bid 2 (the seller may set it higher). Seller keeps 25%; 75% goes to the Pile. The Emperor never bids."),
@@ -100,6 +100,62 @@ WORKS = [
     ("Reservoir", "7", "60", "+20", "Emperor pays"),
 ]
 
+# The "Running the round" card: (step, who, what to say, what to check).
+SCRIPT = [
+    ("I Ching", "Scholar",
+     "Scholar, turn the top card and read it to us.",
+     "The population counter moved, if it changed. Everyone knows their harvest. Any Personal Disasters and levies are paid to the Pile."),
+    ("Harvest", "Gentry",
+     "Gentry, pay out the harvest.",
+     "Everyone has their grain: harvest, + Public Works bonuses, + 20 per new harvest square, − what their people eat. Anyone short sells realia back at 2, then goes into debt."),
+    ("Rent", "Peasants",
+     "Gentry, are you asking for rent?",
+     "Each Peasant asked has paid at least 5. Not asked, not owed."),
+    ("Tax declared", "Emperor",
+     "Emperor, what is the tax this year?",
+     "One rate for everyone, 10% to 90%."),
+    ("Tax paid", "Official",
+     "Pay the Official your share of this year’s harvest income.",
+     "Harvest income only: no rent, salaries, commissions or tolls. Rounded down to the half million. A loss pays nothing; the Emperor pays none; the Warlord may refuse. The Official hands it all over."),
+    ("Public Works", "Emperor",
+     "Emperor, what are you building?",
+     "One project: any number of sections of one work. Palaces before what needs them; nothing else built means the Marble Pagoda. Cost shares paid; new harvest squares bought from the Pile."),
+    ("Auction", "Provinces 2 to 7, in order",
+     "Province 2, what are you selling?",
+     "One piece each; minimum bid 2. The Emperor never bids. Seller keeps ¼, rounded down to the half million; the rest to the Pile. The buyer places it at once. Then the Pile auctions anything sold back to it. The Warlord raids instead."),
+    ("Soldiers", "Provinces",
+     "Anyone moving soldiers?",
+     "Only after the Warlord’s have moved; one square each. A bought soldier stays put until its province has been raided."),
+    ("Salaries", "Emperor",
+     "Emperor, pay the Official and the Scholar.",
+     "At least 5 each."),
+]
+
+ROUND_ONE = [
+    "No I Ching card and no harvest: start at step 3, rent.",
+    "The 60 everyone starts with counts as the year’s harvest income, so it is what tax is charged on.",
+    "Everything from rent onward runs as normal, the auction and the Warlord’s first raids included.",
+]
+CHAOS = [
+    "<b>Stopped:</b> no tax, no salaries, no Public Works, and so no new harvest squares (no Emperor to share the cost).",
+    "<b>Still on:</b> harvests are paid, and the Warlord still rides. The fallen Emperor keeps Province 1 for now.",
+    "It ends when the table accepts a new Emperor (the most grain, friends or soldiers, or a mix), even mid-round: the new Emperor then declares tax, builds and pays salaries that round.",
+]
+END_CHECKS = [
+    "The population counter shows the current figure.",
+    "Works built this round add to harvests from <b>next</b> round.",
+    "Who is in debt? Until it’s paid they can’t bid, trade realia, give grain, share costs, buy soldiers or change seats, and everything they receive pays it first.",
+    "Realia sold back to the Pile goes up at the next auction. Realia returned on a seat change goes home, to be sold again.",
+    "Is every public work owed now built? Then the game is over: the reign was glorious.",
+]
+ANYTIME = [
+    "Trade, bribe, threaten and make deals. No deal is binding.",
+    "Buy soldiers from the Warlord: 20 each.",
+    "Sell realia back to the Pile for 2.",
+    "Keep your grain secret, or be cagey about it.",
+    "Revolt, if two other players agree the Emperor has failed.",
+]
+
 # --------------------------------------------------------------------------
 # Per-province data
 # --------------------------------------------------------------------------
@@ -121,7 +177,7 @@ REPLACE = {
 
 DUTIES = {
     1: ["Declare the tax: one rate, 10–90%, for everyone.",
-        "Build one Public Works project. If you build none of the systems, build the Marble Pagoda.",
+        "Build one Public Works project. In a round you build nothing else, build the Marble Pagoda.",
         "At the end of the round, pay the Official and the Scholar at least 5 each.",
         "Settle disputes. Negotiate with the upper class first.",
         "Never bid at an auction."],
@@ -149,7 +205,7 @@ DUTIES = {
         "Any other square, canal and reservoir squares included, is an ordinary raid, and the work is undamaged.",
         "Sell soldiers to anyone who asks: 20 each, you keep 25%.",
         "Pay 5 per soldier that crosses a river or a public work, the Great Wall included. The Wall stands outside the provinces, so it can't be raided.",
-        "Pay your tax. You hold no realia and never auction."],
+        "Pay your tax, or refuse: only soldiers or politics can make you. You hold no realia and never auction."],
 }
 
 OWED = {
@@ -264,9 +320,11 @@ def general_front():
                     for a, b in ((2, 5), (3, 6), (4, 7))], "realia")
     return (head("The round", "Everyone · one round is one year", "general", "front") +
             '<section><h3>Turn order</h3>'
-            '<p class="small">Round One starts at step 4: the 60 everyone holds is the first harvest.</p>'
+            '<p class="small">Round One has no I Ching and no harvest, so it starts at step 3, rent. '
+            'Its taxable income is the 60 everyone starts with.</p>'
             f'<ol class="turn">{steps}</ol>'
-            '<p class="anytime"><b>At any time:</b> trade, bribe, threaten, make deals. '
+            '<p class="anytime"><b>At any time:</b> trade, bribe, threaten, make deals; no deal is binding. '
+            'You may keep your grain secret. '
             'Revolt needs two other players to agree the Emperor has failed.</p></section>'
             f'<section><h3>Realia</h3>{realia}</section>' + foot())
 
@@ -284,6 +342,26 @@ def general_back():
             '<p class="small">The Gentry runs the Pile. Taxes are not the Pile: they go to the Emperor\'s own reserve.</p></section>'
             f'<section><h3>Public Works</h3>{works}'
             '<p class="small">The Emperor builds one project a round; any number of sections of one work counts as one project.</p></section>'
+            + foot())
+
+
+def running_front():
+    steps = "".join(
+        f'<li><span class="n">{i}</span><div><b>{E(what)}</b><span class="who">{E(who)}</span>'
+        f'<p class="say">“{E(say)}”</p><p class="check">{E(check)}</p></div></li>'
+        for i, (what, who, say, check) in enumerate(SCRIPT, 1))
+    return (head("Running the round", "Read each line aloud, then check before moving on", "general", "front") +
+            f'<ol class="turn script">{steps}</ol>' + foot())
+
+
+def running_back():
+    def ul(items, cls=""):
+        return f'<ul class="{cls}">' + "".join(f"<li>{i}</li>" for i in items) + "</ul>"
+    return (head("Running the round", "Round One, Chaos and the end of a round", "general", "back") +
+            f'<section><h3>Round One</h3>{ul(ROUND_ONE, "duties")}</section>'
+            f'<section><h3>During Chaos</h3>{ul(CHAOS, "duties")}</section>'
+            f'<section><h3>Before the next round</h3>{ul(END_CHECKS, "checks")}</section>'
+            f'<section class="anytime"><b>Any time, any step</b>{ul(ANYTIME, "duties")}</section>'
             + foot())
 
 
@@ -342,7 +420,8 @@ def player_back(p):
             f'<section><h3>Your income each year</h3>{inc}'
             '<p class="small">Income = harvest − what your people eat + what your works add'
             + ('' if p == 8 else ' + 20 per new harvest square you own') + '. '
-            'Population ×1 is 100M nationally; ×6 is 600M, the ceiling.</p></section>'
+            + ('' if p == 1 else 'This is what you pay tax on. ')
+            + 'Population ×1 is 100M nationally; ×6 is 600M, the ceiling.</p></section>'
             f'<section><h3>Public works owed to you</h3>{owed}</section>' + nl
             + foot())
 
@@ -402,6 +481,13 @@ dl.money{display:grid;grid-template-columns:auto 1fr;gap:.015in .1in;margin:0;fo
 dl.money dt{font-weight:700;white-space:nowrap}dl.money dd{margin:0}
 ul.duties{margin:0;padding-left:1.1em}ul.duties li{margin:0 0 .025in}
 .char{font-style:italic;font-size:8.8pt;color:#3A372E;margin:0 0 .1in}
+ol.script li{padding:.04in 0}
+ol.script p.say{font-style:italic;font-size:9pt;color:var(--ink);margin:.015in 0 0}
+ol.script p.check{font-size:8.2pt;color:var(--soft);margin:.01in 0 0}
+ul.checks{list-style:none;margin:0;padding:0}
+ul.checks li{position:relative;padding-left:1.4em;margin:0 0 .04in}
+ul.checks li::before{content:"";position:absolute;left:0;top:.15em;width:.75em;height:.75em;border:1.2px solid var(--ink)}
+section.anytime{padding:.07in .1in}section.anytime ul{margin-top:.03in}
 ol.dis{margin:0;padding-left:1.3em}ol.dis li{margin:0 0 .02in}
 ol.dis li span{margin-right:.4em}ol.dis li b{white-space:nowrap}
 .cf{margin-top:auto;font:6.6pt var(--mono);letter-spacing:.08em;color:#9A9384;text-align:center;padding-top:.05in}
@@ -425,7 +511,8 @@ ol.dis li span{margin-right:.4em}ol.dis li b{white-space:nowrap}
 
 
 def build():
-    cards = [("General", general_front(), '<div class="dense">' + general_back() + '</div>')]
+    cards = [("General", general_front(), '<div class="dense">' + general_back() + '</div>'),
+             ("Running the round", running_front(), running_back())]
     cards += [(f"Province {p} · {ROLE[p]}", player_front(p), player_back(p)) for p in range(1, 9)]
 
     screen = "".join(
@@ -434,7 +521,8 @@ def build():
 
     # Print: two cards per landscape letter sheet. The back sheet holds the same two
     # cards in swapped order, so they line up when printed duplex, flipped on the short edge.
-    order = [cards[0], cards[0]] + cards[1:]
+    # Sheet 1: two general cards. Sheet 2: two "Running the round" cards. Then the provinces.
+    order = [cards[0], cards[0], cards[1], cards[1]] + cards[2:]
     sheets = []
     for i in range(0, len(order), 2):
         a, b = order[i], order[i + 1]
@@ -452,13 +540,15 @@ def build():
 <body>
 <div class="screen">
 <div class="wrap">
-<header class="top"><h1>Reference Cards</h1><p>Dynasty (1969) · one general card and one card per province, two-sided</p></header>
+<header class="top"><h1>Reference Cards</h1><p>Dynasty (1969) · a general card, a card for running the round, and one card per province, two-sided</p></header>
 <div class="intro">
 <p>Every player gets the <b>general card</b> (the round, the realia, the money and the public works) and the
 <b>card for their own province</b> (income table, duties, objective, what they are owed, personal disasters).
-Each card is half a letter sheet, front and back.</p>
+Whoever runs the round, usually the Emperor or whoever is teaching the game, also gets <b>Running the round</b>:
+a script for each step, with what to check before moving on. Each card is half a letter sheet, front and back.</p>
 <p><b>To print:</b> print this page on letter paper, landscape, <b>double-sided, flipped on the short edge</b>,
-with background graphics on. You get five sheets: two general cards, then provinces 1–2, 3–4, 5–6 and 7–8.
+with background graphics on. You get six sheets: two general cards, two Running the round cards, then provinces
+1–2, 3–4, 5–6 and 7–8.
 Cut each sheet down the middle. If the backs come out upside down, switch to flipping on the long edge.
 Print the first sheet again for more general cards.</p>
 <p class="small">Figures are in millions of bags of grain and follow the rulebook.</p>

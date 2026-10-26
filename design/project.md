@@ -16,7 +16,7 @@ The repo is `C:\Users\manishearth\dev\dynasty-new`, pushed to GitHub as `Manishe
 - The booklets are © 1969 Onoma Productions. Renewal was automatic for 1964–77 works, so they're under copyright until the end of 2064. The company is defunct, making it an orphan work, but still protected.
 - Rules, mechanics, roles and the grid layout are free to use. The specific prose, the card flavour text and the artwork are not.
 - So: the map is a redrawn SVG, not a traced photo. The I Ching cards are reworded in `i-ching.json` with new flavour. The playthrough shows only the reworded card text (`cards.py` takes its text from `i-ching.json`). Scans and photos never go into this repo.
-- The rulebook is Manish's rewrite in his own words. It still has some short quotes from the originals (`.orig` blocks, and the original wording in Appendix D). Manish is aware of this, and it's his call.
+- The rulebook is Manish's rewrite in his own words. It still has some short quotes from the originals (`.orig` blocks, and the original wording in Appendix F). Manish is aware of this, and it's his call.
 
 ## Repository map
 

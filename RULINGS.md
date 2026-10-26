@@ -4,7 +4,7 @@ Every rules question this project has settled, in one place. The 1969 game sprea
 
 **Everyone working on this repo, human or Claude, adds their rulings here.** That includes clarifications that never become a numbered rulebook note, and the assumptions the playthrough engine makes. If you decide how a rule works, write it down here before you build on it. If a question comes up that you can't settle from the sources, put it under [Open questions](#open-questions) and ask Manish. Don't invent an answer.
 
-Each entry gives the question, the ruling, the reasoning, and where it's recorded. "Note N" means the numbered note in `rulebook.html`: a pink box where the rule applies, repeated in Appendix D with the original wording. Notes are numbered in reading order, so adding one renumbers every later note. When that happens, update this file and every `Note N` reference in `playthrough-sim/`.
+Each entry gives the question, the ruling, the reasoning, and where it's recorded. "Note N" means the numbered note in `rulebook.html`: a pink box where the rule applies, repeated in Appendix F with the original wording. Notes are numbered in reading order, so adding one renumbers every later note. When that happens, update this file and every `Note N` reference in `playthrough-sim/`.
 
 - [Rulebook notes](#rulebook-notes)
 - [Clarifications](#clarifications)
@@ -15,7 +15,7 @@ Each entry gives the question, the ruling, the reasoning, and where it's recorde
 
 ## Rulebook notes
 
-These are the numbered notes, as of this writing. Appendix D has the full text and the original wording.
+These are the numbered notes, as of this writing. Appendix F has the full text and the original wording.
 
 | Note | Question | Ruling |
 |---|---|---|
@@ -23,10 +23,10 @@ These are the numbered notes, as of this writing. Appendix D has the full text a
 | 2 | The can leaves the Warlord out of the seven-player game | It stands. The Warlord's booklet lists armies for 5–6 and 8+ players only |
 | 3 | Who does the Official's, Gentry's and Scholar's jobs when nobody holds the seat? | No Official: the Emperor collects tax or appoints a collector. No Scholar: the Emperor appoints someone to read I Ching and count population, and pays them the 5 salary. No Gentry: the Emperor appoints someone to bank the Harvest Pile, and nobody collects rent |
 | 4 | What about unoccupied provinces? | The crown need not build there (Emperor's booklet). Their realia stays in the box, and no rent is owed for an empty peasant province |
-| 5 | What order does a round go in? | The can's Order of Play, with rents (start of round), salaries (end of round) and provincial soldiers (after the Warlord moves) slotted in from the booklets |
+| 5 | What order does a round go in? | The can's Order of Play, with rents (start of round), salaries (end of round) and provincial soldiers (after the Warlord moves) slotted in from the booklets. Round One skips only the card and the harvest and starts at rent (step 3) |
 | 6 | The printed income tables end at inconsistent populations | Consumption is always proportional to population. Tables are indexed by multiple (×1 to ×6); the cards cap the nation at 600 million, which is ×6 |
 | 7 | What happens when a payment would take a player's grain below zero? | Sell before you sink: sell realia back to the Harvest Pile at 2 each, your choice of pieces, until the payment is covered or you have none left; then the shortfall is a debt to the pile. In debt you can't bid, buy, trade, give grain, pay toward a public work, buy soldiers or change provinces, and grain received pays the debt first. A player in debt counts as facing starvation, so debt is a seventh cause for revolt. Scoring is unchanged. See "Running out of grain" below |
-| 8 | Is tax owed on a negative income? | No |
+| 8 | What is tax charged on? | Harvest income only: harvest + public works + new harvest squares − consumption. Not rent, salaries, commissions, tolls, tribute or deals. Round One's income is the 60 each player starts with. No tax on a negative income, and the Emperor pays none |
 | 9 | What is the extra realia each province starts with at 4–5 players? | A pattern, not a ruling. It's always the one type that province never needs: 2 and 5 swap, and 3 → 6 → 4 → 7 → 3 form a ring |
 | 10 | Is unsold stock on the map? | No. A piece goes on a square in the buyer's province the moment it's bought or traded. Returned pieces rejoin their province's unsold stock. Otherwise the Warlord could raid most of his objective in Round Two |
 | 11 | Can a Peasant become Emperor directly? | No. The peasants' Objectives sections govern over the shared "Becoming Emperor" boilerplate. A Peasant must first take an upper-class seat |
@@ -42,7 +42,7 @@ These are the numbered notes, as of this writing. Appendix D has the full text a
 
 ## Clarifications
 
-These follow from the rules rather than overriding them, so they get a plain sentence in the rulebook (or none) rather than a numbered note. Rulebook Appendix E lists each one in its Clarifications table, and its I Ching table mirrors the card readings below: when you add or change one here, change it there too.
+These follow from the rules rather than overriding them, so they get a plain sentence in the rulebook (or none) rather than a numbered note. Rulebook Appendix G lists each one in its Clarifications table, and its I Ching table mirrors the card readings below: when you add or change one here, change it there too.
 
 ### Raiding a public work
 
@@ -95,7 +95,7 @@ Two readings the playthroughs add, from the booklets' wording: each province dev
 
 **Why.** The Emperor's booklet: "You or Provinces 2 and 3 may develop the New Land below the Great Wall when 4 sections in each Province have been built." So the Emperor is gated too, which the rulebook had missed. "4 sections in each Province" could mean all twelve links, but the Official's and Gentry's booklets gate their land on "all four links", their own, and only the per-province reading lets all three booklets agree. Settled by Manish on 2026-10-25. The playthroughs had Reina buy strip squares with two and three of her links built; both purchases are now sea.
 
-**Recorded in** rulebook Section 13, Province 1's table in Section 20, Appendices B and E, the reference cards, and `playthrough-sim/engine.py` (`buy_land`).
+**Recorded in** rulebook Section 13, Province 1's table in Section 20, Appendices C and G, the reference cards, and `playthrough-sim/engine.py` (`buy_land`).
 
 ### Which Wall links are above which province
 
@@ -103,7 +103,7 @@ Two readings the playthroughs add, from the booklets' wording: each province dev
 
 **Why.** The cloth prints twelve links in a row spelling GREAT WALL, with no province numbers, and the booklets only say "four links above your province". The provinces don't sit neatly under the Wall: links 9–12 (W, A, L, L) are clearly over Province 1, east of the river; Province 2 sits inside the river's northern loop, under only about two links; and Province 3 lies south of Province 2, nowhere under the Wall, so its links stand over the Warlord's land. Twelve links, three provinces and "four links" each leave one split that keeps the provinces in their west-to-east order. Settled by Manish on 2026-10-25.
 
-**Recorded in** rulebook Section 12 and Appendix E, `map.svg` (labels), and `tools/build_map.py` (`WALL_GROUPS`, which writes `above_province` in `map.json`).
+**Recorded in** rulebook Section 12 and Appendix G, `map.svg` (labels), and `tools/build_map.py` (`WALL_GROUPS`, which writes `above_province` in `map.json`).
 
 ### A palace raid counts toward the Warlord's objective
 
@@ -171,7 +171,7 @@ The details, settled by Manish on 2026-10-25:
 
 **Why.** Nothing in the originals covers it. Note 8 covers only tax on a negative income. The hints: the Rice Peasant's fire ("you must borrow grain"), the General Instructions' "deficit spending program", and the peasants who revolt "only if the alternative is death or starvation".
 
-**Recorded in** rulebook Section 8 and Note 7, with the hints in Appendix D, and the seventh cause in Section 16; `playthrough-sim/engine.py` (`sell_back`, `lot(PILE, ...)`, the debt guards).
+**Recorded in** rulebook Section 8 and Note 7, with the hints in Appendix F, and the seventh cause in Section 16; `playthrough-sim/engine.py` (`sell_back`, `lot(PILE, ...)`, the debt guards).
 
 ### Rounding to the half million
 
@@ -179,7 +179,47 @@ The details, settled by Manish on 2026-10-25:
 
 **Why.** The smallest bag in the box is half a million, so a quarter million can't change hands. Rounding in the payer's favour means nobody is ever asked for grain the rules didn't strictly demand. Set by Manish on 2026-10-25.
 
-**Recorded in** rulebook Section 8 (the general rule), restated in Sections 9 (tax), 10 (commission) and 15 (disasters) and in the worked round (Appendix C); `playthrough-sim/engine.py` (`pay_down`).
+**Recorded in** rulebook Section 8 (the general rule), restated in Sections 9 (tax), 10 (commission) and 15 (disasters) and in the worked round (Appendix D); `playthrough-sim/engine.py` (`pay_down`).
+
+### Rent in Round One
+
+**Ruling.** Round One skips only the I Ching card and the harvest, so it starts at step 3: the Peasants pay rent in Round One like every other round.
+
+**Why.** The can says only that the starting 60 "represents a 'good' harvest for the first ROUND" and that "I CHING is NOT consulted during the first ROUND". The Peasants' booklets require rent "at the beginning of EACH ROUND", and the Gentry's "during each ROUND". Nothing excludes Round One, and the worked round already charged it. Checked against the originals and confirmed by Manish on 2026-10-26.
+
+**Recorded in** rulebook Section 5 and Note 5.
+
+### The Warlord may refuse to pay tax
+
+**Ruling.** Allowed. Nothing in the rules can make the western territory pay; refusing is in character, and it changes the Warlord's relationship with everyone else. The Emperor's answers are political: soldiers, alliances, revolt.
+
+**Why.** Manish, 2026-10-26: it "fits in the pastiche / rpg element of the game and is allowed but will of course change the relationship the warlord has with the players." The playthrough engine already skips the Warlord in `taxes()` by default.
+
+**Recorded in** rulebook Section 9.
+
+### Deals are not binding
+
+**Ruling.** No promise, deal or agreement is enforced by the rules. A broken deal is answered at the table: by reputation, by revolt, by the next negotiation. Personalities still bind: the Scholar "always keeps promises".
+
+**Why.** Manish, 2026-10-26.
+
+**Recorded in** rulebook Sections 5 and 17.
+
+### Grain may be kept secret
+
+**Ruling.** A player may keep their grain out of sight and be as cagey about it as their personality allows, including lying about it. Nobody is required to be sketchy. The rules count grain only when it changes hands.
+
+**Why.** Manish, 2026-10-26: "This also fits into the pastiche of the game. Secret is fine, players are allowed to but not required to be sketchy about this. This is in part a role playing game."
+
+**Recorded in** rulebook Section 17.
+
+### The Marble Pagoda is built when nothing else is
+
+**Ruling.** "If you are building none of the systems, you must build the Marble Pagoda" means: in any round the Emperor builds nothing else, the project is the Pagoda. A round that builds only a palace is fine.
+
+**Why.** Read literally, a palace round would also need the Pagoda, which one project a round (Note 13) forbids. All the playthroughs use this reading. Confirmed by Manish on 2026-10-26.
+
+**Recorded in** rulebook Sections 12 and 20, and the reference cards.
 
 ## I Ching cards
 
@@ -255,7 +295,6 @@ Raise these with Manish before relying on an answer.
 - **The strip along the southern river between Provinces 3 and 7.** No dotted border seems to claim it, so `map.json` treats it as the Warlord's undeveloped land. Check against the cloth.
 - **A displaced player's bought soldiers.** When a player is replaced in a seat change, do their soldiers go to the player who replaced them, stay theirs, or return to the Warlord's stock? The booklets don't say. No playthrough needs an answer yet; the engine refuses the case.
 
-- **Does a palace-only round trigger the Pagoda rule?** The Emperor's booklet: "Build one Public Works project. If you are building none of the systems, you must build the Marble Pagoda." The palaces aren't systems (the systems are the Wall, the Canal, the irrigation system and the reservoirs), so read literally, every round that builds the Summer or Winter Palace and no system must also build the Pagoda, which one project a round (Note 13) doesn't allow. All five playthroughs read it as "when you build nothing else, build the Pagoda": a palace may be built in a round without a system, and the Pagoda is built in its own round. Not yet confirmed.
 - **The Warlord's soldiers when he changes seats.** When the Warlord completes his objective and takes another seat (game 5), who commands the Warlord soldiers standing on the board, and the bought soldiers of the player he displaces? Game 5 stops at that moment, so it doesn't need an answer.
 
-(Answered on 2026-10-25 and moved to Clarifications: which rivers charge a toll, and who is paid for crossing a Wall link or canal section.)
+(Answered on 2026-10-25 and moved to Clarifications: which rivers charge a toll, and who is paid for crossing a Wall link or canal section. Answered on 2026-10-26: the Pagoda rule.)

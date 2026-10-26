@@ -4,7 +4,9 @@ What's still to do, what's waiting on Manish, and the known issues. Take an item
 
 ## Waiting on Manish
 
-- **The rules questions in `RULINGS.md`**, especially the Pagoda rule (does a palace-only round have to build the Pagoda?), a displaced player's bought soldiers, and who commands the Warlord's soldiers once he takes the throne. The playthroughs avoid needing an answer to the last two, and read the Pagoda rule as "build it when you'd otherwise build nothing".
+- **The rules questions in `RULINGS.md`**, especially a displaced player's bought soldiers, and who commands the Warlord's soldiers once he takes the throne. The playthroughs avoid needing an answer to either. (The Pagoda rule was settled on 2026-10-26.)
+- **Additions to the province cards**, measured on 2026-10-26 but not built (see `reference-cards.md`): the round as a 3 × 3 grid with the player's own steps tinted, objective slots, an "any time" box, and a one-face glossary card. Only the peasant fronts have room for all three province additions; the Warlord's front has room for none.
+- **The Running the round card's Chaos box** states three playthrough readings as rules (the deposed Emperor keeps Province 1, no land is bought during Chaos, Chaos can end mid-round). Confirm them, or soften the card.
 - **The strip along the southern river between Provinces 3 and 7**: `map.json` treats it as the Warlord's land. Check against the cloth.
 - **Pun names.** Reina Osorio and Robert Land were floated for a later pun touch-up; nothing has been decided (see `cast.md`).
 
@@ -17,7 +19,7 @@ What's still to do, what's waiting on Manish, and the known issues. Take an item
 ## The rulebook
 
 - **Section 19**: the short-game paragraph ends with `<span class="cost">Note 19</span>`, but `.cost` chips are for sums of money. It should probably be a plain reference. Flag it to the rulebook session rather than fixing it silently.
-- **Appendix B, the worked round**, has the Warlord pay the Rice Peasant a river toll on the way to raid Province 6 in Round One. On the real map no river lies between the desert and Province 6, so the example may want a different province.
+- **Appendix D, the worked round**, has the Warlord pay the Rice Peasant a river toll on the way to raid Province 6 in Round One. On the real map no river lies between the desert and Province 6, so the example may want a different province.
 
 ## The reference cards
 
@@ -27,7 +29,6 @@ See [`reference-cards.md`](reference-cards.md).
 - **Utility Tax.** `RULINGS.md` says the Emperor doesn't pay it. The reworded card in `i-ching.json` and `i-ching.html` (from `tools/build_events.py`) still says "Every province pays the Emperor". Reword it to "every other province", and check the reference cards for the same slip.
 - **Duplex printing is untested.** Print one sheet double-sided before printing all five, and fix the back-sheet order in `build()` if the backs don't line up.
 - **Blank space.** The backs of the peasant and Warlord cards are half empty. Fine as is; ask Manish before filling them.
-- **Link the page** from the rulebook and the README, and decide with Manish whether it replaces rulebook Appendix C.
 
 ## The repo
 

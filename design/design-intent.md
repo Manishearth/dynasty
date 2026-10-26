@@ -14,13 +14,13 @@ These are Manish's standing preferences, gathered from the conversations. Treat 
 ## The rulebook (`rulebook.html`)
 
 **Structure and voice**
-- A modern rulebook: general concepts first (Part One, Sections 1–19), then one section per province (Part Two, Sections 20–27), then appendices. A: setting up by player count. B: a worked round. C: player reference cards. D: editor's notes and rulings, followed by tables of the clarifications and I Ching readings from `RULINGS.md`. E: the explainer's cheat sheet, a checklist of what to tell new players, in teaching order.
+- A modern rulebook: general concepts first (Part One, Sections 1–19), then one section per province (Part Two, Sections 20–27), then appendices. A: setting up by player count. B: teaching as you play, for a table of first-timers. C: the explainer's cheat sheet, what to tell new players and when. D: a worked round. E: a worked seat change. F: editor's notes (the numbered notes with the original wording). G: rulings (the clarifications and I Ching readings from `RULINGS.md`). The per-role reference cards live in `reference-cards.html`, linked from the contents. A one-page rules summary and a round diagram sit before Section 1.
 - Manish's own wording, not the booklets' (see copyright in `project.md`). Short original quotes sit in `.orig` blocks with a `<cite>`.
 - **No gendered pronouns in the rulebook.** Use "you", "the player" or singular "they". (The playthroughs are different: there the players are people with names.)
 - Don't add text about mobile UI to documents. The page should just work on phones without saying so.
 
 **Notes and rulings**
-- Wherever the originals are silent or contradict each other, the ruling appears as a pink `.note` box at the point where it matters: `<div class="note"><b>Note N</b> …</div>`. It appears again in full in Appendix D, with the original wording, so a table can overrule it: `<h3>Note N · Title</h3>`.
+- Wherever the originals are silent or contradict each other, the ruling appears as a pink `.note` box at the point where it matters: `<div class="note"><b>Note N</b> …</div>`. It appears again in full in Appendix F, with the original wording, so a table can overrule it: `<h3>Note N · Title</h3>`.
 - **Number notes in reading order, one number per note.** Adding a note renumbers every later one. Update all cross-references in the rulebook ("see Note 3"), the table in `RULINGS.md`, and the note numbers cited anywhere in `playthrough-sim/` (grep for `Note \d+`).
 - Pink chips (`<span class="cost">`) are **sums of money only**, never note references. The introduction says so.
 
