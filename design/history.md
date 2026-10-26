@@ -136,3 +136,7 @@ The handoff prompt asked for four changes to the playthroughs: the Reservoir nam
   - **Game 4**: the Year 8 card is now a doubling. Rob threatens revolt over cause six; Paddy pays Reina 130 and most of the Wall to keep the game ending. Silke (T16, T17, the Warlord's land), Graham (R25, S26, sea) and Paddy (M26, N26, sea) buy land, the crown paying 10 of each 40. Still the survival ending with Reina at 2.5; verdicts unchanged, and Rob finishes richest with 157.
 - The top-level `README.md` now describes `playthrough.html` as five games, not three (off `open-work.md`).
 
+## The strip below the Wall opens per province (2026-10-25)
+
+- Manish noticed Reina developing the strip below the Wall with the links above her unfinished. The Emperor's booklet: "You or Provinces 2 and 3 may develop the New Land below the Great Wall when 4 sections in each Province have been built." He chose the per-province reading. The engine now gates Province 1's strip squares on its own four links; Reina's purchases in games 1 and 2 moved to the sea (F23–F26 and H25; F23 and F24) with identical ledgers.
+

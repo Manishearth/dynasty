@@ -477,9 +477,9 @@ build("Marble Pagoda", 20, {1:20}, key="Marble Pagoda", at="F17", hover=TH(
  ("Reina","F17, the north-west corner of Province 1, the one square of the throne room his soldiers have never walked toward."),
  ("Rob","She's right. I'd have walked there eventually. I'd have told her first."),
  ("","Reina pays the 20.")))
-buy_land(1, ["E18", "E19", "E20", "E21", "E22"], {1:100}, "New land: Reina buys five squares of the strip below the Wall, E18 to E22, for Province 1.", TH(
- ("Reina","A hundred, all from the crown, because it's the crown's own land. A hundred a year from next year: the throne room stops starving. Five squares in a row along the top of my province, under the Wall I haven't finished."),
- ("Rob","The strip under the Wall. My soldier walked through there in year one. It's not my land, but I'd like it noted that it was my road.")))
+buy_land(1, ["F23", "F24", "F25", "F26", "H25"], {1:100}, "New land: Reina buys five squares of sea for Province 1, along the coast at F23 to F26 and H25.", TH(
+ ("Reina","A hundred, all from the crown, because it's the crown's own land. A hundred a year from next year: the throne room stops starving. The strip under the Wall stays shut to me until my own four links stand, and two are built. So, the sea."),
+ ("Rob","The sea. The one part of the board I can't walk onto. She's learning.")))
 buy_land(4, ["K25", "J25", "K26"], {4:45, 1:15}, "New land: Silke buys three squares of sea for Province 4, at K25, J25 and K26, the crown paying 15.", TH(
  ("Silke","Forty-five from me. The sea's the safest land on the board: no soldier can walk on water. Sixty a year from next year, out of reach of everyone."),
  ("Rob","The sea. She's bought the one ground I can't stand on.")))

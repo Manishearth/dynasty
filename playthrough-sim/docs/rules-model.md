@@ -54,7 +54,7 @@ The build stops with an error naming the player and the problem if a script:
 | Places bought or traded realia anywhere but an empty, un-raided square of the owner's province | Section 10, Note 10 |
 | Puts a palace outside Province 1, or a cut-out of the wrong size or outside its province, or either on realia | Sections 2 and 12 |
 | Builds more than four Wall links above a province or two canal sections in one | Section 12 |
-| Buys new land before the population has doubled, before the Wall above Provinces 2 or 3 is finished, in the wrong region, not touching the province, or without the Emperor sharing the cost | Section 13 |
+| Buys new land before the population has doubled, on the strip below the Wall before the four links above the province are finished (Provinces 1, 2 and 3), in the wrong region, not touching the province, or without the Emperor sharing the cost | Section 13 |
 | Lets a population card pass its own cap (two doublings, one increase by half, 600 million) | The cards |
 | Auctions a piece the seller doesn't have, or lets the seller or the Emperor win a lot | Section 10 |
 | Makes a payment that would put a player in debt while they still hold realia | Note 7 |

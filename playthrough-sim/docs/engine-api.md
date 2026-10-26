@@ -154,7 +154,7 @@ Use the names `"Province 2 Irrigation System"`, `"Province 3 Reservoir"` and `"P
 
 ### `buy_land(seat, squares, split, text, hover=None)`
 
-Province `seat` buys new harvest squares from the Harvest Pile (Section 13): 20 each, any number, in the Public Works step, alongside the round's one project. `split` is `{seat: amount}` summing to 20 per square, and the Emperor must pay some part of every province's purchase. The engine refuses it before the population has doubled, for Provinces 2 and 3 before all four Wall links above them stand, on a region the province's booklet doesn't name (`LAND_WHERE`), or on a square that doesn't touch the province or land it has already bought. Each square adds 20 to the province's harvest from the next round, and becomes part of the province: a Warlord soldier stepping onto it raids it.
+Province `seat` buys new harvest squares from the Harvest Pile (Section 13): 20 each, any number, in the Public Works step, alongside the round's one project. `split` is `{seat: amount}` summing to 20 per square, and the Emperor must pay some part of every province's purchase. The engine refuses it before the population has doubled, on the strip below the Wall before all four links above the province stand (Provinces 1, 2 and 3), on a region the province's booklet doesn't name (`LAND_WHERE`), or on a square that doesn't touch the province or land it has already bought. Each square adds 20 to the province's harvest from the next round, and becomes part of the province: a Warlord soldier stepping onto it raids it.
 
 ### `owed()`, `built_count(name)`, `all_built()`
 

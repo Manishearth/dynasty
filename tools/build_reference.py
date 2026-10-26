@@ -183,7 +183,7 @@ OWED_NOTE = {
 }
 
 NEWLAND = {
-    1: "That is 28 million people. Build on the strip below the Wall or on the sea.",
+    1: "That is 28 million people. Build on the sea, or on the strip below the Wall once your four Wall links stand.",
     2: "That is 24 million people, and all four Wall links above you must stand. Build on the strip below the Wall.",
     3: "That is 24 million people, and all four Wall links above you must stand. Build on the strip below the Wall.",
     4: "That is 24 million people. Build on the sea.",

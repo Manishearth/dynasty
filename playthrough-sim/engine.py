@@ -441,8 +441,9 @@ LAND_WHERE = {1:"nS", 2:"n", 3:"n", 4:"S", 5:"S", 6:"S8", 7:"8"}   # where each 
 def buy_land(s, squares, split, text, hover=None):
     """Province s buys new harvest squares from the Harvest Pile (Section 13), 20 each,
     any number in a round, alongside the round's one public work. Only once the
-    population has at least doubled, and for Provinces 2 and 3 once all four Wall links
-    above them stand. split: {seat: amount} summing to 20 per square; the Emperor must
+    population has at least doubled, and the strip below the Wall only once all four
+    links above the province stand (Provinces 1, 2 and 3; Province 1 may take the sea
+    before that). split: {seat: amount} summing to 20 per square; the Emperor must
     share the cost. Each square sits on the undeveloped land or sea the province's
     booklet names, touching the province or a square it has already bought, and adds
     20 to the province's harvest from the next round. It becomes part of the province:
@@ -458,6 +459,8 @@ def buy_land(s, squares, split, text, hover=None):
     mine = set(squares_of(s))
     for q in squares:
         assert region(q) in LAND_WHERE[s], f"Province {s} develops {LAND_WHERE[s]!r} squares, not {q}"
+        if s == 1 and region(q) == "n":
+            assert pw["wall"][1] == 4, f"the strip below the Wall opens to Province 1 only once its four links stand ({q})"
         assert q not in land, f"{q} has already been developed"
         assert any(dist(q, m) == 1 for m in mine), f"{q} doesn't touch Province {s} or its new land"
         mine.add(q)

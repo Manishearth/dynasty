@@ -76,7 +76,7 @@ These follow from the rules rather than overriding them, so they get a plain sen
 
 ### New harvest squares
 
-**Ruling.** Only after that province's population has doubled (24 million for Provinces 2–4, 28 million for 1 and 5–7). Provinces 2 and 3 must also have all four Wall links above them built. Each square costs 20 from the Harvest Pile and yields 20 every round afterwards, starting with the next round's harvest; the cost and the yield are negotiated with the Emperor.
+**Ruling.** Only after that province's population has doubled (24 million for Provinces 2–4, 28 million for 1 and 5–7). The strip below the Wall opens to Provinces 1, 2 and 3 only once all four Wall links above that province are built (see below); Province 1 may develop the sea before then. Each square costs 20 from the Harvest Pile and yields 20 every round afterwards, starting with the next round's harvest; the cost and the yield are negotiated with the Emperor.
 
 The details, settled by Manish on 2026-10-25:
 
@@ -88,6 +88,14 @@ The details, settled by Manish on 2026-10-25:
 Two readings the playthroughs add, from the booklets' wording: each province develops the ground its booklet names (2 and 3 the strip below the Wall, 4 and 5 the sea, 6 the sea or the Warlord's land, 7 the Warlord's land, 1 the strip or the sea), and each square must touch the province or a square it has already bought.
 
 **Recorded in** rulebook Section 13, every province's reference card, and `playthrough-sim/engine.py` (`buy_land`).
+
+### The strip below the Wall opens province by province
+
+**Ruling.** A province may develop the strip below the Wall only once the four links above *that* province stand. This applies to Province 1 as well as 2 and 3. Province 1 may develop the sea before then.
+
+**Why.** The Emperor's booklet: "You or Provinces 2 and 3 may develop the New Land below the Great Wall when 4 sections in each Province have been built." So the Emperor is gated too, which the rulebook had missed. "4 sections in each Province" could mean all twelve links, but the Official's and Gentry's booklets gate their land on "all four links", their own, and only the per-province reading lets all three booklets agree. Settled by Manish on 2026-10-25. The playthroughs had Reina buy strip squares with two and three of her links built; both purchases are now sea.
+
+**Recorded in** rulebook Section 13, Province 1's table in Section 20, Appendices B and E, the reference cards, and `playthrough-sim/engine.py` (`buy_land`).
 
 ### A palace raid counts toward the Warlord's objective
 

@@ -568,10 +568,10 @@ say("Silke","Majesty, my province has tripled. By the book I can develop the sea
 say("Reina","Not this year.", TH(
  ("Reina","Ten a square of mine to grow her harvest. I've just handed her the sixth cause in three words."),
  ("Graham","Mine borders Rob's country. I wasn't going to ask. I'll take hers.")))
-buy_land(1, ["E18", "E19"], {1:40}, "New land: Reina buys two squares of the strip below the Wall for Province 1, forty million, and pays for them alone.", TH(
- ("Reina","Twenty a square and twenty a year back, from next year. It's the one investment left in this country that pays, and the crown can't afford to make it for anyone but the crown."),
- ("Silke","She said no to mine and yes to hers in the same minute. That's cause six with a receipt."),
- ("Noah","Two squares under a wall she's still building. At least she'll be the one standing behind it.")))
+buy_land(1, ["F23", "F24"], {1:40}, "New land: Reina buys two squares of sea off Province 1, F23 and F24, forty million, and pays for them alone.", TH(
+ ("Reina","Twenty a square and twenty a year back, from next year. It's the one investment left in this country that pays, and the crown can't afford to make it for anyone but the crown. The strip's shut to me until my last link is built, so it's the sea."),
+ ("Silke","She said no to my sea and yes to hers in the same minute. That's cause six with a receipt."),
+ ("Noah","Two squares of sea, the one ground the Warlord can't walk onto. She's spending on the one thing he can't take.")))
 swap(6,3,"Paddy Doyle declares a complete set and replaces Richard Baron. Paddy becomes Gentry of Province 3; Richard becomes Rice Peasant of Province 6.", TH(
  ("Paddy","Rice farmer to landlord in ten years, with twenty-two in hand — two over the line. Hand back the Scroll, keep the rest, take every bag Rich has. And I inherit the Harvest Pile and the right to charge rent — to the men I was farming beside last week."),
  ("Rich","A minute ago I was the banker and he brought me five million a year. I'd admire it if it weren't happening to me."),
