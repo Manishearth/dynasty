@@ -23,7 +23,7 @@ Everything in `engine.py` and `cards.py`, grouped by purpose. Every name is a gl
 
 | Name | Value |
 |---|---|
-| `CAST_NAMES`, `CAST_SHORT` | The eight friends, keyed by the seat each drew on the first evening: 1 Reina Osorio, 2 Clark Grafton, 3 Richard Baron (Rich), 4 Noah Lott, 5 Silke Weber, 6 Paddy Doyle, 7 Graham Garner, 8 Robert Land (Rob). |
+| `CAST_NAMES`, `CAST_SHORT` | The eight friends, keyed by the seat each drew on the first evening: 1 Reina Osorio, 2 Clark Grafton, 3 Richard Baron (Rich), 4 Noah Tall, 5 Silke Weber, 6 Paddy Doyle, 7 Graham Garner, 8 Robert Land (Rob). |
 | `NAMES`, `SHORT` | Player id → full name and short name for *this* game. `setup()` builds them from its `cast`. |
 | `ROLE` | Seat → role: Emperor, Official, Gentry, Scholar, Silk/Rice/Wheat Peasant, Warlord. |
 | `REALIA` | Seat → the realia native to it: 2 `CH`, 3 `LD`, 4 `BB`, 5 `DJ`, 6 `WB`, 7 `VA`. |

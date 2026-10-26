@@ -1,13 +1,13 @@
 # The cast
 
-The same eight friends play every evening. Each name is a **pun on the province the player drew on the first evening**, and Manish chose them to be subtle: they sound like real people until you hear the joke. The Scholar was originally Ken Nakamura; he was renamed **Noah Lott** ("know a lot") and every script now uses the new name.
+The same eight friends play every evening. Each name is a **pun on the province the player drew on the first evening**, and Manish chose them to be subtle: they sound like real people until you hear the joke. The Scholar was originally Ken Nakamura, then Noah Lott ("know a lot"), and is now **Noah Tall** ("know-it-all"); every script uses the current name.
 
 | Seat drawn (game 1) | Full name | Short | The pun |
 |---|---|---|---|
 | 1 Emperor | Reina Osorio | Reina | *reina* is Spanish for "queen" |
 | 2 Official | Clark Grafton | Clark | clerk + graft |
 | 3 Gentry | Richard Baron | Rich | a rich baron |
-| 4 Scholar | Noah Lott | Noah | "know a lot" |
+| 4 Scholar | Noah Tall | Noah | "know-it-all" |
 | 5 Silk Peasant | Silke Weber | Silke | silk weaver (*Weber* is German for "weaver") |
 | 6 Rice Peasant | Paddy Doyle | Paddy | rice paddy |
 | 7 Wheat Peasant | Graham Garner | Graham | grain garner |

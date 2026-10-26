@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dynasty (1969) — Rulebook</title>
+<style>
+:root{
+  --canvas:#E4DDCB;      /* unbleached cotton of the map */
+  --paper:#FFFFFF;
+  --ink:#16150F;
+  --ink-soft:#5C584A;
+  --rule:#C9C1AC;
+  --vermilion:#C8291A;   /* the can */
+  --pink:#F2416F;        /* the I Ching cards, the raid squares */
+  --cobalt:#175FB5;      /* the river */
+  --walnut:#6E4A2C;      /* the turned pieces */
+  --display:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --body:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --mono:"Courier New",Courier,monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--canvas);color:var(--ink);
+  font-family:var(--body);font-size:16.5px;line-height:1.62;
+  font-feature-settings:"kern" 1;
+}
+.wrap{max-width:60rem;margin:0 auto;padding:2rem 1rem 6rem}
+.sheet{
+  background:var(--paper);padding:3.2rem 3.4rem;margin:0 0 1.6rem;
+  box-shadow:0 1px 0 rgba(0,0,0,.18);
+}
+@media (max-width:640px){.sheet{padding:1.8rem 1.3rem}body{font-size:16px}}
+
+/* ---------- type ---------- */
+h1,h2,h3,h4{font-family:var(--display);font-weight:700;margin:0}
+h2{
+  font-size:1.42rem;letter-spacing:.09em;text-transform:uppercase;line-height:1.2;
+}
+h3{font-size:1.02rem;letter-spacing:.075em;text-transform:uppercase;margin:2.1rem 0 .55rem}
+h4{font-size:.86rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft);margin:1.5rem 0 .35rem}
+p{margin:0 0 .95rem}
+ul,ol{margin:0 0 1rem;padding-left:1.25rem}
+li{margin:0 0 .35rem}
+strong{font-weight:700}
+em{font-style:italic}
+a{color:var(--vermilion)}
+.lede{font-size:1.08rem}
+.sec-head{display:flex;gap:1.1rem;align-items:baseline;border-bottom:2px solid var(--ink);padding-bottom:.55rem;margin-bottom:1.5rem}
+.sec-num{font-family:var(--mono);font-size:1.05rem;color:var(--vermilion);font-weight:700;flex:none}
+.eyebrow{font-family:var(--mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 .5rem}
+
+/* ---------- cover ---------- */
+.cover{background:var(--vermilion);color:#fff;padding:4rem 3.4rem 3rem;text-align:center}
+.wordmark{font-family:var(--display);font-weight:700;font-size:3.5rem;line-height:.94;letter-spacing:.02em;margin:0 0 1.6rem}
+.wordmark span{display:block}
+.cover .sub{font-family:var(--mono);font-size:.88rem;letter-spacing:.2em;text-transform:uppercase;margin:0 0 .4rem}
+.cover .meta{font-family:var(--mono);font-size:.78rem;line-height:1.9;opacity:.9;margin-top:2.4rem}
+.cover hr{border:0;border-top:1px solid rgba(255,255,255,.45);width:5rem;margin:1.6rem auto}
+
+/* ---------- province band (signature) ---------- */
+.band{display:flex;gap:3px;margin:0 0 1.4rem}
+.band a{
+  flex:1;height:2.1rem;display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:.8rem;font-style:normal;text-decoration:none;
+  background:#EFEADC;color:var(--ink-soft);border:1px solid var(--rule);
+}
+.band a:hover{border-color:var(--vermilion);color:var(--vermilion)}
+.band a.on{background:var(--vermilion);color:#fff;border-color:var(--vermilion);font-weight:700}
+.band a.out{border-style:dashed}
+/* cut-out size drawings */
+.cut{display:inline-grid;gap:2px;vertical-align:middle}
+.cut i{width:.95rem;height:.95rem;background:#EFEADC;border:1px solid var(--ink-soft)}
+
+/* ---------- tables ---------- */
+table{width:100%;border-collapse:collapse;margin:0 0 1.2rem;font-size:.92rem}
+caption{caption-side:top;text-align:left;font-family:var(--mono);font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);padding-bottom:.4rem}
+th,td{text-align:left;padding:.42rem .6rem;border-bottom:1px solid var(--rule);vertical-align:top}
+thead th{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;border-bottom:1.5px solid var(--ink)}
+td.n,th.n{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums}
+tbody tr:last-child td{border-bottom:1.5px solid var(--ink)}
+.neg{color:var(--vermilion)}
+
+/* ---------- devices ---------- */
+.note{
+  border-left:3px solid var(--pink);background:#FFF3F6;padding:.85rem 1.1rem;margin:0 0 1.2rem;
+  font-size:.92rem;
+}
+.note b{font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;display:block;color:var(--pink);margin-bottom:.25rem}
+.note p{margin:0 0 .5rem}.note p:last-child{margin:0}
+.note .n-lbl{font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--pink);font-weight:700}
+.orig{border-left:3px solid var(--rule);padding:.2rem 0 .2rem 1.1rem;margin:0 0 1.2rem;color:var(--ink-soft);font-size:.94rem;font-style:italic}
+.orig cite{display:block;font-style:normal;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;margin-top:.4rem}
+.steps{list-style:none;margin:0 0 1.4rem;padding:0;counter-reset:s}
+.steps li{display:grid;grid-template-columns:2.2rem 7.5rem 1fr;gap:.8rem;padding:.6rem 0;border-top:1px solid var(--rule);margin:0}
+.steps li:last-child{border-bottom:1px solid var(--rule)}
+.steps li::before{counter-increment:s;content:counter(s);font-family:var(--mono);font-weight:700;color:var(--vermilion)}
+.who{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);padding-top:.18rem}
+@media (max-width:640px){.steps li{grid-template-columns:1.6rem 1fr;gap:.5rem}.who{grid-column:2;padding:0}}
+figure{margin:1.6rem 0;padding:0}
+figure svg{width:100%;height:auto;display:block}
+figcaption{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;color:var(--ink-soft);margin-top:.5rem;text-transform:uppercase}
+.key{display:flex;flex-wrap:wrap;gap:.4rem 1.3rem;font-family:var(--mono);font-size:.74rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 1.2rem}
+.key span::before{content:"";display:inline-block;width:.7rem;height:.7rem;margin-right:.4rem;vertical-align:-1px}
+.k-p::before{background:var(--pink)}
+.k-c::before{background:var(--cobalt)}
+.k-v::before{background:var(--vermilion)}
+.k-w::before{background:var(--walnut)}
+.disasters{list-style:none;counter-reset:d;padding:0;margin:0 0 1rem}
+.disasters li{counter-increment:d;position:relative;padding:.7rem 0 .7rem 2.4rem;border-top:1px solid var(--rule);font-size:.95rem;margin:0}
+.disasters li::before{content:counter(d);position:absolute;left:0;top:.7rem;font-family:var(--mono);font-weight:700;color:var(--pink)}
+.disasters li:last-child{border-bottom:1px solid var(--rule)}
+.cost{font-family:var(--mono);font-size:.86rem;background:#FFF3F6;padding:0 .25rem}
+
+/* ---------- contents ---------- */
+.toc{columns:2;column-gap:2.5rem;font-size:.93rem}
+@media (max-width:640px){.toc{columns:1}}
+.toc a{display:block;text-decoration:none;color:var(--ink);border-bottom:1px dotted var(--rule);padding:.28rem 0;break-inside:avoid}
+.toc a:hover{color:var(--vermilion)}
+.toc .t-num{font-family:var(--mono);color:var(--vermilion);margin-right:.5rem;font-size:.8rem}
+.toc .t-part{font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);border:0;padding-top:1rem}
+
+/* ---------- cards ---------- */
+.card{border:1.5px solid var(--ink);padding:1.2rem 1.4rem;margin:0 0 1.2rem;break-inside:avoid}
+.card h3{margin-top:0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+@media (max-width:700px){.grid2{grid-template-columns:1fr}}
+
+/* ---------- print ---------- */
+@media print{
+  @page{size:letter;margin:16mm 15mm}
+  body{background:#fff;font-size:10.2pt;line-height:1.5}
+  .wrap{max-width:none;padding:0}
+  .sheet{box-shadow:none;padding:0;margin:0}
+  .sheet+.sheet{break-before:page}
+  .cover{background:#fff;color:var(--ink);padding:6rem 0 0;border-bottom:2px solid var(--ink)}
+  .cover hr{border-top-color:var(--ink)}
+  .wordmark{color:var(--vermilion)}
+  h3,h4{break-after:avoid}
+  table,figure,.card,.note,.steps li{break-inside:avoid}
+  a{color:var(--ink);text-decoration:none}
+  .noprint{display:none}
+  .band a{background:#fff}
+  .band a.on{background:var(--vermilion);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+
+/* ---------- piece glyphs ---------- */
+.piece{white-space:nowrap}
+.piece img{width:1.05em;height:1.05em;margin-right:.18em;vertical-align:-.17em}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ================= COVER ================= -->
+<section class="sheet cover">
+  <p class="sub">Onoma Productions · 1969</p>
+  <h1 class="wordmark"><span>D</span><span>Y</span><span>N</span><span>A</span><span>S</span><span>T</span><span>Y</span></h1>
+  <hr>
+  <p class="sub">Rules</p>
+  <p style="max-width:26rem;margin:1.2rem auto 0;font-size:.95rem">A socio-economic-political game for four to eight players.</p>
+  <p class="meta">
+    Reconstructed rulebook · general rules, then provinces<br>
+    Compiled from the eight Province Instruction Booklets,<br>
+    the General Instructions sheet, and the printing on the can.<br>
+    All rulings are listed in Appendix D.
+  </p>
+</section>
+
+<!-- ================= CONTENTS ================= -->
+<section class="sheet">
+  <div class="sec-head"><span class="sec-num">§</span><h2>Contents</h2></div>
+  <nav class="toc">
+    <a class="t-part">Part One — The Game</a>
+    <a href="#s1"><span class="t-num">1</span>The game in short</a>
+    <a href="#s2"><span class="t-num">2</span>Components</a>
+    <a href="#s3"><span class="t-num">3</span>The map</a>
+    <a href="#s4"><span class="t-num">4</span>Setup</a>
+    <a href="#s5"><span class="t-num">5</span>Order of play</a>
+    <a href="#s6"><span class="t-num">6</span>The provinces</a>
+    <a href="#s7"><span class="t-num">7</span>Population, harvest, consumption</a>
+    <a href="#s8"><span class="t-num">8</span>The Harvest Pile</a>
+    <a href="#s9"><span class="t-num">9</span>Taxation</a>
+    <a href="#s10"><span class="t-num">10</span>Realia</a>
+    <a href="#s11"><span class="t-num">11</span>Objectives and changing provinces</a>
+    <a href="#s12"><span class="t-num">12</span>Public Works</a>
+    <a href="#s13"><span class="t-num">13</span>New land and sea</a>
+    <a href="#s14"><span class="t-num">14</span>The Warlord, raids and soldiers</a>
+    <a href="#s15"><span class="t-num">15</span>I Ching and personal disasters</a>
+    <a href="#s16"><span class="t-num">16</span>Revolt and Chaos</a>
+    <a href="#s17"><span class="t-num">17</span>Playing your personality</a>
+    <a href="#s18"><span class="t-num">18</span>Winning the game</a>
+    <a href="#s19"><span class="t-num">19</span>How long a game takes</a>
+    <a class="t-part">Part Two — The Provinces</a>
+    <a href="#p1"><span class="t-num">20</span>Province 1 — Emperor</a>
+    <a href="#p2"><span class="t-num">21</span>Province 2 — Official</a>
+    <a href="#p3"><span class="t-num">22</span>Province 3 — Gentry</a>
+    <a href="#p4"><span class="t-num">23</span>Province 4 — Scholar</a>
+    <a href="#p5"><span class="t-num">24</span>Province 5 — Silk Peasant</a>
+    <a href="#p6"><span class="t-num">25</span>Province 6 — Rice Peasant</a>
+    <a href="#p7"><span class="t-num">26</span>Province 7 — Wheat Peasant</a>
+    <a href="#p8"><span class="t-num">27</span>Province 8 — Warlord</a>
+    <a class="t-part">Appendices</a>
+    <a href="#apa"><span class="t-num">A</span>Setting up, by player count</a>
+    <a href="#apb"><span class="t-num">B</span>A worked round</a>
+    <a href="#apc"><span class="t-num">C</span>Player reference cards</a>
+    <a href="#apd"><span class="t-num">D</span>Editor's notes and rulings</a>
+  </nav>
+  <h4>How to read the colors</h4>
+  <div class="key">
+    <span class="k-v">Imperial · the Emperor · public works paid</span>
+    <span class="k-p">Raids, disasters, I Ching</span>
+    <span class="k-c">Water, canals, the sea</span>
+    <span class="k-w">Realia</span>
+  </div>
+  <h4>Where the rules needed a decision</h4>
+  <p style="font-size:.92rem;color:var(--ink-soft)">The three original sources do not always agree. Every place a decision had to be made appears as a pink note where it matters, numbered in reading order, and again in full in Appendix D with the original wording — so you can overrule it at your own table. Pink chips inside the province sections are sums of money, not notes.</p>
+</section>
+
+<!-- ================= 1 ================= -->
+<section class="sheet" id="s1">
+  <div class="sec-head"><span class="sec-num">1</span><h2>The game in short</h2></div>
+  <p class="lede">The Emperor is just and benevolent, while the Official can be persuaded to take bribes. The Gentry/Landowner will try to raise the rents legally, while the lawless Warlord uses soldiers to raid the neighboring provinces — to lie, cheat, steal. Meanwhile, the Peasants can always revolt.</p>
+  <p>Your game of Dynasty simulates a real-life environment. The object is <strong>survival</strong>: survival in a somewhat hostile and competitive society. Each player is handed a province, a personality and a set of obligations, and must make a living inside a system that was not designed to be fair.</p>
+  <p>The nation must feed a growing population from a harvest that does not grow by itself. The only way out of that trap is Public Works, and Public Works need the Emperor's money and everyone's cooperation. Nearly everything else is negotiable. There are no dice. Prices, cost-sharing, bribes, alliances, threats and rents are all settled by talking, and most of the rules exist to say who has leverage over whom.</p>
+  <p>The winner or winners are those who improve their social position. The game ends in one of two ways: all of the Public Works are built, in which case the players have collectively survived and the Emperor's reign has been a glorious one; or the players cannot solve the social-economic-political problems the game presents — that is, the system has defeated their ability to cope. Section 18 sets out how to settle the result.</p>
+</section>
+
+<!-- ================= 2 ================= -->
+<section class="sheet" id="s2">
+  <div class="sec-head"><span class="sec-num">2</span><h2>Components</h2></div>
+  <p><strong>The map.</strong> A canvas map divided by dotted lines into eight Provinces, each labeled with a social position and numbered by social rank. Province 1 is the highest.</p>
+  <p><strong>Grain.</strong> All money in Dynasty is bags of grain, counted in millions.</p>
+  <p><strong>47 wooden pieces.</strong> Six kinds of realia, four of each, and the wooden public works:</p>
+  <table>
+    <thead><tr><th>Count</th><th>Piece</th><th>What it is</th></tr></thead>
+    <tbody>
+      <tr><td class="n">4</td><td><span class="piece"><img src="images/customs-house.svg" alt="">Customs House</span></td><td>Realia of Province 2 · squat, flared at the base</td></tr>
+      <tr><td class="n">4</td><td><span class="piece"><img src="images/land-deed-scroll.svg" alt="">Land Deed Scroll</span></td><td>Realia of Province 3 · a rod with a roller at each end</td></tr>
+      <tr><td class="n">4</td><td><span class="piece"><img src="images/bamboo-brush.svg" alt="">Bamboo Brush</span></td><td>Realia of Province 4 · tapered to a point</td></tr>
+      <tr><td class="n">4</td><td><span class="piece"><img src="images/dragon-jar.svg" alt="">Dragon Jar</span></td><td>Realia of Province 5 · ribbed barrel</td></tr>
+      <tr><td class="n">4</td><td><span class="piece"><img src="images/wooden-bowl.svg" alt="">Wooden Bowl</span></td><td>Realia of Province 6 · open and hollowed</td></tr>
+      <tr><td class="n">4</td><td><span class="piece"><img src="images/vase.svg" alt="">Vase</span></td><td>Realia of Province 7 · bulbous urn</td></tr>
+      <tr><td class="n">3</td><td><span class="piece"><img src="images/summer-palace.svg" alt="">Summer Palace</span>, <span class="piece"><img src="images/winter-palace.svg" alt="">Winter Palace</span>, <span class="piece"><img src="images/marble-pagoda.svg" alt="">Marble Pagoda</span></td><td>Imperial Public Works</td></tr>
+      <tr><td class="n">12</td><td><span class="piece"><img src="images/great-wall.svg" alt="">Great Wall</span> links</td><td>Public Works</td></tr>
+      <tr><td class="n">8</td><td><span class="piece"><img src="images/grand-canal.svg" alt="">Grand Canal</span> sections</td><td>Public Works</td></tr>
+    </tbody>
+  </table>
+  <p><strong>16 soldiers</strong>, eight of one color and eight of another. The Warlord picks one color for the raiding army; the other color is sold to the provinces as mercenaries.</p>
+  <p><strong>20 I Ching cards</strong>, which designate natural phenomena as annual harvest, population growth, and personal and national disasters.</p>
+  <p><strong>Squares of colored paper.</strong> Pink squares are the raid squares — forty of them — used to mark ground the Warlord has plundered. Blue squares are the new harvest squares, used to mark newly developed land and sea.</p>
+  <p><strong>Eight Province Instruction Booklets</strong>, one per role — reproduced here as Part Two.</p>
+  <p><strong>Paper cut-outs you make yourself.</strong> The Province 2 <span class="piece"><img src="images/irrigation.svg" alt="">Irrigation System</span> and the two <span class="piece"><img src="images/reservoir.svg" alt="">Reservoirs</span> have no wooden pieces, and unlike the <span class="piece"><img src="images/great-wall.svg" alt="">Great Wall</span> and the <span class="piece"><img src="images/grand-canal.svg" alt="">Grand Canal</span> they have no printed slot on the map. There is no single correct size, but we have some suggestions here:</p>
+  <table>
+    <thead><tr><th>System</th><th>Province</th><th>What it holds</th><th>Suggested cut-out</th></tr></thead>
+    <tbody>
+      <tr><td><span class="piece"><img src="images/irrigation.svg" alt="">Irrigation System</span></td><td>2 · Official</td><td>Ditches, dikes, small canals and dams</td><td><span class="cut" style="grid-template-columns:repeat(2,auto)" role="img" aria-label="1 × 2 squares" title="1 × 2 squares"><i></i><i></i></span></td></tr>
+      <tr><td><span class="piece"><img src="images/reservoir.svg" alt="">Reservoir</span></td><td>7 · Wheat Peasant</td><td>One large reservoir, two canals, 500 miles of ditches</td><td><span class="cut" style="grid-template-columns:repeat(2,auto)" role="img" aria-label="2 × 2 squares" title="2 × 2 squares"><i></i><i></i><i></i><i></i></span></td></tr>
+      <tr><td><span class="piece"><img src="images/reservoir.svg" alt="">Reservoir</span></td><td>3 · Gentry</td><td>Four canals, three reservoirs, 1,000 miles of ditches</td><td><span class="cut" style="grid-template-columns:repeat(3,auto)" role="img" aria-label="2 × 3 squares" title="2 × 3 squares"><i></i><i></i><i></i><i></i><i></i><i></i></span></td></tr>
+    </tbody>
+  </table>
+  <p><strong>What the cut-out does on the board.</strong></p>
+  <ul>
+    <li>When the system is built, lay it on empty squares inside its own province — not on a square holding realia.</li>
+    <li>It is a public work, so a Warlord soldier that crosses it pays that province the 5 million transportation fee, just as for a river or the <span class="piece"><img src="images/grand-canal.svg" alt="">canal</span>. A bigger cut-out earns more tolls, which is one reason to keep to the suggested sizes.</li>
+    <li>It is not realia: the booklets name only the three palaces as the Emperor's structures. A square under a cut-out can still be raided for the ordinary tribute, but the Warlord can't demand the system's cost.</li>
+  </ul>
+</section>
+
+<!-- ================= 3 ================= -->
+<section class="sheet" id="s3">
+  <div class="sec-head"><span class="sec-num">3</span><h2>The map</h2></div>
+  <p>The map holds seven bordered provinces — the developed land, the ground that already produces a harvest — and three kinds of undeveloped land: the Warlord's territory in the west, the strip below the <span class="piece"><img src="images/great-wall.svg" alt="">Great Wall</span> in the north, and the sea to the east.</p>
+  <figure>
+  <svg viewBox="0 0 820 470" role="img" aria-label="Schematic of the Dynasty map">
+    <defs>
+      <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+        <path d="M20 0H0V20" fill="none" stroke="#DCD5C2" stroke-width="1"/>
+      </pattern>
+    </defs>
+    <rect x="10" y="10" width="800" height="450" fill="url(#grid)" stroke="#16150F" stroke-width="3"/>
+    <!-- great wall -->
+    <rect x="200" y="14" width="530" height="34" fill="#fff" stroke="#16150F" stroke-width="1.5"/>
+    <g stroke="#16150F" stroke-width="1.5">
+      <path d="M288 14v34M376 14v34M464 14v34M552 14v34M640 14v34"/>
+    </g>
+    <text x="465" y="36" text-anchor="middle" font-family="Courier New, monospace" font-size="13" letter-spacing="3">THE <tspan class="pg" data-g="great-wall" dx="1.1em">GREAT WALL</tspan> · 12 LINKS</text>
+    <!-- new land strip -->
+    <rect x="200" y="48" width="530" height="40" fill="#fff" stroke="#16150F" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <text x="465" y="73" text-anchor="middle" font-family="Courier New, monospace" font-size="12" letter-spacing="2" fill="#5C584A">NEW LAND — OPENS WHEN 4 LINKS ARE BUILT ABOVE YOU</text>
+    <!-- undeveloped west -->
+    <rect x="14" y="14" width="186" height="442" fill="#EFEADC" stroke="#16150F" stroke-width="1.5"/>
+    <text x="107" y="215" text-anchor="middle" font-family="Helvetica Neue,Helvetica,Arial" font-size="16" font-weight="700" letter-spacing="1">UNDEVELOPED</text>
+    <text x="107" y="236" text-anchor="middle" font-family="Helvetica Neue,Helvetica,Arial" font-size="16" font-weight="700" letter-spacing="1">LAND</text>
+    <text x="107" y="262" text-anchor="middle" font-family="Courier New, monospace" font-size="12" fill="#5C584A">Province 8</text>
+    <text x="107" y="279" text-anchor="middle" font-family="Courier New, monospace" font-size="12" fill="#5C584A">Warlord territory</text>
+    <!-- sea -->
+    <rect x="730" y="14" width="76" height="442" fill="#E3EEF9" stroke="#175FB5" stroke-width="1.5"/>
+    <text x="768" y="250" text-anchor="middle" font-family="Helvetica Neue,Helvetica,Arial" font-size="15" font-weight="700" fill="#175FB5" transform="rotate(90 768 250)" letter-spacing="4">THE SEA</text>
+    <!-- provinces -->
+    <g font-family="Helvetica Neue,Helvetica,Arial" font-size="15" font-weight="700" text-anchor="middle">
+      <rect x="200" y="88" width="178" height="122" fill="#fff" stroke="#16150F" stroke-width="1.5"/>
+      <text x="289" y="140">3</text><text x="289" y="162" font-size="12" font-weight="400">Gentry</text>
+      <rect x="378" y="88" width="176" height="122" fill="#fff" stroke="#16150F" stroke-width="1.5"/>
+      <text x="466" y="140">2</text><text x="466" y="162" font-size="12" font-weight="400">Official</text>
+      <rect x="554" y="88" width="176" height="122" fill="#fff" stroke="#16150F" stroke-width="1.5"/>
+      <text x="642" y="140">1</text><text x="642" y="162" font-size="12" font-weight="400">Emperor</text>
+      <rect x="200" y="210" width="178" height="122" fill="#fff" stroke="#16150F" stroke-width="1.5"/>
+      <text x="289" y="262">7</text><text x="289" y="284" font-size="12" font-weight="400">Wheat Peasant</text>
+      <rect x="378" y="210" width="176" height="122" fill="#fff" stroke="#16150F" stroke-width="1.5"/>
+      <text x="466" y="262">4</text><text x="466" y="284" font-size="12" font-weight="400">Scholar</text>
+      <rect x="554" y="210" width="176" height="122" fill="#fff" stroke="#16150F" stroke-width="1.5"/>
+      <text x="642" y="262">5</text><text x="642" y="284" font-size="12" font-weight="400">Silk Peasant</text>
+      <rect x="378" y="332" width="352" height="124" fill="#fff" stroke="#16150F" stroke-width="1.5"/>
+      <text x="554" y="386">6</text><text x="554" y="408" font-size="12" font-weight="400">Rice Peasant</text>
+      <rect x="200" y="332" width="178" height="124" fill="#EFEADC" stroke="#16150F" stroke-width="1.5" stroke-dasharray="5 4"/>
+      <text x="289" y="390" font-size="12" font-weight="400" fill="#5C584A">undeveloped</text>
+    </g>
+    <!-- river -->
+    <path d="M200 300 C 300 250, 340 360, 430 330 S 600 200, 700 170 L 730 150" fill="none" stroke="#175FB5" stroke-width="7" stroke-linecap="round" opacity=".85"/>
+  </svg>
+  <figcaption>Representative schematic</figcaption>
+  </figure>
+  <p><strong>Who can expand where.</strong> Provinces 1, 2 and 3 push north into the strip below the <span class="piece"><img src="images/great-wall.svg" alt="">Great Wall</span>. Provinces 1, 4, 5 and 6 border the sea. Provinces 3, 6 and 7 border the Warlord's undeveloped land in the west — so peasant expansion is a land grab into Warlord territory, which the rules nowhere forbid and the Warlord will nowhere welcome.</p>
+  <p><strong>The grid does not produce anything.</strong> Your harvest is the same whether your province holds thirty squares or sixty. The squares exist to place realia, mark raids, move soldiers, and hold new harvest squares. Province size on the map is scenery; only the numbers in Section 7 feed anybody.</p>
+  <p><strong>The river</strong> runs from the western territory across the middle of the country to the sea. It matters for one rule: the Warlord pays a toll every time a soldier crosses it (Section 14).</p>
+</section>
+
+<!-- ================= 4 ================= -->
+<section class="sheet" id="s4">
+  <div class="sec-head"><span class="sec-num">4</span><h2>Setup</h2></div>
+  <h3>1 · Deal the provinces</h3>
+  <p>Take one Province Instruction Booklet per player, according to the table below. Close them, shuffle them, and let each player pick one. Play according to the personality and instructions in the booklet you drew.</p>
+  <table>
+    <thead><tr><th>Players</th><th>Provinces used</th></tr></thead>
+    <tbody>
+      <tr><td class="n">4</td><td>1 Emperor, 2 Official, 3 Gentry, 4 Scholar — <em>or</em> 1 Emperor and any three Peasants</td></tr>
+      <tr><td class="n">5</td><td>Either group above, plus the Warlord</td></tr>
+      <tr><td class="n">6</td><td>1 Emperor, 2 Official, 3 Gentry, the Warlord, and any two Peasants</td></tr>
+      <tr><td class="n">7</td><td>1 Emperor, 2 Official, 3 Gentry, 4 Scholar and all three Peasants — no Warlord</td></tr>
+      <tr><td class="n">8+</td><td>All eight Provinces</td></tr>
+    </tbody>
+  </table>
+  <div class="note">
+    <p><span class="n-lbl">Note 1</span> The can numbers the Warlord as Province 5 and the peasants 6, 7, 8. The map and the booklets overrule it.</p>
+    <p><span class="n-lbl">Note 2</span> Seven players really is the one game with no Warlord in it.</p>
+    <p><span class="n-lbl">Note 3</span> When a province with a job to do is empty — no Scholar at six players, no Gentry in the peasant game — someone else must take over the work.</p>
+  </div>
+  <h3>2 · Grain</h3>
+  <p>Each player begins with 60 million bags of grain. This represents a good harvest for the first round of play.</p>
+  <h3>3 · Realia</h3>
+  <p>Each province takes its starting stock of realia from the box (Section 10). Realia belonging to provinces nobody is playing stays in the box, and is never auctioned.</p>
+  <p><strong>Bought realia goes on the board at once.</strong> Your starting stock waits beside the board until you auction it. Whenever anyone buys a piece, at auction or in a trade, they must place it immediately on a square inside their own province (Section 10, Note 9).</p>
+  <div class="note"><b>Note 4</b> An unoccupied province owes nothing and is owed nothing: no realia, no rent, no public works.</div>
+  <h3>4 · Soldiers</h3>
+  <p>The Warlord takes an army: two soldiers with five or six players, four with eight or more. These may be placed on any squares in the undeveloped land. The other color goes aside as stock to sell.</p>
+  <h3>5 · The Harvest Pile</h3>
+  <p>The Gentry/Landholder sets out the bank of grain where everyone can see it.</p>
+  <h3>6 · I Ching</h3>
+  <p>The Scholar shuffles the twenty I Ching cards and places them face down on the board. No player may look at the unturned cards. <strong>I Ching is not consulted during Round One</strong> — the 60 million each player starts with is the first harvest.</p>
+  <h3>7 · Cut-outs</h3>
+  <p>Make a paper cut-out for the <span class="piece"><img src="images/irrigation.svg" alt="">irrigation system</span> and each <span class="piece"><img src="images/reservoir.svg" alt="">Reservoir</span> owed at this table, using the sizes in Section 2: <strong>1 × 2 squares</strong> for Province 2 if the Official is playing, <strong>2 × 3 squares</strong> for Province 3 if the Gentry is playing, and <strong>2 × 2 squares</strong> for Province 7 if the Wheat Peasant is playing. Set them aside; each goes on the board when it is built. A work in an empty province is never built, so it needs no cut-out.</p>
+</section>
+
+<!-- ================= 5 ================= -->
+<section class="sheet" id="s5">
+  <div class="sec-head"><span class="sec-num">5</span><h2>Order of play</h2></div>
+  <p>A round is one year. Round One begins at step 4, since the harvest has already been paid out and I Ching is not consulted.</p>
+  <ol class="steps">
+    <li><span class="who">Scholar</span><span><strong>I Ching.</strong> Turn the top card and read it aloud. Apply any change in population, and play a Personal Disaster if the card calls for one.</span></li>
+    <li><span class="who">Gentry</span><span><strong>Harvest.</strong> Pay each player the harvest the card designates, plus any increase earned by Public Works in that province.</span></li>
+    <li><span class="who">Peasants</span><span><strong>Rents.</strong> Each Peasant pays the Gentry a land rental. If the Gentry does not demand it, the Peasants need not pay.</span></li>
+    <li><span class="who">Emperor</span><span><strong>Tax declared.</strong> The Emperor announces a percentage, the same for everyone.</span></li>
+    <li><span class="who">Official</span><span><strong>Tax paid.</strong> Each player calculates the tax owed and pays the Official, who delivers it to the Emperor.</span></li>
+    <li><span class="who">Emperor</span><span><strong>Public Works.</strong> The Emperor pays for and builds one project. Cost-sharing and new land purchases are negotiated now.</span></li>
+    <li><span class="who">All, in order</span><span><strong>Auction.</strong> Beginning with Province 1 and proceeding in numerical order, each player auctions one piece of realia. The Warlord raids instead of auctioning.</span></li>
+    <li><span class="who">Provinces</span><span><strong>Soldiers.</strong> After the Warlord has moved, provincial soldiers may move one square.</span></li>
+    <li><span class="who">Emperor</span><span><strong>Salaries.</strong> The Emperor pays the Official and the Scholar.</span></li>
+  </ol>
+  <p>Trading, bribery, alliances, threats and private deals may happen at any point in the round.</p>
+  <div class="note"><b>Note 5</b> No booklet gives a round order. This sequence follows the Order of Play printed on the can, with rents, salaries and soldier movement slotted in from the booklets that specify their timing.</div>
+</section>
+
+<!-- ================= 6 ================= -->
+<section class="sheet" id="s6">
+  <div class="sec-head"><span class="sec-num">6</span><h2>The provinces</h2></div>
+  <p>Provinces are numbered by social rank, 1 being the highest. Province 8 is drawn dashed throughout this book because the Warlord sits outside the social order rather than at the bottom of it.</p>
+  <table>
+    <thead><tr><th class="n">#</th><th>Role</th><th class="n">Population</th><th>Class</th><th>Job at the table</th></tr></thead>
+    <tbody>
+      <tr><td class="n">1</td><td>Emperor</td><td class="n">14M</td><td>Stands alone</td><td>Sets the tax, builds, settles disputes</td></tr>
+      <tr><td class="n">2</td><td>Official</td><td class="n">12M</td><td>Upper</td><td>Collects the tax</td></tr>
+      <tr><td class="n">3</td><td>Gentry / Landholder</td><td class="n">12M</td><td>Upper</td><td>Banks the Harvest Pile, collects rent</td></tr>
+      <tr><td class="n">4</td><td>Scholar</td><td class="n">12M</td><td>Upper</td><td>Reads I Ching, keeps the population count</td></tr>
+      <tr><td class="n">5</td><td>Silk Peasant</td><td class="n">14M</td><td>Lower</td><td>—</td></tr>
+      <tr><td class="n">6</td><td>Rice Peasant</td><td class="n">14M</td><td>Lower</td><td>—</td></tr>
+      <tr><td class="n">7</td><td>Wheat Peasant</td><td class="n">14M</td><td>Lower</td><td>—</td></tr>
+      <tr><td class="n">8</td><td>Warlord</td><td class="n">8M</td><td>Outside</td><td>Raids everyone, sells soldiers</td></tr>
+    </tbody>
+  </table>
+  <p>The eight provinces hold 100 million people between them, which is where the nation's population counter starts.</p>
+  <p>The Emperor negotiates with the upper class first — the Official, Gentry and Scholar. That is the chain of command, and it is why a Peasant who wants to be heard usually has to buy an ally.</p>
+</section>
+
+<!-- ================= 7 ================= -->
+<section class="sheet" id="s7">
+  <div class="sec-head"><span class="sec-num">7</span><h2>Population, harvest, consumption</h2></div>
+  <p class="lede">This is the engine of the whole game, and it is worth understanding before the first card is turned.</p>
+  <p><strong>Your harvest does not depend on how many people you have.</strong> Whatever your population, a good harvest is 100 million bags of grain, an average harvest 75 million and a bad harvest 50 million. The Warlord's barren land yields 40, 30 and 20.</p>
+  <p><strong>Your consumption does.</strong> Twelve million people eat 40 million bags a year, no matter how good or bad the harvest. So do fourteen million. The Emperor's court is more expensive: fourteen million people in Province 1 eat 60 million. The Warlord's eight million eat 20 million.</p>
+  <p style="font-family:var(--mono);font-size:1rem;border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);padding:.8rem 0;text-align:center">income = harvest + public works increases − consumption</p>
+  <p>When an I Ching card announces that the population has increased by one half or doubled, every province's population changes with it — and so does its consumption. The harvest does not. Population growth is pure loss, and the nation slides toward famine unless somebody builds something. This is the problem the game is asking you to solve.</p>
+  <h3>How the population moves</h3>
+  <p><strong>Growth is national and it is uniform.</strong> The provinces start at different sizes, but a card that doubles the population doubles everyone: the base numbers differ, the multiplier never does. That is why the income tables below are indexed by multiple rather than headcount, and why a single row of one table lines up with the same row of every other.</p>
+  <p><strong>It has a ceiling, and the ceiling is reachable.</strong> A doubling card takes effect at most twice; an increase-by-one-half card takes effect once. The nation therefore tops out at 100 × 2 × 2 × 1½ = <strong>600 million</strong>, which the cards state outright — and which is exactly the ×6 row at the bottom of every table. Once the country is there, it is there for good, and a bad harvest at ×6 costs a peasant province 190 million bags it does not have.</p>
+  <figure>
+  <svg viewBox="0 0 780 340" role="img" aria-label="Chart showing flat harvest against rising consumption">
+    <g font-family="Courier New, monospace" font-size="12" fill="#5C584A">
+      <line x1="80" y1="20" x2="80" y2="270" stroke="#16150F" stroke-width="1.5"/>
+      <line x1="80" y1="270" x2="740" y2="270" stroke="#16150F" stroke-width="1.5"/>
+      <text x="72" y="30" text-anchor="end">240</text>
+      <text x="72" y="93" text-anchor="end">160</text>
+      <text x="72" y="140" text-anchor="end">100</text>
+      <text x="72" y="180" text-anchor="end">75</text>
+      <text x="72" y="219" text-anchor="end">50</text>
+      <text x="72" y="274" text-anchor="end">0</text>
+      <text x="140" y="290" text-anchor="middle">×1</text>
+      <text x="250" y="290" text-anchor="middle">×1½</text>
+      <text x="360" y="290" text-anchor="middle">×2</text>
+      <text x="470" y="290" text-anchor="middle">×3</text>
+      <text x="580" y="290" text-anchor="middle">×4</text>
+      <text x="690" y="290" text-anchor="middle">×6</text>
+      <text x="415" y="318" text-anchor="middle" letter-spacing="2">POPULATION</text>
+    </g>
+    <!-- harvest bands -->
+    <line x1="80" y1="140" x2="740" y2="140" stroke="#16150F" stroke-width="2.5"/>
+    <line x1="80" y1="180" x2="740" y2="180" stroke="#16150F" stroke-width="1.5" stroke-dasharray="7 5"/>
+    <line x1="80" y1="219" x2="740" y2="219" stroke="#16150F" stroke-width="1.5" stroke-dasharray="2 5"/>
+    <!-- consumption -->
+    <polyline points="140,238 250,222 360,207 470,176 580,145 690,26" fill="none" stroke="#C8291A" stroke-width="3"/>
+    <g fill="#C8291A">
+      <circle cx="140" cy="238" r="4.5"/><circle cx="250" cy="222" r="4.5"/><circle cx="360" cy="207" r="4.5"/>
+      <circle cx="470" cy="176" r="4.5"/><circle cx="580" cy="145" r="4.5"/><circle cx="690" cy="26" r="4.5"/>
+    </g>
+    <g font-family="Helvetica Neue,Helvetica,Arial" font-size="12.5">
+      <text x="600" y="132" fill="#16150F" font-weight="700">GOOD HARVEST 100</text>
+      <text x="600" y="172" fill="#16150F">AVERAGE 75</text>
+      <text x="600" y="212" fill="#16150F">BAD 50</text>
+      <text x="150" y="252" fill="#C8291A" font-weight="700">CONSUMPTION</text>
+    </g>
+    <g stroke="#F2416F" stroke-width="1.5" stroke-dasharray="4 3">
+      <line x1="470" y1="176" x2="470" y2="270"/>
+      <line x1="580" y1="145" x2="580" y2="270"/>
+    </g>
+    <text x="475" y="60" font-family="Helvetica Neue,Helvetica,Arial" font-size="12" fill="#F2416F" font-weight="700">an average year starts</text>
+    <text x="475" y="76" font-family="Helvetica Neue,Helvetica,Arial" font-size="12" fill="#F2416F" font-weight="700">costing you money here</text>
+  </svg>
+  <figcaption>Millions of bags, a 12- or 14-million province. The lines never move; the red one climbs to meet them.</figcaption>
+  </figure>
+  <p>The Scholar keeps the national population counter and announces the new figure whenever it changes.</p>
+  <h3>Income tables</h3>
+  <table>
+    <caption>Provinces 2–7 · 40 million consumed per base population</caption>
+    <thead><tr><th>Population</th><th class="n">Consumption</th><th class="n">Good</th><th class="n">Average</th><th class="n">Bad</th></tr></thead>
+    <tbody>
+      <tr><td>×1</td><td class="n">40</td><td class="n">+60</td><td class="n">+35</td><td class="n">+10</td></tr>
+      <tr><td>×1½</td><td class="n">60</td><td class="n">+40</td><td class="n">+15</td><td class="n neg">−10</td></tr>
+      <tr><td>×2</td><td class="n">80</td><td class="n">+20</td><td class="n neg">−5</td><td class="n neg">−30</td></tr>
+      <tr><td>×3</td><td class="n">120</td><td class="n neg">−20</td><td class="n neg">−45</td><td class="n neg">−70</td></tr>
+      <tr><td>×4</td><td class="n">160</td><td class="n neg">−60</td><td class="n neg">−85</td><td class="n neg">−110</td></tr>
+      <tr><td>×6</td><td class="n">240</td><td class="n neg">−140</td><td class="n neg">−165</td><td class="n neg">−190</td></tr>
+    </tbody>
+  </table>
+  <table>
+    <caption>Province 1 · the Emperor · 60 million consumed at base population</caption>
+    <thead><tr><th>Population</th><th class="n">Consumption</th><th class="n">Good</th><th class="n">Average</th><th class="n">Bad</th></tr></thead>
+    <tbody>
+      <tr><td>×1</td><td class="n">60</td><td class="n">+40</td><td class="n">+15</td><td class="n neg">−10</td></tr>
+      <tr><td>×1½</td><td class="n">90</td><td class="n">+10</td><td class="n neg">−15</td><td class="n neg">−40</td></tr>
+      <tr><td>×2</td><td class="n">120</td><td class="n neg">−20</td><td class="n neg">−45</td><td class="n neg">−70</td></tr>
+      <tr><td>×3</td><td class="n">180</td><td class="n neg">−80</td><td class="n neg">−105</td><td class="n neg">−130</td></tr>
+      <tr><td>×4</td><td class="n">240</td><td class="n neg">−140</td><td class="n neg">−165</td><td class="n neg">−190</td></tr>
+      <tr><td>×6</td><td class="n">360</td><td class="n neg">−260</td><td class="n neg">−285</td><td class="n neg">−310</td></tr>
+    </tbody>
+  </table>
+  <table>
+    <caption>Province 8 · the Warlord · harvest 40 / 30 / 20, 20 million consumed at base</caption>
+    <thead><tr><th>Population</th><th class="n">Consumption</th><th class="n">Good</th><th class="n">Average</th><th class="n">Bad</th></tr></thead>
+    <tbody>
+      <tr><td>×1</td><td class="n">20</td><td class="n">+20</td><td class="n">+10</td><td class="n">0</td></tr>
+      <tr><td>×1½</td><td class="n">30</td><td class="n">+10</td><td class="n">0</td><td class="n neg">−10</td></tr>
+      <tr><td>×2</td><td class="n">40</td><td class="n">0</td><td class="n neg">−10</td><td class="n neg">−20</td></tr>
+      <tr><td>×3</td><td class="n">60</td><td class="n neg">−20</td><td class="n neg">−30</td><td class="n neg">−40</td></tr>
+      <tr><td>×4</td><td class="n">80</td><td class="n neg">−40</td><td class="n neg">−50</td><td class="n neg">−60</td></tr>
+      <tr><td>×6</td><td class="n">120</td><td class="n neg">−60</td><td class="n neg">−70</td><td class="n neg">−80</td></tr>
+    </tbody>
+  </table>
+  <div class="note"><b>Note 6</b> These tables are indexed by population multiple rather than raw headcount, which repairs an inconsistency in the printed originals. Consumption is always proportional to population; if the count climbs past the bottom row, keep scaling.</div>
+</section>
+
+<!-- ================= 8 ================= -->
+<section class="sheet" id="s8">
+  <div class="sec-head"><span class="sec-num">8</span><h2>The Harvest Pile</h2></div>
+  <p>The Harvest Pile is the bank, and the Gentry/Landholder runs it. It is made up of forty half-million bags, fifty 1-million bags, forty 2-million bags, fifty 5-million bags, twenty 10-million bags, twenty 20-million bags, ten 50-million bags and ten 100-million bags.</p>
+  <p><strong>It is not the Emperor's treasury.</strong> Taxes go to the Emperor personally, into a private reserve, and that reserve pays for Public Works and salaries. The Harvest Pile is separate.</p>
+  <table>
+    <thead><tr><th>Out of the pile</th><th>Into the pile</th></tr></thead>
+    <tbody>
+      <tr><td>Every player's annual harvest</td><td>Fines and personal disasters</td></tr>
+      <tr><td>New harvest squares, when bought</td><td>75% of every auction price</td></tr>
+      <tr><td>60 million to a player who changes province</td><td>75% of every soldier the Warlord sells</td></tr>
+      <tr><td></td><td>Realia sold back, at 2 million a piece</td></tr>
+    </tbody>
+  </table>
+  <p>The Gentry performs all transactions concerning the pile — which means the greediest player at the table is also the banker. Watch closely.</p>
+</section>
+
+<!-- ================= 9 ================= -->
+<section class="sheet" id="s9">
+  <div class="sec-head"><span class="sec-num">9</span><h2>Taxation</h2></div>
+  <p>The Emperor declares a tax percentage at the start of each round, from 10% to 90%. Every player then pays that percentage of their income for the year. All income is taxable.</p>
+  <div class="note"><b>Note 7</b> A player whose income is negative pays no tax. The Income Tax Schedule is income × rate and has no rows below zero.</div>
+  <div class="orig">A good Emperor will always take care of his people, and will collect an adequate tax to do so. A simple guide is: in the U.S., the middle income bracket is about 25–35%; in the United Kingdom, about 50%, due to the numerous welfare programs; and in dictatorships taxes have been as high as 80–90%. How you run your "country" is up to you! And as you know, most governments plan ahead.<cite>General Instructions, 1969</cite></div>
+  <p>Naturally, the Emperor's decrees must be reasonable, or the players will revolt. Three of the six causes for revolt are about money the Emperor did or did not take.</p>
+  <p>The Official collects the tax and delivers it, and is also expected to make certain none of the players are cheating, which is a joke the game does not acknowledge. The Emperor may instead collect directly, or designate any player as tax collector.</p>
+</section>
+
+<!-- ================= 10 ================= -->
+<section class="sheet" id="s10">
+  <div class="sec-head"><span class="sec-num">10</span><h2>Realia</h2></div>
+  <p>Realia are the objects of status: <span class="piece"><img src="images/customs-house.svg" alt="">customs houses</span>, <span class="piece"><img src="images/land-deed-scroll.svg" alt="">land deed scrolls</span>, <span class="piece"><img src="images/bamboo-brush.svg" alt="">bamboo brushes</span>, <span class="piece"><img src="images/dragon-jar.svg" alt="">dragon jars</span>, <span class="piece"><img src="images/wooden-bowl.svg" alt="">wooden bowls</span> and <span class="piece"><img src="images/vase.svg" alt="">vases</span>. Collecting a set of them is how a player climbs the social ladder.</p>
+  <h3>Native ownership</h3>
+  <p>Each type of realia belongs to one province, and that province's player is the one who sells it.</p>
+  <table>
+    <thead><tr><th>Realia</th><th>Belongs to</th><th>Realia</th><th>Belongs to</th></tr></thead>
+    <tbody>
+      <tr><td><span class="piece"><img src="images/customs-house.svg" alt="">Customs House</span></td><td>2 · Official</td><td><span class="piece"><img src="images/dragon-jar.svg" alt="">Dragon Jar</span></td><td>5 · Silk Peasant</td></tr>
+      <tr><td><span class="piece"><img src="images/land-deed-scroll.svg" alt="">Land Deed Scroll</span></td><td>3 · Gentry</td><td><span class="piece"><img src="images/wooden-bowl.svg" alt="">Wooden Bowl</span></td><td>6 · Rice Peasant</td></tr>
+      <tr><td><span class="piece"><img src="images/bamboo-brush.svg" alt="">Bamboo Brush</span></td><td>4 · Scholar</td><td><span class="piece"><img src="images/vase.svg" alt="">Vase</span></td><td>7 · Wheat Peasant</td></tr>
+    </tbody>
+  </table>
+  <h3>Starting stock</h3>
+  <table>
+    <thead><tr><th>Players</th><th>Each province starts holding</th></tr></thead>
+    <tbody>
+      <tr><td class="n">4–5</td><td>One piece of its own realia, plus two pieces of the one type it will never need</td></tr>
+      <tr><td class="n">6</td><td>Two pieces of its own realia</td></tr>
+      <tr><td class="n">7+</td><td>Four pieces of its own realia</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Stock waits beside the board; bought pieces go on it immediately.</strong> Your unsold stock is not placed on the map. The moment a piece is sold, the buyer must place it on a square inside their own province, before play moves on. See Placement below.</p>
+  <p>At four or five players the second type you hold is exactly the type your own objective does not ask for, and it comes in a pair — enough for both players who need it. Your own piece is different: there is only one, and <em>both</em> other players holding realia need it. So in a small game only one player can complete a set at a time, and the others wait for a seat change to send pieces back to auction.</p>
+  <div class="note"><b>Note 8</b> The original rules never state this pattern, but it holds for every province. It decides the shape of every small game: the pairs sell easily, and the single pieces are the whole fight.</div>
+  <figure>
+  <svg viewBox="0 0 760 300" role="img" aria-label="Diagram of which province holds the realia it never needs">
+    <defs>
+      <marker id="ah" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto">
+        <path d="M0 0 L7.5 3.2 L0 6.4 z" fill="#6E4A2C"/>
+      </marker>
+    </defs>
+    <g font-family="Helvetica Neue,Helvetica,Arial" text-anchor="middle">
+      <!-- pair -->
+      <text x="150" y="30" font-size="12" font-family="Courier New, monospace" letter-spacing="2" fill="#5C584A">A MUTUAL PAIR</text>
+      <circle cx="150" cy="90" r="34" fill="#fff" stroke="#16150F" stroke-width="2"/>
+      <text x="150" y="88" font-size="19" font-weight="700">2</text><text x="150" y="104" font-size="10">Official</text>
+      <circle cx="150" cy="228" r="34" fill="#fff" stroke="#16150F" stroke-width="2"/>
+      <text x="150" y="226" font-size="19" font-weight="700">5</text><text x="150" y="242" font-size="10">Silk</text>
+      <path d="M138 126 L138 190" stroke="#6E4A2C" stroke-width="2" marker-end="url(#ah)"/>
+      <path d="M162 192 L162 128" stroke="#6E4A2C" stroke-width="2" marker-end="url(#ah)"/>
+      <text x="150" y="152" font-size="10.5" fill="#6E4A2C">holds <tspan class="pg" data-g="dragon-jar" dx="1.1em">Dragon Jars</tspan></text>
+      <text x="150" y="166" font-size="10.5" fill="#6E4A2C">holds <tspan class="pg" data-g="customs-house" dx="1.1em">Customs Houses</tspan></text>
+      <!-- ring -->
+      <text x="500" y="30" font-size="12" font-family="Courier New, monospace" letter-spacing="2" fill="#5C584A">A RING OF FOUR</text>
+      <circle cx="410" cy="90" r="34" fill="#fff" stroke="#16150F" stroke-width="2"/>
+      <text x="410" y="88" font-size="19" font-weight="700">3</text><text x="410" y="104" font-size="10">Gentry</text>
+      <circle cx="590" cy="90" r="34" fill="#fff" stroke="#16150F" stroke-width="2"/>
+      <text x="590" y="88" font-size="19" font-weight="700">6</text><text x="590" y="104" font-size="10">Rice</text>
+      <circle cx="590" cy="228" r="34" fill="#fff" stroke="#16150F" stroke-width="2"/>
+      <text x="590" y="226" font-size="19" font-weight="700">4</text><text x="590" y="242" font-size="10">Scholar</text>
+      <circle cx="410" cy="228" r="34" fill="#fff" stroke="#16150F" stroke-width="2"/>
+      <text x="410" y="226" font-size="19" font-weight="700">7</text><text x="410" y="242" font-size="10">Wheat</text>
+      <path d="M446 90 L546 90" stroke="#6E4A2C" stroke-width="2" marker-end="url(#ah)"/>
+      <path d="M590 126 L590 190" stroke="#6E4A2C" stroke-width="2" marker-end="url(#ah)"/>
+      <path d="M554 228 L454 228" stroke="#6E4A2C" stroke-width="2" marker-end="url(#ah)"/>
+      <path d="M410 192 L410 128" stroke="#6E4A2C" stroke-width="2" marker-end="url(#ah)"/>
+      <g font-size="10.5" fill="#6E4A2C">
+        <text x="496" y="82">holds <tspan class="pg" data-g="wooden-bowl" dx="1.1em">Bowls</tspan></text>
+        <text x="662" y="162">holds <tspan class="pg" data-g="bamboo-brush" dx="1.1em">Brushes</tspan></text>
+        <text x="504" y="248">holds <tspan class="pg" data-g="vase" dx="1.1em">Vases</tspan></text>
+        <text x="348" y="162">holds <tspan class="pg" data-g="land-deed-scroll" dx="1.1em">Scrolls</tspan></text>
+      </g>
+    </g>
+  </svg>
+  <figcaption>At 4–5 players: the arrow points at the province whose realia you are stuck with and will never want</figcaption>
+  </figure>
+  <h3>The auction</h3>
+  <p>You must auction one piece of realia during each round, until all your pieces have been sold. The minimum bid is 2 million bags of grain, but you may set any higher minimum you like. One fourth of the final sale price belongs to you as a commission; the rest goes to the Harvest Pile. Any realia returned to you during the game must be auctioned again as soon as possible.</p>
+  <p>The Emperor does not bid. Everyone else may.</p>
+  <div class="orig">One of the penalties of hoarding — that is, not bidding for the Realia — is that a player can and will move into or take over a wealthy Province. Remember, a player will move laterally if the reward is great enough.<cite>General Instructions, 1969</cite></div>
+  <h3>Placement</h3>
+  <p>Any realia you acquire, whether at auction or by private trade, must be placed on a square within the boundaries of your Province. It cannot be moved off that square except when it is traded or sold to another player, sold back to the Harvest Pile for 2 million bags of grain, or you move to another province.</p>
+  <p>Realia sitting on a square is also a target. If the Warlord raids that square, the piece itself may be demanded as tribute.</p>
+  <p><strong>Unsold stock stays off the map.</strong> A piece goes onto a square the moment it is bought at auction or taken in a trade — the buyer places it at once. Pieces returned on a change of province go back into their province's unsold stock until they are auctioned again.</p>
+  <div class="note"><b>Note 9</b> The booklets only say that realia you <em>acquire</em> is placed. Keeping unsold stock off the map stops the Warlord collecting his whole objective in Round Two, before anyone has bought anything, and it hides nothing: every seller must auction a piece each round until the stock is gone.</div>
+</section>
+
+<!-- ================= 11 ================= -->
+<section class="sheet" id="s11">
+  <div class="sec-head"><span class="sec-num">11</span><h2>Objectives and changing provinces</h2></div>
+  <p>Every province except the Emperor's and the Warlord's has an objective: a set of realia belonging to other people, plus 20 million bags of grain.</p>
+  <table>
+    <thead><tr><th>Players</th><th>What you must collect</th></tr></thead>
+    <tbody>
+      <tr><td class="n">4–5</td><td>Four specific pieces of realia, listed in your booklet, and 20 million bags of grain</td></tr>
+      <tr><td class="n">6</td><td>One piece of realia native to each other realia-holding province, and 20 million</td></tr>
+      <tr><td class="n">7+</td><td>One piece of every type of realia except your own, and 20 million</td></tr>
+    </tbody>
+  </table>
+  <p>The Warlord's objective is different: raid a different piece of realia from each player.</p>
+  <figure>
+  <svg viewBox="0 0 760 300" role="img" aria-label="Diagram of who may replace whom">
+    <g font-family="Helvetica Neue,Helvetica,Arial">
+      <rect x="250" y="14" width="260" height="46" fill="#C8291A" stroke="#C8291A" stroke-width="2"/>
+      <text x="380" y="43" text-anchor="middle" font-size="16" font-weight="700" fill="#fff" letter-spacing="2">1 · THE EMPEROR</text>
+      <g>
+        <rect x="250" y="86" width="260" height="40" fill="#fff" stroke="#16150F" stroke-width="2"/>
+        <text x="380" y="112" text-anchor="middle" font-size="13" font-weight="700">2 OFFICIAL · 3 GENTRY · 4 SCHOLAR</text>
+        <text x="380" y="140" text-anchor="middle" font-size="11" fill="#5C584A" font-family="Courier New, monospace">UPPER CLASS</text>
+      </g>
+      <g>
+        <rect x="250" y="162" width="260" height="40" fill="#fff" stroke="#16150F" stroke-width="2"/>
+        <text x="380" y="188" text-anchor="middle" font-size="13" font-weight="700">5 SILK · 6 RICE · 7 WHEAT</text>
+        <text x="380" y="216" text-anchor="middle" font-size="11" fill="#5C584A" font-family="Courier New, monospace">LOWER CLASS</text>
+      </g>
+      <rect x="250" y="240" width="260" height="40" fill="#fff" stroke="#16150F" stroke-width="2" stroke-dasharray="6 4"/>
+      <text x="380" y="266" text-anchor="middle" font-size="13" font-weight="700">8 · THE WARLORD</text>
+      <!-- arrows -->
+      <g stroke="#16150F" stroke-width="2" fill="none" marker-end="url(#ah2)">
+        <path d="M540 96 C 600 96, 600 34, 545 30"/>
+        <path d="M220 172 C 160 172, 160 106, 215 100"/>
+      </g>
+      <path d="M600 250 C 690 250, 690 40, 545 34" stroke="#C8291A" stroke-width="2" fill="none" stroke-dasharray="6 4" marker-end="url(#ah3)"/>
+      <defs>
+        <marker id="ah2" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto"><path d="M0 0 L7.5 3.2 L0 6.4 z" fill="#16150F"/></marker>
+        <marker id="ah3" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto"><path d="M0 0 L7.5 3.2 L0 6.4 z" fill="#C8291A"/></marker>
+      </defs>
+      <text x="616" y="72" font-size="11" fill="#16150F" font-family="Courier New, monospace">may take</text>
+      <text x="616" y="86" font-size="11" fill="#16150F" font-family="Courier New, monospace">the throne</text>
+      <text x="70" y="132" font-size="11" fill="#16150F" font-family="Courier New, monospace">must climb</text>
+      <text x="70" y="146" font-size="11" fill="#16150F" font-family="Courier New, monospace">one step first</text>
+      <text x="700" y="180" font-size="11" fill="#C8291A" font-family="Courier New, monospace" text-anchor="middle">may take</text>
+      <text x="700" y="194" font-size="11" fill="#C8291A" font-family="Courier New, monospace" text-anchor="middle">anyone</text>
+    </g>
+  </svg>
+  <figcaption>Who may replace whom</figcaption>
+  </figure>
+  <h3>Becoming Emperor</h3>
+  <p>When you have accumulated all of the necessary realia you may declare yourself Emperor and exchange provinces with the Emperor. You must return all realia in your possession to the Provinces where they originated, keeping only your grain surplus. The Emperor must give you the entire imperial grain reserve, then takes your former position, is entitled to all your former privileges, and draws 60 million bags of grain from the Harvest Pile.</p>
+  <p>Only the Official, the Gentry, the Scholar and the Warlord may take the throne this way. A Peasant must first move up into an upper-class province and complete that province's objective.</p>
+  <div class="note"><b>Note 10</b> The booklets carry boilerplate that appears to let anyone declare themselves Emperor; the peasants' own objectives do not. The objectives govern.</div>
+  <h3>Replacing other players</h3>
+  <p>When you have accumulated all of the realia listed under Objectives, you may instead choose to replace a player other than the Emperor. You may keep all realia you have purchased <strong>except</strong> those pieces which originated in the province you are moving into. Realia belonging to your new province must be placed on sale at the earliest possible time. If you elect to replace the Scholar, you must auction the <span class="piece"><img src="images/bamboo-brush.svg" alt="">bamboo brushes</span>; if you elect to replace the Silk Peasant, then you must auction the <span class="piece"><img src="images/dragon-jar.svg" alt="">dragon jars</span>.</p>
+  <p>You may keep all of your grain surplus, <strong>as well as all grain belonging to the player you replace.</strong></p>
+  <h3>When being replaced</h3>
+  <p>Return all realia in your possession to the Provinces where they originated. Change seats with the player replacing you and become the new owner of that player's old province. You may draw 60 million bags of grain from the Harvest Pile, and must now play the game according to your new personality.</p>
+  <div class="note"><b>Note 11</b> If a piece's home province is empty, it goes back to the province that started the game holding it.</div>
+</section>
+
+<!-- ================= 12 ================= -->
+<section class="sheet" id="s12">
+  <div class="sec-head"><span class="sec-num">12</span><h2>Public Works</h2></div>
+  <p>The Public Works are the nation's way out of famine, and building all of them ends the game. The Emperor pays for and builds one project each round, and is responsible only for provinces where there is a player.</p>
+  <div class="note"><b>Note 12</b> One project per round — but a project may be any number of sections of the same work. Four links of the <span class="piece"><img src="images/great-wall.svg" alt="">Great Wall</span> in one round is one project. A <span class="piece"><img src="images/grand-canal.svg" alt="">canal</span> section and a palace in the same round is two.</div>
+  <table>
+    <thead><tr><th>Project</th><th>Where</th><th class="n">Cost</th><th>Effect</th></tr></thead>
+    <tbody>
+      <tr><td><span class="piece"><img src="images/summer-palace.svg" alt="">Summer Palace</span></td><td>Province 1</td><td class="n">20</td><td>Required before the <span class="piece"><img src="images/great-wall.svg" alt="">Great Wall</span> and the <span class="piece"><img src="images/grand-canal.svg" alt="">Grand Canal</span> in Province 1</td></tr>
+      <tr><td><span class="piece"><img src="images/winter-palace.svg" alt="">Winter Palace</span></td><td>Province 1</td><td class="n">20</td><td>Required before the <span class="piece"><img src="images/grand-canal.svg" alt="">Grand Canal</span> in Provinces 4, 5 and 6</td></tr>
+      <tr><td><span class="piece"><img src="images/marble-pagoda.svg" alt="">Marble Pagoda</span></td><td>Province 1</td><td class="n">20</td><td>Must be built in any round the Emperor builds none of the systems</td></tr>
+      <tr><td><span class="piece"><img src="images/great-wall.svg" alt="">Great Wall</span></td><td>4 links each above 1, 2, 3</td><td class="n">40 <span style="font-size:.8em">per link</span></td><td>Four links above a province open the new land below them</td></tr>
+      <tr><td><span class="piece"><img src="images/grand-canal.svg" alt="">Grand Canal</span></td><td>2 sections each in 1, 4, 5, 6</td><td class="n">40 <span style="font-size:.8em">per section</span></td><td>+10 harvest per section, per round</td></tr>
+      <tr><td><span class="piece"><img src="images/irrigation.svg" alt="">Irrigation System</span></td><td>Province 2</td><td class="n">30</td><td>+10 per round</td></tr>
+      <tr><td><span class="piece"><img src="images/reservoir.svg" alt="">Reservoir</span></td><td>Province 3</td><td class="n">80</td><td>+20 per round</td></tr>
+      <tr><td><span class="piece"><img src="images/reservoir.svg" alt="">Reservoir</span></td><td>Province 7</td><td class="n">60</td><td>+20 per round</td></tr>
+    </tbody>
+  </table>
+  <figure>
+  <svg viewBox="0 0 760 250" role="img" aria-label="Build order dependencies">
+    <defs><marker id="ah4" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto"><path d="M0 0 L7.5 3.2 L0 6.4 z" fill="#16150F"/></marker></defs>
+    <g font-family="Helvetica Neue,Helvetica,Arial" font-size="12.5" text-anchor="middle">
+      <rect x="20" y="40" width="150" height="52" fill="#C8291A" stroke="#C8291A"/>
+      <text x="95" y="63" fill="#fff" font-weight="700"><tspan class="pg" data-g="summer-palace" dx="1.1em">SUMMER PALACE</tspan></text><text x="95" y="80" fill="#fff" font-size="11">20</text>
+      <rect x="20" y="150" width="150" height="52" fill="#C8291A" stroke="#C8291A"/>
+      <text x="95" y="173" fill="#fff" font-weight="700"><tspan class="pg" data-g="winter-palace" dx="1.1em">WINTER PALACE</tspan></text><text x="95" y="190" fill="#fff" font-size="11">20</text>
+      <rect x="290" y="14" width="170" height="46" fill="#fff" stroke="#16150F" stroke-width="2"/>
+      <text x="375" y="42" font-weight="700"><tspan class="pg" data-g="great-wall" dx="1.1em">GREAT WALL</tspan> · 12</text>
+      <rect x="290" y="76" width="170" height="46" fill="#E3EEF9" stroke="#175FB5" stroke-width="2"/>
+      <text x="375" y="97" font-weight="700" fill="#175FB5"><tspan class="pg" data-g="grand-canal" dx="1.1em">GRAND CANAL</tspan></text><text x="375" y="112" font-size="11" fill="#175FB5">Province 1 · 2 sections</text>
+      <rect x="290" y="150" width="170" height="46" fill="#E3EEF9" stroke="#175FB5" stroke-width="2"/>
+      <text x="375" y="171" font-weight="700" fill="#175FB5"><tspan class="pg" data-g="grand-canal" dx="1.1em">GRAND CANAL</tspan></text><text x="375" y="186" font-size="11" fill="#175FB5">Provinces 4, 5, 6 · 6 sections</text>
+      <rect x="565" y="14" width="175" height="46" fill="#fff" stroke="#16150F" stroke-width="2" stroke-dasharray="6 4"/>
+      <text x="652" y="35" font-size="11.5">NEW LAND opens in</text><text x="652" y="50" font-size="11.5">Provinces 2 and 3</text>
+      <g stroke="#16150F" stroke-width="2" fill="none" marker-end="url(#ah4)">
+        <path d="M170 58 L282 40"/>
+        <path d="M170 76 L282 95"/>
+        <path d="M170 176 L282 174"/>
+        <path d="M460 37 L557 37"/>
+      </g>
+      <text x="652" y="100" font-size="11" font-family="Courier New, monospace" fill="#5C584A">…and only when your</text>
+      <text x="652" y="116" font-size="11" font-family="Courier New, monospace" fill="#5C584A">population has doubled</text>
+    </g>
+  </svg>
+  <figcaption>What must be built before what</figcaption>
+  </figure>
+  <h3>Who pays</h3>
+  <p>The Emperor pays outright for the <span class="piece"><img src="images/grand-canal.svg" alt="">Grand Canal</span> in Provinces 5 and 6, and for the <span class="piece"><img src="images/reservoir.svg" alt="">Reservoir</span> in Province 7. Everything else is negotiated: the province player and the Emperor haggle over the split, and the Emperor will expect a share of the increase. Neither side can force the other, which is the point.</p>
+</section>
+
+<!-- ================= 13 ================= -->
+<section class="sheet" id="s13">
+  <div class="sec-head"><span class="sec-num">13</span><h2>New land and sea</h2></div>
+  <p>Harvest squares are the only place in Dynasty where your production grows with your population. Every other income in the game is flat. They are also, deliberately, out of reach until the crisis has already started.</p>
+  <h3>When you may develop</h3>
+  <ul>
+    <li>Your province's population must have <strong>at least doubled</strong> — 24 million for Provinces 2, 3 and 4; 28 million for Provinces 1, 5, 6 and 7. This can only happen when an I Ching card announces an increase, so the earliest possible purchase is Round Two and in practice it is much later.</li>
+    <li>Provinces 2 and 3 must also wait until all four links of the <span class="piece"><img src="images/great-wall.svg" alt="">Great Wall</span> above them are built.</li>
+  </ul>
+  <h3>Cost and yield</h3>
+  <p>New harvest squares cost 20 million bags of grain each, purchased from the Harvest Pile during the Public Works step and marked with a blue square. Each produces 20 million bags per round, for the rest of the game. The cost must be shared with the Emperor, who will also seek to share the harvest. Negotiate.</p>
+  <p>An Emperor who cannot or will not subsidize the development of new harvest areas is one of the six causes for revolt. The Emperor knows it, and so do you.</p>
+</section>
+
+<!-- ================= 14 ================= -->
+<section class="sheet" id="s14">
+  <div class="sec-head"><span class="sec-num">14</span><h2>The Warlord, raids and soldiers</h2></div>
+  <div class="orig">Since the Emperor represents law and order, the Warlord is disorder. Where and how disorder strikes is up to the Warlord.<cite>General Instructions, 1969</cite></div>
+  <h3>Raiding</h3>
+  <p>The Warlord marches a soldier onto an un-raided square inside a province and demands tribute: 5 million bags of grain, or <strong>10 million in Province 1</strong>. Place a pink raid square on that spot and stand the soldier on it. The Warlord may raid as many squares in a round as there are soldiers to do it.</p>
+  <p>If the raided square holds a piece of realia, the Warlord may demand the 5 million, the realia itself, or the cost of the structure. If it holds one of the Emperor's buildings — the <span class="piece"><img src="images/summer-palace.svg" alt="">Summer Palace</span>, <span class="piece"><img src="images/winter-palace.svg" alt="">Winter Palace</span> or <span class="piece"><img src="images/marble-pagoda.svg" alt="">Marble Pagoda</span> — the Emperor must pay the full cost of the structure. A raid on any other square, including one holding the <span class="piece"><img src="images/grand-canal.svg" alt="">Grand Canal</span>, the <span class="piece"><img src="images/irrigation.svg" alt="">irrigation system</span> or a <span class="piece"><img src="images/reservoir.svg" alt="">Reservoir</span>, is an ordinary raid; the work is undamaged.</p>
+  <h3>Raided ground stays raided</h3>
+  <p>Once a square has been raided and the Warlord paid, that square cannot be raided again, ever. The raid square remains on the map, though the Warlord's soldiers may land on a raided square as often as they wish. A province player whose own soldier occupies a raided square may reclaim it and remove the marker; it still cannot be raided a second time.</p>
+  <div class="note"><b>Note 13</b> The booklets say a raided square may be reclaimed but never say what reclaiming does. Here it removes the marker and nothing more.</div>
+  <h3>Crossing water</h3>
+  <p>The Warlord's soldiers may go anywhere on the board: into any province, beyond the Wall, across water. Like every soldier, though, each moves only one square a round (below). Every soldier that crosses a river or a public works project costs the Warlord a transportation fee of 5 million bags of grain, paid to that province. It is the only money that reliably flows out of the western territory.</p>
+  <h3>Buying soldiers</h3>
+  <p>Your only defense against the Warlord is to purchase soldiers. The Warlord must sell to any player who wishes to buy, at 20 million bags of grain each, keeping 25% of each sale as commission and turning the rest over to the Harvest Pile. Arming yourself is therefore also how you fund the army coming for you.</p>
+  <h3>Moving soldiers</h3>
+  <p>Place purchased soldiers in your own province. They cannot move at all until the Warlord has raided your province. After that, you may move all your soldiers one square each round, but only after the Warlord's soldiers have moved.</p>
+  <p><strong>Every soldier moves at most one square a round, the Warlord's included</strong>, in any direction, diagonals included. A Warlord soldier raids the square it moves onto, so each soldier raids at most one new square a round. A soldier captures by moving onto an occupied square horizontally or vertically; a soldier can never be captured diagonally. Captured soldiers are removed from play. Soldiers may be marched together as a group, and a marched group may be dispersed simultaneously at any time.</p>
+  <div class="note"><b>Note 14</b> The booklets say capture is horizontal only; the General Instructions say horizontal and vertical. Vertical capture is allowed here.</div>
+  <div class="note"><b>Note 15</b> The Warlord's booklet says both that his soldiers may move "anywhere on the board" and that he "may move all your soldiers one square during each round." Read together: no square is off limits, but every soldier moves one square a round. Raiders who could appear anywhere would make the bought soldiers — "the only defense" — useless.</div>
+</section>
+
+<!-- ================= 15 ================= -->
+<section class="sheet" id="s15">
+  <div class="sec-head"><span class="sec-num">15</span><h2>I Ching and personal disasters</h2></div>
+  <p><em>Pronounced "e ching."</em></p>
+  <p>The Scholar turns one card at the start of every round from Round Two onward and reads it aloud. All players must obey whatever instructions are on the card. A card sets the harvest — sometimes for everyone, sometimes good for some provinces and bad for others — and may raise the population, tax the provinces, damage unfinished Public Works, or call for Personal Disasters.</p>
+  <p>There are twenty cards and they are not reshuffled. Five of them raise the population — three that double it and two that add half — and the deck stops counting at 600 million. That is the clock the whole game runs on.</p>
+  <h3>Personal disasters</h3>
+  <p>Every booklet contains three, numbered 1 to 3. When I Ching announces a personal disaster, you play yours <strong>in numerical order</strong> — not the one you would prefer. When all three have been played, they may be played over again. They are printed with each province in Part Two.</p>
+  <p>The first disaster in every booklet is cheap and fixed. The third, in almost every booklet, takes a fraction of everything you have.</p>
+</section>
+
+<!-- ================= 16 ================= -->
+<section class="sheet" id="s16">
+  <div class="sec-head"><span class="sec-num">16</span><h2>Revolt and Chaos</h2></div>
+  <p>You may revolt against the Emperor at any time during the game, provided that two other players agree that one of the following exists:</p>
+  <ol>
+    <li>The Emperor is unjust.</li>
+    <li>The Emperor consistently demands taxes which are too excessive.</li>
+    <li>The Emperor has too low a grain reserve.</li>
+    <li>The Emperor has delayed too long in building Public Works.</li>
+    <li>The Emperor cannot control the Warlord.</li>
+    <li>The Emperor cannot, or will not, subsidize the development of new harvest areas.</li>
+  </ol>
+  <p>The price of revolt is <strong>Chaos</strong>. The nation is leaderless until a new Emperor emerges. To become the new Emperor, a player must have one of the following: the most money, the most friends, the most soldiers, or any combination of the above.</p>
+  <div class="note"><b>Note 16</b> While Chaos lasts, no tax is declared, no salaries are paid and no Public Works are built. Harvests are still distributed and the Warlord still rides.</div>
+  <p>Note the second qualification in that list. Friends are a resource in this game, and the rules say so out loud.</p>
+</section>
+
+<!-- ================= 17 ================= -->
+<section class="sheet" id="s17">
+  <div class="sec-head"><span class="sec-num">17</span><h2>Playing your personality</h2></div>
+  <p>Each booklet opens with a personality, and this is a rule, not flavor text. <strong>For as long as you hold a province, your actions must be consistent with your personality as stated.</strong> A generous Official is not playing the game. A Gentry who forgets to collect the rents is not playing the game.</p>
+  <p>The revolt rules are the enforcement mechanism. There is no referee except the Emperor, and no penalty except the one the table agrees to impose.</p>
+  <p>Note that although the Peasants are described as not overly ambitious, they are ambitious enough to want to move ahead, up the social ladder.</p>
+  <div class="orig">Players should negotiate with each other, help each other (if you so desire), hurt each other (if so inclined), bribe the official, develop special strategy against the Warlord, find ways to combat overpopulation, create your own "Domino Theory," or deficit spending program, a surtax. The Emperor might decree a "New Deal" or that there will be no more population increases, if this seems to be practical in terms of the real world.<br><br>This game gives you the opportunity to operate a mini country. You will be faced with all of the problems that confront most countries. How you solve the problems is the essence of the game. Use your common sense and your knowledge of the world around you. That is the true guide to Dynasty.<cite>General Instructions, 1969</cite></div>
+</section>
+
+<!-- ================= 18 ================= -->
+<section class="sheet" id="s18">
+  <div class="sec-head"><span class="sec-num">18</span><h2>Winning the game</h2></div>
+  <p class="lede">The winner or winners are those who improve their social position. Note the plural: Dynasty does not crown a single victor, and it is perfectly possible for four people to win and two to lose.</p>
+  <h3>How the game ends</h3>
+  <p><strong>By survival.</strong> All of the Public Works are built: three imperial buildings, twelve links of the <span class="piece"><img src="images/great-wall.svg" alt="">Great Wall</span>, eight sections of the <span class="piece"><img src="images/grand-canal.svg" alt="">Grand Canal</span>, and the <span class="piece"><img src="images/irrigation.svg" alt="">irrigation system</span> and the two <span class="piece"><img src="images/reservoir.svg" alt="">Reservoirs</span>, in every province that has a player. The Emperor's reign has been a glorious one, and the nation has fed itself.</p>
+  <p><strong>By collapse.</strong> The players cannot solve the social-economic-political problems presented by the game — the system has defeated their ability to cope. There is no procedure for this and no scoring; the table simply reaches a point where the harvest cannot cover consumption and no one can or will build. Nobody wins.</p>
+  <h3>Settling the result</h3>
+  <p>Rank every player by the number of the province they are sitting in when the game ends, 1 being highest, and compare it with the province they drew at setup.</p>
+  <div class="note"><b>Note 17</b> Neither the can nor the General Instructions give a scoring procedure. This one follows their stated object: improve your position, or at least survive.</div>
+  <table>
+    <thead><tr><th>Outcome</th><th>Result</th></tr></thead>
+    <tbody>
+      <tr><td>You are in a lower-numbered province than you started in</td><td><strong>You have won.</strong> You improved your social position, which is the stated object</td></tr>
+      <tr><td>You are in the same province</td><td>Neither win nor loss. You survived, which is the other stated object</td></tr>
+      <tr><td>You are in a higher-numbered province</td><td>You have lost. Someone climbed over you</td></tr>
+      <tr><td>You are the Emperor and still on the throne</td><td><strong>You have won.</strong> Your objective was to remain in power</td></tr>
+      <tr><td>You are the Warlord and have entered the social order at all</td><td><strong>You have won.</strong> You began outside it</td></tr>
+    </tbody>
+  </table>
+  <p>If two players need separating, the larger grain surplus wins. The original rules give no tiebreak, because the original rules are not really interested in who came first — they are interested in whether the country made it.</p>
+</section>
+
+<!-- ================= 19 ================= -->
+<section class="sheet" id="s19">
+  <div class="sec-head"><span class="sec-num">19</span><h2>How long a game takes</h2></div>
+  <p class="lede">Longer than it looks. Budget five to eight hours for a full eight-player game, and three to five for four or five players.</p>
+  <h3>Before the first card</h3>
+  <p>Allow forty-five minutes. There is no teaching this game: each player reads a different booklet containing a personality, an objective, a realia list, an income table and three disasters, and none of it can be summarized by one person for the table, because half of it is positional knowledge nobody else is meant to have. Hand out the booklets, set out the Harvest Pile, and let everybody read.</p>
+  <h3>During a round</h3>
+  <table>
+    <thead><tr><th>Phase</th><th class="n">8 players</th><th class="n">4–5 players</th></tr></thead>
+    <tbody>
+      <tr><td>I Ching and the population count</td><td class="n">2 min</td><td class="n">1 min</td></tr>
+      <tr><td>Harvest paid out</td><td class="n">5</td><td class="n">3</td></tr>
+      <tr><td>Rents and salaries</td><td class="n">2</td><td class="n">1</td></tr>
+      <tr><td>Tax declared and collected</td><td class="n">5</td><td class="n">3</td></tr>
+      <tr><td>Public works negotiation</td><td class="n">5–10</td><td class="n">4–8</td></tr>
+      <tr><td>Auction</td><td class="n">10–15</td><td class="n">5–8</td></tr>
+      <tr><td>The Warlord moves and raids</td><td class="n">4</td><td class="n">3</td></tr>
+      <tr><td>Trades, bribes, side deals</td><td class="n">5+</td><td class="n">3+</td></tr>
+      <tr><td><strong>Round total</strong></td><td class="n"><strong>35–45</strong></td><td class="n"><strong>23–30</strong></td></tr>
+    </tbody>
+  </table>
+  <p>Rounds speed up once people stop looking things up — call it 25 minutes at eight players by the fourth or fifth year. The auction is the one phase that gets <em>slower</em>: by the time most provinces are one piece short of an objective, every lot is somebody's last piece and the bidding turns into a negotiation.</p>
+  <h3>Why the end is unpredictable</h3>
+  <p>There is no turn limit and no score to race toward. The game ends when all the Public Works are built — which is a large sum to reach, and the population may beat you to it — or when the players cannot cope. That second ending is a social event rather than a mechanical one: it happens when enough people are angry, and that depends on the table, not on the board.</p>
+  <p>In practice a group plays six to eight years in one long sitting and someone revolts along the way. Plan a full day with food, or agree in advance to use the short game below.</p>
+  <h3>The short game</h3>
+  <p>Agree before setup that the game ends after <strong>eight rounds</strong>, and score as in Section 18 from wherever everyone is sitting. Nothing else changes. Eight rounds is enough for the population to rise at least once, for the Emperor to fall behind on the Public Works, for two or three players to complete an objective and change seats, and for a revolt to be a live threat — which is the whole game in miniature. <span class="cost">Note 18</span></p>
+  <h3>Keeping it moving</h3>
+  <ul>
+    <li><strong>Use the income tables in Section 7</strong>, which are indexed by population multiple rather than headcount. Every player reads one row instead of doing arithmetic eight times a round.</li>
+    <li><strong>Set a minimum bid and a timer on each lot.</strong> The rules let the seller set any minimum above 2 million; a thirty-second clock turns a ten-minute auction into a four-minute one.</li>
+    <li><strong>Let the Emperor negotiate cost-shares while the auction runs.</strong> Nothing in the rules requires the table's full attention for a two-party bargain.</li>
+    <li><strong>Appoint someone other than the Gentry to count the Harvest Pile into stacks</strong> before play. Paying out eight harvests from a loose pile is the slowest minute of every round.</li>
+  </ul>
+</section>
+
+<!-- ================= PART TWO ================= -->
+<section class="sheet" id="p1">
+  <p class="eyebrow">Part Two · The Provinces</p>
+  <div class="sec-head"><span class="sec-num">20</span><h2>Province 1 — The Emperor</h2></div>
+  <div class="band"><a href="#p1" class="on">1</a><a href="#p2">2</a><a href="#p3">3</a><a href="#p4">4</a><a href="#p5">5</a><a href="#p6">6</a><a href="#p7">7</a><a href="#p8" class="out">8</a></div>
+  <p><strong>Population 14 million · consumes 60 million · harvest 100 / 75 / 50</strong></p>
+  <h3>Personality</h3>
+  <p>You are the <em>Son of Heaven — the Emperor</em>. You are forceful and thoughtful. To retain your power, you must watch over your people and understand their needs. You are just and reasonably compassionate. You reward those who obey and assist you. Your concerns are for the masses, not petty personal disasters. You stand above all men and your orders must be obeyed. Often you will delegate the workings of the bureaucracy to lesser men such as the Official or Scholar.</p>
+  <p>In your dealings with the people, you will always negotiate with the upper class first — the Official, Gentry and Scholar.</p>
+  <p>All edicts, decrees, orders and decisions made by you must be obeyed. In return, you must see to the welfare of your people at all times.</p>
+  <h3>Objective</h3>
+  <p>To remain in power. The game ends when you have successfully completed all of the Public Works — then your reign has been a glorious one.</p>
+  <h3>Each round</h3>
+  <ul>
+    <li><strong>Declare the tax.</strong> Consult the harvest and the Income Tax Schedule to work out how much money you need, and direct the Official to collect the percentage you want.</li>
+    <li><strong>Build one Public Works project.</strong> If you are building none of the systems, you must build the <span class="piece"><img src="images/marble-pagoda.svg" alt="">Marble Pagoda</span>.</li>
+    <li><strong>Pay salaries</strong> of at least 5 million each to the Official, for collecting your taxes, and the Scholar, for taking the census and educating the public.</li>
+    <li><strong>Settle disputes.</strong> You do not participate in the auctions.</li>
+  </ul>
+  <h3>Your Public Works</h3>
+  <table>
+    <thead><tr><th>Project</th><th class="n">Cost</th><th>Who pays</th></tr></thead>
+    <tbody>
+      <tr><td><span class="piece"><img src="images/summer-palace.svg" alt="">Summer Palace</span> — a display of your wealth and power</td><td class="n">20</td><td>You</td></tr>
+      <tr><td><span class="piece"><img src="images/winter-palace.svg" alt="">Winter Palace</span> — the seat of your Government</td><td class="n">20</td><td>You</td></tr>
+      <tr><td><span class="piece"><img src="images/marble-pagoda.svg" alt="">Marble Pagoda</span> — part of the <span class="piece"><img src="images/summer-palace.svg" alt="">Summer Palace</span></td><td class="n">20</td><td>You</td></tr>
+      <tr><td><span class="piece"><img src="images/great-wall.svg" alt="">Great Wall</span>, 12 links over Provinces 1, 2, 3</td><td class="n">40 ea.</td><td>Negotiate with 2 and 3</td></tr>
+      <tr><td><span class="piece"><img src="images/grand-canal.svg" alt="">Grand Canal</span>, 8 sections in Provinces 1, 4, 5, 6</td><td class="n">40 ea.</td><td>You pay for 5 and 6</td></tr>
+      <tr><td>Province 2 <span class="piece"><img src="images/irrigation.svg" alt="">irrigation system</span></td><td class="n">30</td><td>Negotiate</td></tr>
+      <tr><td>Province 3 <span class="piece"><img src="images/reservoir.svg" alt="">Reservoir</span></td><td class="n">80</td><td>Negotiate</td></tr>
+      <tr><td>Province 7 <span class="piece"><img src="images/reservoir.svg" alt="">Reservoir</span></td><td class="n">60</td><td>You</td></tr>
+    </tbody>
+  </table>
+  <p>You only have to build Public Works or new land and sea areas where there is a player. You are not responsible for an unoccupied province.</p>
+  <h3>Beware the Warlord</h3>
+  <p>Each raid square in your province costs you <strong>10 million</strong> — double what anyone else pays. A raid on a square holding the <span class="piece"><img src="images/summer-palace.svg" alt="">Summer Palace</span>, <span class="piece"><img src="images/winter-palace.svg" alt="">Winter Palace</span> or <span class="piece"><img src="images/marble-pagoda.svg" alt="">Marble Pagoda</span> costs you the full price of the structure.</p>
+  <h3>Personal disasters</h3>
+  <ol class="disasters">
+    <li>You have just received, as a tribute to your armed might, a beautiful, full-blooded Arabian horse from the Middle East, transported via the Silk Route. These horses are very rare. In your excitement you mount the horse too quickly and it throws you. But you only suffer a broken arm. For this misfortune you vent your anger on the horse trainer, and lash the trainer 20 times. To appease your conscience, <span class="cost">pay 4 million to the Harvest Pile.</span></li>
+    <li>Your six year old Prince just broke the Empress' favorite ivory figure. The figure is over 500 years old and priceless. To appease the Empress, you have promised several new ones. <span class="cost">Cost: 10 million.</span></li>
+    <li>Your Prime Minister, Li Su, has recommended that you burn all the Confucian classics. The stated reason is that the ancient way of thinking is not inducive to the creation of a new society and progress. The social structure has gotten too complex to follow the old feudal system. You agree, and order the famous burning of the books. This act incurs the wrath of the scholars and the officials. To appease them you perform a solicitous act by paying off most of the top scholars. <span class="cost">Pay 30 million.</span></li>
+  </ol>
+</section>
+
+<section class="sheet" id="p2">
+  <p class="eyebrow">Part Two · The Provinces</p>
+  <div class="sec-head"><span class="sec-num">21</span><h2>Province 2 — The Official</h2></div>
+  <div class="band"><a href="#p1">1</a><a href="#p2" class="on">2</a><a href="#p3">3</a><a href="#p4">4</a><a href="#p5">5</a><a href="#p6">6</a><a href="#p7">7</a><a href="#p8" class="out">8</a></div>
+  <p><strong>Population 12 million · consumes 40 million · realia: the <span class="piece"><img src="images/customs-house.svg" alt="">Customs House</span></strong></p>
+  <h3>Personality</h3>
+  <p>You will please the Emperor. You will be harsh and unfeeling in executing the imperial demands. You have no respect or interest in the Peasants and barely consider the Gentry and Scholar. You gather your personal wealth by using the power of your social position, by seeking bribes and surrendering your moral values whenever there is a gain to be made in your goal of becoming the Emperor. All your decisions are practical.</p>
+  <h3>Objectives</h3>
+  <p>When you possess all of the following, you may change places with the Emperor or any other player.</p>
+  <table>
+    <thead><tr><th>Players</th><th>Collect</th></tr></thead>
+    <tbody>
+      <tr><td class="n">4–5</td><td>One <span class="piece"><img src="images/vase.svg" alt="">Vase</span>, one <span class="piece"><img src="images/wooden-bowl.svg" alt="">Wooden Bowl</span>, one <span class="piece"><img src="images/land-deed-scroll.svg" alt="">Land Deed Scroll</span>, one <span class="piece"><img src="images/bamboo-brush.svg" alt="">Bamboo Brush</span>, and 20 million</td></tr>
+      <tr><td class="n">6</td><td>One realia from each other realia-holding player, and 20 million</td></tr>
+      <tr><td class="n">7+</td><td>All of the above plus one <span class="piece"><img src="images/dragon-jar.svg" alt="">Dragon Jar</span></td></tr>
+    </tbody>
+  </table>
+  <h3>Your realia — <span class="piece"><img src="images/customs-house.svg" alt="">Customs Houses</span></h3>
+  <p>You start with one <span class="piece"><img src="images/customs-house.svg" alt="">Customs House</span> and two <span class="piece"><img src="images/dragon-jar.svg" alt="">Dragon Jars</span> at 4–5 players; two <span class="piece"><img src="images/customs-house.svg" alt="">Customs Houses</span> at 6; four <span class="piece"><img src="images/customs-house.svg" alt="">Customs Houses</span> at 7 or more. You will never need a <span class="piece"><img src="images/dragon-jar.svg" alt="">Dragon Jar</span>. Province 5 will.</p>
+  <h3>Tax collection</h3>
+  <p>When the Emperor has announced the tax to be collected for the round, consult your tax chart, then collect the tax and give it to the Emperor. Make certain none of the players are cheating.</p>
+  <h3>Annual salary</h3>
+  <p>In payment for your annual task of collecting taxes, the Emperor will pay you at least 5 million at the end of each round.</p>
+  <h3>Your Public Works</h3>
+  <ul>
+    <li><strong><span class="piece"><img src="images/irrigation.svg" alt="">Irrigation System</span></strong>, 30 million — ditches, dikes, small canals and dams. Must be built before the game can end. Negotiate your share with the Emperor. Increases your harvest by 10 million per round. Make your own paper cut-out, about 1 × 2 squares (Section 2).</li>
+    <li><strong>Four links of the <span class="piece"><img src="images/great-wall.svg" alt="">Great Wall</span></strong> above your province, 40 million each. Must be built before the game can end. The Emperor will expect you to share the cost.</li>
+  </ul>
+  <h3>Developing new land</h3>
+  <p>You may not develop the new land between your Province and the <span class="piece"><img src="images/great-wall.svg" alt="">Great Wall</span> until your population has reached at least 24 million <em>and</em> all four links are complete. Squares then cost 20 million each and produce 20 million per round; share the cost with the Emperor, who will also seek to share your harvest.</p>
+  <h3>Personal disasters</h3>
+  <ol class="disasters">
+    <li>As an Official, you are responsible for the care and feeding of the imperial troops in your area. While on an inspection tour of the garrisons, your chariot drops a wheel and crashes into a tree. Fortunately you are not hurt, but your driver is crippled for life. As the driver is your personal servant, you must provide a pension and see to it that the family is also taken care of. <span class="cost">Cost of pension: 4 million to the Harvest Pile.</span></li>
+    <li>A portion of the <span class="piece"><img src="images/grand-canal.svg" alt="">Grand Canal</span> has been finished and, as requested by the Emperor, you are making an inspection trip via the imperial barge. Since the <span class="piece"><img src="images/grand-canal.svg" alt="">canal</span> is brand new, the bargemen have some difficulties. And while traversing one of the locks, the barge rams one of the gates. The damage is considerable. In order not to lose face with the Emperor you take care of the damages yourself. <span class="cost">Repairs: 10 million to the Harvest Pile.</span></li>
+    <li>You have been appointed the tax collector. As such you have hired many assistants to cover the large territory. One of the assistants is a nephew by marriage. Not very competent, this assistant loses an entire portion of the annual tax in a game of Mah Jong with the local toughs. This is tax money for the Emperor and such a loss would cause the family much grief, not to mention the Emperor's punishment of you. So, at the family's insistence, you make up the loss out of the family fortune. <span class="cost">Cost: one half of your annual income to the Harvest Pile.</span></li>
+  </ol>
+</section>
+
+<section class="sheet" id="p3">
+  <p class="eyebrow">Part Two · The Provinces</p>
+  <div class="sec-head"><span class="sec-num">22</span><h2>Province 3 — The Gentry / Landholder</h2></div>
+  <div class="band"><a href="#p1">1</a><a href="#p2">2</a><a href="#p3" class="on">3</a><a href="#p4">4</a><a href="#p5">5</a><a href="#p6">6</a><a href="#p7">7</a><a href="#p8" class="out">8</a></div>
+  <p><strong>Population 12 million · consumes 40 million · realia: the <span class="piece"><img src="images/land-deed-scroll.svg" alt="">Land Deed Scroll</span></strong></p>
+  <h3>Personality</h3>
+  <p>You are a selfish and greedy person. Your only ambition is to become rich and powerful enough to own more land and thereby control more people. Outwardly you are kind and generous, especially to the Official, Scholar and Emperor, for they are your peers and you are a fawner by nature. But you will take advantage of them if they are foolish enough not to watch you carefully. You treat the Peasants as if they were your children. You are just and paternal when dealing with them, for you consider them too stupid and too poor to threaten your social position.</p>
+  <h3>Objectives</h3>
+  <table>
+    <thead><tr><th>Players</th><th>Collect</th></tr></thead>
+    <tbody>
+      <tr><td class="n">4–5</td><td>One <span class="piece"><img src="images/vase.svg" alt="">Vase</span>, one <span class="piece"><img src="images/dragon-jar.svg" alt="">Dragon Jar</span>, one <span class="piece"><img src="images/customs-house.svg" alt="">Customs House</span>, one <span class="piece"><img src="images/bamboo-brush.svg" alt="">Bamboo Brush</span>, and 20 million</td></tr>
+      <tr><td class="n">6</td><td>One realia from each other realia-holding player, and 20 million</td></tr>
+      <tr><td class="n">7+</td><td>All of the above plus one <span class="piece"><img src="images/wooden-bowl.svg" alt="">Wooden Bowl</span></td></tr>
+    </tbody>
+  </table>
+  <h3>Your realia — <span class="piece"><img src="images/land-deed-scroll.svg" alt="">Land Deed Scrolls</span></h3>
+  <p>You start with one <span class="piece"><img src="images/land-deed-scroll.svg" alt="">Land Deed Scroll</span> and two <span class="piece"><img src="images/wooden-bowl.svg" alt="">Wooden Bowls</span> at 4–5 players; two <span class="piece"><img src="images/land-deed-scroll.svg" alt="">Scrolls</span> at 6; four at 7 or more.</p>
+  <h3>The Harvest Pile</h3>
+  <p>It is your duty to perform all transactions concerning the Harvest Pile. At the beginning of each round you must pay every player the annual harvest, as designated by I Ching. When I Ching has been read and you know whether the harvest is good, average or bad, consult the harvest chart, draw the appropriate amount from the pile and distribute it.</p>
+  <h3>Annual land rental</h3>
+  <p>Because you are a landholder, you may collect a rental of at least 5 million during each round from each Peasant player. You may negotiate to raise the rent at any time. If you forget to demand it, you do not get it.</p>
+  <h3>Your Public Works</h3>
+  <ul>
+    <li><strong><span class="piece"><img src="images/reservoir.svg" alt="">Reservoir</span></strong>, 80 million — three reservoirs, four canals and 1,000 miles of irrigation ditches. Must be built before the game can end. Increases the harvest by 20 million per round. Negotiate your share. Make your own paper cut-out, about 2 × 3 squares (Section 2).</li>
+    <li><strong>Four links of the <span class="piece"><img src="images/great-wall.svg" alt="">Great Wall</span></strong> above your province, 40 million each.</li>
+  </ul>
+  <h3>Developing new land</h3>
+  <p>As Province 2: population of at least 24 million, all four links complete, then squares at 20 million each yielding 20 million per round, cost and harvest shared with the Emperor.</p>
+  <h3>Personal disasters</h3>
+  <ol class="disasters">
+    <li>Today is an auspicious day for your kitchen staff. The head chef is retiring after 40 years of devoted service to your family, which includes about 50 people, from Grandfather to great grand son. The chef has been especially good to you, because you have always treated the household well, and enjoyed that cooking for these many years. And for such faithful service you have promised a home and a pension. <span class="cost">Pay the Harvest Pile 5 million.</span></li>
+    <li>You were recently raided by a warlord and all of your valuable works of art were stolen. Now your house is bare and not very pleasant to live in. You want to be surrounded by beauty once again. So you commissioned many artisans for canvasses, scrolls, sculptures and ivory carvings. Today is the day they are delivered. <span class="cost">Pay 10 million to the Harvest Pile.</span></li>
+    <li>Several local disasters have struck your province in the past year, and the peasants have been bearing the brunt of the suffering. Now a flood has destroyed the latest crop and many peasants are without food and shelter. The situation is so bad that some of the peasants have resorted to banditry. Being a wealthy landowner and well stocked with surplus food in your granary, you are somewhat worried about bandit attacks. As if to make your fears come true, they attack your warehouses and steal your grain. <span class="cost">Amount stolen: one-half of your grain, to the Harvest Pile.</span></li>
+  </ol>
+</section>
+
+<section class="sheet" id="p4">
+  <p class="eyebrow">Part Two · The Provinces</p>
+  <div class="sec-head"><span class="sec-num">23</span><h2>Province 4 — The Scholar</h2></div>
+  <div class="band"><a href="#p1">1</a><a href="#p2">2</a><a href="#p3">3</a><a href="#p4" class="on">4</a><a href="#p5">5</a><a href="#p6">6</a><a href="#p7">7</a><a href="#p8" class="out">8</a></div>
+  <p><strong>Population 12 million · consumes 40 million · realia: the <span class="piece"><img src="images/bamboo-brush.svg" alt="">Bamboo Brush</span></strong></p>
+  <h3>Personality</h3>
+  <p>You are a dreamer, one who prefers books and poems and paintings to the more practical things in life. You dream of becoming Emperor so that you can bring tranquility and peace to the land; so that all men may have the freedom to pursue the arts and to gain knowledge. You are compassionate and just in your dealings with everyone and you always keep your promises, for above all you are honest.</p>
+  <h3>Objectives</h3>
+  <table>
+    <thead><tr><th>Players</th><th>Collect</th></tr></thead>
+    <tbody>
+      <tr><td class="n">4–5</td><td>One <span class="piece"><img src="images/wooden-bowl.svg" alt="">Wooden Bowl</span>, one <span class="piece"><img src="images/dragon-jar.svg" alt="">Dragon Jar</span>, one <span class="piece"><img src="images/customs-house.svg" alt="">Customs House</span>, one <span class="piece"><img src="images/land-deed-scroll.svg" alt="">Land Deed Scroll</span>, and 20 million</td></tr>
+      <tr><td class="n">6</td><td>One realia from each other realia-holding player, and 20 million</td></tr>
+      <tr><td class="n">7+</td><td>All of the above plus one <span class="piece"><img src="images/vase.svg" alt="">Vase</span></td></tr>
+    </tbody>
+  </table>
+  <h3>Your realia — <span class="piece"><img src="images/bamboo-brush.svg" alt="">Bamboo Brushes</span></h3>
+  <p>You start with one <span class="piece"><img src="images/bamboo-brush.svg" alt="">Bamboo Brush</span> and two <span class="piece"><img src="images/vase.svg" alt="">Vases</span> at 4–5 players; <strong>two <span class="piece"><img src="images/bamboo-brush.svg" alt="">Bamboo Brushes</span> at 6</strong>; four at 7 or more.</p>
+  <div class="note"><b>Note 19</b> The six-player line is missing from the printed booklet. Two <span class="piece"><img src="images/bamboo-brush.svg" alt="">Brushes</span> matches every other province.</div>
+  <h3>I Ching</h3>
+  <p>Shuffle the twenty cards at the beginning of the game and place them face down on the board. You must not allow any player to look at the unturned cards. At the beginning of each round except Round One, turn over the top card and read it aloud. All players must obey whatever instructions are on the card.</p>
+  <h3>Population counter</h3>
+  <p>It is your duty to remember how many people are living in the nation at any given time. The game begins with 100 million. Whenever I Ching announces that the population has increased by one half, or that it has doubled, indicate on the chart.</p>
+  <table>
+    <thead><tr><th class="n">Province</th><th class="n">Base</th><th class="n">Province</th><th class="n">Base</th></tr></thead>
+    <tbody>
+      <tr><td class="n">1</td><td class="n">14</td><td class="n">5</td><td class="n">14</td></tr>
+      <tr><td class="n">2</td><td class="n">12</td><td class="n">6</td><td class="n">14</td></tr>
+      <tr><td class="n">3</td><td class="n">12</td><td class="n">7</td><td class="n">14</td></tr>
+      <tr><td class="n">4</td><td class="n">12</td><td class="n">8</td><td class="n">8</td></tr>
+    </tbody>
+  </table>
+  <h3>Annual salary</h3>
+  <p>The Emperor must pay you no less than 5 million during each round for taking care of I Ching and the population counter.</p>
+  <h3>Your Public Works</h3>
+  <p><strong>Two sections of the <span class="piece"><img src="images/grand-canal.svg" alt="">Grand Canal</span></strong> in your province, 40 million each. Each section increases the harvest by 10 million per round. The <span class="piece"><img src="images/winter-palace.svg" alt="">Winter Palace</span> must be standing first.</p>
+  <h3>Developing the sea</h3>
+  <p>No new sea area can be developed until your population reaches at least 24 million. Squares cost 20 million and produce 20 million per round; share the cost with the Emperor, who will also seek to share the new harvest.</p>
+  <h3>Personal disasters</h3>
+  <ol class="disasters">
+    <li>You have been doing research in your spare time for a book you plan to write called "The Migratory Habits of the Swallow." One night, while studying your notes and observations, you fall asleep. In your slumber you accidentally knock over a candle on your desk. You are awakened by the crackle of fire, but alas, it is too late to save your many pages of notes. To replace your notes will take many months of work when you cannot otherwise earn an income. <span class="cost">Pay 4 million to the Harvest Pile for your subsistence.</span></li>
+    <li>Being the foremost scholar of foreign languages, you are assigned the task of translating the latest foreign books available in the Emperor's library. Since many foreign words have no equivalent words in your language, you decide to create new words for your translations. And when the Emperor reads your manuscripts, the meanings of your new words prove completely baffling. The Emperor is so angry as to deduct one half of your salary for the past four years. <span class="cost">Pay the Harvest Pile 10 million.</span></li>
+    <li>The Emperor assigns you the task of creating a new and more accurate calendar. An accurate calendar is most important to any agricultural nation, and thus you have been granted one of the highest of all honors bestowed by the Emperor. Now you have labored over your computations for more than a year. You are rechecking your numbers when you discover that your assistant has made an error in calculation. You now must begin your figuring from the beginning and you will be delayed for at least 3 months. <span class="cost">Pay the Harvest Pile one third of your grain surplus.</span></li>
+  </ol>
+</section>
+
+<section class="sheet" id="p5">
+  <p class="eyebrow">Part Two · The Provinces</p>
+  <div class="sec-head"><span class="sec-num">24</span><h2>Province 5 — The Silk Peasant</h2></div>
+  <div class="band"><a href="#p1">1</a><a href="#p2">2</a><a href="#p3">3</a><a href="#p4">4</a><a href="#p5" class="on">5</a><a href="#p6">6</a><a href="#p7">7</a><a href="#p8" class="out">8</a></div>
+  <p><strong>Population 14 million · consumes 40 million · realia: the <span class="piece"><img src="images/dragon-jar.svg" alt="">Dragon Jar</span></strong></p>
+  <h3>Personality</h3>
+  <p>You are a simple person, hard-working and not overly ambitious. Your life is tied to the land and to your mulberry trees and silkworms. You toil patiently to make a living, and you will revolt against the Emperor only if your life is threatened — only if the alternative is starvation. When faced with death, you will do anything necessary to survive.</p>
+  <h3>Objectives</h3>
+  <p>When you possess all of the following, you may change places with the Gentry, Scholar, Official, or any other Peasant.</p>
+  <table>
+    <thead><tr><th>Players</th><th>Collect</th></tr></thead>
+    <tbody>
+      <tr><td class="n">4–5</td><td>One <span class="piece"><img src="images/land-deed-scroll.svg" alt="">Land Deed Scroll</span>, one <span class="piece"><img src="images/bamboo-brush.svg" alt="">Bamboo Brush</span>, one <span class="piece"><img src="images/vase.svg" alt="">Vase</span>, one <span class="piece"><img src="images/wooden-bowl.svg" alt="">Wooden Bowl</span>, and 20 million</td></tr>
+      <tr><td class="n">6</td><td>One realia from each other realia-holding player, and 20 million</td></tr>
+      <tr><td class="n">7+</td><td>All of the above plus one <span class="piece"><img src="images/customs-house.svg" alt="">Customs House</span></td></tr>
+    </tbody>
+  </table>
+  <h3>Your realia — <span class="piece"><img src="images/dragon-jar.svg" alt="">Dragon Jars</span></h3>
+  <p>You start with one <span class="piece"><img src="images/dragon-jar.svg" alt="">Dragon Jar</span> and two <span class="piece"><img src="images/customs-house.svg" alt="">Customs Houses</span> at 4–5 players; two <span class="piece"><img src="images/dragon-jar.svg" alt="">Jars</span> at 6; four at 7 or more.</p>
+  <h3>Rentals</h3>
+  <p>You must pay the Gentry/Landholder a land rental of at least 5 million at the beginning of each round. If the Gentry fails to demand the rent, you need not pay it. The Gentry may also negotiate to raise your rent at any time.</p>
+  <h3>Your Public Works</h3>
+  <p><strong>Two sections of the <span class="piece"><img src="images/grand-canal.svg" alt="">Grand Canal</span></strong> in your province, 40 million each — <strong>the Emperor pays</strong>. Each section increases the harvest by 10 million per round.</p>
+  <h3>Developing the sea</h3>
+  <p>No new sea area can be developed until your population reaches at least 28 million. Squares cost 20 million and produce 20 million per round; the cost must be shared with the Emperor, who will also seek to share the new harvest.</p>
+  <h3>Personal disasters</h3>
+  <ol class="disasters">
+    <li>Bandits attack your family, but are beaten off by a young warrior. In gratitude, you must build a shrine to the young warrior. <span class="cost">Pay 4 million to the Harvest Pile.</span></li>
+    <li>The irrigation ditch that you and your sons built over the years was suddenly washed away by a flash flood. You must rebuild, so that you can irrigate the new crop. <span class="cost">Pay 10 million to the Harvest Pile.</span></li>
+    <li>Your youngest son has stolen a chicken and brought shame on your family. To show your neighbors that your family is truly honorable in all matters, you must pay a penance. <span class="cost">Pay one-half of this round's harvest to the Harvest Pile.</span></li>
+  </ol>
+</section>
+
+<section class="sheet" id="p6">
+  <p class="eyebrow">Part Two · The Provinces</p>
+  <div class="sec-head"><span class="sec-num">25</span><h2>Province 6 — The Rice Peasant</h2></div>
+  <div class="band"><a href="#p1">1</a><a href="#p2">2</a><a href="#p3">3</a><a href="#p4">4</a><a href="#p5">5</a><a href="#p6" class="on">6</a><a href="#p7">7</a><a href="#p8" class="out">8</a></div>
+  <p><strong>Population 14 million · consumes 40 million · realia: the <span class="piece"><img src="images/wooden-bowl.svg" alt="">Wooden Bowl</span></strong></p>
+  <h3>Personality</h3>
+  <p>You are a simple person, hard working and not overly ambitious. Your life is tied to the land and you have grown used to the cruelties of Nature. Patiently you toil the land and pray merely for survival. You are honest and will revolt against the Emperor only if your life is threatened, only if the alternative is death or starvation. When faced with death, you will act in any way necessary to survive.</p>
+  <h3>Objectives</h3>
+  <p>When you possess all of the following, you may change places with the Official, Scholar, or any other Peasant.</p>
+  <table>
+    <thead><tr><th>Players</th><th>Collect</th></tr></thead>
+    <tbody>
+      <tr><td class="n">4–5</td><td>One <span class="piece"><img src="images/customs-house.svg" alt="">Customs House</span>, one <span class="piece"><img src="images/land-deed-scroll.svg" alt="">Land Deed Scroll</span>, one <span class="piece"><img src="images/vase.svg" alt="">Vase</span>, one <span class="piece"><img src="images/dragon-jar.svg" alt="">Dragon Jar</span>, and 20 million</td></tr>
+      <tr><td class="n">6</td><td>One realia from each other realia-holding player, and 20 million</td></tr>
+      <tr><td class="n">7+</td><td>All of the above plus one <span class="piece"><img src="images/bamboo-brush.svg" alt="">Bamboo Brush</span></td></tr>
+    </tbody>
+  </table>
+  <h3>Your realia — <span class="piece"><img src="images/wooden-bowl.svg" alt="">Wooden Bowls</span></h3>
+  <p>You start with one <span class="piece"><img src="images/wooden-bowl.svg" alt="">Wooden Bowl</span> and two <span class="piece"><img src="images/bamboo-brush.svg" alt="">Bamboo Brushes</span> at 4–5 players; two <span class="piece"><img src="images/wooden-bowl.svg" alt="">Bowls</span> at 6; four at 7 or more.</p>
+  <h3>Rentals</h3>
+  <p>You must pay the Gentry/Landholder a land rental of at least 5 million at the beginning of each round. If the Gentry fails to demand the rent, you need not pay it.</p>
+  <h3>Your Public Works</h3>
+  <p><strong>Two sections of the <span class="piece"><img src="images/grand-canal.svg" alt="">Grand Canal</span></strong> in your province, 40 million each — <strong>the Emperor pays</strong>. Each section increases the harvest by 10 million per round.</p>
+  <h3>Developing new land and sea</h3>
+  <p>Nothing may be developed until your population reaches at least 28 million. Squares cost 20 million and produce 20 million per round. Your province touches both the sea and the Warlord's undeveloped land.</p>
+  <h3>Personal disasters</h3>
+  <ol class="disasters">
+    <li>Your only water buffalo just broke its leg. You cannot finish planting without a water buffalo. <span class="cost">This work stoppage will cost you 4 million, paid to the Harvest Pile.</span></li>
+    <li>Fire suddenly destroys your house and grain reserve. So that your family can survive for one year, you must borrow grain. <span class="cost">Cost of the fire: 10 million to the Harvest Pile.</span></li>
+    <li>You have just inherited a large debt. Now, as the head of the family, you must pay the debt. <span class="cost">Pay one half of this year's income to the Harvest Pile.</span></li>
+  </ol>
+</section>
+
+<section class="sheet" id="p7">
+  <p class="eyebrow">Part Two · The Provinces</p>
+  <div class="sec-head"><span class="sec-num">26</span><h2>Province 7 — The Wheat Peasant</h2></div>
+  <div class="band"><a href="#p1">1</a><a href="#p2">2</a><a href="#p3">3</a><a href="#p4">4</a><a href="#p5">5</a><a href="#p6">6</a><a href="#p7" class="on">7</a><a href="#p8" class="out">8</a></div>
+  <p><strong>Population 14 million · consumes 40 million · realia: the <span class="piece"><img src="images/vase.svg" alt="">Vase</span></strong></p>
+  <h3>Personality</h3>
+  <p>You are a simple person, hard working and not overly ambitious. Your life is tied to the land. You are used to the cruelties of nature, and for generations your people have patiently tilled the land, barely eking out a living. Because of your patience, you will revolt against the Emperor only if your life is threatened — only if the alternative is starvation. When faced with death, you will do anything short of murder to survive.</p>
+  <h3>Objectives</h3>
+  <p>When you possess all of the following, you may change places with the Gentry, Scholar, Official, or any other Peasant.</p>
+  <table>
+    <thead><tr><th>Players</th><th>Collect</th></tr></thead>
+    <tbody>
+      <tr><td class="n">4–5</td><td>One <span class="piece"><img src="images/customs-house.svg" alt="">Customs House</span>, one <span class="piece"><img src="images/bamboo-brush.svg" alt="">Bamboo Brush</span>, one <span class="piece"><img src="images/dragon-jar.svg" alt="">Dragon Jar</span>, one <span class="piece"><img src="images/wooden-bowl.svg" alt="">Wooden Bowl</span>, and 20 million</td></tr>
+      <tr><td class="n">6</td><td>One realia from each other realia-holding player, and 20 million</td></tr>
+      <tr><td class="n">7+</td><td>All of the above plus one <span class="piece"><img src="images/land-deed-scroll.svg" alt="">Land Deed Scroll</span></td></tr>
+    </tbody>
+  </table>
+  <h3>Your realia — <span class="piece"><img src="images/vase.svg" alt="">Vases</span></h3>
+  <p>You start with one <span class="piece"><img src="images/vase.svg" alt="">Vase</span> and two <span class="piece"><img src="images/land-deed-scroll.svg" alt="">Land Deed Scrolls</span> at 4–5 players; two <span class="piece"><img src="images/vase.svg" alt="">Vases</span> at 6; four at 7 or more.</p>
+  <h3>Rentals</h3>
+  <p>You must pay the Gentry/Landholder a land rental of at least 5 million at the beginning of each round. If the Gentry fails to demand the rent, you need not pay it.</p>
+  <h3>Your Public Works</h3>
+  <p><strong><span class="piece"><img src="images/reservoir.svg" alt="">Reservoir</span></strong>, 60 million — one large reservoir, two canals and 500 miles of irrigation ditches. <strong>The Emperor pays for the system.</strong> It increases the harvest by 20 million per round. Design your own paper cut-out, about 2 × 2 squares (Section 2).</p>
+  <p>You have no <span class="piece"><img src="images/grand-canal.svg" alt="">Grand Canal</span> and no <span class="piece"><img src="images/great-wall.svg" alt="">Great Wall</span>. You are the only province whose single public work is fully funded by the crown, and the only peasant with a <span class="piece"><img src="images/reservoir.svg" alt="">Reservoir</span>. Whether that makes you lucky depends entirely on how long the Emperor takes.</p>
+  <h3>New land development</h3>
+  <p>You cannot develop new land until your population reaches at least 28 million. You may then purchase new harvest squares from the Harvest Pile at 20 million each and place them on undeveloped land adjacent to your province — which means the Warlord's. Share the cost with the Emperor, who will also seek to share your harvest. Each square produces 20 million per round.</p>
+  <h3>Personal disasters</h3>
+  <ol class="disasters">
+    <li>On your last trip to the capital, you took your oldest daughter in hopes of finding a suitable match. But the Emperor caught sight of the young woman and decided that your daughter should join the imperial household as a personal maid to one of the imperial daughters. This is a high honor for you and your family. By tradition, you must give a feast for your relatives and friends. <span class="cost">Cost of the feast: 2 million to the Harvest Pile.</span></li>
+    <li>Your blacksmith shop has just caught on fire. It will take you two months to fix the furnace. <span class="cost">Pay the Harvest Pile 5 million.</span></li>
+    <li>On your way across country to deliver the finest of your works of Art to the Emperor, you have encountered bandits, and travelled over the most forbidding land in the country. But you are a rugged individual and nothing has deterred you from delivering your art. Now, after two months of travel, you at last see the capital city of Sian. In your excitement at the sight of the beautiful city, you take your eyes off the road and stumble. Two of the three treasures break. Four months of work are destroyed. <span class="cost">Pay the Harvest Pile one third of this year's income.</span></li>
+  </ol>
+</section>
+
+<section class="sheet" id="p8">
+  <p class="eyebrow">Part Two · The Provinces</p>
+  <div class="sec-head"><span class="sec-num">27</span><h2>Province 8 — The Warlord</h2></div>
+  <div class="band"><a href="#p1">1</a><a href="#p2">2</a><a href="#p3">3</a><a href="#p4">4</a><a href="#p5">5</a><a href="#p6">6</a><a href="#p7">7</a><a href="#p8" class="on out">8</a></div>
+  <p><strong>Undeveloped land · population 8 million · consumes 20 million · harvest 40 / 30 / 20</strong></p>
+  <p><em>The Warlord plays with 5, 6, or 8-or-more players, and does not appear in the four-player or seven-player game.</em></p>
+  <h3>Personality</h3>
+  <p>You are a cruel, vicious villain. You will lie and cheat and most of all, you will steal. Your only desire is to accumulate wealth enough to buy more soldiers who can defeat the Imperial Army. Then you will be Emperor. You survive by raiding the neighboring provinces and stealing whatever grain or property you can find and you will not hesitate to kill anyone who stands in your way.</p>
+  <h3>Objective</h3>
+  <p>Raid a different piece of realia from each player. When you have done so, you may change places with any player in the game — including the Emperor.</p>
+  <h3>Your pieces</h3>
+  <p>Eight soldiers of one color and eight of another. Pick one color for your soldiers; the other color is sold as mercenaries. Add soldiers if necessary. Forty raid squares.</p>
+  <h3>Your army</h3>
+  <p>You begin with two soldiers at five or six players, four at eight or more. Your soldiers may begin the game on any square in any undeveloped land.</p>
+  <h3>Raiding</h3>
+  <p>Your major source of revenue will be from raiding the provinces. March your soldiers into a province and demand 5 million bags of grain — 10 million in Province 1 — each time a soldier lands on an unraided square. As soon as your soldier lands on a square, place a raid square on the board and stand your soldier on it.</p>
+  <p>Once a square has been raided, that square cannot be raided again. However, you may march your soldiers on a raided square as often as you wish.</p>
+  <p>If you raid a square where a piece of realia has been placed, you have the option of demanding as tribute either 5 million, the realia, or the cost of the realia.</p>
+  <p>You may move your soldiers anywhere on the board. If you cross a river or any public works, you must pay the Province player a transportation fee of 5 million for each soldier you move across the water. You may move all your soldiers one square during each round, and may raid as many squares as you have soldiers. (Note 15)</p>
+  <h3>Selling soldiers</h3>
+  <p>You must sell soldiers to any player who wishes to buy them. The price is 20 million per soldier, and you may keep 25% of each sale as a commission. All other grain goes to the Harvest Pile. The only defense against your army is for other players to purchase soldiers of their own — every soldier purchased must begin play in that player's Province and cannot be moved until you have raided it.</p>
+  <h3>Personal disasters</h3>
+  <ol class="disasters">
+    <li>You were wounded in the legs in your last battle. Therefore you are unable to raid Provinces 5, 6, 7 for one round.</li>
+    <li>One of your most trusted lieutenants stole your daughter and ran away to form a little band of raiders. At first you are very angry and ready to take reprisals. But on second thought, you are happy to see your daughter married off to an ambitious rival. No raids this year, you are too busy making feasts for the newlyweds. <span class="cost">Cost: 5 million to the Harvest Pile.</span></li>
+    <li>You received a concussion in a riding accident. After you came out of your coma, you discovered that half of your wealth has been stolen by members of your own group. Too late now to go after them. <span class="cost">Deposit one-half of your grain in the Harvest Pile.</span></li>
+  </ol>
+</section>
+
+<!-- ================= APPENDIX A ================= -->
+<section class="sheet" id="apa">
+  <p class="eyebrow">Appendix A</p>
+  <div class="sec-head"><span class="sec-num">A</span><h2>Setting up, by player count</h2></div>
+  <p>Tear-out sheets for the start of a game. Everyone begins with 60 million bags of grain regardless of count, and I Ching is not consulted in Round One.</p>
+
+  <div class="card">
+    <h3>Four players · the upper game</h3>
+    <p><strong>1 Emperor · 2 Official · 3 Gentry · 4 Scholar</strong></p>
+    <table>
+      <thead><tr><th>Province</th><th>Starts holding</th><th>Must collect</th></tr></thead>
+      <tbody>
+        <tr><td>2 Official</td><td>1 <span class="piece"><img src="images/customs-house.svg" alt="">Customs House</span>, 2 <span class="piece"><img src="images/dragon-jar.svg" alt="">Dragon Jars</span></td><td><span class="piece"><img src="images/vase.svg" alt="">Vase</span>, <span class="piece"><img src="images/wooden-bowl.svg" alt="">Bowl</span>, <span class="piece"><img src="images/land-deed-scroll.svg" alt="">Scroll</span>, <span class="piece"><img src="images/bamboo-brush.svg" alt="">Brush</span> + 20M</td></tr>
+        <tr><td>3 Gentry</td><td>1 <span class="piece"><img src="images/land-deed-scroll.svg" alt="">Land Deed Scroll</span>, 2 <span class="piece"><img src="images/wooden-bowl.svg" alt="">Wooden Bowls</span></td><td><span class="piece"><img src="images/vase.svg" alt="">Vase</span>, <span class="piece"><img src="images/dragon-jar.svg" alt="">Jar</span>, <span class="piece"><img src="images/customs-house.svg" alt="">Customs House</span>, <span class="piece"><img src="images/bamboo-brush.svg" alt="">Brush</span> + 20M</td></tr>
+        <tr><td>4 Scholar</td><td>1 <span class="piece"><img src="images/bamboo-brush.svg" alt="">Bamboo Brush</span>, 2 <span class="piece"><img src="images/vase.svg" alt="">Vases</span></td><td><span class="piece"><img src="images/wooden-bowl.svg" alt="">Bowl</span>, <span class="piece"><img src="images/dragon-jar.svg" alt="">Jar</span>, <span class="piece"><img src="images/customs-house.svg" alt="">Customs House</span>, <span class="piece"><img src="images/land-deed-scroll.svg" alt="">Scroll</span> + 20M</td></tr>
+      </tbody>
+    </table>
+    <p><strong>No Warlord</strong> — nobody raids, and no soldiers are sold. <strong>No peasants</strong> — the Gentry collects no rent. Public Works: the three imperial buildings, all twelve links of the <span class="piece"><img src="images/great-wall.svg" alt="">Great Wall</span>, the <span class="piece"><img src="images/grand-canal.svg" alt="">Grand Canal</span> in Provinces 1 and 4, the <span class="piece"><img src="images/irrigation.svg" alt="">irrigation system</span> in Province 2 and the <span class="piece"><img src="images/reservoir.svg" alt="">Reservoir</span> in Province 3 — 810 million in all. Nothing is owed to Provinces 5, 6 or 7.</p>
+    <p><strong>Cut-outs: Province 2 (1 × 2 squares) and Province 3 (2 × 3 squares).</strong></p>
+  </div>
+
+  <div class="card">
+    <h3>Four players · the peasant game</h3>
+    <p><strong>1 Emperor · 5 Silk · 6 Rice · 7 Wheat</strong></p>
+    <table>
+      <thead><tr><th>Province</th><th>Starts holding</th><th>Must collect</th></tr></thead>
+      <tbody>
+        <tr><td>5 Silk</td><td>1 <span class="piece"><img src="images/dragon-jar.svg" alt="">Dragon Jar</span>, 2 <span class="piece"><img src="images/customs-house.svg" alt="">Customs Houses</span></td><td><span class="piece"><img src="images/land-deed-scroll.svg" alt="">Scroll</span>, <span class="piece"><img src="images/bamboo-brush.svg" alt="">Brush</span>, <span class="piece"><img src="images/vase.svg" alt="">Vase</span>, <span class="piece"><img src="images/wooden-bowl.svg" alt="">Bowl</span> + 20M</td></tr>
+        <tr><td>6 Rice</td><td>1 <span class="piece"><img src="images/wooden-bowl.svg" alt="">Wooden Bowl</span>, 2 <span class="piece"><img src="images/bamboo-brush.svg" alt="">Bamboo Brushes</span></td><td><span class="piece"><img src="images/customs-house.svg" alt="">Customs House</span>, <span class="piece"><img src="images/land-deed-scroll.svg" alt="">Scroll</span>, <span class="piece"><img src="images/vase.svg" alt="">Vase</span>, <span class="piece"><img src="images/dragon-jar.svg" alt="">Jar</span> + 20M</td></tr>
+        <tr><td>7 Wheat</td><td>1 <span class="piece"><img src="images/vase.svg" alt="">Vase</span>, 2 <span class="piece"><img src="images/land-deed-scroll.svg" alt="">Land Deed Scrolls</span></td><td><span class="piece"><img src="images/customs-house.svg" alt="">Customs House</span>, <span class="piece"><img src="images/bamboo-brush.svg" alt="">Brush</span>, <span class="piece"><img src="images/dragon-jar.svg" alt="">Jar</span>, <span class="piece"><img src="images/wooden-bowl.svg" alt="">Bowl</span> + 20M</td></tr>
+      </tbody>
+    </table>
+    <p>A very different game. There is no Official, no Gentry and no Scholar, so the Emperor collects the tax directly or appoints a collector, the Harvest Pile is banked by whoever the Emperor names, <strong>no rent is paid by anyone</strong>, and the card is read by the Emperor or an appointee — see Note 3. Public Works: the palaces, the <span class="piece"><img src="images/marble-pagoda.svg" alt="">pagoda</span>, the four links of the <span class="piece"><img src="images/great-wall.svg" alt="">Great Wall</span> above Province 1, the <span class="piece"><img src="images/grand-canal.svg" alt="">Grand Canal</span> in Provinces 1, 5 and 6, and the <span class="piece"><img src="images/reservoir.svg" alt="">Reservoir</span> in Province 7 — 520 million in all, and the crown pays every bag of it. Half the full game's bill, which makes this the one table where finishing the Public Works is a realistic goal.</p>
+    <p><strong>Cut-out: Province 7 (2 × 2 squares) only.</strong></p>
+  </div>
+
+  <div class="card">
+    <h3>Five players</h3>
+    <p>Either four-player group above, <strong>plus the Warlord</strong> with two soldiers. Starting stock and objectives are unchanged. In the peasant version the Warlord is the only player who can raid three provinces that cannot buy a single soldier until they have been raided.</p>
+    <p><strong>Cut-outs: the same as the four-player group you chose.</strong></p>
+  </div>
+
+  <div class="card">
+    <h3>Six players</h3>
+    <p><strong>1 Emperor · 2 Official · 3 Gentry · 8 Warlord · any two Peasants</strong></p>
+    <p>Every province holds <strong>two pieces of its own realia</strong> and nothing else. Each realia-holding player must collect one piece from each of the other three, plus 20 million. Only eight pieces are ever auctioned between four buyers, so the endgame is trade, not bidding. No Scholar: the Emperor appoints someone to read I Ching and keep the count, and pays that player the Scholar's 5 million — see Note 3. The Warlord starts with two soldiers.</p>
+    <p><strong>Cut-outs: Province 2 (1 × 2) and Province 3 (2 × 3), and Province 7 (2 × 2) if the Wheat Peasant is one of the two peasants.</strong></p>
+  </div>
+
+  <div class="card">
+    <h3>Seven players</h3>
+    <p><strong>All seven provinces, no Warlord.</strong> Every province holds <strong>four pieces of its own realia</strong>; all twenty-four are in play. Each player must collect one piece of every type except their own, plus 20 million. With no raids and no soldiers, this is the pure economic game — and the only configuration in which no disorder exists at all.</p>
+    <p><strong>Cut-outs: all three — Province 2 (1 × 2), Province 3 (2 × 3) and Province 7 (2 × 2).</strong></p>
+  </div>
+
+  <div class="card">
+    <h3>Eight or more players</h3>
+    <p><strong>All eight provinces.</strong> Stock and objectives as at seven. The Warlord starts with <strong>four soldiers</strong> and 40 raid squares. Every public work in the book is owed to someone.</p>
+    <p><strong>Cut-outs: all three — Province 2 (1 × 2), Province 3 (2 × 3) and Province 7 (2 × 2).</strong></p>
+  </div>
+</section>
+
+<!-- ================= APPENDIX B ================= -->
+<section class="sheet" id="apb">
+  <p class="eyebrow">Appendix B</p>
+  <div class="sec-head"><span class="sec-num">B</span><h2>A worked round</h2></div>
+  <p>Six players: Emperor, Official, Gentry, Warlord, Silk Peasant, Rice Peasant. All figures are millions of bags of grain. Round One is summarized; Round Two is worked step by step.</p>
+
+  <h3>Round One — no I Ching</h3>
+  <p>Everyone starts with 60. The two peasants each pay the Gentry 5 in rent. The Emperor declares <strong>30%</strong>; income for the first round is the 60 everyone holds, so the Official, Gentry and both Peasants pay 18 each. The Warlord announces that the western territory is not a province and does not pay taxes. Nobody can compel it — the Emperor's only recourse is soldiers the crown does not yet own. This is the game teaching you what it is about.</p>
+  <p>The Emperor spends 20 on the <strong><span class="piece"><img src="images/summer-palace.svg" alt="">Summer Palace</span></strong>. Four pieces of realia are auctioned. The Warlord raids one square in Province 3 and one in Province 6, taking 5 from each, but pays the Rice Peasant a 5 toll for crossing the river to get there. The Emperor pays the Official 5 for collecting tax and, having no Scholar, pays the Rice Peasant 5 to read I Ching and keep the population count.</p>
+  <table>
+    <caption>Standing at the end of Round One</caption>
+    <thead><tr><th>Player</th><th class="n">Grain</th><th>Realia held</th></tr></thead>
+    <tbody>
+      <tr><td>Emperor</td><td class="n">102</td><td><span class="piece"><img src="images/summer-palace.svg" alt="">Summer Palace</span> built</td></tr>
+      <tr><td>Official</td><td class="n">42.5</td><td><span class="piece"><img src="images/wooden-bowl.svg" alt="">Wooden Bowl</span></td></tr>
+      <tr><td>Gentry</td><td class="n">39</td><td><span class="piece"><img src="images/dragon-jar.svg" alt="">Dragon Jar</span> · raided once</td></tr>
+      <tr><td>Silk Peasant</td><td class="n">31.5</td><td><span class="piece"><img src="images/land-deed-scroll.svg" alt="">Land Deed Scroll</span></td></tr>
+      <tr><td>Rice Peasant</td><td class="n">37.5</td><td><span class="piece"><img src="images/customs-house.svg" alt="">Customs House</span> · raided once</td></tr>
+      <tr><td>Warlord</td><td class="n">65</td><td>—</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Round Two — step by step</h3>
+
+  <h4>1 · I Ching</h4>
+  <div class="note"><b>The card</b> Good harvest for Provinces 1, 3, 6 and 7, for there was much rain this spring. But one province's rain is another's flood: the rivers flood in Provinces 2, 4, 5 and 8. Collect bad harvest.</div>
+
+  <h4>2 · Harvest</h4>
+  <p>The Gentry pays out. Nobody has any Public Works increases yet, so these are the bare table figures from Section 7.</p>
+  <table>
+    <thead><tr><th>Player</th><th>Harvest</th><th class="n">Gross</th><th class="n">Eats</th><th class="n">Income</th></tr></thead>
+    <tbody>
+      <tr><td>Emperor</td><td>Good</td><td class="n">100</td><td class="n">60</td><td class="n">+40</td></tr>
+      <tr><td>Official</td><td>Bad</td><td class="n">50</td><td class="n">40</td><td class="n">+10</td></tr>
+      <tr><td>Gentry</td><td>Good</td><td class="n">100</td><td class="n">40</td><td class="n">+60</td></tr>
+      <tr><td>Silk Peasant</td><td>Bad</td><td class="n">50</td><td class="n">40</td><td class="n">+10</td></tr>
+      <tr><td>Rice Peasant</td><td>Good</td><td class="n">100</td><td class="n">40</td><td class="n">+60</td></tr>
+      <tr><td>Warlord</td><td>Bad</td><td class="n">20</td><td class="n">20</td><td class="n">0</td></tr>
+    </tbody>
+  </table>
+
+  <h4>3 · Rents</h4>
+  <p>Both Peasants pay the Gentry 5. The Gentry does not forget.</p>
+
+  <h4>4–5 · Tax at 40%</h4>
+  <p>The Emperor wants a <span class="piece"><img src="images/grand-canal.svg" alt="">canal</span> and needs the money. Official pays 4, Gentry 24, Silk 4, Rice 24 — <strong>56 to the crown</strong>. The Warlord's income is zero, so even an honest Warlord would owe nothing. The Gentry, who had the best year, pays six times what the Official pays; the flat percentage is not a flat burden.</p>
+
+  <h4>6 · Public Works</h4>
+  <p>The Emperor intends to start the <span class="piece"><img src="images/grand-canal.svg" alt="">Grand Canal</span> in Province 5. Not yet: the <strong><span class="piece"><img src="images/winter-palace.svg" alt="">Winter Palace</span></strong> must stand first. It goes up for 20 and the <span class="piece"><img src="images/grand-canal.svg" alt="">canal</span> waits a year — one project per round. The Silk Peasant, who is being squeezed, watches the crown spend its money on a palace.</p>
+
+  <h4>7 · Auction</h4>
+  <p>Each realia-holding province auctions its last piece, in numerical order. The seller keeps a quarter; the rest goes to the Harvest Pile.</p>
+  <table>
+    <thead><tr><th>Seller</th><th>Piece</th><th>Buyer</th><th class="n">Price</th><th class="n">To seller</th><th class="n">To pile</th></tr></thead>
+    <tbody>
+      <tr><td>Official</td><td><span class="piece"><img src="images/customs-house.svg" alt="">Customs House</span></td><td>Gentry</td><td class="n">12</td><td class="n">3</td><td class="n">9</td></tr>
+      <tr><td>Gentry</td><td><span class="piece"><img src="images/land-deed-scroll.svg" alt="">Land Deed Scroll</span></td><td>Rice</td><td class="n">9</td><td class="n">2.25</td><td class="n">6.75</td></tr>
+      <tr><td>Silk</td><td><span class="piece"><img src="images/dragon-jar.svg" alt="">Dragon Jar</span></td><td>Official</td><td class="n">7</td><td class="n">1.75</td><td class="n">5.25</td></tr>
+      <tr><td>Rice</td><td><span class="piece"><img src="images/wooden-bowl.svg" alt="">Wooden Bowl</span></td><td>Silk</td><td class="n">5</td><td class="n">1.25</td><td class="n">3.75</td></tr>
+    </tbody>
+  </table>
+  <p>The Warlord does not auction, and instead raids a square in Province 5 and one in Province 2, taking 5 from each.</p>
+
+  <h4>8 · Soldiers</h4>
+  <p>The Rice Peasant, raided last round and therefore free to move troops, buys one soldier for 20. The Warlord keeps 5 and hands 15 to the pile. Arming against the Warlord has just made the Warlord richer than the Official.</p>
+
+  <h4>9 · Salaries</h4>
+  <p>The Emperor pays 5 to the Official and 5 to the Rice Peasant for the census.</p>
+
+  <table>
+    <caption>Standing at the end of Round Two</caption>
+    <thead><tr><th>Player</th><th class="n">Grain</th><th>Holds</th><th>Still needs</th></tr></thead>
+    <tbody>
+      <tr><td>Emperor</td><td class="n">168</td><td>Summer + <span class="piece"><img src="images/winter-palace.svg" alt="">Winter Palace</span></td><td>Everything else</td></tr>
+      <tr><td>Official</td><td class="n">44.5</td><td><span class="piece"><img src="images/wooden-bowl.svg" alt="">Bowl</span>, <span class="piece"><img src="images/dragon-jar.svg" alt="">Jar</span></td><td><span class="piece"><img src="images/land-deed-scroll.svg" alt="">Land Deed Scroll</span></td></tr>
+      <tr><td>Gentry</td><td class="n">75.25</td><td><span class="piece"><img src="images/dragon-jar.svg" alt="">Jar</span>, <span class="piece"><img src="images/customs-house.svg" alt="">Customs House</span></td><td><span class="piece"><img src="images/wooden-bowl.svg" alt="">Wooden Bowl</span></td></tr>
+      <tr><td>Silk Peasant</td><td class="n">24.25</td><td><span class="piece"><img src="images/land-deed-scroll.svg" alt="">Scroll</span>, <span class="piece"><img src="images/wooden-bowl.svg" alt="">Bowl</span></td><td><span class="piece"><img src="images/customs-house.svg" alt="">Customs House</span></td></tr>
+      <tr><td>Rice Peasant</td><td class="n">45.75</td><td><span class="piece"><img src="images/customs-house.svg" alt="">Customs House</span>, <span class="piece"><img src="images/land-deed-scroll.svg" alt="">Scroll</span></td><td><span class="piece"><img src="images/dragon-jar.svg" alt="">Dragon Jar</span></td></tr>
+      <tr><td>Warlord</td><td class="n">80</td><td>4 raids, 1 soldier sold</td><td>Realia raided from each player</td></tr>
+    </tbody>
+  </table>
+
+  <h4>Where that leaves everyone</h4>
+  <p>All eight pieces of realia have been sold and every auction is exhausted. Each of the four collectors is <strong>exactly one piece short</strong>, and in each case the piece they need is sitting in someone else's province. There is now no legal way to finish an objective except private trade, bribery, or persuading the Warlord to raid a particular square and sell you the spoils.</p>
+  <p>Meanwhile the Warlord, who has paid no tax and produced nothing, is the second-richest man in the country; the Emperor is sitting on 168 and has built two palaces that feed nobody; and the Silk Peasant has 24.25, a bad harvest behind and a raid square in the fields. If the population rises next round, that consumption goes to 60 and a bad year puts the province under — one card away from a legitimate cause for revolt, needing only two other players to agree.</p>
+</section>
+
+<!-- ================= APPENDIX C ================= -->
+<section class="sheet" id="apc">
+  <p class="eyebrow">Appendix C</p>
+  <div class="sec-head"><span class="sec-num">C</span><h2>Player reference cards</h2></div>
+  <p class="noprint" style="color:var(--ink-soft)">Print this page and cut along the boxes — one card per player.</p>
+  <div class="grid2">
+    <div class="card">
+      <h3>1 · Emperor</h3>
+      <p><strong>14M · eats 60 · 100/75/50</strong><br><em>Forceful, thoughtful, just, compassionate. Concerned with the masses, not petty disasters.</em></p>
+      <p><strong>Win by</strong> remaining in power. <strong>Ends the game</strong> by building all Public Works.</p>
+      <p><strong>Each round:</strong> declare the tax · build one project (or the Pagoda) · pay Official and Scholar 5 each · settle disputes · do not bid.</p>
+      <p><strong>Warlord charges you 10, not 5.</strong></p>
+    </div>
+    <div class="card">
+      <h3>2 · Official</h3>
+      <p><strong>12M · eats 40 · <span class="piece"><img src="images/customs-house.svg" alt="">Customs Houses</span></strong><br><em>Harsh, unfeeling, bribable, practical.</em></p>
+      <p><strong>Collect:</strong> <span class="piece"><img src="images/vase.svg" alt="">Vase</span>, <span class="piece"><img src="images/wooden-bowl.svg" alt="">Bowl</span>, <span class="piece"><img src="images/land-deed-scroll.svg" alt="">Scroll</span>, <span class="piece"><img src="images/bamboo-brush.svg" alt="">Brush</span> + 20M. <em>(never a <span class="piece"><img src="images/dragon-jar.svg" alt="">Dragon Jar</span> until 7 players)</em></p>
+      <p><strong>Each round:</strong> collect the tax and hand it over · auction one <span class="piece"><img src="images/customs-house.svg" alt="">Customs House</span> · salary 5.</p>
+      <p><strong>Owed:</strong> <span class="piece"><img src="images/irrigation.svg" alt="">irrigation system</span> (30) and 4 wall links.</p>
+    </div>
+    <div class="card">
+      <h3>3 · Gentry / Landholder</h3>
+      <p><strong>12M · eats 40 · <span class="piece"><img src="images/land-deed-scroll.svg" alt="">Land Deed Scrolls</span></strong><br><em>Selfish and greedy; outwardly kind; paternal to peasants.</em></p>
+      <p><strong>Collect:</strong> <span class="piece"><img src="images/vase.svg" alt="">Vase</span>, <span class="piece"><img src="images/dragon-jar.svg" alt="">Jar</span>, <span class="piece"><img src="images/customs-house.svg" alt="">Customs House</span>, <span class="piece"><img src="images/bamboo-brush.svg" alt="">Brush</span> + 20M. <em>(never a <span class="piece"><img src="images/wooden-bowl.svg" alt="">Wooden Bowl</span> until 7 players)</em></p>
+      <p><strong>Each round:</strong> pay out every harvest from the Pile · demand 5+ rent from each Peasant · auction one <span class="piece"><img src="images/land-deed-scroll.svg" alt="">Scroll</span>.</p>
+      <p><strong>Owed:</strong> <span class="piece"><img src="images/reservoir.svg" alt="">Reservoir</span> (80) and 4 wall links.</p>
+    </div>
+    <div class="card">
+      <h3>4 · Scholar</h3>
+      <p><strong>12M · eats 40 · <span class="piece"><img src="images/bamboo-brush.svg" alt="">Bamboo Brushes</span></strong><br><em>A dreamer. Honest. Always keeps a promise.</em></p>
+      <p><strong>Collect:</strong> <span class="piece"><img src="images/wooden-bowl.svg" alt="">Bowl</span>, <span class="piece"><img src="images/dragon-jar.svg" alt="">Jar</span>, <span class="piece"><img src="images/customs-house.svg" alt="">Customs House</span>, <span class="piece"><img src="images/land-deed-scroll.svg" alt="">Scroll</span> + 20M. <em>(never a <span class="piece"><img src="images/vase.svg" alt="">Vase</span> until 7 players)</em></p>
+      <p><strong>Each round:</strong> read the I Ching card aloud · keep the population count · auction one <span class="piece"><img src="images/bamboo-brush.svg" alt="">Brush</span> · salary 5.</p>
+      <p><strong>Owed:</strong> 2 <span class="piece"><img src="images/grand-canal.svg" alt="">canal</span> sections.</p>
+    </div>
+    <div class="card">
+      <h3>5 · Silk Peasant</h3>
+      <p><strong>14M · eats 40 · <span class="piece"><img src="images/dragon-jar.svg" alt="">Dragon Jars</span></strong><br><em>Simple, hard-working. Revolts only against starvation — then does anything.</em></p>
+      <p><strong>Collect:</strong> <span class="piece"><img src="images/land-deed-scroll.svg" alt="">Scroll</span>, <span class="piece"><img src="images/bamboo-brush.svg" alt="">Brush</span>, <span class="piece"><img src="images/vase.svg" alt="">Vase</span>, <span class="piece"><img src="images/wooden-bowl.svg" alt="">Bowl</span> + 20M. <em>(never a <span class="piece"><img src="images/customs-house.svg" alt="">Customs House</span> until 7 players)</em></p>
+      <p><strong>Each round:</strong> pay the Gentry 5+ rent · auction one <span class="piece"><img src="images/dragon-jar.svg" alt="">Jar</span>.</p>
+      <p><strong>Owed:</strong> 2 <span class="piece"><img src="images/grand-canal.svg" alt="">canal</span> sections, paid by the Emperor.</p>
+    </div>
+    <div class="card">
+      <h3>6 · Rice Peasant</h3>
+      <p><strong>14M · eats 40 · <span class="piece"><img src="images/wooden-bowl.svg" alt="">Wooden Bowls</span></strong><br><em>Simple, honest, used to the cruelties of Nature.</em></p>
+      <p><strong>Collect:</strong> <span class="piece"><img src="images/customs-house.svg" alt="">Customs House</span>, <span class="piece"><img src="images/land-deed-scroll.svg" alt="">Scroll</span>, <span class="piece"><img src="images/vase.svg" alt="">Vase</span>, <span class="piece"><img src="images/dragon-jar.svg" alt="">Jar</span> + 20M. <em>(never a <span class="piece"><img src="images/bamboo-brush.svg" alt="">Bamboo Brush</span> until 7 players)</em></p>
+      <p><strong>Each round:</strong> pay the Gentry 5+ rent · auction one <span class="piece"><img src="images/wooden-bowl.svg" alt="">Bowl</span>.</p>
+      <p><strong>Owed:</strong> 2 <span class="piece"><img src="images/grand-canal.svg" alt="">canal</span> sections, paid by the Emperor.</p>
+    </div>
+    <div class="card">
+      <h3>7 · Wheat Peasant</h3>
+      <p><strong>14M · eats 40 · <span class="piece"><img src="images/vase.svg" alt="">Vases</span></strong><br><em>Patient. Will do anything short of murder to survive.</em></p>
+      <p><strong>Collect:</strong> <span class="piece"><img src="images/customs-house.svg" alt="">Customs House</span>, <span class="piece"><img src="images/bamboo-brush.svg" alt="">Brush</span>, <span class="piece"><img src="images/dragon-jar.svg" alt="">Jar</span>, <span class="piece"><img src="images/wooden-bowl.svg" alt="">Bowl</span> + 20M. <em>(never a <span class="piece"><img src="images/land-deed-scroll.svg" alt="">Land Deed Scroll</span> until 7 players)</em></p>
+      <p><strong>Each round:</strong> pay the Gentry 5+ rent · auction one <span class="piece"><img src="images/vase.svg" alt="">Vase</span>.</p>
+      <p><strong>Owed:</strong> <span class="piece"><img src="images/reservoir.svg" alt="">Reservoir</span> (60), paid in full by the Emperor.</p>
+    </div>
+    <div class="card">
+      <h3>8 · Warlord</h3>
+      <p><strong>8M · eats 20 · 40/30/20</strong><br><em>Cruel, vicious. Lies, cheats, steals.</em></p>
+      <p><strong>Win by</strong> raiding a different piece of realia from each player — then take any seat, including the throne.</p>
+      <p><strong>Each round:</strong> move every soldier one square · raid one square per soldier for 5 (10 in Province 1) · sell soldiers at 20, keep 25%.</p>
+      <p><strong>You pay</strong> 5 per soldier per river crossing.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= APPENDIX D ================= -->
+<section class="sheet" id="apd">
+  <p class="eyebrow">Appendix D</p>
+  <div class="sec-head"><span class="sec-num">D</span><h2>Editor's notes and rulings</h2></div>
+  <p>The 1969 edition scattered its rules across eight booklets, a sheet of General Instructions and the printing on the can, and the three do not always agree. Every ruling below is a decision made in reconstructing this text. The original wording is given so you can overrule it at your own table.</p>
+
+  <h3>Note 1 · Province numbering on the can</h3>
+  <p>The can lists "Province 5 — Warlord" and "6, 7, 8 — Peasants," and its four-player alternate group reads "1, 6, 7, 8 — Peasant." The map and all eight booklets number the peasants 5, 6, 7 and place the Warlord in the undeveloped land as Province 8. <strong>The booklets and map win.</strong> The can preserves an earlier numbering; the player-count table has been renumbered.</p>
+
+  <h3>Note 2 · The Warlord sits out the seven-player game</h3>
+  <p>This looks like an error on the can until you check the Warlord's booklet, which lists starting armies for "5 or 6 Players" and "8 or More Players" and says nothing about seven. Two independent sources agree, so it stands.</p>
+
+  <h3>Note 3 · Missing officers at low player counts</h3>
+  <p>Three provinces carry administrative work: the Official collects tax, the Gentry banks the Harvest Pile and collects rent, the Scholar reads I Ching and counts the population. At six players there is no Scholar; in the four-player peasant game there is no Official, Gentry or Scholar at all. The rules never mention this.</p>
+  <ul>
+    <li><strong>No Official</strong> — the Emperor collects directly or designates any player as tax collector. The can already allows this.</li>
+    <li><strong>No Scholar</strong> — the Emperor designates a player to turn the I Ching card and keep the population counter, and pays that player the Scholar's 5 million salary.</li>
+    <li><strong>No Gentry</strong> — the Emperor designates a player to bank the Harvest Pile and pay out harvests. No land rental is collected by anyone; there is no landlord.</li>
+  </ul>
+  <p>Handing a job to a player who was not born to it is not neutral. An Official who also banks the Pile is a very different Official, and the table should expect that.</p>
+
+  <h3>Note 4 · Unoccupied provinces</h3>
+  <p>The Emperor's booklet says the crown need not build in a province with no player. <strong>Extended:</strong> realia belonging to an unoccupied province stays in the box and is never auctioned, and no rent is owed for an empty peasant province.</p>
+
+  <h3>Note 5 · Round order</h3>
+  <p>No booklet gives one. Section 5 follows the Order of Play printed on the can, with rents, salaries and soldier movement slotted in from the booklets that specify their timing — "at the beginning of each round" for rents, "at the end of each round" for salaries, "only after the Warlord moves his soldiers" for provincial troops.</p>
+
+  <h3>Note 6 · Consumption at the bottom of the income tables</h3>
+  <p>Every printed table's population column runs ×1, ×1½, ×2, ×3, ×4 — then jumps. The 12-million provinces end at 72, which is ×6 and consistent. The 14-million provinces end at 112, which is ×8, but with consumption of 240, which is ×6; the Emperor's ends at 112 with consumption 360, also ×6. <strong>Consumption is always proportional to population.</strong> The tables in Section 7 are indexed by multiple rather than headcount, which removes the discrepancy. The I Ching cards settle it independently: they cap the nation at 600 million, which is ×6 of the starting 100 million, so the ×8 figures could never have been reached.</p>
+
+  <h3>Note 7 · Tax on a negative income</h3>
+  <p>Not addressed anywhere. <strong>A player with negative income pays no tax.</strong> The Income Tax Schedule is income × rate and has no rows below zero.</p>
+
+  <h3>Note 8 · The realia you never need</h3>
+  <p>Not a ruling but a pattern, and the most elegant thing in the design. At 4–5 players each province begins holding two pieces of one other province's realia, and in every case it is exactly the type that province's objective does not require. Provinces 2 and 5 are locked in a mutual trade; 3, 6, 4 and 7 form a ring. Because those pieces come in pairs, every player can get the one they need from the pair. Each province's <em>own</em> piece, though, exists once and is wanted by both other players — so in a four- or five-player game only one player can complete a set at a time.</p>
+
+  <h3>Note 9 · Unsold stock and the map</h3>
+  <p>Every booklet says: "Any realia which you acquire either during a public auction or by trading with another player must be placed on a square within the boundaries of your Province." Nothing says where a seller's unsold stock sits, and the Warlord's booklet lets him demand realia only from "a square where a piece of realia has been placed." <strong>Unsold stock stays off the map; a piece is placed the moment it is bought or traded, and returned pieces rejoin their province's unsold stock.</strong> Putting stock on the map at setup would let the Warlord raid most of his objective in Round Two and strip one-of-a-kind pieces out of a small game before they could be sold. Nothing can be hidden this way, because a seller must auction one piece every round until the stock is empty.</p>
+
+  <h3>Note 10 · Peasants and the throne</h3>
+  <p>Every booklet carries the same boilerplate paragraph headed <em>Becoming Emperor</em>, but the peasants' own Objectives sections name only the Gentry, Scholar, Official and other Peasants as targets — never the Emperor. <strong>The Objectives section governs.</strong> A Peasant must climb, taking an upper-class province first and completing its objective. This preserves the social ladder the General Instructions describe, and it makes the Warlord the only outsider who can seize power in a single move.</p>
+
+  <h3>Note 11 · Returned pieces with no home</h3>
+  <p>When a player is replaced, they "return all realia in your possession to the Provinces where they originated." In a small game, some of those pieces are native to provinces nobody is playing — a peasant holding a <span class="piece"><img src="images/customs-house.svg" alt="">Customs House</span> or a <span class="piece"><img src="images/land-deed-scroll.svg" alt="">Land Deed Scroll</span>, say — and returning them to an empty province would take them out of the game. <strong>A returned piece whose home province is empty goes to the province that started the game holding it</strong>, and is auctioned from there as soon as possible.</p>
+
+  <h3>Note 12 · One project per round</h3>
+  <p>The can says the Emperor "pays for and builds one Public Works Project." The Emperor's booklet says "any number of sections may be built in any one round" of the Wall and Canal. <strong>One project per round, but a project may be any number of sections of the same work.</strong></p>
+
+  <h3>Note 13 · Reclaiming a raided square</h3>
+  <p>Four booklets say "You may reclaim a raided square if one of your soldiers occupies the square," without saying what reclaiming does. <strong>Remove the raid marker.</strong> The square still cannot be raided a second time — that rule is absolute — but the ground is yours again and may hold realia or new development.</p>
+
+  <h3>Note 14 · Capturing soldiers</h3>
+  <p>The booklets say soldiers "can only capture horizontally, never diagonally." The General Instructions say "Soldiers cannot be captured diagonally, only horizontally and vertically." <strong>The General Instructions win:</strong> capture orthogonally in any of the four directions. Movement remains in any direction, diagonals included.</p>
+
+  <h3>Note 15 · How far the Warlord's soldiers move</h3>
+  <p>The Warlord's booklet says "You may move your soldiers anywhere on the board," and two sentences later, "You may move all your soldiers one square during each round, and may raid as many squares as you have soldiers." The General Instructions and the other booklets give purchased soldiers the same one-square move. <strong>"Anywhere" means no part of the board is off limits; "one square" is the speed. Every soldier, the Warlord's included, moves at most one square a round, and pays the transportation fee for each river or public work it crosses.</strong> The rest of the soldier rules — capture, blocking, marching in groups, and buying soldiers as "the only defense against your army" — only work if raiders have to walk. On the map this makes the frontier provinces, 7 and 3, the exposed ones, while Provinces 4 and 5 can be reached only through a gap two or three squares wide.</p>
+
+  <h3>Note 16 · What Chaos costs</h3>
+  <p>The rules say the nation is leaderless until a new Emperor emerges, without saying what leaderless means. <strong>While Chaos lasts, no tax is declared, no salaries are paid and no Public Works are built.</strong> Harvests are still distributed and the Warlord still rides. This gives the revolt a real price, which is what the word is doing there.</p>
+
+  <h3>Note 17 · Scoring at the end</h3>
+  <p>The can says the winner or winners are those who improve their social position, and the General Instructions say the object is survival. Neither gives a procedure. <strong>Rank by final province number against starting province number</strong>, as set out in Section 18, with grain surplus as the tiebreak. Both sources treat finishing where you began as a success rather than a defeat, and this scoring keeps that.</p>
+
+  <h3>Note 18 · The eight-round short game</h3>
+  <p>The original has no turn limit: it ends when the Public Works are finished or when the players stop coping. Both endings can take a very long day. <strong>A table may agree before setup to stop after eight rounds and score from where everyone is sitting.</strong> This is an addition, not a reading of the rules — but it changes nothing inside the game, and Section 18's scoring already works from any stopping point, since it compares each player's final province with the one they drew.</p>
+
+  <h3>Note 19 · The Scholar's realia at six players</h3>
+  <p>Booklet 4 lists the Scholar's own realia for 4–5 players and for 7 or more, but the six-player line is missing from the printing. Every other province holds two of its own type at six. <strong>The Scholar starts with two <span class="piece"><img src="images/bamboo-brush.svg" alt="">Bamboo Brushes</span>.</strong></p>
+
+  <hr style="border:0;border-top:1.5px solid var(--ink);margin:2.5rem 0 1.2rem">
+  <p style="font-family:var(--mono);font-size:.8rem;line-height:1.9;color:var(--ink-soft)">
+    Dynasty · Copyright © 1969, Onoma Productions, Inc. · Distributed by Dynasty International, Inc.<br>
+    This rulebook is a reorganization of the original materials for play at one table.
+  </p>
+</section>
+
+</div>
+
+<script id="piece-glyphs">
+(function(){
+var G={"customs-house": "M1 9h8V6L5 3.6 1 6z", "land-deed-scroll": "M1.4 4.2h1.2v3.4H1.4zM7.4 4.2h1.2v3.4H7.4zM2.8 5.3h4.4v1.2H2.8z", "bamboo-brush": "M1.2 5.2h4.6v1.6H1.2zM5.8 4.4L9 5.9 5.8 7.4z", "dragon-jar": "M2.4 3.2h5.2v5.4H2.4z", "wooden-bowl": "M1.4 4.4h7.2L6.6 8.6H3.4z", "vase": "M5 2.6c2.4 1.2 3 3 2 4.6-.7 1.2-3.3 1.2-4 0-1-1.6-.4-3.4 2-4.6z", "great-wall": "M1.2 3.4h1.6v1.4h1.4V3.4h1.6v1.4h1.4V3.4h1.6V8.8H1.2z", "grand-canal": "M.8 2.4h8.4v1.5H.8zM.8 8.1h8.4v1.5H.8zM1.3 5.9c1.2-1 2.4-1 3.7 0s2.5 1 3.7 0v1.3c-1.2 1-2.5 1-3.7 0s-2.5-1-3.7 0z", "summer-palace": "M.6 4.8C2.6 4.6 3.9 3.6 5 2.2c1.1 1.4 2.4 2.4 4.4 2.6l-.9.9h-7zM2.2 5.9h5.6v3.2H5.8V7.2H4.2v1.9H2.2z", "winter-palace": "M2 3.6C3.4 3.4 4.3 2.6 5 1.6c.7 1 1.6 1.8 3 2l-.6.7H2.6zM3.4 4.4h3.2v1H3.4zM.6 6.2c1.8-.2 3-.6 4.4-1.1 1.4.5 2.6.9 4.4 1.1l-.8.8H1.4zM1.8 7.1h6.4v2H5.7V8H4.3v1.1H1.8z", "marble-pagoda": "M4.75.5h.5v1.3h-.5zM3.2 2.7 5 1.7l1.8 1zM4 2.7h2v1H4zM2.6 4.5 5 3.6l2.4.9zM3.6 4.5h2.8v1.1H3.6zM1.9 6.5 5 5.5l3.1 1zM3 6.5h4v2.6H3zM2.2 9.1h5.6v.6H2.2z", "irrigation": "M5 1c1.3 1.7 1.9 2.7 1.9 3.4a1.9 1.9 0 0 1-3.8 0C3.1 3.7 3.7 2.7 5 1zM1 7h8v.9H1zM1 8.6h8v.9H1z", "reservoir": "M.8 9.2 2.4 1.8h1.5v7.4zM4.6 3.4h4.6v5.8H4.6zM5.2 5c.6-.6 1.2-.6 1.8 0s1.2.6 1.8 0v.9c-.6.6-1.2.6-1.8 0s-1.2-.6-1.8 0zM5.2 7.1c.6-.6 1.2-.6 1.8 0s1.2.6 1.8 0V8c-.6.6-1.2.6-1.8 0s-1.2-.6-1.8 0z"};
+function run(){
+  document.querySelectorAll('svg tspan.pg').forEach(function(t){
+    var txt=t.closest('text'), p;
+    var cs=getComputedStyle(t), s=parseFloat(cs.fontSize)||12, ls=parseFloat(cs.letterSpacing)||0;
+    if(ls)t.setAttribute('dx',s*1.1+ls*2);
+    try{p=t.getStartPositionOfChar(0);}catch(e){return;}
+    var g=document.createElementNS('http://www.w3.org/2000/svg','path');
+    g.setAttribute('d',G[t.getAttribute('data-g')]);
+    g.setAttribute('fill-rule','evenodd');
+    g.setAttribute('fill',getComputedStyle(txt).fill);
+    g.setAttribute('transform','translate('+(p.x-s*1.02-2*ls)+','+(p.y-s*0.8)+') scale('+(s*0.09)+')');
+    txt.parentNode.insertBefore(g,txt);
+  });
+}
+if(document.readyState!=='loading')run();else document.addEventListener('DOMContentLoaded',run);
+})();
+</script>
+</body>
+</html>

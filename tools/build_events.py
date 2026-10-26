@@ -208,10 +208,10 @@ Turn on “background graphics” in the print dialog to keep the pink.</p>
 </body>
 </html>
 """
-    with open(os.path.join(OUT, "i-ching.html"), "w", encoding="utf-8") as f:
+    with open(os.path.join(OUT, "i-ching.html"), "w", encoding="utf-8", newline="\n") as f:
         f.write(page)
     data = [dict(c, effects=[strip(e) for e in c["effects"]]) for c in CARDS]
-    with open(os.path.join(OUT, "i-ching.json"), "w", encoding="utf-8") as f:
+    with open(os.path.join(OUT, "i-ching.json"), "w", encoding="utf-8", newline="\n") as f:
         json.dump({"_about": "Dynasty I Ching (event) cards. 'copies' sums to 20. Province 8 is the Warlord.",
                    "cards": data}, f, indent=1, ensure_ascii=False)
 

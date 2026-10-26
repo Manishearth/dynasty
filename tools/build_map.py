@@ -471,7 +471,7 @@ def build_svg(g):
 def main():
     g = grid()
     svg = build_svg(g)
-    with open(os.path.join(OUT_DIR, "map.svg"), "w", encoding="utf-8") as f:
+    with open(os.path.join(OUT_DIR, "map.svg"), "w", encoding="utf-8", newline="\n") as f:
         f.write(svg)
     data = {
         "_about": "Dynasty board, square by square. Rows A-V top to bottom, "
@@ -494,7 +494,7 @@ def main():
         "_geometry_units": "Paths are in grid units: (0,0) is the board's top-left corner, "
                            "one unit per square.",
     }
-    with open(os.path.join(OUT_DIR, "map.json"), "w", encoding="utf-8") as f:
+    with open(os.path.join(OUT_DIR, "map.json"), "w", encoding="utf-8", newline="\n") as f:
         json.dump(data, f, indent=1, ensure_ascii=False)
     print("\n".join(g))
     counts = {}

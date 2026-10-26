@@ -31,6 +31,7 @@ These are Manish's standing preferences, gathered from the conversations. Treat 
 - Cut-outs: the game gives no size for the irrigation system or the reservoirs. Use Manish's wording: "There is no single correct size, but we have some suggestions here". Show the suggested size as a small drawing of squares, not "1 × 2" text: Province 2 is 1 × 2, Province 7 is 2 × 2, Province 3 is 2 × 3. No "where the sizes come from" explanation.
 - Realia placement is highlighted in setup step 3 and under Starting stock: unsold stock waits beside the board, and a bought or traded piece must go on a square in the buyer's province immediately.
 - Piece names in running text get glyphs, via `tools/add_glyphs.py`.
+- **Reservoir is capitalised wherever its glyph appears**: "the Reservoir", "two Reservoirs". `add_glyphs.py` and the playthrough page do this themselves (the `CAPITALISE` set), so new text can't slip.
 
 ## The playthroughs (`playthrough.html`)
 

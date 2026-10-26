@@ -33,3 +33,5 @@ Mistakes caught along the way, worth not repeating. Add to this when something s
 - `add_glyphs.py` matches piece names in prose, and once matched "Three reservoirs" in a booklet description. Reword or check the diff after every run.
 - Renumbering notes touches the rulebook, `RULINGS.md` and the `playthrough-sim` docs and comments. Grep for `Note \d+` everywhere.
 - Writing files from PowerShell can add a byte-order mark and garble em dashes. Write UTF-8 without a BOM.
+- Python's text mode writes `\r\n` on Windows. A tool run there once rewrote every line of the rulebook; every generator now passes `newline="\n"`.
+- `add_glyphs.py` used to add a blank line before `<script id="piece-glyphs">` on every run; its strip pattern now takes the trailing newline too, so reruns change nothing.

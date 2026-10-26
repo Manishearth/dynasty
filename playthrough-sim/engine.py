@@ -15,7 +15,7 @@ import re as _re, json as _json, os as _os
 # The cast, keyed by the seat each person drew on the first evening. Their names are puns
 # on those provinces. In a game where the booklets fall differently, setup(cast=...) says
 # who drew which seat, and NAMES/SHORT are re-keyed by player id for that game.
-CAST_NAMES = {1:"Reina Osorio",2:"Clark Grafton",3:"Richard Baron",4:"Noah Lott",
+CAST_NAMES = {1:"Reina Osorio",2:"Clark Grafton",3:"Richard Baron",4:"Noah Tall",
               5:"Silke Weber",6:"Paddy Doyle",7:"Graham Garner",8:"Robert Land"}
 CAST_SHORT = {1:"Reina",2:"Clark",3:"Rich",4:"Noah",5:"Silke",6:"Paddy",7:"Graham",8:"Rob"}
 NAMES, SHORT = dict(CAST_NAMES), dict(CAST_SHORT)

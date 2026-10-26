@@ -45,6 +45,6 @@ if __name__ == "__main__":
     out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "images")
     os.makedirs(out, exist_ok=True)
     for k in GLYPHS:
-        with open(os.path.join(out, k + ".svg"), "w") as f:
+        with open(os.path.join(out, k + ".svg"), "w", encoding="utf-8", newline="\n") as f:
             f.write(svg(k))
     print(sorted(os.listdir(out)))

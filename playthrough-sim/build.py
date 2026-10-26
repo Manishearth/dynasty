@@ -28,7 +28,7 @@ def main(out):
     sys.path.insert(0, os.path.join(HERE, "..", "tools"))
     from add_glyphs import js_terms
     tail = tail.replace("/*PIECE_TERMS*/[]", js_terms())
-    open(out, "w", encoding="utf-8").write(head + data + tail)
+    open(out, "w", encoding="utf-8", newline="\n").write(head + data + tail)
     print(f"wrote {out}: {len(games)} games, {sum(len(g['entries']) for g in games)} entries")
 
 if __name__ == "__main__":

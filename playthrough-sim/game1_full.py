@@ -406,7 +406,7 @@ say("Silke","Two million because I own nothing, and two more from anyone who doe
 taxes(.60)
 build("Great Wall — 3 links, one above each of Provinces 1, 2 and 3", 120, {1:60,2:30,3:30}, wall={1:1,2:1,3:1})
 give(8,4,"VA", at="L22")
-act("Noah Lott buys Robert Land's spare Vase for 30 million and puts it on L22, with the rest of his set.", TH(
+act("Noah Tall buys Robert Land's spare Vase for 30 million and puts it on L22, with the rest of his set.", TH(
  ("Noah","Thirty for the Vase he paid twenty for, and I'd have gone to fifty. It completes me. Silke needs one too, and if she'd got to Rob first she'd be the one sitting where I'm about to."),
  ("Silke","That was mine. That was mine twice now."),
  ("Rob","Bought both spares for twenty-five. Just sold one for thirty. I'd like everyone to note the return on that.")),
@@ -416,7 +416,7 @@ say("Rob","Pleasure doing business. That's the Vase gone. One bowl left that nob
 say("Silke","That was mine.", TH(
  ("Silke","It genuinely was. Four of five since year four and the fifth existed twice, and both times somebody got there first. This is where I stop playing to win and start playing to be dangerous."),
  ("Graham","She's ready. Not yet, but she's ready.")))
-swap(4,2,"Noah Lott declares a complete set and replaces Clark Grafton. Noah becomes Official of Province 2; Clark becomes Scholar of Province 4.", TH(
+swap(4,2,"Noah Tall declares a complete set and replaces Clark Grafton. Noah becomes Official of Province 2; Clark becomes Scholar of Province 4.", TH(
  ("Noah","Keep the Scroll, Jar, Bowl and Vase, hand back the Customs House, and — the good bit — take every bag Clark's holding. He draws sixty from the pile and gets my old chair. I've traded a library for a tollbooth."),
  ("Clark","Robbed in daylight by the rules. And my new card says I'm honest. Marvellous."),
  ("Reina","My Official just became my Scholar and my Scholar just became my tax collector. I did not plan for the furniture to move.")),

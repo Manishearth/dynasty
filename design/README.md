@@ -10,6 +10,7 @@ The living design documents for the Dynasty revival: what the project is, what M
 | [`history.md`](history.md) | A chronological log of requests and decisions, with Manish's own wording where it matters |
 | [`open-work.md`](open-work.md) | Work still to do, open questions, and known issues |
 | [`lessons.md`](lessons.md) | Mistakes caught along the way, worth not repeating |
+| [`reference-cards.md`](reference-cards.md) | The printable reference cards: what Manish asked for, the layout, printing, and where each number comes from |
 
 Rules questions don't live here. [`../RULINGS.md`](../RULINGS.md) is the single list of every ruling, clarification and engine assumption, with its reasoning, and its Open questions section is where unsettled rules wait for Manish. The playthrough generator documents itself in [`../playthrough-sim/`](../playthrough-sim/README.md).
 

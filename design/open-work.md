@@ -20,10 +20,19 @@ What's still to do, what's waiting on Manish, and the known issues. Take an item
 - **Section 3**: the schematic map put Province 6 in the middle and 5 on the coast, which doesn't match `map.svg`. Manish said he'd handle it; check whether it's done.
 - **Appendix B, the worked round**, has the Warlord pay the Rice Peasant a river toll on the way to raid Province 6 in Round One. On the real map no river lies between the desert and Province 6, so the example may want a different province.
 
+## The reference cards
+
+See [`reference-cards.md`](reference-cards.md).
+
+- **Catch up with the newer rulings.** The cards predate several entries in `RULINGS.md`. The Warlord's card says a crossing costs 5, but not that it's paid to the province stepped onto, that soldiers can't enter the sea, or that stepping onto an un-raided province square always raids it.
+- **Utility Tax.** `RULINGS.md` says the Emperor doesn't pay it. The reworded card in `i-ching.json` and `i-ching.html` (from `tools/build_events.py`) still says "Every province pays the Emperor". Reword it to "every other province", and check the reference cards for the same slip.
+- **Duplex printing is untested.** Print one sheet double-sided before printing all five, and fix the back-sheet order in `build()` if the backs don't line up.
+- **Blank space.** The backs of the peasant and Warlord cards are half empty. Fine as is; ask Manish before filling them.
+- **Link the page** from the rulebook and the README, and decide with Manish whether it replaces rulebook Appendix C.
+
 ## The repo
 
 - **The top-level `README.md`** describes `playthrough.html` as three games; there are five.
-- **`add_glyphs.py`** used to add a blank line before `<script id="piece-glyphs">` on every run. Check the diff after running it.
 - **The old repo** at `C:\Users\manishearth\dev\dynasty` has stray writes from before the move (a `playthrough.html`, rulebook edits, a link in `index.html`, a `sim/` folder). Manish was told how to revert them. Don't work there.
 
 ## Checks to keep running

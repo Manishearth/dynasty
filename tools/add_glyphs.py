@@ -45,7 +45,7 @@ SKIP = re.compile(r"(<head\b.*?</head>|<svg\b.*?</svg>|<script\b.*?</script>|<st
                   re.S | re.I)
 OLD = re.compile(r'<span class="piece"><img src="images/[a-z-]+\.svg" alt="">(.*?)</span>')
 OLD_SVG = re.compile(r'<tspan class="pg" data-g="[a-z-]+" dx="1.1em">(.*?)</tspan>')
-OLD_JS = re.compile(r'\n?<script id="piece-glyphs">.*?</script>', re.S)
+OLD_JS = re.compile(r'\n?<script id="piece-glyphs">.*?</script>\n?', re.S)
 SVG_TEXT = re.compile(r"(<text\b[^>]*>)(.*?)(</text>)", re.S)
 
 JS = """
@@ -73,8 +73,9 @@ if(document.readyState!=='loading')run();else document.addEventListener('DOMCont
 
 
 def js_terms():
-    """TERMS as JSON for pages that add glyphs in the browser (the playthrough)."""
-    return json.dumps(TERMS)
+    """TERMS as JSON for pages that add glyphs in the browser (the playthrough).
+    A third element of true marks a piece whose name is capitalised with its glyph."""
+    return json.dumps([[t, g, g in CAPITALISE] for t, g in TERMS])
 
 
 def glyph_of(m):
@@ -83,12 +84,21 @@ def glyph_of(m):
             return glyph
 
 
+# Pieces whose name is always capitalised where it carries a glyph ("Reservoir").
+CAPITALISE = {"reservoir"}
+
+
+def shown(m):
+    t = m.group(0)
+    return t[0].upper() + t[1:] if glyph_of(m) in CAPITALISE else t
+
+
 def tag(m):
-    return f'<span class="piece"><img src="images/{glyph_of(m)}.svg" alt="">{m.group(0)}</span>'
+    return f'<span class="piece"><img src="images/{glyph_of(m)}.svg" alt="">{shown(m)}</span>'
 
 
 def svg_tag(m):
-    return f'<tspan class="pg" data-g="{glyph_of(m)}" dx="1.1em">{m.group(0)}</tspan>'
+    return f'<tspan class="pg" data-g="{glyph_of(m)}" dx="1.1em">{shown(m)}</tspan>'
 
 
 def svg_text(chunk):
@@ -118,7 +128,7 @@ def main(path):
     if 'class="pg"' in s:
         js = JS % json.dumps({k: d for k, (_, _, d) in GLYPHS.items()})
         s = s.replace("</body>", js + "</body>", 1) if "</body>" in s else s + js
-    open(path, "w", encoding="utf-8").write(s)
+    open(path, "w", encoding="utf-8", newline="\n").write(s)
     counts = {}
     for g in re.findall(r'images/([a-z-]+)\.svg|data-g="([a-z-]+)"', s):
         g = g[0] or g[1]

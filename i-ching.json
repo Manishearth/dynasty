@@ -1,0 +1,173 @@
+{
+ "_about": "Dynasty I Ching (event) cards. 'copies' sums to 20. Province 8 is the Warlord.",
+ "cards": [
+  {
+   "id": "drought",
+   "copies": 1,
+   "kind": "harvest",
+   "title": "Drought",
+   "flavor": "Not a cloud in months. The locusts, at least, are having a fine year.",
+   "effects": [
+    "All provinces collect an average harvest."
+   ]
+  },
+  {
+   "id": "steady",
+   "copies": 1,
+   "kind": "harvest",
+   "title": "Steady Weather",
+   "flavor": "Neither feast nor famine. Nobody writes poems about years like this.",
+   "effects": [
+    "All provinces collect an average harvest."
+   ]
+  },
+  {
+   "id": "bad",
+   "copies": 3,
+   "kind": "harvest",
+   "title": "Bad Harvest",
+   "flavor": "The seed rotted, the rains came late, and the ox went lame.",
+   "effects": [
+    "All provinces collect a bad harvest."
+   ]
+  },
+  {
+   "id": "floods",
+   "copies": 1,
+   "kind": "harvest",
+   "title": "Spring Floods",
+   "flavor": "Heaven waters the land generously. In some places, far too generously.",
+   "effects": [
+    "Provinces 1, 3, 6, 7: good harvest.",
+    "Provinces 2, 4, 5, 8: bad harvest."
+   ]
+  },
+  {
+   "id": "favourites",
+   "copies": 1,
+   "kind": "harvest",
+   "title": "Heaven Has Favourites",
+   "flavor": "Some fields shine, some fields sulk.",
+   "effects": [
+    "Provinces 2, 4, 5: good harvest.",
+    "Provinces 1, 3, 6, 7, 8: bad harvest."
+   ]
+  },
+  {
+   "id": "double",
+   "copies": 3,
+   "kind": "population",
+   "title": "Population Doubles",
+   "flavor": "Fat years make large families.",
+   "effects": [
+    "All provinces collect a good harvest.",
+    "The population doubles, and every province's consumption doubles with it.",
+    "If the population is already 600 million, or the population has already doubled twice, ignore this card except for the good harvest."
+   ]
+  },
+  {
+   "id": "half",
+   "copies": 2,
+   "kind": "population",
+   "title": "Population Grows by Half",
+   "flavor": "The villages are noisier than they used to be.",
+   "effects": [
+    "All provinces collect a good harvest.",
+    "The population increases by one half, and so does every province's consumption.",
+    "If the population is already 600 million, or it has already grown by half once, ignore this card except for the good harvest."
+   ]
+  },
+  {
+   "id": "careless",
+   "copies": 1,
+   "kind": "disaster",
+   "title": "Careless Prosperity",
+   "flavor": "Good times make careless people.",
+   "effects": [
+    "All provinces collect a good harvest.",
+    "Every player plays a Personal Disaster."
+   ]
+  },
+  {
+   "id": "even",
+   "copies": 1,
+   "kind": "disaster",
+   "title": "Fortune and Misfortune",
+   "flavor": "Plenty for everyone, and trouble for some.",
+   "effects": [
+    "All provinces collect a good harvest.",
+    "Provinces 2, 4, 6, 8 play a Personal Disaster."
+   ]
+  },
+  {
+   "id": "storms",
+   "copies": 1,
+   "kind": "disaster",
+   "title": "Storms and Raiders",
+   "flavor": "A fine crop, and a fine season for gales, bandits and the Warlord's sense of humour.",
+   "effects": [
+    "All provinces collect a good harvest.",
+    "Provinces 4, 5, 6, 7 each pay 2 million to repair their Public Works.",
+    "Provinces 1, 2, 3, 8 play a Personal Disaster."
+   ]
+  },
+  {
+   "id": "canal",
+   "copies": 1,
+   "kind": "works",
+   "title": "The Canal Gives Way",
+   "flavor": "The engineers blame the river. The river declines to comment.",
+   "effects": [
+    "All provinces collect an average harvest.",
+    "All unfinished Grand Canal work is lost. In a province where both canal sections are finished, that province pays the Emperor 2 million. Where only one section stands, the Emperor must build it again.",
+    "Provinces 2, 3, 7, 8 play a Personal Disaster."
+   ]
+  },
+  {
+   "id": "wall",
+   "copies": 1,
+   "kind": "works",
+   "title": "The Wall Is Breached",
+   "flavor": "The harvest is in, and so are the horsemen from the north.",
+   "effects": [
+    "All provinces collect a good harvest.",
+    "Three Great Wall links are breached. Provinces 1, 2, 3 each pay 5 million for repairs; a province with no wall built above it pays 2 million in damages to the Harvest Pile instead.",
+    "Provinces 4, 5, 6, 7, 8 play a Personal Disaster."
+   ]
+  },
+  {
+   "id": "charity",
+   "copies": 1,
+   "kind": "money",
+   "title": "Imperial Charity",
+   "flavor": "Moved by the suffering of his people, the Emperor opens his purse. Slightly.",
+   "effects": [
+    "All provinces collect an average harvest.",
+    "Every player receives 2 million from the Emperor's reserve."
+   ]
+  },
+  {
+   "id": "share",
+   "copies": 1,
+   "kind": "money",
+   "title": "The Emperor's Share",
+   "flavor": "The Emperor would like to remind you who paid for the ditch.",
+   "effects": [
+    "All provinces collect an average harvest.",
+    "Every province with a Public Works splits the extra harvest it produces 50/50 with the Emperor this round."
+   ]
+  },
+  {
+   "id": "tax",
+   "copies": 1,
+   "kind": "money",
+   "title": "Utility Tax",
+   "flavor": "A new levy, for the upkeep of things you may or may not have.",
+   "effects": [
+    "All provinces collect an average harvest.",
+    "Every province pays the Emperor a 2 million utility tax.",
+    "Every province with a Public Works pays 2 million more."
+   ]
+  }
+ ]
+}

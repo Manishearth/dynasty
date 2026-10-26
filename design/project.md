@@ -49,7 +49,7 @@ python3 tools/build_reference.py                        # regenerate reference-c
 python3 tools/glyphs.py                                 # regenerate images/
 ```
 
-These need Python 3.9 or later and no other dependencies. The playthrough build is deterministic: the same scripts always produce a byte-identical page. Use that to check that a refactor changed nothing. After running `add_glyphs.py`, check the diff: earlier versions added a blank line before the `<script id="piece-glyphs">` block on every run.
+These need Python 3.9 or later and no other dependencies. The playthrough build is deterministic: the same scripts always produce a byte-identical page. Use that to check that a refactor changed nothing. `add_glyphs.py` is idempotent too: running it twice changes nothing. Every generator writes UTF-8 with Unix line endings, on Windows as well.
 
 To look at a page with its glyphs, serve the repo root over HTTP (for example `python3 -m http.server`) rather than opening the file from a sandboxed preview, which can't load `images/`.
 

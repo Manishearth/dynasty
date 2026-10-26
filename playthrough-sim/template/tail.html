@@ -237,8 +237,8 @@ function drawMap(s,hl,mv){
   document.getElementById('map').innerHTML=svg;
   if(!document.getElementById('legend').innerHTML){
     const owe=n=>D.owed.some(o=>o[0]===n);
-    const sys=owe('Province 2 Irrigation System')&&(owe('Province 3 Reservoir')||owe('Province 7 Reservoir'))?'irrigation&nbsp;system&nbsp;or&nbsp;reservoir':
-      (owe('Province 2 Irrigation System')?'irrigation&nbsp;system':'reservoir');
+    const sys=owe('Province 2 Irrigation System')&&(owe('Province 3 Reservoir')||owe('Province 7 Reservoir'))?'Irrigation&nbsp;System&nbsp;or&nbsp;Reservoir':
+      (owe('Province 2 Irrigation System')?'Irrigation&nbsp;System':'Reservoir');
     let L=gpiece('customs-house','Customs&nbsp;House')+gpiece('land-deed-scroll','Land&nbsp;Deed')+
       gpiece('bamboo-brush','Bamboo&nbsp;Brush')+gpiece('dragon-jar','Dragon&nbsp;Jar')+
       gpiece('wooden-bowl','Wooden&nbsp;Bowl')+gpiece('vase','Vase')+
@@ -339,7 +339,8 @@ function glyphText(node){
     const gi=m.slice(1).findIndex(x=>x!==undefined);
     frag.appendChild(document.createTextNode(t.slice(last,m.index)));
     const sp=document.createElement('span'); sp.className='piece';
-    sp.innerHTML='<img src="'+gsrc(TERMS[gi][1])+'" alt="">'; sp.appendChild(document.createTextNode(m[0]));
+    const word=TERMS[gi][2]?m[0][0].toUpperCase()+m[0].slice(1):m[0];   /* "Reservoir" is capitalised with its glyph */
+    sp.innerHTML='<img src="'+gsrc(TERMS[gi][1])+'" alt="">'; sp.appendChild(document.createTextNode(word));
     frag.appendChild(sp); last=m.index+m[0].length;
   }
   frag.appendChild(document.createTextNode(t.slice(last)));

@@ -470,7 +470,7 @@ Print the first sheet again for more general cards.</p>
 </body>
 </html>
 """
-    with open(OUT, "w", encoding="utf-8") as f:
+    with open(OUT, "w", encoding="utf-8", newline="\n") as f:
         f.write(page)
     add_glyphs.main(OUT)
 

@@ -1,13 +1,13 @@
 # Game 5 — the six-player game. The Warlord completes his objective and takes the throne.
 setup([1,2,3,5,7,8], "six", "The six-player game",
       "Six players · ten years · the Warlord takes the throne",
-      "A fifth evening. Rich and Paddy sit out. Robert Land draws the throne, and Noah Lott draws the Warlord for the second week running — still announcing every move a year before he makes it, and this time it works. Eight pieces of realia for four collectors, and two soldiers.",
+      "A fifth evening. Rich and Paddy sit out. Robert Land draws the throne, and Noah Tall draws the Warlord for the second week running — still announcing every move a year before he makes it, and this time it works. Eight pieces of realia for four collectors, and two soldiers.",
       short="6 players · 10 years",
       cast={1:"Rob", 2:"Silke", 3:"Clark", 5:"Reina", 7:"Graham", 8:"Noah"})
 
 # ============================== SETUP ==============================
 R(0, "The booklets fall differently", None, "Six players: the Emperor, the Official, the Gentry, two peasants and the Warlord (rulebook Section 4 and Appendix A). No Scholar, so the Emperor appoints someone to read I Ching. Each realia province holds two of its own pieces, and each collector needs one from each of the other three.")
-act("Rich and Paddy sit this one out. The six remaining booklets are shuffled and drawn: Robert Land draws the Emperor, Silke the Official, Clark the Gentry, Reina the Silk Peasant, Graham the Wheat Peasant, and Noah Lott the Warlord, again.", TH(
+act("Rich and Paddy sit this one out. The six remaining booklets are shuffled and drawn: Robert Land draws the Emperor, Silke the Official, Clark the Gentry, Reina the Silk Peasant, Graham the Wheat Peasant, and Noah Tall the Warlord, again.", TH(
  ("Rob","Two evenings in the desert, one on a silk farm, and now the throne. I know exactly how this chair gets taken. I've walked to it."),
  ("Noah","The Warlord, two weeks running. Last week I told you every move and you used it to put soldiers exactly where I'd be. Two of seven. I've been thinking about it all week."),
  ("Reina","Silk Peasant. Last week I climbed out of the wheat fields. This week the booklet's put me back in the fields, just a better class of field.")), map_hl=[1,2,3,5,7,8])
@@ -47,7 +47,7 @@ say("Rob","Thirty-five per cent. Collect it, Silke.", TH(
  ("Silke","Thirty-five, year one. He's not even pretending."),
  ("Reina","He watched me be reasonable for eleven years. This is the lesson he took.")))
 taxes(.35)
-act("Noah Lott declines to pay tax.", TH(
+act("Noah Tall declines to pay tax.", TH(
  ("Noah","My booklet's silent on tax. Rob set the precedent on the first two evenings and I kept it last week."),
  ("Rob","I invented that refusal. I can't even be cross.")), map_hl=[8])
 say("Rob","The Summer Palace. I'll put it at G17.", TH(
@@ -434,7 +434,7 @@ march({"W2":"G13"}, "Noah's northern soldier steps down from F13 onto G13, captu
  ("Silke","The first raid on Province 2 all evening, and it's the one that ends it."),
  ("Rob","I walked to Reina's palace one square a year in the peasant game and stopped one piece short. He's done it with two soldiers, ten years, and a timetable.")),
  take={"W2":("VA","N17")})
-swap(8,1,"Noah Lott has raided a different piece of realia from every player, and changes places with the Emperor. Noah takes the throne of Province 1; Robert Land becomes the Warlord.", TH(
+swap(8,1,"Noah Tall has raided a different piece of realia from every player, and changes places with the Emperor. Noah takes the throne of Province 1; Robert Land becomes the Warlord.", TH(
  ("Noah","The booklet: when you've raided a piece from each player, you may change places with any player, including the Emperor. Every piece I took goes back to its province, and I take every bag in the imperial reserve."),
  ("Rob","The desert. Again. I know where everything is."),
  ("Reina","He told us where he was going for ten years. We all wrote it down. It didn't help.")))

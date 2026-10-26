@@ -79,3 +79,17 @@ The handoff prompt asked for four changes to the playthroughs: the Reservoir nam
 - From the rulebook session: a raid on a canal, irrigation or reservoir square is an ordinary raid, and the Wall can't be raided; and `RULINGS.md` became the single list of rulings, which every session now adds to.
 - Two independent reviews checked the games against the rules and the ledger. They found auction-rule slips (pieces not re-auctioned, players passing up the piece that completes their set without a reason), canal costs charged to the wrong provinces, and many quoted numbers and cross-evening references that were off. All were fixed.
 - "rename handoff/ to design/ and clean up the files so that they are not just about the handoff but rather permanent live docs for design. You may push automatically" — this folder.
+
+## Names and glyphs (2026-10-25)
+
+- "Let's also rename Noah Lott to Noah Tall." The Scholar's pun is now "know-it-all". The short name stays Noah.
+- "Make sure "reservoir" is always in caps in all docs when it has the image next to it." Wherever a glyph marks the word, it reads **Reservoir** (or **Reservoirs**). `tools/add_glyphs.py` capitalises it when it adds the glyph, and the playthrough page does the same in the browser, so new text can't slip.
+
+## Reference cards (2026-10-25, the clean-repo conversation)
+
+- "Two sets of reference cards; one per-player, one general one. General one contains turn order/stuff like that (ask me which things make sense to include). per-player includes the harvest tables, the things they need to collect, the things they need to do each round, what they are owed. Cards should be two sided. make a separate html page like we did for the i ching."
+- Asked which extras belong on the general card. Picked: public works, money at a glance, Harvest Pile in/out, realia ownership. Not picked: the population and I Ching tracker, climbing seats, revolt and Chaos, game end. Size: half letter.
+- Corrections: new harvest squares "should say 'only available after 2x population'"; income tables "should probably also mention +20M per new harvest square"; the Warlord's card should say he can demand the full cost from the Emperor when raiding the Emperor's buildings, then "Should we split this into 'raiding realia' and 'raiding emperor works'?" (yes).
+- "it seems like the warlord can't raid the wall, right?" Right: it stands outside every province. Raids on canal, irrigation and reservoir squares became ordinary raids ("just a plain sentence is fine. I think clarifications also belong in RULINGS"). `RULINGS.md` was created as the single list.
+- "Let's go ahead and hand this off to claude-code as well." That produced [`reference-cards.md`](reference-cards.md).
+
