@@ -140,3 +140,8 @@ The handoff prompt asked for four changes to the playthroughs: the Reservoir nam
 
 - Manish noticed Reina developing the strip below the Wall with the links above her unfinished. The Emperor's booklet: "You or Provinces 2 and 3 may develop the New Land below the Great Wall when 4 sections in each Province have been built." He chose the per-province reading. The engine now gates Province 1's strip squares on its own four links; Reina's purchases in games 1 and 2 moved to the sea (F23–F26 and H25; F23 and F24) with identical ledgers.
 
+## Games 6 and 7 (2026-10-26)
+
+- Asked what the set lacked, Claude listed the seven-player game, a peasant's double climb, 600 million, The Canal Gives Way, a raid on new land and long Chaos. Manish: "Seven player game sounds great, let's call it "all's quiet on the western front"" and "Chaos lasting more than a moment sounds great. A game with earlier chaos and perhaps eventual recovery, even? "The dark ages" is a good name for it." He kept them separate ("I think 7 is a fine number of games") and called the other gaps "cool to incorporate but not necessary". Game 6 happens to show a double climb and The Canal Gives Way; game 7 a raid on new land and The Canal Gives Way.
+- The new playthrough readings (rent with the seat, minimum bids, the acclamation count, land and tax during Chaos) are in RULINGS.md.
+

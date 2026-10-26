@@ -83,5 +83,7 @@ Provinces 7 and 3 are the frontier. Province 1 faces the strip below the Wall. P
 3. **The short game**: 4 players (the upper group), the 8-round short-game rule; Clark, the Official, takes the throne.
 4. **The peasant game**: 5 players (the Emperor, three peasants, the Warlord), 9 years. It ends in **survival**: every public work gets built, with Reina still on the throne.
 5. **Land, Robbed**: 6 players, 10 years; the Warlord, Rob Land, completes his objective and takes the throne.
+6. **All's Quiet on the Western Front**: 7 players, no Warlord, 10 years; everything is fought with grain, and a silk farmer climbs twice to the throne. Asked for by Manish on 2026-10-26.
+7. **The Dark Ages**: 6 players (1, 2, 3, 5, 6, 8), 12 years; an early revolt, three years of Chaos, then a recovery to the survival ending. Asked for by Manish on 2026-10-26 ("A game with earlier chaos and perhaps eventual recovery").
 
 The population doubles in games 1 to 4, and every one of them buys new harvest squares after it does.

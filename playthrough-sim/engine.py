@@ -639,6 +639,9 @@ WORD = "zero one two three four five six seven eight nine ten eleven twelve thir
 def spell(n):
     if n != int(n): return f"{n:g}"
     n = int(n)
+    if n >= 100:
+        rest = n % 100
+        return WORD[n//100].capitalize() + " hundred" + (" and " + spell(rest).lower() if rest else "")
     if n <= 20: return WORD[n].capitalize()
     t = {20:"Twenty",30:"Thirty",40:"Forty",50:"Fifty",60:"Sixty",70:"Seventy",80:"Eighty",90:"Ninety"}
     return t[n-n%10] + ("-"+WORD[n%10] if n%10 else "")

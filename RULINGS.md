@@ -190,12 +190,14 @@ The deck in `i-ching.json` is reworded. Its effects follow the 1969 cards, and t
 | Population Doubles (×3) | The original says "if this card has been played twice" | Read as "if the population has already doubled twice". A doubling takes effect at most twice in a game, matching the 600 million cap (Note 6) |
 | Population Grows by Half (×2) | "if this card has been played once before" | The increase by half takes effect once in a game. The playthrough engine enforces both caps: a capped card is just a good harvest |
 | The Canal Gives Way | "you must pay the Emperor 2 million" / "the Emperor must start over" | "You" is the province player. Where both of a province's canal sections are finished, that province pays the Emperor 2. Where one section stands, the Emperor must rebuild it. Unfinished work is lost |
-| The Wall Is Breached | Are links destroyed? | No. Provinces 1–3 each pay 5 for repairs; a province with no Wall built above it pays 2 to the Harvest Pile instead |
+| The Wall Is Breached | Are links destroyed? | No. Provinces 1–3 each pay 5 for repairs; a province with no Wall built above it pays 2 to the Harvest Pile instead. The repairs go to the Harvest Pile too. (Playthrough reading, game 7.) |
 | Storms and Raiders | Must a province with no public works still pay the 2? | Yes. The card names Provinces 4–7 and says each pays |
 | Imperial Charity | Where is the "Emperor's Treasure Chest"? | It is the Emperor's own reserve, where taxes go (Section 8), not the Harvest Pile |
 | The Emperor's Share | What is split 50/50? | The extra harvest a province's public works produce that round |
 | Public Utility Tax | Does the Emperor pay it too? | No. The Emperor collects it, so Province 1 doesn't pay itself: 2 from every other occupied province and 2 more from each of those with a public work. (Playthrough reading, used in games 1, 2 and 3.) |
 | Storms and Raiders | Where do the repair payments go? | To the Harvest Pile, like other damages. (Playthrough reading.) |
+| The Canal Gives Way | What does Province 1 pay for its own finished canal? | Nothing: the Emperor would be paying himself. (Playthrough reading, game 7.) |
+| The Emperor's Share | Is new land's harvest shared? | No. New land isn't a public work. (Playthrough reading, game 7.) |
 | Any card | What if a named province is empty? | Its part of the card is skipped: nobody pays, nobody plays its disaster |
 
 ## The map
@@ -235,6 +237,14 @@ Judgement calls made while writing the games. None overrides a rule; each fills 
 - **The Emperor's Share card and tax.** Tax is levied on the round's income before the share is paid, and rent paid or received never enters taxable income (games 1 and 5).
 - **Returned pieces are re-auctioned at the next auction step**, which is the same round's if the seat change comes before the auction (Section 10, "as soon as possible").
 - **A player may decline the throne.** Noah, holding every piece but one in game 2, chooses not to buy the last: nothing obliges a player to complete a set.
+- **Rent is negotiable, and an agreed rate stays with the seat.** The Gentry may agree a rate with the peasants for a concession; each later Gentry collects the same (game 6).
+- **A seller's minimum bid may be anything**, even tied to one player's grain. A lot nobody meets stays in stock and is offered again every round, and a player may pay the seller to keep a minimum where it is (game 6, a private deal).
+- **A seat change may be declared after the round's card is turned and before the harvest**, so the mover collects the new province's harvest (game 6). Section 5 allows deals "at any point in the round".
+- **"Sharing the cost" of new land** is satisfied by any share from the crown, even 1 a square (game 6).
+- **A revolt short of two supporters simply doesn't happen** (game 6).
+- **During Chaos:** the deposed Emperor stays in Province 1, pays its consumption and takes its raids, and her grain is the reserve the next Emperor takes (games 2 and 7). No new land can be bought, since there is no Emperor to pay the share (game 7). A revolt declared after the tax is announced but before it is paid voids that year's tax, and Chaos can end mid-round: the new Emperor declares tax, builds, buys land and pays salaries in the round of the acclamation (game 7).
+- **How the acclamation is counted** (game 7, proposed at the table by Rich). Each claimant's grain in hand, soldiers on the board, and friends (players backing that claim, one claim each) are counted. One qualification is enough if no rival leads in another; otherwise the claimant who leads in more of the three wins, and a tie in any count leads nobody. The deposed Emperor can't claim and her grain isn't counted, but she may back a claimant; the Warlord may claim. Section 16 only lists the qualifications, so this is the playthroughs' procedure, not the rulebook's.
+- **A seat change in the last round, before the last work is built, counts for scoring** (game 7).
 
 ## Open questions
 

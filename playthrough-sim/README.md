@@ -1,6 +1,6 @@
 # playthrough-sim
 
-The scripts that generate `../playthrough.html`: five annotated games of Dynasty on the real board. The same eight friends play each one, every player in the province their name puns on, and each game stands alone.
+The scripts that generate `../playthrough.html`: seven annotated games of Dynasty on the real board. The same eight friends play each one, every player in the province their name puns on, and each game stands alone.
 
 | Game | Table | Length | How it ends |
 |---|---|---|---|
@@ -9,6 +9,8 @@ The scripts that generate `../playthrough.html`: five annotated games of Dynasty
 | `game3_short.py`, "The short game" | Emperor, Official, Gentry, Scholar | 8 rounds | The short-game rule; the Official takes the throne |
 | `game4_peasant.py`, "The peasant game" | Emperor, three peasants, Warlord | 9 years | Every public work is built — the survival ending |
 | `game5_six.py`, "Land, Robbed" | Emperor, Official, Gentry, two peasants, Warlord | 10 years | The Warlord completes his objective and takes the throne |
+| `game6_quiet.py`, "All's Quiet on the Western Front" | Provinces 1–7, no Warlord | 10 years | Survival; a silk farmer climbs twice to the throne |
+| `game7_dark.py`, "The Dark Ages" | Emperor, Official, Gentry, two peasants, Warlord | 12 years | A revolt in Year 3, three years of Chaos, then a recovery to survival |
 
 The population doubles in the first four, and each of them buys new harvest squares once it has.
 
@@ -34,7 +36,7 @@ python3 playthrough-sim/trace.py game4_peasant.py --board 57   # the board after
 |---|---|
 | `engine.py` | The rules: harvests, consumption, tax, rent, auctions, soldiers, raids and tolls on the real map, disasters, public works, seat changes, and scoring |
 | `cards.py` | The twenty I Ching cards: what each does to the harvest and population, and the reworded text from `../i-ching.json` that the page shows |
-| `game1_full.py` … `game5_six.py` | One script per game, in play order |
+| `game1_full.py` … `game7_dark.py` | One script per game, in play order |
 | `build.py` | Runs each game in a fresh namespace and writes the page |
 | `trace.py` | Prints a ledger of one game, for checking numbers while writing; `--board N` prints the board after entry N |
 | `template/head.html` | The page's HTML and CSS, up to the opening of the data block |

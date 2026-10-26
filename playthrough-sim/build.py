@@ -5,7 +5,8 @@ See README.md and docs/ in this folder.
 """
 import json, sys, os
 HERE = os.path.dirname(os.path.abspath(__file__))
-GAMES = ["game1_full.py", "game2_trashfire.py", "game3_short.py", "game4_peasant.py", "game5_six.py"]
+GAMES = ["game1_full.py", "game2_trashfire.py", "game3_short.py", "game4_peasant.py", "game5_six.py",
+         "game6_quiet.py", "game7_dark.py"]
 
 def run_ns(game):
     """Run one game script in a fresh namespace and return the namespace."""

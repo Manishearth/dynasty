@@ -93,3 +93,26 @@ The playthroughs are independent games, not evenings in a series. In every one, 
 | Silke | Silk → Silk Peasant | held |
 | Graham | Wheat → Gentry | won |
 | Rob | Warlord → Emperor | won |
+
+**All's Quiet on the Western Front** (`game6_quiet.py`, 7 players, 10 years). The Warlord sits out (Note 2), so Rob doesn't play, and everything is fought with grain. Rich raises the rent to 8 for cheap Scrolls. Silke climbs over Rich in Year 5; Rich, now a peasant, holds the only Dragon Jar for sale and sets its minimum just out of her reach, and Reina pays him every year to keep it there. Noah and Paddy complete their sets and promise not to take the throne. After the doubling, Graham and Clark farm the empty desert. In Year 9 Reina can afford the Wall or the retainer; she builds the Wall, Silke buys the Jar for 160 and takes the throne, and builds the last links in Year 10. Rich and Clark's revolt finds no third voice. Survival.
+
+| Player | Start → finish | Verdict |
+|---|---|---|
+| Reina | Emperor → Gentry | lost |
+| Clark | Official → Rice Peasant | lost |
+| Rich | Gentry → Silk Peasant | lost |
+| Noah | Scholar → Scholar | held (complete since Year 5, kept his word) |
+| Silke | Silk → Emperor | won (climbed twice) |
+| Paddy | Rice → Official | won |
+| Graham | Wheat → Wheat Peasant | held |
+
+**The Dark Ages** (`game7_dark.py`, 6 players: 1, 2, 3, 5, 6, 8; 12 years). Noah and Graham sit out. Reina taxes at 50% and 70% to build the Wall early, and in Year 3 Clark revolts (taxes too excessive, can't control the Warlord). Chaos lasts three years: nobody wins the acclamation, the reserve shrinks, Rob raids, and the doubling comes with no Emperor to fund land. In Year 6 Clark sells his support to Rich, who is acclaimed and keeps every promise: land with the crown paying half, all six canal sections at once, the Wall, the irrigation system, the Reservoir and the Pagoda, at falling tax rates. Every work stands in Year 12, with the Harvest Pile down to 85. Survival.
+
+| Player | Start → finish | Verdict |
+|---|---|---|
+| Reina | Emperor → Gentry | lost |
+| Clark | Official → Silk Peasant | lost |
+| Rich | Gentry → Emperor | won |
+| Silke | Silk → Official | won |
+| Paddy | Rice → Rice Peasant | held |
+| Rob | Warlord → Warlord | held |
