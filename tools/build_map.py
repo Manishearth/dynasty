@@ -64,6 +64,7 @@ WALL_LINKS = [((2.6, 5.5), (3.2, 4.7)), ((3.5, 4.4), (4.6, 3.4)),
               ((12.6, 3.7), (14.1, 3.4)), ((14.3, 3.4), (15.4, 2.8)),
               ((15.8, 2.4), (17.2, 1.8)), ((17.4, 2.0), (18.7, 1.8)),
               ((19.4, 1.9), (20.7, 2.3)), ((21.7, 2.2), (23.3, 2.5))]
+WALL_GROUPS = ["3", "2", "1"]   # the province above which each run of four links stands
 
 # Grand Canal: eight sections, two in each of Provinces 1, 4, 5 and 6.
 CANAL_SECTIONS = [
@@ -381,6 +382,19 @@ def layer_wall():
         mx, my = (X1 + X2) / 2 - nx * 15, (Y1 + Y2) / 2 - ny * 15
         a(f'<text class="t" x="{mx:.1f}" y="{my + 4:.1f}" font-size="11" font-weight="bold" '
           f'text-anchor="middle" style="fill:#6B4B2E">{i}</text>')
+    # The cloth prints no grouping, so name each province's four links (RULINGS.md).
+    for k, prov in enumerate(WALL_GROUPS):
+        links = WALL_LINKS[4 * k:4 * k + 4]
+        gx = sum(p[0] for l in links for p in l) / 8
+        gy = min(p[1] for l in links for p in l) - 1.0
+        X, Y = px((gx, gy))
+        a(f'<text class="t" x="{X:.1f}" y="{Y:.1f}" font-size="11" letter-spacing="2" font-style="italic" '
+          f'text-anchor="middle" style="fill:#6B4B2E">Province {prov} · links {4 * k + 1}–{4 * k + 4}</text>')
+        if k:                                   # a tick in the gap before this group
+            (X1, Y1), (X2, Y2) = px(WALL_LINKS[4 * k - 1][1]), px(links[0][0])
+            cx, cy = (X1 + X2) / 2, (Y1 + Y2) / 2
+            a(f'<line x1="{cx:.1f}" y1="{cy - 16:.1f}" x2="{cx:.1f}" y2="{cy + 10:.1f}" '
+              f'stroke="#6B4B2E" stroke-width="1.4" stroke-dasharray="3 2"/>')
     X, Y = px((12.5, 1.05))
     a(f'<text class="t" x="{X:.1f}" y="{Y:.1f}" font-size="15" '
       f'letter-spacing="9" text-anchor="middle" font-style="italic" style="fill:#6B4B2E">THE GREAT WALL</text>')
@@ -404,7 +418,7 @@ def layer_labels():
           f'<text class="t" y="5" font-size="14" font-weight="bold" text-anchor="middle" style="fill:#F6EEDC">{code}</text></g>'
           f'</g>')
     for (lx, ly), lines, size in [((3.9, 11.6), ["UNDEVELOPED LAND", "the Warlord’s territory"], 15),
-                                  ((3.0, 2.0), ["BEYOND THE WALL"], 12),
+                                  ((3.0, 0.9), ["BEYOND THE WALL"], 12),
                                   ((27.6, 9.0), ["THE", "EASTERN", "SEA"], 15)]:
         X, Y = px((lx, ly))
         for k, line in enumerate(lines):
@@ -570,7 +584,7 @@ def main():
                    "n": "Undeveloped land: the strip below the Great Wall",
                    "B": "Beyond the Great Wall", "S": "The sea"},
         "grid": g,
-        "great_wall_links": [{"link": i, "above_province": "3" if i <= 4 else "2" if i <= 8 else "1",
+        "great_wall_links": [{"link": i, "above_province": WALL_GROUPS[(i - 1) // 4],
                               "from": a, "to": b} for i, (a, b) in enumerate(WALL_LINKS, 1)],
         "grand_canal_sections": [{"section": i, "province": p, "path": pts}
                                  for i, (p, pts) in enumerate(CANAL_SECTIONS, 1)],

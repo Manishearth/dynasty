@@ -1397,6 +1397,11 @@
 <rect x="-2" y="-2.5" width="4" height="5" fill="#6B4B2E" transform="translate(919.3,91.0) rotate(10.6)"/>
 <rect x="-2" y="-2.5" width="4" height="5" fill="#6B4B2E" transform="translate(926.2,92.3) rotate(10.6)"/>
 <text class="t" x="897.2" y="112.7" font-size="11" font-weight="bold" text-anchor="middle" style="fill:#6B4B2E">12</text>
+<text class="t" x="201.0" y="80.0" font-size="11" letter-spacing="2" font-style="italic" text-anchor="middle" style="fill:#6B4B2E">Province 3 · links 1–4</text>
+<text class="t" x="486.5" y="72.0" font-size="11" letter-spacing="2" font-style="italic" text-anchor="middle" style="fill:#6B4B2E">Province 2 · links 5–8</text>
+<line x1="334.0" y1="164.0" x2="334.0" y2="190.0" stroke="#6B4B2E" stroke-width="1.4" stroke-dasharray="3 2"/>
+<text class="t" x="771.0" y="32.0" font-size="11" letter-spacing="2" font-style="italic" text-anchor="middle" style="fill:#6B4B2E">Province 1 · links 9–12</text>
+<line x1="624.0" y1="88.0" x2="624.0" y2="114.0" stroke="#6B4B2E" stroke-width="1.4" stroke-dasharray="3 2"/>
 <text class="t" x="500.0" y="42.0" font-size="15" letter-spacing="9" text-anchor="middle" font-style="italic" style="fill:#6B4B2E">THE GREAT WALL</text>
 </g>
 <g id="layer-labels" inkscape:groupmode="layer" inkscape:label="Labels">
@@ -1409,7 +1414,7 @@
 <g transform="translate(592.0,676.0)"><rect x="-62" y="-32" width="124" height="58" rx="3" fill="#F6EEDC" fill-opacity=".86" stroke="#3B2E1E" stroke-width="1"/><rect x="-58" y="-28" width="116" height="50" rx="2" fill="none" stroke="#3B2E1E" stroke-width=".5"/><text class="t" y="-7" font-size="12" letter-spacing="3" text-anchor="middle">PROVINCE 7</text><text class="t" y="12" font-size="15" font-weight="bold" font-style="italic" text-anchor="middle">Wheat Peasant</text><g transform="translate(62,-32)"><rect x="-10" y="-10" width="20" height="20" fill="#B5321F"/><text class="t" y="5" font-size="14" font-weight="bold" text-anchor="middle" style="fill:#F6EEDC">7</text></g></g>
 <text class="t" x="156.0" y="464.0" font-size="15" letter-spacing="3" text-anchor="middle" opacity=".8">UNDEVELOPED LAND</text>
 <text class="t" x="156.0" y="485.0" font-size="13" letter-spacing="3" text-anchor="middle" font-style="italic" opacity=".8">the Warlord’s territory</text>
-<text class="t" x="120.0" y="80.0" font-size="12" letter-spacing="3" text-anchor="middle" opacity=".8">BEYOND THE WALL</text>
+<text class="t" x="120.0" y="36.0" font-size="12" letter-spacing="3" text-anchor="middle" opacity=".8">BEYOND THE WALL</text>
 <text class="t" x="1104.0" y="360.0" font-size="15" letter-spacing="3" text-anchor="middle" opacity=".8">THE</text>
 <text class="t" x="1104.0" y="381.0" font-size="15" letter-spacing="3" text-anchor="middle" opacity=".8">EASTERN</text>
 <text class="t" x="1104.0" y="402.0" font-size="15" letter-spacing="3" text-anchor="middle" opacity=".8">SEA</text>

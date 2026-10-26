@@ -460,10 +460,10 @@ function drawMap(s,hl,mv){
     if(/[1-7]/.test(g)&&!ACT.has(g)) svg+='<rect x="'+(c*CW)+'" y="'+(r*CW)+'" width="'+CW+'" height="'+CW+'" fill="url(#hatch)" opacity=".7"/>';
     else if(hl.has(+g)) svg+='<rect x="'+(c*CW)+'" y="'+(r*CW)+'" width="'+CW+'" height="'+CW+'" fill="#FFF6C8" opacity=".55"/>';
   }
-  /* new harvest squares (Section 13): the rulebook's blue squares */
+  /* new harvest squares (Section 13): the rulebook's green squares */
   for(const q in (s.land||{})){
     const [r,c]=sqrc(q);
-    svg+='<rect x="'+(c*CW+1)+'" y="'+(r*CW+1)+'" width="'+(CW-2)+'" height="'+(CW-2)+'" fill="#4F8FD8" fill-opacity=".55" stroke="#175FB5" stroke-width=".9"><title>New harvest square, Province '+s.land[q]+'</title></rect>';
+    svg+='<rect x="'+(c*CW+1)+'" y="'+(r*CW+1)+'" width="'+(CW-2)+'" height="'+(CW-2)+'" fill="#3E9A55" fill-opacity=".6" stroke="#1F6234" stroke-width=".9"><title>New harvest square, Province '+s.land[q]+'</title></rect>';
   }
   /* the Wall: four printed links above each of provinces 3, 2 and 1, drawn as on the map once built */
   for(const p in M.wall){

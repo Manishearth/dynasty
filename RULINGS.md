@@ -97,6 +97,14 @@ Two readings the playthroughs add, from the booklets' wording: each province dev
 
 **Recorded in** rulebook Section 13, Province 1's table in Section 20, Appendices B and E, the reference cards, and `playthrough-sim/engine.py` (`buy_land`).
 
+### Which Wall links are above which province
+
+**Ruling.** Numbered west to east, links 1–4 belong to Province 3, links 5–8 to Province 2 and links 9–12 to Province 1. The map labels each group. "The four links above your province" means that province's group, for who shares the cost, which tolls it is paid, and when its strip opens.
+
+**Why.** The cloth prints twelve links in a row spelling GREAT WALL, with no province numbers, and the booklets only say "four links above your province". The provinces don't sit neatly under the Wall: links 9–12 (W, A, L, L) are clearly over Province 1, east of the river; Province 2 sits inside the river's northern loop, under only about two links; and Province 3 lies south of Province 2, nowhere under the Wall, so its links stand over the Warlord's land. Twelve links, three provinces and "four links" each leave one split that keeps the provinces in their west-to-east order. Settled by Manish on 2026-10-25.
+
+**Recorded in** rulebook Section 12 and Appendix E, `map.svg` (labels), and `tools/build_map.py` (`WALL_GROUPS`, which writes `above_province` in `map.json`).
+
 ### A palace raid counts toward the Warlord's objective
 
 **Ruling.** Yes. The booklets treat the palaces as the Emperor's realia, and the Emperor pays the structure's cost.
