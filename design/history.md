@@ -93,3 +93,8 @@ The handoff prompt asked for four changes to the playthroughs: the Reservoir nam
 - "it seems like the warlord can't raid the wall, right?" Right: it stands outside every province. Raids on canal, irrigation and reservoir squares became ordinary raids ("just a plain sentence is fine. I think clarifications also belong in RULINGS"). `RULINGS.md` was created as the single list.
 - "Let's go ahead and hand this off to claude-code as well." That produced [`reference-cards.md`](reference-cards.md).
 
+## The map's look in the playthrough (2026-10-25)
+
+- "Would it be possible to use the fancier map.svg-like rendering in the playthrough? of course with the stuff around the borders removed and the labels removed. It might be worth splitting map.svg into layers somehow so that it can be reused this way." `tools/build_map.py` now draws the map as named layers; `map.svg` stacks them all, and `map-board.svg` holds only the ground, which the playthrough uses as its board. The page keeps its own small player labels.
+- "I don't think we need a local preview server since you can just give me links to open in my browser. Clean that up." `.claude/launch.json` is gone; give Manish `file:///` links.
+

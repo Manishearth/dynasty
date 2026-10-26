@@ -114,7 +114,7 @@ Snapshots are complete rather than incremental: any entry can be shown on its ow
 
 | Panel | Drawn from |
 |---|---|
-| Board | `grid` for the regions (provinces not in `active` are hatched); `map` for the rivers, and for the Wall links and canal sections, solid when `pw` says they're built and dashed while owed; `at` for palaces and cut-outs; `board` for pieces and raid squares; `sol` for soldiers; `mv` for this line's moves; `hl` for highlighted provinces |
+| Board | `../map-board.svg` as the ground, the printed map without frame or labels; `grid` for hatching provinces not in `active` and for highlights; `map` for the rivers, and for the Wall links and canal sections, solid when `pw` says they're built and dashed while owed; `at` for palaces and cut-outs; `board` for pieces and raid squares; `sol` for soldiers; `mv` for this line's moves; `hl` for highlighted provinces |
 | Objectives | `need` and `held` for each realia province; `rob` for the Warlord |
 | Public works | `owed` against `pw`, with a running total in millions |
 | Players | `seat`, `grain` and the pile |
@@ -133,7 +133,7 @@ Snapshots are complete rather than incremental: any entry can be shown on its ow
 | The header, panel titles, hint text | The markup at the end of `template/head.html` |
 | Rendering, panels, interaction | The script in `template/tail.html` |
 | The board's geography | `../map.json`, through `tools/build_map.py`. The engine and the page both read it; nothing is copied by hand. |
-| How the board is drawn | `drawMap()` in `template/tail.html` |
+| How the board is drawn | `drawMap()` in `template/tail.html`. The ground is `../map-board.svg`, which `tools/build_map.py` writes from the same layers as `map.svg`; the page draws only this game's state on it |
 | Province labels on the map | `LBL` in `template/tail.html`, in grid units |
 
 After any change, rebuild and check the page on a phone-width window as well as a desktop one; the layout switches to a single column below 900 px and to compact game buttons below 640 px.

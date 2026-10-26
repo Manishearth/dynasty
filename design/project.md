@@ -29,7 +29,8 @@ The repo is `C:\Users\manishearth\dev\dynasty-new`, pushed to GitHub as `Manishe
 | `playthrough-sim/` | Generator for the playthrough page: the engine, the cards, five game scripts, page templates, and docs | the playthrough sessions |
 | `playthrough-sim/README.md`, `docs/*.md` | Writing a game, the engine API, the rules model, the page format | the playthrough sessions |
 | `map.json` | The board square by square: 30 × 22 grid, rows A–V, columns 1–30. Legend, Great Wall links, Grand Canal sections, rivers and coast as paths in grid units. The playthrough engine and page both read it | `tools/build_map.py` |
-| `map.svg` | Printable redrawn map | `tools/build_map.py` |
+| `map.svg` | Printable redrawn map, drawn as named layers (terrain, grid, borders, coast, rivers, canal, wall, labels, frame) that Inkscape shows as layers | `tools/build_map.py` |
+| `map-board.svg` | The same map's ground alone: terrain, grid, province borders, coast and rivers, with no frame, labels or printed works. For pages that draw their own state on the board; the playthrough uses it | `tools/build_map.py` |
 | `i-ching.json`, `i-ching.html` | The twenty cards, reworded | `tools/build_events.py` |
 | `reference-cards.html` | Printable two-sided reference cards: one general card and one per province | `tools/build_reference.py` |
 | `images/*.svg` | One glyph per piece (realia, palaces, wall, canal, irrigation, reservoir) | `tools/glyphs.py` |
@@ -43,7 +44,7 @@ python3 playthrough-sim/build.py                       # rebuild playthrough.htm
 python3 playthrough-sim/trace.py game1_full.py          # ledger: everyone's grain after every line
 python3 playthrough-sim/trace.py game1_full.py --board 57   # the board after entry 57
 python3 tools/add_glyphs.py combined-dynasty-rulebook.html  # re-run after editing rulebook text
-python3 tools/build_map.py                              # regenerate map.svg / map.json
+python3 tools/build_map.py                              # regenerate map.svg, map-board.svg, map.json
 python3 tools/build_events.py                           # regenerate i-ching.html / .json
 python3 tools/build_reference.py                        # regenerate reference-cards.html
 python3 tools/glyphs.py                                 # regenerate images/
@@ -51,7 +52,7 @@ python3 tools/glyphs.py                                 # regenerate images/
 
 These need Python 3.9 or later and no other dependencies. The playthrough build is deterministic: the same scripts always produce a byte-identical page. Use that to check that a refactor changed nothing. `add_glyphs.py` is idempotent too: running it twice changes nothing. Every generator writes UTF-8 with Unix line endings, on Windows as well.
 
-To look at a page with its glyphs, serve the repo root over HTTP (for example `python3 -m http.server`) rather than opening the file from a sandboxed preview, which can't load `images/`.
+The pages are plain files: open them straight from disk in a browser (for example `file:///C:/Users/manishearth/dev/dynasty-new/playthrough.html#full`). Glyphs load from `images/` beside them. There's no need for a preview server; give Manish file links to open.
 
 ## Working in parallel
 

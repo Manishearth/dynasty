@@ -1,10 +1,15 @@
 #!/usr/bin/env python3
-"""Generate map.svg and map.json for the Dynasty revival.
+"""Generate map.svg, map-board.svg and map.json for the Dynasty revival.
 
 The board is a 30 x 22 grid of squares. All geometry below is given in grid
 units: (0, 0) is the top-left corner of the board, x grows east, y grows south.
 Features were measured from a photo of a 1969 copy and then redrawn; nothing
 here is traced artwork.
+
+map.svg is the printable map, drawn as named layers (terrain, grid, borders,
+coast, rivers, canal, wall, labels, frame) that show up as layers in Inkscape.
+map-board.svg is the ground layers alone, with no frame, labels or printed
+works, for pages that draw their own pieces on top (the playthrough).
 
 Run from the repo root:  python3 tools/build_map.py
 Pure Python, no dependencies.
@@ -180,7 +185,9 @@ def grid():
 
 
 def px(p):
-    return (MARGIN_X + p[0] * CELL, MARGIN_TOP + p[1] * CELL)
+    """Grid units to board pixels. Layers are drawn in board pixels: (0, 0) is
+    the top-left corner of square A1; map.svg shifts them into its frame."""
+    return (p[0] * CELL, p[1] * CELL)
 
 
 def smooth(points, closed=False, tension=0.5):
@@ -211,18 +218,12 @@ def row_label(r):
 # --------------------------------------------------------------------------
 # SVG
 # --------------------------------------------------------------------------
+# The map is drawn as named layers, each in board pixels. map.svg stacks all of
+# them inside its frame; map-board.svg is only the ground (terrain, grid,
+# borders, coast, rivers), for pages that draw their own pieces and works on
+# top, like the playthrough.
 
-def build_svg(g):
-    W = MARGIN_X * 2 + COLS * CELL
-    H = MARGIN_TOP + ROWS * CELL + MARGIN_BOTTOM
-    x0, y0 = MARGIN_X, MARGIN_TOP
-    x1, y1 = x0 + COLS * CELL, y0 + ROWS * CELL
-    out = []
-    a = out.append
-    a(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" '
-      f'width="{W}" height="{H}" role="img" '
-      f'aria-label="Map of Dynasty: seven provinces on a {COLS} by {ROWS} grid">')
-    a("""<defs>
+DEFS = """<defs>
   <filter id="paper" x="0" y="0" width="100%" height="100%">
     <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="7" result="n"/>
     <feColorMatrix in="n" type="matrix" values="0 0 0 0 0.45  0 0 0 0 0.36  0 0 0 0 0.22  0 0 0 0.10 0"/>
@@ -244,22 +245,24 @@ def build_svg(g):
   <pattern id="dots" width="10" height="10" patternUnits="userSpaceOnUse">
     <circle cx="5" cy="5" r=".9" fill="#9C7F52" opacity=".45"/>
   </pattern>
-</defs>""")
-    a('<style>'
-      '.t{font-family:"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;fill:#3B2E1E}'
-      '.h{font-family:"Songti SC","STSong","SimSun","Noto Serif CJK TC","Noto Serif CJK SC",serif;fill:#7A2E1E}'
-      '</style>')
+</defs>"""
 
-    # Page and board backgrounds
-    a(f'<rect width="{W}" height="{H}" fill="#EFE4CB"/>')
-    a(f'<rect width="{W}" height="{H}" fill="#EFE4CB" filter="url(#paper)"/>')
+STYLE = ('<style>'
+         '.t{font-family:"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;fill:#3B2E1E}'
+         '.h{font-family:"Songti SC","STSong","SimSun","Noto Serif CJK TC","Noto Serif CJK SC",serif;fill:#7A2E1E}'
+         '</style>')
 
-    # Region fills, square by square
+
+def layer_terrain(g):
+    """Region colours and textures square by square, and the sea east of the coast."""
+    out = []
+    a = out.append
+    W, H = COLS * CELL, ROWS * CELL
     base = {"B": "#DCC9A2", "8": "#EADCBD", "n": "#EEE3C8", "S": "#EADCBD"}
     over = {"B": "url(#dunes)", "8": "url(#steppe)", "n": "url(#dots)"}
     for r, row in enumerate(g):
         for c, ch in enumerate(row):
-            x, y = x0 + c * CELL, y0 + r * CELL
+            x, y = c * CELL, r * CELL
             shown = ch
             if ch == "S":   # sea squares the coastline cuts: show the land part in the neighbour's colour
                 for rr, cc in ((r, c - 1), (r - 1, c), (r + 1, c), (r, c + 1)):
@@ -273,11 +276,9 @@ def build_svg(g):
         for r, row in enumerate(g):
             for c, ch in enumerate(row):
                 if ch == code:
-                    a(f'<rect x="{x0 + c * CELL}" y="{y0 + r * CELL}" width="{CELL}" height="{CELL}" fill="{pat}"/>')
-
-    # Sea: a smooth shape east of the coast, laid over the squares
+                    a(f'<rect x="{c * CELL}" y="{r * CELL}" width="{CELL}" height="{CELL}" fill="{pat}"/>')
     coast_d = smooth(COAST)
-    sea_d = coast_d + f" L{x1},{y1} L{x1},{y0} Z"
+    sea_d = coast_d + f" L{W},{H} L{W},0 Z"
     a(f'<clipPath id="seaclip"><path d="{sea_d}"/></clipPath>')
     a(f'<path d="{sea_d}" fill="#C9DDE3"/>')
     a(f'<path d="{sea_d}" fill="url(#waves)"/>')
@@ -289,16 +290,20 @@ def build_svg(g):
         a(f'<path d="{smooth(shifted)}" fill="none" stroke="#4E7F98" stroke-width="1" '
           f'stroke-dasharray="{6 + 4 * k} {5 + 3 * k}" opacity="{op}"/>')
         a('</g>')
+    return out
 
-    # Grid
-    for c in range(COLS + 1):
-        x = x0 + c * CELL
-        a(f'<line x1="{x}" y1="{y0}" x2="{x}" y2="{y1}" stroke="#5B4A33" stroke-width=".8" opacity=".38"/>')
-    for r in range(ROWS + 1):
-        y = y0 + r * CELL
-        a(f'<line x1="{x0}" y1="{y}" x2="{x1}" y2="{y}" stroke="#5B4A33" stroke-width=".8" opacity=".38"/>')
 
-    # Province borders: dotted ink along square edges between different provinces
+def layer_grid():
+    W, H = COLS * CELL, ROWS * CELL
+    out = [f'<line x1="{c * CELL}" y1="0" x2="{c * CELL}" y2="{H}" stroke="#5B4A33" stroke-width=".8" opacity=".38"/>'
+           for c in range(COLS + 1)]
+    out += [f'<line x1="0" y1="{r * CELL}" x2="{W}" y2="{r * CELL}" stroke="#5B4A33" stroke-width=".8" opacity=".38"/>'
+            for r in range(ROWS + 1)]
+    return out
+
+
+def layer_borders(g):
+    """Province borders: dotted ink along square edges between different provinces."""
     def is_prov(ch):
         return ch in TINT
     segs = []
@@ -307,28 +312,35 @@ def build_svg(g):
             ch = g[r][c]
             if c + 1 < COLS and g[r][c + 1] != ch and (is_prov(ch) or is_prov(g[r][c + 1])) \
                     and "S" not in (ch, g[r][c + 1]):
-                X = x0 + (c + 1) * CELL
-                segs.append((X, y0 + r * CELL, X, y0 + (r + 1) * CELL))
+                X = (c + 1) * CELL
+                segs.append((X, r * CELL, X, (r + 1) * CELL))
             if r + 1 < ROWS and g[r + 1][c] != ch and (is_prov(ch) or is_prov(g[r + 1][c])) \
                     and "S" not in (ch, g[r + 1][c]):
-                Y = y0 + (r + 1) * CELL
-                segs.append((x0 + c * CELL, Y, x0 + (c + 1) * CELL, Y))
-    a('<g stroke="#3B2E1E" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="0.1 6" fill="none">')
-    for s in segs:
-        a(f'<line x1="{s[0]}" y1="{s[1]}" x2="{s[2]}" y2="{s[3]}"/>')
-    a('</g>')
+                Y = (r + 1) * CELL
+                segs.append((c * CELL, Y, (c + 1) * CELL, Y))
+    out = ['<g stroke="#3B2E1E" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="0.1 6" fill="none">']
+    out += [f'<line x1="{s[0]}" y1="{s[1]}" x2="{s[2]}" y2="{s[3]}"/>' for s in segs]
+    return out + ['</g>']
 
-    # Coastline itself
-    a(f'<path d="{coast_d}" fill="none" stroke="#2F5D75" stroke-width="3.2" stroke-linejoin="round"/>')
 
-    # Rivers: dark bank, light water
+def layer_coast():
+    return [f'<path d="{smooth(COAST)}" fill="none" stroke="#2F5D75" stroke-width="3.2" stroke-linejoin="round"/>']
+
+
+def layer_rivers():
+    """Rivers: dark bank, light water."""
+    out = []
     for river in (NORTH_RIVER, SOUTH_RIVER):
         d = smooth(river)
-        a(f'<path d="{d}" fill="none" stroke="#2F6C92" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>')
-        a(f'<path d="{d}" fill="none" stroke="#8CC3DD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>')
+        out.append(f'<path d="{d}" fill="none" stroke="#2F6C92" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>')
+        out.append(f'<path d="{d}" fill="none" stroke="#8CC3DD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>')
+    return out
 
-    # Grand Canal: towpath double line with section ticks and numbers
-    a('<g>')
+
+def layer_canal():
+    """Grand Canal: towpath double line with section ticks and numbers."""
+    out = []
+    a = out.append
     for i, (prov, pts) in enumerate(CANAL_SECTIONS, 1):
         d = smooth(pts)
         a(f'<path d="{d}" fill="none" stroke="#2E5E4E" stroke-width="7" stroke-linecap="butt"/>')
@@ -344,10 +356,13 @@ def build_svg(g):
           f'<circle r="8" fill="#F6EEDC" stroke="#2E5E4E" stroke-width="1.2"/>'
           f'<text class="t" font-size="10" font-weight="bold" text-anchor="middle" dy="3.5" '
           f'style="fill:#2E5E4E">{i}</text></g>')
-    a('</g>')
+    return out
 
-    # Great Wall: rampart with crenellations on the north face
-    a('<g>')
+
+def layer_wall():
+    """Great Wall: rampart with crenellations on the north face, links numbered."""
+    out = []
+    a = out.append
     for i, ((ax, ay), (bx, by)) in enumerate(WALL_LINKS, 1):
         (X1, Y1), (X2, Y2) = px((ax, ay)), px((bx, by))
         L = math.hypot(X2 - X1, Y2 - Y1)
@@ -357,21 +372,25 @@ def build_svg(g):
             nx, ny = -nx, -ny
         a(f'<line x1="{X1:.1f}" y1="{Y1:.1f}" x2="{X2:.1f}" y2="{Y2:.1f}" stroke="#6B4B2E" stroke-width="9" stroke-linecap="square"/>')
         a(f'<line x1="{X1:.1f}" y1="{Y1:.1f}" x2="{X2:.1f}" y2="{Y2:.1f}" stroke="#C9A877" stroke-width="5" stroke-linecap="square"/>')
-        k, t = 0, 2.0
+        t = 2.0
         while t + 4 <= L:
             cx, cy = X1 + ux * t + nx * 6.5, Y1 + uy * t + ny * 6.5
             a(f'<rect x="-2" y="-2.5" width="4" height="5" fill="#6B4B2E" '
               f'transform="translate({cx:.1f},{cy:.1f}) rotate({math.degrees(math.atan2(uy, ux)):.1f})"/>')
             t += 7
-            k += 1
         mx, my = (X1 + X2) / 2 - nx * 15, (Y1 + Y2) / 2 - ny * 15
         a(f'<text class="t" x="{mx:.1f}" y="{my + 4:.1f}" font-size="11" font-weight="bold" '
           f'text-anchor="middle" style="fill:#6B4B2E">{i}</text>')
-    a('</g>')
-    a(f'<text class="t" x="{px((12.5, 1.05))[0]:.1f}" y="{px((12.5, 1.05))[1]:.1f}" font-size="15" '
+    X, Y = px((12.5, 1.05))
+    a(f'<text class="t" x="{X:.1f}" y="{Y:.1f}" font-size="15" '
       f'letter-spacing="9" text-anchor="middle" font-style="italic" style="fill:#6B4B2E">THE GREAT WALL</text>')
+    return out
 
-    # Region labels
+
+def layer_labels():
+    """Province and region labels."""
+    out = []
+    a = out.append
     for code, (lx, ly) in LABEL_AT.items():
         X, Y = px((lx, ly))
         name, han = ROLE[code]
@@ -395,7 +414,70 @@ def build_svg(g):
               f'text-anchor="middle"{italic} opacity=".8">{line}</text>')
     X, Y = px((3.9, 12.8))
     a(f'<text class="h" x="{X:.1f}" y="{Y + 12:.1f}" font-size="20" text-anchor="middle" opacity=".7">軍閥</text>')
+    return out
 
+
+def layers(g):
+    """Every layer of the board, bottom to top: (id, label, markup lines)."""
+    return [("terrain", "Terrain", layer_terrain(g)),
+            ("grid", "Grid", layer_grid()),
+            ("borders", "Province borders", layer_borders(g)),
+            ("coast", "Coast", layer_coast()),
+            ("rivers", "Rivers", layer_rivers()),
+            ("canal", "Grand Canal", layer_canal()),
+            ("wall", "Great Wall", layer_wall()),
+            ("labels", "Labels", layer_labels())]
+
+# The ground: what map-board.svg holds.
+BOARD_LAYERS = ("terrain", "grid", "borders", "coast", "rivers")
+
+
+def group(lid, label, lines):
+    return ([f'<g id="layer-{lid}" inkscape:groupmode="layer" inkscape:label="{label}">'] + lines + ['</g>'])
+
+
+def build_board_svg(g):
+    """The board alone, without frame, labels or printed works, in board pixels."""
+    W, H = COLS * CELL, ROWS * CELL
+    out = [f'<svg xmlns="http://www.w3.org/2000/svg" '
+           f'xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" viewBox="0 0 {W} {H}" '
+           f'width="{W}" height="{H}" role="img" '
+           f'aria-label="The Dynasty board, {COLS} by {ROWS} squares, without labels">',
+           DEFS, STYLE,
+           f'<rect width="{W}" height="{H}" fill="#EFE4CB"/>',
+           f'<rect width="{W}" height="{H}" fill="#EFE4CB" filter="url(#paper)"/>']
+    for lid, label, lines in layers(g):
+        if lid in BOARD_LAYERS:
+            out += group(lid, label, lines)
+    out.append('</svg>')
+    return "\n".join(out)
+
+
+def build_svg(g):
+    W = MARGIN_X * 2 + COLS * CELL
+    H = MARGIN_TOP + ROWS * CELL + MARGIN_BOTTOM
+    x0, y0 = MARGIN_X, MARGIN_TOP
+    x1, y1 = x0 + COLS * CELL, y0 + ROWS * CELL
+    out = []
+    a = out.append
+    a(f'<svg xmlns="http://www.w3.org/2000/svg" '
+      f'xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" viewBox="0 0 {W} {H}" '
+      f'width="{W}" height="{H}" role="img" '
+      f'aria-label="Map of Dynasty: seven provinces on a {COLS} by {ROWS} grid">')
+    a(DEFS)
+    a(STYLE)
+
+    # Page background
+    a(f'<rect width="{W}" height="{H}" fill="#EFE4CB"/>')
+    a(f'<rect width="{W}" height="{H}" fill="#EFE4CB" filter="url(#paper)"/>')
+
+    # The board, layer by layer, shifted into the frame
+    a(f'<g transform="translate({x0},{y0})">')
+    for lid, label, lines in layers(g):
+        out += group(lid, label, lines)
+    a('</g>')
+
+    a(f'<g id="layer-frame" inkscape:groupmode="layer" inkscape:label="Frame, title and legend">')
     # Coordinates
     for c in range(COLS):
         X = x0 + c * CELL + CELL / 2
@@ -464,6 +546,7 @@ def build_svg(g):
     a('</g>')
     a(f'<text class="t" x="{x0 - 34}" y="{H - 22}" font-size="11" opacity=".7">'
       f'Unofficial fan redraw. Dynasty © 1969 Onoma Productions; this drawing is CC BY-SA 4.0.</text>')
+    a('</g>')
     a('</svg>')
     return "\n".join(out)
 
@@ -473,6 +556,8 @@ def main():
     svg = build_svg(g)
     with open(os.path.join(OUT_DIR, "map.svg"), "w", encoding="utf-8", newline="\n") as f:
         f.write(svg)
+    with open(os.path.join(OUT_DIR, "map-board.svg"), "w", encoding="utf-8", newline="\n") as f:
+        f.write(build_board_svg(g))
     data = {
         "_about": "Dynasty board, square by square. Rows A-V top to bottom, "
                   "columns 1-30 west to east; a square is named like 'H12'.",

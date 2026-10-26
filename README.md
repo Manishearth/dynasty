@@ -11,7 +11,8 @@ The original scans can be found on https://manishearth.net/dynasty/.
 | `combined-dynasty-rulebook.html` | The rules, rewritten as one modern rulebook |
 | `RULINGS.md` | Every rules question settled so far, with reasons. Add yours here |
 | `playthrough.html` | Three annotated example games — a full eight-player game, a five-player peasant game and a four-player short game |
-| `map.svg` | The board, redrawn: seven provinces on a 30 × 22 grid (rows A–V, columns 1–30) |
+| `map.svg` | The board, redrawn: seven provinces on a 30 × 22 grid (rows A–V, columns 1–30). Drawn as named layers, so Inkscape can show or hide each one |
+| `map-board.svg` | The board's ground alone, without frame, labels or printed works, for pages that draw on top of it (the playthrough does) |
 | `map.json` | The same board as data: which region each square belongs to, plus the rivers, coast, Great Wall links and Grand Canal sections |
 | `i-ching.html` | The twenty I Ching (event) cards: a reference table and print-and-cut cards |
 | `i-ching.json` | The same cards as data |
@@ -25,7 +26,7 @@ The original scans can be found on https://manishearth.net/dynasty/.
 All the scripts are plain Python 3 with no dependencies. Run them from the repo root:
 
 ```sh
-python3 tools/build_map.py      # map.svg, map.json
+python3 tools/build_map.py      # map.svg, map-board.svg, map.json
 python3 tools/glyphs.py         # images/*.svg
 python3 tools/build_events.py   # i-ching.html, i-ching.json
 python3 tools/build_reference.py # reference-cards.html

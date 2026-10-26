@@ -145,8 +145,8 @@ const CW=13;
 function sqrc(q){return [q.charCodeAt(0)-65, +q.slice(1)-1];}
 function sqxy(q){const [r,c]=sqrc(q); return [(c+.5)*CW,(r+.5)*CW];}
 function pathd(pts){return pts.map((p,i)=>(i?'L':'M')+(p[0]*CW).toFixed(1)+' '+(p[1]*CW).toFixed(1)).join('');}
-/* province labels, in grid units, placed clear of the printed works */
-const LBL={'1':[19.5,7.6],'2':[14,8.6],'3':[11.2,11.6],'4':[21.4,11.6],'5':[22.3,15.4],'6':[22.2,18.1],'7':[15.5,16.6],'8':[4.2,13]};
+/* province labels, in grid units: the spots map.svg uses for its own labels, clear of the rivers */
+const LBL={'1':[18.4,6.9],'2':[13.2,8.3],'3':[11.4,11.6],'4':[19.8,11.7],'5':[19.5,15.7],'6':[19.9,17.9],'7':[14.8,17.2],'8':[3.9,11.9]};
 function drawMap(s,hl,mv){
   const G=D.grid, R=G.length, C=G[0].length, M=D.map;
   const W=C*CW, H=R*CW;
@@ -155,42 +155,31 @@ function drawMap(s,hl,mv){
     '<rect width="6" height="6" fill="#E6DFCB"/><line x1="0" y1="0" x2="0" y2="6" stroke="#D3CAB2" stroke-width="2.4"/></pattern>'+
     '<marker id="ahW" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0L6 3L0 6z" fill="#16150F"/></marker>'+
     '<marker id="ahB" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0L6 3L0 6z" fill="#175FB5"/></marker></defs>';
-  const FILL={'S':'#E3EEF9','B':'#E2DAC4','n':'#F2EDDF','8':'#EAE3D0'};
+  /* the ground is ../map-board.svg, the printed map without frame, labels or works;
+     this game's state is drawn on top of it */
+  svg+='<image href="map-board.svg" x="0" y="0" width="'+W+'" height="'+H+'" preserveAspectRatio="none"/>';
   for(let r=0;r<R;r++)for(let c=0;c<C;c++){
-    const g=G[r][c]; let f=FILL[g]||'#F7F2E4';
-    if(/[1-7]/.test(g)&&!ACT.has(g)) f='url(#hatch)';
-    else if(hl.has(+g)) f='#FBEFC9';
-    svg+='<rect x="'+(c*CW)+'" y="'+(r*CW)+'" width="'+CW+'" height="'+CW+
-         '" fill="'+f+'"'+(g==='S'?'':' stroke="#D6CEB8" stroke-width=".5"')+'/>';
+    const g=G[r][c];
+    if(/[1-7]/.test(g)&&!ACT.has(g)) svg+='<rect x="'+(c*CW)+'" y="'+(r*CW)+'" width="'+CW+'" height="'+CW+'" fill="url(#hatch)" opacity=".7"/>';
+    else if(hl.has(+g)) svg+='<rect x="'+(c*CW)+'" y="'+(r*CW)+'" width="'+CW+'" height="'+CW+'" fill="#FFF6C8" opacity=".55"/>';
   }
-  /* borders between regions: heavy round provinces, light elsewhere */
-  for(let r=0;r<R;r++)for(let c=0;c<C;c++){
-    const g=G[r][c], x=c*CW, y=r*CW, prov=/[1-7]/.test(g);
-    const edge=(rr,cc)=>(rr>=0&&cc>=0&&rr<R&&cc<C&&G[rr][cc]!==g&&(prov||/[1-7]/.test(G[rr][cc])||rr>r||cc>c));
-    let d='';
-    if(edge(r-1,c)) d+='M'+x+' '+y+'h'+CW;
-    if(edge(r+1,c)) d+='M'+x+' '+(y+CW)+'h'+CW;
-    if(edge(r,c-1)) d+='M'+x+' '+y+'v'+CW;
-    if(edge(r,c+1)) d+='M'+(x+CW)+' '+y+'v'+CW;
-    if(d) svg+='<path d="'+d+'" stroke="'+(prov?'#16150F':'#B9AF95')+'" stroke-width="'+(prov?1.4:.8)+'" fill="none"/>';
-  }
-  for(const k in M.rivers) svg+='<path d="'+pathd(M.rivers[k])+'" fill="none" stroke="#175FB5" stroke-width="2.6" opacity=".7" stroke-linecap="round" stroke-linejoin="round"/>';
-  /* the Wall: four printed links above each of provinces 3, 2 and 1 */
+  /* the Wall: four printed links above each of provinces 3, 2 and 1, drawn as on the map once built */
   for(const p in M.wall){
     const built=(s.pw.wall||{})[p]||0, owed=ACT.has(p);
     M.wall[p].forEach(([a,b],i)=>{
-      const on=i<built;
-      svg+='<line x1="'+a[0]*CW+'" y1="'+a[1]*CW+'" x2="'+b[0]*CW+'" y2="'+b[1]*CW+'" stroke="#16150F" stroke-linecap="round" stroke-width="'+
-        (on?3.4:1.6)+'"'+(on?'':' stroke-dasharray="2 2" opacity="'+(owed?.7:.3)+'"')+'/>';
+      const xy='x1="'+a[0]*CW+'" y1="'+a[1]*CW+'" x2="'+b[0]*CW+'" y2="'+b[1]*CW+'"';
+      if(i<built) svg+='<line '+xy+' stroke="#6B4B2E" stroke-width="3.2" stroke-linecap="square"/>'+
+        '<line '+xy+' stroke="#C9A877" stroke-width="1.6" stroke-linecap="square"/>';
+      else svg+='<line '+xy+' stroke="#6B4B2E" stroke-width="1.3" stroke-dasharray="2 1.6" opacity="'+(owed?.75:.3)+'"/>';
     });
   }
   /* the Grand Canal: two printed sections in each of provinces 1, 4, 5 and 6 */
   for(const p in M.canal){
     const built=(s.pw.canal||{})[p]||0, owed=ACT.has(p);
     M.canal[p].forEach((pts,i)=>{
-      const on=i<built;
-      svg+='<path d="'+pathd(pts)+'" fill="none" stroke="#175FB5" stroke-linecap="round" stroke-width="'+(on?3.6:1.4)+'"'+
-        (on?'':' stroke-dasharray="2 1.5" opacity="'+(owed?.8:.3)+'"')+'/>';
+      const d='d="'+pathd(pts)+'" fill="none"';
+      if(i<built) svg+='<path '+d+' stroke="#2E5E4E" stroke-width="2.6"/><path '+d+' stroke="#9CCFC0" stroke-width="1.1"/>';
+      else svg+='<path '+d+' stroke="#2E5E4E" stroke-width="1.2" stroke-dasharray="2 1.5" opacity="'+(owed?.8:.3)+'"/>';
     });
   }
   /* palaces on their squares; cut-outs over the squares they cover */
@@ -224,15 +213,11 @@ function drawMap(s,hl,mv){
     });
   }
   for(const p in LBL){
-    const [x,y]=LBL[p], on=ACT.has(p), who=on?SH[s.seat[p]]:(p==='8'?'empty':'empty');
-    svg+='<text x="'+(x*CW)+'" y="'+(y*CW)+'" text-anchor="middle" font-family="Helvetica Neue,Arial" '+
-      'font-size="10" font-weight="'+(on?700:400)+'" fill="'+(on?'#16150F':'#8A8270')+'" stroke="#F7F2E4" stroke-width="2.6" paint-order="stroke">'+
+    const [x,y]=LBL[p], on=ACT.has(p), who=on?SH[s.seat[p]]:'empty';
+    svg+='<text x="'+(x*CW)+'" y="'+(y*CW)+'" text-anchor="middle" font-family="Palatino Linotype,Palatino,Book Antiqua,Georgia,serif" '+
+      'font-size="10" font-weight="'+(on?700:400)+'" font-style="'+(on?'normal':'italic')+'" fill="'+(on?'#3B2E1E':'#7D6E55')+'" stroke="#F6EEDC" stroke-width="2.6" paint-order="stroke">'+
       p+' '+esc(who)+'</text>';
   }
-  svg+='<text x="'+(27.6*CW)+'" y="'+(13*CW)+'" text-anchor="middle" font-size="8" fill="#175FB5" letter-spacing="2" '+
-    'font-family="Courier New" transform="rotate(90 '+(27.6*CW)+' '+(13*CW)+')">THE SEA</text>';
-  svg+='<text x="'+(9*CW)+'" y="'+(1.7*CW)+'" text-anchor="middle" font-size="8" fill="#8A8270" letter-spacing="2" '+
-    'font-family="Courier New">BEYOND THE WALL</text>';
   svg+='</svg>';
   document.getElementById('map').innerHTML=svg;
   if(!document.getElementById('legend').innerHTML){

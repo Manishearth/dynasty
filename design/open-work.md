@@ -39,4 +39,4 @@ See [`reference-cards.md`](reference-cards.md).
 
 - The playthrough build is deterministic; `trace.py` gives the ledger, `trace.py --board N` the board.
 - After any change to a game, re-check every quoted number and distance downstream of it.
-- Click every tab and line in a browser at desktop width and at 390 px: no JS errors, no horizontal overflow. Serve the repo over HTTP so the glyphs load.
+- Click every tab and line in a browser at desktop width and at 390 px: no JS errors, no horizontal overflow.
