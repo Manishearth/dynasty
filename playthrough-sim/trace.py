@@ -2,8 +2,8 @@
 Soldier moves are listed under the line that makes them.
 
 Usage (from the repo root):
-  python3 playthrough-sim/trace.py game2_peasant.py            # the ledger
-  python3 playthrough-sim/trace.py game2_peasant.py --board 57 # the board after entry 57
+  python3 playthrough-sim/trace.py game4_peasant.py            # the ledger
+  python3 playthrough-sim/trace.py game4_peasant.py --board 57 # the board after entry 57
 """
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))

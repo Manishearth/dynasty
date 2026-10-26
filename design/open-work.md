@@ -10,7 +10,7 @@ What's still to do, what's waiting on Manish, and the known issues. Take an item
 
 ## The playthroughs
 
-- **Read games 4 and 5 for voice.** They were drafted by parallel agents and checked by an independent review for rules, numbers and continuity, but deserve a read for flow and banter like the first three got.
+- **Read games 1 and 5 for voice.** They were drafted by parallel agents and checked by an independent review for rules, numbers and continuity, but deserve a read for flow and banter like the other three got.
 - **Province labels on the board** sit at fixed spots (`LBL` in `playthrough-sim/template/tail.html`) and sometimes overlap a piece or a cut-out. Readable, but could be smarter.
 - **Not modelled:** reclaiming a raided square (Note 14). No game needs it yet.
 
@@ -31,7 +31,6 @@ See [`reference-cards.md`](reference-cards.md).
 
 ## The repo
 
-- **The top-level `README.md`** describes `playthrough.html` as three games; there are five.
 - **The old repo** at `C:\Users\manishearth\dev\dynasty` has stray writes from before the move (a `playthrough.html`, rulebook edits, a link in `index.html`, a `sim/` folder). Manish was told how to revert them. Don't work there.
 
 ## Checks to keep running

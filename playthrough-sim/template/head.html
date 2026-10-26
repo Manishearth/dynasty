@@ -93,6 +93,20 @@ body.touch .lotrow{padding:.9rem}
 .tip .th b{display:block;font:700 .64rem/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#F2A0B8}
 .tip i{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;
   color:var(--pink);font-style:normal;margin-bottom:.3rem}
+/* ---- what changed (the Δ on each step) ---- */
+.dbtn{position:absolute;width:1.35rem;height:1.35rem;padding:0;border:1px solid var(--rule);border-radius:50%;
+  background:var(--paper);color:var(--soft);font:700 .86rem/1 var(--disp);cursor:help}
+.dbtn:hover,.dbtn:focus-visible{border-color:var(--verm);color:var(--verm);outline:none}
+.dbtn.d-act{right:2rem;top:.78rem}.dbtn.d-lot{right:.55rem;top:.68rem}.dbtn.d-say{right:.55rem;top:.25rem}
+.ent.hasd .act{padding-right:3.9rem}.ent.hasd .lotrow{padding-right:2.4rem}.ent.hasd .say{padding-right:2.4rem}
+.tip .drow{display:flex;gap:.7rem;align-items:baseline;margin:.2rem 0}
+.tip .drow b{flex:none;min-width:5.6rem;font:700 .64rem/1.5 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#F2A0B8}
+.tip .dp{display:inline-block;white-space:nowrap;margin-right:.6rem;font:700 .8rem/1.4 var(--mono)}
+.tip .dp.up{color:#A8E3B8}.tip .dp.dn{color:#FFB8AB}
+.tip .dg{display:inline-block;width:1.05em;height:1.05em;vertical-align:-.17em}
+.tip img.dg{filter:brightness(0) invert(1)}
+.tip .dland{background:#4F8FD8;border:1px solid #A9CBF2;width:.85em;height:.85em;vertical-align:-.08em}
+.tip .dsol{border-radius:50%;background:#F4EFE2;width:.8em;height:.8em;vertical-align:-.05em}.tip .dsol.b{background:#5B9BE6}
 /* ---- map ---- */
 .map{background:#EFE4CB;border:2px solid var(--ink);margin-bottom:1rem;line-height:0}
 #map svg{width:100%;height:auto;display:block}
@@ -209,7 +223,7 @@ table.res tr.pile td{color:var(--soft);font-style:italic;border-bottom:0}
       <button id="prev">‹ Step back</button>
       <button id="next">Step forward ›</button>
     </div>
-    <p class="hint">Click any action to scrub the board. Hover an underlined line for the player's own reasoning. Arrow keys work too.</p>
+    <p class="hint">Click any action to scrub the board. Hover an underlined line for the player's own reasoning, and a Δ for what changed hands. Arrow keys work too.</p>
   </aside>
 </div>
 <div class="tip" id="tip"></div>

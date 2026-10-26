@@ -4,11 +4,13 @@ The scripts that generate `../playthrough.html`: five annotated games of Dynasty
 
 | Game | Table | Length | How it ends |
 |---|---|---|---|
-| `game1_full.py` | All eight provinces | 12 years | A revolt, then Chaos; a wheat farmer becomes Emperor |
-| `game2_peasant.py` | Emperor, three peasants, Warlord | 9 years | Every public work is built — the survival ending |
-| `game3_short.py` | Emperor, Official, Gentry, Scholar | 8 rounds | The short-game rule; the Official takes the throne |
-| `game4_complete.py` | All eight provinces | 10 years | A compact, a land rush after the doubling, and every public work built |
-| `game5_six.py` | Emperor, Official, Gentry, two peasants, Warlord | 10 years | The Warlord completes his objective and takes the throne |
+| `game1_full.py`, "The full game" | All eight provinces | 10 years | A compact, a land rush after the doubling, and every public work built |
+| `game2_trashfire.py`, "A slow trashfire" | All eight provinces | 12 years | A revolt, then Chaos; a wheat farmer becomes Emperor |
+| `game3_short.py`, "The short game" | Emperor, Official, Gentry, Scholar | 8 rounds | The short-game rule; the Official takes the throne |
+| `game4_peasant.py`, "The peasant game" | Emperor, three peasants, Warlord | 9 years | Every public work is built — the survival ending |
+| `game5_six.py`, "Land, Robbed" | Emperor, Official, Gentry, two peasants, Warlord | 10 years | The Warlord completes his objective and takes the throne |
+
+The population doubles in the first four, and each of them buys new harvest squares once it has.
 
 These are **authored** games, not simulated ones. A person wrote every choice: what each player bids, where they put each piece, where every soldier walks, what they say and what they're thinking. The engine does all the arithmetic and refuses illegal moves, so every number on the page comes from the rules, but the outcome is the author's.
 
@@ -20,8 +22,8 @@ From the repository root, with Python 3.9 or later and no other dependencies:
 
 ```sh
 python3 playthrough-sim/build.py                  # rebuild ../playthrough.html
-python3 playthrough-sim/trace.py game2_peasant.py # print everyone's grain after every line of one game
-python3 playthrough-sim/trace.py game2_peasant.py --board 57   # the board after entry 57
+python3 playthrough-sim/trace.py game4_peasant.py # print everyone's grain after every line of one game
+python3 playthrough-sim/trace.py game4_peasant.py --board 57   # the board after entry 57
 ```
 
 `build.py` takes an optional output path: `python3 playthrough-sim/build.py /tmp/test.html`.

@@ -2,6 +2,8 @@
 
 A chronological log of requests and decisions. Quotes are Manish's own words. Earlier stretches survive only as summaries, so they're less detailed.
 
+Entries before "Renumbered games, land everywhere" use the old game numbers; that section has the map.
+
 ## Before the clean repo (summarised)
 
 - Manish owns a 1969 copy of Dynasty: map, pieces, I Ching cards and the eight booklets. He wanted the per-role booklets turned into a **modern rulebook that explains general concepts first and then the per-role rules**.
@@ -118,4 +120,19 @@ The handoff prompt asked for four changes to the playthroughs: the Reservoir nam
 - From the "Harvest tile purchase patterns" session: nobody bought new harvest squares because only game 1 ever reached a doubled population, and the engine couldn't model them. Manish: "update the engine to support harvest tile purchase … mention in the rulebook and RULINGS that players can buy an unlimited number of harvest tiles per turn, but also that this route is only available later in the game because of the 2x population requirement". He chose: a game 4 land rush, bought squares raidable like the province, and purchases separate from the round's one project.
 - Game 4 had drawn both "half" cards, which the cards' own caps forbid; the engine now enforces them. Its Year 8 card became a doubling, and Years 8–10 became the land rush: the Pagoda in Year 8, land everywhere, the Wall from the land's tax in Year 9, the crown's own canal last. Clark, locked out, sells his complete set back to the pile.
 - "I've noticed that the last two playthroughs seem to treat the player names as fungible for setup. Please use the players matching the roles for each game set up … Don't think of these as multiple sequential playthroughs with persistent personalities, each one is an independent playthrough … keep each bit of banter to be within the same game." And: "don't change the actual game content. just shuffle the names around." Games 4 and 5 were renamed so everyone sits in their own province, and every cross-game reference in games 2–5 was removed. The engine's `cast=` option is gone.
+
+## Renumbered games, land everywhere (2026-10-25)
+
+- Manish renumbered and retitled the games. Old → new: 1 → 2, 2 → 4, 3 → 3, 4 → 1, 5 → 5.
+  1. `game1_full.py`, "The full game" (was game 4, "The long game", `game4_complete.py`).
+  2. `game2_trashfire.py`, "A slow trashfire" (was game 1, "The full game", `game1_full.py`).
+  3. `game3_short.py`, "The short game", unchanged.
+  4. `game4_peasant.py`, "The peasant game" (was game 2, `game2_peasant.py`).
+  5. `game5_six.py`, "Land, Robbed" (was "The six-player game"); Rob Land wins it.
+  The page keys are now `full`, `trashfire`, `short`, `peasant` and `robbed`.
+- Every game but the fifth now reaches a doubled population and buys land:
+  - **Game 2**: in Year 10 Reina refuses to subsidise Silke's sea and buys E18 and E19 below the Wall for Province 1 alone, 40. Graham cites it in the revolt, and takes the throne with 152.
+  - **Game 3**: the Year 7 card is now a doubling. Noah buys K25, J25 and K26, sea, with Reina paying half (30 each). Verdicts unchanged; Rich wins the tiebreak outright with 146.5.
+  - **Game 4**: the Year 8 card is now a doubling. Rob threatens revolt over cause six; Paddy pays Reina 130 and most of the Wall to keep the game ending. Silke (T16, T17, the Warlord's land), Graham (R25, S26, sea) and Paddy (M26, N26, sea) buy land, the crown paying 10 of each 40. Still the survival ending with Reina at 2.5; verdicts unchanged, and Rob finishes richest with 157.
+- The top-level `README.md` now describes `playthrough.html` as five games, not three (off `open-work.md`).
 

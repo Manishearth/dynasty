@@ -83,6 +83,16 @@ function node(k){
     b.onclick=()=>select(k);
     wrap.appendChild(b);
   }
+  const dl=deltas(k);
+  if(dl.length){
+    wrap.classList.add('hasd');
+    const b=document.createElement('button'); b.type='button';
+    b.className='dbtn d-'+(e.k==='say'||e.k==='lot'?e.k:'act');
+    b.setAttribute('aria-label','What changed'); b.textContent='Δ';
+    attach(b,()=>dhtml(dl),'What changed');
+    b.addEventListener('click',ev=>{ev.stopPropagation(); select(k);});
+    wrap.appendChild(b);
+  }
   return wrap;
 }
 /* ---------- tooltip ---------- */
@@ -92,7 +102,7 @@ document.body.classList.toggle('touch',TOUCH);
 let tipLock=false;
 function hideTip(){tip.classList.remove('on','pinned');tipLock=false;}
 function attach(el,text,lab){
-  const body=()=>Array.isArray(text)
+  const body=()=>typeof text==='function' ? text() : Array.isArray(text)
     ? text.map(x=>'<p class="th">'+(x.w?'<b>'+esc(x.w)+'</b>':'')+esc(x.t)+'</p>').join('')
     : '<p class="th">'+esc(text)+'</p>';
   const paint=()=>{tip.innerHTML='<i>'+esc(lab)+'</i>'+body()+
@@ -140,6 +150,64 @@ function gsrc(n){return 'images/'+n+'.svg';}
 function gimg(x,y,w,n,white){return '<image href="'+gsrc(n)+'" x="'+x+'" y="'+y+'" width="'+w+'" height="'+w+'"'+
   (white?' style="filter:brightness(0) invert(1)"':'')+'/>';}
 function gpiece(n,text){return '<span class="piece"><img src="'+gsrc(n)+'" alt="">'+text+'</span>';}
+/* ---------- what changed, per step ---------- */
+/* Each step's Δ compares its state with the step before: grain, realia (held and
+   unsold), public works and new harvest squares (credited to the province's player),
+   and soldiers, for every player and the Harvest Pile. */
+const GRAIN_SVG='<svg class="dg" viewBox="0 0 10 10" aria-hidden="true"><path d="M5 9.7V2.6" stroke="currentColor" stroke-width=".7" fill="none"/>'+
+  '<g fill="currentColor"><ellipse cx="5" cy="1.5" rx=".85" ry="1.35"/>'+
+  [[3.7,3.4,-35],[6.3,3.4,35],[3.7,5.5,-35],[6.3,5.5,35],[3.8,7.5,-35],[6.2,7.5,35]].map(([x,y,r])=>
+    '<ellipse cx="'+x+'" cy="'+y+'" rx=".75" ry="1.25" transform="rotate('+r+' '+x+' '+y+')"/>').join('')+'</g></svg>';
+const WORKGLYPH=Object.assign({wall:'great-wall',canal:'grand-canal'},WORKIMG);
+const WORKNAME={wall:'Great Wall link',canal:'Grand Canal section',irr2:'Province 2 Irrigation System',
+  res3:'Province 3 Reservoir',res7:'Province 7 Reservoir'};
+function holdings(s){
+  const H={}, add=(who,k,n)=>{if(!n)return; who=String(who); (H[who]=H[who]||{})[k]=(H[who][k]||0)+n;};
+  const work=(seat,k,n)=>{const p=s.seat[seat]; if(p!=null) add(p,'w:'+k,n);};
+  Object.entries(s.grain).forEach(([p,g])=>add(p,'g',g));
+  add('pile','g',s.pile);
+  Object.entries(s.held).forEach(([p,h])=>Object.entries(h).forEach(([t,n])=>add(p,'r:'+t,n)));
+  Object.entries(s.stock||{}).forEach(([seat,h])=>Object.entries(h).forEach(([t,n])=>{if(s.seat[seat]!=null) add(s.seat[seat],'r:'+t,n);}));
+  Object.entries(s.pile_stock||{}).forEach(([t,n])=>add('pile','r:'+t,n));
+  const pw=s.pw||{};
+  Object.entries(pw.wall||{}).forEach(([q,n])=>work(q,'wall',n));
+  Object.entries(pw.canal||{}).forEach(([q,n])=>work(q,'canal',n));
+  work(2,'irr2',pw.irr2); work(3,'res3',pw.res3); work(7,'res7',pw.res7);
+  ['Summer Palace','Winter Palace','Marble Pagoda'].forEach(k=>work(1,k,pw[k]));
+  Object.values(s.land||{}).forEach(seat=>work(seat,'land',1));
+  (s.sol||[]).forEach(v=>add(v[3],'s:'+v[1],1));
+  return H;
+}
+const DRANK={g:0,r:1,w:2,s:3};
+function deltas(k){
+  if(!k) return [];
+  const A=holdings(E[k-1].state), B=holdings(E[k].state), s=E[k].state;
+  const order=D.active.map(seat=>String(s.seat[seat])).concat(['pile']);
+  Object.keys(A).concat(Object.keys(B)).forEach(x=>{if(!order.includes(x)) order.push(x);});
+  const out=[];
+  order.forEach(who=>{
+    const a=A[who]||{}, b=B[who]||{};
+    const keys=[...new Set(Object.keys(a).concat(Object.keys(b)))]
+      .sort((x,y)=>(DRANK[x[0]]-DRANK[y[0]])||(x<y?-1:1));
+    const parts=keys.map(key=>[key,Math.round(((b[key]||0)-(a[key]||0))*100)/100]).filter(p=>p[1]);
+    if(parts.length) out.push([who,parts]);
+  });
+  return out;
+}
+function dsym(key){
+  const [kind,v]=[key[0],key.slice(2)];
+  if(kind==='g') return GRAIN_SVG;
+  if(kind==='r') return '<img class="dg" src="'+gsrc(IMG[v])+'" alt="'+esc(D.rname[v])+'" title="'+esc(D.rname[v])+'">';
+  if(kind==='s') return '<span class="dg dsol'+(v==='W'?'':' b')+'" title="'+(v==='W'?'Warlord soldier':'bought soldier')+'"></span>';
+  if(v==='land') return '<span class="dg dland" title="new harvest square"></span>';
+  return '<img class="dg" src="'+gsrc(WORKGLYPH[v])+'" alt="'+esc(WORKNAME[v]||v)+'" title="'+esc(WORKNAME[v]||v)+'">';
+}
+function dhtml(dl){
+  return dl.map(([who,parts])=>'<div class="drow"><b>'+esc(who==='pile'?'Harvest Pile':(SH[who]||NM[who]||who))+'</b><span>'+
+    parts.map(([key,d])=>{const sg=d>0?'+':'−', n=Math.abs(d);
+      return '<span class="dp '+(d>0?'up':'dn')+'">'+(key==='g'?sg+n+'&#8202;'+dsym(key):sg+dsym(key)+(n>1?'×'+n:''))+'</span>';
+    }).join('')+'</span></div>').join('');
+}
 const CW=13;
 /* squares are named like 'H12': row letter A-V, column 1-30 */
 function sqrc(q){return [q.charCodeAt(0)-65, +q.slice(1)-1];}

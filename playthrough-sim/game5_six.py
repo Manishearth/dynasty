@@ -1,5 +1,5 @@
-# Game 5 — the six-player game. The Warlord completes his objective and takes the throne.
-setup([1,2,3,5,7,8], "six", "The six-player game",
+# Game 5 — Land, Robbed. The Warlord completes his objective and takes the throne.
+setup([1,2,3,5,7,8], "robbed", "Land, Robbed",
       "Six players · ten years · the Warlord takes the throne",
       "Noah and Paddy sit out. Reina Osorio draws the throne, and Robert Land draws the Warlord — announcing every move a year before he makes it, and it works. Eight pieces of realia for four collectors, and two soldiers.",
       short="6 players · 10 years")

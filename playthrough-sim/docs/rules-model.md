@@ -137,4 +137,4 @@ The pile is a real bank. It starts at 2,500 million — the face value of the ba
 **Out:** every positive income, the 60 dealt at setup, and 60 to each player displaced by a seat change.
 **In:** every negative income, each auction price less the seller's commission, 15 of each soldier sale, disasters, repair levies, and damages.
 
-Early in a game, when harvests outrun consumption, the pile drains. Once the population grows, incomes go negative and the whole country pays into it. In the full game the pile reaches its lowest point in Year 9 and is fuller by the end than it had been since Year 2 — the bank is the one thing in the country that gets richer as everyone starves. `trace.py` prints the pile on every line.
+Early in a game, when harvests outrun consumption, the pile drains. Once the population grows, incomes go negative and the whole country pays into it. In A slow trashfire (game 2) the pile reaches its lowest point in Year 9 and is fuller by the end than it had been since Year 2 — the bank is the one thing in the country that gets richer as everyone starves. `trace.py` prints the pile on every line.

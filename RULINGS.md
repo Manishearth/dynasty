@@ -148,7 +148,7 @@ Two readings the playthroughs add, from the booklets' wording: each province dev
 The details, settled by Manish on 2026-10-25:
 
 - **Where a piece sold back goes.** Into the Harvest Pile's own stock. "harvest pile auctions off all unused pieces during the next auction." The pile's lots come after the provinces' lots, and the whole price goes to the pile, since there's no seller to keep a commission. (The order within the auction is the playthroughs' reading.)
-- **A Chaos acclamation is allowed in debt.** It isn't a player completing a set; the table chooses. The new Emperor takes the imperial reserve, which pays the debt first. Game 1's ending relies on this.
+- **A Chaos acclamation is allowed in debt.** It isn't a player completing a set; the table chooses. The new Emperor takes the imperial reserve, which pays the debt first. Game 2's ending relies on this.
 - **A bid must be covered by grain in hand.** Buying is locked out in debt, so a purchase can never be what puts a player there.
 - **A displaced player's debt passes to the mover.** The mover takes all of the displaced player's grain, whatever its sign; the displaced player then draws 60 from the pile as usual.
 - **Debt is a cause for revolt.** A player in debt counts as facing starvation, which the peasants' booklets name as the one thing that drives them to revolt ("only if the alternative is death or starvation"). So while any player is in debt, the debt is a seventh cause, alongside the six in Section 16. It still needs two other players to agree, and the player in debt may be the one revolting. Manish added this on 2026-10-25.
@@ -178,7 +178,7 @@ The deck in `i-ching.json` is reworded. Its effects follow the 1969 cards, and t
 | Storms and Raiders | Must a province with no public works still pay the 2? | Yes. The card names Provinces 4–7 and says each pays |
 | Imperial Charity | Where is the "Emperor's Treasure Chest"? | It is the Emperor's own reserve, where taxes go (Section 8), not the Harvest Pile |
 | The Emperor's Share | What is split 50/50? | The extra harvest a province's public works produce that round |
-| Public Utility Tax | Does the Emperor pay it too? | No. The Emperor collects it, so Province 1 doesn't pay itself: 2 from every other occupied province and 2 more from each of those with a public work. (Playthrough reading, used in games 1, 3 and 4.) |
+| Public Utility Tax | Does the Emperor pay it too? | No. The Emperor collects it, so Province 1 doesn't pay itself: 2 from every other occupied province and 2 more from each of those with a public work. (Playthrough reading, used in games 1, 2 and 3.) |
 | Storms and Raiders | Where do the repair payments go? | To the Harvest Pile, like other damages. (Playthrough reading.) |
 | Any card | What if a named province is empty? | Its part of the card is skipped: nobody pays, nobody plays its disaster |
 
@@ -209,16 +209,16 @@ The engine in `playthrough-sim/` makes some assumptions so it can keep a ledger.
 Judgement calls made while writing the games. None overrides a rule; each fills a silence the way a table would. Raise any of them with Manish if they look wrong.
 
 - **The Warlord's objective counts raids, not holdings.** "Raid a different piece of realia from each player" is met by the raid itself: a piece he has since sold back or on still counts, and a piece he once sold to a player counts when he raids it back from that player. Game 5 takes a Customs House, Jar, Scroll and Vase from four different players, plus a palace, so it satisfies the strictest reading too.
-- **The Warlord may sell raided realia privately**, to anyone, as an ordinary trade; the buyer places it at once (Note 10). Games 2 and 5.
+- **The Warlord may sell raided realia privately**, to anyone, as an ordinary trade; the buyer places it at once (Note 10). Games 4 and 5.
 - **Private deals are allowed for anything**, including paying a player to leave a piece unguarded or a Gentry to hold a piece (games 3 and 5). The engine records only the grain.
-- **A bought soldier may be placed on its buyer's own realia** (games 2 and 5); it then guards the piece, since the Warlord can take it only by capturing first, straight on.
+- **A bought soldier may be placed on its buyer's own realia** (games 4 and 5); it then guards the piece, since the Warlord can take it only by capturing first, straight on.
 - **Twenty in hand caps a useful bid.** A player who must keep 20 to change seats can't usefully bid past their grain less 20 for a piece that completes their set (game 5, Year 7).
 - **Authored stopping points.** The short game stops after the agreed eight rounds (Note 19). Game 5 stops when the Warlord takes the throne: the rules don't end the game there, but the table agrees to.
-- **The Warlord may bid at auction.** Nothing forbids it. What he buys goes on a square of his own territory, where no raid can reach it, and he may sell it privately (games 1 and 5). Selling a raided piece back is a private trade, so the Warlord keeps the whole price; nothing goes to the Harvest Pile (games 2 and 5).
-- **A capture can also be a raid.** A Warlord soldier that captures a bought soldier standing on an un-raided province square raids that square too, and may take the realia on it (game 5). During a "no raids" disaster that capture is refused, because the raid is (game 4).
-- **The Emperor's Share card and tax.** Tax is levied on the round's income before the share is paid, and rent paid or received never enters taxable income (games 4 and 5).
+- **The Warlord may bid at auction.** Nothing forbids it. What he buys goes on a square of his own territory, where no raid can reach it, and he may sell it privately (games 2 and 5). Selling a raided piece back is a private trade, so the Warlord keeps the whole price; nothing goes to the Harvest Pile (games 4 and 5).
+- **A capture can also be a raid.** A Warlord soldier that captures a bought soldier standing on an un-raided province square raids that square too, and may take the realia on it (game 5). During a "no raids" disaster that capture is refused, because the raid is (game 1).
+- **The Emperor's Share card and tax.** Tax is levied on the round's income before the share is paid, and rent paid or received never enters taxable income (games 1 and 5).
 - **Returned pieces are re-auctioned at the next auction step**, which is the same round's if the seat change comes before the auction (Section 10, "as soon as possible").
-- **A player may decline the throne.** Noah, holding every piece but one in game 1, chooses not to buy the last: nothing obliges a player to complete a set.
+- **A player may decline the throne.** Noah, holding every piece but one in game 2, chooses not to buy the last: nothing obliges a player to complete a set.
 
 ## Open questions
 

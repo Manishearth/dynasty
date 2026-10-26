@@ -38,39 +38,7 @@ The playthroughs are independent games, not evenings in a series. In every one, 
 
 ## What happened
 
-**The full game** (`game1_full.py`, 8 players, 12 years). The Emperor builds palaces and the Wall, the peasants' reservoir never comes, and Graham counts the deferrals out loud until the table revolts; Clark cites his own debt as a cause. Chaos follows, and Graham becomes Emperor. Rob's four soldiers walk real routes, and the river along the 4/5 border charges his notch soldier at almost every step. In the last two years Clark, Graham, Rich and Rob sell their realia back to the Harvest Pile before they sink into debt.
-
-| Player | Start → finish | Verdict |
-|---|---|---|
-| Reina | Emperor → Wheat Peasant | lost |
-| Clark | Official → Silk Peasant | lost (ends in debt) |
-| Rich | Gentry → Rice Peasant | lost (ends in debt) |
-| Noah | Scholar → Official | won |
-| Silke | Silk Peasant → Scholar | won |
-| Paddy | Rice Peasant → Gentry | won |
-| Graham | Wheat Peasant → Emperor | won |
-| Rob | Warlord → Warlord | held (ends 1 in debt) |
-
-**The peasant game** (`game2_peasant.py`, 5 players, 9 years). The Emperor, three peasants and the Warlord. With no Official, Gentry or Scholar, there's no rent, and Reina appoints people to do those jobs. She builds the reservoir first. Rob's northern soldier walks three years to the Winter Palace and on through empty Province 4 to the back door of Province 5, where Reina captures it with a soldier she bought from him. Every public work is finished in Year 9, which is the survival ending, with Reina down to 2.5.
-
-| Player | Start → finish | Verdict |
-|---|---|---|
-| Reina | Emperor → Emperor | won (held the throne) |
-| Silke | Silk → Wheat Peasant | lost |
-| Paddy | Rice → Silk Peasant | won |
-| Graham | Wheat → Rice Peasant | won |
-| Rob | Warlord → Warlord | held (3 of 4 objective pieces) |
-
-**The short game** (`game3_short.py`, 4 players, 8 rounds). The upper group only: no Warlord and no peasants, so no rent and no raids. Clark wins the throne by buying the Bamboo Brush for 70 after Reina bribed Rich with 40.
-
-| Player | Start → finish | Verdict |
-|---|---|---|
-| Reina | Emperor → Official | lost |
-| Clark | Official → Emperor | won |
-| Rich | Gentry → Gentry | held |
-| Noah | Scholar → Scholar | held |
-
-**The long game** (`game4_complete.py`, 8 players, 10 years). Reina builds the Province 7 Reservoir first, and the table signs a compact to build everything: one work a year, the split agreed in advance, Clark keeping the minutes. Rob, as Warlord, announces every raid a year ahead. In Year 8 the population doubles and every income falls to zero or below; the table answers with a land rush, the crown paying a quarter of every square, and the new land's tax pays for the rest of the Wall. Clark, locked out of the land, sells his complete set back to the pile in the last year. Silke captures one of Rob's soldiers during the Warlord's wedding. Every work is built by Year 10.
+**The full game** (`game1_full.py`, 8 players, 10 years). Reina builds the Province 7 Reservoir first, and the table signs a compact to build everything: one work a year, the split agreed in advance, Clark keeping the minutes. Rob, as Warlord, announces every raid a year ahead. In Year 8 the population doubles and every income falls to zero or below; the table answers with a land rush, the crown paying a quarter of every square, and the new land's tax pays for the rest of the Wall. Clark, locked out of the land, sells his complete set back to the pile in the last year. Silke captures one of Rob's soldiers during the Warlord's wedding. Every work is built by Year 10.
 
 | Player | Start → finish | Verdict |
 |---|---|---|
@@ -83,7 +51,39 @@ The playthroughs are independent games, not evenings in a series. In every one, 
 | Graham | Wheat → Gentry | won |
 | Rob | Warlord → Warlord | held |
 
-**The six-player game** (`game5_six.py`, 6 players, 10 years). Noah and Paddy sit out. Rob, as Warlord, announces every move a year ahead, and it works: he raids a different piece from every player and a palace from Reina, and changes places with the Emperor. The table stops there.
+**A slow trashfire** (`game2_trashfire.py`, 8 players, 12 years). The Emperor builds palaces and the Wall, the peasants' reservoir never comes, and Graham counts the deferrals out loud. In Year 10, when the population doubles, Reina refuses to subsidise Silke's sea and in the same minute buys two squares of the strip below the Wall, E18 and E19, for Province 1 alone, 40. The table revolts in Year 11: Graham cites the land among his causes, and Clark cites his own debt. Chaos follows, and Graham becomes Emperor with 152. Rob's four soldiers walk real routes, and the river along the 4/5 border charges his notch soldier at almost every step. In the last two years Clark, Graham, Rich and Rob sell their realia back to the Harvest Pile before they sink into debt.
+
+| Player | Start → finish | Verdict |
+|---|---|---|
+| Reina | Emperor → Wheat Peasant | lost |
+| Clark | Official → Silk Peasant | lost (ends in debt) |
+| Rich | Gentry → Rice Peasant | lost (ends in debt) |
+| Noah | Scholar → Official | won |
+| Silke | Silk Peasant → Scholar | won |
+| Paddy | Rice Peasant → Gentry | won |
+| Graham | Wheat Peasant → Emperor | won |
+| Rob | Warlord → Warlord | held (ends 1 in debt) |
+
+**The short game** (`game3_short.py`, 4 players, 8 rounds). The upper group only: no Warlord and no peasants, so no rent and no raids. The population doubles in Round 7, and Noah talks Reina into paying half of three squares of sea for Province 4, K25, J25 and K26, 30 each. Clark wins the throne by buying the Bamboo Brush for 70 after Reina bribed Rich with 40. Rich finishes with the most grain, 146.5, and wins the tiebreak outright.
+
+| Player | Start → finish | Verdict |
+|---|---|---|
+| Reina | Emperor → Official | lost |
+| Clark | Official → Emperor | won |
+| Rich | Gentry → Gentry | held |
+| Noah | Scholar → Scholar | held |
+
+**The peasant game** (`game4_peasant.py`, 5 players, 9 years). The Emperor, three peasants and the Warlord. With no Official, Gentry or Scholar, there's no rent, and Reina appoints people to do those jobs. She builds the reservoir first. In Year 8 the population doubles and leaves the crown with half a million. Rob threatens a revolt over cause six, the Emperor not subsidising new land, and Paddy, who would take the throne in Chaos and doesn't want it, pays Reina 130 and most of the Wall to keep the game ending. Silke buys two squares of the Warlord's land (T16, T17), Graham two of sea (R25, S26) and Paddy two of sea (M26, N26), the crown paying 10 of each 40. Rob's northern soldier walks three years to the Winter Palace and on through empty Province 4 to the back door of Province 5, where Reina captures it with a soldier she bought from him. Every public work is finished in Year 9, which is the survival ending, with Reina still down to 2.5; Rob finishes richest, with 157.
+
+| Player | Start → finish | Verdict |
+|---|---|---|
+| Reina | Emperor → Emperor | won (held the throne) |
+| Silke | Silk → Wheat Peasant | lost |
+| Paddy | Rice → Silk Peasant | won |
+| Graham | Wheat → Rice Peasant | won |
+| Rob | Warlord → Warlord | held (3 of 4 objective pieces) |
+
+**Land, Robbed** (`game5_six.py`, 6 players, 10 years). Noah and Paddy sit out. Rob, as Warlord, announces every move a year ahead, and it works: he raids a different piece from every player and a palace from Reina, and changes places with the Emperor. The table stops there. The title is the Warlord's name, and what he does.
 
 | Player | Start → finish | Verdict |
 |---|---|---|

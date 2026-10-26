@@ -36,7 +36,7 @@ These are Manish's standing preferences, gathered from the conversations. Treat 
 ## The playthroughs (`playthrough.html`)
 
 **What the page is**
-- A game selector at the top, one button per game, linked to the URL hash (`#full`, `#peasant`, `#short`, `#complete`, `#six`). Under it, a **Setup** tab, one tab per year, and a Result tab.
+- A game selector at the top, one button per game, linked to the URL hash (`#full`, `#trashfire`, `#short`, `#peasant`, `#robbed`). Under it, a **Setup** tab, one tab per year, and a Result tab.
 - The transcript separates **actions** from **dialogue**. Auction lots expand to show the bid ladder.
 - Side panels: an **annotated board**, an **objectives tracker** (each realia province's set, plus the Warlord's), **public works** (owed vs built, with a running total) and **players** (seat, grain, the Harvest Pile).
 - **The board is the real map**, drawn the way `map.svg` draws it: the page lays `map-board.svg` (the map without its frame, coordinates, title, legend or labels) under its own marks, and draws the Wall and Canal in the map's style once built. It shows provinces, undeveloped land, the strip below the Wall, beyond the Wall, the sea, rivers, the Wall links and canal sections (dashed until built), palaces and cut-outs where they were placed, realia on their squares, raid squares, and every soldier. A line that moves soldiers draws the steps as arrows.
@@ -77,9 +77,11 @@ These are Manish's standing preferences, gathered from the conversations. Treat 
 
 Provinces 7 and 3 are the frontier. Province 1 faces the strip below the Wall. Provinces 4 and 5 are reached from the desert only through the notch at M15–O18, where the southern river runs along their border and charges a toll at almost every step, and Province 4's north-east corner is a back door from Province 1 into the top of Province 5. Soldiers may walk through an empty province without raiding.
 
-**The games** (the first three chosen by Manish from options; the last two asked for as "a fourth game that has 8 players and runs to full public works completion, and a fifth game that works with 6 players (and ends however you'd like)")
-1. **Full game**: 8 players, 12 years, ends in revolt and Chaos; Graham takes the throne.
-2. **Peasant game**: 5 players (the Emperor, three peasants, the Warlord), 9 years. It ends in **survival**: every public work gets built, with Reina still on the throne.
-3. **Short game**: 4 players (the upper group), the 8-round short-game rule; Clark, the Official, takes the throne.
-4. **Long game**: 8 players, 10 years; a compact to build everything, a land rush when the population doubles, and it all gets built.
-5. **Six-player game**: 6 players, 10 years; the Warlord completes his objective and takes the throne.
+**The games**, in the order Manish set on 2026-10-25. Games 2, 3 and 4 were chosen by Manish from options; games 1 and 5 were asked for as "a fourth game that has 8 players and runs to full public works completion, and a fifth game that works with 6 players (and ends however you'd like)".
+1. **The full game**: 8 players, 10 years; a compact to build everything, a land rush when the population doubles, and it all gets built.
+2. **A slow trashfire**: 8 players, 12 years, ends in revolt and Chaos; Graham takes the throne.
+3. **The short game**: 4 players (the upper group), the 8-round short-game rule; Clark, the Official, takes the throne.
+4. **The peasant game**: 5 players (the Emperor, three peasants, the Warlord), 9 years. It ends in **survival**: every public work gets built, with Reina still on the throne.
+5. **Land, Robbed**: 6 players, 10 years; the Warlord, Rob Land, completes his objective and takes the throne.
+
+The population doubles in games 1 to 4, and every one of them buys new harvest squares after it does.

@@ -1,4 +1,4 @@
-# Game 2 — the peasant game. Five players, ends with every Public Work built.
+# Game 4 — the peasant game. Five players, ends with every Public Work built.
 setup([1,5,6,7,8], "peasant", "The peasant game",
       "Five players · nine years · everything gets built",
       "The Emperor and three peasants, and the Warlord. No Official, no Gentry, no Scholar — so no rent, and Reina hands out their jobs herself. She builds the reservoir first.", short="5 players · 9 years")
@@ -349,23 +349,61 @@ say("Reina","Your soldier, Paddy, and mine. That's the corner.", TH(
 salaries({7:5}, text="Reina pays Silke 5.")
 
 # ============================== YEAR 8 ==============================
-R(8, "Steady weather", "winds")
-say("Silke","Steady weather. Neither feast nor famine: an average harvest for this year.", TH(
- ("Silke","An average harvest at a hundred and fifty per cent, with a public work in every province. Everyone's positive. Without the ditches this card would have been a funeral."),
- ("Reina","Two projects left. Four Wall links. If nothing goes wrong, I finish next year.")))
+R(8, "The population doubles", "double1")
+say("Silke","Population doubles. Good harvest for all. Three hundred million people, and everybody's consumption doubles with it.", TH(
+ ("Silke","A hundred and twenty for each of us peasants, a hundred and eighty for the crown. A good harvest is a hundred, and every one of us has a twenty-million work. We break even to the bag. Without the ditches this card would have been a funeral."),
+ ("Reina","A hundred and eighty to feed Province 1 on a hundred and twenty. Sixty short, out of sixty and a half. Two projects left, four Wall links, and this was the year I was paying for two of them."),
+ ("Paddy","It's the card that opens the land, though. Section 13: nobody can buy a square until the population's doubled. It just has.")))
 harvest("Paddy pays out the harvest from the Harvest Pile.")
 taxes(.50, collector="Reina collects the tax herself")
-build("Great Wall — 2 links above Province 1", 80, {1:80}, wall={1:2})
+say("Reina","Fifty per cent. Of nothing.", TH(
+ ("Reina","Every peasant income is exactly zero, so the tax is exactly zero. Half a million in the treasury, and the Wall costs eighty."),
+ ("Graham","Half a million. That's the smallest bag in the box.")))
+say("Silke","Majesty. The land. The rulebook says the cost is shared with the Emperor.", TH(
+ ("Silke","Twenty a square and twenty a year back, from next year. I want two squares, and I want the crown in on them."),
+ ("Reina","Shared with the Emperor. With half a million.")))
+say("Rob","That's cause six, isn't it? 'The Emperor cannot, or will not, subsidize the development of new harvest areas.' I only need two of you to agree.", TH(
+ ("Rob","Chaos means no public works. No Wall, no ending, and more years for my soldiers. Silke's Brush is one step from one of them and Paddy's corner two from the other. Pieces from both and I can take any seat at this table."),
+ ("Silke","He's right, it's a cause. And in Chaos the throne goes to whoever has the most money, which is Paddy."),
+ ("Graham","A revolt to crown Paddy. I'd vote for it out of spite and regret it by morning.")))
+say("Paddy","How much do you need, Majesty?", TH(
+ ("Paddy","I've got three hundred and fifty-two. If they revolt, the throne's mine, and the throne eats a hundred and eighty a year. I already won when I took Province 5. The only way I lose now is if we keep playing."),
+ ("Reina","He's buying the end of the game. I'm going to let him.")))
+say("Reina","A hundred and thirty.", TH(
+ ("Reina","Thirty for the crown's share of the land: five a square, on two squares each for the three of you. Five for Silke's salary. Eighty-five to get through next year's harvest, a hundred and eighty to eat on an average year's ninety-five. And ten for whatever the next card does."),
+ ("Paddy","She'd done the sum before I asked. Of course she had.")))
+act("Paddy Doyle gives the Emperor 130 from his own grain.", TH(
+ ("Paddy","A hundred and thirty to keep her on the throne. I'm not overly ambitious; it says so on my card. It doesn't say I can't pay someone else to be."),
+ ("Rob","There goes cause six."),
+ ("Silke","The Emperor's on a peasant's allowance. I'm going to enjoy that for one year.")),
+ {pid(5):-130, pid(1):130}, map_hl=[1,5], deal=True)
+say("Paddy","And the Wall. This year's two links and next year's.", TH(
+ ("Paddy","The Wall's the last thing on the list, and the list is the only thing that ends this game."),
+ ("Rob","A man who started the evening growing rice is buying the Wall. I came all this way to be fenced out by a farmer.")))
+build("Great Wall — 2 links above Province 1", 80, {5:80}, wall={1:2}, hover=TH(
+ ("Paddy","Eighty, all mine. Two links of wall above a province I don't live in."),
+ ("Reina","My Wall, Paddy's money. It still counts as a public work built by the crown, and I'm not going to ask anyone whether it should."),
+ ("","Paddy pays the 80.")))
+buy_land(7, ["T16","T17"], {7:30, 1:10}, "New land: Silke buys two squares of the Warlord's land below Province 7, T16 and T17. Silke pays 30, the crown 10.", TH(
+ ("Silke","Province 7's booklet only lets it develop the desert, so it's the desert. The south edge, under the wheat, four rows from his soldier on P17. Thirty of my own for forty next year."),
+ ("Rob","They're on my sand, and I can walk on sand. Four rows is four years. Somebody keep this game going."),
+ ("Reina","Five a square from the crown. It's Paddy's money and he's sitting right there.")))
+buy_land(6, ["R25","S26"], {6:30, 1:10}, "New land: Graham buys two squares of sea off the coast of Province 6, R25 and S26. Graham pays 30, the crown 10.", TH(
+ ("Graham","Province 6 is the only booklet that offers a choice: the sea or the Warlord's land. The sea. He can't walk on water, and I've been raided out of one province already."),
+ ("Rob","The one ground on the board I can't reach, and he's bought two squares of it.")))
+buy_land(5, ["M26","N26"], {5:30, 1:10}, "New land: Paddy buys two squares of sea beside his corner, M26 and N26. Paddy pays 30, the crown 10.", TH(
+ ("Paddy","Next to the Scroll and the Vase, in the sea. The crown's ten is my ten, handed over two minutes ago. The rulebook says the cost is shared with the Emperor. It doesn't say whose money it was first."),
+ ("Graham","He's subsidising himself through the Emperor. That's either a loophole or the whole point of the office.")))
 act("Paddy puts up the Customs House that came back to him, Graham the Bowl, and Silke the Scroll. Nobody bids.", TH(
  ("Silke","The Customs House and the Bowl, two of the pieces I need, on the table at once. And the game ends next year. I can't finish a set of four in two rounds, and anything I put down, he walks to."),
  ("Graham","A Customs House I need, for a set that needs Paddy's Vase. No."),
  ("Paddy","Three lots, no bids. The table's stopped collecting. It's building now.")), map_hl=[5,6,7])
 say("Reina","Two links. Two more next year and every public work this country owes is standing.", TH(
- ("Reina","The Wall is last, and it's only four links, because only my province is under it."),
+ ("Reina","The Wall is last, and it's only four links, because only my province is under it. I planned to pay for all four. I've paid for none of them."),
  ("Graham","Four links instead of twelve, because nobody's sitting in 2 or 3. The Wall was always the most expensive thing on the list and the least useful. Building it last is the whole trick.")))
 march({"W1":"O16"}, "Robert Land's southern soldier steps onto O16 and takes Silke's Bamboo Brush as tribute.", TH(
  ("Rob","Three of four. Graham, Reina, Silke. Three squares in three years, and one of them at a wedding. One piece from Paddy and I can take any seat at this table — and there's only one seat I want."),
- ("Silke","I owned it for two years and watched him walk to it."),
+ ("Silke","I owned it for two years and watched him walk to it. At least he walked north, away from my new land. T16 is five rows from him now."),
  ("Reina","Three of four, and it's the last year he'll get. Paddy's corner is all that's left.")),
  take={"W1":("BB","K5")})
 march({"W2":"L24"}, "Robert Land's northern soldier steps into Province 5 at L24 and raids it, one square from Paddy's Customs House.", TH(
@@ -382,27 +420,31 @@ salaries({7:5}, text="Reina pays Silke 5.")
 R(9, "The last of the Wall", "chest")
 say("Silke","Average harvest. And moved by the suffering of her people, the Emperor opens her purse: two million to every player from the Emperor's reserve.", TH(
  ("Silke","The card says 'his'. I changed it to 'her' reading it. Nobody stopped me."),
- ("Reina","Eight million out of the reserve in the year I need every bag for the Wall. I'll pay it. It's printed.")))
+ ("Reina","Eight million out of the reserve. I asked Paddy for ten for whatever the next card did. It did eight."),
+ ("Graham","And the new land pays this year. Every peasant province is fifteen up instead of twenty-five down.")))
 harvest("Paddy pays out the harvest from the Harvest Pile.")
 act("Imperial charity: 2 million from the Emperor's reserve to every other player.", TH(
- ("Reina","Eight, and I don't need it to buy anything."),
- ("Paddy","Two million. I'm the richest person at the table and the Emperor just gave me two million. I'm going to hold it up to the light.")),
+ ("Reina","Eight. Two and a half left, and the harvest's already eaten the eighty-five I set aside."),
+ ("Paddy","Two million from the Emperor. I gave her a hundred and thirty last year. I'm going to hold it up to the light.")),
  {pid(s):2 for s in ACTIVE if s != 1} | {pid(1):-8}, map_hl=[1])
 taxes(.50, collector="Reina collects the tax herself")
-build("Great Wall — 2 links above Province 1", 80, {1:80}, wall={1:2})
+say("Reina","Every bag of that tax goes into the Wall. Twenty-two and a half.", TH(
+ ("Reina","Fifty per cent of fifteen, three times. That's the land paying, and it's the only income the crown has. The crown puts something into its own Wall, even if it's only what it just took from the three of you."),
+ ("Paddy","Fifty-seven and a half from me, then. I said both years.")))
+build("Great Wall — 2 links above Province 1", 80, {1:22.5, 5:57.5}, wall={1:2})
 assert all_built(), "not every public work is built"
 act("Every public work the country owes is standing. The game ends: the players have survived, and the Emperor's reign has been a glorious one.", TH(
- ("Reina","Nine years. A reservoir in year two, two canals before my own, the Pagoda in the bad year and the Wall last. The order was the whole game. Two and a half million left in the treasury — 'too low a grain reserve' by anyone's reading, and it doesn't matter, because there's nothing left to build."),
- ("Graham","Three doubling cards still in the deck. We stopped before they came. That's the other half of the trick, and nobody planned it."),
+ ("Reina","Nine years. A reservoir in year two, two canals before my own, the Pagoda in the bad year and the Wall last. The order was the whole game, and when the doubling came, the order was what made Paddy want it finished. Two and a half million left in the treasury — 'too low a grain reserve' by anyone's reading, and it doesn't matter, because there's nothing left to build."),
+ ("Graham","Two doubling cards still in the deck, and the next one takes us to six hundred million. We stopped before it came. Paddy paid for the stopping."),
  ("Rob","Three of four. One raid short, and the raid I needed was standing in the far corner of Province 5 behind two soldiers.")), map_hl=list(ACTIVE), big=True)
 say("Silke","For the record, I'd like it noted that I lost.", TH(
- ("Silke","Silk to wheat. I fell two provinces. I've got Graham's reservoir and Rob's raid squares, and the satisfaction of having read every card since year six."),
+ ("Silke","Silk to wheat. I fell two provinces. I've got Graham's reservoir, Rob's raid squares, two squares of his desert, and the satisfaction of having read every card since year six."),
  ("Graham","She's not wrong. Survival's a team result. The seats aren't.")))
 say("Reina","Same time next week?",
  "Next time I'd like to be a peasant.")
 
 RESULT = export(
  "Every public work was built, so this is the first ending: the players survived and the Emperor's reign was a glorious one. Players are still ranked by the province they finished in against the one they drew.",
- ["Reina kept the throne and finished the list — which by Section 18 is a win for the Emperor. The order did it: productive works first, palaces only when they unlocked something, and the Wall last.",
-  "The peasants spent the evening taking each other's seats. Graham climbed from wheat to silk, Paddy climbed over Graham, and Silke fell from silk to wheat — but every one of them finished with a public work paying into their province.",
+ ["Reina kept the throne and finished the list — which by Section 18 is a win for the Emperor. The order did it: productive works first, palaces only when they unlocked something, and the Wall last. Then the population doubled in Year 8 and left the crown with half a million, and Paddy, rather than let a revolt crown him Emperor of a hungry country, paid 130 into the treasury and most of the Wall.",
+  "The peasants spent the evening taking each other's seats. Graham climbed from wheat to silk, Paddy climbed over Graham, and Silke fell from silk to wheat — but every one of them finished with a public work paying into their province, and, after the doubling, two new harvest squares: Paddy's and Graham's in the sea, Silke's on the Warlord's sand.",
   "Robert Land came within one raid of the throne. One soldier walked three years to the Winter Palace and on through empty Province 4 to the back door of Province 5, where the Emperor captured it with a soldier she had bought from him. The last piece he needed sat in the deepest corner of the country."])

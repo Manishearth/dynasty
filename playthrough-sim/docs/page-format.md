@@ -33,7 +33,7 @@ The build is deterministic: the same scripts always produce a byte-identical pag
 {
   "games": [
     {
-      "meta":    { "key": "full", "title": "The full game",
+      "meta":    { "key": "trashfire", "title": "A slow trashfire",
                    "subtitle": "Eight players · twelve years · ends in revolt",
                    "short": "8 players · 12 years", "blurb": "All eight provinces. …" },
       "active":  [1,2,3,4,5,6,7,8],           // seats in play
@@ -135,6 +135,10 @@ Snapshots are complete rather than incremental: any entry can be shown on its ow
 | The board's geography | `../map.json`, through `tools/build_map.py`. The engine and the page both read it; nothing is copied by hand. |
 | How the board is drawn | `drawMap()` in `template/tail.html`. The ground is `../map-board.svg`, which `tools/build_map.py` writes from the same layers as `map.svg`; the page draws only this game's state on it |
 | Province labels on the map | `LBL` in `template/tail.html`, in grid units |
+
+## What changed (the Δ)
+
+Every step whose state differs from the step before gets a Δ button at its right edge. Hovering it (tapping, on a touch screen) lists each player and the Harvest Pile with what they gained or lost, all as symbols: grain, realia (held or still unsold), public works and new harvest squares (credited to the player of the province they stand in), and soldiers. `holdings()` in `tail.html` reduces a state to those counts, and `deltas(k)` diffs entry `k` against entry `k − 1`; nothing extra is stored in the data. A seat change therefore shows the province's works and stock moving between the two players.
 
 After any change, rebuild and check the page on a phone-width window as well as a desktop one; the layout switches to a single column below 900 px and to compact game buttons below 640 px.
 

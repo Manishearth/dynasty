@@ -47,7 +47,7 @@ Most functions take **seats** — `taxes`, `build`, `lot`, `disaster`, `swap`, `
 When a delta is about a province rather than a person, write it with `pid()` so it stays right after seats change:
 
 ```python
-# Year 8 of the full game: whoever holds Province 2 pays the Emperor half its irrigation bonus.
+# Year 8 of A slow trashfire: whoever holds Province 2 pays the Emperor half its irrigation bonus.
 act("Noah's irrigation pays Reina 5.", hover, {pid(2): -5, pid(1): 5})
 ```
 
@@ -100,7 +100,7 @@ Every piece in the game stands on a real square of `../map.json`, named like `H1
 
 **The hover says why.** A player keeping a precious piece deep inside their province, away from the frontier and from where the Warlord's soldiers stand, is thinking about geography — so let them think it out loud: "Q16, in the middle of Province 7. Two squares from the desert, which in my province is as deep as it gets." The Warlord thinks about the same geography from the other side. With no Warlord at the table, placement still gets a reason, even if the reason is that it looks well from the player's chair.
 
-To see the board while writing, run `python3 playthrough-sim/trace.py game2_peasant.py --board 57`: it prints every square after entry 57, with each soldier and piece listed. `dist(a, b)` says how many rounds a soldier needs between two squares, and `tolls(a, b)` what a step would cost the Warlord.
+To see the board while writing, run `python3 playthrough-sim/trace.py game4_peasant.py --board 57`: it prints every square after entry 57, with each soldier and piece listed. `dist(a, b)` says how many rounds a soldier needs between two squares, and `tolls(a, b)` what a step would cost the Warlord.
 
 ## A round, in order
 
@@ -159,7 +159,7 @@ On the page a single voice is labelled "Rob is thinking"; several voices are lab
 A lot is one piece of realia from one province's stock, with the whole bidding ladder:
 
 ```python
-# Year 4 of the full game: Graham (seat 7) sells the last Vase.
+# Year 4 of A slow trashfire: Graham (seat 7) sells the last Vase.
 lot(7, "VA", [
     B(5, 8),                                       # Silke bids 8; the text defaults to "Eight."
     B(4, 10),                                      # Noah bids 10
@@ -194,7 +194,7 @@ When nobody bids, don't call `lot` — record it as an `act` ("Nobody bids on th
 When a payment would take a player below zero, they must first sell realia back to the Harvest Pile (rulebook Note 7). Write it before the payment, with the player choosing the pieces:
 
 ```python
-# Year 11 of the full game: the drought harvest is about to sink Clark.
+# Year 11 of A slow trashfire: the drought harvest is about to sink Clark.
 sell_back(2, ["BB"], "Clark sells his Bamboo Brush back to the Harvest Pile for 2. ...", hover)
 harvest()
 ```
@@ -206,7 +206,7 @@ If they're still short, their grain goes negative. That's a debt: they can't bid
 Once the population has doubled, provinces may buy new harvest squares (rulebook Section 13): any number, every round, alongside the round's project, with the Emperor paying part of every purchase.
 
 ```python
-# Year 8 of the long game: the doubling has come, and the land rush starts.
+# Year 8 of the full game: the doubling has come, and the land rush starts.
 buy_land(4, ["K25", "J25", "K26"], {4: 45, 1: 15}, "New land: Silke buys three squares of sea for Province 4 ...", hover)
 ```
 
@@ -310,7 +310,7 @@ march({"W2": "G23"}, "Robert Land's northern soldier steps to G23 and raids Prov
 salaries({7: 5}, text="Reina pays Graham 5.")                   # the appointed card reader
 ```
 
-Run `python3 playthrough-sim/trace.py game2_peasant.py` and every one of those lines appears with each player's grain afterwards, and each march with the soldiers' squares.
+Run `python3 playthrough-sim/trace.py game4_peasant.py` and every one of those lines appears with each player's grain afterwards, and each march with the soldiers' squares.
 
 ## Voice: dialogue and thoughts
 

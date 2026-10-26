@@ -209,15 +209,35 @@ say("Rich","I gave the Emperor my word, Clark. For the rest of her reign.", TH(
 salaries()
 
 # ============================== YEAR 7 ==============================
-R(7, "A bad harvest", "dribble1")
+R(7, "The population doubles", "double1")
+say("Noah","A good harvest, and the population doubles. We were at one and a half; we're at three.", TH(
+ ("Noah","Consumption times three. A hundred and twenty for each of us, a hundred and eighty for the Emperor. A good harvest and our works only just feed us: Rich and I break even, Clark loses ten, Reina loses sixty."),
+ ("Reina","Sixty a round out of the treasury, from the best harvest in the deck."),
+ ("Rich","Nobody makes a bag this year. Whatever she sets the tax at, it's a share of nothing.")))
 harvest()
 taxes(.50)
 build("Great Wall — 2 links, above Provinces 2 and 3", 80, {1:40,2:20,3:20}, wall={2:1,3:1})
 say("Reina","Two links of the Wall. Somebody has to start it.", TH(
- ("Reina","Seventh round of eight, with everything productive built. A wall's the only thing left on my list. I'm building it with what's left."),
+ ("Reina","Seventh round of eight, with everything productive built. A wall's the only thing left on my list, and since the doubling it's the gate: Provinces 2 and 3 can't buy new land until four links stand above them."),
+ ("Rich","Four links above me before I can buy a single square, and she's building one. There isn't a round left for the other three."),
  ("Clark","She's spending the treasury on bricks. I'd have kept some back.")))
+say("Noah","Majesty, the sea off Province 4. Three squares. Half each?", TH(
+ ("Noah","A square costs twenty and yields twenty from next round, and there's exactly one next round. For the province it's break-even. For me, if the crown pays half, it's ten back on every square, and next round my income's minus twenty-five without them."),
+ ("Clark","Only the Emperor's sea and Noah's sea are open. The rest of us are stuck behind a Wall that isn't there.")))
+say("Reina","Five a square. The crown's purchase is the crown's business; yours is yours.", TH(
+ ("Reina","Twenty a square for my own strip pays back in exactly one round, and only if I'm still sitting here for it. I'm not buying land for whoever's in this chair next year."),
+ ("Noah","Fifteen of sixty. She's offering a quarter.")))
+say("Noah","Majesty, if Rich sells, that treasury is Clark's by tonight. Better my sea than his pocket.", TH(
+ ("Noah","True, and it's the same thing I told her last round. Honesty is also a negotiating position."),
+ ("Clark","He's haggling with my money. In front of me."),
+ ("Reina","He's right, which is the annoying thing about Noah.")))
+say("Reina","Half, then.", "Thirty that Clark won't get, and Noah owes me a kindness. If he's wrong about Rich, half of it comes back to me next round as tax on his sea.")
+buy_land(4, ["K25","J25","K26"], {4:30, 1:30}, "New land: Noah buys three squares of sea off Province 4, K25, J25 and K26. Reina and Noah pay 30 each.", TH(
+ ("Noah","K25 and J25 against the coast at K24, and K26 behind them. Sixty more harvest next round, which is the difference between eating into my store and paying tax."),
+ ("Reina","Thirty of the treasury into the sea. I'd rather it was there than in Clark's hands, if it comes to that."),
+ ("","Cost split: Noah 30, Reina 30. 20 a square into the Harvest Pile; each yields 20 a round from next year.")))
 say("Clark","Rich. Seventy. And you keep the commission on whatever you sell me next.", TH(
- ("Clark","Seventy, and I'll have every bag of her treasury the moment I sit down. It's not my money I'm spending, really — it's hers, a round early."),
+ ("Clark","Seventy, and I get every bag of her treasury the moment I sit down. Fifty-seven and a half, now she's tipped thirty into Noah's sea, so it's mostly her money I'm spending, a round early."),
  ("Rich","Seventy. That's thirty more than the Emperor paid me to hold it.")))
 say("Rich","Done.", TH(
  ("Rich","I promised to hold it for the rest of her reign. Clark's about to end her reign. I'll have held it for every single minute of it."),
@@ -247,7 +267,8 @@ act("The card's levy: every province with a public work shares the increase with
  ("Reina","He's collecting dividends on my reign. Fine. I'll be collecting his tax.")),
  {pid(2):-5, pid(3):-10, pid(4):-10, pid(1):25}, map_hl=[1,2,3,4])
 say("Clark","Forty per cent. Lower than hers, on purpose.", TH(
- ("Clark","One round left, so low tax costs me nothing that matters and looks generous in the transcript."),
+ ("Clark","Forty per cent of what? Reina and Rich are both eating into their stores, and so am I: the throne loses eighty-five this round. Only Noah's new sea makes anything. Thirty-five, so fourteen. The land she paid half of is paying me."),
+ ("Reina","Thirty of my treasury into his sea, and Clark collects the tax on it."),
  ("Noah","He's governing for the epilogue.")))
 taxes(.40, collector="Reina, now the Official, collects the tax")
 build("Marble Pagoda", 20, {1:20}, key="Marble Pagoda", at="G24", hover=TH(
@@ -273,11 +294,11 @@ lot(4,"VA",[
 salaries()
 act("Eight rounds. The short game ends and the table scores from where everyone is sitting.", TH(
  ("Clark","Official to Emperor. Two rounds ago I was paying fifty for a brush nobody would sell me."),
- ("Rich","Held. And the most grain at the table that isn't sitting in the treasury. Ask the tiebreak."),
+ ("Rich","Held. And the most grain at the table, treasury included. Ask the tiebreak."),
  ("Noah","Held, and honest the whole way, and the only person who told the Emperor the truth. Nobody wins for that. I'd do it again.")), map_hl=[1,2,3,4], big=True)
 
 RESULT = export(
  "The table played the eight-round short game, so nobody finished the public works; players are ranked by the province they finished in against the one they drew, with grain as the tiebreak.",
  ["Clark climbed from Official to Emperor in seven rounds, by paying seventy for a brush the Emperor had paid forty to keep off the market.",
   "Rich kept his promise to Reina to the letter — he held the Brush for the rest of her reign, and then he ended her reign. He also chose, in the final round, which piece to sell, and that choice kept Noah off the throne.",
-  "Noah was honest throughout, warned the Emperor exactly what would happen, and finished where he began. The short game rewards the person who controls the last piece, not the person who tells the truth about it."])
+  "Noah was honest throughout, warned the Emperor exactly what would happen, and finished where he began. When the population doubled in round seven he used the same warning to get the crown to pay half of three squares of sea, and they were the only harvest at the table that made a profit in the last round. The short game rewards the person who controls the last piece, not the person who tells the truth about it."])
