@@ -265,6 +265,14 @@ The details, settled by Manish on 2026-10-25:
 
 **Recorded in** rulebook Sections 12 and 20, and the reference cards.
 
+### Paying for a Public Work pays the Harvest Pile
+
+**Ruling.** Every payment toward a Public Work, from the Emperor's reserve or from a province, goes into the Harvest Pile.
+
+**Why.** The booklets say who pays for each work but not where the grain goes. The rulebook's money diagram said "grain spent on them is gone", and the engine followed it. But the Harvest Pile is the only bank in the box, so at a real table the bags go back into it; "gone" would mean setting bags aside out of play, which nothing else in the game does. It also matters in long games: with the grain gone, the pile shrinks with every harvest and every work, and The Dark Ages ended with only 85 left in it, close to a state the rules don't cover. Decided by Manish on 2026-10-27, after the agent-played pilot showed the engine paying works to nobody.
+
+**Recorded in** rulebook Section 5 (the money diagram) and Section 8 (the table of what goes into the pile), and the general reference card. The engine and the playthroughs follow in a later change.
+
 ## I Ching cards
 
 The deck in `i-ching.json` is reworded. Its effects follow the 1969 cards, and these are the readings it settles on.

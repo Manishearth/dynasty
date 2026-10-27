@@ -92,7 +92,8 @@ MONEY = [
 PILE_OUT = ["Every player's harvest", "New harvest squares, when bought",
             "60 to a player who is replaced"]
 PILE_IN = ["Fines and personal disasters", "75% of every auction price",
-           "75% of every soldier sold", "Realia sold back, at 2 each"]
+           "75% of every soldier sold", "Realia sold back, at 2 each",
+           "Every payment for a Public Work"]
 
 WORKS = [
     ("Summer Palace", "1", "20", "—", "First, before the Wall and the canal in 1"),
