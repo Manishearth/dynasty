@@ -69,6 +69,8 @@ a{color:var(--vermilion)}
 .band a:hover{border-color:var(--vermilion);color:var(--vermilion)}
 .band a.on{background:var(--vermilion);color:#fff;border-color:var(--vermilion);font-weight:700}
 .band a.out{border-style:dashed}
+.band a img{width:.95rem;height:.95rem;margin-right:.3rem;opacity:.8}
+.band a.on img{filter:brightness(0) invert(1);opacity:1}
 /* cut-out size drawings */
 .cut{display:inline-grid;gap:2px;vertical-align:middle}
 .cut i{width:.95rem;height:.95rem;background:#EFEADC;border:1px solid var(--ink-soft)}
@@ -1000,7 +1002,7 @@ h3.part{border-top:2px solid var(--ink);padding-top:.8rem;margin-top:2.6rem;colo
 <section class="sheet" id="p1">
   <p class="eyebrow">Part Two · The Provinces</p>
   <div class="sec-head"><span class="sec-num">20</span><h2>Province 1 — The Emperor</h2></div>
-  <div class="band"><a href="#p1" class="on">1</a><a href="#p2">2</a><a href="#p3">3</a><a href="#p4">4</a><a href="#p5">5</a><a href="#p6">6</a><a href="#p7">7</a><a href="#p8" class="out">8</a></div>
+  <div class="band"><a href="#p1" class="on"><img src="images/winter-palace.svg" alt="">1</a><a href="#p2"><img src="images/customs-house.svg" alt="">2</a><a href="#p3"><img src="images/land-deed-scroll.svg" alt="">3</a><a href="#p4"><img src="images/bamboo-brush.svg" alt="">4</a><a href="#p5"><img src="images/dragon-jar.svg" alt="">5</a><a href="#p6"><img src="images/wooden-bowl.svg" alt="">6</a><a href="#p7"><img src="images/vase.svg" alt="">7</a><a href="#p8" class="out"><img src="images/soldier.svg" alt="">8</a></div>
   <p><strong>Population 14 million · consumes 60 million · harvest 100 / 75 / 50</strong></p>
   <h3>Personality</h3>
   <p>You are the <em>Son of Heaven — the Emperor</em>. You are forceful and thoughtful. To retain your power, you must watch over your people and understand their needs. You are just and reasonably compassionate. You reward those who obey and assist you. Your concerns are for the masses, not petty personal disasters. You stand above all men and your orders must be obeyed. Often you will delegate the workings of the bureaucracy to lesser men such as the Official or Scholar.</p>
@@ -1043,7 +1045,7 @@ h3.part{border-top:2px solid var(--ink);padding-top:.8rem;margin-top:2.6rem;colo
 <section class="sheet" id="p2">
   <p class="eyebrow">Part Two · The Provinces</p>
   <div class="sec-head"><span class="sec-num">21</span><h2>Province 2 — The Official</h2></div>
-  <div class="band"><a href="#p1">1</a><a href="#p2" class="on">2</a><a href="#p3">3</a><a href="#p4">4</a><a href="#p5">5</a><a href="#p6">6</a><a href="#p7">7</a><a href="#p8" class="out">8</a></div>
+  <div class="band"><a href="#p1"><img src="images/winter-palace.svg" alt="">1</a><a href="#p2" class="on"><img src="images/customs-house.svg" alt="">2</a><a href="#p3"><img src="images/land-deed-scroll.svg" alt="">3</a><a href="#p4"><img src="images/bamboo-brush.svg" alt="">4</a><a href="#p5"><img src="images/dragon-jar.svg" alt="">5</a><a href="#p6"><img src="images/wooden-bowl.svg" alt="">6</a><a href="#p7"><img src="images/vase.svg" alt="">7</a><a href="#p8" class="out"><img src="images/soldier.svg" alt="">8</a></div>
   <p><strong>Population 12 million · consumes 40 million · realia: the <span class="piece"><img src="images/customs-house.svg" alt="">Customs House</span></strong></p>
   <h3>Personality</h3>
   <p>You will please the Emperor. You will be harsh and unfeeling in executing the imperial demands. You have no respect or interest in the Peasants and barely consider the Gentry and Scholar. You gather your personal wealth by using the power of your social position, by seeking bribes and surrendering your moral values whenever there is a gain to be made in your goal of becoming the Emperor. All your decisions are practical.</p>
@@ -1081,7 +1083,7 @@ h3.part{border-top:2px solid var(--ink);padding-top:.8rem;margin-top:2.6rem;colo
 <section class="sheet" id="p3">
   <p class="eyebrow">Part Two · The Provinces</p>
   <div class="sec-head"><span class="sec-num">22</span><h2>Province 3 — The Gentry / Landholder</h2></div>
-  <div class="band"><a href="#p1">1</a><a href="#p2">2</a><a href="#p3" class="on">3</a><a href="#p4">4</a><a href="#p5">5</a><a href="#p6">6</a><a href="#p7">7</a><a href="#p8" class="out">8</a></div>
+  <div class="band"><a href="#p1"><img src="images/winter-palace.svg" alt="">1</a><a href="#p2"><img src="images/customs-house.svg" alt="">2</a><a href="#p3" class="on"><img src="images/land-deed-scroll.svg" alt="">3</a><a href="#p4"><img src="images/bamboo-brush.svg" alt="">4</a><a href="#p5"><img src="images/dragon-jar.svg" alt="">5</a><a href="#p6"><img src="images/wooden-bowl.svg" alt="">6</a><a href="#p7"><img src="images/vase.svg" alt="">7</a><a href="#p8" class="out"><img src="images/soldier.svg" alt="">8</a></div>
   <p><strong>Population 12 million · consumes 40 million · realia: the <span class="piece"><img src="images/land-deed-scroll.svg" alt="">Land Deed Scroll</span></strong></p>
   <h3>Personality</h3>
   <p>You are a selfish and greedy person. Your only ambition is to become rich and powerful enough to own more land and thereby control more people. Outwardly you are kind and generous, especially to the Official, Scholar and Emperor, for they are your peers and you are a fawner by nature. But you will take advantage of them if they are foolish enough not to watch you carefully. You treat the Peasants as if they were your children. You are just and paternal when dealing with them, for you consider them too stupid and too poor to threaten your social position.</p>
@@ -1118,7 +1120,7 @@ h3.part{border-top:2px solid var(--ink);padding-top:.8rem;margin-top:2.6rem;colo
 <section class="sheet" id="p4">
   <p class="eyebrow">Part Two · The Provinces</p>
   <div class="sec-head"><span class="sec-num">23</span><h2>Province 4 — The Scholar</h2></div>
-  <div class="band"><a href="#p1">1</a><a href="#p2">2</a><a href="#p3">3</a><a href="#p4" class="on">4</a><a href="#p5">5</a><a href="#p6">6</a><a href="#p7">7</a><a href="#p8" class="out">8</a></div>
+  <div class="band"><a href="#p1"><img src="images/winter-palace.svg" alt="">1</a><a href="#p2"><img src="images/customs-house.svg" alt="">2</a><a href="#p3"><img src="images/land-deed-scroll.svg" alt="">3</a><a href="#p4" class="on"><img src="images/bamboo-brush.svg" alt="">4</a><a href="#p5"><img src="images/dragon-jar.svg" alt="">5</a><a href="#p6"><img src="images/wooden-bowl.svg" alt="">6</a><a href="#p7"><img src="images/vase.svg" alt="">7</a><a href="#p8" class="out"><img src="images/soldier.svg" alt="">8</a></div>
   <p><strong>Population 12 million · consumes 40 million · realia: the <span class="piece"><img src="images/bamboo-brush.svg" alt="">Bamboo Brush</span></strong></p>
   <h3>Personality</h3>
   <p>You are a dreamer, one who prefers books and poems and paintings to the more practical things in life. You dream of becoming Emperor so that you can bring tranquility and peace to the land; so that all men may have the freedom to pursue the arts and to gain knowledge. You are compassionate and just in your dealings with everyone and you always keep your promises, for above all you are honest.</p>
@@ -1155,7 +1157,7 @@ h3.part{border-top:2px solid var(--ink);padding-top:.8rem;margin-top:2.6rem;colo
 <section class="sheet" id="p5">
   <p class="eyebrow">Part Two · The Provinces</p>
   <div class="sec-head"><span class="sec-num">24</span><h2>Province 5 — The Silk Peasant</h2></div>
-  <div class="band"><a href="#p1">1</a><a href="#p2">2</a><a href="#p3">3</a><a href="#p4">4</a><a href="#p5" class="on">5</a><a href="#p6">6</a><a href="#p7">7</a><a href="#p8" class="out">8</a></div>
+  <div class="band"><a href="#p1"><img src="images/winter-palace.svg" alt="">1</a><a href="#p2"><img src="images/customs-house.svg" alt="">2</a><a href="#p3"><img src="images/land-deed-scroll.svg" alt="">3</a><a href="#p4"><img src="images/bamboo-brush.svg" alt="">4</a><a href="#p5" class="on"><img src="images/dragon-jar.svg" alt="">5</a><a href="#p6"><img src="images/wooden-bowl.svg" alt="">6</a><a href="#p7"><img src="images/vase.svg" alt="">7</a><a href="#p8" class="out"><img src="images/soldier.svg" alt="">8</a></div>
   <p><strong>Population 14 million · consumes 40 million · realia: the <span class="piece"><img src="images/dragon-jar.svg" alt="">Dragon Jar</span> · rent: at least 5 a round to the Gentry, if asked</strong></p>
   <h3>Personality</h3>
   <p>You are a simple person, hard-working and not overly ambitious. Your life is tied to the land and to your mulberry trees and silkworms. You toil patiently to make a living, and you will revolt against the Emperor only if your life is threatened — only if the alternative is starvation. When faced with death, you will do anything necessary to survive.</p>
@@ -1186,7 +1188,7 @@ h3.part{border-top:2px solid var(--ink);padding-top:.8rem;margin-top:2.6rem;colo
 <section class="sheet" id="p6">
   <p class="eyebrow">Part Two · The Provinces</p>
   <div class="sec-head"><span class="sec-num">25</span><h2>Province 6 — The Rice Peasant</h2></div>
-  <div class="band"><a href="#p1">1</a><a href="#p2">2</a><a href="#p3">3</a><a href="#p4">4</a><a href="#p5">5</a><a href="#p6" class="on">6</a><a href="#p7">7</a><a href="#p8" class="out">8</a></div>
+  <div class="band"><a href="#p1"><img src="images/winter-palace.svg" alt="">1</a><a href="#p2"><img src="images/customs-house.svg" alt="">2</a><a href="#p3"><img src="images/land-deed-scroll.svg" alt="">3</a><a href="#p4"><img src="images/bamboo-brush.svg" alt="">4</a><a href="#p5"><img src="images/dragon-jar.svg" alt="">5</a><a href="#p6" class="on"><img src="images/wooden-bowl.svg" alt="">6</a><a href="#p7"><img src="images/vase.svg" alt="">7</a><a href="#p8" class="out"><img src="images/soldier.svg" alt="">8</a></div>
   <p><strong>Population 14 million · consumes 40 million · realia: the <span class="piece"><img src="images/wooden-bowl.svg" alt="">Wooden Bowl</span> · rent: at least 5 a round to the Gentry, if asked</strong></p>
   <h3>Personality</h3>
   <p>You are a simple person, hard working and not overly ambitious. Your life is tied to the land and you have grown used to the cruelties of Nature. Patiently you toil the land and pray merely for survival. You are honest and will revolt against the Emperor only if your life is threatened, only if the alternative is death or starvation. When faced with death, you will act in any way necessary to survive.</p>
@@ -1217,7 +1219,7 @@ h3.part{border-top:2px solid var(--ink);padding-top:.8rem;margin-top:2.6rem;colo
 <section class="sheet" id="p7">
   <p class="eyebrow">Part Two · The Provinces</p>
   <div class="sec-head"><span class="sec-num">26</span><h2>Province 7 — The Wheat Peasant</h2></div>
-  <div class="band"><a href="#p1">1</a><a href="#p2">2</a><a href="#p3">3</a><a href="#p4">4</a><a href="#p5">5</a><a href="#p6">6</a><a href="#p7" class="on">7</a><a href="#p8" class="out">8</a></div>
+  <div class="band"><a href="#p1"><img src="images/winter-palace.svg" alt="">1</a><a href="#p2"><img src="images/customs-house.svg" alt="">2</a><a href="#p3"><img src="images/land-deed-scroll.svg" alt="">3</a><a href="#p4"><img src="images/bamboo-brush.svg" alt="">4</a><a href="#p5"><img src="images/dragon-jar.svg" alt="">5</a><a href="#p6"><img src="images/wooden-bowl.svg" alt="">6</a><a href="#p7" class="on"><img src="images/vase.svg" alt="">7</a><a href="#p8" class="out"><img src="images/soldier.svg" alt="">8</a></div>
   <p><strong>Population 14 million · consumes 40 million · realia: the <span class="piece"><img src="images/vase.svg" alt="">Vase</span> · rent: at least 5 a round to the Gentry, if asked</strong></p>
   <h3>Personality</h3>
   <p>You are a simple person, hard working and not overly ambitious. Your life is tied to the land. You are used to the cruelties of nature, and for generations your people have patiently tilled the land, barely eking out a living. Because of your patience, you will revolt against the Emperor only if your life is threatened — only if the alternative is starvation. When faced with death, you will do anything short of murder to survive.</p>
@@ -1249,7 +1251,7 @@ h3.part{border-top:2px solid var(--ink);padding-top:.8rem;margin-top:2.6rem;colo
 <section class="sheet" id="p8">
   <p class="eyebrow">Part Two · The Provinces</p>
   <div class="sec-head"><span class="sec-num">27</span><h2>Province 8 — The Warlord</h2></div>
-  <div class="band"><a href="#p1">1</a><a href="#p2">2</a><a href="#p3">3</a><a href="#p4">4</a><a href="#p5">5</a><a href="#p6">6</a><a href="#p7">7</a><a href="#p8" class="on out">8</a></div>
+  <div class="band"><a href="#p1"><img src="images/winter-palace.svg" alt="">1</a><a href="#p2"><img src="images/customs-house.svg" alt="">2</a><a href="#p3"><img src="images/land-deed-scroll.svg" alt="">3</a><a href="#p4"><img src="images/bamboo-brush.svg" alt="">4</a><a href="#p5"><img src="images/dragon-jar.svg" alt="">5</a><a href="#p6"><img src="images/wooden-bowl.svg" alt="">6</a><a href="#p7"><img src="images/vase.svg" alt="">7</a><a href="#p8" class="on out"><img src="images/soldier.svg" alt="">8</a></div>
   <p><strong>Undeveloped land · population 8 million · consumes 20 million · harvest 40 / 30 / 20</strong></p>
   <p><em>The Warlord plays with 5, 6, or 8-or-more players, and does not appear in the four-player or seven-player game.</em></p>
   <h3>Personality</h3>
