@@ -129,7 +129,8 @@ The engine doesn't check prerequisites or the one-project rule *(script)*.
 ## New land (§13, R: New harvest squares)
 
 - **When:** only after the population has doubled (a ×2 card).
-- **Cost and yield:** 20 a square from the pile, yielding 20 a round from the next round. Any number of squares, alongside the round's one project. The Emperor must pay part of every purchase.
+- **Cost and yield:** 20 a square from the pile, yielding 20 a round from the next round. Any number of squares, alongside the round's one project. The Emperor must pay part of every purchase, and may pay all of it.
+- **It's the strongest move in the game, and the pilot never made it.** A square pays for itself in one year. Breaking even in an average year takes 1 square at ×2, 3 at ×3 and 9 at ×6. A player in debt can't pay their share, so the time to buy is before the losses start. Every eligible player's board card shows their own numbers (`briefs.py`); from the first doubling, offer new land in every peasant's and the Emperor's menu, every year, and never tell them what to buy. A rich Emperor is encouraged to subsidise generously, up to the whole cost: every square raises that province's taxable income and its share of the works (§13).
 - **Where:**
   - Silke: the sea.
   - Paddy: the sea or the Warlord's land.

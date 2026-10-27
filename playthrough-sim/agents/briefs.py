@@ -209,7 +209,32 @@ def board_card(ns, player):
     mine_sol = [f"{i} on {s['sq']}" for i, s in ns["SOLDIERS"].items() if s["side"] != "W" and s.get("owner") == p]
     out.append(f"- **Your province has {'been raided, so soldiers you buy can move' if hit else 'not been raided, so soldiers you buy cannot move yet'}.**"
                + (f" Yours: {', '.join(mine_sol)}." if mine_sol else ""))
+    land = land_line(ns, seat)
+    if land: out.append(land)
     return "\n".join(out)
+
+def land_line(ns, seat):
+    """New land (Section 13): what a square earns, and how many this province needs to break
+    even in an average year now and after the next population card. From the engine's tables."""
+    if seat not in ns["LAND_WHERE"]: return None
+    m, pc = ns["MULT"], ns["pop_cards"]
+    steps = []
+    if pc[2] < 2 and m * 2 <= 6: steps.append(m * 2)
+    if pc[1.5] < 1: steps.append(m * 1.5)
+    nxt = max(steps) if steps else None
+    extra = ns["bonus"][seat] + ns["pending_bonus"].get(seat, 0)
+    avg = lambda mult: ns["HARV"][seat]["avg"] + extra - ns["CONS"][seat] * mult
+    sq = lambda mult: max(0, -(-(-avg(mult)) // 20)) if avg(mult) < 0 else 0
+    n = lambda k: f"{k:g} square" + ("" if k == 1 else "s")
+    ahead = f" If the next population card comes (x{nxt:g}), you'd need {n(sq(nxt))} more than you have." if nxt else ""
+    if m >= 2:
+        return (f"- **New land is open** (Section 13): 20 a square, and the Emperor may pay any part of it. Each adds 20 "
+                f"to every harvest from next year, so it pays for itself in one year. Your average-year income now: {avg(m):+g}; "
+                f"to break even you'd need {n(sq(m))} more than you have.{ahead} Buy ahead: in debt you can't pay your share."
+                + (" As Emperor you may pay any part of anyone's squares, even all of it: every square you fund raises "
+                   "that province's taxable income and what it can put toward the works." if seat == 1 else ""))
+    return (f"- **New land opens when the population doubles** (now x{m:g}). Then each square costs 20 and adds 20 a year. "
+            f"At x2 you'd need {n(sq(2))} to break even in an average year, and more after the next card; save for them.")
 
 # ------------------------------------------------------------------ the menus
 def menu_auction(ns, player, lot, minimum):

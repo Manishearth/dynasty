@@ -32,6 +32,10 @@ A chapter is two or three years, named in your brief. Stop at the end of the las
    - If the engine refuses it, the move is illegal: tell the player why and give them the menu again.
 5. **Check the lines against the board.** If a public line or a whisper misstates the board, the cash or the rules, file a `note` for the listeners. Bluffing about intentions isn't corrected. If an aside misstates something, log it in the ruling and state the fact plainly in that player's next prompt.
 
+## New land, every year once it opens
+
+From the first doubling, new land (§13) is a standing option in the Public Works step: every peasant and the Emperor gets a `free` prompt for it each year, listing it beside soldiers and deals, even when nobody has asked. The board card already gives each player their own numbers (a square pays for itself in a year; how many they need now and after the next card). Offer it plainly and never steer: the choice, and the cost of not buying, is theirs. The pilot, Peasant Failure, never bought a square and collapsed into debt.
+
 ## Auctions, by ceiling
 
 - One prompt per bidder per lot (`briefs.py prompt ... auction --lot <seat>:<code> --min <n>`). Each bidder replies once: pass or a ceiling, an optional `keep from <name> up to <n>`, a square, say, aside, and `if I drop out:`.
