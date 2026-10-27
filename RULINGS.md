@@ -114,7 +114,7 @@ Two readings the playthroughs add, from the booklets' wording: each province dev
 - Those same booklets' six-player objective, "One realia from each player", can only mean the players who hold realia; the rulebook already reads it that way.
 - The other way: the Warlord's booklet offers "the realia or the cost of the realia" when raiding realia, and only the palaces have a fixed cost. That is the strongest hint that the palaces were meant to count.
 
-At eight players the objective was close to impossible (seven targets, four soldiers, one square a round, games of about ten years; game 1 reached two of seven by Year 10). Leaving out the Emperor makes it six targets and removes Province 1, one of the deepest. **A table that prefers the alternative reading can count a palace raid as the Emperor's piece.** Approved by Manish on 2026-10-27.
+At eight players the objective was close to impossible (seven targets, four soldiers, one square a round, games of about ten years; game 1 reached two of seven by Year 10 under the old rules). Leaving out the Emperor makes it six targets and removes Province 1, one of the deepest. **A table that prefers the alternative reading can count a palace raid as the Emperor's piece.** Approved by Manish on 2026-10-27.
 
 **Recorded in** rulebook Sections 11 and 14, the Warlord in Section 27, Appendices C and G, the reference cards, and `playthrough-sim/engine.py` (a palace raid no longer enters `warlord_got`).
 
@@ -299,7 +299,8 @@ The engine in `playthrough-sim/` makes some assumptions so it can keep a ledger.
 
 Judgement calls made while writing the games. None overrides a rule; each fills a silence the way a table would. Raise any of them with Manish if they look wrong.
 
-- **The Warlord's objective counts raids, not holdings.** "Raid a different piece of realia from each player" is met by the raid itself: a piece since sold back or on still counts, and a piece once sold to a player counts when raided back from that player. Game 5 takes a Customs House, Jar, Scroll and Vase from four different players.
+- **The Warlord's objective counts raids, not holdings.** "A different piece of realia from each other realia-holding player" is met by the raid itself: a piece since sold back or on still counts, and a piece once sold to a player counts when raided back from that player. Game 5 takes a Customs House, Jar, Scroll and Vase from four different players.
+- **"Realia-holding" means the seat, not what's in hand.** Every player in Provinces 2–7 is on the Warlord's list, even one who holds no piece at the moment; such a player blocks the objective until they own something to raid. Only the Emperor (and the Warlord) are off it. Game 5's Year 7 auction turns on this: if Clark took the throne, Reina would sit in Province 2 with nothing in hand and every reason to stay that way, so Rob pays 120 to stop him (games 4 and 5). Raise with Manish if the other reading (an empty-handed player simply drops off the list) is preferred.
 - **The Warlord may sell raided realia privately**, to anyone, as an ordinary trade; the buyer places it at once (Note 10). Games 4 and 5.
 - **Private deals are allowed for anything**, including paying a player to leave a piece unguarded or a Gentry to hold a piece (games 3 and 5). The engine records only the grain.
 - **A bought soldier may be placed on its buyer's own realia** (games 4 and 5); it then guards the piece, since the Warlord can take it only by capturing first, straight on.

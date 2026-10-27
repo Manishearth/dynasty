@@ -8,7 +8,7 @@ setup([1,2,3,4,5,6,7,8], "full", "The full game",
 R(0, "Fresh booklets", None, "All eight provinces (rulebook Section 4 and Appendix A). Every province holds four pieces of its own realia, the Warlord takes four soldiers, and every public work in the book is owed to somebody: three palaces, twelve links of Wall, eight canal sections, the irrigation system and the two reservoirs. Each realia player must collect one piece of every type except their own, plus 20 million in hand; the Warlord takes his four soldiers and the 40 raid squares.")
 act("Eight booklets, shuffled and drawn face down. Reina draws the Emperor, Clark the Official, Rich the Gentry, Noah the Scholar, Silke the Silk Peasant, Paddy the Rice Peasant, Graham the Wheat Peasant — and Rob the Warlord.", TH(
  ("Graham","Wheat. The worst land on the board, and a reservoir the crown is meant to pay for. I'm going to ask for it early."),
- ("Silke","Silk. Province 5, the deepest square on the board. I've drawn the one field nobody can reach."),
+ ("Silke","Silk. Province 5, down in the far corner by the sea. The sea's open to his soldiers, so nowhere's out of reach. It's just a long walk."),
  ("Rob","Warlord. I'm the one who says the arithmetic out loud. Tonight I am the arithmetic."),
  ("Reina","The throne. Every other booklet has a section on how to replace me. I'd better start building.")), map_hl=list(range(1,9)))
 say("Reina","Before anyone opens a bag: the Province 7 Reservoir goes first. This year.", TH(
@@ -36,7 +36,7 @@ act("Noah, the Scholar, shuffles the twenty I Ching cards and lays them face dow
 place_army({"W1":"F14", "W2":"E19", "W3":"M16", "W4":"T18"},
  "Rob stands his four soldiers on undeveloped land: F14 under the Wall, above Province 2; E19, a step from the throne room; M16, in the notch beside Province 3; and T18, under the wheat and rice fields.", TH(
  ("Rob","One soldier for each kind of target. F14 looks at the Official's province. E19 looks at Province 1, where every raid is ten. M16 sits in the notch, next to Rich's fields and two steps from the door into Province 4. T18 is on Graham's doorstep, and Paddy's."),
- ("Silke","He's left the gap at O18 empty. That's the only way into my province from the desert, and he's not on it. He's coming the long way, or he's coming last."),
+ ("Silke","He's left the gap at O18 empty, and he could have stood one in the sea off my coast and didn't. The nearest he has is T18, five steps from my province. He's coming the long way, or he's coming last."),
  ("Reina","Two of the four are aimed at the upper class. He's worked out that the rich pay better.")))
 say("Rob","I'll tell you where they're going, every year, before they go. Nothing in my booklet says I can't.", TH(
  ("Rob","Honest to a fault. It's my whole personality and I'm not putting it down for a booklet. A Warlord who announces his raids is still a Warlord. He's just a punctual one."),
@@ -85,7 +85,7 @@ lot(5,"DJ",[
  at="Q14", hover="Graham puts it on Q14, at the far end of Province 7 from his soldier at T18. Four squares from him, which in Province 7 is a long way.")
 lot(6,"WB",[
  B(4,4), B(5,6,"Six.","Six. One Bowl. Paddy's selling, and I'll be friendly with Paddy, because Paddy's rice fields sit between my silk and the desert.")],
- at="O25", hover="Silke puts it on O25, in the top corner of Province 5, by the sea, as far from the gap at O18 as the province goes.")
+ at="O25", hover="Silke puts it on O25, in the top corner of Province 5, by the sea, seven steps from his nearest soldier on T18.")
 lot(7,"VA",[
  B(2,5), B(6,7,"Seven.", TH(
    ("Paddy","Seven for a Vase. He ran the auction like a sale at a vicarage."),
@@ -168,7 +168,7 @@ salaries()
 R(3, "Rain and flood", "rainflood")
 say("Noah","Good harvest for Provinces 1, 3, 6 and 7. The rivers flood in 2, 4, 5 and 8.", TH(
  ("Noah","Bad for me, bad for Clark, bad for Silke and bad for Rob. Good for the Emperor, the landlord, Paddy and Graham. I read it as if it were fair."),
- ("Silke","Province 5 floods. The deepest province on the board, and the river finds it anyway.")))
+ ("Silke","Province 5 floods. The far corner of the board, and the river finds it anyway.")))
 harvest()
 rents()
 taxes(.40, collector="Clark collects the tax")
@@ -186,7 +186,7 @@ lot(2,"CH",[
  at="P13", hover="Graham puts it on P13, the far west of Province 7, beside his other pieces and five squares from the soldier on S18.")
 lot(3,"LD",[
  B(2,7), B(5,9,"Nine.","Nine. Four of five, and the last one's a Vase. Graham's selling Vases. Graham owes me nothing and I've been charming to him for an hour.")],
- at="P26", hover="Silke puts it on P26, in her corner by the sea. Province 5's only door from the desert is the gap at O19 and P19, and this is the far end of the hallway.")
+ at="P26", hover="Silke puts it on P26, in her corner by the sea, eight steps from his nearest soldier on S18, whether he comes through the gap at O18 or round by the coast.")
 lot(4,"BB",[
  B(6,6,"Six.","Six for a Brush. Two of five. I'm slow, but I'm cheap.")],
  at="R21", hover="Paddy puts it on R21, beside his Vase, in the middle row of Province 6.")
@@ -269,18 +269,18 @@ lot(6,"WB",[
  at="L20", hover="Noah puts it on L20, with his Scroll and Jar in the middle of Province 4.")
 lot(7,"VA",[
  B(4,8), B(5,10,"Ten.", TH(
-   ("Silke","Ten. Five of five. I'm complete, in the deepest province on the board, and nobody's ever raided me."),
+   ("Silke","Ten. Five of five. I'm complete, in a province his soldiers have never set foot in, and nobody's ever raided me."),
    ("Noah","Out. A Customs House and a Vase short, and the stock's empty.")))],
- at="N25", hover="Silke puts it on N25, completing the corner: five pieces on five squares, six or seven steps from the gap.")
+ at="N25", hover="Silke puts it on N25, completing the corner: five pieces on five squares, six to eight steps from his nearest soldier, the one on H21 walking to the Winter Palace.")
 act("The last realia are sold. Every province's stock is empty.", TH(
  ("Noah","Board check. Graham and Silke are complete. Clark needs a Jar. Paddy needs a Scroll. Rich needs a Brush and a Bowl. I need a Customs House and a Vase. Every piece we're missing is sitting in a completed set."),
  ("Paddy","So the only way the rest of us finish is if the two who are done climb, and hand back what they don't need. Their climbing is our auction.")), map_hl=[2,3,4,5,6,7])
 say("Rob","This year: the Winter Palace on H22. I17 in Province 1, across the river — that's five back to Reina. K14, which is Rich's Customs House. And R16 in Province 7.", TH(
- ("Rob","The palace from Reina, the Customs House from Rich. Two pieces of my objective in one year, both announced twelve months ago. Nobody can say they weren't told."),
+ ("Rob","Twenty for the palace from Reina, and the Customs House from Rich, the first piece of my objective. Both announced twelve months ago. Nobody can say they weren't told."),
  ("Graham","R16 is at an angle from my soldier, so he's safe there, and my Brush on Q16 is straight beside it. If he steps onto the Brush, he's straight beside my soldier too. My soldier is working by being looked at."),
  ("Rich","I said grain. I was wrong. Silke told me I was wrong and I said it anyway.")))
 march({"W2":"H22", "W1":"I17", "W3":"K14", "W4":"R16"}, "Rob's soldiers step in: the Winter Palace on H22, I17, Rich's Customs House on K14, and R16.", TH(
- ("Rob","Two of my seven. One different piece from each player at the table. I've told you that too. The Customs House goes on M5, in the desert, where anyone who wants it can come and ask."),
+ ("Rob","One of my six. One different piece from every other player who holds realia, so not the crown and not the palaces. I've told you that too. The Customs House goes on M5, in the desert, where anyone who wants it can come and ask."),
  ("Reina","Twenty for the palace and ten for I17, less five for his toll. I'd budgeted for exactly this."),
  ("Rich","My Customs House. Three of five down to two of five, and he told me a year ago. Greedy is a terrible strategy when the other man is honest.")), take={"W3":("CH","M5")})
 salaries()
@@ -304,7 +304,7 @@ say("Reina","The Summer Palace this year. It's the key to the Wall and my own ca
  ("Rob","She'll put it as far from my soldier as she can. I'll walk there. She knows I'll walk there.")))
 build("Summer Palace", 20, {1:20}, key="Summer Palace", at="G26", hover=TH(
  ("Reina","G26, the far corner of Province 1, against the sea. Four squares from his soldier on H22. He'll raid me three times at ten on the way and take twenty at the end. I'd rather that than lose it next year — and in four years it won't matter."),
- ("Rob","Three squares at ten and twenty at the end. She's priced it. So have I.")))
+ ("Rob","Three squares at ten and twenty at the end. Fifty from the crown, and not a piece of it toward my objective. Grain's grain. She's priced it. So have I.")))
 swap(7,3,"Graham Garner declares a complete set and replaces Richard Baron. Graham becomes Gentry of Province 3; Rich becomes Wheat Peasant of Province 7.", TH(
  ("Graham","Hand back the Scroll — it's native to Province 3 — keep the rest, and take every bag Rich's holding. I've been the Emperor, a wheat farmer and an Official. Banker is the only chair left I haven't been thrown out of."),
  ("Rich","He took my Customs House last year and now he's taken my chair. I went from landlord to wheat in one sentence. And I get his reservoir, which Reina built him, which nobody built me."),
@@ -342,7 +342,7 @@ lot(7,"VA",[
    ("Silke","I've got a Customs House. I'm complete, and I'm sitting on the piece he needs.")))],
  at="M22", hover="Noah puts it on M22, beside the canal in Province 4.")
 say("Silke","I'm complete too. Not this year.", TH(
- ("Silke","If I climb, my pieces leave the deepest corner on the board for Province 4, and Rob's first soldier is walking toward Province 4. I'll see which way he turns before I move my furniture into his path."),
+ ("Silke","If I climb, my pieces leave a corner he's never walked toward for Province 4, and Rob's first soldier is walking toward Province 4. I'll see which way he turns before I move my furniture into his path."),
  ("Noah","She's complete, she's looking at my chair, and she's waiting to see where the Warlord goes first. I'm the Scholar. I'm the one person at the table being politely queued for.")))
 say("Rob","This year: J18 in Province 3. H23 in Province 1. K13, toward the new Gentry. Q17 in Province 7.", TH(
  ("Rob","J18 is the odd corner of Province 3 by the river, which costs me five to cross and pays Graham five for the raid — he's even. H23 is the first of my four steps to the Summer Palace. K13 starts the long walk west."),
@@ -379,7 +379,7 @@ act("The pieces Silke and Noah handed back go up for auction: a Brush from Silke
  ("Rich","Nobody's bidding, so next year they'll be cheaper. I'm a wheat farmer. I can wait for cheaper."),
  ("Graham","The Vase would make me a complete Gentry. I've no use for that. I'll let it sit.")), map_hl=[4,5,6,7])
 say("Silke","K23, K24, L23 and M23. The east side of Province 4, against the sea.", TH(
- ("Silke","His soldier on J18 is five squares from here. I know exactly how he thinks: I'd go for the furniture in the middle. So it isn't in the middle."),
+ ("Silke","His soldier on J18 is five squares from here, and the one on H23 is busy walking to Reina's palace. I know exactly how he thinks: I'd go for the furniture in the middle. So it isn't in the middle."),
  ("Rob","He's not wrong. I was going for the middle.")))
 say("Rob","This year: K19 in Province 4. G24 in Province 1. J12 — no, that's Clark's, and his soldier's watching it. L13, in Province 3. And Q18.", TH(
  ("Rob","K19 opens Province 4 for Silke. G24 is the second step to the palace. L13 keeps walking west toward Graham. Q18 is next to the rice fields, where Paddy keeps five pieces in a row like a shop window."),
@@ -418,10 +418,10 @@ say("Clark","Minuted: the crown a hundred and twenty, Clark sixty, Graham sixty.
 swap(6,5,"Paddy Doyle declares a complete set and replaces Noah Tall. Paddy becomes Silk Peasant of Province 5; Noah becomes Rice Peasant of Province 6.", TH(
  ("Paddy","Hand back the Jar, keep the rest, take every bag Noah has. Rice to silk."),
  ("Noah","Scholar at seven o'clock, Silk Peasant at eight, Rice Peasant at nine. I've fallen two provinces in two years without ever being raided."),
- ("Silke","He's taken my old seat. The corner up by Province 4, five or six steps from the gap. He'll be safe there. I was.")),
+ ("Silke","He's taken my old seat. The corner up by Province 4, five steps from his nearest soldiers. I was never raided in that province. He might be.")),
  at={"CH":"L24", "LD":"L25", "BB":"M24", "VA":"M25"})
 say("Paddy","L24, L25, M24, M25. The top corner of Province 5.", TH(
- ("Paddy","Province 4 is between Rob and this corner, and Silke's in it, and Silke is the most suspicious woman I've ever met."),
+ ("Paddy","Province 4 is between Rob's soldier on K19 and this corner, and Silke's in it, and Silke is the most suspicious woman I've ever met. The one on G24 could come down the coast, but it's been walking to the Summer Palace since the day Reina built it, and it's two steps off."),
  ("Silke","He's using me as his back door. I'm flattered. I'm also charging him nothing, which is new.")))
 lot(3,"LD",[
  B(7,4,"Four.", TH(
@@ -478,19 +478,19 @@ build("Marble Pagoda", 20, {1:20}, key="Marble Pagoda", at="F17", hover=TH(
  ("Rob","She's right. I'd have walked there eventually. I'd have told her first."),
  ("","Reina pays the 20.")))
 buy_land(1, ["F23", "F24", "F25", "F26", "H25"], {1:100}, "New land: Reina buys five squares of sea for Province 1, along the coast at F23 to F26 and H25.", TH(
- ("Reina","A hundred, all from the crown, because it's the crown's own land. A hundred a year from next year: the throne room stops starving. The strip under the Wall stays shut to me until my own four links stand, and two are built. So, the sea."),
- ("Rob","The sea. The one part of the board I can't walk onto. She's learning.")))
+ ("Reina","A hundred, all from the crown, because it's the crown's own land. A hundred a year from next year: the throne room stops starving. The strip under the Wall stays shut to me until my own four links stand, and two are built. So, the sea. His soldier on G25 is one step from four of these. He can raid each square once, at ten. Each one pays twenty a year for ever."),
+ ("Rob","The sea, right beside my soldier. Ten a square when I step on one, and she keeps the harvest. She's done the sum before I could.")))
 buy_land(4, ["K25", "J25", "K26"], {4:45, 1:15}, "New land: Silke buys three squares of sea for Province 4, at K25, J25 and K26, the crown paying 15.", TH(
- ("Silke","Forty-five from me. The sea's the safest land on the board: no soldier can walk on water. Sixty a year from next year, out of reach of everyone."),
- ("Rob","The sea. She's bought the one ground I can't stand on.")))
+ ("Silke","Forty-five from me. The sea's as open to his soldiers as the desert, and the nearest is three steps up the coast on G25. But that one's going to Reina's palace, and from there a raid on me is five a square. Sixty a year from next year."),
+ ("Rob","She's bought land beside the road I'm walking. I'll remember it's there.")))
 buy_land(5, ["M26", "N26", "O27"], {5:45, 1:15}, "New land: Paddy buys three squares of sea for Province 5, at M26, N26 and O27, the crown paying 15.", TH(
- ("Paddy","Forty-five. My corner of the province gets a coast. Sixty a year, and it's on the far side of the board from every soldier."),
+ ("Paddy","Forty-five. My corner of the province gets a coast. Sixty a year, and his nearest soldier's six steps off."),
  ("Clark","Minuted. Paddy: three squares, forty-five in, sixty a year back. It reads better than he'd like.")))
 buy_land(6, ["Q26", "R25"], {6:30, 1:10}, "New land: Noah buys two squares of sea for Province 6, at Q26 and R25, the crown paying 10.", TH(
  ("Noah","Thirty is most of what I've got. Two squares, forty a year. The arithmetic is the only thing in this game that's ever been on my side, and it finally is."),
  ("Rich","Noah's bought the sea with his last thirty. I'm about to do something stupider.")))
 buy_land(7, ["Q12", "R12"], {7:30, 1:10}, "New land: Rich buys two squares of the Warlord's desert for Province 7, at Q12 and R12, the crown paying 10.", TH(
- ("Rich","Province 7 has no sea. The only land I can develop is his. Two squares of the desert, thirty from me, forty a year, and every one of them a square he can raid."),
+ ("Rich","Province 7 has no sea. The only land I can develop is his. Two squares of the desert, thirty from me, forty a year, and both of them standing in his own country."),
  ("Rob","He's farming my desert. I'd like to announce now, a year ahead as always, that I'll be visiting it."),
  ("Graham","He's built a wheat field in the Warlord's front garden. It's the bravest thing anybody's done tonight.")))
 lot(4,"BB",[
@@ -501,8 +501,8 @@ act("Paddy puts up the Jars, Noah the Bowl, Rich the Vase. Nobody bids.", TH(
  ("Silke","The Jar finishes me, and finishing me means asking for the throne. Not tonight."),
  ("Graham","I'm the banker. Bankers don't need Vases.")), map_hl=[5,6,7])
 say("Rob","This year: the Summer Palace on G26. L21 in Province 4. J12 in Province 2. And P20, into Province 5.", TH(
- ("Rob","G26 doesn't count toward my objective. I've already got a palace from Reina. I said I'd go there three years ago. I'm going. The new land waits until next year: I announce first."),
- ("Reina","He's walked four squares to raid a palace that doesn't help him, because he said he would. Twenty for his word. I've paid worse."),
+ ("Rob","G26 doesn't count toward my objective; no palace does. It's twenty from Reina, after thirty on the way, and I said I'd go there three years ago. I'm going. The new land waits until next year: I announce first."),
+ ("Reina","He's walked four squares to raid a palace that's no use to his objective, because it's fifty from the crown door to door and because he said he would. Twenty for his word. I've paid worse."),
  ("Silke","L21 goes round my soldier. At an angle. He's learned the dance.")))
 march({"W2":"G26", "W1":"L21", "W3":"J12", "W4":"P20"}, "Rob's soldiers step in: the Summer Palace on G26, L21, J12 and P20.", TH(
  ("Rob","Twenty, five, five, five. I went round Paddy's canal, not across it. I'm honest; I'm not generous."),
@@ -596,7 +596,7 @@ assert all_built(), "not every public work is built"
 act("Every public work the country owes is standing: three palaces, twelve links of the Great Wall, eight sections of the Grand Canal, the irrigation system and the two reservoirs. The game ends: the players have survived, and the Emperor's reign has been a glorious one.", TH(
  ("Reina","Ten years. The reservoir first, then every ditch, then the land when the doubling came, the Wall out of what the land brought in, and my own canal last. A thousand and thirty million, and the minutes say who paid every bag."),
  ("Clark","Four pages now. The land compact got a page of its own."),
- ("Rob","Two pieces of seven, both told a year ahead. The honest Warlord announces his way out of the throne. I'd do it again.")), map_hl=list(range(1,9)), big=True)
+ ("Rob","One piece of six, told a year ahead, and twenty for each palace I walked to. The honest Warlord announces his way out of the throne. I'd do it again.")), map_hl=list(range(1,9)), big=True)
 say("Clark","For the record, I never declared.", TH(
  ("Clark","Complete since year five, and the throne one sentence away. I waited for the list to be finished. Then the doubling took my income, the Wall above me kept me off the land until there was nothing left to buy it with, and this morning I sold the set back to the pile for ten. I've held. The Official's only way up was the throne, and I spent it on a guarantee."),
  ("Reina","He could have had it in year five, six or seven. He waited for the list instead. I'd like that minuted too.")))
@@ -609,4 +609,4 @@ RESULT = export(
  ["Reina kept the throne and finished the list in ten years — which by Section 18 is a win for the Emperor. The compact did it: one work a year, the split agreed before the card was turned, and the people who used each work paying into it.",
   "When the population doubled in year eight and every income fell to zero or below, the table bought new land: the crown paid a quarter of every square, the provinces the rest, and the harvest from the strip under the Wall, the sea and the Warlord's desert paid the tax that finished the Wall.",
   "Three players climbed. Graham rose from the wheat fields to the Gentry, Silke from silk to the Scholar's chair, and Paddy from rice to silk. Clark completed his set in year five and chose not to take the throne. Noah fell two provinces without ever being raided, and Rich fell from landlord to wheat farmer the year after he decided a soldier wasn't worth twenty.",
-  "Rob announced every raid a year ahead and got two of the seven pieces he needed. The players used his honesty to buy soldiers where he said he'd be, and in year nine Silke captured one of his soldiers during the Warlord's wedding."])
+  "Rob announced every raid a year ahead and got one of the six pieces he needed, though his long walks through the throne room to both palaces paid him well. The players used his honesty to buy soldiers where he said he'd be, and in year nine Silke captured one of his soldiers during the Warlord's wedding."])

@@ -51,7 +51,7 @@ act("Robert Land declines to pay tax.", TH(
  ("Reina","I'm not going to fight that this year. The Warlord's tax was never in my plan."),
  ("Paddy","So he keeps all of his sixty and I keep twenty-five.")), map_hl=[8])
 build("Summer Palace", 20, {1:20}, key="Summer Palace", at="J24", hover=TH(
- ("Reina","Twenty, and it has to come first: the Wall above my province needs the Summer Palace standing. J24, the bottom corner of Province 1, by the sea. Five squares from his soldier, and every one of those squares is mine and pays ten."),
+ ("Reina","Twenty, and it has to come first: the Wall above my province needs the Summer Palace standing. J24, the bottom corner of Province 1, by the sea. Five squares from his soldier by the shortest road, and every one of those squares is mine and pays ten."),
  ("Rob","Five squares. I can count to five."),
  ("","Reina pays the 20.")))
 lot(2,"CH",[
@@ -363,17 +363,17 @@ build("Winter Palace", 20, {1:20}, key="Winter Palace", at="G18", hover=TH(
  ("","Rich pays the 20.")))
 
 say("Silke","Majesty. Four squares of sea, and the crown pays half.", TH(
- ("Silke","M26, N26, O27 and P27, down the coast of Province 5. Forty of mine and forty of his, and next year they pay me eighty. The sea is the one ground the Warlord can't walk on."),
+ ("Silke","M26, N26, O27 and P27, down the coast of Province 5. Forty of mine and forty of his, and next year they pay me eighty. He can walk on the sea like anywhere else, but his nearest soldier is four steps off and about to stand on a palace. Five a raid if he comes; twenty a year a square if he doesn't."),
  ("Rich","Half of every square. To the letter.")))
 buy_land(1, ["H25", "I25", "J25", "G27"], {1:80}, "New land: Rich buys four squares of sea for Province 1, at H25, I25, J25 and G27, and pays for them alone.", TH(
- ("Rich","Province 1 eats a hundred and twenty a year and harvests a hundred on its best year. Eighty a year from the sea makes the throne pay for itself. The strip's shut to me until the last two links above my province stand, so it's the sea."),
+ ("Rich","Province 1 eats a hundred and twenty a year and harvests a hundred on its best year. Eighty a year from the sea makes the throne pay for itself. The strip's shut to me until the last two links above my province stand, so it's the sea. His soldier on I24 is one step from three of them. He can take ten from each once. They pay twenty a year each for ever."),
  ("Reina","Eighty on the crown's own land, the year he takes the crown. I'd have done the same. I'd have done it in Year 5.")))
 buy_land(5, ["M26", "N26", "O27", "P27"], {5:40, 1:40}, "New land: Silke buys four squares of sea along the coast of Province 5, at M26, N26, O27 and P27. Silke pays 40, the crown 40.", TH(
  ("Silke","Eighty a year from next year, on a province that loses five on an average harvest."),
  ("Clark","He's keeping the promise. I'm watching how he keeps mine.")))
 buy_land(6, ["Q26", "R25", "S26", "T23"], {6:40, 1:40}, "New land: Paddy buys three squares of sea off Province 6, at Q26, R25 and S26, and one square of the Warlord's desert below it, at T23. Paddy pays 40, the crown 40.", TH(
- ("Paddy","Three in the sea where Rob can't reach them, and one on his sand. My booklet's the only one that offers both. T23 is three steps from his southern soldier: if he spends a year walking to one square of desert, that's a year he isn't walking to my pieces."),
- ("Rob","He's put a field in my desert. I can walk on my desert."),
+ ("Paddy","Three in the sea and one on his sand. My booklet's the only one that offers both. The sea squares are four and five steps from his southern soldier, and T23 is three: if he spends a year walking to one square of desert, that's a year he isn't walking to my pieces."),
+ ("Rob","He's put a field in my desert and three in the sea. I can walk on all of it."),
  ("Rich","Half of four squares. Two hundred and forty in land this year, a hundred and sixty of it the crown's, and I'm still the only one who can afford to be Emperor.")))
 lot(2,"CH",[
  B(3,8,"Eight.", TH(
@@ -400,7 +400,7 @@ lot(6,"WB",[
  B(3,None,"Out.")],
  hover="Clark puts it on J14, beside his Jar at the bottom of Province 2.", at="J14")
 march({"W1":"J24", "W2":"R21"}, "Robert Land's northern soldier steps onto the Summer Palace at J24; his southern soldier raids Province 6 at R21.", TH(
- ("Rob","The palace, in the first year of the new reign. Six years of walking, and the new Emperor pays for the old Emperor's palace. And the palace counts toward my objective, whoever's sitting on the throne."),
+ ("Rob","The palace, in the first year of the new reign. Six years of walking, and the new Emperor pays for the old Emperor's palace. It doesn't count toward my objective. Palaces don't. But twenty's twenty, whoever's sitting on the throne."),
  ("Rich","Twenty, the cost of the structure. I've been Emperor for one round."),
  ("Reina","I put it there in Year One so he'd have to walk the length of my province to reach it. He did.")))
 salaries({2:5, 6:5}, text="Rich pays Clark 5 for collecting the tax and Paddy 5 for reading the cards.", hover="The first salaries since Year 2. Rich keeps Paddy on as the card reader.")
@@ -449,7 +449,7 @@ buy_land(5, ["L26"], {5:10, 1:10}, "New land: Silke buys one more square of sea,
  ("Silke","One more. Five squares. I could buy more, and the crown couldn't pay its half."),
  ("Rich","After the canal I've got sixty-four and a half. Half of every square. I can afford half of two.")))
 buy_land(6, ["T25"], {6:10, 1:10}, "New land: Paddy buys one more square of sea, at T25, off the bottom corner of Province 6. Paddy pays 10, the crown 10.", TH(
- ("Paddy","The sea this time. One square of desert is a test. Two would be a gift."),
+ ("Paddy","The sea this time. One square of desert is a test. Two would be a gift. He can walk on the sea too, but at least it isn't his."),
  ("Rob","He's learning. Slowly. One square a year, like my soldiers.")))
 march({"W1":"J23", "W2":"S22"}, "Robert Land raids Province 1 at J23 and Province 6 at S22.", TH(
  ("Rob","Half my grain gone, and I'm still raiding. Ten from the Emperor, five from Paddy. S22 is one step from his first desert square."),

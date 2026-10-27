@@ -35,7 +35,7 @@ act("Graham cuts out the Province 7 Reservoir: a paper square two by two, set as
  ("Reina","He made it before I'd said a word. I'm reading that as a request."),
  ("Paddy","There's no Province 2 or 3 at this table, so it's the only cut-out we need.")), map_hl=[7])
 place_army({"W1":"O18", "W2":"E21"}, "Robert Land stands his two soldiers on undeveloped land: one on O18, the notch where Provinces 4, 5 and 7 meet; one on E21, in the strip under the Wall, a step from the Emperor's door.", TH(
- ("Rob","The notch is the only way into the south-east that doesn't go through somebody's living room. From O18 I can step into Silke's province or Graham's. And E21 is one square from Province 1, where every raid is worth ten."),
+ ("Rob","I could start at sea, off Silke's beach, but there's nothing on the beach yet. The notch is where Provinces 4, 5 and 7 meet: from O18 I can step into Silke's province or Graham's. And E21 is one square from Province 1, where every raid is worth ten."),
  ("Reina","Seven squares of my province touch that strip. He's chosen the one that looks straight at the throne room."),
  ("Graham","And the other one's on my doorstep. Province 7 touches the desert on every side; there's no square I own that's more than two steps from it.")))
 say("Reina","Robert. One square a year, the rulebook says. Even yours.", TH(
@@ -78,7 +78,7 @@ lot(7,"LD",[
  B(6,5), B(5,6,"Six.", TH(
    ("Silke","Six, and there's another next year for Paddy. The pairs are easy. It's the single pieces — my Jar, Paddy's Bowl, Graham's Vase — that'll be the fight."),
    ("Paddy","She's worked it out already. One of each of our own pieces, and the other two of us both want it.")))],
- hover=TH(("Silke","P26, out east by the sea. Province 5 is seven squares deep and the only door is a two-square gap by the notch. I'm putting everything I own at the far end of the hallway, by the sea."),), at="P26")
+ hover=TH(("Silke","P26, out east by the sea. Eight squares from his soldier at the notch and eleven from the other. The sea's open to him, so the beach isn't a wall, but it's the farthest I can get from both of them."),), at="P26")
 march({"W1":"P17", "W2":"F22"}, "Robert Land's soldiers step in: one into Province 7 at P17, one into Province 1 at F22.", TH(
  ("Rob","Graham for five, the Emperor for ten. And P17 is next to Graham's Brush. I'm not taking it yet. I'm standing next to it so he can look at me."),
  ("Graham","He's one square from my Brush. Right. Noted."),
@@ -169,9 +169,9 @@ lot(7,"VA",[
  B(5,None,"Keep it.","Graham holds the Jar Paddy needs and the Bowl I need. Every set at this table runs through Graham now.")],
  hover="Paddy puts it on S25, the corner where the rice fields meet the sea.", at="S25")
 march({"W1":"Q16"}, "Robert Land's southern soldier steps onto Q16 and takes Graham's Bamboo Brush as tribute.", TH(
- ("Rob","Two years I've stood next to it. My booklet: raid a square holding realia and I can take the realia. Graham finished his set this very round. Now he hasn't. And that's the first piece toward my own objective — one piece from every player."),
+ ("Rob","Two years I've stood next to it. My booklet: raid a square holding realia and I can take the realia. Graham finished his set this very round. Now he hasn't. And that's the first piece toward my own objective — one piece from every other player who holds realia. At this table that's the three peasants."),
  ("Graham","He took the Brush. The one piece I bought before I'd worked out where he'd be standing. He's got a Brush and no use for it except that I need it."),
- ("Reina","He's going for his objective. One piece from each player, a palace from me. If he finishes, he can take my seat.")),
+ ("Reina","He's going for his objective. One piece from each of the three of them; the Emperor doesn't count, and neither do my palaces. If he finishes, he can take my seat.")),
  take={"W1":("BB","K4")})
 say("Graham","How much for it?", TH(
  ("Graham","Not angry yet. Angry later. Price first."),
@@ -179,9 +179,9 @@ say("Graham","How much for it?", TH(
 say("Rob","Ask me again when I've raided everybody once.",
  "I'm not selling it until it's worth more as a sale than as a block. He has to want it more every year. It's on K4, in the desert, where nobody's soldier is ever going to walk.")
 march({"W2":"H24"}, "Robert Land's northern soldier steps onto H24 and raids the square holding the Winter Palace. The Emperor pays him the cost of the structure: 20.", TH(
- ("Rob","Palace squares count as the Emperor's realia, and I take the cost. That's two of my four in one year — Graham's Brush, Reina's palace. Silke and Paddy left."),
+ ("Rob","A palace isn't a piece toward anything; the Emperor's left out of my objective. But the booklet still makes her pay me the cost of the structure. One of my three in hand, Graham's Brush, and twenty from the crown. Silke and Paddy left."),
  ("Reina","Ten, ten and twenty: forty for a palace I only built as a key. I watched him walk to it for three years and paid for every step."),
- ("Graham","He's playing to win, not to spoil.")))
+ ("Graham","One soldier for money, one for the objective. He's playing to win, not to spoil.")))
 salaries({7:5}, text="Reina pays Graham 5.")
 
 # ============================== YEAR 4 ==============================
@@ -205,7 +205,7 @@ say("Reina","Two soldiers, Robert. Forty.", TH(
  ("Reina","Cause five is 'the Emperor cannot control the Warlord.' I've been raided four times, so mine can move the moment they're on the board."),
  ("Rob","She's buying them with her own money. I keep ten. Every soldier anyone buys makes me richer, and none of them can move until I've raided them. Hers can. That's new.")))
 sell_soldiers([(1,"J24"), (1,"G22")], "Reina buys two soldiers from Robert Land and stands them on J24 and G22.", TH(
- ("Reina","J24 is the corner he has to pass to get south, and it's at an angle from him, so he can't capture it. A soldier only takes another straight on, never diagonally."),
+ ("Reina","J24 sits beside both his roads south: I24 and J23 by land, J25 if he goes out to sea. Whichever of those he steps onto, it's straight beside mine. And it's at an angle from him, so he can't capture it. A soldier only takes another straight on, never diagonally."),
  ("Silke","The Emperor has an army. It's two soldiers, but it's an army."),
  ("Rob","Diagonal. She's read the capture rule. Pity.")))
 salaries({7:5}, text="Reina pays Graham 5.")
@@ -248,7 +248,7 @@ march({"W1":"R16", "W2":"J22"}, "Robert Land moves: R16 in Province 7, and J22, 
  ("Rob","Five from Silke, who owns nothing yet for me to take. And the northern one's out of Province 1. Province 4 has nobody in it, so nobody to raid — and nobody to pay a toll to when I cross the river."),
  ("Silke","My first raid as a wheat farmer, and it's on the square next to my own reservoir.")))
 troops({"Reina1":"K24", "Reina2":"H22"}, "Reina's soldiers follow him south: one to K24 in Province 4, on the road to Province 5; one to H22.", TH(
- ("Reina","K24 sits between him and the top of Province 5, and it isn't straight beside him, so he can't take it. He moves first every year. I must never end a turn level with him, only at an angle or further off."),
+ ("Reina","K24 sits between him and the top of Province 5, beside L24 on the land side and K25 on the sea side, and it isn't straight beside him, so he can't take it. He moves first every year. I must never end a turn level with him, only at an angle or further off."),
  ("Rob","She's learned the dance. Whoever moves first takes. I always move first.")))
 salaries({7:5}, text="Reina pays the I Ching reader 5 — now Silke, who took over Graham's job with his province.", hover="Reina hands the reader's job to whoever holds Province 7, and that's Silke now.")
 
@@ -290,23 +290,23 @@ swap(6,5,"Paddy Doyle declares a complete set and replaces Graham Garner. Paddy 
 say("Graham","Fair.", TH(
  ("Graham","One word. It's the only honest one available."),
  ("Rob","Two of them have robbed each other blind without me lifting a finger. I love the peasant game.")))
-say("Paddy","L25, M25, N25. The top corner of Province 5. Seven squares from the gap.", TH(
- ("Paddy","The deepest squares in the country. The notch is the only way in from the desert, and it's at the other end."),
- ("Reina","Seven squares from the gap. Three from his soldier in Province 4. Paddy, nobody comes in by the gap any more. He came in the back door."),
+say("Paddy","L25, M25, N25. The top corner of Province 5. Seven squares from the notch.", TH(
+ ("Paddy","The far end of the province from the desert. If he comes in by the notch, he walks the whole length of it to get here."),
+ ("Reina","Seven squares from the notch. Three from his soldier in Province 4, and the sea's a road now, so the beach is a door too. Paddy, nobody needs the notch any more. He's at the back door."),
  ("Paddy","...oh.")))
 march({"W1":"Q17", "W2":"K22"}, "Robert Land moves: Q17 in Province 7, and K22, across Province 4 towards the corner.", TH(
  ("Rob","Five from Silke. And the other one's three squares from Paddy's corner, and two squares from Reina's soldier on K24: too far for either of us to take the other."),
  ("Silke","He's walking towards my Brush. One square a year, and I can't move it. Realia stays where it's put."),
  ("Reina","Two squares from mine. Too far for him to take it, too far for me to take him. He can count squares as well as I can.")))
-say("Reina","Paddy. Buy a soldier, and stand it on your realia.", TH(
- ("Reina","Rob can only take a piece by stepping onto its square. If Paddy's soldier stands on it, he has to come at it straight on and capture first, and my two will be beside it."),
+say("Reina","Paddy. Buy a soldier, and stand it on your Scroll.", TH(
+ ("Reina","Rob can only take a piece by stepping onto its square, and a soldier on the square means he has to capture it straight on first. Paddy on the Scroll, in the middle, and mine on K24: every square on his side of the corner is straight beside one of them. The far side, round by the sea, is a long walk, and I'll see it coming."),
  ("Paddy","I've got a Customs House, a Scroll and a Vase, and a man in Province 4 who wants one of them.")))
-sell_soldiers([(5,"L25")], "Paddy buys a soldier from Robert Land and stands it on his Customs House at L25.", TH(
- ("Paddy","Twenty to the man who's coming for me. It can't move until he's raided Province 5, and it doesn't need to. It just has to stand on the nearest piece."),
+sell_soldiers([(5,"M25")], "Paddy buys a soldier from Robert Land and stands it on his Land Deed Scroll at M25.", TH(
+ ("Paddy","Twenty to the man who's coming for me. It can't move until he's raided Province 5 — and the moment he steps in beside my corner, he has. It just has to stand in the middle."),
  ("Rob","Everyone's buying soldiers. I'm going to be rich and outnumbered.")))
 troops({"Reina2":"I22"}, "Reina's soldier on K24 holds its square; the other comes south to I22.", TH(
- ("Reina","K24 stays. From there it can step straight down onto L24, the one empty square he'd have to cross to get into the corner. I'm not guarding his square. I'm guarding the one he needs."),
- ("Rob","She's guarding the square I'd walk onto. Not the square I'm on. She really has read it.")))
+ ("Reina","K24 stays. From there it can step straight down onto L24, or across onto K25 in the sea: his way into the corner by land and his way by water. Paddy's covers M24. I'm not guarding his square. I'm guarding the ones he needs."),
+ ("Rob","She's guarding the squares I'd walk onto. Not the square I'm on. She really has read it.")))
 salaries({7:5}, text="Reina pays Silke 5 for reading the cards.")
 
 # ============================== YEAR 7 ==============================
@@ -337,14 +337,14 @@ act("Graham puts up the Brush he had to hand back, and Silke the Scroll. Nobody 
  ("Silke","Why would I buy a Brush? I've got one already, and he's two squares from it."),
  ("Graham","I need the Scroll. I'd also need Paddy's Vase, the only one in the world, and he's standing a soldier next to it. A Scroll gets me nowhere.")), map_hl=[6,7])
 march({"W1":"P17", "W2":"L23"}, "Robert Land walks his soldiers to the wedding the long way: back onto his old raid square at P17, and on to L23 in Province 4. Neither raids.", TH(
- ("Rob","No raids, but nobody said no walking. P17 is next to Silke's Brush. L23 is one step from Paddy's corner. The wedding's very well placed."),
+ ("Rob","No raids, but nobody said no walking. P17 is next to Silke's Brush. L23 is one step from the squares beside Paddy's corner. The wedding's very well placed."),
  ("Silke","He's raided P17 already, so he can stand on it all he likes. One square from my Brush. Again."),
- ("Paddy","One square from my corner, and the only empty square between us is the one Reina's watching.")))
+ ("Paddy","Two empty squares between him and my corner, L24 and M24. Reina's soldier is straight above one and mine is straight beside the other.")))
 say("Silke","A soldier costs twenty. The Brush cost four. He can have it.", TH(
  ("Silke","I could buy one and stand it on O16. Twenty to guard four. Graham did that sum in year two and lost his set. My sum's different: I've got one piece and three to go."),
  ("Rob","She's done the arithmetic out loud. I like a table that shows its working.")))
 say("Reina","Your soldier, Paddy, and mine. That's the corner.", TH(
- ("Reina","Two soldiers between him and three squares of realia. He moves first, so he'll always see the trap. The point is that every way in is a trap."),
+ ("Reina","Two soldiers between him and three squares of realia. He moves first, so he'll always see the trap. The point is that every way in from where he's standing is a trap."),
  ("Rob","She's built a wall of soldiers around a man growing silk. Not the wall I expected.")))
 salaries({7:5}, text="Reina pays Silke 5.")
 
@@ -389,8 +389,8 @@ buy_land(7, ["T16","T17"], {7:30, 1:10}, "New land: Silke buys two squares of th
  ("Rob","They're on my sand, and I can walk on sand. Four rows is four years. Somebody keep this game going."),
  ("Reina","Five a square from the crown. It's Paddy's money and he's sitting right there.")))
 buy_land(6, ["R25","S26"], {6:30, 1:10}, "New land: Graham buys two squares of sea off the coast of Province 6, R25 and S26. Graham pays 30, the crown 10.", TH(
- ("Graham","Province 6 is the only booklet that offers a choice: the sea or the Warlord's land. The sea. He can't walk on water, and I've been raided out of one province already."),
- ("Rob","The one ground on the board I can't reach, and he's bought two squares of it.")))
+ ("Graham","Province 6 is the only booklet that offers a choice: the sea or the Warlord's land. The sea, off the far end of the rice fields. He can walk on water now, but the nearer of these is six squares from either of his soldiers, and I've been raided out of one province already."),
+ ("Rob","Six years' walk, for a game that's got one left. He's bought the one bit of sea I'll never reach.")))
 buy_land(5, ["M26","N26"], {5:30, 1:10}, "New land: Paddy buys two squares of sea beside his corner, M26 and N26. Paddy pays 30, the crown 10.", TH(
  ("Paddy","Next to the Scroll and the Vase, in the sea. The crown's ten is my ten, handed over two minutes ago. The rulebook says the cost is shared with the Emperor. It doesn't say whose money it was first."),
  ("Graham","He's subsidising himself through the Emperor. That's either a loophole or the whole point of the office.")))
@@ -402,12 +402,12 @@ say("Reina","Two links. Two more next year and every public work this country ow
  ("Reina","The Wall is last, and it's only four links, because only my province is under it. I planned to pay for all four. I've paid for none of them."),
  ("Graham","Four links instead of twelve, because nobody's sitting in 2 or 3. The Wall was always the most expensive thing on the list and the least useful. Building it last is the whole trick.")))
 march({"W1":"O16"}, "Robert Land's southern soldier steps onto O16 and takes Silke's Bamboo Brush as tribute.", TH(
- ("Rob","Three of four. Graham, Reina, Silke. Three squares in three years, and one of them at a wedding. One piece from Paddy and I can take any seat at this table — and there's only one seat I want."),
+ ("Rob","Two of three. Graham's Brush and now Silke's. Three squares in three years, and one of them at a wedding. One piece from Paddy and I can take any seat at this table — and there's only one seat I want."),
  ("Silke","I owned it for two years and watched him walk to it. At least he walked north, away from my new land. T16 is five rows from him now."),
- ("Reina","Three of four, and it's the last year he'll get. Paddy's corner is all that's left.")),
+ ("Reina","Two of three, and it's the last year he'll get. Paddy's corner is all that's left.")),
  take={"W1":("BB","K5")})
 march({"W2":"L24"}, "Robert Land's northern soldier steps into Province 5 at L24 and raids it, one square from Paddy's Customs House.", TH(
- ("Rob","Next year it's over, so it's now or never. L24 is the only way in. Paddy's soldier is on the Customs House, Reina's is beside the square, and I'm stepping onto it anyway. Five for the raid, five back to Paddy for crossing the river, and maybe she blinks."),
+ ("Rob","From L23 no piece is in reach this year, by land or by sea, and next year the Wall's done. Unless Paddy's purse slips. If it does, I want to be on the doorstep. L24 is beside the Customs House, and nobody's standing on the Customs House. Reina's soldier is right above me, and I'm stepping onto it anyway. Five for the raid, five back to Paddy for crossing the river, and maybe she blinks."),
  ("Paddy","He's raided Province 5. My soldier can move now. It doesn't need to."),
  ("Reina","He knows. He's doing it anyway.")))
 troops({"Reina1":"L24"}, "Reina's soldier steps down from K24 onto L24 and captures one of Robert Land's soldiers on the edge of Province 5.", TH(
@@ -436,7 +436,7 @@ assert all_built(), "not every public work is built"
 act("Every public work the country owes is standing. The game ends: the players have survived, and the Emperor's reign has been a glorious one.", TH(
  ("Reina","Nine years. A reservoir in year two, two canals before my own, the Pagoda in the bad year and the Wall last. The order was the whole game, and when the doubling came, the order was what made Paddy want it finished. Two and a half million left in the treasury — 'too low a grain reserve' by anyone's reading, and it doesn't matter, because there's nothing left to build."),
  ("Graham","Two doubling cards still in the deck, and the next one takes us to six hundred million. We stopped before it came. Paddy paid for the stopping."),
- ("Rob","Three of four. One raid short, and the raid I needed was standing in the far corner of Province 5 behind two soldiers.")), map_hl=list(ACTIVE), big=True)
+ ("Rob","Two of three. One raid short, and the raid I needed was standing in the far corner of Province 5 behind two soldiers.")), map_hl=list(ACTIVE), big=True)
 say("Silke","For the record, I'd like it noted that I lost.", TH(
  ("Silke","Silk to wheat. I fell two provinces. I've got Graham's reservoir, Rob's raid squares, two squares of his desert, and the satisfaction of having read every card since year six."),
  ("Graham","She's not wrong. Survival's a team result. The seats aren't.")))
@@ -447,4 +447,4 @@ RESULT = export(
  "Every public work was built, so this is the first ending: the players survived and the Emperor's reign was a glorious one. Players are still ranked by the province they finished in against the one they drew.",
  ["Reina kept the throne and finished the list — which by Section 18 is a win for the Emperor. The order did it: productive works first, palaces only when they unlocked something, and the Wall last. Then the population doubled in Year 8 and left the crown with half a million, and Paddy, rather than let a revolt crown him Emperor of a hungry country, paid 130 into the treasury and most of the Wall.",
   "The peasants spent the evening taking each other's seats. Graham climbed from wheat to silk, Paddy climbed over Graham, and Silke fell from silk to wheat — but every one of them finished with a public work paying into their province, and, after the doubling, two new harvest squares: Paddy's and Graham's in the sea, Silke's on the Warlord's sand.",
-  "Robert Land came within one raid of the throne. One soldier walked three years to the Winter Palace and on through empty Province 4 to the back door of Province 5, where the Emperor captured it with a soldier she had bought from him. The last piece he needed sat in the deepest corner of the country."])
+  "Robert Land came within one raid of the throne: a Brush from Graham and a Brush from Silke, and nothing from Paddy. One soldier raided the Emperor all the way to the Winter Palace, for money, since the Emperor doesn't count toward the objective. Then it crossed empty Province 4 to Paddy's corner on the beach, where the Emperor captured it with a soldier she had bought from him. Her soldier and Paddy's stood straight beside every square on his side of the corner, and the open sea never gave him a way round in the years he had left."])

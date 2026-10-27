@@ -81,9 +81,9 @@ The playthroughs are independent games, not evenings in a series. In every one, 
 | Silke | Silk → Wheat Peasant | lost |
 | Paddy | Rice → Silk Peasant | won |
 | Graham | Wheat → Rice Peasant | won |
-| Rob | Warlord → Warlord | held (3 of 4 objective pieces) |
+| Rob | Warlord → Warlord | held (2 of 3 objective pieces, one raid short) |
 
-**Land, Robbed** (`game5_six.py`, 6 players, 10 years). Noah and Paddy sit out. Rob, as Warlord, announces every move a year ahead, and it works: he raids a different piece from every player and a palace from Reina, and changes places with the Emperor. The table stops there. The title is the Warlord's name, and what he does.
+**Land, Robbed** (`game5_six.py`, 6 players, 10 years). Noah and Paddy sit out. Rob, as Warlord, announces every move a year ahead, and it works: he raids a piece from each of the other four collectors (Reina's palace pays him 20 but doesn't count), and changes places with the Emperor. The table stops there. The title is the Warlord's name, and what he does.
 
 | Player | Start → finish | Verdict |
 |---|---|---|

@@ -29,8 +29,8 @@ act("Clark, Rich and Graham each cut a paper outline for their province's system
  ("Rich","Two by three. Mine's the biggest system in the book. I'm choosing to read something into that."),
  ("Clark","One by two. Mine's the cheapest. Which means it's the one that gets built.")), map_hl=[2,3,7])
 place_army({"W1":"O18", "W2":"T18", "W3":"F16", "W4":"J8"}, "Robert Land stands his four soldiers on undeveloped land: O18, in the notch between Provinces 4, 5 and 7; T18, below the wheat and rice fields; F16, in the strip under the Wall at the corner of Provinces 1 and 2; and J8, on the western edge of Province 3.", TH(
- ("Rob","One square a round, the booklet says, even mine. So I'm putting one beside every door. The notch opens onto silk and wheat; the south onto rice; the strip onto the Official and the throne; the west onto the Gentry."),
- ("Silke","The notch is the only way into my province from his desert, and he's put a man in it before anybody's sold a single pot."),
+ ("Rob","One square a round, the booklet says, even mine. So I'm putting one beside every door. The notch opens onto silk and wheat; the south onto rice, and round the coast onto the sea; the strip onto the Official and the throne; the west onto the Gentry."),
+ ("Silke","The notch is the short way into my province from his desert. The long way's round by the sea. He's put a man in the short one before anybody's sold a single pot."),
  ("Reina","F16 is one step and a river from my province. I haven't built anything yet and he's already standing at the gate.")))
 say("Rob","Gentlemen. Majesty. Silke. Shall we?", TH(
  ("Rob","I've got four soldiers, no tax to pay and a booklet that calls me a villain in the first line. This is going to be a wonderful evening."),
@@ -84,7 +84,7 @@ lot(3,"LD",[
  B(5,7,"Seven, and that's my limit for this one.", TH(
    ("Silke","Seven's where I stop. I've got thirty-seven and four years of lots to buy out of it, and the man bidding against me collects everyone's tax."),
    ("Clark","Eight would make her think. I'll keep that in my pocket for a year when it matters more.")))],
- hover='Silke puts it on M25, in the top corner of Province 5. Seven squares from the notch, which makes it the deepest square on the board.', at='M25')
+ hover='Silke puts it on M25, in the top corner of Province 5. Seven squares from his nearest soldiers, in the notch and below the rice fields.', at='M25')
 lot(4,"BB",[
  B(6,3), B(7,4),
  B(3,5,"Five.","I'll take a Brush at five. Note that I've now bid on two lots and won none — I'm not collecting so much as keeping everyone else's prices honest."),
@@ -95,7 +95,7 @@ lot(5,"DJ",[
  B(4,9,"Nine. In year one.", TH(
    ("Noah","Steep and I paid it anyway. I'm the Scholar — worst income, best information. I read the cards. The population is going up and grain is about to stop meaning what it means today."),
    ("Silke","Nine for a jar. Mine. I get a quarter of that and I'm still annoyed.")))],
- hover='Noah puts it on K24, the far corner of Province 4: six squares from the notch, and the sea behind it.', at='K24')
+ hover='Noah puts it on K24, the far corner of Province 4, against the sea: six squares from his nearest soldier, in the notch.', at='K24')
 lot(6,"WB",[
  B(5,4), B(2,6,"Six.","Six for a bowl I need, from a rice farmer, in the year I'm collecting everyone's taxes. I do enjoy this seat.")],
  hover='Clark puts it on J14, at the bottom of Province 2, as far from the strip under the Wall as his province goes.', at='J14')
@@ -122,7 +122,7 @@ say("Noah","Ten million, and the river took the rest. I'll be eating my salary."
  ("Graham","He'll fold when it counts. Cross him off the list.")))
 taxes(.40)
 build("Winter Palace", 20, {1:20}, key="Winter Palace", at="J24", hover=TH(
- ("Reina","J24, next to the Summer Palace. The two deepest squares in Province 1."),
+ ("Reina","J24, next to the Summer Palace. The two squares in Province 1 furthest from the strip."),
  ("","Reina pays the 20.")))
 say("Graham","Majesty. The reservoir. Sixty million, and your own book says the crown pays all of it.", TH(
  ("Graham","Every year, same words, until it's a revolt clause. Mine is the one public work she pays for entirely — no split, no shared blame. Each year it doesn't exist is a year that's provably hers."),
@@ -571,7 +571,7 @@ say("Reina","Not this year.", TH(
 buy_land(1, ["F23", "F24"], {1:40}, "New land: Reina buys two squares of sea off Province 1, F23 and F24, forty million, and pays for them alone.", TH(
  ("Reina","Twenty a square and twenty a year back, from next year. It's the one investment left in this country that pays, and the crown can't afford to make it for anyone but the crown. The strip's shut to me until my last link is built, so it's the sea."),
  ("Silke","She said no to my sea and yes to hers in the same minute. That's cause six with a receipt."),
- ("Noah","Two squares of sea, the one ground the Warlord can't walk onto. She's spending on the one thing he can't take.")))
+ ("Noah","Two squares of sea. He can walk on it like anywhere else, but his nearest soldier is six steps off, and they'll have paid for themselves in a year. She's spending on the one thing in this country that pays.")))
 swap(6,3,"Paddy Doyle declares a complete set and replaces Richard Baron. Paddy becomes Gentry of Province 3; Richard becomes Rice Peasant of Province 6.", TH(
  ("Paddy","Rice farmer to landlord in ten years, with twenty-two in hand — two over the line. Hand back the Scroll, keep the rest, take every bag Rich has. And I inherit the Harvest Pile and the right to charge rent — to the men I was farming beside last week."),
  ("Rich","A minute ago I was the banker and he brought me five million a year. I'd admire it if it weren't happening to me."),

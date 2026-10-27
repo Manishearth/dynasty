@@ -30,7 +30,7 @@ act("Clark cuts out the Province 2 Irrigation System (one square by two), Rich t
  ("Graham","Two by two. Now I have to ask for it."),
  ("Reina","Three cut-outs and three palaces. I've got a long list and nobody to split the palaces with.")), map_hl=[2,3,7])
 place_army({"W1":"N18", "W2":"E22"}, "Rob stands his two soldiers on undeveloped land: W1 on N18, the notch beside Provinces 4, 5 and 7; W2 on E22, in the strip under the Wall, at the eastern end above the Emperor's province.", TH(
- ("Rob","N18 is one step from Silke's province and one from Graham's. E22 is above Reina. I'll say it plainly: the one in the north is going to the Emperor's palace, wherever she puts it, and the one in the south is going to whoever's nearest. I've got two, and they each have a job."),
+ ("Rob","N18 is one step from Silke's province and one from Graham's. E22 is above Reina. I'll say it plainly: the one in the north walks the Emperor's province, ten a square and twenty for any palace on the way, and then goes on to whatever Clark puts in Province 2. The Emperor isn't on my list, but her reserve is. The one in the south is going to whoever's nearest. I've got two, and they each have a job."),
  ("Reina","He's put one where every square of my province is within five of it.")))
 
 # ============================== YEAR 1 ==============================
@@ -155,7 +155,7 @@ build("Province 7 Reservoir", 60, {1:60}, key="res7", at="Q15:R16", hover=TH(
  ("Graham","Q15 to R16, the middle of Province 7, between the notch and my Scroll. Anything coming for the Scroll pays me five to cross it."),
  ("Reina","Sixty from the crown, in year three.")))
 march({"W1":"O17", "W2":"F19"}, "Rob's southern soldier steps onto O17 and takes Graham's Dragon Jar; the northern one raids Province 1 at F19.", TH(
- ("Rob","Graham's ransom. Two of five: Silke and Graham. The peasants are done paying me. And ten from Reina; two squares to the palace."),
+ ("Rob","Graham's ransom. Two of four: Silke and Graham. The peasants are done paying me. And ten from Reina; two squares to the palace."),
  ("Graham","Exactly as planned. Now I buy it back."),
  ("Reina","Thirty paid. I can see the palace from his square.")),
  take={"W1":("DJ","N13")})
@@ -174,8 +174,8 @@ harvest("Rich pays out the harvest from the Harvest Pile.")
 rents()
 taxes(.50)
 say("Reina","The Winter Palace. G26.", TH(
- ("Reina","The canal in Province 5 needs it, and Silke wants her canal. G26, the far corner, by the sea. He only needs one palace. He's two squares from the first. This one's just a palace."),
- ("Rob","She's right. I only need one. She's built me a spare.")))
+ ("Reina","The canal in Province 5 needs it, and Silke wants her canal. G26, the far corner, by the sea. Every palace he stands on is twenty out of the reserve, and he's two squares from the first. This one I've put as far from him as my province goes."),
+ ("Rob","Eight squares the wrong way for twenty. She's right, I won't. The first one's on my road.")))
 build("Winter Palace", 20, {1:20}, key="Winter Palace", at="G26")
 give(8, 7, "DJ", at="O16")
 act("Graham buys back his Dragon Jar from Rob for 15, and puts it on O16.", TH(
@@ -250,9 +250,9 @@ say("Silke","Two sections in my province. Thank you, Majesty.", TH(
  ("Silke","Twenty a year from next year. It's nice to be on the receiving end."),
  ("Reina","Eighty on someone else's ditch. Silke, you'll notice I'm doing it in the right order.")))
 march({"W2":"G17"}, "Rob's northern soldier steps onto G17 and raids the square holding the Summer Palace. The Emperor pays him the cost of the structure: 20.", TH(
- ("Rob","Year five, as announced. Three of five: Silke, Graham, the Emperor. Clark and Rich left."),
- ("Reina","Ten, ten, ten, ten and twenty. Sixty for the privilege of being right about the date."),
- ("Clark","Three of five. And he's in the corner next to my province.")))
+ ("Rob","Year five, as announced. Twenty for the palace, and it doesn't count: the Emperor's not on my list. Still two of four, Silke and Graham. Clark and Rich left."),
+ ("Reina","Ten, ten, ten, ten and twenty. Sixty for the privilege of being right about the date, and the palace is still standing."),
+ ("Clark","He was never walking at her. He's in the corner next to my province.")))
 say("Rob","Rich. I'll sell you the Scroll. Eight.", TH(
  ("Rob","He needs it — Customs House, Scroll, Jar for Province 7. I'm selling it to him at a loss, and he'll put it in Province 7, where my soldier is. Both of us know that."),
  ("Rich","He's offering me a bargain and telling me it's bait. I want to refuse on principle and I can't afford principle.")))
@@ -295,7 +295,7 @@ harvest("Graham pays out the harvest from the Harvest Pile.")
 rents()
 taxes(.50)
 build("Marble Pagoda", 20, {1:20}, key="Marble Pagoda", at="J23", hover=TH(
- ("Reina","No system this round, so the booklet says Pagoda. J23, in the bottom corner. He's already got his palace off me. This one's just a pagoda."),
+ ("Reina","No system this round, so the booklet says Pagoda. J23, in the bottom corner, a long way off his road. He's had his twenty from the Summer Palace, and he won't walk back for another."),
  ("","Reina pays the 20.")))
 say("Rob","This year: W1 to R14, next to Rich's Scroll. W2 to F15, along the strip.", TH(
  ("Rob","As promised. And the explanation, since nobody's said it: I haven't raided Province 2 once. Clark's soldier can't move until I do. I don't intend to until the last step."),
@@ -311,7 +311,8 @@ say("Rich","Ladies and gentlemen. My Scroll is on S13, and three people at this 
  ("Reina","It's the most Rich thing I have ever seen.")))
 say("Clark","Forty. Sell me the Scroll and I'm complete, and the throne's mine before his soldier gets anywhere.", TH(
  ("Clark","I'd take it in a heartbeat."),
- ("Rob","He'd be Emperor, and his pieces would go back to the box, and I'd need a palace from him instead of a Vase. I'd rather not start over.")))
+ ("Rob","He'd be Emperor, and off my list, and every piece he owns goes back to the box, the Vase I've been walking at since year one included. Reina gets his chair with nothing in it. Rich has sold the only piece he owns. That's two players on my list with empty provinces, and I need a piece from each. Rich would buy one. Reina would keep hers empty out of spite, and she'd be right to. I'd rather not start over."),
+ ("Reina","He's right. If Clark sits here, I'd never own a thing again.")))
 say("Reina","Forty-five, Rich, to buy a soldier and stand it on that Scroll.", TH(
  ("Reina","I won't buy a soldier for myself. I'll buy one for Rich. If his piece is guarded by a soldier that can move, Rob can't touch it with one."),
  ("Rich","The Emperor is bidding to protect my property. I've waited all evening for this.")))
@@ -389,7 +390,7 @@ say("Reina","My canal. If I'm leaving, I'm leaving a ditch.", TH(
  ("Reina","Twenty a year for whoever sits here next. I've a fair idea who."),
  ("Rob","She's building my canal. That's very generous.")))
 march({"W1":"S13", "W2":"F13"}, "Rob's soldiers move as announced: W1 steps onto S13 and takes Rich's Land Deed Scroll; W2 to F13, straight above Clark's Vase.", TH(
- ("Rob","Four of five. Silke, Graham, Reina, Rich. Clark's Vase next year, and his soldier on it can't move."),
+ ("Rob","Three of four. Silke, Graham, Rich. Clark's Vase next year, and his soldier on it can't move."),
  ("Rich","A hundred and twenty for my Scroll, and he took the Scroll. I'm comfortably ahead."),
  ("Clark","F13. Straight above my soldier. If my soldier could move it would take him. It can't.")),
  take={"W1":("LD","N16")})
@@ -416,12 +417,12 @@ say("Rob","This year: W2 to G13. Clark's soldier, then Clark's Vase.", TH(
  ("Clark","I'd like it on the record that I'd have paid him to raid me."),
  ("Graham","Nobody at this table has ever wanted to be raided before. It's a first.")))
 march({"W2":"G13"}, "Rob's northern soldier steps down from F13 onto G13, captures Clark's soldier, and takes his Vase as tribute.", TH(
- ("Rob","Five of five. A Customs House from Silke, a Jar from Graham, a palace from Reina, a Scroll from Rich, a Vase from Clark. A different piece from every player."),
+ ("Rob","Four of four. A Customs House from Silke, a Jar from Graham, a Scroll from Rich, a Vase from Clark. A piece from every player who holds one."),
  ("Clark","The first raid on Province 2 all evening, and it's the one that ends it."),
  ("Reina","He's done it with two soldiers, ten years, and a timetable.")),
  take={"W2":("VA","N17")})
-swap(8,1,"Robert Land has raided a different piece of realia from every player, and changes places with the Emperor. Rob takes the throne of Province 1; Reina Osorio becomes the Warlord.", TH(
- ("Rob","The booklet: when you've raided a piece from each player, you may change places with any player, including the Emperor. Every piece I took goes back to its province, and I take every bag in the imperial reserve."),
+swap(8,1,"Robert Land has raided a piece of realia from every other player who holds realia, and changes places with the Emperor. Rob takes the throne of Province 1; Reina Osorio becomes the Warlord.", TH(
+ ("Rob","The booklet: when you've raided a piece from each player who holds realia, you may change places with any player, including the Emperor. Every piece I took goes back to its province, and I take every bag in the imperial reserve."),
  ("Reina","The desert. I know where everything is."),
  ("Silke","He told us where he was going for ten years. We all wrote it down. It didn't help.")))
 say("Rob","I'll build the rest of the Wall, and the canal in Province 5 gets dredged. And I'll tell you the tax rate a year in advance.", TH(
@@ -434,7 +435,7 @@ act("The table calls it there. A Warlord has completed his objective and taken t
  ("Reina","Emperor to Warlord. It's the only demotion in this game that comes with a better view.")), map_hl=list(ACTIVE), big=True)
 
 RESULT = export(
- "The Warlord completed his objective — a different piece of realia raided from every other player — and changed places with the Emperor. The table stopped there, and every player is scored by the province they finished in against the one they drew.",
- ["Rob announced every move a year before he made it. What mattered was where he stood. He took the Emperor's palace by walking at it for five years, and he took Clark's Vase from the strip under the Wall without ever raiding his province, so that neither of his soldiers was allowed to move.",
-  "The peasants paid ransom. Silke and Graham each put a piece beside the Warlord's soldier in the first year so he would take it and leave, and Rob sold Silke's Customs House to Graham, who used it to complete his set and take Rich's chair. Rich, now a wheat farmer, auctioned off the fate of his own Scroll between the Official, the Emperor and the Warlord, and took Rob's hundred and twenty for leaving it unguarded — half a million more than Clark could pay and still keep twenty in hand.",
-  "Reina Osorio refused to buy soldiers, paid sixty in tribute for one palace, and finishes the evening in the desert."])
+ "The Warlord completed his objective — a piece of realia raided from every other realia-holding player — and changed places with the Emperor. The table stopped there, and every player is scored by the province they finished in against the one they drew.",
+ ["Rob announced every move a year before he made it. What mattered was where he stood. His northern soldier walked the length of the Emperor's province, sixty in tolls with the Summer Palace on the way, though the Emperor was never on his list. It was going to Clark's Vase, which it took from the strip under the Wall without ever raiding Province 2, so that neither of Clark's soldiers was allowed to move.",
+  "The peasants paid ransom. Silke and Graham each put a piece beside the Warlord's soldier in the first year so he would take it and leave, and Rob sold Silke's Customs House to Graham, who used it to complete his set and take Rich's chair. Rich, now a wheat farmer, auctioned off the fate of his own Scroll between the Official, the Emperor and the Warlord, and took Rob's hundred and twenty for leaving it unguarded — half a million more than Clark could pay and still keep twenty in hand. Rob paid it to keep Clark off the throne: crowned, Clark would have dropped off his list and left two players on it with nothing to raid, Rich and the dethroned Reina.",
+  "Reina Osorio refused to buy soldiers, paid sixty in tribute to a soldier that was only passing through, and finishes the evening in the desert."])
