@@ -135,7 +135,7 @@ The eight-player wildcard came the same night: with the Emperor left out, the Wa
 
 **Why.** No booklet covers it, and the engine was quietly carrying the old Warlord's raids over. The objective is about things done ("raid a different piece of realia from each other player"), and the pieces the old Warlord raided have already gone home: taking the throne returns all realia (Section 11). Every other seat works the same way, since a new occupant's progress is only what they themselves hold. The army stays because the Warlord's soldiers are mercenaries paid in grain ("accumulate wealth enough to buy more soldiers"): they serve whoever holds the desert, not a person. Letting the army follow its old commander to the palace was considered and turned down: the new Warlord would start with nothing and rebuild at one soldier a round, and no rule covers an Emperor with an army. Decided by Manish on 2026-10-27, when the agent-played pilot put Rob on the throne and Reina in the desert.
 
-**Recorded in** rulebook Section 14 and `playthrough-sim/engine.py` (`swap`).
+**Recorded in** rulebook Section 11 and `playthrough-sim/engine.py` (`swap`).
 
 ### Raiding realia: 5 or the piece
 
