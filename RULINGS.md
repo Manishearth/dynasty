@@ -28,7 +28,7 @@ These are the numbered notes, as of this writing. Appendix F has the full text a
 | 7 | What happens when a payment would take a player's grain below zero? | Sell before you sink: sell realia back to the Harvest Pile at 2 each, your choice of pieces, until the payment is covered or you have none left; then the shortfall is a debt to the pile. In debt you can't bid, buy, trade, give grain, pay toward a public work, buy soldiers or change provinces, and grain received pays the debt first. A player in debt counts as facing starvation, so debt is a seventh cause for revolt. Scoring is unchanged. See "Running out of grain" below |
 | 8 | What is tax charged on? | Harvest income only: harvest + public works + new harvest squares − consumption. Not rent, salaries, commissions, tolls, tribute or deals. Round One's income is the 60 each player starts with. No tax on a negative income, and the Emperor pays none |
 | 9 | What is the extra realia each province starts with at 4–5 players? | A pattern, not a ruling. It's always the one type that province never needs: 2 and 5 swap, and 3 → 6 → 4 → 7 → 3 form a ring |
-| 10 | Is unsold stock on the map? | No. A piece goes on a square in the buyer's province the moment it's bought or traded. Returned pieces rejoin their province's unsold stock. Otherwise the Warlord could raid most of his objective in Round Two |
+| 10 | Is unsold stock on the map? | No. A piece goes on a square in the buyer's province the moment it's bought or traded. Returned pieces rejoin their province's unsold stock. Otherwise the Warlord could raid most of their objective in Round Two |
 | 11 | Can a Peasant become Emperor directly? | No. The peasants' Objectives sections govern over the shared "Becoming Emperor" boilerplate. A Peasant must first take an upper-class seat |
 | 12 | Where does a returned piece go if its home province is empty? | To the province that started the game holding it, to be auctioned again as soon as possible |
 | 13 | One public works project per round, but the Emperor's booklet allows "any number of sections" | One project per round. A project may be any number of sections of the same work |
@@ -115,7 +115,7 @@ Two readings the playthroughs add, from the booklets' wording: each province dev
 
 **Ruling.** A raid on the Summer Palace, Winter Palace or Marble Pagoda costs the Emperor the structure's full cost, 20, and nothing else. The building stays where it is. The square is raided like any other and can't be raided again.
 
-**Why.** The Emperor's booklet calls the three buildings realia ("any realia (the Summer Palace, Winter Palace and Marble Pagoda)"), and the Warlord's booklet lets him demand "either 5 million bags of grain, the realia or the cost of the realia" when he raids realia. Read together, that would let the Warlord carry off a palace. But the Emperor's booklet names one outcome for these buildings, "you must pay him the cost of the structure", and taking one would un-build a public work: the game can't end until every work stands, and no rule says how to rebuild one. Settled by Manish on 2026-10-27.
+**Why.** The Emperor's booklet calls the three buildings realia ("any realia (the Summer Palace, Winter Palace and Marble Pagoda)"), and the Warlord's booklet lets the Warlord demand "either 5 million bags of grain, the realia or the cost of the realia" when raiding realia. Read together, that would let the Warlord carry off a palace. But the Emperor's booklet names one outcome for these buildings, "you must pay him the cost of the structure", and taking one would un-build a public work: the game can't end until every work stands, and no rule says how to rebuild one. Settled by Manish on 2026-10-27.
 
 **Recorded in** rulebook Section 14, Province 1 in Section 20, Appendices C and G, the Emperor's and Warlord's reference cards, and `playthrough-sim/engine.py` (a palace raid charges 20 and leaves the palace on the board).
 
@@ -145,7 +145,7 @@ Two readings the playthroughs add, from the booklets' wording: each province dev
 
 **Ruling.** No soldier may stand on a sea square.
 
-**Why.** The Warlord's booklet lets him go "across water", but Note 16 says Provinces 4 and 5 can be reached only through the gap in the west, which is true only if the coast is closed. Confirmed by Manish on 2026-10-25.
+**Why.** The Warlord's booklet lets the Warlord go "across water", but Note 16 says Provinces 4 and 5 can be reached only through the gap in the west, which is true only if the coast is closed. Confirmed by Manish on 2026-10-25.
 
 ### Moving onto a square
 
@@ -155,7 +155,7 @@ Two readings the playthroughs add, from the booklets' wording: each province dev
 
 ### Placing pieces
 
-**Ruling.** Realia can't go on a raided square or under a palace or cut-out, and a palace or cut-out can't go on a square holding realia. A soldier may stand on a square holding realia. Realia the Warlord takes goes on a square of his own territory. Wall links and canal sections are built in the order printed on the map (link 1 first, section 1 first).
+**Ruling.** Realia can't go on a raided square or under a palace or cut-out, and a palace or cut-out can't go on a square holding realia. A soldier may stand on a square holding realia. Realia the Warlord takes goes on a square of the Warlord's own territory. Wall links and canal sections are built in the order printed on the map (link 1 first, section 1 first).
 
 **Why.** A raided square "may hold realia" only after reclaiming (Note 14), so before that it can't. The cut-out rule is the Setup guidance. Confirmed by Manish on 2026-10-25.
 
@@ -163,7 +163,7 @@ Two readings the playthroughs add, from the booklets' wording: each province dev
 
 **Ruling.** A bought soldier belongs to the player who bought it, and stays where it stands when that player changes seats. It still can't move until the Warlord has raided the province it was bought in.
 
-**Why.** Soldiers are bought with the player's own grain, and on a seat change the mover keeps their grain. Recommended to Manish on 2026-10-25; he asked which made more sense and hasn't overruled it. What happens to a *displaced* player's soldiers is unsettled (see Open questions); the engine refuses that case, and no playthrough needs it.
+**Why.** Soldiers are bought with the player's own grain, and on a seat change the mover keeps their grain. Recommended to Manish on 2026-10-25, who asked which made more sense and hasn't overruled it. What happens to a *displaced* player's soldiers is unsettled (see Open questions); the engine refuses that case, and no playthrough needs it.
 
 ### Running out of grain (Note 7)
 
@@ -191,9 +191,9 @@ The details, settled by Manish on 2026-10-25:
 
 ### Counting the acclamation after a revolt
 
-**Ruling.** Anyone but the deposed Emperor may claim the throne, the Warlord included. Each claimant's grain in hand, soldiers on the board and friends (players backing that claim, one claim each) are counted. A claimant who leads in one count is acclaimed if no rival leads in another; otherwise the claimant who leads in more of the three is acclaimed. A tie in a count leads nobody. With no winner, Chaos goes on, and the table may count again whenever the claims change. The deposed Emperor may back a claimant, but her grain isn't counted.
+**Ruling.** Anyone but the deposed Emperor may claim the throne, the Warlord included. Each claimant's grain in hand, soldiers on the board and friends (players backing that claim, one claim each) are counted. A claimant who leads in one count is acclaimed if no rival leads in another; otherwise the claimant who leads in more of the three is acclaimed. A tie in a count leads nobody. With no winner, Chaos goes on, and the table may count again whenever the claims change. The deposed Emperor may back a claimant, but their grain isn't counted.
 
-**Why.** Section 16 lists the qualifications ("the most money, the most friends, the most soldiers, or any combination") but not how to settle rival claims. The Warlord's starting army nearly always gives him the most soldiers, so "any one qualification wins" would hand him the throne after almost every revolt. Counting the three lets a soldiers-only claim block rather than win, keeps friends as real a resource as grain, and makes a split table pay for its revolt with a longer Chaos. Rich proposed it at the table in game 7; adopted into the rulebook by Manish on 2026-10-27.
+**Why.** Section 16 lists the qualifications ("the most money, the most friends, the most soldiers, or any combination") but not how to settle rival claims. The Warlord's starting army nearly always gives the Warlord the most soldiers, so "any one qualification wins" would hand the Warlord the throne after almost every revolt. Counting the three lets a soldiers-only claim block rather than win, keeps friends as real a resource as grain, and makes a split table pay for its revolt with a longer Chaos. Rich proposed it at the table in game 7; adopted into the rulebook by Manish on 2026-10-27.
 
 **Recorded in** rulebook Section 16, Appendices C and G, the "Running the round" card, and games 2 and 7.
 
@@ -252,7 +252,7 @@ The deck in `i-ching.json` is reworded. Its effects follow the 1969 cards, and t
 | The Emperor's Share | What is split 50/50? | The extra harvest a province's public works produce that round |
 | Public Utility Tax | Does the Emperor pay it too? | No. The Emperor collects it, so Province 1 doesn't pay itself: 2 from every other occupied province and 2 more from each of those with a public work. (Playthrough reading, used in games 1, 2 and 3.) |
 | Storms and Raiders | Where do the repair payments go? | To the Harvest Pile, like other damages. (Playthrough reading.) |
-| The Canal Gives Way | What does Province 1 pay for its own finished canal? | Nothing: the Emperor would be paying himself. (Playthrough reading, game 7.) |
+| The Canal Gives Way | What does Province 1 pay for its own finished canal? | Nothing: the Emperor would be paying the Emperor. (Playthrough reading, game 7.) |
 | The Emperor's Share | Is new land's harvest shared? | No. New land isn't a public work. (Playthrough reading, game 7.) |
 | Any card | What if a named province is empty? | Its part of the card is skipped: nobody pays, nobody plays its disaster |
 
@@ -275,20 +275,20 @@ The engine in `playthrough-sim/` makes some assumptions so it can keep a ledger.
 - **The Harvest Pile is finite.** It starts at 2,500 million, the face value of the bags in the box, less the 60 dealt to each player.
 - **Warlord's objective:** one piece of realia per player; a later raid on the same player replaces the earlier entry.
 - **Every soldier is tracked square by square.** The engine refuses a step longer than one square, a second move in a round, a province's soldiers moving before the Warlord's, a bought soldier moving before its province is raided, a diagonal capture, and a raid the Warlord's disaster forbids. Tolls and raids are computed from the squares, not chosen by the script.
-- **The Warlord's disasters.** "No raids on Provinces 5, 6 or 7" and "no raids this year" stop raids only; his soldiers may still walk onto squares that don't raid.
+- **The Warlord's disasters.** "No raids on Provinces 5, 6 or 7" and "no raids this year" stop raids only; the Warlord's soldiers may still walk onto squares that don't raid.
 - **Every playthrough is its own game.** The same eight names appear in each, every player in the province their name puns on, and nothing carries from one game to another.
 
 ### Readings the playthroughs rely on
 
 Judgement calls made while writing the games. None overrides a rule; each fills a silence the way a table would. Raise any of them with Manish if they look wrong.
 
-- **The Warlord's objective counts raids, not holdings.** "Raid a different piece of realia from each player" is met by the raid itself: a piece he has since sold back or on still counts, and a piece he once sold to a player counts when he raids it back from that player. Game 5 takes a Customs House, Jar, Scroll and Vase from four different players, plus a palace, so it satisfies the strictest reading too.
+- **The Warlord's objective counts raids, not holdings.** "Raid a different piece of realia from each player" is met by the raid itself: a piece since sold back or on still counts, and a piece once sold to a player counts when raided back from that player. Game 5 takes a Customs House, Jar, Scroll and Vase from four different players, plus a palace, so it satisfies the strictest reading too.
 - **The Warlord may sell raided realia privately**, to anyone, as an ordinary trade; the buyer places it at once (Note 10). Games 4 and 5.
 - **Private deals are allowed for anything**, including paying a player to leave a piece unguarded or a Gentry to hold a piece (games 3 and 5). The engine records only the grain.
 - **A bought soldier may be placed on its buyer's own realia** (games 4 and 5); it then guards the piece, since the Warlord can take it only by capturing first, straight on.
 - **Twenty in hand caps a useful bid.** A player who must keep 20 to change seats can't usefully bid past their grain less 20 for a piece that completes their set (game 5, Year 7).
 - **Authored stopping points.** The short game stops after the agreed eight rounds (Note 19). Game 5 stops when the Warlord takes the throne: the rules don't end the game there, but the table agrees to.
-- **The Warlord may bid at auction.** Nothing forbids it. What he buys goes on a square of his own territory, where no raid can reach it, and he may sell it privately (games 2 and 5). Selling a raided piece back is a private trade, so the Warlord keeps the whole price; nothing goes to the Harvest Pile (games 4 and 5).
+- **The Warlord may bid at auction.** Nothing forbids it. What the Warlord buys goes on a square of their own territory, where no raid can reach it, and they may sell it privately (games 2 and 5). Selling a raided piece back is a private trade, so the Warlord keeps the whole price; nothing goes to the Harvest Pile (games 4 and 5).
 - **A capture can also be a raid.** A Warlord soldier that captures a bought soldier standing on an un-raided province square raids that square too, and may take the realia on it (game 5). During a "no raids" disaster that capture is refused, because the raid is (game 1).
 - **The Emperor's Share card and tax.** Tax is levied on the round's income before the share is paid, and rent paid or received never enters taxable income (games 1 and 5).
 - **Returned pieces are re-auctioned at the next auction step**, which is the same round's if the seat change comes before the auction (Section 10, "as soon as possible").
@@ -298,7 +298,7 @@ Judgement calls made while writing the games. None overrides a rule; each fills 
 - **A seat change may be declared after the round's card is turned and before the harvest**, so the mover collects the new province's harvest (game 6). Section 5 allows deals "at any point in the round".
 - **"Sharing the cost" of new land** is satisfied by any share from the crown, even 1 a square (game 6).
 - **A revolt short of two supporters simply doesn't happen** (game 6).
-- **During Chaos:** the deposed Emperor stays in Province 1, pays its consumption and takes its raids, and her grain is the reserve the next Emperor takes (games 2 and 7). No new land can be bought, since there is no Emperor to pay the share (game 7). A revolt declared after the tax is announced but before it is paid voids that year's tax, and Chaos can end mid-round: the new Emperor declares tax, builds, buys land and pays salaries in the round of the acclamation (game 7).
+- **During Chaos:** the deposed Emperor stays in Province 1, pays its consumption and takes its raids, and their grain is the reserve the next Emperor takes (games 2 and 7). No new land can be bought, since there is no Emperor to pay the share (game 7). A revolt declared after the tax is announced but before it is paid voids that year's tax, and Chaos can end mid-round: the new Emperor declares tax, builds, buys land and pays salaries in the round of the acclamation (game 7).
 - **How the acclamation is counted** is now a ruling: see "Counting the acclamation after a revolt" under Clarifications. Rich proposes it at the table in game 7.
 - **A seat change in the last round, before the last work is built, counts for scoring** (game 7).
 
@@ -311,6 +311,6 @@ Raise these with Manish before relying on an answer.
 - **The strip along the southern river between Provinces 3 and 7.** No dotted border seems to claim it, so `map.json` treats it as the Warlord's undeveloped land. Check against the cloth.
 - **A displaced player's bought soldiers.** When a player is replaced in a seat change, do their soldiers go to the player who replaced them, stay theirs, or return to the Warlord's stock? The booklets don't say. No playthrough needs an answer yet; the engine refuses the case.
 
-- **The Warlord's soldiers when he changes seats.** When the Warlord completes his objective and takes another seat (game 5), who commands the Warlord soldiers standing on the board, and the bought soldiers of the player he displaces? Game 5 stops at that moment, so it doesn't need an answer.
+- **The Warlord's soldiers when they change seats.** When the Warlord completes their objective and takes another seat (game 5), who commands the Warlord soldiers standing on the board, and the bought soldiers of the player they displace? Game 5 stops at that moment, so it doesn't need an answer.
 
 (Answered on 2026-10-25 and moved to Clarifications: which rivers charge a toll, and who is paid for crossing a Wall link or canal section. Answered on 2026-10-26: the Pagoda rule.)
