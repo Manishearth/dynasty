@@ -111,6 +111,14 @@ Two readings the playthroughs add, from the booklets' wording: each province dev
 
 **Recorded in** `playthrough-sim/docs/rules-model.md`.
 
+### A raided palace stays standing
+
+**Ruling.** A raid on the Summer Palace, Winter Palace or Marble Pagoda costs the Emperor the structure's full cost, 20, and nothing else. The building stays where it is. The square is raided like any other and can't be raided again.
+
+**Why.** The Emperor's booklet calls the three buildings realia ("any realia (the Summer Palace, Winter Palace and Marble Pagoda)"), and the Warlord's booklet lets him demand "either 5 million bags of grain, the realia or the cost of the realia" when he raids realia. Read together, that would let the Warlord carry off a palace. But the Emperor's booklet names one outcome for these buildings, "you must pay him the cost of the structure", and taking one would un-build a public work: the game can't end until every work stands, and no rule says how to rebuild one. Settled by Manish on 2026-10-27.
+
+**Recorded in** rulebook Section 14, Province 1 in Section 20, Appendices C and G, the Emperor's and Warlord's reference cards, and `playthrough-sim/engine.py` (a palace raid charges 20 and leaves the palace on the board).
+
 ### Is the Province 1 Wall owed when Provinces 2 and 3 are empty?
 
 **Ruling.** Yes, its four links. Note 4 excuses works in unoccupied provinces, and Province 1 is occupied.

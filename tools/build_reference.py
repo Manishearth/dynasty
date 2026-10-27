@@ -205,7 +205,7 @@ DUTIES = {
     8: ["Move every soldier one square, any direction.",
         "Raid one unraided square per soldier: 5, or 10 in Province 1.",
         "Raiding realia: demand 5, the piece itself, or its cost.",
-        "Raiding the Summer Palace, Winter Palace or Marble Pagoda: the Emperor pays you its full cost (20).",
+        "Raiding the Summer Palace, Winter Palace or Marble Pagoda: the Emperor pays you its full cost (20). The building stays.",
         "Any other square, canal and reservoir squares included, is an ordinary raid, and the work is undamaged.",
         "Sell soldiers to anyone who asks: 20 each, you keep 25%.",
         "Pay 5 per soldier that crosses a river or a public work, the Great Wall included. The Wall stands outside the provinces, so it can't be raided.",
@@ -213,14 +213,16 @@ DUTIES = {
 }
 
 OWED = {
-    1: [("Summer Palace", "20", "You", "—"), ("Winter Palace", "20", "You", "—"),
-        ("Marble Pagoda", "20", "You", "—"),
-        ("Great Wall, 12 links over 1, 2, 3", "40 each", "Share with 2 and 3", "—"),
-        ("Grand Canal, 2 sections in 1", "40 each", "You", "+10 each"),
-        ("Grand Canal, 2 each in 4, 5, 6", "40 each", "You in 5 and 6; share with 4", "+10 each"),
-        ("Irrigation System in 2", "30", "Share with 2", "+10"),
-        ("Reservoir in 3", "80", "Share with 3", "+20"),
-        ("Reservoir in 7", "60", "You", "+20")],
+    # The Emperor's rows carry a fifth column: what must stand first.
+    1: [("Summer Palace", "20", "You", "—", "—"), ("Winter Palace", "20", "You", "—", "—"),
+        ("Marble Pagoda", "20", "You", "—", "An idle round"),
+        ("Great Wall ×12", "40 each", "Share with 2 and 3", "—", "Summer Palace"),
+        ("Grand Canal ×2 in 1", "40 each", "You", "+10 each", "Summer Palace"),
+        ("Grand Canal ×2 in 4", "40 each", "Share with 4", "+10 each", "Winter Palace"),
+        ("Grand Canal ×2 in 5, 6", "40 each", "You", "+10 each", "Winter Palace"),
+        ("Irrigation System in 2", "30", "Share with 2", "+10", "—"),
+        ("Reservoir in 3", "80", "Share with 3", "+20", "—"),
+        ("Reservoir in 7", "60", "You", "+20", "—")],
     2: [("Irrigation System", "30", "Share with the Emperor", "+10"),
         ("Great Wall, 4 links above you", "40 each", "Share with the Emperor", "—")],
     3: [("Reservoir", "80", "Share with the Emperor", "+20"),
@@ -291,7 +293,7 @@ CHARACTER = {
 }
 
 EXTRA = {
-    1: ("Beware the Warlord", "Every raid on your province costs you 10, not 5. A raid on the Summer Palace, Winter Palace or Marble Pagoda costs its full price."),
+    1: ("Beware the Warlord", "Every raid on your province costs you 10, not 5. A raid on the Summer Palace, Winter Palace or Marble Pagoda costs its full price, and the building stays."),
     8: ("Your army", "2 soldiers at 5–6 players, 4 at 8 or more, starting anywhere on undeveloped land. A raided square can never be raided again, but you may stand on it. Soldiers capture by moving onto a soldier orthogonally, never diagonally. Bought soldiers stay frozen in their province until you raid it."),
 }
 
@@ -415,9 +417,14 @@ def disasters(p):
 def player_back(p):
     pop, eats, h = STATS[p]
     rows = [(a, b, signed(c), signed(d), signed(e)) for a, b, c, d, e in income_table(eats, h)]
-    inc = table(["Population", "Eats", "Good", "Average", "Bad"], rows, "income")
+    inc = table(["Population", "Eats", "Good", "Average", "Bad"], rows, "income").replace(
+        "<thead><tr>", '<thead><tr><th class="blank"></th><th class="blank"></th>'
+                       '<th class="grp" colspan="3">Base income</th></tr><tr>', 1)
     owed = ""
-    if OWED[p]:
+    if p == 1:
+        owed = table(["Work", "Cost", "Who pays", "Adds / yr", "Requires"],
+                     [(E(a), b, E(c), d, E(r)) for a, b, c, d, r in OWED[p]], "owed")
+    elif OWED[p]:
         owed = table(["Work", "Cost", "Who pays", "Adds / yr"], [(E(a), b, E(c), d) for a, b, c, d in OWED[p]], "owed")
     owed += f'<p class="small">{E(OWED_NOTE[p])}</p>'
     nl = ""
@@ -426,7 +433,7 @@ def player_back(p):
               '20 each from the Pile, +20 every round after. Share cost and yield with the Emperor.</p></section>')
     return (head(f"{p} · {E(ROLE[p])}", "Income, works and new land", CLASS[p], p) +
             f'<section><h3>Your income each year</h3>{inc}'
-            '<p class="small">Income = harvest − what your people eat + what your works add'
+            '<p class="small">Income = base (harvest − what your people eat) + what your works add'
             + ('' if p == 8 else ' + 20 per new harvest square you own') + '. '
             + ('' if p == 1 else 'This is what you pay tax on. ')
             + 'Population ×1 is 100M nationally; ×6 is 600M, the ceiling.</p></section>'
@@ -472,10 +479,13 @@ td{padding:.025in .04in;border-bottom:.5px solid var(--rule);vertical-align:top}
 table.income td,table.income th{text-align:right;font-family:var(--mono);font-size:10.5pt;padding:.045in .06in}
 table.income td:first-child,table.income th:first-child{text-align:left}
 table.income td:nth-child(3){font-weight:700}
+table.income td:nth-child(2),table.income th:nth-child(2){color:var(--soft);border-right:1.5px solid var(--ink)}
+table.income th.grp{text-align:center;border-bottom:.5px solid var(--rule);padding-bottom:0}
+table.income th.blank{border-bottom:0}
 table.works{font-size:7.8pt} table.works td:nth-child(3),table.works td:nth-child(4){white-space:nowrap}
 table.pile{font-size:8.2pt}
 table.obj td:first-child{white-space:nowrap;font-family:var(--mono);width:3.4em}
-table.owed td:nth-child(2),table.owed td:nth-child(4){white-space:nowrap}
+table.owed td:nth-child(2){white-space:nowrap}
 ol.turn{list-style:none;margin:.04in 0;padding:0}
 ol.turn li{display:flex;gap:.08in;padding:.035in 0;border-bottom:.5px solid var(--rule)}
 ol.turn .n{flex:none;width:.2in;height:.2in;border-radius:50%;background:var(--verm);color:#fff;
