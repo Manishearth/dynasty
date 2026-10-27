@@ -150,6 +150,10 @@ function gsrc(n){return 'images/'+n+'.svg';}
 function gimg(x,y,w,n,white){return '<image href="'+gsrc(n)+'" x="'+x+'" y="'+y+'" width="'+w+'" height="'+w+'"'+
   (white?' style="filter:brightness(0) invert(1)"':'')+'/>';}
 function gpiece(n,text){return '<span class="piece"><img src="'+gsrc(n)+'" alt="">'+text+'</span>';}
+/* the soldier glyph's outline (from tools/glyphs.py, filled in by build.py), so soldiers take each side's colour */
+const SOLDIER=/*SOLDIER_PATH*/'';
+function gsol(cls,title){return '<svg class="'+cls+'" viewBox="0 0 10 10" aria-hidden="true">'+(title?'<title>'+title+'</title>':'')+
+  '<path d="'+SOLDIER+'" fill="currentColor"/></svg>';}
 /* ---------- what changed, per step ---------- */
 /* Each step's Δ compares its state with the step before: grain, realia (held and
    unsold), public works and new harvest squares (credited to the province's player),
@@ -198,7 +202,7 @@ function dsym(key){
   const [kind,v]=[key[0],key.slice(2)];
   if(kind==='g') return GRAIN_SVG;
   if(kind==='r') return '<img class="dg" src="'+gsrc(IMG[v])+'" alt="'+esc(D.rname[v])+'" title="'+esc(D.rname[v])+'">';
-  if(kind==='s') return '<span class="dg dsol'+(v==='W'?'':' b')+'" title="'+(v==='W'?'Warlord soldier':'bought soldier')+'"></span>';
+  if(kind==='s') return gsol('dg dsol'+(v==='W'?'':' b'),v==='W'?'Warlord soldier':'bought soldier');
   if(v==='land') return '<span class="dg dland" title="new harvest square"></span>';
   return '<img class="dg" src="'+gsrc(WORKGLYPH[v])+'" alt="'+esc(WORKNAME[v]||v)+'" title="'+esc(WORKNAME[v]||v)+'">';
 }
@@ -280,9 +284,9 @@ function drawMap(s,hl,mv){
   for(const q in at){
     const [x,y]=sqxy(q), n=at[q].length;
     at[q].forEach((v,i)=>{
-      const ox=n>1?(i-(n-1)/2)*4:0;
-      svg+='<circle cx="'+(x+ox)+'" cy="'+y+'" r="3.2" fill="'+(v[1]==='W'?'#16150F':'#175FB5')+'" stroke="#fff" stroke-width=".9">'+
-        '<title>'+esc(v[0])+'</title></circle>';
+      const ox=n>1?(i-(n-1)/2)*5:0;
+      svg+='<path d="'+SOLDIER+'" transform="translate('+(x+ox-4.5)+' '+(y-4.6)+') scale(.9)" fill="'+(v[1]==='W'?'#16150F':'#175FB5')+
+        '" stroke="#fff" stroke-width="1.1" stroke-linejoin="round" paint-order="stroke"><title>'+esc(v[0])+'</title></path>';
     });
   }
   for(const p in LBL){
@@ -301,7 +305,7 @@ function drawMap(s,hl,mv){
       gpiece('bamboo-brush','Bamboo&nbsp;Brush')+gpiece('dragon-jar','Dragon&nbsp;Jar')+
       gpiece('wooden-bowl','Wooden&nbsp;Bowl')+gpiece('vase','Vase')+
       '<span><span class="sw raid"></span>raided&nbsp;square</span>'+
-      (ACT.has('8')?'<span><span class="sw sol"></span>Warlord&nbsp;soldier</span><span><span class="sw osol"></span>bought&nbsp;soldier</span>':'')+
+      (ACT.has('8')?'<span>'+gsol('sw sol')+'Warlord&nbsp;soldier</span><span>'+gsol('sw osol')+'bought&nbsp;soldier</span>':'')+
       '<span><span class="sw imp"><img src="'+gsrc('summer-palace')+'" alt=""></span>palace&nbsp;or&nbsp;pagoda</span>'+
       '<span><span class="sw wal"></span>Wall&nbsp;link</span>'+
       '<span><span class="sw can"></span>canal</span>'+

@@ -33,7 +33,7 @@ The repo is `C:\Users\manishearth\dev\dynasty-new`, pushed to GitHub as `Manishe
 | `map-board.svg` | The same map's ground alone: terrain, grid, province borders, coast and rivers, with no frame, labels or printed works. For pages that draw their own state on the board; the playthrough uses it | `tools/build_map.py` |
 | `i-ching.json`, `i-ching.html` | The twenty cards, reworded | `tools/build_events.py` |
 | `reference-cards.html` | Printable two-sided reference cards: one general card and one per province | `tools/build_reference.py` |
-| `images/*.svg` | One glyph per piece (realia, palaces, wall, canal, irrigation, reservoir) | `tools/glyphs.py` |
+| `images/*.svg` | One glyph per piece (realia, palaces, wall, canal, irrigation, reservoir, soldier) | `tools/glyphs.py` |
 | `tools/add_glyphs.py` | Puts a glyph before every piece name in the rulebook and the I Ching page. Also exports `js_terms()`, which the playthrough build uses so the page marks the same words | the map/cards session |
 | `README.md`, `LICENSE` | Repo front page and CC BY-SA 4.0 | |
 

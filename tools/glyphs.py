@@ -5,7 +5,7 @@ Realia paths match the ones the playthrough page draws inline.
 """
 import os
 
-WALNUT, SLATE = "#6E4A2C", "#3D5568"
+WALNUT, SLATE, INK = "#6E4A2C", "#3D5568", "#16150F"
 
 GLYPHS = {
     # realia: turned walnut pieces
@@ -32,6 +32,10 @@ GLYPHS = {
                       "M5 1c1.3 1.7 1.9 2.7 1.9 3.4a1.9 1.9 0 0 1-3.8 0C3.1 3.7 3.7 2.7 5 1zM1 7h8v.9H1zM1 8.6h8v.9H1z"),
     "reservoir":     ("Reservoir", SLATE,
                       "M.8 9.2 2.4 1.8h1.5v7.4zM4.6 3.4h4.6v5.8H4.6zM5.2 5c.6-.6 1.2-.6 1.8 0s1.2.6 1.8 0v.9c-.6.6-1.2.6-1.8 0s-1.2-.6-1.8 0zM5.2 7.1c.6-.6 1.2-.6 1.8 0s1.2.6 1.8 0V8c-.6.6-1.2.6-1.8 0s-1.2-.6-1.8 0z"),
+    # soldiers: a helmeted bust, plume, helmet, face and shoulders kept apart
+    "soldier":       ("Soldier", INK,
+                      "M5 1.2 5.55 2.7H4.45zM3.3 4.4A1.7 1.7 0 0 1 6.7 4.4zM3.8 4.75h2.4v.55a1.2 1.2 0 0 1-2.4 0z"
+                      "M1.6 9.2C1.6 7.4 3 6.8 5 6.8s3.4.6 3.4 2.4z"),
 }
 
 

@@ -32,7 +32,7 @@ ROLE = {1: "Emperor", 2: "Official", 3: "Gentry / Landholder", 4: "Scholar",
         5: "Silk Peasant", 6: "Rice Peasant", 7: "Wheat Peasant", 8: "Warlord"}
 # The emblem in a province card's header: the realia it sells, or the Emperor's Winter Palace.
 MARK = {1: "winter-palace", 2: "customs-house", 3: "land-deed-scroll", 4: "bamboo-brush",
-        5: "dragon-jar", 6: "wooden-bowl", 7: "vase"}
+        5: "dragon-jar", 6: "wooden-bowl", 7: "vase", 8: "soldier"}
 CLASS = {1: "imperial", 2: "upper", 3: "upper", 4: "upper",
          5: "lower", 6: "lower", 7: "lower", 8: "outside"}
 
@@ -306,13 +306,12 @@ def table(head, rows, cls=""):
     return f'<table class="{cls}"><thead><tr>{h}</tr></thead><tbody>{b}</tbody></table>'
 
 
-def head(title, sub, kind, side, p=None):
-    """A province card shows its emblem where the others show FRONT or BACK."""
+def head(title, sub, kind, p=None):
+    """A province card shows its emblem in the header's corner."""
+    corner = ""
     if p in MARK:
         corner = (f'<svg class="mark" viewBox="0 0 10 10" aria-hidden="true">'
                   f'<path d="{GLYPHS[MARK[p]][2]}" fill-rule="evenodd" fill="currentColor"/></svg>')
-    else:
-        corner = f'<span class="side">{side}</span>'
     return f'<header class="ch {kind}"><div><h2>{title}</h2><p>{sub}</p></div>{corner}</header>'
 
 
@@ -327,7 +326,7 @@ def general_front():
     realia = table(["Realia", "Sold by", "Realia", "Sold by"],
                    [(REALIA[a], f"{a} · {ROLE[a].split(' /')[0]}", REALIA[b], f"{b} · {ROLE[b]}")
                     for a, b in ((2, 5), (3, 6), (4, 7))], "realia")
-    return (head("The round", "Everyone · one round is one year", "general", "front") +
+    return (head("The round", "Everyone · one round is one year", "general") +
             '<section><h3>Turn order</h3>'
             '<p class="small">Round One has no I Ching and no harvest, so it starts at step 3, rent. '
             'Its taxable income is the 60 everyone starts with.</p>'
@@ -345,7 +344,7 @@ def general_back():
                  "pile")
     works = table(["Work", "Province", "Cost", "Adds / yr", "Note"],
                   [(E(w), E(p), c, a, E(n)) for w, p, c, a, n in WORKS], "works")
-    return (head("Money and building", "Everyone · all figures in millions of bags of grain", "general", "back") +
+    return (head("Money and building", "Everyone · all figures in millions of bags of grain", "general") +
             f'<section><h3>Money at a glance</h3><dl class="money">{money}</dl></section>'
             f'<section><h3>The Harvest Pile</h3>{pile}'
             '<p class="small">The Gentry runs the Pile. Taxes are not the Pile: they go to the Emperor\'s own reserve.</p></section>'
@@ -359,14 +358,14 @@ def running_front():
         f'<li><span class="n">{i}</span><div><b>{E(what)}</b><span class="who">{E(who)}</span>'
         f'<p class="say">“{E(say)}”</p><p class="check">{E(check)}</p></div></li>'
         for i, (what, who, say, check) in enumerate(SCRIPT, 1))
-    return (head("Running the round", "Read each line aloud, then check before moving on", "general", "front") +
+    return (head("Running the round", "Read each line aloud, then check before moving on", "general") +
             f'<ol class="turn script">{steps}</ol>' + foot())
 
 
 def running_back():
     def ul(items, cls=""):
         return f'<ul class="{cls}">' + "".join(f"<li>{i}</li>" for i in items) + "</ul>"
-    return (head("Running the round", "Round One, Chaos and the end of a round", "general", "back") +
+    return (head("Running the round", "Round One, Chaos and the end of a round", "general") +
             f'<section><h3>Round One</h3>{ul(ROUND_ONE, "duties")}</section>'
             f'<section><h3>During Chaos</h3>{ul(CHAOS, "duties")}</section>'
             f'<section><h3>Before the next round</h3>{ul(END_CHECKS, "checks")}</section>'
@@ -397,7 +396,7 @@ def player_front(p):
     pop, eats, h = STATS[p]
     sub = f"Province {p} · population {pop} · eats {eats} · harvest {h[0]}/{h[1]}/{h[2]}"
     duties = "".join(f"<li>{E(d)}</li>" for d in DUTIES[p])
-    return (head(f"{p} · {E(ROLE[p])}", sub, CLASS[p], "front", p) +
+    return (head(f"{p} · {E(ROLE[p])}", sub, CLASS[p], p) +
             f'<p class="char">{E(CHARACTER[p])}</p>'
             f'<section><h3>Each round</h3><ul class="duties">{duties}</ul></section>'
             f'<section><h3>Your objective</h3>{objective(p)}{start_stock(p)}</section>'
@@ -425,7 +424,7 @@ def player_back(p):
     if NEWLAND[p]:
         nl = (f'<section><h3>New harvest squares</h3><p><b>Only available once your population has doubled (×2).</b> {E(NEWLAND[p])} '
               '20 each from the Pile, +20 every round after. Share cost and yield with the Emperor.</p></section>')
-    return (head(f"{p} · {E(ROLE[p])}", "Income, works and new land", CLASS[p], "back", p) +
+    return (head(f"{p} · {E(ROLE[p])}", "Income, works and new land", CLASS[p], p) +
             f'<section><h3>Your income each year</h3>{inc}'
             '<p class="small">Income = harvest − what your people eat + what your works add'
             + ('' if p == 8 else ' + 20 per new harvest square you own') + '. '
@@ -460,8 +459,6 @@ body{margin:0;background:var(--canvas);color:var(--ink);font:16px/1.5 "Helvetica
 .ch.upper{--tier:#2B2A24}.ch.lower{--tier:var(--walnut)}.ch.outside{--tier:var(--slate)}
 .ch h2{margin:0;font-size:15pt;letter-spacing:.06em;text-transform:uppercase;color:var(--tier)}
 .ch p{margin:.15em 0 0;font:8pt var(--mono);letter-spacing:.06em;color:var(--soft)}
-.ch .side{font:700 7pt var(--mono);letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--tier);
-  color:var(--tier);padding:.2em .5em;margin-top:.2em}
 .ch .mark{flex:none;width:.42in;height:.42in;color:var(--tier)}
 section{margin:0 0 .11in}
 h3{margin:0 0 .05in;font:700 7.6pt var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--verm);

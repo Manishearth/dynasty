@@ -106,7 +106,8 @@ body.touch .lotrow{padding:.9rem}
 .tip .dg{display:inline-block;width:1.05em;height:1.05em;vertical-align:-.17em}
 .tip img.dg{filter:brightness(0) invert(1)}
 .tip .dland{background:#4F8FD8;border:1px solid #A9CBF2;width:.85em;height:.85em;vertical-align:-.08em}
-.tip .dsol{border-radius:50%;background:#F4EFE2;width:.8em;height:.8em;vertical-align:-.05em}.tip .dsol.b{background:#5B9BE6}
+.tip .dsol{color:#F4EFE2}.tip .dsol.b{color:#5B9BE6}
+.tip .piece img{filter:brightness(0) invert(1)}
 /* ---- map ---- */
 .map{background:#EFE4CB;border:2px solid var(--ink);margin-bottom:1rem;line-height:0}
 #map svg{width:100%;height:auto;display:block}
@@ -157,7 +158,7 @@ table.res tr.moved td{background:#FDF3D9}
 header .piece img{filter:brightness(0) invert(1)}
 .legend .sw{display:inline-block;width:.7rem;height:.7rem;margin-right:.25rem;vertical-align:-1px}
 .legend .raid{background:#F2416F}.legend .imp{background:var(--verm);width:.85rem;height:.85rem}
-.legend .sol{background:#16150F;border-radius:50%}.legend .osol{background:#175FB5;border-radius:50%}
+.legend .sol{color:#16150F;width:.85rem;height:.85rem}.legend .osol{color:#175FB5;width:.85rem;height:.85rem}
 .nav{display:flex;gap:.4rem;margin:1.2rem 0 0}
 .nav button{flex:1;padding:.55rem;border:1.5px solid var(--ink);background:var(--paper);cursor:pointer;
   font:700 .72rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase}
@@ -382,6 +383,10 @@ function gsrc(n){return 'images/'+n+'.svg';}
 function gimg(x,y,w,n,white){return '<image href="'+gsrc(n)+'" x="'+x+'" y="'+y+'" width="'+w+'" height="'+w+'"'+
   (white?' style="filter:brightness(0) invert(1)"':'')+'/>';}
 function gpiece(n,text){return '<span class="piece"><img src="'+gsrc(n)+'" alt="">'+text+'</span>';}
+/* the soldier glyph's outline (from tools/glyphs.py, filled in by build.py), so soldiers take each side's colour */
+const SOLDIER="M5 1.2 5.55 2.7H4.45zM3.3 4.4A1.7 1.7 0 0 1 6.7 4.4zM3.8 4.75h2.4v.55a1.2 1.2 0 0 1-2.4 0zM1.6 9.2C1.6 7.4 3 6.8 5 6.8s3.4.6 3.4 2.4z";
+function gsol(cls,title){return '<svg class="'+cls+'" viewBox="0 0 10 10" aria-hidden="true">'+(title?'<title>'+title+'</title>':'')+
+  '<path d="'+SOLDIER+'" fill="currentColor"/></svg>';}
 /* ---------- what changed, per step ---------- */
 /* Each step's Δ compares its state with the step before: grain, realia (held and
    unsold), public works and new harvest squares (credited to the province's player),
@@ -430,7 +435,7 @@ function dsym(key){
   const [kind,v]=[key[0],key.slice(2)];
   if(kind==='g') return GRAIN_SVG;
   if(kind==='r') return '<img class="dg" src="'+gsrc(IMG[v])+'" alt="'+esc(D.rname[v])+'" title="'+esc(D.rname[v])+'">';
-  if(kind==='s') return '<span class="dg dsol'+(v==='W'?'':' b')+'" title="'+(v==='W'?'Warlord soldier':'bought soldier')+'"></span>';
+  if(kind==='s') return gsol('dg dsol'+(v==='W'?'':' b'),v==='W'?'Warlord soldier':'bought soldier');
   if(v==='land') return '<span class="dg dland" title="new harvest square"></span>';
   return '<img class="dg" src="'+gsrc(WORKGLYPH[v])+'" alt="'+esc(WORKNAME[v]||v)+'" title="'+esc(WORKNAME[v]||v)+'">';
 }
@@ -512,9 +517,9 @@ function drawMap(s,hl,mv){
   for(const q in at){
     const [x,y]=sqxy(q), n=at[q].length;
     at[q].forEach((v,i)=>{
-      const ox=n>1?(i-(n-1)/2)*4:0;
-      svg+='<circle cx="'+(x+ox)+'" cy="'+y+'" r="3.2" fill="'+(v[1]==='W'?'#16150F':'#175FB5')+'" stroke="#fff" stroke-width=".9">'+
-        '<title>'+esc(v[0])+'</title></circle>';
+      const ox=n>1?(i-(n-1)/2)*5:0;
+      svg+='<path d="'+SOLDIER+'" transform="translate('+(x+ox-4.5)+' '+(y-4.6)+') scale(.9)" fill="'+(v[1]==='W'?'#16150F':'#175FB5')+
+        '" stroke="#fff" stroke-width="1.1" stroke-linejoin="round" paint-order="stroke"><title>'+esc(v[0])+'</title></path>';
     });
   }
   for(const p in LBL){
@@ -533,7 +538,7 @@ function drawMap(s,hl,mv){
       gpiece('bamboo-brush','Bamboo&nbsp;Brush')+gpiece('dragon-jar','Dragon&nbsp;Jar')+
       gpiece('wooden-bowl','Wooden&nbsp;Bowl')+gpiece('vase','Vase')+
       '<span><span class="sw raid"></span>raided&nbsp;square</span>'+
-      (ACT.has('8')?'<span><span class="sw sol"></span>Warlord&nbsp;soldier</span><span><span class="sw osol"></span>bought&nbsp;soldier</span>':'')+
+      (ACT.has('8')?'<span>'+gsol('sw sol')+'Warlord&nbsp;soldier</span><span>'+gsol('sw osol')+'bought&nbsp;soldier</span>':'')+
       '<span><span class="sw imp"><img src="'+gsrc('summer-palace')+'" alt=""></span>palace&nbsp;or&nbsp;pagoda</span>'+
       '<span><span class="sw wal"></span>Wall&nbsp;link</span>'+
       '<span><span class="sw can"></span>canal</span>'+
@@ -620,7 +625,7 @@ addEventListener('hashchange',()=>{const i=fromHash(); if(i!==curGame) loadGame(
 /* Every piece name the page writes gets its glyph in front (the board legend
    is keyed to the board's own marks, so it is left alone). The names come from
    tools/add_glyphs.py (build.py fills them in), so the page and the rulebook agree. */
-const TERMS=[["Reservoir / Irrigation Systems?", "reservoir", true], ["[Rr]eservoir systems?", "reservoir", true], ["(?<!three )(?<!large )[Rr]eservoirs?", "reservoir", true], ["[Ii]rrigation [Ss]ystems?|Irrigation", "irrigation", false], ["Summer Palace|SUMMER PALACE", "summer-palace", false], ["Winter Palace|WINTER PALACE", "winter-palace", false], ["Marble Pagoda|MARBLE PAGODA|(?<=the )pagoda", "marble-pagoda", false], ["Great Wall|GREAT WALL", "great-wall", false], ["Grand Canal|GRAND CANAL|canal(?!s)", "grand-canal", false], ["Customs Houses?|customs houses?", "customs-house", false], ["Land Deed Scrolls?|Land Deeds?|land deed scrolls?|Scrolls?", "land-deed-scroll", false], ["Bamboo Brush(?:es)?|bamboo brush(?:es)?|Brush(?:es)?", "bamboo-brush", false], ["Dragon Jars?|dragon jars?|Jars?", "dragon-jar", false], ["Wooden Bowls?|wooden bowls?|Bowls?", "wooden-bowl", false], ["Vases?|vases?", "vase", false]];
+const TERMS=[["Reservoir / Irrigation Systems?", "reservoir", true], ["[Rr]eservoir systems?", "reservoir", true], ["(?<!three )(?<!large )[Rr]eservoirs?", "reservoir", true], ["[Ii]rrigation [Ss]ystems?|Irrigation", "irrigation", false], ["Summer Palace|SUMMER PALACE", "summer-palace", false], ["Winter Palace|WINTER PALACE", "winter-palace", false], ["Marble Pagoda|MARBLE PAGODA|(?<=the )pagoda", "marble-pagoda", false], ["Great Wall|GREAT WALL", "great-wall", false], ["Grand Canal|GRAND CANAL|canal(?!s)", "grand-canal", false], ["Customs Houses?|customs houses?", "customs-house", false], ["Land Deed Scrolls?|Land Deeds?|land deed scrolls?|Scrolls?", "land-deed-scroll", false], ["Bamboo Brush(?:es)?|bamboo brush(?:es)?|Brush(?:es)?", "bamboo-brush", false], ["Dragon Jars?|dragon jars?|Jars?", "dragon-jar", false], ["Wooden Bowls?|wooden bowls?|Bowls?", "wooden-bowl", false], ["Vases?|vases?", "vase", false], ["[Ss]oldiers?|SOLDIERS?", "soldier", false]];
 const TERM_RE=new RegExp('\\b(?:'+TERMS.map(t=>'('+t[0]+')').join('|')+')\\b','g');
 function glyphText(node){
   const t=node.nodeValue; TERM_RE.lastIndex=0;

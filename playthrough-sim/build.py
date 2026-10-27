@@ -28,7 +28,10 @@ def main(out):
     # piece names to mark with a glyph, shared with tools/add_glyphs.py
     sys.path.insert(0, os.path.join(HERE, "..", "tools"))
     from add_glyphs import js_terms
+    from glyphs import GLYPHS
     tail = tail.replace("/*PIECE_TERMS*/[]", js_terms())
+    # the soldier glyph's outline, drawn on the board in each side's colour
+    tail = tail.replace("/*SOLDIER_PATH*/''", json.dumps(GLYPHS["soldier"][2]))
     open(out, "w", encoding="utf-8", newline="\n").write(head + data + tail)
     print(f"wrote {out}: {len(games)} games, {sum(len(g['entries']) for g in games)} entries")
 

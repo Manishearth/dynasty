@@ -144,9 +144,10 @@ After any change, rebuild and check the page on a phone-width window as well as 
 
 ## Piece glyphs
 
-Pieces are drawn with the shared SVGs in `../images/` (one per realia and public work), the same files the rulebook uses:
+Pieces are drawn with the shared SVGs in `../images/` (one per realia, public work and soldier), the same files the rulebook uses:
 
 - **Board and objectives.** `tail.html` maps realia codes to files in `IMG` and public works to files in `WORKIMG`. Board squares draw them with `<image>`; raided realia and built works are shown white on their coloured square.
+- **Soldiers.** The soldier glyph is drawn as a path, not an `<image>`, so it can take each side's colour: black for the Warlord's, blue for bought soldiers, with a white halo. `build.py` copies its outline from `tools/glyphs.py` into `SOLDIER` in place of the `/*SOLDIER_PATH*/''` placeholder. `gsol()` draws the same shape in the legend and the Δ list.
 - **Running text.** At load, a `MutationObserver` puts a glyph before every piece name the page writes: the transcript, tooltips, the works panel, the results. It skips SVG and the board legend, which is keyed to the board's own marks. The names to match come from `TERMS` in `tools/add_glyphs.py`; `build.py` copies them into the page in place of the `/*PIECE_TERMS*/[]` placeholder, so the playthrough and the rulebook always match.
 
-To change a glyph, edit `tools/glyphs.py`, run `python3 tools/glyphs.py`, and both pages pick it up.
+To change a glyph, edit `tools/glyphs.py`, run `python3 tools/glyphs.py`, and both pages pick it up. The script rewrites every file in `images/`, and the committed files carry provenance metadata the script doesn't write, so restore the glyphs you didn't change (`git checkout -- images/<name>.svg`) before committing.

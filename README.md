@@ -18,7 +18,7 @@ The original scans can be found on https://manishearth.net/dynasty/.
 | `i-ching.html` | The twenty I Ching (event) cards: a reference table and print-and-cut cards |
 | `i-ching.json` | The same cards as data |
 | `reference-cards.html` | Printable two-sided reference cards: one general card for everyone and one card per province |
-| `images/` | One SVG glyph per piece: the six realia and the public works |
+| `images/` | One SVG glyph per piece: the six realia, the public works and the soldier |
 | `tools/` | Scripts that generate the map, the I Ching cards, the reference cards and the glyphs |
 | `playthrough-sim/` | The engine and game scripts that generate `playthrough.html`, with their own [documentation](playthrough-sim/README.md) |
 

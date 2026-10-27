@@ -34,6 +34,7 @@ TERMS = [
     (r"Dragon Jars?|dragon jars?|Jars?", "dragon-jar"),
     (r"Wooden Bowls?|wooden bowls?|Bowls?", "wooden-bowl"),
     (r"Vases?|vases?", "vase"),
+    (r"[Ss]oldiers?|SOLDIERS?", "soldier"),
 ]
 PATTERN = re.compile(r"\b(?:" + "|".join(f"(?P<g{i}>{t})" for i, (t, _) in enumerate(TERMS)) + r")\b")
 
