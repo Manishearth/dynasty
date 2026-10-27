@@ -796,14 +796,16 @@ def troops(moves, text, hover=None):
     act(text, h or None, None, map_hl=sorted({prov(m[1]) or 8 for m in mv}), moves=mv)
 
 # ------------------------------------------------------------------ export
-def export(results_note, epilogue):
+def export(results_note, epilogue, no_winners=False):
     """Score the game (Section 18) and return everything the page needs.
-    Assign the result to RESULT at the end of the script."""
+    Assign the result to RESULT at the end of the script. no_winners: the game ended in
+    collapse (Section 18), so nobody won or lost; the page shows a dash for every verdict."""
     res = []
     for p in PLAYERS:
         fin = sid(p); st = p
         v = "won" if fin < st else ("lost" if fin > st else "held")
         if st == 1 and fin == 1: v = "won"      # Section 18: an Emperor still on the throne has won
+        if no_winners: v = "none"
         res.append(dict(name=NAMES[p], short=SHORT[p], start=st, startrole=ROLE[st],
                         fin=fin, finrole=ROLE[fin], verdict=v, grain=round(grain[p],2)))
     return dict(meta=META, active=ACTIVE, names={str(p):NAMES[p] for p in PLAYERS},

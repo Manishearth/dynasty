@@ -311,11 +311,11 @@ Soldiers live in `SOLDIERS`, works in `pw` and `pw_at`. The Wall and the Canal h
 
 ## Ending
 
-### `export(results_note, epilogue)`
+### `export(results_note, epilogue, no_winners=False)`
 
 Score the game and return the dictionary the page uses (see [`page-format.md`](page-format.md#the-data-format)). Assign it to `RESULT`.
 
-Scoring follows Section 18: a player who finishes in a lower-numbered province than the one they drew has won, a higher-numbered one has lost, the same one has held — except that an Emperor still on the throne has won. `results_note` is one sentence above the results table; `epilogue` is a list of paragraphs below it.
+Scoring follows Section 18: a player who finishes in a lower-numbered province than the one they drew has won, a higher-numbered one has lost, the same one has held — except that an Emperor still on the throne has won. `results_note` is one sentence above the results table; `epilogue` is a list of paragraphs below it (a single string is fine too). Pass `no_winners=True` for a game that ends in collapse: every verdict becomes `"none"`, which the page shows as a dash, while the start and finish seats still show.
 
 ## The cards
 

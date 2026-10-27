@@ -627,7 +627,7 @@ function renderFinal(){
   let h='<div class="final"><h2>The result</h2><p>'+esc(D.results_note)+'</p>'+
     '<div class="tablewrap"><table><tr><th>Player</th><th>Started</th><th>Finished</th><th>Result</th><th>Grain</th></tr>';
   D.results.forEach(r=>{h+='<tr><td><b>'+esc(r.name)+'</b></td><td>'+r.start+' · '+r.startrole+'</td><td>'+
-    r.fin+' · '+r.finrole+'</td><td class="v-'+r.verdict+'">'+r.verdict.toUpperCase()+'</td>'+
+    r.fin+' · '+r.finrole+'</td><td class="v-'+r.verdict+'">'+(r.verdict==='none'?'—':r.verdict.toUpperCase())+'</td>'+
     '<td class="n" style="text-align:right;font-family:var(--mono)'+(r.grain<0?';color:#C8291A;font-weight:700':'')+'">'+r.grain+'</td></tr>';});
   h+='</table></div>'+[].concat(D.epilogue||[]).map(p=>'<p style="margin-top:1rem">'+esc(p)+'</p>').join('')+'</div>';
   script.innerHTML=h;
