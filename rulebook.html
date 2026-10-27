@@ -1448,6 +1448,7 @@ h3.part{border-top:2px solid var(--ink);padding-top:.8rem;margin-top:2.6rem;colo
     <li class="must">The harvest is <strong>fixed</strong>: 100 / 75 / 50 for good, average and bad (the Warlord 40 / 30 / 20). The size of your province on the map changes nothing.</li>
     <li class="must">Consumption grows with population. When a card doubles the population, everyone's consumption doubles and nobody's harvest does.</li>
     <li><strong>Tax is a share of that income</strong>, and nothing else: rent, salaries, commissions and tolls aren't taxed. In Round One, income is the 60 you hold. The Emperor pays no tax, and the Warlord may refuse to.</li>
+    <li><strong>New land is the way to prosperity.</strong> Each new harvest square costs 20 and adds 20 to your harvest every round after, cost and yield shared with the Emperor. But it only opens once the population has <strong>doubled</strong> (×2). <span class="see"><a href="#s13">§13</a></span></li>
   </ul>
   <div class="note"><b>Worked example</b> The Rice Peasant has one <span class="piece"><img src="images/grand-canal.svg" alt="">canal</span> section built and the population stands at ×1½. A good harvest: 100 + 10 − 60 = <strong>50</strong>. At a tax of 30% the Rice Peasant pays 15. Two years later the population has doubled and the harvest is bad: 50 + 10 − 80 = <strong>−20</strong>. The province loses 20 and pays no tax.</div>
 
@@ -1467,12 +1468,12 @@ h3.part{border-top:2px solid var(--ink);padding-top:.8rem;margin-top:2.6rem;colo
   <table>
     <thead><tr><th>Seat</th><th>Every round</th></tr></thead>
     <tbody>
-      <tr><td>1 · Emperor</td><td>Declares the tax · builds one project, the <span class="piece"><img src="images/marble-pagoda.svg" alt="">Marble Pagoda</span> if nothing else · pays the Official and the Scholar at least 5 each · settles disputes · never bids</td></tr>
+      <tr><td>1 · Emperor</td><td>Declares the tax · builds one project · pays the Official and the Scholar at least 5 each · settles disputes · never bids</td></tr>
       <tr><td>2 · Official</td><td>Collects the tax and hands it to the Emperor · auctions a <span class="piece"><img src="images/customs-house.svg" alt="">Customs House</span></td></tr>
       <tr><td>3 · Gentry</td><td>Runs the Harvest Pile and pays every harvest · asks each Peasant for rent: unasked, it isn't paid · auctions a <span class="piece"><img src="images/land-deed-scroll.svg" alt="">Land Deed Scroll</span></td></tr>
       <tr><td>4 · Scholar</td><td>Turns and reads the I Ching card · keeps the population count · auctions a <span class="piece"><img src="images/bamboo-brush.svg" alt="">Bamboo Brush</span></td></tr>
       <tr><td>5–7 · Peasants</td><td>Pay rent when asked · auction their own realia</td></tr>
-      <tr><td>8 · Warlord</td><td>Raids instead of auctioning · sells <span class="piece"><img src="images/soldier.svg" alt="">soldiers</span> to anyone who asks · pays tolls for crossing rivers and works</td></tr>
+      <tr><td>8 · Warlord</td><td>Raids instead of auctioning · sells <span class="piece"><img src="images/soldier.svg" alt="">soldiers</span> to anyone who asks, at any time · pays tolls for crossing rivers and works</td></tr>
     </tbody>
   </table>
   <p class="legend">An empty seat's job goes to whoever the Emperor appoints (Note 3).</p>
@@ -1491,9 +1492,8 @@ h3.part{border-top:2px solid var(--ink);padding-top:.8rem;margin-top:2.6rem;colo
   <h3><span class="h-num">9</span>The Emperor's first project: Public Works <span class="see"><a href="#s12">§12</a></span></h3>
   <ul class="say">
     <li>The Emperor builds <strong>one project a round</strong>. Several sections of the same work count as one project.</li>
-    <li>Canal sections add 10 a round to their province; the <span class="piece"><img src="images/irrigation.svg" alt="">irrigation system</span> 10; each <span class="piece"><img src="images/reservoir.svg" alt="">Reservoir</span> 20. A bonus starts with the <strong>next</strong> round's harvest.</li>
-    <li>The <span class="piece"><img src="images/summer-palace.svg" alt="">Summer Palace</span> comes before the Wall and the Province 1 <span class="piece"><img src="images/grand-canal.svg" alt="">canal</span>; the <span class="piece"><img src="images/winter-palace.svg" alt="">Winter Palace</span> before the <span class="piece"><img src="images/grand-canal.svg" alt="">canal</span> in Provinces 4, 5 and 6. In a round with nothing else to build, the Emperor builds the <span class="piece"><img src="images/marble-pagoda.svg" alt="">Marble Pagoda</span>.</li>
-    <li>The crown pays alone for the <span class="piece"><img src="images/grand-canal.svg" alt="">canal</span> in 5 and 6 and the <span class="piece"><img src="images/reservoir.svg" alt="">Reservoir</span> in 7. <strong>Everything else is haggled</strong> between the Emperor and the province.</li>
+    <li>There are a lot of projects. <strong>Your reference card lists the ones that matter to you</strong>, and who pays for each; where the crown doesn't pay alone, the Emperor and the province haggle.</li>
+    <li>Some <span class="piece sym"><img src="images/grand-canal.svg" alt="Grand Canal"></span><span class="piece sym"><img src="images/irrigation.svg" alt="Irrigation System"></span><span class="piece sym"><img src="images/reservoir.svg" alt="Reservoir"></span>give their province grain every year, from the <strong>next</strong> round on. The <span class="piece"><img src="images/great-wall.svg" alt="">Great Wall</span> opens the land to the north for new harvest squares. And some <span class="piece sym"><img src="images/summer-palace.svg" alt="Summer Palace"></span><span class="piece sym"><img src="images/winter-palace.svg" alt="Winter Palace"></span>must be built before others.</li>
     <li>Building every work owed at this table <strong>ends the game</strong>. Works in empty provinces aren't owed.</li>
   </ul>
 
@@ -1505,7 +1505,7 @@ h3.part{border-top:2px solid var(--ink);padding-top:.8rem;margin-top:2.6rem;colo
     <li>A Warlord <span class="piece"><img src="images/soldier.svg" alt="">soldier</span> stepping onto an un-raided province square <strong>raids</strong> it: 5 tribute, 10 in Province 1. That square can never be raided again.</li>
     <li>Raiding realia: the Warlord takes 5, the piece, or its cost. Raiding a palace or the Pagoda: the Emperor pays its full cost, 20, and <strong>the building stays</strong>.</li>
     <li>Crossing a river or a built public work costs the Warlord 5 a <span class="piece"><img src="images/soldier.svg" alt="">soldier</span>, paid to that province.</li>
-    <li>The Warlord <strong>must sell</strong> <span class="piece"><img src="images/soldier.svg" alt="">soldiers</span> to anyone, at 20 each, keeping a quarter.</li>
+    <li>The Warlord <strong>must sell</strong> <span class="piece"><img src="images/soldier.svg" alt="">soldiers</span> to anyone, <strong>at any time</strong>, at 20 each, keeping a quarter of the price.</li>
     <li class="must">A bought <span class="piece"><img src="images/soldier.svg" alt="">soldier</span> <strong>can't move until the Warlord has raided your province</strong>, and then moves after the Warlord's. Capture is straight only, never diagonal.</li>
     <li>The Warlord's objective: raid a different piece of realia from each player. Then they may take any seat, the throne included.</li>
   </ul>
