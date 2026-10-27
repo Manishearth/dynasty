@@ -111,6 +111,14 @@ Two readings the playthroughs add, from the booklets' wording: each province dev
 
 **Recorded in** `playthrough-sim/docs/rules-model.md`.
 
+### Raiding realia: 5 or the piece
+
+**Ruling.** A Warlord who raids a square holding realia takes the 5 million or the piece itself. The booklet's third option, "the cost of the realia", is dropped.
+
+**Why.** The Warlord's booklet offers "either 5 million bags of grain, the realia or the cost of the realia", but realia have no cost: nothing prints a price, and a piece sells for whatever the auction brings. "The cost of the structure" belongs to the Emperor's buildings (below), and the rulebook had blurred the two. Simplified by Manish on 2026-10-27.
+
+**Recorded in** rulebook Section 14 (with a reminder that the Warlord needs one piece from every player), the Warlord in Section 27, Appendices C and G, and the reference cards. The playthrough engine never offered the cost option (`march(take=...)` takes the piece or the 5).
+
 ### A raided palace stays standing
 
 **Ruling.** A raid on the Summer Palace, Winter Palace or Marble Pagoda costs the Emperor the structure's full cost, 20, and nothing else. The building stays where it is. The square is raided like any other and can't be raided again.
