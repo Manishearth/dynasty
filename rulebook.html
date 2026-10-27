@@ -198,6 +198,9 @@ h3.part{border-top:2px solid var(--ink);padding-top:.8rem;margin-top:2.6rem;colo
   h2,h3,h4,.eyebrow,.sec-head,caption{break-after:avoid}
   :is(h2,h3,h4,.eyebrow,.sec-head)+*{break-before:avoid}
   p,li,dd{orphans:3;widows:3}
+  .keep{break-inside:avoid}
+  figure.order{margin:.8rem 0} figure.order svg{max-height:2.1in;width:auto;max-width:100%;display:block;margin:0 auto}
+  table.inc{font-size:.84em;margin-bottom:.6rem} table.inc td,table.inc th{padding-top:.12rem;padding-bottom:.12rem}
   table,figure,.card,.note,.steps li,.say li{break-inside:avoid}
   a{color:var(--ink);text-decoration:none}
   .noprint,.follow,.follow-bar{display:none !important}
@@ -584,7 +587,7 @@ h3.part{border-top:2px solid var(--ink);padding-top:.8rem;margin-top:2.6rem;colo
   </figure>
   <p>The Scholar keeps the national population counter and announces the new figure whenever it changes.</p>
   <h3>Income tables</h3>
-  <table>
+  <table class="inc">
     <caption>Provinces 2–7 · 40 million consumed per base population</caption>
     <thead><tr><th>Population</th><th class="n">Consumption</th><th class="n">Good</th><th class="n">Average</th><th class="n">Bad</th></tr></thead>
     <tbody>
@@ -596,7 +599,7 @@ h3.part{border-top:2px solid var(--ink);padding-top:.8rem;margin-top:2.6rem;colo
       <tr><td>×6</td><td class="n">240</td><td class="n neg">−140</td><td class="n neg">−165</td><td class="n neg">−190</td></tr>
     </tbody>
   </table>
-  <table>
+  <table class="inc">
     <caption>Province 1 · the Emperor · 60 million consumed at base population</caption>
     <thead><tr><th>Population</th><th class="n">Consumption</th><th class="n">Good</th><th class="n">Average</th><th class="n">Bad</th></tr></thead>
     <tbody>
@@ -608,7 +611,7 @@ h3.part{border-top:2px solid var(--ink);padding-top:.8rem;margin-top:2.6rem;colo
       <tr><td>×6</td><td class="n">360</td><td class="n neg">−260</td><td class="n neg">−285</td><td class="n neg">−310</td></tr>
     </tbody>
   </table>
-  <table>
+  <table class="inc">
     <caption>Province 8 · the Warlord · harvest 40 / 30 / 20, 20 million consumed at base</caption>
     <thead><tr><th>Population</th><th class="n">Consumption</th><th class="n">Good</th><th class="n">Average</th><th class="n">Bad</th></tr></thead>
     <tbody>
@@ -805,7 +808,7 @@ h3.part{border-top:2px solid var(--ink);padding-top:.8rem;margin-top:2.6rem;colo
   <div class="sec-head"><span class="sec-num">12</span><h2>Public Works</h2></div>
   <p>The Public Works are the nation's way out of famine, and building all of them ends the game. The Emperor pays for and builds one project each round, and is responsible only for provinces where there is a player.</p>
   <div class="note"><b>Note 13</b> One project per round — but a project may be any number of sections of the same work. Four links of the <span class="piece"><img src="images/great-wall.svg" alt="">Great Wall</span> in one round is one project. A <span class="piece"><img src="images/grand-canal.svg" alt="">canal</span> section and a palace in the same round is two.</div>
-  <table>
+  <table class="inc">
     <thead><tr><th>Project</th><th>Where</th><th class="n">Cost</th><th>Effect</th></tr></thead>
     <tbody>
       <tr><td><span class="piece"><img src="images/summer-palace.svg" alt="">Summer Palace</span></td><td>Province 1</td><td class="n">20</td><td>Required before the <span class="piece"><img src="images/great-wall.svg" alt="">Great Wall</span> and the <span class="piece"><img src="images/grand-canal.svg" alt="">Grand Canal</span> in Province 1</td></tr>
@@ -818,7 +821,7 @@ h3.part{border-top:2px solid var(--ink);padding-top:.8rem;margin-top:2.6rem;colo
       <tr><td><span class="piece"><img src="images/reservoir.svg" alt="">Reservoir</span></td><td>Province 7</td><td class="n">60</td><td>+20 per round</td></tr>
     </tbody>
   </table>
-  <figure>
+  <figure class="order">
   <svg viewBox="0 0 760 250" role="img" aria-label="Build order dependencies">
     <defs><marker id="ah4" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto"><path d="M0 0 L7.5 3.2 L0 6.4 z" fill="#16150F"/></marker></defs>
     <g font-family="Helvetica Neue,Helvetica,Arial" font-size="12.5" text-anchor="middle">
@@ -1135,16 +1138,7 @@ h3.part{border-top:2px solid var(--ink);padding-top:.8rem;margin-top:2.6rem;colo
   <h3>I Ching</h3>
   <p>Shuffle the twenty cards at the beginning of the game and place them face down on the board. You must not allow any player to look at the unturned cards. At the beginning of each round except Round One, turn over the top card and read it aloud. All players must obey whatever instructions are on the card.</p>
   <h3>Population counter</h3>
-  <p>It is your duty to remember how many people are living in the nation at any given time. The game begins with 100 million. Whenever I Ching announces that the population has increased by one half, or that it has doubled, indicate on the chart.</p>
-  <table>
-    <thead><tr><th class="n">Province</th><th class="n">Base</th><th class="n">Province</th><th class="n">Base</th></tr></thead>
-    <tbody>
-      <tr><td class="n">1</td><td class="n">14</td><td class="n">5</td><td class="n">14</td></tr>
-      <tr><td class="n">2</td><td class="n">12</td><td class="n">6</td><td class="n">14</td></tr>
-      <tr><td class="n">3</td><td class="n">12</td><td class="n">7</td><td class="n">14</td></tr>
-      <tr><td class="n">4</td><td class="n">12</td><td class="n">8</td><td class="n">8</td></tr>
-    </tbody>
-  </table>
+  <p>The nation starts at 100 million. When I Ching raises the population, announce the new figure and multiple (×1½, ×2…), so everyone reads the right row of their income table (Section 7).</p>
   <h3>Annual salary</h3>
   <p>The Emperor must pay you no less than 5 million during each round for taking care of I Ching and the population counter.</p>
   <h3>Your Public Works</h3>
@@ -1885,6 +1879,24 @@ h3.part{border-top:2px solid var(--ink);padding-top:.8rem;margin-top:2.6rem;colo
 </section>
 
 </div>
+
+<script id="keep-together">
+/* Each subsection heading and what it heads, up to the next heading, go in one
+   block that print keeps on a single page. A block taller than a page still breaks. */
+(function(){
+document.querySelectorAll('.sheet > h3, .sheet > h4').forEach(function(h){
+  var box=document.createElement('div'),n=h,next;
+  box.className='keep';
+  h.parentNode.insertBefore(box,h);
+  while(n){
+    next=n.nextElementSibling;
+    box.appendChild(n);
+    n=next;
+    if(n&&(/^H[234]$/.test(n.tagName)||n.classList.contains('sec-head')))break;
+  }
+});
+})();
+</script>
 
 <script id="follow-toc">
 (function(){
