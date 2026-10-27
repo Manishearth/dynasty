@@ -235,6 +235,11 @@ function drawMap(s,hl,mv){
     if(/[1-7]/.test(g)&&!ACT.has(g)) svg+='<rect x="'+(c*CW)+'" y="'+(r*CW)+'" width="'+CW+'" height="'+CW+'" fill="url(#hatch)" opacity=".7"/>';
     else if(hl.has(+g)) svg+='<rect x="'+(c*CW)+'" y="'+(r*CW)+'" width="'+CW+'" height="'+CW+'" fill="#FFF6C8" opacity=".55"/>';
   }
+  /* square names, so talk of 'O18' can be found: column numbers along the top row, row letters
+     down the first column, drawn small inside those edge squares and under every piece */
+  const gl='font-family="Consolas,Menlo,monospace" font-size="4.6" fill="#3B2E1E" fill-opacity=".6" stroke="#F6EEDC" stroke-width="1.2" stroke-opacity=".7" paint-order="stroke"';
+  for(let c=0;c<C;c++) svg+='<text x="'+((c+.5)*CW)+'" y="4.4" text-anchor="middle" '+gl+'>'+(c+1)+'</text>';
+  for(let r=0;r<R;r++) svg+='<text x="1.3" y="'+((r+.5)*CW+1.6)+'" '+gl+'>'+String.fromCharCode(65+r)+'</text>';
   /* new harvest squares (Section 13): the rulebook's green squares */
   for(const q in (s.land||{})){
     const [r,c]=sqrc(q);

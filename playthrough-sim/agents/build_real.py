@@ -12,7 +12,7 @@ ROOT = os.path.dirname(os.path.dirname(HERE))
 sys.path.insert(0, os.path.dirname(HERE))
 import build
 
-GAMES = ["peasant-failure"]
+GAMES = ["peasant-collapse"]
 
 if __name__ == "__main__":
     out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, "playthroughs-real.html")

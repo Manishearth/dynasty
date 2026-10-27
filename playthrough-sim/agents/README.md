@@ -17,7 +17,7 @@ The reusable code and notes for games played by agents rather than written by ha
 Run the tools from a game's folder, for example:
 
 ```sh
-cd playthroughs/peasant-failure
+cd playthroughs/peasant-collapse
 python ../../playthrough-sim/agents/run.py
 ```
 

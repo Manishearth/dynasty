@@ -4,8 +4,8 @@
 # The narrator's lines are not part of the game: they live in narration.md, never here.
 # Each chapter opens with a "# ===== CHAPTER N: <title>" marker. Seed and deck order: seed.md.
 # The trial year that came before this game is in trial-year1/.
-setup([1,5,6,7,8], "peasant-failure", "Peasant Failure",
-      "Five players · played by agents",
+setup([1,5,6,7,8], "peasant-collapse", "The peasant game",
+      "Five players · eight years · ends in collapse",
       "The Emperor, three peasants and the Warlord, each played by its own agent. The Storyteller referees with the engine.",
       short="5 players · agents")
 
