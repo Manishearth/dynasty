@@ -295,7 +295,7 @@ CHARACTER = {
 
 EXTRA = {
     1: ("Beware the Warlord", "Every raid on your province costs you 10, not 5. A raid on the Summer Palace, Winter Palace or Marble Pagoda costs its full price, and the building stays."),
-    8: ("Your army", "2 soldiers at 5–6 players, 4 at 8 or more, starting anywhere on undeveloped land. A raided square can never be raided again, but you may stand on it. Soldiers capture by moving onto a soldier orthogonally, never diagonally. Bought soldiers stay frozen in their province until you raid it."),
+    8: ("Your army", "2 soldiers at 5–6 players, 4 at 8 or more, starting anywhere on undeveloped land, the sea included. A raided square can never be raided again, but you may stand on it. Soldiers capture by moving onto a soldier orthogonally, never diagonally. Bought soldiers stay frozen in their province until you raid it."),
 }
 
 # --------------------------------------------------------------------------
@@ -380,7 +380,7 @@ def objective(p):
     if p == 1:
         return "<p>Stay in power. Build every public work you owe and your reign ends in glory.</p>"
     if p == 8:
-        return "<p>Raid a different piece of realia from each player. Then take any seat, the throne included.</p>"
+        return "<p>Raid a different piece of realia from each other player who holds realia (not the Emperor). Then take any seat, the throne included.</p>"
     four = ", ".join(REALIA[r] for r in NEED45[p])
     extra = REALIA[STUCK[p]]
     return table(["Players", "Collect, plus 20 in grain"],

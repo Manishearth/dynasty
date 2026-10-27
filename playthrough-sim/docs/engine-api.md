@@ -38,7 +38,7 @@ Everything in `engine.py` and `cards.py`, grouped by purpose. Every name is a gl
 | `CUTOUT` | Work key → `(province, size, name)`: `irr2` 1 × 2, `res3` 2 × 3, `res7` 2 × 2. |
 | `GRID`, `ROWS`, `COLS` | The board from `../map.json`: 22 strings of 30 characters (see [The board](#the-board)). |
 | `RIVERS`, `WALL_LINKS`, `CANAL_SECTIONS` | The rivers, the twelve Wall links (by the province they stand above) and the eight canal sections (by province), as paths in grid units, from `map.json`. |
-| `UNDEVELOPED` | `"8n"` — the regions where the Warlord's army may start. |
+| `UNDEVELOPED` | `"8nS"` — the regions where the Warlord's army may start, the sea included. |
 
 ## Game state
 
@@ -67,7 +67,7 @@ These globals are created by `setup()` and changed by everything else. Read them
 | `CUR_ROUND` | int | The round in progress; 0 is Setup. |
 | `CUR_Q` | `{seat: "good"/"avg"/"bad"}` | This round's harvest quality. |
 | `CUR_INC`, `CUR_HARV` | `{seat: float}` | This round's income and gross harvest, set by `harvest()`. |
-| `warlord_got` | `{player: code or palace}` | The Warlord's objective so far: what he has raided from whom. |
+| `warlord_got` | `{player: code}` | The Warlord's objective so far: the realia he has raided from whom. The Emperor never appears. |
 | `ENTRIES`, `ROUNDS` | lists | The transcript and the round index. |
 
 ## Setup and rounds
@@ -97,7 +97,7 @@ Setup only. Each realia province takes its starting stock out of the box: at 4�
 
 ### `place_army(at, text, hover=None)`
 
-Setup only. The Warlord stands his soldiers on undeveloped land. `at` is `{id: square}` with ids `W1`, `W2`, … — exactly one per soldier — and every square must be Warlord's territory (`8`) or the strip below the Wall (`n`).
+Setup only. The Warlord stands his soldiers on undeveloped land. `at` is `{id: square}` with ids `W1`, `W2`, … — exactly one per soldier — and every square must be Warlord's territory (`8`), the strip below the Wall (`n`) or the sea (`S`).
 
 ## Recording entries
 
@@ -215,7 +215,7 @@ For each step, in order:
 
 1. **Capture.** A step onto a square holding a bought soldier captures it, and is only allowed horizontally or vertically.
 2. **Tolls.** 5 for each river, built Wall link, built canal section or cut-out the step crosses (see `tolls()`), paid to the province concerned.
-3. **Raid.** A step onto an un-raided square of an occupied province raids it: 5 from that province's player, or 10 in Province 1; on a palace square, the Emperor pays the structure's cost, 20, and the palace counts toward the Warlord's objective. To take the realia on the square instead, pass `take={soldier: (code, square)}`: the piece moves to the Warlord, onto that square of his territory, and counts toward his objective. A raid the Warlord's disaster forbids this round raises an error. A step onto undeveloped land, a raided square or a square of an empty province raids nothing.
+3. **Raid.** A step onto an un-raided square of an occupied province raids it: 5 from that province's player, or 10 in Province 1; on a palace square, the Emperor pays the structure's cost, 20; a palace doesn't count toward the Warlord's objective. To take the realia on the square instead, pass `take={soldier: (code, square)}`: the piece moves to the Warlord, onto that square of his territory, and counts toward his objective. A raid the Warlord's disaster forbids this round raises an error. A step onto undeveloped land, a raided square or a square of an empty province raids nothing.
 
 Records one act with every grain change, the moves drawn as arrows, and a note of each capture, toll and raid appended to the hover.
 

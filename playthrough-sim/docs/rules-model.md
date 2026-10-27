@@ -45,7 +45,6 @@ The build stops with an error naming the player and the problem if a script:
 | Starts Round One before the Setup round has dealt grain, taken stock and placed the Warlord's army | Section 4 |
 | Places the Warlord's army anywhere but undeveloped land | Section 4 |
 | Moves any soldier more than one square in a round, or twice in a round | Section 14, Note 16 |
-| Moves a soldier into the sea | Note 16 (see [The map](#the-map)) |
 | Moves a province's soldiers before the Warlord's in the same round | Section 5 |
 | Moves a bought soldier before the Warlord has raided the province it was bought in | Section 14 |
 | Captures diagonally, or steps onto another player's soldier | Note 15 |
@@ -107,7 +106,7 @@ The original materials leave some questions open. Where the engine needed an ans
 | Which rivers charge the toll, and who is paid? | Both; the province stepped into, nobody in undeveloped land | `RULINGS.md` |
 | What counts as crossing a public work, and who is paid? | A step that cuts a built Wall link or canal section, or lands on a cut-out; paid to the province the work belongs to | `RULINGS.md` |
 | Is a raid on a canal, irrigation or reservoir square special? | No — an ordinary raid; the work is undamaged. The Wall can't be raided | Section 14, `RULINGS.md` |
-| Does a palace raid count toward the Warlord's objective? | Yes — the booklets call the palaces the Emperor's realia, and the Emperor pays the structure's cost | Booklets 1 and 8 |
+| Does a palace raid count toward the Warlord's objective? | No — a balance choice; the objective is one piece from each other realia-holding player | `RULINGS.md` |
 | Can two soldiers share a square? | Only the same owner's; an enemy square is entered only by capture | `RULINGS.md` |
 | Where can realia go? | Not on a raided square, nor under a palace or cut-out | Note 14, `RULINGS.md` |
 | What happens to bought soldiers when their owner changes seats? | They stay theirs, where they stand | `RULINGS.md` |
@@ -118,8 +117,8 @@ The original materials leave some questions open. Where the engine needed an ans
 
 The board is `../map.json`, the same geometry as `../map.svg`: 30 × 22 squares, rows A–V, columns 1–30. The engine reads it at start-up, so it's never copied by hand.
 
-- **Undeveloped land** is the Warlord's territory (`8`) and the strip below the Wall (`n`). The Warlord's army starts there.
-- **The sea** is closed to soldiers. Note 16 says Provinces 4 and 5 can be reached only through the gap in the west, which is only true if soldiers can't walk the coast.
+- **Undeveloped land** is the Warlord's territory (`8`), the strip below the Wall (`n`) and the sea (`S`). The Warlord's army starts there.
+- **The sea** is open to soldiers: a sea square raids nothing and charges no toll, and stepping ashore crosses nothing (`RULINGS.md`).
 - **Crossing** is tested geometrically: a step crosses a river, Wall link or canal section when the line between the two squares' centres cuts the printed path.
 - **The geography** gives every province a character. Provinces 7 and 3 lie along the frontier. Province 1 faces the strip below the Wall. Provinces 4 and 5 are deep: from the desert, the only way in is the notch at M15–O18, where the southern river runs along the border between them, so a soldier walking that border pays a toll at almost every step. Province 4's north-east corner is a back door from Province 1 into the top of Province 5. A soldier may walk through an empty province without raiding or paying anyone.
 
@@ -127,7 +126,7 @@ The board is `../map.json`, the same geometry as `../map.svg`: 30 × 22 squares,
 
 - **Negotiation is authored.** Cost-sharing, bribes, trades and promises are written by hand; the engine records the money that changes hands.
 - **Disasters follow the seat.** A player who moves into a province continues its booklet's disasters where the last occupant left off. The booklets don't say; this is the simpler reading.
-- **One Warlord objective entry per player.** `warlord_got` keeps one entry per player — the most recent piece raided from them — because the Warlord's objective is one piece from each.
+- **One Warlord objective entry per player.** `warlord_got` keeps one entry per player — the most recent piece raided from them — because the Warlord's objective is one piece from each other realia-holding player.
 - **Reclaiming raided squares isn't modelled** (Note 14). No playthrough needs it.
 
 ## The Harvest Pile

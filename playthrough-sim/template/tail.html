@@ -324,7 +324,7 @@ function drawObjectives(s){
       h+='<div class="obj"><span class="on">'+esc(SH[who])+'</span><span class="objnote">no set — must build</span></div>'; return;
     }
     if(p===8){
-      const others=D.active.filter(q=>q!==8).map(q=>s.seat[q]), rob=s.rob||{};
+      const others=D.active.filter(q=>q!==8&&q!==1).map(q=>s.seat[q]), rob=s.rob||{};
       const n=others.filter(o=>rob[o]).length;
       h+='<div class="obj"><span class="on">'+esc(SH[who])+'</span><span class="pips">'+
         others.map(o=>'<i class="'+(rob[o]?'f r':'')+'" title="'+esc(NM[o])+(rob[o]?' — raided: '+esc(D.rname[rob[o]]||rob[o]):'')+'">'+esc(SH[o].slice(0,3))+'</i>').join('')+

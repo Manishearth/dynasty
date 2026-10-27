@@ -63,19 +63,19 @@ These are Manish's standing preferences, gathered from the conversations. Treat 
 - **The constraints should make the games more interesting, not flatter**: marches that take planning, frontier provinces under pressure, deep provinces that are hard to reach, soldiers worth buying. When the map forces a change, the arc stays: "the overall arc should stay the same. if things need to move around, they can. try to keep it as interesting as the original."
 - When a rules question comes up that the sources don't settle, stop and ask Manish, and record the answer in `RULINGS.md`. Don't invent a ruling.
 
-**The map's geography.** How exposed each province is: the squares touching undeveloped land (the Warlord's territory and the strip below the Wall, not the sea, which soldiers can't enter), and the steps from that land to the province's deepest square.
+**The map's geography.** How exposed each province is: the squares touching undeveloped land (the Warlord's territory, the strip below the Wall and the sea, all open to soldiers), and the steps from that land to the province's deepest square.
 
 | Province | Squares | Touching undeveloped land | Deepest square |
 |---|---|---|---|
 | 7 Wheat | 28 | 16 | 2 |
 | 3 Gentry | 38 | 19 | 3 |
 | 2 Official | 20 | 6 | 3 |
-| 6 Rice | 20 | 7 | 3 |
-| 1 Emperor | 34 | 7 | 5 |
-| 4 Scholar | 23 | 3 | 6 |
-| 5 Silk | 24 | 2 | 7 |
+| 6 Rice | 20 | 10 | 3 |
+| 1 Emperor | 34 | 15 | 3 |
+| 4 Scholar | 23 | 4 | 3 |
+| 5 Silk | 24 | 10 | 3 |
 
-Provinces 7 and 3 are the frontier. Province 1 faces the strip below the Wall. Provinces 4 and 5 are reached from the desert only through the notch at M15–O18, where the southern river runs along their border and charges a toll at almost every step, and Province 4's north-east corner is a back door from Province 1 into the top of Province 5. Soldiers may walk through an empty province without raiding.
+Provinces 7 and 3 are the frontier. Province 1 faces the strip below the Wall and the sea. Since 2026-10-27 the sea is open to soldiers (a balance choice in `RULINGS.md`), so Provinces 1, 4, 5 and 6 are reached along the coast, which also bypasses the southern river's tolls; from the desert, 4 and 5 are still reached through the notch at M15–O18. Before that change the table read 7, 7, 3, 2 touching squares and 3, 5, 6, 7 steps for Provinces 6, 1, 4 and 5. Soldiers may walk through an empty province without raiding.
 
 **The games**, in the order Manish set on 2026-10-25. Games 2, 3 and 4 were chosen by Manish from options; games 1 and 5 were asked for as "a fourth game that has 8 players and runs to full public works completion, and a fifth game that works with 6 players (and ends however you'd like)".
 1. **The full game**: 8 players, 10 years; a compact to build everything, a land rush when the population doubles, and it all gets built.

@@ -82,7 +82,7 @@ The details, settled by Manish on 2026-10-25:
 
 - **No limit.** A province may buy any number of squares in a round, every round. The purchases aren't the round's one public-works project (Note 13): the Emperor still builds a project as well.
 - **Late by design.** Because a province's population must first double, this route only opens late in the game, once a doubling card has come. A square repays its cost in one round, so once it opens it's the best investment on the board.
-- **A bought square is part of its province.** The Warlord can raid it, and a soldier stepping onto one raids it; it counts for tolls and Note 4 like the province's own squares. Squares in the sea are out of every soldier's reach.
+- **A bought square is part of its province.** The Warlord can raid it, and a soldier stepping onto one raids it; it counts for tolls and Note 4 like the province's own squares. Squares in the sea are raided like any other, since soldiers may cross the sea (see "The sea is open to soldiers").
 - **The Emperor must share the cost.** "The cost must be shared with the Emperor": the playthrough engine requires the crown to pay some part of every province's purchase (the crown's own squares it pays alone).
 
 Two readings the playthroughs add, from the booklets' wording: each province develops the ground its booklet names (2 and 3 the strip below the Wall, 4 and 5 the sea, 6 the sea or the Warlord's land, 7 the Warlord's land, 1 the strip or the sea), and each square must touch the province or a square it has already bought.
@@ -105,11 +105,18 @@ Two readings the playthroughs add, from the booklets' wording: each province dev
 
 **Recorded in** rulebook Section 12 and Appendix G, `map.svg` (labels), and `tools/build_map.py` (`WALL_GROUPS`, which writes `above_province` in `map.json`).
 
-### A palace raid counts toward the Warlord's objective
+### The Warlord's objective leaves out the Emperor
 
-**Ruling.** Yes. The booklets treat the palaces as the Emperor's realia, and the Emperor pays the structure's cost.
+**Ruling.** The Warlord must raid one piece of realia from each *other realia-holding* player. The Emperor and the palaces don't count. A palace raid still costs the Emperor 20, and the palace stays standing (below).
 
-**Recorded in** `playthrough-sim/docs/rules-model.md`.
+**Why.** The booklets are inconsistent here, and this is a balance choice, made to give the Warlord's objective a fair chance. The Warlord's booklet asks for "a different piece of realia from each player". Whether the palaces are realia, the booklets disagree:
+- The Emperor's booklet: "If the Warlord raids a square where you have placed any realia (the Summer Palace, Winter Palace and Marble Pagoda) you must pay him the cost of the structure." The same paragraph appears word for word in the Official's and Silk Peasant's booklets, who have no palaces, so it is copied boilerplate rather than a definition of realia.
+- Those same booklets' six-player objective, "One realia from each player", can only mean the players who hold realia; the rulebook already reads it that way.
+- The other way: the Warlord's booklet offers "the realia or the cost of the realia" when raiding realia, and only the palaces have a fixed cost. That is the strongest hint that the palaces were meant to count.
+
+At eight players the objective was close to impossible (seven targets, four soldiers, one square a round, games of about ten years; game 1 reached two of seven by Year 10). Leaving out the Emperor makes it six targets and removes Province 1, one of the deepest. **A table that prefers the alternative reading can count a palace raid as the Emperor's piece.** Approved by Manish on 2026-10-27.
+
+**Recorded in** rulebook Sections 11 and 14, the Warlord in Section 27, Appendices C and G, the reference cards, and `playthrough-sim/engine.py` (a palace raid no longer enters `warlord_got`).
 
 ### Raiding realia: 5 or the piece
 
@@ -149,11 +156,13 @@ Two readings the playthroughs add, from the booklets' wording: each province dev
 
 **Recorded in** `playthrough-sim/engine.py` (`tolls()`).
 
-### Soldiers stay out of the sea
+### The sea is open to soldiers
 
-**Ruling.** No soldier may stand on a sea square.
+**Ruling.** Soldiers, the Warlord's and bought ones, may start on (the Warlord's army) and move through sea squares. Bought soldiers still can't move until their province has been raided. A sea square raids nothing and charges no toll, and a step from the sea onto a coastal province square crosses nothing: the coast is not a river or a public work. A new harvest square in the sea is part of its province, so a Warlord soldier stepping onto it raids it like any other.
 
-**Why.** The Warlord's booklet lets the Warlord go "across water", but Note 16 says Provinces 4 and 5 can be reached only through the gap in the west, which is true only if the coast is closed. Confirmed by Manish on 2026-10-25.
+**Why.** The originals don't close the sea, and this is a balance choice, made to give the Warlord's objective a fair chance. The Warlord's booklet says soldiers "may move anywhere on the board" and "may begin the game on any square in any undeveloped land", and rulebook Section 3 counts the sea as undeveloped land. The sea was closed on 2026-10-25 only to keep Note 16's claim that "Provinces 4 and 5 can be reached only through the gap", which was our own editorial reading, not 1969 text. With the sea closed, the deepest squares of Provinces 1, 4 and 5 were 5, 6 and 7 steps from the army's possible starts; with it open, 3 each, and the coast bypasses the southern river's tolls into 4 and 5. **A table that prefers a closed coast can keep soldiers off the sea**, at the cost of an objective that is rarely completed at eight players. Approved by Manish on 2026-10-27.
+
+**Recorded in** rulebook Sections 3, 4, 13 and 14, the Warlord in Section 27, Note 16 in Appendix F, Appendices C and G, the reference cards, and `playthrough-sim/engine.py` (`UNDEVELOPED`, `_step`).
 
 ### Moving onto a square
 
@@ -281,7 +290,7 @@ The engine in `playthrough-sim/` makes some assumptions so it can keep a ledger.
 - **Payments round down to the half million.** Commissions, tax and fractional disasters go through `pay_down`, so no ledger ever shows a quarter million.
 - **Disasters follow the seat.** A player who moves into a province carries on that booklet's disasters where the last occupant left off.
 - **The Harvest Pile is finite.** It starts at 2,500 million, the face value of the bags in the box, less the 60 dealt to each player.
-- **Warlord's objective:** one piece of realia per player; a later raid on the same player replaces the earlier entry.
+- **Warlord's objective:** one piece of realia from each other realia-holding player (not the Emperor); a later raid on the same player replaces the earlier entry. A palace raid charges 20 and doesn't count.
 - **Every soldier is tracked square by square.** The engine refuses a step longer than one square, a second move in a round, a province's soldiers moving before the Warlord's, a bought soldier moving before its province is raided, a diagonal capture, and a raid the Warlord's disaster forbids. Tolls and raids are computed from the squares, not chosen by the script.
 - **The Warlord's disasters.** "No raids on Provinces 5, 6 or 7" and "no raids this year" stop raids only; the Warlord's soldiers may still walk onto squares that don't raid.
 - **Every playthrough is its own game.** The same eight names appear in each, every player in the province their name puns on, and nothing carries from one game to another.
@@ -290,7 +299,7 @@ The engine in `playthrough-sim/` makes some assumptions so it can keep a ledger.
 
 Judgement calls made while writing the games. None overrides a rule; each fills a silence the way a table would. Raise any of them with Manish if they look wrong.
 
-- **The Warlord's objective counts raids, not holdings.** "Raid a different piece of realia from each player" is met by the raid itself: a piece since sold back or on still counts, and a piece once sold to a player counts when raided back from that player. Game 5 takes a Customs House, Jar, Scroll and Vase from four different players, plus a palace, so it satisfies the strictest reading too.
+- **The Warlord's objective counts raids, not holdings.** "Raid a different piece of realia from each player" is met by the raid itself: a piece since sold back or on still counts, and a piece once sold to a player counts when raided back from that player. Game 5 takes a Customs House, Jar, Scroll and Vase from four different players.
 - **The Warlord may sell raided realia privately**, to anyone, as an ordinary trade; the buyer places it at once (Note 10). Games 4 and 5.
 - **Private deals are allowed for anything**, including paying a player to leave a piece unguarded or a Gentry to hold a piece (games 3 and 5). The engine records only the grain.
 - **A bought soldier may be placed on its buyer's own realia** (games 4 and 5); it then guards the piece, since the Warlord can take it only by capturing first, straight on.

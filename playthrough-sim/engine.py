@@ -60,9 +60,8 @@ def _norm(h, default=""):
 _MAP = _json.load(open(_os.path.join(globals().get("SIM_DIR", "."), "..", "map.json"), encoding="utf-8"))
 GRID = _MAP["grid"]
 ROWS, COLS = len(GRID), len(GRID[0])
-UNDEVELOPED = "8n"           # where the Warlord's army may start (Section 4)
-# No soldier stands in the sea: Note 16 has Provinces 4 and 5 reachable only through
-# the gap in the west, which is true only if the coast is closed to soldiers.
+UNDEVELOPED = "8nS"          # where the Warlord's army may start (Section 4), the sea included
+# Soldiers may stand on and cross the sea (RULINGS.md, "The sea is open to soldiers").
 RIVERS = _MAP["rivers"]      # {"north": path, "south": path}
 WALL_LINKS = {p:[l for l in sorted(_MAP["great_wall_links"], key=lambda l:l["link"]) if l["above_province"]==str(p)]
               for p in (1,2,3)}
@@ -664,7 +663,6 @@ def _step(i, to):
     assert CUR_ROUND and CUR_ROUND >= 1, "soldiers move from Round One"
     assert s["moved"] != CUR_ROUND, f"{i} has already moved this round"
     frm = s["sq"]
-    assert region(to) != "S", f"{i} can't go into the sea at {to}"
     assert dist(frm, to) == 1, f"{i} is on {frm}; {to} is {dist(frm,to)} squares away, and a soldier moves one square a round"
     return s, frm
 
@@ -707,7 +705,7 @@ def march(moves, text=None, hover=None, take=None):
         assert p not in NORAID.get(CUR_ROUND, ()), f"the Warlord's disaster forbids raiding Province {p} this round"
         hl.add(p); payer = pid(p); work = _work_at(to)
         if work in PALACES:
-            pay(payer, 20); warlord_got[payer] = work
+            pay(payer, 20)          # the Emperor holds no realia: a palace raid doesn't count toward the objective
             notes.append(f"{i} raids the {work} on {to}: the Emperor pays the cost of the structure, 20.")
         elif i in take:
             code, where = take[i]
