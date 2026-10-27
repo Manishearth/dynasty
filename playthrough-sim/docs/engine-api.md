@@ -67,7 +67,7 @@ These globals are created by `setup()` and changed by everything else. Read them
 | `CUR_ROUND` | int | The round in progress; 0 is Setup. |
 | `CUR_Q` | `{seat: "good"/"avg"/"bad"}` | This round's harvest quality. |
 | `CUR_INC`, `CUR_HARV` | `{seat: float}` | This round's income and gross harvest, set by `harvest()`. |
-| `warlord_got` | `{player: code}` | The Warlord's objective so far: the realia he has raided from whom. The Emperor never appears. |
+| `warlord_got` | `{player: code}` | The Warlord's objective so far: the realia he has raided from whom. The Emperor never appears; at eight players the first palace raided is recorded under `"palace"`, standing in for one player. |
 | `ENTRIES`, `ROUNDS` | lists | The transcript and the round index. |
 
 ## Setup and rounds
@@ -215,9 +215,13 @@ For each step, in order:
 
 1. **Capture.** A step onto a square holding a bought soldier captures it, and is only allowed horizontally or vertically.
 2. **Tolls.** 5 for each river, built Wall link, built canal section or cut-out the step crosses (see `tolls()`), paid to the province concerned.
-3. **Raid.** A step onto an un-raided square of an occupied province raids it: 5 from that province's player, or 10 in Province 1; on a palace square, the Emperor pays the structure's cost, 20; a palace doesn't count toward the Warlord's objective. To take the realia on the square instead, pass `take={soldier: (code, square)}`: the piece moves to the Warlord, onto that square of his territory, and counts toward his objective. A raid the Warlord's disaster forbids this round raises an error. A step onto undeveloped land, a raided square or a square of an empty province raids nothing.
+3. **Raid.** A step onto an un-raided square of an occupied province raids it: 5 from that province's player, or 10 in Province 1; on a palace square, the Emperor pays the structure's cost, 20; at eight players the first palace raided stands in for one player's piece, otherwise a palace doesn't count toward the Warlord's objective. To take the realia on the square instead, pass `take={soldier: (code, square)}`: the piece moves to the Warlord, onto that square of his territory, and counts toward his objective. A raid the Warlord's disaster forbids this round raises an error. A step onto undeveloped land, a raided square or a square of an empty province raids nothing.
 
 Records one act with every grain change, the moves drawn as arrows, and a note of each capture, toll and raid appended to the hover.
+
+### `hire_soldier(at, text, hover=None)`
+
+The Warlord hires one soldier at the end of his turn: 20 to the Harvest Pile, on an empty square of his own territory (`8`). At most one a round, and his army may grow only to one more than it started with (`ARMY + 1`). It's named `W5`, `W6`, … and moves from the next round. The engine refuses a second hire in a round, an army already at its cap, a square outside his territory, and a Warlord who can't pay.
 
 ### `sell_soldiers(buys, text, hover=None)`
 

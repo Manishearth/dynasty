@@ -276,11 +276,11 @@ act("The last realia are sold. Every province's stock is empty.", TH(
  ("Noah","Board check. Graham and Silke are complete. Clark needs a Jar. Paddy needs a Scroll. Rich needs a Brush and a Bowl. I need a Customs House and a Vase. Every piece we're missing is sitting in a completed set."),
  ("Paddy","So the only way the rest of us finish is if the two who are done climb, and hand back what they don't need. Their climbing is our auction.")), map_hl=[2,3,4,5,6,7])
 say("Rob","This year: the Winter Palace on H22. I17 in Province 1, across the river — that's five back to Reina. K14, which is Rich's Customs House. And R16 in Province 7.", TH(
- ("Rob","Twenty for the palace from Reina, and the Customs House from Rich, the first piece of my objective. Both announced twelve months ago. Nobody can say they weren't told."),
+ ("Rob","Twenty for the palace from Reina, and at eight of us one palace stands in for one player's piece. And the Customs House from Rich. Two pieces of my objective in one year, both announced twelve months ago. Nobody can say they weren't told."),
  ("Graham","R16 is at an angle from my soldier, so he's safe there, and my Brush on Q16 is straight beside it. If he steps onto the Brush, he's straight beside my soldier too. My soldier is working by being looked at."),
  ("Rich","I said grain. I was wrong. Silke told me I was wrong and I said it anyway.")))
 march({"W2":"H22", "W1":"I17", "W3":"K14", "W4":"R16"}, "Rob's soldiers step in: the Winter Palace on H22, I17, Rich's Customs House on K14, and R16.", TH(
- ("Rob","One of my six. One different piece from every other player who holds realia, so not the crown and not the palaces. I've told you that too. The Customs House goes on M5, in the desert, where anyone who wants it can come and ask."),
+ ("Rob","Two of my six. One different piece from every other player who holds realia, not the crown; at eight players one palace may stand in for one of them, and that was mine. I've told you that too. The Customs House goes on M5, in the desert, where anyone who wants it can come and ask."),
  ("Reina","Twenty for the palace and ten for I17, less five for his toll. I'd budgeted for exactly this."),
  ("Rich","My Customs House. Three of five down to two of five, and he told me a year ago. Greedy is a terrible strategy when the other man is honest.")), take={"W3":("CH","M5")})
 salaries()
@@ -304,7 +304,7 @@ say("Reina","The Summer Palace this year. It's the key to the Wall and my own ca
  ("Rob","She'll put it as far from my soldier as she can. I'll walk there. She knows I'll walk there.")))
 build("Summer Palace", 20, {1:20}, key="Summer Palace", at="G26", hover=TH(
  ("Reina","G26, the far corner of Province 1, against the sea. Four squares from his soldier on H22. He'll raid me three times at ten on the way and take twenty at the end. I'd rather that than lose it next year — and in four years it won't matter."),
- ("Rob","Three squares at ten and twenty at the end. Fifty from the crown, and not a piece of it toward my objective. Grain's grain. She's priced it. So have I.")))
+ ("Rob","Three squares at ten and twenty at the end. Fifty from the crown, and none of it toward my objective: my one palace has already counted. Grain's grain. She's priced it. So have I.")))
 swap(7,3,"Graham Garner declares a complete set and replaces Richard Baron. Graham becomes Gentry of Province 3; Rich becomes Wheat Peasant of Province 7.", TH(
  ("Graham","Hand back the Scroll — it's native to Province 3 — keep the rest, and take every bag Rich's holding. I've been the Emperor, a wheat farmer and an Official. Banker is the only chair left I haven't been thrown out of."),
  ("Rich","He took my Customs House last year and now he's taken my chair. I went from landlord to wheat in one sentence. And I get his reservoir, which Reina built him, which nobody built me."),
@@ -501,7 +501,7 @@ act("Paddy puts up the Jars, Noah the Bowl, Rich the Vase. Nobody bids.", TH(
  ("Silke","The Jar finishes me, and finishing me means asking for the throne. Not tonight."),
  ("Graham","I'm the banker. Bankers don't need Vases.")), map_hl=[5,6,7])
 say("Rob","This year: the Summer Palace on G26. L21 in Province 4. J12 in Province 2. And P20, into Province 5.", TH(
- ("Rob","G26 doesn't count toward my objective; no palace does. It's twenty from Reina, after thirty on the way, and I said I'd go there three years ago. I'm going. The new land waits until next year: I announce first."),
+ ("Rob","G26 doesn't count toward my objective; my one palace already has. It's twenty from Reina, after thirty on the way, and I said I'd go there three years ago. I'm going. The new land waits until next year: I announce first."),
  ("Reina","He's walked four squares to raid a palace that's no use to his objective, because it's fifty from the crown door to door and because he said he would. Twenty for his word. I've paid worse."),
  ("Silke","L21 goes round my soldier. At an angle. He's learned the dance.")))
 march({"W2":"G26", "W1":"L21", "W3":"J12", "W4":"P20"}, "Rob's soldiers step in: the Summer Palace on G26, L21, J12 and P20.", TH(
@@ -596,7 +596,7 @@ assert all_built(), "not every public work is built"
 act("Every public work the country owes is standing: three palaces, twelve links of the Great Wall, eight sections of the Grand Canal, the irrigation system and the two reservoirs. The game ends: the players have survived, and the Emperor's reign has been a glorious one.", TH(
  ("Reina","Ten years. The reservoir first, then every ditch, then the land when the doubling came, the Wall out of what the land brought in, and my own canal last. A thousand and thirty million, and the minutes say who paid every bag."),
  ("Clark","Four pages now. The land compact got a page of its own."),
- ("Rob","One piece of six, told a year ahead, and twenty for each palace I walked to. The honest Warlord announces his way out of the throne. I'd do it again.")), map_hl=list(range(1,9)), big=True)
+ ("Rob","Two of six, one of them a palace, told a year ahead, and twenty for each palace I walked to. The honest Warlord announces his way out of the throne. I'd do it again.")), map_hl=list(range(1,9)), big=True)
 say("Clark","For the record, I never declared.", TH(
  ("Clark","Complete since year five, and the throne one sentence away. I waited for the list to be finished. Then the doubling took my income, the Wall above me kept me off the land until there was nothing left to buy it with, and this morning I sold the set back to the pile for ten. I've held. The Official's only way up was the throne, and I spent it on a guarantee."),
  ("Reina","He could have had it in year five, six or seven. He waited for the list instead. I'd like that minuted too.")))
@@ -609,4 +609,4 @@ RESULT = export(
  ["Reina kept the throne and finished the list in ten years — which by Section 18 is a win for the Emperor. The compact did it: one work a year, the split agreed before the card was turned, and the people who used each work paying into it.",
   "When the population doubled in year eight and every income fell to zero or below, the table bought new land: the crown paid a quarter of every square, the provinces the rest, and the harvest from the strip under the Wall, the sea and the Warlord's desert paid the tax that finished the Wall.",
   "Three players climbed. Graham rose from the wheat fields to the Gentry, Silke from silk to the Scholar's chair, and Paddy from rice to silk. Clark completed his set in year five and chose not to take the throne. Noah fell two provinces without ever being raided, and Rich fell from landlord to wheat farmer the year after he decided a soldier wasn't worth twenty.",
-  "Rob announced every raid a year ahead and got one of the six pieces he needed, though his long walks through the throne room to both palaces paid him well. The players used his honesty to buy soldiers where he said he'd be, and in year nine Silke captured one of his soldiers during the Warlord's wedding."])
+  "Rob announced every raid a year ahead and got two of the six pieces he needed, one of them the Winter Palace standing in for a player's piece, and his long walks through the throne room to both palaces paid him well. The players used his honesty to buy soldiers where he said he'd be, and in year nine Silke captured one of his soldiers during the Warlord's wedding."])

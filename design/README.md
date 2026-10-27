@@ -9,6 +9,7 @@ The living design documents for the Dynasty revival: what the project is, what M
 | [`cast.md`](cast.md) | The eight friends in the playthroughs: names (they're puns), how each one thinks, and what happened to them in each game |
 | [`history.md`](history.md) | A chronological log of requests and decisions, with Manish's own wording where it matters |
 | [`open-work.md`](open-work.md) | Work still to do, open questions, and known issues |
+| [`warlord-balance.md`](warlord-balance.md) | Simulated Warlord campaigns (`tools/warlord_sim.py`): what they model, the results, and why the Warlord hires reinforcements and gets a palace wildcard at eight players |
 | [`lessons.md`](lessons.md) | Mistakes caught along the way, worth not repeating |
 | [`reference-cards.md`](reference-cards.md) | The printable reference cards: what Manish asked for, the layout, printing, and where each number comes from |
 

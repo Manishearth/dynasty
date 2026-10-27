@@ -208,8 +208,9 @@ DUTIES = {
         "Raid one unraided square per soldier: 5, or 10 in Province 1.",
         "Raiding realia: take 5 or the piece itself.",
         "Raiding the Summer Palace, Winter Palace or Marble Pagoda: the Emperor pays you its full cost (20). The building stays.",
-        "Any other square, canal and reservoir squares included, is an ordinary raid, and the work is undamaged.",
+        "Any other square is an ordinary raid; works there are undamaged.",
         "Sell soldiers to anyone who asks: 20 each, you keep 25%.",
+        "After moving, you may hire one soldier: 20 to the Pile, on your own land, up to one more than you started with.",
         "Pay 5 per soldier that crosses a river or a public work, the Great Wall included. The Wall stands outside the provinces, so it can't be raided.",
         "Pay your tax, or refuse: only soldiers or politics can make you. You hold no realia and never auction."],
 }
@@ -381,7 +382,7 @@ def objective(p):
     if p == 1:
         return "<p>Stay in power. Build every public work you owe and your reign ends in glory.</p>"
     if p == 8:
-        return "<p>Raid a different piece of realia from each other player who holds realia (not the Emperor). Then take any seat, the throne included.</p>"
+        return "<p>Raid a different piece of realia from each other player who holds realia (not the Emperor). At eight players one palace or Pagoda raid may stand in for one of them. Then take any seat, the throne included.</p>"
     four = ", ".join(REALIA[r] for r in NEED45[p])
     extra = REALIA[STUCK[p]]
     return table(["Players", "Collect, plus 20 in grain"],

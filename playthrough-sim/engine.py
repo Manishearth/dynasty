@@ -137,7 +137,7 @@ def setup(active, key, title, subtitle, blurb, short=""):
     global ACTIVE, PLAYERS, seat, grain, stock, held, bonus, raids, pw, pw_at, board, pile_stock, land, pop_cards
     global pile, ENTRIES, ROUNDS, META, MULT, CUR_Q, CUR_INC, CUR_HARV, CUR_ROUND
     global dis_next, used_cards, pending_bonus, warlord_got, SOLDIERS, ARMY, NORAID
-    global _troops_round, _done, _named
+    global _troops_round, _done, _named, hired
     ACTIVE = sorted(active)
     PLAYERS = list(ACTIVE)
     seat = {s:s for s in ACTIVE}
@@ -160,6 +160,7 @@ def setup(active, key, title, subtitle, blurb, short=""):
     NORAID = {}            # round -> provinces the Warlord may not raid this round
     _troops_round = None
     _done = set(); _named = set()
+    hired = {}             # round -> soldiers the Warlord hired (RULINGS.md, reinforcements)
     ENTRIES = []; ROUNDS = []
     MULT = 1; CUR_Q = {}; CUR_INC = {}; CUR_HARV = {}; CUR_ROUND = None
     dis_next = {s:0 for s in ACTIVE}
@@ -705,7 +706,10 @@ def march(moves, text=None, hover=None, take=None):
         assert p not in NORAID.get(CUR_ROUND, ()), f"the Warlord's disaster forbids raiding Province {p} this round"
         hl.add(p); payer = pid(p); work = _work_at(to)
         if work in PALACES:
-            pay(payer, 20)          # the Emperor holds no realia: a palace raid doesn't count toward the objective
+            pay(payer, 20)
+            # the Emperor holds no realia, but at eight players one palace raid may stand in
+            # for one player's piece (RULINGS.md); it's recorded once, under "palace"
+            if len(ACTIVE) >= 8 and "palace" not in warlord_got: warlord_got["palace"] = work
             notes.append(f"{i} raids the {work} on {to}: the Emperor pays the cost of the structure, 20.")
         elif i in take:
             code, where = take[i]
@@ -726,6 +730,24 @@ def march(moves, text=None, hover=None, take=None):
     h = _norm(hover) or []
     if notes: h = h + [{"w":"","t":" ".join(notes)}]
     act(text or "Robert Land moves.", h or None, d, map_hl=sorted(hl), moves=mv)
+
+def hire_soldier(at, text, hover=None):
+    """The Warlord hires one soldier at the end of his turn (RULINGS.md, "The Warlord hires
+    reinforcements"): 20 to the Harvest Pile, on a square of his own territory, at most one
+    a round, and his army may grow to one more than it started with. It moves next round."""
+    global pile
+    assert 8 in ACTIVE
+    assert hired.get(CUR_ROUND, 0) == 0, "the Warlord hires at most one soldier a round"
+    assert rob_n() < ARMY + 1, f"the Warlord's army may grow only to {ARMY + 1}"
+    assert region(at) == "8" and not _at(at), f"a hired soldier stands on an empty square of the Warlord's territory, not {at}"
+    w = pid(8)
+    _spend(w, 20, "hire a soldier")
+    n = 1
+    while f"W{n}" in SOLDIERS or f"W{n}" in _named: n += 1
+    SOLDIERS[f"W{n}"] = dict(side="W", owner=w, sq=at, home=8, moved=CUR_ROUND)
+    _named.add(f"W{n}")
+    hired[CUR_ROUND] = 1
+    act(text, hover, {w: -20}, map_hl=[8], pile_delta=20)
 
 def sell_soldiers(buys, text, hover=None):
     """buys: [(seat, square), ...]; each pays the Warlord 20 for a soldier standing on

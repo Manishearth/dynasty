@@ -246,6 +246,7 @@ Every soldier stands on a square and moves at most one square a round, in any di
 | `place_army({"W1": sq, ...}, text, hover)` | Setup: the Warlord's soldiers stand on undeveloped land. Four at eight players, two at five or six. |
 | `march({"W1": sq, ...}, text, hover, take=None)` | The Warlord moves. Each listed soldier steps one square; a step onto an un-raided square of an occupied province raids it. |
 | `sell_soldiers([(seat, sq), ...], text, hover)` | Each buyer pays 20 for a soldier standing on that square of their own province; the Warlord keeps 5. |
+| `hire_soldier(sq, text, hover)` | After he marches, the Warlord hires one soldier for 20, on his own territory; his army may grow to one more than it started with. |
 | `troops({"Reina1": sq, ...}, text, hover)` | Bought soldiers move, after the Warlord's. |
 
 A **raid** is what happens when a Warlord soldier steps onto an un-raided square of an occupied province, and it isn't optional: plan the route so the soldier raids where the Warlord means to. The tribute is 5, or 10 in Province 1; a palace square costs the Emperor 20 and counts toward the Warlord's objective; `take={"W1": ("BB", "K4")}` takes the realia on the square instead, and the Warlord puts it on K4 in his own territory. A soldier that steps onto undeveloped land, a raided square or a square of an empty province raids nothing, so a march can take years to reach anywhere worth raiding. That's the point.

@@ -325,9 +325,11 @@ function drawObjectives(s){
     }
     if(p===8){
       const others=D.active.filter(q=>q!==8&&q!==1).map(q=>s.seat[q]), rob=s.rob||{};
-      const n=others.filter(o=>rob[o]).length;
+      /* at eight players one palace raid may stand in for one player's piece */
+      const wild=D.active.length>=8, n=Math.min(others.length, others.filter(o=>rob[o]).length+(wild&&rob.palace?1:0));
       h+='<div class="obj"><span class="on">'+esc(SH[who])+'</span><span class="pips">'+
         others.map(o=>'<i class="'+(rob[o]?'f r':'')+'" title="'+esc(NM[o])+(rob[o]?' — raided: '+esc(D.rname[rob[o]]||rob[o]):'')+'">'+esc(SH[o].slice(0,3))+'</i>').join('')+
+        (wild?'<i class="'+(rob.palace?'f r':'')+'" title="'+(rob.palace?'The '+esc(rob.palace)+', standing in for one player':'One palace raid may stand in for one player')+'">Pal</i>':'')+
         '</span><span class="objn'+(n===others.length?' done':'')+'">'+n+'/'+others.length+'</span></div>';
       return;
     }

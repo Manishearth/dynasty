@@ -24,6 +24,7 @@ Section and note numbers refer to `rulebook.html`. Every ruling, including the e
 | New land | 20 a square into the Harvest Pile; 20 a round more harvest for the province from the next round (Section 13). |
 | Running out of grain | A piece sold back to the pile pays 2 and joins the pile's stock; a shortfall left after selling is a debt, carried as negative grain that every receipt pays down (Note 7). |
 | Soldier sales | 20 each; the Warlord keeps 5 and 15 goes to the pile (Section 14). |
+| The Warlord's reinforcements | 20 each to the pile, one a round, on his own territory; the army may grow to one more than it started with (`RULINGS.md`). |
 | Raids | From the square a Warlord soldier steps onto: 5, or 10 in Province 1; a palace costs the Emperor 20; realia may be taken instead. Nothing in an empty province (Note 4). |
 | Tolls | 5 for each river, built Wall link, built canal section or cut-out a Warlord soldier's step crosses (Section 14, Note 16). |
 | Captures | A step onto an enemy soldier's square, horizontally or vertically, removes it (Note 15). |
@@ -106,7 +107,7 @@ The original materials leave some questions open. Where the engine needed an ans
 | Which rivers charge the toll, and who is paid? | Both; the province stepped into, nobody in undeveloped land | `RULINGS.md` |
 | What counts as crossing a public work, and who is paid? | A step that cuts a built Wall link or canal section, or lands on a cut-out; paid to the province the work belongs to | `RULINGS.md` |
 | Is a raid on a canal, irrigation or reservoir square special? | No — an ordinary raid; the work is undamaged. The Wall can't be raided | Section 14, `RULINGS.md` |
-| Does a palace raid count toward the Warlord's objective? | No — a balance choice; the objective is one piece from each other realia-holding player | `RULINGS.md` |
+| Does a palace raid count toward the Warlord's objective? | At eight players, one palace raid may stand in for one player's piece; otherwise no. A balance choice | `RULINGS.md` |
 | Can two soldiers share a square? | Only the same owner's; an enemy square is entered only by capture | `RULINGS.md` |
 | Where can realia go? | Not on a raided square, nor under a palace or cut-out | Note 14, `RULINGS.md` |
 | What happens to bought soldiers when their owner changes seats? | They stay theirs, where they stand | `RULINGS.md` |

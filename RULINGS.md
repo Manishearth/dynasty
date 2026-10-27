@@ -107,7 +107,7 @@ Two readings the playthroughs add, from the booklets' wording: each province dev
 
 ### The Warlord's objective leaves out the Emperor
 
-**Ruling.** The Warlord must raid one piece of realia from each *other realia-holding* player. The Emperor and the palaces don't count. A palace raid still costs the Emperor 20, and the palace stays standing (below).
+**Ruling.** The Warlord must raid one piece of realia from each *other realia-holding* player. The Emperor doesn't count. A palace raid still costs the Emperor 20, and the palace stays standing (below). **At eight players only, one raid on a palace or the Marble Pagoda may stand in for any one player's piece** (one, however many palaces are raided).
 
 **Why.** The booklets are inconsistent here, and this is a balance choice, made to give the Warlord's objective a fair chance. The Warlord's booklet asks for "a different piece of realia from each player". Whether the palaces are realia, the booklets disagree:
 - The Emperor's booklet: "If the Warlord raids a square where you have placed any realia (the Summer Palace, Winter Palace and Marble Pagoda) you must pay him the cost of the structure." The same paragraph appears word for word in the Official's and Silk Peasant's booklets, who have no palaces, so it is copied boilerplate rather than a definition of realia.
@@ -116,7 +116,18 @@ Two readings the playthroughs add, from the booklets' wording: each province dev
 
 At eight players the objective was close to impossible (seven targets, four soldiers, one square a round, games of about ten years; game 1 reached two of seven by Year 10 under the old rules). Leaving out the Emperor makes it six targets and removes Province 1, one of the deepest. **A table that prefers the alternative reading can count a palace raid as the Emperor's piece.** Approved by Manish on 2026-10-27.
 
-**Recorded in** rulebook Sections 11 and 14, the Warlord in Section 27, Appendices C and G, the reference cards, and `playthrough-sim/engine.py` (a palace raid no longer enters `warlord_got`).
+The eight-player wildcard came the same night: with the Emperor left out, the Warlord had no objective reason ever to enter Province 1, and an eight-player Warlord still rarely finished. Manish chose "warlord can raid one of the emperor's palaces/pagodas in lieu of collecting realia from one player", at eight players only. It lets the Warlord skip his worst target and gives the Emperor a reason to guard a palace. Simulated campaigns (`design/warlord-balance.md`) put it at +5 to +15 points of completion at eight players.
+
+**Recorded in** rulebook Sections 11 and 14, the Warlord in Section 27, Appendices C and G, the reference cards, and `playthrough-sim/engine.py` (a palace raid enters `warlord_got` as the wildcard only at eight players).
+
+### The Warlord hires reinforcements
+
+**Ruling.** At the end of the Warlord's turn, after their soldiers have moved, the Warlord may hire one new soldier for 20, paid to the Harvest Pile, placed on any square of the Warlord's own territory (the western desert, not the strip or the sea). It moves from the next round. The army may grow to one more soldier than it started with: three at five or six players, five at eight. A Warlord in debt can't hire (Note 7). Bought soldiers are unchanged: they start in the buyer's province and can't move until it has been raided.
+
+**Why.** A balance choice, made by Manish on 2026-10-27 after simulated campaigns. The Warlord's booklet hints at it ("Your only desire is to accumulate wealth enough to buy more soldiers who can defeat the Imperial Army"; "Add soldiers if necessary") but gives no rule, and without one the Warlord's grain had no use and every lost soldier was permanent, so he never risked one. Manish first suggested capping the army at the number of players; `tools/warlord_sim.py` found that far too easy (the objective completed in 67–85% of medium-defence games). The starting army plus one keeps the objective possible but contested: about 60% / 40% completion at eight players with medium / high defence, 44% / 14% at six, 60% / 37% at five. A "home guard" (bought soldiers moving inside their own province before the first raid) was also tested and barely changed anything, so the 1969 rule stays. Hiring after the march, on the Warlord's own land, means a new soldier never appears and raids in the same turn: every province sees it coming. See `design/warlord-balance.md`.
+
+**Recorded in** rulebook Section 14 (with a note on guarding a piece), the Warlord in Section 27, Appendices C and G, the Warlord's reference card, and `playthrough-sim/engine.py` (`hire_soldier`).
+
 
 ### Raiding realia: 5 or the piece
 
