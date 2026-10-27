@@ -22,7 +22,7 @@ body{
   background-size:32px 32px;background-position:0 0,16px 16px;
 }
 .wrap{padding-top:3rem}
-.sheet{margin-bottom:2.6rem}
+.rulebook .sheet{margin-bottom:2.6rem}
 /* the pixel mono is wide; shrink everything that uses it */
 .sec-num,.eyebrow,.cover .sub,.cover .meta,.rulebook caption,.rulebook thead th,.rulebook td.n,.rulebook th.n,.note b,.note .n-lbl,.rulebook .who,.rulebook .see,
 .rulebook .key,figcaption,.toc .t-num,.toc .t-part,.band a,.steps li::before,.disasters li::before,.orig cite,

@@ -85,3 +85,10 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;
 .refcards ol.turn .n{font-weight:400;font-size:11pt;border-radius:0;background:var(--ink);color:var(--paper);text-shadow:none}
 .refcards .anytime{border:1px dashed var(--ink)}
 .refcards ul.checks li::before{border-color:var(--ink)}
+
+/* ---------- print ---------- */
+@media print{
+  /* the scanlines would add a blank page, and the glow prints as a second copy of every word */
+  body::after{display:none}
+  body{text-shadow:none}
+}
