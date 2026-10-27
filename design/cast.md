@@ -106,7 +106,7 @@ The playthroughs are independent games, not evenings in a series. In every one, 
 | Paddy | Rice → Official | won |
 | Graham | Wheat → Wheat Peasant | held |
 
-**The Dark Ages** (`game7_dark.py`, 6 players: 1, 2, 3, 5, 6, 8; 12 years). Noah and Graham sit out. Reina taxes at 50% and 70% to build the Wall early, and in Year 3 Clark revolts (taxes too excessive, can't control the Warlord). Chaos lasts three years: nobody wins the acclamation, the reserve shrinks, Rob raids, and the doubling comes with no Emperor to fund land. In Year 6 Clark sells his support to Rich, who is acclaimed and keeps every promise: land with the crown paying half, all six canal sections at once, the Wall, the irrigation system, the Reservoir and the Pagoda, at falling tax rates. Every work stands in Year 12, with the Harvest Pile down to 85. Survival.
+**The Dark Ages** (`game7_dark.py`, 6 players: 1, 2, 3, 5, 6, 8; 12 years). Noah and Graham sit out. Reina taxes at 50% and 70% to build the Wall early, and in Year 3 Clark revolts (taxes too excessive, can't control the Warlord). Chaos lasts three years: nobody wins the acclamation, the reserve shrinks, Rob raids, and the doubling comes with no Emperor to fund land. In Year 6 Clark sells his support to Rich, who is acclaimed and keeps every promise: land with the crown paying half, all six canal sections at once, the Wall, the irrigation system, the Reservoir and the Pagoda, at falling tax rates. Every work stands in Year 12, with the Harvest Pile down to 975. Survival.
 
 | Player | Start → finish | Verdict |
 |---|---|---|

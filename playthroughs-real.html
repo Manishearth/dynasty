@@ -541,11 +541,18 @@ function drawMap(s,hl,mv){
         '" stroke="#fff" stroke-width="1.1" stroke-linejoin="round" paint-order="stroke"><title>'+esc(v[0])+'</title></path>';
     });
   }
+  /* province tags: a small pill in each province's top-left square (its first row, then that row's
+     leftmost square), drawn last but pale and partly transparent, so a piece under it still shows.
+     The Warlord's desert reaches the board's corner, so its tag keeps the open spot in LBL. */
   for(const p in LBL){
-    const [x,y]=LBL[p], on=ACT.has(p), who=on?SH[s.seat[p]]:'empty';
-    svg+='<text x="'+(x*CW)+'" y="'+(y*CW)+'" text-anchor="middle" font-family="Palatino Linotype,Palatino,Book Antiqua,Georgia,serif" '+
-      'font-size="10" font-weight="'+(on?700:400)+'" font-style="'+(on?'normal':'italic')+'" fill="'+(on?'#3B2E1E':'#7D6E55')+'" stroke="#F6EEDC" stroke-width="2.6" paint-order="stroke">'+
-      p+' '+esc(who)+'</text>';
+    let r0=-1, c0=-1;
+    if(p!=='8') for(let r=0;r<R&&r0<0;r++) for(let c=0;c<C;c++) if(G[r][c]===p){r0=r; c0=c; break;}
+    const on=ACT.has(p), txt=p+' '+(on?SH[s.seat[p]]:'empty');
+    const w=txt.length*2.75+3.4, h=6.4;
+    const x=r0<0?LBL[p][0]*CW-w/2:c0*CW+.8, y=r0<0?LBL[p][1]*CW-h/2:r0*CW+.8;
+    svg+='<g opacity="'+(on?.9:.7)+'"><rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="3.2" fill="#F6EEDC" fill-opacity=".78"/>'+
+      '<text x="'+(x+1.7)+'" y="'+(y+4.7)+'" font-family="Palatino Linotype,Palatino,Book Antiqua,Georgia,serif" font-size="5"'+
+      ' font-weight="'+(on?700:400)+'" font-style="'+(on?'normal':'italic')+'" fill="'+(on?'#3B2E1E':'#7D6E55')+'">'+esc(txt)+'</text></g>';
   }
   svg+='</svg>';
   document.getElementById('map').innerHTML=svg;

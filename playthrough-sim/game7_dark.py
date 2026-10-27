@@ -558,7 +558,7 @@ build("Province 2 Irrigation System", 30, {1:20, 2:10}, key="irr2", at="H14:H15"
  ("Rich","Twenty of the thirty. To the letter."),
  ("","Cost split: Rich 20, Clark 10.")))
 say("Reina","As the Gentry, I bank the Harvest Pile. For the record: it's down to eight hundred and twenty-five.", TH(
- ("Reina","It was twenty-five hundred at the start of the game. At the end of Year 6 it was over eighteen hundred: that year every harvest was negative and paid into it, and so did every square of land we bought. Now it pays out four hundred a year to people who own land. The pile is what's paying for the recovery."),
+ ("Reina","It was twenty-five hundred at the start of the game. At the end of Year 6 it was over nineteen hundred: that year every harvest was negative and paid into it, and so did every square of land we bought. Now it pays out four hundred a year to people who own land. The pile is what's paying for the recovery."),
  ("Rich","And there are two rounds left to pay. It'll hold. I've done the sum."),
  ("Paddy","The bank is the only thing in the country getting poorer. I don't mind.")))
 march({"W1":"J20", "W2":"S22"}, "Robert Land's soldiers walk without raiding: the northern one steps out of Province 1 into empty Province 4 at J20, the southern one back onto a raided square at S22.", TH(
@@ -604,10 +604,10 @@ say("Paddy","Heaven has favourites. Good harvest for Provinces 2, 4 and 5. Bad f
  ("Silke","Good for me, and good for Clark. Which matters, this year.")))
 harvest()
 rents(7)
-say("Reina","The Harvest Pile has a hundred and forty-five in it. It paid out four hundred this harvest.", TH(
- ("Reina","I bank it, so I'm the one who says it. If this game ran one more year, the pile couldn't pay the harvest. The land rush has been paid for by the bank, and the bank is nearly empty."),
+say("Reina","The Harvest Pile has a thousand and fifteen in it. It paid out four hundred this harvest.", TH(
+ ("Reina","I bank it, so I'm the one who says it. Two more harvests like this one and the pile couldn't pay a third. The land rush has been paid for by the bank, and the bank is running down."),
  ("Rich","Then it's a good thing this is the last year."),
- ("Silke","Twenty-five hundred at the start. A hundred and forty-five. Somebody should have been counting."),
+ ("Silke","Twenty-five hundred at the start. A thousand now, and four hundred a year going out. Somebody should be counting."),
  ("Reina","Somebody was.")))
 say("Rich","Thirty per cent. And then the Marble Pagoda, and every work this country owes is standing.", TH(
  ("Rich","Twenty for the Pagoda, the last of eight hundred and ninety. The book says the game ends when they're built. I'd like everybody to do whatever they're going to do before I build it."),
@@ -647,5 +647,5 @@ RESULT = export(
  "Every public work was built in Year 12, the survival ending. Players are ranked by the province they finished in against the one they drew.",
  ["Reina Osorio taxed hard from the first year to build the Great Wall before the population came, and the table revolted in Year 3 over the rate. The revolt cost the country three years: no tax, no salaries and no public works, while the harvest, the rent and the Warlord went on as before. For the two years before the population doubled, Chaos was a holiday for everyone but the throne, and that was why it lasted.",
   "Nobody could win the acclamation. The table counted grain, soldiers and friends, and a claim needed more of them than any rival's. Rich had the most grain from Year 3, and Rob had the only soldiers. Reina refused to back anyone, so that she would at least not lose to one of them; the peasants refused while there was no tax to pay; and when the doubling came and the land could not be bought without an Emperor, Clark paid Paddy to keep the friends tied. It ended in Year 6, after a bad harvest, when Clark sold his support to Rich for twenty and two promises.",
-  "Rich kept every promise to the letter, and the recovery ran on new land: the crown paid half of every peasant's square and all of the canals, and the tax that land paid built the rest of the Wall. The imperial reserve that Rich inherited had fallen from 284 to 189 during Chaos. By Year 11 a bad harvest left every province but the Warlord's in profit. The Harvest Pile paid for it: it fell from over eighteen hundred at the end of Year 6 to 85 at the end of the game, and the works were finished in the last year it could have paid a full harvest.",
+  "Rich kept every promise to the letter, and the recovery ran on new land: the crown paid half of every peasant's square and all of the canals, and the tax that land paid built the rest of the Wall. The imperial reserve that Rich inherited had fallen from 284 to 189 during Chaos. By Year 11 a bad harvest left every province but the Warlord's in profit. The Harvest Pile paid for it: it fell from over nineteen hundred at the end of Year 6 to 975 at the end of the game, paying out four hundred a year once the land came in, and it had two more harvests like the last left in it.",
   "Silke Weber completed her set in Year 6 and waited six years on the land before taking Clark's chair in the last round. Paddy Doyle twice refused the Dragon Jar that would have completed his: once in Year 4, when it would have put the Warlord on the throne, and once at the end, because he didn't want to move. Robert Land finished where he started, which is all a Warlord can do without his objective."])
