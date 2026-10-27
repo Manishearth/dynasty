@@ -69,7 +69,7 @@ CARDS = [
                   "a province with no wall built above it pays <b>2 million</b> in damages to the Harvest Pile instead.",
                   "Provinces 4, 5, 6, 7, 8 play a <b>Personal Disaster</b>."]),
     dict(id="charity", copies=1, kind="money", title="Imperial Charity",
-         flavor="Moved by the suffering of his people, the Emperor opens his purse. Slightly.",
+         flavor="Moved by the suffering of their people, the Emperor opens their purse. Slightly.",
          effects=["All provinces collect an <b>average harvest</b>.",
                   "Every player receives <b>2 million</b> from the Emperor's reserve."]),
     dict(id="share", copies=1, kind="money", title="The Emperor's Share",

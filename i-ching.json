@@ -140,7 +140,7 @@
    "copies": 1,
    "kind": "money",
    "title": "Imperial Charity",
-   "flavor": "Moved by the suffering of his people, the Emperor opens his purse. Slightly.",
+   "flavor": "Moved by the suffering of their people, the Emperor opens their purse. Slightly.",
    "effects": [
     "All provinces collect an average harvest.",
     "Every player receives 2 million from the Emperor's reserve."
