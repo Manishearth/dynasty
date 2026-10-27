@@ -141,7 +141,7 @@ The Emperor pays `pay` — `{seat: amount}` — defaulting to 5 each to Province
 
 ### `build(name, cost, split, wall=None, canal=None, key=None, hover=None, text=None, at=None)`
 
-One public-works project.
+One public-works project. The whole cost goes to the Harvest Pile (RULINGS, "Paying for a Public Work pays the Harvest Pile").
 
 - `split` — `{seat: amount}`; must sum to `cost`.
 - `key` — for single works: `"Summer Palace"`, `"Winter Palace"`, `"Marble Pagoda"`, `"irr2"`, `"res3"`, `"res7"`.

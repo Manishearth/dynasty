@@ -433,9 +433,10 @@ def build(name, cost, split, wall=None, canal=None, key=None, hover=None, text=N
         pw[key] = 1
         if key in PW_BONUS:
             s,b = PW_BONUS[key]; pending_bonus[s] = pending_bonus.get(s,0)+b
+    # the cost goes to the Harvest Pile (RULINGS, "Paying for a Public Work pays the Harvest Pile")
     act(text or f"Public works: {name} — {cost:g} paid.",
         hover or ("Cost split: "+", ".join(f"{SHORT[pid(s)]} {a:g}" for s,a in split.items())+"."),
-        d, map_hl=list(split.keys()))
+        d, map_hl=list(split.keys()), pile_delta=cost)
 
 LAND_WHERE = {1:"nS", 2:"n", 3:"n", 4:"S", 5:"S", 6:"S8", 7:"8"}   # where each province may develop (its booklet)
 def buy_land(s, squares, split, text, hover=None):
