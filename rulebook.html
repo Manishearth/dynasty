@@ -727,7 +727,7 @@ h3.part{border-top:2px solid var(--ink);padding-top:.8rem;margin-top:2.6rem;colo
   <figcaption>At 4–5 players: the arrow points at the province whose realia you are stuck with and will never want</figcaption>
   </figure>
   <h3>The auction</h3>
-  <p>You must auction one piece of realia during each round, until all your pieces have been sold. The minimum bid is 2 million bags of grain, but you may set any higher minimum you like. One fourth of the final sale price, rounded down to the half million, belongs to you as a commission; the rest goes to the Harvest Pile. On a sale of 9 you keep 2 and the pile takes 7; on 7, 1.5 and 5.5. Any realia returned to you during the game must be auctioned again as soon as possible.</p>
+  <p>You must auction one piece of realia during each round, until your province's stock is gone. Realia you have bought is yours to keep: the duty covers only your own province's pieces. The minimum bid is 2 million bags of grain, but you may set any higher minimum you like. One fourth of the final sale price, rounded down to the half million, belongs to you as a commission; the rest goes to the Harvest Pile. On a sale of 9 you keep 2 and the pile takes 7; on 7, 1.5 and 5.5. Any realia returned to you during the game must be auctioned again as soon as possible.</p>
   <p>The Emperor does not bid. Everyone else may.</p>
   <div class="orig">One of the penalties of hoarding — that is, not bidding for the Realia — is that a player can and will move into or take over a wealthy Province. Remember, a player will move laterally if the reward is great enough.<cite>General Instructions, 1969</cite></div>
   <h3>Placement</h3>
@@ -915,6 +915,14 @@ h3.part{border-top:2px solid var(--ink);padding-top:.8rem;margin-top:2.6rem;colo
   </ol>
   <p><strong>Debt is a seventh cause.</strong> A player in debt to the Harvest Pile (Section 8) is facing starvation, and starvation is the one thing the peasants' booklets say will drive them to revolt. So while any player is in debt, that debt is a cause for revolt like the six above. It still needs two other players to agree, and the player in debt may be the one who revolts.</p>
   <p>The price of revolt is <strong>Chaos</strong>. The nation is leaderless until a new Emperor emerges. To become the new Emperor, a player must have one of the following: the most money, the most friends, the most <span class="piece"><img src="images/soldier.svg" alt="">soldiers</span>, or any combination of the above.</p>
+  <h3>Counting the acclamation</h3>
+  <p>The rules list the qualifications but not how to choose between rival claims, so count them. Anyone but the deposed Emperor may claim, the Warlord included. For each claimant, count three things: <strong>grain</strong> in hand, <span class="piece"><img src="images/soldier.svg" alt=""><strong>soldiers</strong></span> on the board, and <strong>friends</strong>, the players backing that claim. Each player backs one claim at most. The deposed Emperor may back a claimant, but her grain isn't counted.</p>
+  <ul>
+    <li>A claimant who leads in one count is acclaimed, provided no rival leads in another.</li>
+    <li>Otherwise, the claimant who leads in more of the three is acclaimed.</li>
+    <li>A tie in a count means nobody leads it. If no one is acclaimed, Chaos goes on, and the table may count again whenever the claims change.</li>
+  </ul>
+  <p>The Warlord's army usually gives him the most <span class="piece"><img src="images/soldier.svg" alt="">soldiers</span>, so his claim blocks others more often than it wins. He must sell <span class="piece"><img src="images/soldier.svg" alt="">soldiers</span> to anyone who asks, and buying them is how the rest of the table takes that count from him.</p>
   <div class="note"><b>Note 17</b> While Chaos lasts, no tax is declared, no salaries are paid and no Public Works are built. Harvests are still distributed and the Warlord still rides.</div>
   <p>Note the second qualification in that list. Friends are a resource in this game, and the rules say so out loud.</p>
 </section>
@@ -1538,7 +1546,7 @@ h3.part{border-top:2px solid var(--ink);padding-top:.8rem;margin-top:2.6rem;colo
   <h3><span class="h-num">14</span>The first angry player: revolt and Chaos <span class="see"><a href="#s16">§16</a></span></h3>
   <ul class="say">
     <li>Anyone may revolt at any time if <strong>two other players agree</strong> the Emperor is guilty of one of the causes: unjust, taxes too high, reserve too low, works too slow, can't control the Warlord, won't fund new land. Or any player is in debt.</li>
-    <li>Revolt brings <strong>Chaos</strong>: no tax, salaries or building until the table acclaims a new Emperor, the one with the most grain, friends or <span class="piece"><img src="images/soldier.svg" alt="">soldiers</span>. Harvests still come, and the Warlord still rides.</li>
+    <li>Revolt brings <strong>Chaos</strong>: no tax, salaries or building until the table acclaims a new Emperor. Count each claimant's grain, <span class="piece"><img src="images/soldier.svg" alt="">soldiers</span> and friends (backers): leading one count is enough if no rival leads another; otherwise whoever leads more counts wins, and a tie leads nobody. Harvests still come, and the Warlord still rides.</li>
     <li>This is how the table polices the Emperor. There's no other referee.</li>
   </ul>
 
@@ -1843,6 +1851,7 @@ h3.part{border-top:2px solid var(--ink);padding-top:.8rem;margin-top:2.6rem;colo
       <tr><td>Moving onto a square</td><td>A Warlord <span class="piece"><img src="images/soldier.svg" alt="">soldier</span> stepping onto an un-raided square of an occupied province must raid it. Undeveloped land, a raided square or an unoccupied province's square raids nothing. Any <span class="piece"><img src="images/soldier.svg" alt="">soldier</span> may stand still. One owner's <span class="piece"><img src="images/soldier.svg" alt="">soldiers</span> may share a square; an enemy's square can be entered only by capturing, straight on.</td></tr>
       <tr><td>Placing pieces</td><td>Realia can't go on a raided square or under a palace or cut-out, and a palace or cut-out can't go on realia. A <span class="piece"><img src="images/soldier.svg" alt="">soldier</span> may stand on realia. Realia the Warlord takes goes on a square of the Warlord's territory. Wall links and <span class="piece"><img src="images/grand-canal.svg" alt="">canal</span> sections are built in the order printed on the map.</td></tr>
       <tr><td>Bought <span class="piece"><img src="images/soldier.svg" alt="">soldiers</span> after a seat change</td><td>A <span class="piece"><img src="images/soldier.svg" alt="">soldier</span> belongs to the player who bought it and stays where it stands. It still can't move until the province it was bought in has been raided.</td></tr>
+      <tr><td>Acclaiming a new Emperor</td><td>Count each claimant's grain in hand, <span class="piece"><img src="images/soldier.svg" alt="">soldiers</span> on the board and friends (players backing the claim, one claim each). Leading one count is enough if no rival leads another; otherwise whoever leads more of the three is acclaimed. A tie leads nobody, and with no winner Chaos goes on. The deposed Emperor can't claim or count her grain, but may back someone; the Warlord may claim (Section 16).</td></tr>
       <tr><td>Rounding</td><td>Every payment worked out as a fraction rounds down to the half million, in the payer's favour: commissions, tax, and the disasters that take a half or a third (Section 8).</td></tr>
       <tr><td>Rent in Round One</td><td>Paid. Round One skips only the card and the harvest and starts at rent (Section 5).</td></tr>
       <tr><td>The Warlord and tax</td><td>The Warlord may refuse to pay. It's in character, and only <span class="piece"><img src="images/soldier.svg" alt="">soldiers</span> and politics can change it (Section 9).</td></tr>

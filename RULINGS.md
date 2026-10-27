@@ -189,6 +189,14 @@ The details, settled by Manish on 2026-10-25:
 
 **Recorded in** rulebook Section 8 (the general rule), restated in Sections 9 (tax), 10 (commission) and 15 (disasters) and in the worked round (Appendix D); `playthrough-sim/engine.py` (`pay_down`).
 
+### Counting the acclamation after a revolt
+
+**Ruling.** Anyone but the deposed Emperor may claim the throne, the Warlord included. Each claimant's grain in hand, soldiers on the board and friends (players backing that claim, one claim each) are counted. A claimant who leads in one count is acclaimed if no rival leads in another; otherwise the claimant who leads in more of the three is acclaimed. A tie in a count leads nobody. With no winner, Chaos goes on, and the table may count again whenever the claims change. The deposed Emperor may back a claimant, but her grain isn't counted.
+
+**Why.** Section 16 lists the qualifications ("the most money, the most friends, the most soldiers, or any combination") but not how to settle rival claims. The Warlord's starting army nearly always gives him the most soldiers, so "any one qualification wins" would hand him the throne after almost every revolt. Counting the three lets a soldiers-only claim block rather than win, keeps friends as real a resource as grain, and makes a split table pay for its revolt with a longer Chaos. Rich proposed it at the table in game 7; adopted into the rulebook by Manish on 2026-10-27.
+
+**Recorded in** rulebook Section 16, Appendices C and G, the "Running the round" card, and games 2 and 7.
+
 ### Rent in Round One
 
 **Ruling.** Round One skips only the I Ching card and the harvest, so it starts at step 3: the Peasants pay rent in Round One like every other round.
@@ -291,7 +299,7 @@ Judgement calls made while writing the games. None overrides a rule; each fills 
 - **"Sharing the cost" of new land** is satisfied by any share from the crown, even 1 a square (game 6).
 - **A revolt short of two supporters simply doesn't happen** (game 6).
 - **During Chaos:** the deposed Emperor stays in Province 1, pays its consumption and takes its raids, and her grain is the reserve the next Emperor takes (games 2 and 7). No new land can be bought, since there is no Emperor to pay the share (game 7). A revolt declared after the tax is announced but before it is paid voids that year's tax, and Chaos can end mid-round: the new Emperor declares tax, builds, buys land and pays salaries in the round of the acclamation (game 7).
-- **How the acclamation is counted** (game 7, proposed at the table by Rich). Each claimant's grain in hand, soldiers on the board, and friends (players backing that claim, one claim each) are counted. One qualification is enough if no rival leads in another; otherwise the claimant who leads in more of the three wins, and a tie in any count leads nobody. The deposed Emperor can't claim and her grain isn't counted, but she may back a claimant; the Warlord may claim. Section 16 only lists the qualifications, so this is the playthroughs' procedure, not the rulebook's.
+- **How the acclamation is counted** is now a ruling: see "Counting the acclamation after a revolt" under Clarifications. Rich proposes it at the table in game 7.
 - **A seat change in the last round, before the last work is built, counts for scoring** (game 7).
 
 ## Open questions

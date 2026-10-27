@@ -143,7 +143,8 @@ ROUND_ONE = [
 CHAOS = [
     "<b>Stopped:</b> no tax, no salaries, no Public Works, and so no new harvest squares (no Emperor to share the cost).",
     "<b>Still on:</b> harvests are paid, and the Warlord still rides. The fallen Emperor keeps Province 1 for now.",
-    "It ends when the table accepts a new Emperor (the most grain, friends or soldiers, or a mix), even mid-round: the new Emperor then declares tax, builds and pays salaries that round.",
+    "It ends when a new Emperor is acclaimed, even mid-round: the new Emperor then declares tax, builds and pays salaries that round.",
+    "<b>The count:</b> each claimant's grain, soldiers and friends (backers, one claim each). Leading one is enough if no rival leads another; otherwise whoever leads more wins. A tie leads nobody. The fallen Emperor can't claim.",
 ]
 END_CHECKS = [
     "The population counter shows the current figure.",
