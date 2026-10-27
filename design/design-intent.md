@@ -30,7 +30,7 @@ These are Manish's standing preferences, gathered from the conversations. Treat 
 - Naming: Provinces 3 and 7 have a **Reservoir**. Province 2 has an **Irrigation System**, because the booklet's Province 2 system has ditches and dams but no reservoir. "Reservoir / Irrigation System" is gone everywhere. In the plural, write "the irrigation system and the two reservoirs".
 - Cut-outs: the game gives no size for the irrigation system or the reservoirs. Use Manish's wording: "There is no single correct size, but we have some suggestions here". Show the suggested size as a small drawing of squares, not "1 × 2" text: Province 2 is 1 × 2, Province 7 is 2 × 2, Province 3 is 2 × 3. No "where the sizes come from" explanation.
 - Realia placement is highlighted in setup step 3 and under Starting stock: unsold stock waits beside the board, and a bought or traded piece must go on a square in the buyer's province immediately.
-- Piece names in running text get glyphs, via `tools/add_glyphs.py`.
+- Piece names in running text get glyphs, via `tools/add_glyphs.py`. Each glyph is sized so its ink runs from the baseline to the cap height, whatever its shape (`inline_css()` in `tools/glyphs.py` measures each one), so the small versions all read at the same height as the text.
 - **Reservoir is capitalised wherever its glyph appears**: "the Reservoir", "two Reservoirs". `add_glyphs.py` and the playthrough page do this themselves (the `CAPITALISE` set), so new text can't slip.
 
 ## The playthroughs (`playthrough.html`)

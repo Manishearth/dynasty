@@ -3,7 +3,9 @@
 The realia were redrawn from photos of the original turned pieces on 2026-10-26.
 `python3 tools/glyphs.py` writes one standalone SVG per piece into images/.
 """
+import math
 import os
+import re
 
 WALNUT, SLATE, INK = "#6E4A2C", "#3D5568", "#16150F"
 
@@ -60,6 +62,105 @@ GLYPHS = {
                       "M5 1.2 5.55 2.7H4.45zM3.3 4.4A1.7 1.7 0 0 1 6.7 4.4zM3.8 4.75h2.4v.55a1.2 1.2 0 0 1-2.4 0z"
                       "M1.6 9.2C1.6 7.4 3 6.8 5 6.8s3.4.6 3.4 2.4z"),
 }
+
+
+def _points(d):
+    """Points along a path (absolute or relative M L H V C S A Z), curves and arcs sampled."""
+    toks = re.findall(r"[MLHVCSAZmlhvcsaz]|-?(?:\d+\.?\d*|\.\d+)", d)
+    pts, i, cmd = [], 0, None
+    x = y = sx = sy = 0.0
+    last_c = None
+
+    def num():
+        nonlocal i
+        i += 1
+        return float(toks[i - 1])
+
+    while i < len(toks):
+        if toks[i].isalpha():
+            cmd = toks[i]
+            i += 1
+            if cmd in "Zz":
+                x, y = sx, sy
+                last_c = None
+                continue
+        rel = cmd.islower()
+        c = cmd.upper()
+        ox, oy = (x, y) if rel else (0.0, 0.0)
+        if c == "M":
+            x, y = num() + ox, num() + oy
+            sx, sy = x, y
+            cmd = "l" if rel else "L"
+            pts.append((x, y))
+        elif c == "L":
+            x, y = num() + ox, num() + oy
+            pts.append((x, y))
+        elif c == "H":
+            x = num() + (x if rel else 0)
+            pts.append((x, y))
+        elif c == "V":
+            y = num() + (y if rel else 0)
+            pts.append((x, y))
+        elif c in "CS":
+            if c == "C":
+                c1 = (num() + ox, num() + oy)
+            else:
+                c1 = (2 * x - last_c[0], 2 * y - last_c[1]) if last_c else (x, y)
+            c2 = (num() + ox, num() + oy)
+            e = (num() + ox, num() + oy)
+            for k in range(1, 21):
+                t = k / 20
+                pts.append(tuple((1 - t) ** 3 * p0 + 3 * (1 - t) ** 2 * t * p1 + 3 * (1 - t) * t * t * p2 + t ** 3 * p3
+                                 for p0, p1, p2, p3 in zip((x, y), c1, c2, e)))
+            last_c = c2
+            x, y = e
+            continue
+        elif c == "A":
+            rx, ry, _, large, sweep = abs(num()), abs(num()), num(), num(), num()
+            ex, ey = num() + ox, num() + oy
+            # endpoint to centre parameterisation (no rotation in these glyphs)
+            dx, dy = (x - ex) / 2, (y - ey) / 2
+            lam = (dx / rx) ** 2 + (dy / ry) ** 2
+            if lam > 1:
+                rx, ry = rx * lam ** .5, ry * lam ** .5
+            num_ = rx * rx * ry * ry - rx * rx * dy * dy - ry * ry * dx * dx
+            co = (max(num_, 0) / (rx * rx * dy * dy + ry * ry * dx * dx)) ** .5
+            if large == sweep:
+                co = -co
+            cx, cy = co * rx * dy / ry + (x + ex) / 2, -co * ry * dx / rx + (y + ey) / 2
+            a0 = math.atan2((y - cy) / ry, (x - cx) / rx)
+            a1 = math.atan2((ey - cy) / ry, (ex - cx) / rx)
+            da = a1 - a0
+            if sweep and da < 0:
+                da += 2 * math.pi
+            elif not sweep and da > 0:
+                da -= 2 * math.pi
+            for k in range(1, 33):
+                a = a0 + da * k / 32
+                pts.append((cx + rx * math.cos(a), cy + ry * math.sin(a)))
+            x, y = ex, ey
+        last_c = None
+    return pts
+
+
+def bounds(key):
+    """The glyph's ink box in its 10 x 10 viewBox: (x0, y0, x1, y1)."""
+    pts = _points(GLYPHS[key][2])
+    xs, ys = [p[0] for p in pts], [p[1] for p in pts]
+    return min(xs), min(ys), max(xs), max(ys)
+
+
+def inline_css(cap=.7, gap=.18):
+    """CSS that sizes each glyph in running text so its ink runs from the baseline to the
+    cap height (cap, in em), with its side margins trimmed to the ink plus a small gap."""
+    out = []
+    for k in GLYPHS:
+        x0, y0, x1, y1 = bounds(k)
+        h = cap * 10 / (y1 - y0)
+        em = lambda v: f"{v:.3f}".rstrip("0").rstrip(".") + "em"
+        out.append(f'.piece img[src$="/{k}.svg"]{{width:{em(h)};height:{em(h)};vertical-align:{em(-(10 - y1) / 10 * h)};'
+                   f'margin:0 {em(gap - (10 - x1) / 10 * h)} 0 {em(-x0 / 10 * h)}}}')
+    return "\n".join(out) + "\n"
 
 
 def svg(key):

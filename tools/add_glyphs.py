@@ -38,9 +38,16 @@ TERMS = [
 ]
 PATTERN = re.compile(r"\b(?:" + "|".join(f"(?P<g{i}>{t})" for i, (t, _) in enumerate(TERMS)) + r")\b")
 
-CSS = ("\n/* ---------- piece glyphs ---------- */\n"
-       ".piece{white-space:nowrap}\n"
-       ".piece img{width:1.05em;height:1.05em;margin-right:.18em;vertical-align:-.17em}\n")
+from glyphs import inline_css  # noqa: E402
+
+# Each glyph's ink fills the line from the baseline to the cap height (glyphs.inline_css).
+PIECE_CSS = (".piece{white-space:nowrap}\n"
+             ".piece img{width:1.05em;height:1.05em;margin-right:.18em;vertical-align:-.17em}\n"
+             + inline_css())
+CSS = "\n/* ---------- piece glyphs ---------- */\n" + PIECE_CSS + "/* end piece glyphs */\n"
+OLD_CSS = re.compile(r"\n/\* -+ piece glyphs -+ \*/\n.*?/\* end piece glyphs \*/\n", re.S)
+# the block before it had an end marker: the comment and two rules
+OLD_CSS_V1 = re.compile(r"\n/\* -+ piece glyphs -+ \*/\n\.piece\{[^}]*\}\n\.piece img\{[^}]*\}\n")
 
 SKIP = re.compile(r"(<head\b.*?</head>|<svg\b.*?</svg>|<script\b.*?</script>|<style\b.*?</style>)",
                   re.S | re.I)
@@ -121,8 +128,8 @@ def main(path):
     s = OLD.sub(r"\1", s)
     s = OLD_SVG.sub(r"\1", s)
     s = OLD_JS.sub("", s)
-    if "piece glyphs" not in s:
-        s = s.replace("</style>", CSS + "</style>", 1)
+    s = OLD_CSS_V1.sub("", OLD_CSS.sub("", s))
+    s = s.replace("</style>", CSS + "</style>", 1)
     pieces = SKIP.split(s)
     s = "".join(svg_text(p) if p[:4].lower() == "<svg" else
                 p if SKIP.fullmatch(p) else text_only(p) for p in pieces)

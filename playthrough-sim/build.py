@@ -27,8 +27,10 @@ def main(out):
     tail = open(os.path.join(HERE, "template", "tail.html"), encoding="utf-8").read()
     # piece names to mark with a glyph, shared with tools/add_glyphs.py
     sys.path.insert(0, os.path.join(HERE, "..", "tools"))
-    from add_glyphs import js_terms
+    from add_glyphs import js_terms, PIECE_CSS
     from glyphs import GLYPHS
+    # glyph sizes in running text, the same rules the rulebook gets
+    head = head.replace("/*PIECE_CSS*/", PIECE_CSS.rstrip("\n"))
     tail = tail.replace("/*PIECE_TERMS*/[]", js_terms())
     # the soldier glyph's outline, drawn on the board in each side's colour
     tail = tail.replace("/*SOLDIER_PATH*/''", json.dumps(GLYPHS["soldier"][2]))
