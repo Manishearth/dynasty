@@ -16,6 +16,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "..", "reference-cards.html")
 sys.path.insert(0, HERE)
 import add_glyphs  # noqa: E402
+import add_theming  # noqa: E402
 from glyphs import GLYPHS  # noqa: E402
 
 E = html.escape
@@ -442,92 +443,6 @@ def player_back(p):
             + foot())
 
 
-CSS = """
-:root{--canvas:#E4DDCB;--paper:#fff;--ink:#16150F;--soft:#5C584A;--rule:#C9C1AC;
-  --verm:#C8291A;--walnut:#6E4A2C;--slate:#3D5568;--mono:"Courier New",Courier,monospace}
-*{box-sizing:border-box}
-body{margin:0;background:var(--canvas);color:var(--ink);font:16px/1.5 "Helvetica Neue",Helvetica,Arial,sans-serif}
-.wrap{max-width:76rem;margin:0 auto;padding:2rem 1rem 4rem}
-.top{background:var(--verm);color:#fff;padding:2rem 2rem 1.6rem;margin-bottom:1.4rem}
-.top h1{margin:0;font-size:1.9rem;letter-spacing:.14em;text-transform:uppercase}
-.top p{margin:.5rem 0 0;font-family:var(--mono);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase}
-.intro{background:var(--paper);padding:1.6rem 2rem;margin-bottom:1.6rem}
-.intro p{margin:0 0 .6rem}
-.pair{display:flex;flex-wrap:wrap;gap:1.2rem;justify-content:center;margin-bottom:2rem}
-.pairlabel{font:700 .8rem var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--soft);
-  text-align:center;margin:0 0 .6rem}
-.card{width:5.5in;height:8.5in;background:var(--paper);display:flex;flex-direction:column;
-  padding:.25in .3in .2in;font-size:9.6pt;line-height:1.34;overflow:hidden;position:relative;
-  box-shadow:0 1px 0 rgba(0,0,0,.2)}
-@media (max-width:760px){.card{width:100%;height:auto}}
-/* card header: a thin bar in the tier's colour rather than a solid band, to save ink */
-.ch{display:flex;justify-content:space-between;align-items:flex-start;
-  margin:0 0 .1in;padding:.07in 0 .06in;border-top:.09in solid var(--tier);border-bottom:1.5px solid var(--ink)}
-.ch.general{--tier:var(--ink)}.ch.imperial{--tier:var(--verm)}
-.ch.upper{--tier:#2B2A24}.ch.lower{--tier:var(--walnut)}.ch.outside{--tier:var(--slate)}
-.ch h2{margin:0;font-size:15pt;letter-spacing:.06em;text-transform:uppercase;color:var(--tier)}
-.ch p{margin:.15em 0 0;font:8pt var(--mono);letter-spacing:.06em;color:var(--soft)}
-.ch .mark{flex:none;width:.42in;height:.42in;color:var(--tier)}
-section{margin:0 0 .11in}
-h3{margin:0 0 .05in;font:700 7.6pt var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--verm);
-  border-bottom:1.5px solid var(--ink);padding-bottom:.03in}
-p{margin:0 0 .04in}
-.small{font-size:8pt;color:var(--soft)}
-table{width:100%;border-collapse:collapse;font-size:8.6pt}
-th{font:700 6.8pt var(--mono);letter-spacing:.08em;text-transform:uppercase;text-align:left;
-  padding:.02in .04in;border-bottom:1px solid var(--ink)}
-td{padding:.025in .04in;border-bottom:.5px solid var(--rule);vertical-align:top}
-table.income td,table.income th{text-align:right;font-family:var(--mono);font-size:10.5pt;padding:.045in .06in}
-table.income td:first-child,table.income th:first-child{text-align:left}
-table.income td:nth-child(3){font-weight:700}
-table.income td:nth-child(2),table.income th:nth-child(2){color:var(--soft);border-right:1.5px solid var(--ink)}
-table.income th.grp{text-align:center;border-bottom:.5px solid var(--rule);padding-bottom:0}
-table.income th.blank{border-bottom:0}
-table.works{font-size:7.8pt} table.works td:nth-child(3),table.works td:nth-child(4){white-space:nowrap}
-table.pile{font-size:8.2pt}
-table.obj td:first-child{white-space:nowrap;font-family:var(--mono);width:3.4em}
-table.owed td:nth-child(2){white-space:nowrap}
-ol.turn{list-style:none;margin:.04in 0;padding:0}
-ol.turn li{display:flex;gap:.08in;padding:.035in 0;border-bottom:.5px solid var(--rule)}
-ol.turn .n{flex:none;width:.2in;height:.2in;border-radius:50%;background:var(--verm);color:#fff;
-  font:700 8pt/0.2in var(--mono);text-align:center}
-ol.turn b{font-size:9.6pt}
-ol.turn .who{font:7pt var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--soft);margin-left:.08in}
-ol.turn p{margin:.01in 0 0;font-size:8.6pt}
-.anytime{font-size:8.6pt;border:1px solid var(--rule);padding:.05in .08in;margin-top:.06in}
-dl.money{display:grid;grid-template-columns:auto 1fr;gap:.015in .1in;margin:0;font-size:8.4pt}
-dl.money dt{font-weight:700;white-space:nowrap}dl.money dd{margin:0}
-ul.duties{margin:0;padding-left:1.1em}ul.duties li{margin:0 0 .025in}
-.char{font-style:italic;font-size:8.8pt;color:#3A372E;margin:0 0 .1in}
-ol.script li{padding:.04in 0}
-ol.script p.say{font-style:italic;font-size:9pt;color:var(--ink);margin:.015in 0 0}
-ol.script p.check{font-size:8.2pt;color:var(--soft);margin:.01in 0 0}
-ul.checks{list-style:none;margin:0;padding:0}
-ul.checks li{position:relative;padding-left:1.4em;margin:0 0 .04in}
-ul.checks li::before{content:"";position:absolute;left:0;top:.15em;width:.75em;height:.75em;border:1.2px solid var(--ink)}
-section.anytime{padding:.07in .1in}section.anytime ul{margin-top:.03in}
-ol.dis{margin:0;padding-left:1.3em}ol.dis li{margin:0 0 .02in}
-ol.dis li span{margin-right:.4em}ol.dis li b{white-space:nowrap}
-.cf{margin-top:auto;font:6.6pt var(--mono);letter-spacing:.08em;color:#9A9384;text-align:center;padding-top:.05in}
-.piece{white-space:nowrap}
-.dense{display:contents}
-.dense dl.money{font-size:8pt;gap:.005in .1in}
-.dense table.works,.dense table.pile{font-size:7.6pt}
-.dense td{padding:.015in .04in}
-.dense section{margin-bottom:.08in}
-.print{display:none}
-@media print{
-  @page{size:letter landscape;margin:0}
-  body{background:#fff}
-  .screen{display:none}
-  .print{display:block}
-  .sheet{width:11in;height:8.5in;display:flex;break-after:page;page-break-after:always}
-  .sheet .card{box-shadow:none;border-right:1px dashed #BBB}
-  .card,ol.turn .n{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-}
-"""
-
-
 def build():
     cards = [("General", general_front(), '<div class="dense">' + general_back() + '</div>'),
              ("Running the round", running_front(), running_back())]
@@ -553,12 +468,14 @@ def build():
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dynasty — Reference Cards</title>
-<style>{CSS}</style>
+<link rel="stylesheet" href="style/base.css">
+<link rel="stylesheet" href="style/reference-cards.css">
+<style></style>
 </head>
-<body>
+<body class="refcards">
 <div class="screen">
 <div class="wrap">
-<header class="top"><h1>Reference Cards</h1><p>Dynasty (1969) · a general card, a card for running the round, and one card per province, two-sided</p></header>
+<header class="top"><h1 data-theme-unlock>Reference Cards</h1><p>Dynasty (1969) · a general card, a card for running the round, and one card per province, two-sided</p></header>
 <div class="intro">
 <p>Every player gets the <b>general card</b> (the round, the realia, the money and the public works) and the
 <b>card for their own province</b> (income table, duties, objective, what they are owed, personal disasters).
@@ -581,6 +498,7 @@ Print the first sheet again for more general cards.</p>
     with open(OUT, "w", encoding="utf-8", newline="\n") as f:
         f.write(page)
     add_glyphs.main(OUT)
+    add_theming.main(OUT)
 
 
 if __name__ == "__main__":

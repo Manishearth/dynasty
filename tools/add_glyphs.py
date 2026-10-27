@@ -69,7 +69,9 @@ function run(){
     var g=document.createElementNS('http://www.w3.org/2000/svg','path');
     g.setAttribute('d',G[t.getAttribute('data-g')]);
     g.setAttribute('fill-rule','evenodd');
-    g.setAttribute('fill',getComputedStyle(txt).fill);
+    /* the label's own fill, so a theme change recolours the glyph with it */
+    if(txt.getAttribute('fill'))g.setAttribute('fill',txt.getAttribute('fill'));
+    if(txt.style.fill)g.style.fill=txt.style.fill;
     g.setAttribute('transform','translate('+(p.x-s*1.02-2*ls)+','+(p.y-s*0.8)+') scale('+(s*0.09)+')');
     txt.parentNode.insertBefore(g,txt);
   });

@@ -1,0 +1,87 @@
+/* terminal — DYNASTY.EXE on a green phosphor monitor. READY. */
+@import url("https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:wght@400;600&display=swap");
+:root{
+  --canvas:#050805;--paper:#0A120A;--ink:#4BFF6A;--ink-soft:#25A83A;
+  --rule:#1D5E26;--hairline:#143D19;--tint:#0F2412;
+  --vermilion:#FFB000;--pink:#FF5577;--cobalt:#4FD8FF;--walnut:#C9A15A;
+  --note-bg:#0E1A0E;--must-bg:#2A2000;--water-bg:#062028;--on-accent:#050805;
+  --display:"VT323",monospace;
+  --body:"IBM Plex Mono",monospace;
+  --mono:"VT323",monospace;
+  --cover-bg:var(--paper);--cover-ink:var(--ink);
+  --sheet-shadow:0 0 0 1px var(--rule),0 0 30px rgba(75,255,106,.08);
+  --h-case:uppercase;--h-track:1;--body-size:15px;--wordmark-size:3rem;
+  --glyph-filter:invert(1) sepia(1) saturate(8) hue-rotate(70deg) brightness(1.1);
+}
+body{text-shadow:0 0 3px rgba(75,255,106,.55)}
+/* scanlines and a little flicker over everything */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;
+  background:repeating-linear-gradient(transparent 0 2px,rgba(0,0,0,.28) 2px 4px),
+             radial-gradient(ellipse at center,transparent 60%,rgba(0,0,0,.6));
+  animation:flicker 4s steps(2) infinite}
+@keyframes flicker{50%{opacity:.92}}
+/* the mono face is VT323, which runs small: bump it */
+.sec-num,.eyebrow,.rulebook caption,.rulebook thead th,.rulebook td.n,.rulebook th.n,.note b,.note .n-lbl,.rulebook .who,.rulebook .see,.rulebook .key,figcaption,.toc .t-num,.toc .t-part,
+.band a,.steps li::before,.disasters li::before,.orig cite,.follow nav .t-num,.follow nav .t-part,.follow-bar .lbl{font-size:1.05rem !important}
+.rulebook h2{font-size:2rem;font-weight:400}
+.rulebook h2::before{content:"C:\\DYNASTY> ";color:var(--ink-soft)}
+.rulebook h2::after{content:"█";animation:cursor 1s steps(1) infinite;margin-left:.15em}
+@keyframes cursor{50%{opacity:0}}
+.rulebook h3{font-size:1.5rem;font-weight:400;color:var(--vermilion)}
+.rulebook h3::before{content:"## "}
+.rulebook h4{font-size:1.2rem;font-weight:400}
+.rulebook h4::before{content:"> "}
+.sec-head{border-bottom:1px dashed var(--ink)}
+.sec-num::before{content:"["}.sec-num::after{content:"]"}
+.rulebook strong{color:#B6FFC2}
+.rulebook a{color:var(--cobalt)}
+
+.cover{text-align:left;padding:3rem}
+.cover::before{content:"PHOSPHOR BIOS v1.969   (C) ONOMA PRODUCTIONS\A MEMORY TEST: 640K OK\A LOADING PROVINCES........ 8 FOUND\A LOADING I CHING.......... 20 CARDS\A\A";
+  white-space:pre;display:block;font-family:var(--mono);font-size:1.2rem;color:var(--ink-soft)}
+.wordmark{display:flex;gap:.1em;font-weight:400;font-size:var(--wordmark-size);letter-spacing:.3em}
+.wordmark span{border:1px solid var(--ink);padding:.05em .15em;box-shadow:0 0 8px rgba(75,255,106,.5)}
+.cover hr{border-top:1px dashed var(--ink);width:100%;opacity:.6}
+.cover .meta::after{content:"\A\A READY.\A >_";white-space:pre;display:block;font-size:1.3rem}
+
+.note{border:1px solid var(--pink);border-left:1px solid var(--pink);box-shadow:inset 0 0 0 3px var(--paper),inset 0 0 0 4px var(--pink);padding:1rem 1.3rem}
+.note b::before{content:"[!] "}
+.orig{border-left:1px dashed var(--ink-soft);font-style:normal}
+.orig::before{content:"/* ";color:var(--ink-soft)}.orig::after{content:" */";color:var(--ink-soft)}
+.rulebook table{border:1px solid var(--ink)}
+.rulebook th,.rulebook td{border-bottom:1px dashed var(--rule)}
+.rulebook thead th{background:var(--ink);color:var(--paper);text-shadow:none;border-bottom:0}
+.rulebook tbody tr:last-child td{border-bottom:0}
+.rulebook tbody tr:hover td{background:var(--tint)}
+.rulebook .card{border:1px solid var(--ink);box-shadow:4px 4px 0 var(--rule)}
+.band a{background:var(--paper);border-color:var(--rule)}
+.band a.on{background:var(--ink);color:var(--paper);text-shadow:none}
+.toc a{border-bottom:1px dashed var(--hairline)}
+.toc a:hover{background:var(--ink);color:var(--paper)}
+.toc a:hover .t-num{color:var(--paper)}
+.rulebook .say li::before{content:"[ ]";border:0;top:.32rem;width:auto;height:auto;font-family:var(--mono);color:var(--ink-soft)}
+.rulebook .say li.must::before{content:"[*]";background:none;color:var(--vermilion)}
+.follow nav a.on{background:var(--ink);color:var(--paper);text-shadow:none}
+.follow nav a.on .t-num{color:var(--paper)}
+.rulebook figure svg{filter:drop-shadow(0 0 2px rgba(75,255,106,.5))}
+.rulebook figure img{filter:invert(1) hue-rotate(180deg) sepia(.6) hue-rotate(60deg)}
+@media (prefers-reduced-motion:reduce){*{animation:none !important}}
+
+/* ---------- reference cards ---------- */
+:root{--card-body:"VT323",monospace;--card-mono:"VT323",monospace;--ink-mid:#3FD45A;--ink-faint:#1F7A30;--upper:#B6FFC2;
+  --slate:#4FD8FF;--card-shadow:0 0 0 1px var(--rule)}
+.refcards .top{border:1px solid var(--ink);padding:1.4rem 2rem}
+.refcards .top::before{content:"C:\\DYNASTY> TYPE CARDS.TXT";display:block;font:1.2rem var(--mono);color:var(--ink-soft);margin-bottom:.6rem}
+.refcards .top h1{font-family:var(--mono);font-weight:400;font-size:2.6rem}
+.refcards .top h1::after{content:"█";animation:cursor 1s steps(1) infinite;margin-left:.1em}
+.refcards .top p{font-size:1.1rem}
+.refcards .intro{border:1px solid var(--rule)}
+.pairlabel{font-size:1.2rem;font-weight:400}
+.pairlabel::before{content:"--- "}.pairlabel::after{content:" ---"}
+.refcards .card{font-size:11pt;line-height:1.2}
+.refcards .ch h2{font-family:var(--mono);font-weight:400;font-size:20pt}
+.refcards h3,.refcards th,.refcards .ch p,.refcards ol.turn .who,.refcards .cf{font-size:10.5pt;font-weight:400}
+.refcards table.income td,.refcards table.income th{font-size:13pt}
+.refcards ol.turn .n{font-weight:400;font-size:11pt;border-radius:0;background:var(--ink);color:var(--paper);text-shadow:none}
+.refcards .anytime{border:1px dashed var(--ink)}
+.refcards ul.checks li::before{border-color:var(--ink)}

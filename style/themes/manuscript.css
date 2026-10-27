@@ -1,0 +1,89 @@
+/* manuscript — Liber Dynastiae, copied by a monk with strong opinions about grain */
+@import url("https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=Cinzel+Decorative:wght@700&display=swap");
+:root{
+  --canvas:#3B2A1A;--paper:#F1E3C2;--ink:#2B1A0E;--ink-soft:#6B4E2E;
+  --rule:#B89B6C;--hairline:#D9C49B;--tint:#E8D4A6;
+  --vermilion:#A3241A;--pink:#7A2E8C;--cobalt:#1F4E99;--walnut:#7A5A1F;
+  --gold:#C99A2E;--gold-hi:#F3D27A;
+  --note-bg:#EBDAB2;--must-bg:#E9C9B4;--water-bg:#D8DDE0;--on-accent:#F8EED4;
+  --display:"UnifrakturMaguntia",serif;
+  --body:"IM Fell English",Georgia,serif;
+  --mono:"IM Fell English SC",Georgia,serif;
+  --cover-bg:var(--paper);--cover-ink:var(--ink);
+  --sheet-shadow:0 0 0 1px #8C6B3E,0 18px 50px rgba(0,0,0,.6);
+  --h-case:none;--h-track:0;--body-size:17.5px;--wordmark-size:4.4rem;
+}
+/* old wood desk; vellum stained at the edges */
+body{background:repeating-linear-gradient(92deg,#3B2A1A 0 14px,#40301E 14px 22px,#36261A 22px 40px)}
+.sheet{background:
+  radial-gradient(ellipse at 50% 50%,transparent 55%,rgba(120,80,30,.28) 100%),
+  radial-gradient(circle at 80% 15%,rgba(150,100,40,.12) 0 6%,transparent 7%),
+  radial-gradient(circle at 12% 70%,rgba(150,100,40,.10) 0 9%,transparent 10%),
+  var(--paper);
+  border-left:1.6rem solid transparent;
+  border-image:repeating-linear-gradient(180deg,var(--cobalt) 0 10px,var(--gold) 10px 14px,var(--vermilion) 14px 24px,var(--gold) 24px 28px) 0 0 0 1}
+/* rubrics: headings in red, the section number a gilt roundel */
+.rulebook h2{font-weight:400;font-size:2.4rem;color:var(--vermilion)}
+.rulebook h3{font-family:"IM Fell English SC",serif;font-weight:400;font-size:1.25rem;color:var(--vermilion);letter-spacing:.04em}
+.rulebook h3::before{content:"❧ ";color:var(--cobalt)}
+.rulebook h4{font-family:var(--body);font-style:italic;font-weight:400;font-size:1.05rem;color:var(--cobalt)}
+.sec-head{border-bottom:0;padding-bottom:.6rem;align-items:center;
+  background:linear-gradient(90deg,var(--vermilion),var(--gold) 50%,var(--cobalt)) bottom/100% 2px no-repeat}
+.sec-num{font-family:"Cinzel Decorative",serif;color:var(--on-accent);width:2.6rem;height:2.6rem;border-radius:50%;
+  display:inline-flex;align-items:center;justify-content:center;font-size:1rem;
+  background:radial-gradient(circle at 35% 30%,var(--gold-hi),var(--gold) 55%,#8C6414);box-shadow:0 0 0 2px var(--vermilion),0 0 0 4px var(--gold)}
+/* an illuminated initial on the first paragraph of every section */
+.sec-head+p::first-letter,.sec-head+.lede::first-letter,.sec-head+.keep>p:first-child::first-letter{
+  font-family:"Cinzel Decorative",serif;float:left;font-size:3.6em;line-height:.8;padding:.12em .14em .06em;margin:.06em .12em 0 0;
+  color:var(--gold-hi);background:radial-gradient(circle at 30% 30%,#2E62B8,var(--cobalt) 60%,#123068);
+  border:3px double var(--gold);text-shadow:1px 1px 0 #6B4A0A}
+.rulebook strong{color:var(--vermilion);font-weight:400;font-family:var(--mono)}
+
+.cover{border:14px solid transparent;border-image:repeating-linear-gradient(45deg,var(--gold) 0 6px,var(--vermilion) 6px 12px,var(--gold) 12px 18px,var(--cobalt) 18px 24px) 14;padding:4rem 2.5rem}
+.cover::before{content:"✠  INCIPIT LIBER  ✠";display:block;font-family:var(--mono);color:var(--vermilion);letter-spacing:.3em;margin-bottom:1.5rem}
+.wordmark{display:flex;justify-content:center;font-weight:400;color:var(--ink)}
+.wordmark span:first-child{font-family:"Cinzel Decorative",serif;color:var(--gold-hi);background:var(--vermilion);padding:0 .12em;margin-right:.06em;
+  border:4px double var(--gold);font-size:1.15em;line-height:1.05}
+.cover .sub,.cover .meta{font-family:var(--mono)}
+.cover .meta{font-family:var(--body);font-style:italic;font-size:1rem;letter-spacing:0}
+.cover hr{border:0;opacity:1;height:auto;width:auto}
+.cover hr::after{content:"❦ ❦ ❦";color:var(--vermilion);font-size:1.4rem}
+/* notes are glosses: a manicule points at them */
+.note{background:transparent;border-left:0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);font-style:italic;position:relative;padding-left:2.6rem}
+.note::before{content:"☞";position:absolute;left:.3rem;top:.6rem;font-size:1.6rem;font-style:normal;color:var(--pink)}
+.note b,.note .n-lbl{font-family:var(--mono);color:var(--pink);font-style:normal;letter-spacing:.05em}
+.orig{font-family:var(--display);font-style:normal;font-size:1.3rem;border-left:3px solid var(--vermilion)}
+.rulebook thead th{font-family:var(--mono);color:var(--vermilion);border-bottom:2px solid var(--vermilion)}
+.rulebook th,.rulebook td{border-bottom:1px solid var(--hairline)}
+.rulebook .card{border:3px double var(--walnut);background:rgba(255,250,235,.4)}
+.band a{background:var(--tint);border-color:var(--walnut);font-family:var(--mono)}
+.band a.on{background:var(--vermilion);border:2px solid var(--gold)}
+.steps li::before,.disasters li::before{font-family:"Cinzel Decorative",serif;color:var(--vermilion)}
+.toc a{border-bottom:1px dotted var(--rule)}
+.toc .t-part{font-family:var(--display);font-size:1.3rem !important;text-transform:none;letter-spacing:0 !important;color:var(--vermilion)}
+.rulebook .say li::before{content:"✠";border:0;top:.3rem;color:var(--cobalt);width:auto;height:auto}
+.rulebook .say li.must::before{background:none;color:var(--vermilion)}
+.piece img{filter:sepia(1) saturate(2) brightness(.7)}
+.rulebook figure svg{filter:sepia(.35)}
+.follow{background:#2E2015 !important;border-right:2px solid var(--gold) !important}
+.follow nav a,.follow nav .t-part{color:#E8D4A6}
+.follow-title{color:var(--gold-hi);border-bottom-color:var(--gold) !important}
+.follow nav a.on{background:var(--vermilion);color:var(--gold-hi)}
+.follow nav .t-num{color:var(--gold)}
+
+/* ---------- reference cards ---------- */
+:root{--card-body:"IM Fell English",Georgia,serif;--card-mono:"IM Fell English SC",Georgia,serif;--ink-mid:#4A3220;--ink-faint:#9C8460;
+  --upper:#3A2A6A;--slate:#2E4E5E;--card-shadow:0 0 0 1px #8C6B3E,0 12px 30px rgba(0,0,0,.5)}
+.refcards .top{background:var(--paper);color:var(--ink);text-align:center;
+  border:14px solid transparent;border-image:repeating-linear-gradient(45deg,var(--gold) 0 6px,var(--vermilion) 6px 12px,var(--gold) 12px 18px,var(--cobalt) 18px 24px) 14}
+.refcards .top::before{content:"✠  INCIPIUNT TABULAE  ✠";display:block;font-family:var(--mono);color:var(--vermilion);letter-spacing:.3em;margin-bottom:.8rem}
+.refcards .top h1{font-weight:400;font-size:3rem;text-transform:none;letter-spacing:.02em}
+.refcards .top p{font-family:var(--body);font-style:italic;text-transform:none;letter-spacing:0;font-size:1rem}
+.refcards .intro,.refcards .card{background:radial-gradient(ellipse at 50% 50%,transparent 55%,rgba(120,80,30,.25) 100%),var(--paper)}
+.pairlabel{color:var(--gold-hi);font-family:var(--display);font-weight:400;font-size:1.6rem;text-transform:none;letter-spacing:0}
+.refcards .ch{border-top:0;border-bottom:2px solid var(--vermilion)}
+.refcards .ch h2{font-family:var(--display);font-weight:400;text-transform:none;letter-spacing:0;font-size:20pt;line-height:1}
+.refcards .ch h2::first-letter{color:var(--vermilion)}
+.refcards h3{color:var(--vermilion);font-weight:400;letter-spacing:.06em;font-size:9pt;border-bottom:1px solid var(--rule)}
+.refcards ol.turn .n{background:radial-gradient(circle at 35% 30%,var(--gold-hi),var(--gold) 55%,#8C6414);color:var(--ink);font-family:"Cinzel Decorative",serif}
+.refcards .anytime{border:3px double var(--walnut)}

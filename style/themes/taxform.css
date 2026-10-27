@@ -1,0 +1,66 @@
+/* taxform — Imperial Grain Revenue Service, Form 1969-EZ. Department of the Treasury (Harvest Pile). */
+@import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;700;900&family=IBM+Plex+Mono:wght@400;600&display=swap");
+:root{
+  --canvas:#D9D6CC;--paper:#FFFFFF;--ink:#000;--ink-soft:#333;
+  --rule:#000;--hairline:#BDBDBD;--tint:#EAEAEA;
+  --vermilion:#000;--pink:#000;--cobalt:#000;--walnut:#000;
+  --note-bg:#F2F2F2;--must-bg:#DDD;--water-bg:#EEE;--on-accent:#fff;
+  --display:"Libre Franklin",Arial,sans-serif;
+  --body:"Libre Franklin",Arial,sans-serif;
+  --mono:"IBM Plex Mono",monospace;
+  --cover-bg:#fff;--cover-ink:#000;
+  --sheet-shadow:0 0 0 1px #000;--heavy:3px;
+}
+/* everything is black — except what is handwritten in by the taxpayer */
+body{counter-reset:line}
+.sheet{padding-top:4.2rem}
+.sheet::before{content:"Form 1969-EZ   ·   Imperial Grain Revenue Service   ·   OMB No. 0008-PROVINCES";
+  position:absolute;top:0;left:0;right:0;padding:.35rem 3.4rem;background:#000;color:#fff;
+  font:700 .7rem/1.4 var(--display);letter-spacing:.06em;white-space:pre}
+.sheet::after{content:"For Paperwork Reduction Act Notice, see Appendix F.   Cat. No. 1969X";
+  position:absolute;bottom:.5rem;right:3.4rem;font:.62rem var(--display);color:#555;white-space:pre}
+.rulebook h2{font-weight:900;font-size:1.25rem}
+.sec-head{border-bottom:3px solid #000}
+.sec-num{background:#000;color:#fff;padding:.1rem .45rem;font-family:var(--display);font-weight:900}
+.sec-num::before{content:"PART "}
+/* number every paragraph like a form line */
+.sheet>p,.keep>p{counter-increment:line;position:relative;padding-left:3rem}
+.sheet>p::before,.keep>p::before{content:counter(line) "a";position:absolute;left:0;font:700 .72rem/2.2 var(--display);
+  border:1px solid #000;width:2.2rem;text-align:center;height:1.6rem;line-height:1.6rem;top:.1rem}
+.rulebook td.n{background:repeating-linear-gradient(90deg,#fff 0 1.1em,#F4F4F4 1.1em calc(1.1em + 1px));
+  font-family:"Segoe Print","Bradley Hand","Comic Sans MS",cursive;color:#1A3BD6;font-size:1rem;border-left:1px solid #000}
+.cover{text-align:left;border:3px solid #000;box-shadow:none}
+.wordmark{display:flex;font-weight:900;font-size:3rem;letter-spacing:.1em}
+.wordmark::before{content:"Form ";font-weight:400;font-size:.3em;align-self:flex-end;margin-right:.6em;letter-spacing:0}
+.wordmark::after{content:"1969-EZ";font-weight:400;font-size:.3em;align-self:flex-end;margin-left:.6em;letter-spacing:0;background:#000;color:#fff;padding:.2em .5em}
+.cover hr{border-top:3px solid #000;width:100%;opacity:1}
+.cover .meta::after{content:"\A\A Sign here ▸ ______________________________   Date ________   ☐ Check if Warlord";white-space:pre;display:block;margin-top:1rem;font-size:.85rem}
+.note{border:1px solid #000;border-left:6px solid #000}
+.note b::before{content:"⚠ Caution: "}
+.rulebook .card{border:1px solid #000}
+.rulebook .card::before{content:"☐";float:right;font-size:1.4rem;line-height:1}
+.band a{border-color:#000;background:#fff;color:#000}
+.band a.on{background:#000}
+.rulebook .say li::before{border:1px solid #000;border-radius:0}
+.rulebook .say li.must::before{content:"✗";border:1px solid #000;background:#fff;color:#1A3BD6;font:700 .8rem/0.8rem cursive;text-align:center}
+.toc a{border-bottom:1px solid #BDBDBD}
+.toc a::after{content:" ........ see instructions";color:#999;font-size:.75em}
+.rulebook thead th{background:#EAEAEA}
+
+/* ---------- reference cards ---------- */
+:root{--card-body:Arial,sans-serif;--card-shadow:0 0 0 1px #000}
+.refcards .top{border:3px solid #000;padding-top:2.6rem}
+.refcards .top::before{content:"Schedule R   ·   Imperial Grain Revenue Service   ·   Attach to Form 1969-EZ";position:absolute;top:0;left:0;right:0;
+  padding:.35rem 2rem;background:#000;color:#fff;font:700 .7rem/1.4 var(--display);letter-spacing:.06em;white-space:pre}
+.refcards .top h1{font-weight:900;text-transform:none;letter-spacing:.02em}
+.refcards .top h1::before{content:"SCHEDULE R  ";font-weight:400;font-size:.45em;letter-spacing:.1em;white-space:pre}
+.refcards .intro{border:1px solid #000}
+.pairlabel{color:#000;text-align:left}
+.pairlabel::before{content:"Worksheet — "}
+.refcards .ch{border-top-color:#000;border-bottom:3px solid #000}
+.refcards .ch h2{color:#000;font-weight:900}
+.refcards h3{background:#000;color:#fff;padding:.02in .05in;border:0}
+.refcards ol.turn .n{border-radius:0;background:#fff;color:#000;box-shadow:inset 0 0 0 1px #000}
+/* the taxpayer's figures, written in by hand */
+.refcards table.income td:not(:first-child){font-family:"Segoe Print","Bradley Hand","Comic Sans MS",cursive;color:#1A3BD6;font-size:9.5pt}
+.refcards .cf::after{content:"   ·   Cat. No. 1969R";white-space:pre}

@@ -1,0 +1,94 @@
+/* imperial — every takeout menu, every lantern festival, all at once */
+@import url("https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700&family=ZCOOL+XiaoWei&display=swap");
+:root{
+  --canvas:#7A0E0E;--paper:#FBF1DC;--ink:#2A1208;--ink-mid:#4A2A14;--ink-soft:#7A4A2A;--ink-faint:#B08A5A;
+  --rule:#D9B36A;--hairline:#EFD9A8;--tint:#F6E2B4;
+  --vermilion:#C1121F;--pink:#D4148A;--cobalt:#0F6E64;--walnut:#8B5A12;--slate:#24525E;--upper:#5E0508;
+  --gold:#E2B13C;--gold-deep:#A87A17;
+  --note-bg:#FFF6E0;--must-bg:#FADBC8;--water-bg:#DCEFE9;--on-accent:#FFF4D6;
+  --display:"Ma Shan Zheng","ZCOOL XiaoWei",serif;
+  --body:"Noto Serif SC",Georgia,serif;
+  --mono:"ZCOOL XiaoWei","Noto Serif SC",serif;
+  --diagram-sans:var(--body);
+  --cover-bg:radial-gradient(circle at 50% 38%,#D61F26 0,#9E0B12 60%,#5E0508 100%);
+  --cover-ink:var(--gold);
+  --sheet-shadow:0 0 0 3px var(--gold),0 0 0 7px #7A0E0E,0 0 0 9px var(--gold),0 14px 40px rgba(0,0,0,.5);
+  --card-shadow:var(--sheet-shadow);
+  --card-body:Georgia,"Noto Serif SC",serif;--card-mono:"Courier New",monospace;
+  --h-case:none;--h-track:.4;--wordmark-size:5rem;--heavy:3px;
+}
+/* lattice-window background: overlapping gold diamonds on lacquer */
+body{
+  background-color:var(--canvas);
+  background-image:
+    repeating-linear-gradient(45deg,rgba(226,177,60,.13) 0 2px,transparent 2px 28px),
+    repeating-linear-gradient(-45deg,rgba(226,177,60,.13) 0 2px,transparent 2px 28px);
+}
+.wrap{padding-top:3rem}
+.sheet,.refcards .intro{margin-bottom:3rem;box-shadow:var(--sheet-shadow)}
+/* a cloud-scroll (祥云) in each top corner */
+.sheet::before,.sheet::after,.refcards .intro::before,.refcards .intro::after{
+  content:"";position:absolute;top:10px;width:58px;height:34px;opacity:.55;pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 58 34'%3E%3Cpath d='M4 30c0-8 6-12 12-10 0-9 10-14 17-8 4-6 15-5 16 4 6 0 9 6 6 11' fill='none' stroke='%23A87A17' stroke-width='2.6' stroke-linecap='round'/%3E%3Cpath d='M20 24c2-4 8-4 9 1M36 18c2-3 7-2 7 2' fill='none' stroke='%23A87A17' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat;
+}
+.sheet::before,.refcards .intro::before{left:12px}
+.sheet::after,.refcards .intro::after{right:12px;transform:scaleX(-1)}
+.cover::before,.cover::after{filter:brightness(2.2)}
+
+/* ---------- rulebook ---------- */
+/* headings in brush, wrapped in corner brackets */
+.rulebook h2{font-size:2.1rem;font-weight:400;color:var(--vermilion)}
+.rulebook h2::before{content:"「";color:var(--gold-deep)}
+.rulebook h2::after{content:"」";color:var(--gold-deep)}
+.rulebook h3,.rulebook h4{font-weight:400}
+.rulebook h3{font-size:1.45rem;color:var(--ink)}
+.rulebook h4{font-size:1.15rem}
+.rulebook h3::before{content:"❖ ";color:var(--gold-deep);font-size:.8em}
+.sec-head{border-bottom:0;padding-bottom:.9rem;align-items:center;
+  background:linear-gradient(90deg,var(--gold) 0,var(--gold-deep) 50%,var(--gold) 100%) bottom/100% 3px no-repeat}
+/* section numbers become red name-seals (印章), slightly crooked */
+.sec-num{
+  background:var(--vermilion);color:var(--on-accent);font-size:1rem;
+  min-width:2.4rem;height:2.4rem;display:inline-flex;align-items:center;justify-content:center;
+  border-radius:4px;transform:rotate(-4deg);box-shadow:inset 0 0 0 2px var(--on-accent),inset 0 0 0 4px var(--vermilion);
+  font-family:"Ma Shan Zheng",serif;
+}
+/* cover: lanterns, gold, a wordmark of tilted seal stamps */
+.cover{border:6px double var(--gold);padding-top:5rem;overflow:hidden}
+.wordmark{font-weight:400;display:flex;justify-content:center;gap:.25rem;line-height:1}
+.wordmark span{width:1.2em;height:1.2em;display:flex;align-items:center;justify-content:center;
+  background:var(--gold);color:#8E0A10;border-radius:.12em;box-shadow:0 .06em 0 #6B4A0A;transform:rotate(calc(var(--r,0)*1deg))}
+.wordmark span:nth-child(odd){--r:-5}.wordmark span:nth-child(even){--r:4}
+.cover .sub{font-family:var(--display);font-size:1.5rem;letter-spacing:.3em}
+.cover hr{border-top:3px double var(--gold);opacity:1;width:12rem}
+.cover .sub:first-child::before{content:"🏮 "}.cover .sub:first-child::after{content:" 🏮"}
+/* notes as red envelopes (红包) */
+.note{background:linear-gradient(#D1171E,#A80E14);color:#FFF1CF;border-left:0;border:2px solid var(--gold);border-radius:8px;
+  box-shadow:inset 0 0 0 4px #A80E14,inset 0 0 0 5px var(--gold)}
+.note b,.note .n-lbl{color:var(--gold);font-family:var(--display);font-size:1.2rem;letter-spacing:.05em;text-transform:none}
+.note a{color:#FFE08A}
+.note .piece img{filter:invert(1) sepia(1) saturate(4) hue-rotate(5deg)}
+.orig{border-left:4px double var(--gold-deep);font-family:var(--display);font-style:normal;font-size:1.15rem}
+.rulebook thead th{background:var(--vermilion);color:var(--gold);border-bottom:3px double var(--gold)}
+.rulebook tbody tr:nth-child(even) td{background:rgba(226,177,60,.10)}
+.rulebook .card{border:3px double var(--gold-deep);border-radius:6px;background:linear-gradient(var(--paper),#F6E6C0)}
+.band a{border-radius:50% 50% 45% 45%/60% 60% 40% 40%;background:#F7D7A0;border-color:var(--gold-deep)}
+.band a.on{background:radial-gradient(circle at 50% 35%,#F23A2E,#A50D12);box-shadow:0 0 12px rgba(255,180,60,.8)}
+.steps li::before,.disasters li::before{font-family:var(--display);font-size:1.4rem;font-weight:400}
+.toc a{border-bottom:1px dashed var(--gold)}
+.follow{background:#5E0508 !important;border-right:3px double var(--gold) !important}
+.follow nav a,.follow nav .t-part{color:#F6E2B4}
+.follow nav a.on{background:var(--vermilion);color:var(--gold)}
+.follow-title{color:var(--gold);border-bottom-color:var(--gold) !important;font-size:1.2rem !important;letter-spacing:.2em !important}
+.follow nav .t-num{color:var(--gold)}
+
+/* ---------- reference cards ---------- */
+.refcards .top{border:6px double var(--gold);text-align:center}
+.refcards .top h1{font-weight:400;font-size:3rem;letter-spacing:.2em;text-transform:none}
+.refcards .top p{font-family:var(--body);text-transform:none;letter-spacing:.05em}
+.pairlabel{color:var(--gold);font-family:var(--display);font-weight:400;font-size:1.3rem;letter-spacing:.1em}
+.refcards .ch h2{font-family:var(--display);font-weight:400;letter-spacing:.04em;text-transform:none;font-size:18pt;line-height:1}
+.refcards .ch{border-bottom:3px double var(--gold-deep)}
+.refcards h3{color:var(--vermilion);border-bottom:1px solid var(--gold)}
+.refcards ol.turn .n{border-radius:2px;transform:rotate(-5deg);box-shadow:inset 0 0 0 1px var(--on-accent)}
+.refcards .anytime{border:1px dashed var(--gold-deep);background:rgba(226,177,60,.08)}

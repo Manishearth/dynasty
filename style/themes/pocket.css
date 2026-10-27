@@ -1,0 +1,105 @@
+/* pocket — a handheld monster-collecting RPG, circa 1998. Gotta tax 'em all. */
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Luckiest+Guy&family=Nunito:wght@400;700;800&display=swap");
+:root{
+  --canvas:#8BC34A;--paper:#FFFFFF;--ink:#202020;--ink-soft:#5A5A6E;
+  --rule:#C8D0E0;--hairline:#E6EAF2;--tint:#EAF6FF;
+  --vermilion:#E3350D;--pink:#A040A0;--cobalt:#3B6FD9;--walnut:#B8860B;
+  --note-bg:#F8F8F8;--must-bg:#FFE3DA;--water-bg:#DCE8FF;--on-accent:#fff;
+  --display:"Luckiest Guy","Nunito",sans-serif;
+  --body:"Nunito",system-ui,sans-serif;
+  --mono:"Press Start 2P",monospace;
+  --cover-bg:linear-gradient(#E3350D 0 47%,#202020 47% 53%,#F2F2F2 53%);
+  --cover-ink:#202020;
+  --radius:14px;--h-case:none;--h-track:.2;--wordmark-size:4.6rem;--heavy:4px;
+  --sheet-shadow:0 0 0 4px #202020,8px 8px 0 4px rgba(0,0,0,.25);
+}
+/* tall-grass tiles */
+body{
+  background-color:var(--canvas);
+  background-image:
+    linear-gradient(45deg,#7CB342 25%,transparent 25% 75%,#7CB342 75%),
+    linear-gradient(45deg,#7CB342 25%,transparent 25% 75%,#7CB342 75%);
+  background-size:32px 32px;background-position:0 0,16px 16px;
+}
+.wrap{padding-top:3rem}
+.sheet{margin-bottom:2.6rem}
+/* the pixel mono is wide; shrink everything that uses it */
+.sec-num,.eyebrow,.cover .sub,.cover .meta,.rulebook caption,.rulebook thead th,.rulebook td.n,.rulebook th.n,.note b,.note .n-lbl,.rulebook .who,.rulebook .see,
+.rulebook .key,figcaption,.toc .t-num,.toc .t-part,.band a,.steps li::before,.disasters li::before,.orig cite,
+.follow nav .t-num,.follow nav .t-part,.follow-bar .lbl,.rulebook h3 .h-num{font-size:.58rem !important;letter-spacing:0 !important;line-height:1.6}
+.rulebook td.n,.rulebook th.n{font-size:.62rem !important}
+
+.rulebook h2{font-size:2rem;font-weight:400;color:#FFCB05;-webkit-text-stroke:2px #2A75BB;paint-order:stroke fill;
+  text-shadow:3px 3px 0 #1D4E8A;letter-spacing:.03em}
+.rulebook h3{font-size:1.35rem;font-weight:400;color:#2A75BB}
+.rulebook h4{font-family:var(--mono);font-weight:400;font-size:.62rem;color:var(--vermilion)}
+.summary h4{color:var(--vermilion)}
+/* section numbers ride on a capture ball */
+.sec-head{border-bottom:4px solid #202020;align-items:center}
+.sec-num{display:inline-flex;align-items:center;gap:.6rem;color:#202020}
+.sec-num::before{content:"";width:1.9rem;height:1.9rem;border-radius:50%;flex:none;border:3px solid #202020;
+  background:radial-gradient(circle,#fff 0 .22rem,#202020 .22rem .36rem,transparent .36rem),
+             linear-gradient(#E3350D 0 44%,#202020 44% 56%,#fff 56%)}
+
+/* cover: the ball itself */
+.cover{border-radius:var(--radius);padding:4.5rem 2rem 3rem}
+.wordmark{font-weight:400;display:flex;justify-content:center;letter-spacing:.04em;margin-bottom:3rem}
+.wordmark span{display:inline-block;color:#FFCB05;-webkit-text-stroke:5px #2A75BB;paint-order:stroke fill;
+  text-shadow:0 6px 0 #1D4E8A;transform:translateY(calc(var(--y,0)*1px))}
+.wordmark span:nth-child(1),.wordmark span:nth-child(7){--y:10}
+.wordmark span:nth-child(2),.wordmark span:nth-child(6){--y:3}
+.cover .sub:first-child{color:#fff}
+.cover hr{width:5.5rem;height:5.5rem;border-radius:50%;border:6px solid #202020;background:#fff;opacity:1;
+  box-shadow:inset 0 0 0 6px #fff,inset 0 0 0 9px #ccc;margin:-1rem auto 1.4rem}
+.cover .meta{font-size:.52rem !important}
+
+/* notes become text boxes, with the blinking "more" arrow */
+.note{background:#fff;border:0;border-radius:10px;padding:1rem 1.3rem 1.4rem;position:relative;
+  box-shadow:0 0 0 3px #fff,0 0 0 6px #4A6CD4,0 0 0 9px #fff,0 0 0 11px #202020}
+.note b,.note .n-lbl{color:#4A6CD4}
+.note::after{content:"▼";position:absolute;right:.9rem;bottom:.3rem;font-size:.7rem;color:var(--vermilion);animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.orig{font-style:normal;border-left:6px solid #FFCB05;background:#FFFBE6;padding:.6rem 1rem;border-radius:0 10px 10px 0}
+
+/* tables: the stats screen */
+.rulebook table{border:3px solid #202020;border-radius:10px;border-collapse:separate;border-spacing:0;overflow:hidden}
+.rulebook thead th{background:#2A75BB;color:#fff;border-bottom:3px solid #202020}
+.rulebook th:first-child,.rulebook td:first-child{padding-left:.7rem !important}
+.rulebook tbody tr:nth-child(even) td{background:#F0F6FF}
+.rulebook tbody tr:last-child td{border-bottom:0}
+.rulebook caption{color:#2A75BB}
+/* province band: gym badges */
+.band a{border-radius:50%;aspect-ratio:1;height:auto;flex:0 0 auto;width:2.8rem;margin:0 auto;border:3px solid #202020;
+  background:linear-gradient(135deg,#E0E0E0,#9E9E9E)}
+.band a.on{background:linear-gradient(135deg,#FFE066,#E0A800);color:#202020;border-color:#202020}
+.band a.on img{filter:none}
+.band a img{display:none}
+.rulebook .card{border:3px solid #202020;box-shadow:5px 5px 0 #FFCB05}
+.steps li::before{color:#2A75BB}
+.disasters li::before{color:#A040A0}
+/* type badges for the colour key */
+.rulebook .key span{background:var(--c,#999);color:#fff;padding:.3rem .55rem;border-radius:999px;border:2px solid #202020}
+.rulebook .key span::before{display:none}
+.k-v{--c:#E3350D}.k-p{--c:#A040A0}.k-c{--c:#3B6FD9}.k-w{--c:#B8860B}
+.rulebook .say li::before{content:"▶";border:0;top:.32rem;font-size:.7rem;color:#bbb}
+.rulebook .say li.must::before{color:var(--vermilion);background:none}
+.follow{background:#fff !important;border-right:4px solid #202020 !important}
+.follow nav a.on{background:#FFF7CC;border-left-color:#E3350D}
+.follow nav a.on::after{content:"◀";margin-left:auto;color:#E3350D;animation:blink 1s steps(1) infinite}
+@media (prefers-reduced-motion:reduce){*{animation:none !important}}
+
+/* ---------- reference cards ---------- */
+:root{--diagram-mono:"Nunito",sans-serif;--card-mono:"Courier New",monospace;--card-shadow:0 0 0 3px #202020,6px 6px 0 3px rgba(0,0,0,.25)}
+.refcards .top{border:4px solid #202020;text-align:center;padding:2rem 2rem 2.6rem}
+.refcards .top h1{font-weight:400;font-size:3.4rem;letter-spacing:.04em;text-transform:none;color:#FFCB05;
+  -webkit-text-stroke:5px #2A75BB;paint-order:stroke fill;text-shadow:0 5px 0 #1D4E8A}
+.refcards .top p{font-size:.55rem;color:#202020;margin-top:2.4rem}
+.refcards .intro{border-radius:10px;box-shadow:0 0 0 3px #fff,0 0 0 6px #4A6CD4,0 0 0 9px #fff,0 0 0 11px #202020}
+.pairlabel{font-size:.6rem;letter-spacing:0;color:#202020;background:#fff;display:table;margin:0 auto .8rem;padding:.5rem .8rem;
+  border-radius:8px;box-shadow:0 0 0 3px #202020}
+.refcards .card{border-radius:12px}
+.refcards .ch{border-top:0;border-bottom:4px solid #202020;align-items:center}
+.refcards .ch h2{font-family:var(--display);font-weight:400;letter-spacing:.03em;text-transform:none;font-size:18pt;line-height:1.1}
+.refcards h3{color:#2A75BB;border-bottom:3px solid #202020}
+.refcards ol.turn .n{background:#E3350D;color:#fff;box-shadow:0 0 0 2px #202020}
+.refcards .anytime{border:3px solid #4A6CD4;border-radius:8px}

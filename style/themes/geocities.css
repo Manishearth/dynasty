@@ -1,0 +1,70 @@
+/* geocities — ~*~ WeLcOmE 2 My DyNaStY FaN PaGe ~*~ best viewed in Netscape 4 at 800x600 */
+:root{
+  --canvas:#000033;--paper:#C0C0C0;--ink:#000;--ink-soft:#000080;
+  --rule:#808080;--hairline:#A8A8A8;--tint:#FFFFCC;
+  --vermilion:#FF0000;--pink:#FF00FF;--cobalt:#0000FF;--walnut:#808000;
+  --note-bg:#FFFF99;--must-bg:#FFCCCC;--water-bg:#CCFFFF;--on-accent:#FFFF00;
+  --display:"Comic Sans MS","Comic Sans","Chalkboard SE",cursive;
+  --body:"Times New Roman",Times,serif;
+  --mono:"Courier New",monospace;
+  --cover-bg:#000;--cover-ink:#00FF00;
+  --sheet-shadow:inset -2px -2px 0 #404040,inset 2px 2px 0 #fff,inset -4px -4px 0 #808080,inset 4px 4px 0 #DFDFDF;
+  --h-case:none;--h-track:0;--wordmark-size:4rem;
+}
+/* starfield */
+body{background:
+  radial-gradient(1px 1px at 10% 20%,#fff,transparent),radial-gradient(1px 1px at 60% 70%,#fff,transparent),
+  radial-gradient(2px 2px at 35% 55%,#ff0,transparent),radial-gradient(1px 1px at 85% 15%,#fff,transparent),
+  #000033;background-size:120px 110px,170px 150px,230px 210px,90px 130px}
+.rulebook a{color:#0000EE}.rulebook a:visited{color:#551A8B}
+.rulebook h2{font-size:1.9rem;color:#FF00FF;text-shadow:2px 2px 0 #00FFFF}
+.rulebook h3{color:#0000FF;text-decoration:underline}
+.rulebook h3::before{content:"🔥 "}
+.rulebook h4{color:#008000}
+.sec-head{border-bottom:0;padding-bottom:1.2rem;
+  background:linear-gradient(90deg,red,orange,yellow,lime,cyan,blue,magenta) bottom/100% 4px no-repeat}
+.sec-num{color:#FF0000;font-family:var(--display);font-size:1.4rem;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{visibility:hidden}}
+
+.cover{font-family:var(--mono);box-shadow:none;border:4px ridge #FFD700}
+.wordmark{font-family:"Impact","Arial Black",sans-serif;display:flex;justify-content:center;gap:.1em;
+  color:#FFFF00;text-shadow:3px 3px 0 #FF0000,6px 6px 0 #0000FF}
+.wordmark span:nth-child(odd){color:#00FFFF}
+.cover hr{border-top:4px groove #FFD700;opacity:1;width:80%}
+.cover::before{content:"🚧 UNDER CONSTRUCTION 🚧  ·  YOU ARE VISITOR #000,1969  ·  SIGN MY GUESTBOOK!!!  ·  🚧 UNDER CONSTRUCTION 🚧";
+  display:block;white-space:nowrap;color:#FF0;background:#800000;padding:.3rem 0;margin:-4rem -3.4rem 3rem;
+  animation:marquee 14s linear infinite;font-weight:700}
+@keyframes marquee{from{text-indent:100%}to{text-indent:-160%}}
+.cover::after{content:"Made with Notepad · Netscape NOW! · Best viewed 800×600";display:block;margin-top:2rem;color:#C0C0C0;font-size:.7rem}
+
+.note{border:2px dashed #FF00FF;border-left:2px dashed #FF00FF;font-family:var(--display)}
+.note b::before{content:"★ NEW! ★ ";color:#FF0000}
+.rulebook .card{border:3px outset #DFDFDF;background:#D4D0C8}
+.rulebook table{border:3px outset #DFDFDF;background:#fff}
+.rulebook th,.rulebook td{border:1px inset #808080 !important}
+.rulebook thead th{background:#000080;color:#fff}
+.band a{border:2px outset #fff;background:#C0C0C0;color:#000}
+.band a.on{border-style:inset;background:#000080;color:#FFFF00}
+.toc a::before{content:"➤ ";color:#FF0000}
+.follow{background:#008080 !important}
+.follow nav a,.follow nav .t-part,.follow-title{color:#fff}
+.follow nav .t-num{color:#FFFF00}
+.follow nav a.on{background:#000080;color:#FFFF00}
+@media (prefers-reduced-motion:reduce){*{animation:none !important}}
+
+/* ---------- reference cards ---------- */
+:root{--card-body:Arial,sans-serif;--card-shadow:inset -2px -2px 0 #404040,inset 2px 2px 0 #fff,inset -4px -4px 0 #808080,inset 4px 4px 0 #DFDFDF}
+.refcards .top{border:4px ridge #FFD700;overflow:hidden;padding-top:3.2rem}
+.refcards .top::before{content:"🚧 UNDER CONSTRUCTION 🚧  ·  PRINT THESE OUT!!!  ·  YOU ARE VISITOR #000,1969  ·  🚧 UNDER CONSTRUCTION 🚧";
+  position:absolute;top:0;left:0;right:0;white-space:nowrap;color:#FF0;background:#800000;padding:.3rem 0;font:700 .9rem var(--mono);
+  animation:marquee 14s linear infinite}
+.refcards .top h1{font-family:"Impact","Arial Black",sans-serif;color:#FFFF00;text-shadow:3px 3px 0 #FF0000,6px 6px 0 #0000FF;font-size:3rem}
+.refcards .intro{box-shadow:var(--sheet-shadow);font-family:var(--display)}
+.pairlabel{color:#00FFFF;font-family:var(--display);font-size:1.1rem;text-transform:none;letter-spacing:0}
+.pairlabel::before{content:"✨ "}.pairlabel::after{content:" ✨"}
+.refcards .card{background:#fff}
+.refcards .ch h2{font-family:var(--display);text-transform:none;letter-spacing:0;color:#FF00FF;text-shadow:1px 1px 0 #00FFFF}
+.refcards h3{color:#0000FF;border-bottom:2px groove #C0C0C0}
+.refcards th{color:#000080}
+.refcards ol.turn .n{background:#000080;color:#FFFF00;border-radius:0}
+.refcards .anytime{border:2px dashed #FF00FF;background:#FFFF99}

@@ -4,220 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dynasty (1969) — Rulebook</title>
+<link rel="stylesheet" href="style/base.css">
+<link rel="stylesheet" href="style/rulebook.css">
 <style>
-:root{
-  --canvas:#E4DDCB;      /* unbleached cotton of the map */
-  --paper:#FFFFFF;
-  --ink:#16150F;
-  --ink-soft:#5C584A;
-  --rule:#C9C1AC;
-  --vermilion:#C8291A;   /* the can */
-  --pink:#F2416F;        /* the I Ching cards, the raid squares */
-  --cobalt:#175FB5;      /* the river */
-  --walnut:#6E4A2C;      /* the turned pieces */
-  --display:"Helvetica Neue",Helvetica,Arial,sans-serif;
-  --body:"Helvetica Neue",Helvetica,Arial,sans-serif;
-  --mono:"Courier New",Courier,monospace;
-}
-*{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{
-  margin:0;background:var(--canvas);color:var(--ink);
-  font-family:var(--body);font-size:16.5px;line-height:1.62;
-  font-feature-settings:"kern" 1;
-}
-.wrap{max-width:60rem;margin:0 auto;padding:2rem 1rem 6rem}
-.sheet{
-  background:var(--paper);padding:3.2rem 3.4rem;margin:0 0 1.6rem;
-  box-shadow:0 1px 0 rgba(0,0,0,.18);
-}
-@media (max-width:640px){.sheet{padding:1.8rem 1.3rem}body{font-size:16px}}
-
-/* ---------- type ---------- */
-h1,h2,h3,h4{font-family:var(--display);font-weight:700;margin:0}
-h2{
-  font-size:1.42rem;letter-spacing:.09em;text-transform:uppercase;line-height:1.2;
-}
-h3{font-size:1.02rem;letter-spacing:.075em;text-transform:uppercase;margin:2.1rem 0 .55rem}
-h4{font-size:.86rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft);margin:1.5rem 0 .35rem}
-p{margin:0 0 .95rem}
-ul,ol{margin:0 0 1rem;padding-left:1.25rem}
-li{margin:0 0 .35rem}
-strong{font-weight:700}
-em{font-style:italic}
-a{color:var(--vermilion)}
-.lede{font-size:1.08rem}
-.sec-head{display:flex;gap:1.1rem;align-items:baseline;border-bottom:2px solid var(--ink);padding-bottom:.55rem;margin-bottom:1.5rem}
-.sec-num{font-family:var(--mono);font-size:1.05rem;color:var(--vermilion);font-weight:700;flex:none}
-.eyebrow{font-family:var(--mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 .5rem}
-
-/* ---------- cover ---------- */
-.cover{background:var(--vermilion);color:#fff;padding:4rem 3.4rem 3rem;text-align:center}
-.wordmark{font-family:var(--display);font-weight:700;font-size:3.5rem;line-height:.94;letter-spacing:.02em;margin:0 0 1.6rem}
-.wordmark span{display:block}
-.cover .sub{font-family:var(--mono);font-size:.88rem;letter-spacing:.2em;text-transform:uppercase;margin:0 0 .4rem}
-.cover .meta{font-family:var(--mono);font-size:.78rem;line-height:1.9;opacity:.9;margin-top:2.4rem}
-.cover hr{border:0;border-top:1px solid rgba(255,255,255,.45);width:5rem;margin:1.6rem auto}
-
-/* ---------- province band (signature) ---------- */
-.band{display:flex;gap:3px;margin:0 0 1.4rem}
-.band a{
-  flex:1;height:2.1rem;display:flex;align-items:center;justify-content:center;
-  font-family:var(--mono);font-size:.8rem;font-style:normal;text-decoration:none;
-  background:#EFEADC;color:var(--ink-soft);border:1px solid var(--rule);
-}
-.band a:hover{border-color:var(--vermilion);color:var(--vermilion)}
-.band a.on{background:var(--vermilion);color:#fff;border-color:var(--vermilion);font-weight:700}
-.band a.out{border-style:dashed}
-.band a img{width:.95rem;height:.95rem;margin-right:.3rem;opacity:.8}
-.band a.on img{filter:brightness(0) invert(1);opacity:1}
-/* cut-out size drawings */
-.cut{display:inline-grid;gap:2px;vertical-align:middle}
-.cut i{width:.95rem;height:.95rem;background:#EFEADC;border:1px solid var(--ink-soft)}
-
-/* ---------- tables ---------- */
-table{width:100%;border-collapse:collapse;margin:0 0 1.2rem;font-size:.92rem}
-caption{caption-side:top;text-align:left;font-family:var(--mono);font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);padding-bottom:.4rem}
-th,td{text-align:left;padding:.42rem .6rem;border-bottom:1px solid var(--rule);vertical-align:top}
-thead th{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;border-bottom:1.5px solid var(--ink)}
-td.n,th.n{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums}
-tbody tr:last-child td{border-bottom:1.5px solid var(--ink)}
-.neg{color:var(--vermilion)}
-@media screen and (max-width:640px){
-  table{font-size:.84rem}
-  th,td{padding:.38rem .3rem}
-  th:first-child,td:first-child{padding-left:0}
-  th:last-child,td:last-child{padding-right:0}
-  thead th{font-size:.64rem;letter-spacing:.03em}
-  td .piece{white-space:normal}
-}
-
-/* ---------- devices ---------- */
-.note{
-  border-left:3px solid var(--pink);background:#FFF3F6;padding:.85rem 1.1rem;margin:0 0 1.2rem;
-  font-size:.92rem;
-}
-.note b{font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;display:block;color:var(--pink);margin-bottom:.25rem}
-.note p{margin:0 0 .5rem}.note p:last-child{margin:0}
-.note .n-lbl{font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--pink);font-weight:700}
-.orig{border-left:3px solid var(--rule);padding:.2rem 0 .2rem 1.1rem;margin:0 0 1.2rem;color:var(--ink-soft);font-size:.94rem;font-style:italic}
-.orig cite{display:block;font-style:normal;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;margin-top:.4rem}
-.steps{list-style:none;margin:0 0 1.4rem;padding:0;counter-reset:s}
-.steps li{display:grid;grid-template-columns:2.2rem 7.5rem 1fr;gap:.8rem;padding:.6rem 0;border-top:1px solid var(--rule);margin:0}
-.steps li:last-child{border-bottom:1px solid var(--rule)}
-.steps li::before{counter-increment:s;content:counter(s);font-family:var(--mono);font-weight:700;color:var(--vermilion)}
-.who{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);padding-top:.18rem}
-@media (max-width:640px){.steps li{grid-template-columns:1.6rem 1fr;gap:.5rem}.who{grid-column:2;padding:0}}
-figure{margin:1.6rem 0;padding:0}
-figure svg,figure img{width:100%;height:auto;display:block}
-figcaption{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;color:var(--ink-soft);margin-top:.5rem;text-transform:uppercase}
-.key{display:flex;flex-wrap:wrap;gap:.4rem 1.3rem;font-family:var(--mono);font-size:.74rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 1.2rem}
-.key span::before{content:"";display:inline-block;width:.7rem;height:.7rem;margin-right:.4rem;vertical-align:-1px}
-.k-p::before{background:var(--pink)}
-.k-c::before{background:var(--cobalt)}
-.k-v::before{background:var(--vermilion)}
-.k-w::before{background:var(--walnut)}
-.disasters{list-style:none;counter-reset:d;padding:0;margin:0 0 1rem}
-.disasters li{counter-increment:d;position:relative;padding:.7rem 0 .7rem 2.4rem;border-top:1px solid var(--rule);font-size:.95rem;margin:0}
-.disasters li::before{content:counter(d);position:absolute;left:0;top:.7rem;font-family:var(--mono);font-weight:700;color:var(--pink)}
-.disasters li:last-child{border-bottom:1px solid var(--rule)}
-.cost{font-weight:700}
-
-/* ---------- contents ---------- */
-.toc{columns:2;column-gap:2.5rem;font-size:.93rem}
-@media (max-width:640px){.toc{columns:1}}
-.toc a{display:block;text-decoration:none;color:var(--ink);border-bottom:1px dotted var(--rule);padding:.28rem 0;break-inside:avoid}
-.toc a:hover{color:var(--vermilion)}
-.toc .t-num{font-family:var(--mono);color:var(--vermilion);margin-right:.5rem;font-size:.8rem}
-.toc .t-part{font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);border:0;padding-top:1rem}
-
-/* ---------- following contents: a sidebar when wide, a bar when narrow (built by the script at the end) ---------- */
-.follow{display:none}
-.follow nav a{display:flex;text-decoration:none;color:var(--ink);font-size:.84rem;line-height:1.3;padding:.3rem .6rem .3rem .9rem;border-left:3px solid transparent}
-.follow nav a:hover{color:var(--vermilion)}
-.follow nav a.on{border-left-color:var(--vermilion);background:var(--paper);font-weight:700}
-.follow nav .t-num{flex:none;width:1.7rem;font-family:var(--mono);font-size:.74rem;color:var(--vermilion)}
-.follow nav .t-part{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);padding:1.1rem .6rem .3rem .9rem}
-.follow-bar{display:none}
-@media screen and (min-width:76rem){
-  body.has-follow{padding-left:16rem}
-  .follow{display:block;position:fixed;top:0;left:0;bottom:0;width:16rem;overflow-y:auto;padding:1.4rem 0 2rem;border-right:1px solid var(--rule)}
-  .follow-title{font-family:var(--display);font-weight:700;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;padding:0 .9rem .4rem;margin:0 .9rem .2rem 0;border-bottom:2px solid var(--ink)}
-}
-@media screen and (max-width:75.99rem){
-  html.has-follow{scroll-padding-top:3.4rem}
-  .follow-bar{display:flex;position:fixed;top:0;left:0;right:0;z-index:10;align-items:center;gap:.7rem;width:100%;height:2.8rem;padding:0 1rem;border:0;border-bottom:2px solid var(--ink);background:var(--paper);color:var(--ink);font:inherit;text-align:left;cursor:pointer}
-  .follow-bar .lbl{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vermilion);flex:none}
-  .follow-bar .cur{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:.92rem;font-weight:700}
-  .follow-bar .chev{flex:none;font-size:.8rem;transition:transform .15s}
-  .follow-bar[aria-expanded="true"] .chev{transform:rotate(180deg)}
-  body.has-follow .wrap{padding-top:4.4rem}
-  .follow.open{display:block;position:fixed;top:2.8rem;left:0;right:0;z-index:10;max-height:calc(100vh - 2.8rem);overflow-y:auto;padding:.3rem 0 1rem;background:var(--canvas);border-bottom:2px solid var(--ink);box-shadow:0 6px 18px rgba(0,0,0,.18)}
-  .follow-title{display:none}
-  .follow nav a{font-size:.95rem;padding:.5rem 1rem}
-  .follow nav .t-part{padding-left:1rem}
-}
-
-/* ---------- cards ---------- */
-.card{border:1.5px solid var(--ink);padding:1.2rem 1.4rem;margin:0 0 1.2rem;break-inside:avoid}
-.card h3{margin-top:0}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
-@media (max-width:700px){.grid2{grid-template-columns:1fr}}
-
-/* ---------- explainer's cheat sheet (Appendix C) ---------- */
-h3 .h-num{font-family:var(--mono);color:var(--vermilion);margin-right:.5rem}
-.see{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);font-weight:400;margin-left:.4rem}
-.see a{color:var(--ink-soft)}
-.say{list-style:none;margin:0 0 1rem;padding:0}
-.say li{position:relative;padding:.32rem 0 .32rem 1.7rem;margin:0;border-top:1px solid #ECE7DA;font-size:.95rem}
-.say li:last-child{border-bottom:1px solid #ECE7DA}
-.say li::before{content:"";position:absolute;left:0;top:.66rem;width:.8rem;height:.8rem;border:1.5px solid var(--ink-soft)}
-.say.plain li{padding-left:0}
-.say.plain li::before{display:none}
-.say li.must::before{border-color:var(--vermilion);background:#FBE3E0}
-.legend{font-size:.86rem;color:var(--ink-soft)}
-.legend i{display:inline-block;width:.75rem;height:.75rem;border:1.5px solid var(--vermilion);background:#FBE3E0;vertical-align:-1px;margin-right:.3rem}
-.cols{display:grid;grid-template-columns:1fr 1fr;gap:0 2rem}
-@media (max-width:760px){.cols{grid-template-columns:1fr}}
-h3.part{border-top:2px solid var(--ink);padding-top:.8rem;margin-top:2.6rem;color:var(--vermilion)}
-/* the rules on one page */
-.summary h4{margin:1rem 0 .15rem;color:var(--ink)}
-.summary h4 .see{margin-left:.3rem}
-.summary .cols p{font-size:.92rem;margin:0 0 .3rem}
-@media print{.summary{font-size:9pt}.summary h4{margin-top:.45rem}.cols{grid-template-columns:1fr 1fr}}
-
-/* ---------- print ---------- */
-@media print{
-  @page{size:letter;margin:12mm 12mm}
-  body{background:#fff;font-size:10.2pt;line-height:1.5}
-  .wrap{max-width:none;padding:0}
-  .sheet{box-shadow:none;padding:0;margin:0}
-  .sheet+.sheet{break-before:page}
-  .cover{background:#fff;color:var(--ink);padding:6rem 0 0;border-bottom:2px solid var(--ink)}
-  .cover hr{border-top-color:var(--ink)}
-  .wordmark{color:var(--vermilion)}
-  /* a heading never ends a page: it stays with whatever it heads */
-  h2,h3,h4,.eyebrow,.sec-head,caption{break-after:avoid}
-  :is(h2,h3,h4,.eyebrow,.sec-head)+*{break-before:avoid}
-  p,li,dd{orphans:3;widows:3}
-  .keep{break-inside:avoid}
-  .keep.long,table.long{break-inside:auto} tr{break-inside:avoid}
-  h3{margin:1.1rem 0 .35rem} h3.part{margin-top:1.8rem} p{margin:0 0 .7rem} .sec-head{margin-bottom:1rem}
-  table{margin-bottom:.8rem;font-size:.86rem} th,td{padding-top:.16rem;padding-bottom:.16rem}
-  .disasters li{padding:.3rem 0 .3rem 2.4rem;font-size:.9rem} .disasters li::before{top:.3rem}
-  .card{padding:.8rem 1rem;margin-bottom:.8rem} .card p{margin-bottom:.45rem}
-  figure.order{margin:.8rem 0} figure.order svg{max-height:2.1in;width:auto;max-width:100%;display:block;margin:0 auto}
-  table.inc{font-size:.84em;margin-bottom:.6rem} table.inc td,table.inc th{padding-top:.12rem;padding-bottom:.12rem}
-  table,figure,.card,.note,.steps li,.say li{break-inside:avoid}
-  a{color:var(--ink);text-decoration:none}
-  .noprint,.follow,.follow-bar{display:none !important}
-  body.has-follow{padding-left:0}
-  body.has-follow .wrap{padding-top:0}
-  .band a{background:#fff}
-  .band a.on{background:var(--vermilion);-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-}
-
 /* ---------- piece glyphs ---------- */
 .piece{white-space:nowrap}
 .piece img{width:1.05em;height:1.05em;margin-right:.18em;vertical-align:-.17em}
@@ -237,14 +26,24 @@ h3.part{border-top:2px solid var(--ink);padding-top:.8rem;margin-top:2.6rem;colo
 .piece img[src$="/soldier.svg"]{width:0.875em;height:0.875em;vertical-align:-0.07em;margin:0 0.04em 0 -0.14em}
 /* end piece glyphs */
 </style>
+<script id="theme-load">
+/* Apply the saved theme before the page draws (tools/add_theming.py). */
+(function(){
+var t;try{t=localStorage.getItem('dynasty-theme')}catch(e){}
+if(t&&["original", "imperial", "lisafrank", "pocket", "geocities", "taxform", "terminal", "manuscript", "vaporwave"].indexOf(t)>0){
+  document.write('<link rel="stylesheet" id="theme-css" media="screen" href="style/themes/'+t+'.css">');
+  document.documentElement.setAttribute('data-theme',t);
+}
+})();
+</script>
 </head>
-<body>
+<body class="rulebook">
 <div class="wrap">
 
 <!-- ================= COVER ================= -->
 <section class="sheet cover">
   <p class="sub">Onoma Productions · 1969</p>
-  <h1 class="wordmark"><span>D</span><span>Y</span><span>N</span><span>A</span><span>S</span><span>T</span><span>Y</span></h1>
+  <h1 class="wordmark" data-theme-unlock><span>D</span><span>Y</span><span>N</span><span>A</span><span>S</span><span>T</span><span>Y</span></h1>
   <hr>
   <p class="sub">Rules</p>
   <p style="max-width:26rem;margin:1.2rem auto 0;font-size:.95rem">A socio-economic-political game for four to eight players.</p>
@@ -455,29 +254,29 @@ h3.part{border-top:2px solid var(--ink);padding-top:.8rem;margin-top:2.6rem;colo
   </ol>
   <figure>
   <svg viewBox="0 0 760 420" role="img" aria-label="Diagram of where the grain goes in a round: the Harvest Pile, the provinces, the Emperor's reserve, the public works and the Warlord, with each payment labelled by its step">
-    <defs><marker id="ahr" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto"><path d="M0 0 L7.5 3.2 L0 6.4 z" fill="#16150F"/></marker></defs>
-    <g font-family="Helvetica Neue,Helvetica,Arial" font-size="11.5" text-anchor="middle" fill="#16150F">
-      <rect x="290" y="16" width="180" height="50" fill="#fff" stroke="#16150F" stroke-width="2" stroke-dasharray="6 4"/>
+    <defs><marker id="ahr" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto"><path d="M0 0 L7.5 3.2 L0 6.4 z" style="fill:var(--ink)"/></marker></defs>
+    <g font-size="11.5" text-anchor="middle" style="font-family:var(--diagram-sans);fill:var(--ink)">
+      <rect x="290" y="16" width="180" height="50" stroke-width="2" stroke-dasharray="6 4" style="fill:var(--paper);stroke:var(--ink)"/>
       <text x="380" y="38" font-weight="700" font-size="12.5">PUBLIC WORKS</text>
-      <text x="380" y="55" fill="#5C584A">grain spent on them is gone</text>
-      <rect x="16" y="150" width="150" height="110" fill="#EFEADC" stroke="#16150F" stroke-width="2"/>
+      <text x="380" y="55" style="fill:var(--ink-soft)">grain spent on them is gone</text>
+      <rect x="16" y="150" width="150" height="110" stroke-width="2" style="fill:var(--tint);stroke:var(--ink)"/>
       <text x="91" y="198" font-weight="700" font-size="12.5">HARVEST PILE</text>
-      <text x="91" y="215" fill="#5C584A">the bank, run</text>
-      <text x="91" y="229" fill="#5C584A">by the Gentry</text>
-      <rect x="290" y="130" width="180" height="150" fill="#fff" stroke="#16150F" stroke-width="2"/>
+      <text x="91" y="215" style="fill:var(--ink-soft)">the bank, run</text>
+      <text x="91" y="229" style="fill:var(--ink-soft)">by the Gentry</text>
+      <rect x="290" y="130" width="180" height="150" stroke-width="2" style="fill:var(--paper);stroke:var(--ink)"/>
       <text x="380" y="154" font-weight="700" font-size="12.5">THE PROVINCES</text>
-      <text x="380" y="200"><tspan fill="#C8291A" font-weight="700">3</tspan> Rent: Peasant → Gentry</text>
-      <text x="380" y="218"><tspan fill="#C8291A" font-weight="700">7</tspan> Auction: seller keeps ¼</text>
-      <text x="380" y="248" fill="#5C584A">Deals: anyone → anyone,</text>
-      <text x="380" y="262" fill="#5C584A">at any time</text>
-      <rect x="594" y="150" width="150" height="110" fill="#FBE3E0" stroke="#C8291A" stroke-width="2"/>
-      <text x="669" y="198" font-weight="700" font-size="12.5" fill="#C8291A">EMPEROR'S</text>
-      <text x="669" y="214" font-weight="700" font-size="12.5" fill="#C8291A">RESERVE</text>
-      <text x="669" y="231" fill="#C8291A">taxes, not the Pile</text>
-      <rect x="290" y="350" width="180" height="50" fill="#fff" stroke="#5C584A" stroke-width="2" stroke-dasharray="6 4"/>
+      <text x="380" y="200"><tspan font-weight="700" style="fill:var(--vermilion)">3</tspan> Rent: Peasant → Gentry</text>
+      <text x="380" y="218"><tspan font-weight="700" style="fill:var(--vermilion)">7</tspan> Auction: seller keeps ¼</text>
+      <text x="380" y="248" style="fill:var(--ink-soft)">Deals: anyone → anyone,</text>
+      <text x="380" y="262" style="fill:var(--ink-soft)">at any time</text>
+      <rect x="594" y="150" width="150" height="110" stroke-width="2" style="fill:var(--must-bg);stroke:var(--vermilion)"/>
+      <text x="669" y="198" font-weight="700" font-size="12.5" style="fill:var(--vermilion)">EMPEROR'S</text>
+      <text x="669" y="214" font-weight="700" font-size="12.5" style="fill:var(--vermilion)">RESERVE</text>
+      <text x="669" y="231" style="fill:var(--vermilion)">taxes, not the Pile</text>
+      <rect x="290" y="350" width="180" height="50" stroke-width="2" stroke-dasharray="6 4" style="fill:var(--paper);stroke:var(--ink-soft)"/>
       <text x="380" y="372" font-weight="700" font-size="12.5">WARLORD</text>
-      <text x="380" y="389" fill="#5C584A">outside the social order</text>
-      <g stroke="#16150F" stroke-width="2" fill="none" marker-end="url(#ahr)">
+      <text x="380" y="389" style="fill:var(--ink-soft)">outside the social order</text>
+      <g stroke-width="2" fill="none" marker-end="url(#ahr)" style="stroke:var(--ink)">
         <path d="M166 180 L282 180"/>
         <path d="M290 232 L174 232"/>
         <path d="M470 180 L586 180"/>
@@ -488,15 +287,15 @@ h3.part{border-top:2px solid var(--ink);padding-top:.8rem;margin-top:2.6rem;colo
         <path d="M410 350 L410 288"/>
         <path d="M290 380 L91 380 L91 268"/>
       </g>
-      <text x="228" y="172"><tspan fill="#C8291A" font-weight="700">2</tspan> Harvest</text>
-      <text x="228" y="248"><tspan fill="#C8291A" font-weight="700">1</tspan> Disasters</text>
-      <text x="228" y="261"><tspan fill="#C8291A" font-weight="700">6</tspan> New land</text>
-      <text x="228" y="274"><tspan fill="#C8291A" font-weight="700">7</tspan> ¾ of each sale</text>
-      <text x="532" y="172"><tspan fill="#C8291A" font-weight="700">5</tspan> Tax</text>
-      <text x="532" y="248"><tspan fill="#C8291A" font-weight="700">9</tspan> Salaries</text>
-      <text x="575" y="33"><tspan fill="#C8291A" font-weight="700">6</tspan> The crown builds</text>
-      <text x="388" y="106" text-anchor="start"><tspan fill="#C8291A" font-weight="700">6</tspan> Shares</text>
-      <text x="343" y="308" text-anchor="end"><tspan fill="#C8291A" font-weight="700">7</tspan> Raids</text>
+      <text x="228" y="172"><tspan font-weight="700" style="fill:var(--vermilion)">2</tspan> Harvest</text>
+      <text x="228" y="248"><tspan font-weight="700" style="fill:var(--vermilion)">1</tspan> Disasters</text>
+      <text x="228" y="261"><tspan font-weight="700" style="fill:var(--vermilion)">6</tspan> New land</text>
+      <text x="228" y="274"><tspan font-weight="700" style="fill:var(--vermilion)">7</tspan> ¾ of each sale</text>
+      <text x="532" y="172"><tspan font-weight="700" style="fill:var(--vermilion)">5</tspan> Tax</text>
+      <text x="532" y="248"><tspan font-weight="700" style="fill:var(--vermilion)">9</tspan> Salaries</text>
+      <text x="575" y="33"><tspan font-weight="700" style="fill:var(--vermilion)">6</tspan> The crown builds</text>
+      <text x="388" y="106" text-anchor="start"><tspan font-weight="700" style="fill:var(--vermilion)">6</tspan> Shares</text>
+      <text x="343" y="308" text-anchor="end"><tspan font-weight="700" style="fill:var(--vermilion)">7</tspan> Raids</text>
       <text x="343" y="322" text-anchor="end"><tspan class="pg" data-g="soldier" dx="1.1em">Soldiers</tspan>, 20</text>
       <text x="417" y="315" text-anchor="start">Tolls, 5</text>
       <text x="190" y="372">¾ of each <tspan class="pg" data-g="soldier" dx="1.1em">soldier</tspan></text>
@@ -542,9 +341,9 @@ h3.part{border-top:2px solid var(--ink);padding-top:.8rem;margin-top:2.6rem;colo
   <p><strong>It has a ceiling, and the ceiling is reachable.</strong> A doubling card takes effect at most twice; an increase-by-one-half card takes effect once. The nation therefore tops out at 100 × 2 × 2 × 1½ = <strong>600 million</strong>, which the cards state outright — and which is exactly the ×6 row at the bottom of every table. Once the country is there, it is there for good, and a bad harvest at ×6 costs a peasant province 190 million bags it does not have.</p>
   <figure>
   <svg viewBox="0 0 780 340" role="img" aria-label="Chart showing flat harvest against rising consumption">
-    <g font-family="Courier New, monospace" font-size="12" fill="#5C584A">
-      <line x1="80" y1="20" x2="80" y2="270" stroke="#16150F" stroke-width="1.5"/>
-      <line x1="80" y1="270" x2="740" y2="270" stroke="#16150F" stroke-width="1.5"/>
+    <g font-size="12" style="font-family:var(--diagram-mono);fill:var(--ink-soft)">
+      <line x1="80" y1="20" x2="80" y2="270" stroke-width="1.5" style="stroke:var(--ink)"/>
+      <line x1="80" y1="270" x2="740" y2="270" stroke-width="1.5" style="stroke:var(--ink)"/>
       <text x="72" y="30" text-anchor="end">240</text>
       <text x="72" y="93" text-anchor="end">160</text>
       <text x="72" y="140" text-anchor="end">100</text>
@@ -560,27 +359,27 @@ h3.part{border-top:2px solid var(--ink);padding-top:.8rem;margin-top:2.6rem;colo
       <text x="415" y="318" text-anchor="middle" letter-spacing="2">POPULATION</text>
     </g>
     <!-- harvest bands -->
-    <line x1="80" y1="140" x2="740" y2="140" stroke="#16150F" stroke-width="2.5"/>
-    <line x1="80" y1="180" x2="740" y2="180" stroke="#16150F" stroke-width="1.5" stroke-dasharray="7 5"/>
-    <line x1="80" y1="219" x2="740" y2="219" stroke="#16150F" stroke-width="1.5" stroke-dasharray="2 5"/>
+    <line x1="80" y1="140" x2="740" y2="140" stroke-width="2.5" style="stroke:var(--ink)"/>
+    <line x1="80" y1="180" x2="740" y2="180" stroke-width="1.5" stroke-dasharray="7 5" style="stroke:var(--ink)"/>
+    <line x1="80" y1="219" x2="740" y2="219" stroke-width="1.5" stroke-dasharray="2 5" style="stroke:var(--ink)"/>
     <!-- consumption -->
-    <polyline points="140,238 250,222 360,207 470,176 580,145 690,26" fill="none" stroke="#C8291A" stroke-width="3"/>
-    <g fill="#C8291A">
+    <polyline points="140,238 250,222 360,207 470,176 580,145 690,26" fill="none" stroke-width="3" style="stroke:var(--vermilion)"/>
+    <g style="fill:var(--vermilion)">
       <circle cx="140" cy="238" r="4.5"/><circle cx="250" cy="222" r="4.5"/><circle cx="360" cy="207" r="4.5"/>
       <circle cx="470" cy="176" r="4.5"/><circle cx="580" cy="145" r="4.5"/><circle cx="690" cy="26" r="4.5"/>
     </g>
-    <g font-family="Helvetica Neue,Helvetica,Arial" font-size="12.5">
-      <text x="600" y="132" fill="#16150F" font-weight="700">GOOD HARVEST 100</text>
-      <text x="600" y="172" fill="#16150F">AVERAGE 75</text>
-      <text x="600" y="212" fill="#16150F">BAD 50</text>
-      <text x="150" y="252" fill="#C8291A" font-weight="700">CONSUMPTION</text>
+    <g font-size="12.5" style="font-family:var(--diagram-sans)">
+      <text x="600" y="132" font-weight="700" style="fill:var(--ink)">GOOD HARVEST 100</text>
+      <text x="600" y="172" style="fill:var(--ink)">AVERAGE 75</text>
+      <text x="600" y="212" style="fill:var(--ink)">BAD 50</text>
+      <text x="150" y="252" font-weight="700" style="fill:var(--vermilion)">CONSUMPTION</text>
     </g>
-    <g stroke="#F2416F" stroke-width="1.5" stroke-dasharray="4 3">
+    <g stroke-width="1.5" stroke-dasharray="4 3" style="stroke:var(--pink)">
       <line x1="470" y1="176" x2="470" y2="270"/>
       <line x1="580" y1="145" x2="580" y2="270"/>
     </g>
-    <text x="475" y="60" font-family="Helvetica Neue,Helvetica,Arial" font-size="12" fill="#F2416F" font-weight="700">an average year starts</text>
-    <text x="475" y="76" font-family="Helvetica Neue,Helvetica,Arial" font-size="12" fill="#F2416F" font-weight="700">costing you money here</text>
+    <text x="475" y="60" font-size="12" font-weight="700" style="font-family:var(--diagram-sans);fill:var(--pink)">an average year starts</text>
+    <text x="475" y="76" font-size="12" font-weight="700" style="font-family:var(--diagram-sans);fill:var(--pink)">costing you money here</text>
   </svg>
   <figcaption>Millions of bags, a 12- or 14-million province. The lines never move; the red one climbs to meet them.</figcaption>
   </figure>
@@ -688,37 +487,37 @@ h3.part{border-top:2px solid var(--ink);padding-top:.8rem;margin-top:2.6rem;colo
   <svg viewBox="0 0 760 300" role="img" aria-label="Diagram of which province holds the realia it never needs">
     <defs>
       <marker id="ah" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto">
-        <path d="M0 0 L7.5 3.2 L0 6.4 z" fill="#6E4A2C"/>
+        <path d="M0 0 L7.5 3.2 L0 6.4 z" style="fill:var(--walnut)"/>
       </marker>
     </defs>
-    <g font-family="Helvetica Neue,Helvetica,Arial" text-anchor="middle">
+    <g text-anchor="middle" style="font-family:var(--diagram-sans)">
       <!-- pair -->
-      <text x="150" y="30" font-size="12" font-family="Courier New, monospace" letter-spacing="2" fill="#5C584A">A MUTUAL PAIR</text>
-      <circle cx="150" cy="90" r="34" fill="#fff" stroke="#16150F" stroke-width="2"/>
+      <text x="150" y="30" font-size="12" letter-spacing="2" style="font-family:var(--diagram-mono);fill:var(--ink-soft)">A MUTUAL PAIR</text>
+      <circle cx="150" cy="90" r="34" stroke-width="2" style="fill:var(--paper);stroke:var(--ink)"/>
       <text x="150" y="88" font-size="19" font-weight="700">2</text><text x="150" y="104" font-size="10">Official</text>
-      <circle cx="150" cy="228" r="34" fill="#fff" stroke="#16150F" stroke-width="2"/>
+      <circle cx="150" cy="228" r="34" stroke-width="2" style="fill:var(--paper);stroke:var(--ink)"/>
       <text x="150" y="226" font-size="19" font-weight="700">5</text><text x="150" y="242" font-size="10">Silk</text>
-      <path d="M138 126 L138 190" stroke="#6E4A2C" stroke-width="2" marker-end="url(#ah)"/>
-      <path d="M162 192 L162 128" stroke="#6E4A2C" stroke-width="2" marker-end="url(#ah)"/>
-      <g font-size="10.5" fill="#6E4A2C">
+      <path d="M138 126 L138 190" stroke-width="2" marker-end="url(#ah)" style="stroke:var(--walnut)"/>
+      <path d="M162 192 L162 128" stroke-width="2" marker-end="url(#ah)" style="stroke:var(--walnut)"/>
+      <g font-size="10.5" style="fill:var(--walnut)">
         <text x="128" y="162" text-anchor="end">holds <tspan class="pg" data-g="dragon-jar" dx="1.1em">Dragon Jars</tspan></text>
         <text x="172" y="162" text-anchor="start">holds <tspan class="pg" data-g="customs-house" dx="1.1em">Customs Houses</tspan></text>
       </g>
       <!-- ring -->
-      <text x="530" y="30" font-size="12" font-family="Courier New, monospace" letter-spacing="2" fill="#5C584A">A RING OF FOUR</text>
-      <circle cx="440" cy="90" r="34" fill="#fff" stroke="#16150F" stroke-width="2"/>
+      <text x="530" y="30" font-size="12" letter-spacing="2" style="font-family:var(--diagram-mono);fill:var(--ink-soft)">A RING OF FOUR</text>
+      <circle cx="440" cy="90" r="34" stroke-width="2" style="fill:var(--paper);stroke:var(--ink)"/>
       <text x="440" y="88" font-size="19" font-weight="700">3</text><text x="440" y="104" font-size="10">Gentry</text>
-      <circle cx="620" cy="90" r="34" fill="#fff" stroke="#16150F" stroke-width="2"/>
+      <circle cx="620" cy="90" r="34" stroke-width="2" style="fill:var(--paper);stroke:var(--ink)"/>
       <text x="620" y="88" font-size="19" font-weight="700">6</text><text x="620" y="104" font-size="10">Rice</text>
-      <circle cx="620" cy="228" r="34" fill="#fff" stroke="#16150F" stroke-width="2"/>
+      <circle cx="620" cy="228" r="34" stroke-width="2" style="fill:var(--paper);stroke:var(--ink)"/>
       <text x="620" y="226" font-size="19" font-weight="700">4</text><text x="620" y="242" font-size="10">Scholar</text>
-      <circle cx="440" cy="228" r="34" fill="#fff" stroke="#16150F" stroke-width="2"/>
+      <circle cx="440" cy="228" r="34" stroke-width="2" style="fill:var(--paper);stroke:var(--ink)"/>
       <text x="440" y="226" font-size="19" font-weight="700">7</text><text x="440" y="242" font-size="10">Wheat</text>
-      <path d="M476 90 L576 90" stroke="#6E4A2C" stroke-width="2" marker-end="url(#ah)"/>
-      <path d="M620 126 L620 190" stroke="#6E4A2C" stroke-width="2" marker-end="url(#ah)"/>
-      <path d="M584 228 L484 228" stroke="#6E4A2C" stroke-width="2" marker-end="url(#ah)"/>
-      <path d="M440 192 L440 128" stroke="#6E4A2C" stroke-width="2" marker-end="url(#ah)"/>
-      <g font-size="10.5" fill="#6E4A2C">
+      <path d="M476 90 L576 90" stroke-width="2" marker-end="url(#ah)" style="stroke:var(--walnut)"/>
+      <path d="M620 126 L620 190" stroke-width="2" marker-end="url(#ah)" style="stroke:var(--walnut)"/>
+      <path d="M584 228 L484 228" stroke-width="2" marker-end="url(#ah)" style="stroke:var(--walnut)"/>
+      <path d="M440 192 L440 128" stroke-width="2" marker-end="url(#ah)" style="stroke:var(--walnut)"/>
+      <g font-size="10.5" style="fill:var(--walnut)">
         <text x="526" y="80">holds <tspan class="pg" data-g="wooden-bowl" dx="1.1em">Bowls</tspan></text>
         <text x="632" y="162" text-anchor="start">holds <tspan class="pg" data-g="bamboo-brush" dx="1.1em">Brushes</tspan></text>
         <text x="534" y="250">holds <tspan class="pg" data-g="vase" dx="1.1em">Vases</tspan></text>
@@ -754,37 +553,37 @@ h3.part{border-top:2px solid var(--ink);padding-top:.8rem;margin-top:2.6rem;colo
   <p>The Warlord's objective is different: raid a different piece of realia from each other player who holds realia. That leaves out the Emperor: the palaces are buildings, not realia, and raiding one doesn't count (Appendix G).</p>
   <figure>
   <svg viewBox="0 0 760 300" role="img" aria-label="Diagram of who may replace whom">
-    <g font-family="Helvetica Neue,Helvetica,Arial">
-      <rect x="250" y="14" width="260" height="46" fill="#FBE3E0" stroke="#C8291A" stroke-width="2"/>
-      <text x="380" y="43" text-anchor="middle" font-size="16" font-weight="700" fill="#C8291A" letter-spacing="2">1 · THE EMPEROR</text>
+    <g style="font-family:var(--diagram-sans)">
+      <rect x="250" y="14" width="260" height="46" stroke-width="2" style="fill:var(--must-bg);stroke:var(--vermilion)"/>
+      <text x="380" y="43" text-anchor="middle" font-size="16" font-weight="700" letter-spacing="2" style="fill:var(--vermilion)">1 · THE EMPEROR</text>
       <g>
-        <rect x="250" y="86" width="260" height="40" fill="#fff" stroke="#16150F" stroke-width="2"/>
+        <rect x="250" y="86" width="260" height="40" stroke-width="2" style="fill:var(--paper);stroke:var(--ink)"/>
         <text x="380" y="112" text-anchor="middle" font-size="13" font-weight="700">2 OFFICIAL · 3 GENTRY · 4 SCHOLAR</text>
-        <text x="380" y="140" text-anchor="middle" font-size="11" fill="#5C584A" font-family="Courier New, monospace">UPPER CLASS</text>
+        <text x="380" y="140" text-anchor="middle" font-size="11" style="fill:var(--ink-soft);font-family:var(--diagram-mono)">UPPER CLASS</text>
       </g>
       <g>
-        <rect x="250" y="162" width="260" height="40" fill="#fff" stroke="#16150F" stroke-width="2"/>
+        <rect x="250" y="162" width="260" height="40" stroke-width="2" style="fill:var(--paper);stroke:var(--ink)"/>
         <text x="380" y="188" text-anchor="middle" font-size="13" font-weight="700">5 SILK · 6 RICE · 7 WHEAT</text>
-        <text x="380" y="216" text-anchor="middle" font-size="11" fill="#5C584A" font-family="Courier New, monospace">LOWER CLASS</text>
+        <text x="380" y="216" text-anchor="middle" font-size="11" style="fill:var(--ink-soft);font-family:var(--diagram-mono)">LOWER CLASS</text>
       </g>
-      <rect x="250" y="240" width="260" height="40" fill="#fff" stroke="#16150F" stroke-width="2" stroke-dasharray="6 4"/>
+      <rect x="250" y="240" width="260" height="40" stroke-width="2" stroke-dasharray="6 4" style="fill:var(--paper);stroke:var(--ink)"/>
       <text x="380" y="266" text-anchor="middle" font-size="13" font-weight="700">8 · THE WARLORD</text>
       <!-- arrows -->
-      <g stroke="#16150F" stroke-width="2" fill="none" marker-end="url(#ah2)">
+      <g stroke-width="2" fill="none" marker-end="url(#ah2)" style="stroke:var(--ink)">
         <path d="M540 96 C 600 96, 600 34, 545 30"/>
         <path d="M220 172 C 160 172, 160 106, 215 100"/>
       </g>
-      <path d="M600 250 C 690 250, 690 40, 545 34" stroke="#C8291A" stroke-width="2" fill="none" stroke-dasharray="6 4" marker-end="url(#ah3)"/>
+      <path d="M600 250 C 690 250, 690 40, 545 34" stroke-width="2" fill="none" stroke-dasharray="6 4" marker-end="url(#ah3)" style="stroke:var(--vermilion)"/>
       <defs>
-        <marker id="ah2" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto"><path d="M0 0 L7.5 3.2 L0 6.4 z" fill="#16150F"/></marker>
-        <marker id="ah3" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto"><path d="M0 0 L7.5 3.2 L0 6.4 z" fill="#C8291A"/></marker>
+        <marker id="ah2" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto"><path d="M0 0 L7.5 3.2 L0 6.4 z" style="fill:var(--ink)"/></marker>
+        <marker id="ah3" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto"><path d="M0 0 L7.5 3.2 L0 6.4 z" style="fill:var(--vermilion)"/></marker>
       </defs>
-      <text x="616" y="72" font-size="11" fill="#16150F" font-family="Courier New, monospace">may take</text>
-      <text x="616" y="86" font-size="11" fill="#16150F" font-family="Courier New, monospace">the throne</text>
-      <text x="70" y="132" font-size="11" fill="#16150F" font-family="Courier New, monospace">must climb</text>
-      <text x="70" y="146" font-size="11" fill="#16150F" font-family="Courier New, monospace">one step first</text>
-      <text x="700" y="180" font-size="11" fill="#C8291A" font-family="Courier New, monospace" text-anchor="middle">may take</text>
-      <text x="700" y="194" font-size="11" fill="#C8291A" font-family="Courier New, monospace" text-anchor="middle">anyone</text>
+      <text x="616" y="72" font-size="11" style="fill:var(--ink);font-family:var(--diagram-mono)">may take</text>
+      <text x="616" y="86" font-size="11" style="fill:var(--ink);font-family:var(--diagram-mono)">the throne</text>
+      <text x="70" y="132" font-size="11" style="fill:var(--ink);font-family:var(--diagram-mono)">must climb</text>
+      <text x="70" y="146" font-size="11" style="fill:var(--ink);font-family:var(--diagram-mono)">one step first</text>
+      <text x="700" y="180" font-size="11" text-anchor="middle" style="fill:var(--vermilion);font-family:var(--diagram-mono)">may take</text>
+      <text x="700" y="194" font-size="11" text-anchor="middle" style="fill:var(--vermilion);font-family:var(--diagram-mono)">anyone</text>
     </g>
   </svg>
   <figcaption>Who may replace whom</figcaption>
@@ -824,28 +623,28 @@ h3.part{border-top:2px solid var(--ink);padding-top:.8rem;margin-top:2.6rem;colo
   </table>
   <figure class="order">
   <svg viewBox="0 0 760 250" role="img" aria-label="Build order dependencies">
-    <defs><marker id="ah4" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto"><path d="M0 0 L7.5 3.2 L0 6.4 z" fill="#16150F"/></marker></defs>
-    <g font-family="Helvetica Neue,Helvetica,Arial" font-size="12.5" text-anchor="middle">
-      <rect x="20" y="40" width="150" height="52" fill="#FBE3E0" stroke="#C8291A" stroke-width="2"/>
-      <text x="95" y="63" fill="#C8291A" font-weight="700"><tspan class="pg" data-g="summer-palace" dx="1.1em">SUMMER PALACE</tspan></text><text x="95" y="80" fill="#C8291A" font-size="11">20</text>
-      <rect x="20" y="150" width="150" height="52" fill="#FBE3E0" stroke="#C8291A" stroke-width="2"/>
-      <text x="95" y="173" fill="#C8291A" font-weight="700"><tspan class="pg" data-g="winter-palace" dx="1.1em">WINTER PALACE</tspan></text><text x="95" y="190" fill="#C8291A" font-size="11">20</text>
-      <rect x="290" y="14" width="170" height="46" fill="#fff" stroke="#16150F" stroke-width="2"/>
+    <defs><marker id="ah4" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto"><path d="M0 0 L7.5 3.2 L0 6.4 z" style="fill:var(--ink)"/></marker></defs>
+    <g font-size="12.5" text-anchor="middle" style="font-family:var(--diagram-sans)">
+      <rect x="20" y="40" width="150" height="52" stroke-width="2" style="fill:var(--must-bg);stroke:var(--vermilion)"/>
+      <text x="95" y="63" font-weight="700" style="fill:var(--vermilion)"><tspan class="pg" data-g="summer-palace" dx="1.1em">SUMMER PALACE</tspan></text><text x="95" y="80" font-size="11" style="fill:var(--vermilion)">20</text>
+      <rect x="20" y="150" width="150" height="52" stroke-width="2" style="fill:var(--must-bg);stroke:var(--vermilion)"/>
+      <text x="95" y="173" font-weight="700" style="fill:var(--vermilion)"><tspan class="pg" data-g="winter-palace" dx="1.1em">WINTER PALACE</tspan></text><text x="95" y="190" font-size="11" style="fill:var(--vermilion)">20</text>
+      <rect x="290" y="14" width="170" height="46" stroke-width="2" style="fill:var(--paper);stroke:var(--ink)"/>
       <text x="375" y="42" font-weight="700"><tspan class="pg" data-g="great-wall" dx="1.1em">GREAT WALL</tspan> · 12</text>
-      <rect x="290" y="76" width="170" height="46" fill="#E3EEF9" stroke="#175FB5" stroke-width="2"/>
-      <text x="375" y="97" font-weight="700" fill="#175FB5"><tspan class="pg" data-g="grand-canal" dx="1.1em">GRAND CANAL</tspan></text><text x="375" y="112" font-size="11" fill="#175FB5">Province 1 · 2 sections</text>
-      <rect x="290" y="150" width="170" height="46" fill="#E3EEF9" stroke="#175FB5" stroke-width="2"/>
-      <text x="375" y="171" font-weight="700" fill="#175FB5"><tspan class="pg" data-g="grand-canal" dx="1.1em">GRAND CANAL</tspan></text><text x="375" y="186" font-size="11" fill="#175FB5">Provinces 4, 5, 6 · 6 sections</text>
-      <rect x="565" y="14" width="175" height="46" fill="#fff" stroke="#16150F" stroke-width="2" stroke-dasharray="6 4"/>
+      <rect x="290" y="76" width="170" height="46" stroke-width="2" style="fill:var(--water-bg);stroke:var(--cobalt)"/>
+      <text x="375" y="97" font-weight="700" style="fill:var(--cobalt)"><tspan class="pg" data-g="grand-canal" dx="1.1em">GRAND CANAL</tspan></text><text x="375" y="112" font-size="11" style="fill:var(--cobalt)">Province 1 · 2 sections</text>
+      <rect x="290" y="150" width="170" height="46" stroke-width="2" style="fill:var(--water-bg);stroke:var(--cobalt)"/>
+      <text x="375" y="171" font-weight="700" style="fill:var(--cobalt)"><tspan class="pg" data-g="grand-canal" dx="1.1em">GRAND CANAL</tspan></text><text x="375" y="186" font-size="11" style="fill:var(--cobalt)">Provinces 4, 5, 6 · 6 sections</text>
+      <rect x="565" y="14" width="175" height="46" stroke-width="2" stroke-dasharray="6 4" style="fill:var(--paper);stroke:var(--ink)"/>
       <text x="652" y="35" font-size="11.5">NEW LAND opens in</text><text x="652" y="50" font-size="11.5">Provinces 1, 2 and 3</text>
-      <g stroke="#16150F" stroke-width="2" fill="none" marker-end="url(#ah4)">
+      <g stroke-width="2" fill="none" marker-end="url(#ah4)" style="stroke:var(--ink)">
         <path d="M170 58 L282 40"/>
         <path d="M170 76 L282 95"/>
         <path d="M170 176 L282 174"/>
         <path d="M460 37 L557 37"/>
       </g>
-      <text x="652" y="100" font-size="11" font-family="Courier New, monospace" fill="#5C584A">…and only when your</text>
-      <text x="652" y="116" font-size="11" font-family="Courier New, monospace" fill="#5C584A">population has doubled</text>
+      <text x="652" y="100" font-size="11" style="font-family:var(--diagram-mono);fill:var(--ink-soft)">…and only when your</text>
+      <text x="652" y="116" font-size="11" style="font-family:var(--diagram-mono);fill:var(--ink-soft)">population has doubled</text>
     </g>
   </svg>
   <figcaption>What must be built before what</figcaption>
@@ -1964,12 +1763,47 @@ function run(){
     var g=document.createElementNS('http://www.w3.org/2000/svg','path');
     g.setAttribute('d',G[t.getAttribute('data-g')]);
     g.setAttribute('fill-rule','evenodd');
-    g.setAttribute('fill',getComputedStyle(txt).fill);
+    /* the label's own fill, so a theme change recolours the glyph with it */
+    if(txt.getAttribute('fill'))g.setAttribute('fill',txt.getAttribute('fill'));
+    if(txt.style.fill)g.style.fill=txt.style.fill;
     g.setAttribute('transform','translate('+(p.x-s*1.02-2*ls)+','+(p.y-s*0.8)+') scale('+(s*0.09)+')');
     txt.parentNode.insertBefore(g,txt);
   });
 }
 if(document.readyState!=='loading')run();else document.addEventListener('DOMContentLoaded',run);
+})();
+</script>
+<script id="theme-pick">
+/* Five quick clicks on the title show the theme picker (tools/add_theming.py). */
+(function(){
+var T=[["original", "Original"], ["imperial", "Imperial"], ["lisafrank", "Trapper Keeper"], ["pocket", "Pocket Monsters"], ["geocities", "GeoCities"], ["taxform", "Form 1969-EZ"], ["terminal", "Terminal"], ["manuscript", "Manuscript"], ["vaporwave", "Vaporwave"]],title=document.querySelector('[data-theme-unlock]'),n=0,last=0;
+if(!title)return;
+title.addEventListener('click',function(){
+  var now=Date.now();
+  n=now-last<500?n+1:1;last=now;
+  if(n>=5){n=0;show();}
+});
+function set(t){
+  var l=document.getElementById('theme-css');
+  if(t==='original'){if(l)l.parentNode.removeChild(l);document.documentElement.removeAttribute('data-theme');}
+  else{
+    if(!l){l=document.createElement('link');l.rel='stylesheet';l.id='theme-css';l.media='screen';document.head.appendChild(l);}
+    l.href='style/themes/'+t+'.css';document.documentElement.setAttribute('data-theme',t);
+  }
+  try{localStorage.setItem('dynasty-theme',t)}catch(e){}
+}
+function show(){
+  try{getSelection().removeAllRanges()}catch(e){}
+  if(document.querySelector('.theme-pick'))return;
+  var box=document.createElement('div'),sel=document.createElement('select'),x=document.createElement('button');
+  box.className='theme-pick';box.innerHTML='<span>Theme</span>';
+  T.forEach(function(o){var op=document.createElement('option');op.value=o[0];op.textContent=o[1];sel.appendChild(op);});
+  sel.value=document.documentElement.getAttribute('data-theme')||'original';
+  sel.addEventListener('change',function(){set(sel.value);});
+  x.type='button';x.textContent='\u00d7';x.setAttribute('aria-label','Close');
+  x.addEventListener('click',function(){box.parentNode.removeChild(box);});
+  box.appendChild(sel);box.appendChild(x);document.body.appendChild(box);sel.focus();
+}
 })();
 </script>
 </body>

@@ -22,7 +22,9 @@ The repo is `C:\Users\manishearth\dev\dynasty-new`, pushed to GitHub as `Manishe
 
 | Path | What it is | Made by |
 |---|---|---|
-| `rulebook.html` | The rulebook; one self-contained HTML file | Manish's rewrite, edited by several sessions |
+| `rulebook.html` | The rulebook. Its styles are in `style/base.css` and `style/rulebook.css`; only the piece-glyph sizes stay inline | Manish's rewrite, edited by several sessions |
+| `style/` | `base.css`: the palette as tokens, shared by the rulebook and the reference cards. `rulebook.css`, `reference-cards.css`: each page's layout, in tokens only. `themes/*.css`: alternative looks that override the tokens and add ornament | the theming session |
+| `tools/add_theming.py` | Writes the theme loader and the hidden theme picker into a page; holds the list of themes | the theming session |
 | `RULINGS.md` | Every ruling, clarification and engine assumption, with reasons; the open rules questions | Every session adds to it |
 | `design/` | These design documents | Every session keeps them current |
 | `playthrough.html` | Generated. Never edit by hand; rebuild it | `playthrough-sim/build.py` |
@@ -44,6 +46,7 @@ python3 playthrough-sim/build.py                       # rebuild playthrough.htm
 python3 playthrough-sim/trace.py game1_full.py          # ledger: everyone's grain after every line
 python3 playthrough-sim/trace.py game1_full.py --board 57   # the board after entry 57
 python3 tools/add_glyphs.py rulebook.html  # re-run after editing rulebook text
+python3 tools/add_theming.py rulebook.html # re-run after changing the theme list or scripts
 python3 tools/build_map.py                              # regenerate map.svg, map-board.svg, map.json
 python3 tools/build_events.py                           # regenerate i-ching.html / .json
 python3 tools/build_reference.py                        # regenerate reference-cards.html
@@ -52,7 +55,7 @@ python3 tools/glyphs.py                                 # regenerate images/
 
 These need Python 3.9 or later and no other dependencies. The playthrough build is deterministic: the same scripts always produce a byte-identical page. Use that to check that a refactor changed nothing. `add_glyphs.py` is idempotent too: running it twice changes nothing. Every generator writes UTF-8 with Unix line endings, on Windows as well.
 
-The pages are plain files: open them straight from disk in a browser (for example `file:///C:/Users/manishearth/dev/dynasty-new/playthrough.html#full`). Glyphs load from `images/` beside them. There's no need for a preview server; give Manish file links to open.
+The pages are plain files: open them straight from disk in a browser (for example `file:///C:/Users/manishearth/dev/dynasty-new/playthrough.html#full`). Glyphs load from `images/` and styles from `style/` beside them. Scripts are written into each page, not loaded from `.js` files, so they run from disk. There's no need for a preview server; give Manish file links to open.
 
 ## Working in parallel
 

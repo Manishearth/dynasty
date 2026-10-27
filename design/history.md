@@ -162,3 +162,9 @@ The handoff prompt asked for four changes to the playthroughs: the Reservoir nam
 - From the "Questions" session, approved by Manish: the Warlord's objective was close to impossible at eight players (game 1: two of seven by Year 10). Two balance choices: the sea opens to soldiers (it was closed on 2026-10-25 only to keep Note 16's "only through the gap", our own reading), and the objective leaves out the Emperor (the booklets disagree on whether the palaces are realia). Both rulings say plainly that the booklets are inconsistent and name the alternative reading.
 - Playthroughs that depend on the old rules were listed for Manish before any rewrite.
 
+## Themes (2026-10-27)
+
+- "I want you to prototype theming for this, I'm somewhat curious to have some fun themes. One theme that is overly chinese-coded, and one theme that is Lisa Frank style. Maybe pokemon coded, too?" Prototyped in a scratch copy, then: "Go ahead and add it to the main pages. One note: the theming options should only show up when you click five times in rapid succession on the title."
+- "Note that js files can't load from file URIs. So duplicate the JS, but share as much css as possible." The rulebook and reference cards now load `style/base.css` plus their own layout file; the themes in `style/themes/` are shared by both. The theme scripts are written into each page by `tools/add_theming.py`.
+- "I want the reference cards and rulebook to be themeable. playthroughs don't matter for now."
+- Themes: Imperial, Trapper Keeper (Lisa Frank), Pocket Monsters, GeoCities, Form 1969-EZ, Terminal, Manuscript, Vaporwave. Screen only; print keeps the original. The rulebook diagrams' colours and faces became tokens so the themes reach them. With no theme, both pages render as before (checked element by element against the previous commit).
