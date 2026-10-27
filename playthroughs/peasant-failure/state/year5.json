@@ -1,0 +1,213 @@
+{
+ "entry": 121,
+ "round": 5,
+ "state": {
+  "grain": {
+   "1": 120.0,
+   "5": 58.0,
+   "6": 86.5,
+   "7": 88.0,
+   "8": 105.0
+  },
+  "seat": {
+   "1": 1,
+   "5": 6,
+   "6": 5,
+   "7": 7,
+   "8": 8
+  },
+  "held": {
+   "1": {},
+   "5": {
+    "LD": 1
+   },
+   "6": {
+    "LD": 1,
+    "VA": 1,
+    "BB": 1
+   },
+   "7": {
+    "CH": 1,
+    "DJ": 1,
+    "WB": 1
+   },
+   "8": {
+    "BB": 1,
+    "CH": 1
+   }
+  },
+  "stock": {
+   "5": {},
+   "6": {},
+   "7": {}
+  },
+  "pile_stock": {},
+  "raids": {
+   "1": 0,
+   "2": 0,
+   "3": 0,
+   "4": 0,
+   "5": 4,
+   "6": 4,
+   "7": 3,
+   "8": 0
+  },
+  "pw": {
+   "Summer Palace": 1,
+   "Winter Palace": 1,
+   "Marble Pagoda": 0,
+   "wall": {
+    "1": 0,
+    "2": 0,
+    "3": 0
+   },
+   "canal": {
+    "1": 2,
+    "4": 0,
+    "5": 0,
+    "6": 1
+   },
+   "irr2": 0,
+   "res3": 0,
+   "res7": 0
+  },
+  "at": {
+   "Summer Palace": [
+    "F17"
+   ],
+   "Winter Palace": [
+    "G18"
+   ]
+  },
+  "bonus": {
+   "1": 20,
+   "5": 0,
+   "6": 0,
+   "7": 0,
+   "8": 0
+  },
+  "board": {
+   "R14": {
+    "raid": true
+   },
+   "O19": {
+    "raid": true
+   },
+   "S21": {
+    "raid": true
+   },
+   "Q15": {
+    "realia": "CH",
+    "owner": 7
+   },
+   "O22": {
+    "raid": true
+   },
+   "O23": {
+    "realia": "LD",
+    "owner": 6
+   },
+   "O24": {
+    "realia": "VA",
+    "owner": 6
+   },
+   "O20": {
+    "raid": true
+   },
+   "R22": {
+    "raid": true
+   },
+   "S14": {
+    "raid": true
+   },
+   "P15": {
+    "realia": "DJ",
+    "owner": 7
+   },
+   "P25": {
+    "realia": "BB",
+    "owner": 6
+   },
+   "Q25": {
+    "realia": "LD",
+    "owner": 5
+   },
+   "O21": {
+    "raid": true
+   },
+   "Q23": {
+    "raid": true
+   },
+   "T14": {
+    "realia": "BB",
+    "owner": 8
+   },
+   "P17": {
+    "realia": "WB",
+    "owner": 7
+   },
+   "O18": {
+    "realia": "CH",
+    "owner": 8
+   },
+   "Q24": {
+    "raid": true
+   },
+   "R15": {
+    "raid": true
+   }
+  },
+  "land": {},
+  "sol": [
+   [
+    "W1",
+    "W",
+    "O22",
+    8
+   ],
+   [
+    "W2",
+    "W",
+    "Q24",
+    8
+   ],
+   [
+    "W3",
+    "W",
+    "R15",
+    8
+   ]
+  ],
+  "pile": 2042.5,
+  "mult": 1.5,
+  "rob": {
+   "7": "BB",
+   "6": "CH"
+  }
+ },
+ "soldiers": {
+  "W1": {
+   "side": "W",
+   "owner": 8,
+   "sq": "O22",
+   "home": 8,
+   "moved": 5
+  },
+  "W2": {
+   "side": "W",
+   "owner": 8,
+   "sq": "Q24",
+   "home": 8,
+   "moved": 5
+  },
+  "W3": {
+   "side": "W",
+   "owner": 8,
+   "sq": "R15",
+   "home": 8,
+   "moved": 5
+  }
+ },
+ "mult": 1.5,
+ "cards_drawn": null
+}

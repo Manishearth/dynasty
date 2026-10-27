@@ -1,0 +1,54 @@
+# How the Storyteller runs a chapter
+
+**Where things live.** The tools and these notes are in `playthrough-sim/agents/`. Each game has its own folder, `playthroughs/<name>/`: `game.py`, `log/`, `log.md`, `ledger.md`, `diaries/`, `narration.md`, `talk.jsonl`, `seen.json`, `bids/`, `state/`, `handoff/`, `agent-ids.md` and `seed.md`. Run every tool from the game's folder, as `python ../../playthrough-sim/agents/run.py` (likewise `briefs.py`, `geo.py`, `snapshot_setup.py`); below, `python run.py` is short for that. `rules-digest.md` and `storyteller-voice.md` are shared by every game.
+
+Read first: the latest `handoff/chapter-N.md` (if any), `rules-digest.md`, `storyteller-voice.md`, `ledger.md`, `agent-ids.md`, then the last round's files in `log/`. Work from the game's folder.
+
+## A chapter
+
+A chapter is two or three years, named in your brief. Stop at the end of the last one.
+
+1. **Launch a fresh `dynasty-player` agent for every seat**, with `python briefs.py prompt <NNN> <Player> launch --menu <file>` at that player's first turn of the chapter. The launch carries the character sheet, the player's `ledger.md` entry and their diary (`diaries/<name>.md`). Add the chapter's agent ids to `agent-ids.md`.
+2. **Play the years** as below.
+3. **Narrate** in the voice of `storyteller-voice.md`: a chapter title, a line to open each year, and a line at each turning point. They go only into `narration.md`, under the chapter's heading, each tagged with the log number it follows. **The narrator isn't part of the game and won't appear on the playthrough page,** so never put narration in `game.py`. The script's own `act()` lines (plain events, as before) must give every say and aside the context it needs on their own. Mark each chapter's start in the script with a `# ===== CHAPTER N: <title>` comment.
+4. **Diaries.** After the last round, send each player: "Write <name>'s diary entry for these years, a few sentences in their voice." Append each reply, word for word, to `diaries/<name>.md` under a `## Years A–B` heading.
+5. **Close:** ledger current, a snapshot per round, `log.md` rows, usage at the start and end. Then stop and report.
+
+## Each turn
+
+1. **State, from the engine.**
+   - `python run.py` prints the ledger tail, the board and everyone's grain.
+   - `python geo.py --rounds 2` prints reach and out-of-reach squares, and each piece's distance from each soldier.
+   - Never work out a distance by hand.
+2. **Write the prompt once.** `python briefs.py prompt <NNN> <Player> <auction|march|free|launch> ...` builds it from the engine state and from everything said since that player's last prompt. It writes `log/yearN/NNN-player-prompt.md` and prints the text; send that text unchanged with SendMessage. For a `free` decision, write only the menu in a scratch file and pass `--menu`.
+   - **Every prompt opens with the player's board card** (from Chapter 2; Manish's call). `briefs.py` generates it from the engine and `geo.py`, for that player only and in the same layout every time: grain, what they hold and still need, each Warlord soldier's distance in rounds to each of their pieces and to their nearest unraided square, their squares out of reach this year and next, and whether their province has been raided (so whether soldiers they buy can move). Rob's card gives each soldier's distance to every piece. Never write or edit a card by hand; the players stay tool-less, and this is how they see the board.
+3. **Record the reply.**
+   - Write it to `log/yearN/NNN-player-reply.md`, word for word, then `---` and your ruling.
+   - Then `python briefs.py heard <NNN> <reply file>` files its say and whisper as table talk.
+   - File what happened with `python briefs.py event "..."`, and any correction with `python briefs.py note "..." [--to Player]`.
+4. **Legality from code.**
+   - Add the move to `game.py` (say as text, aside as hover) and run `python run.py`.
+   - Announce the move only after it runs clean.
+   - If the engine refuses it, the move is illegal: tell the player why and give them the menu again.
+5. **Check the lines against the board.** If a public line or a whisper misstates the board, the cash or the rules, file a `note` for the listeners. Bluffing about intentions isn't corrected. If an aside misstates something, log it in the ruling and state the fact plainly in that player's next prompt.
+
+## Auctions, by ceiling
+
+- One prompt per bidder per lot (`briefs.py prompt ... auction --lot <seat>:<code> --min <n>`). Each bidder replies once: pass or a ceiling, an optional `keep from <name> up to <n>`, a square, say, aside, and `if I drop out:`.
+- Put the limits in a JSON file and run `python briefs.py resolve bids.json`. It prints the winner, the price (one step over the runner-up's limit against the winner), each bidder's highest bid, and a `lot()` ladder. Ties go by seat order.
+- Narrate the climb from the ceilings. Use each loser's say for their bid and their drop-out line for their pass.
+- If the resolver prints `CLOSE`, send just the top two one live raise-or-pass message each.
+
+## End of each round
+
+- Update `ledger.md`: promises, offers declined, grudges, running bits, best lines, and new precedents.
+- Save the state: `python run.py --snapshot yearN`.
+- Add the round's rows to `log.md`, with the tokens each completion notice reported.
+- Record usage at the start and end of a session (`get_usage`).
+
+## Framing (unchanged)
+
+- Never ask a player for its reasoning or thinking, or why it "really" did something. Never ask it to justify a move afterwards.
+- Never read an agent's transcript; use only the reply it returns.
+- The aside is a performance for viewers: "a line to the camera, talking the audience through your move".
+- If a safeguard trips, stop at once. Record the exact message that was being sent, and report it.

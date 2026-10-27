@@ -11,16 +11,16 @@ GAMES = ["game1_full.py", "game2_trashfire.py", "game3_short.py", "game4_peasant
 def run_ns(game):
     """Run one game script in a fresh namespace and return the namespace."""
     ns = {"SIM_DIR": HERE}
-    for f in ("cards.py", "engine.py", os.path.basename(game)):
-        p = os.path.join(HERE, f)
+    for p in (os.path.join(HERE, "cards.py"), os.path.join(HERE, "engine.py"), os.path.join(HERE, game)):
         exec(compile(open(p, encoding="utf-8").read(), p, "exec"), ns)
     return ns
 
 def run(game):
     return run_ns(game)["RESULT"]
 
-def main(out):
-    games = [run(g) for g in GAMES if os.path.exists(os.path.join(HERE, g))]
+def main(out, scripts=None):
+    """scripts: game scripts to build, absolute or relative to this folder (default GAMES)."""
+    games = [run(g) for g in (scripts or GAMES) if os.path.exists(os.path.join(HERE, g))]
     data = json.dumps({"games": games}, ensure_ascii=False, separators=(",", ":"))
     data = data.replace("</", "<\\/")
     head = open(os.path.join(HERE, "template", "head.html"), encoding="utf-8").read()

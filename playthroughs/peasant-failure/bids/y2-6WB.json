@@ -1,0 +1,1 @@
+{"min": 4, "bids": {"Silke": {"ceiling": 20}, "Graham": {"ceiling": 15, "keep": {"Silke": 22}}, "Rob": "pass"}}

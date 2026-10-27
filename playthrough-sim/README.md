@@ -14,6 +14,8 @@ The scripts that generate `../playthrough.html`: seven annotated games of Dynast
 
 The population doubles in the first four, and each of them buys new harvest squares once it has.
 
+Games **played by agents** are separate: their tools are in `agents/` (see `agents/README.md`), their records in `../playthroughs/`, and they're built into `../playthroughs-real.html`, which will eventually replace this page.
+
 These are **authored** games, not simulated ones. A person wrote every choice: what each player bids, where they put each piece, where every soldier walks, what they say and what they're thinking. The engine does all the arithmetic and refuses illegal moves, so every number on the page comes from the rules, but the outcome is the author's.
 
 Every game opens with a Setup tab: the booklets drawn, the grain dealt, the stock set beside the board, the Warlord's army placed and the cut-outs made, as rulebook Section 4 describes.

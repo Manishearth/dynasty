@@ -30,6 +30,10 @@ The repo is `C:\Users\manishearth\dev\dynasty-new`, pushed to GitHub as `Manishe
 | `playthrough.html` | Generated. Never edit by hand; rebuild it | `playthrough-sim/build.py` |
 | `playthrough-sim/` | Generator for the playthrough page: the engine, the cards, seven game scripts, page templates, and docs | the playthrough sessions |
 | `playthrough-sim/README.md`, `docs/*.md` | Writing a game, the engine API, the rules model, the page format | the playthrough sessions |
+| `playthroughs-real.html` | Generated: the games played by agents. Will eventually replace `playthrough.html` | `playthrough-sim/agents/build_real.py` |
+| `playthrough-sim/agents/` | Tools and notes for games played by agents: the Storyteller's notes, prompt generator, referee, geometry, page builder | the Director and Storyteller sessions |
+| `playthroughs/<name>/` | One agent-played game's full record: `game.py`, the logs, ledger, diaries, narration, snapshots, handoffs | that game's Director and Storytellers |
+| `.claude/agents/dynasty-player.md` | The tool-less player agent each seat is played by | the Director and Storyteller sessions |
 | `map.json` | The board square by square: 30 × 22 grid, rows A–V, columns 1–30. Legend, Great Wall links, Grand Canal sections, rivers and coast as paths in grid units. The playthrough engine and page both read it | `tools/build_map.py` |
 | `map.svg` | Printable redrawn map, drawn as named layers (terrain, grid, borders, coast, rivers, canal, wall, labels, frame) that Inkscape shows as layers | `tools/build_map.py` |
 | `map-board.svg` | The same map's ground alone: terrain, grid, province borders, coast and rivers, with no frame, labels or printed works. For pages that draw their own state on the board; the playthrough uses it | `tools/build_map.py` |
@@ -43,6 +47,7 @@ The repo is `C:\Users\manishearth\dev\dynasty-new`, pushed to GitHub as `Manishe
 
 ```sh
 python3 playthrough-sim/build.py                       # rebuild playthrough.html (all seven games)
+python3 playthrough-sim/agents/build_real.py           # rebuild playthroughs-real.html (the agent-played games)
 python3 playthrough-sim/trace.py game1_full.py          # ledger: everyone's grain after every line
 python3 playthrough-sim/trace.py game1_full.py --board 57   # the board after entry 57
 python3 tools/add_glyphs.py rulebook.html  # re-run after editing rulebook text

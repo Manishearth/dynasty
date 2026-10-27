@@ -1,0 +1,1 @@
+{"min": 2, "step": 1, "bids": {"Silke": {"ceiling": 22}, "Graham": {"ceiling": 46, "keep": {"Silke": 46}}, "Rob": "pass"}}
