@@ -29,7 +29,7 @@ These are the numbered notes, as of this writing. Appendix F has the full text a
 | 8 | What is tax charged on? | Harvest income only: harvest + public works + new harvest squares − consumption. Not rent, salaries, commissions, tolls, tribute or deals. Round One's income is the 60 each player starts with. No tax on a negative income, and the Emperor pays none |
 | 9 | What is the extra realia each province starts with at 4–5 players? | A pattern, not a ruling. It's always the one type that province never needs: 2 and 5 swap, and 3 → 6 → 4 → 7 → 3 form a ring |
 | 10 | Is unsold stock on the map? | No. A piece goes on a square in the buyer's province the moment it's bought or traded. Returned pieces rejoin their province's unsold stock. Otherwise the Warlord could raid most of their objective in Round Two |
-| 11 | Can a Peasant become Emperor directly? | No. The peasants' Objectives sections govern over the shared "Becoming Emperor" boilerplate. A Peasant must first take an upper-class seat |
+| 11 | Can a Peasant become Emperor directly? | No. The peasants' Objectives sections govern over the shared "Becoming Emperor" boilerplate. A Peasant must first take an upper-class seat. Exception: at a table with no upper class, the Silk Peasant may take the throne ("The Silk Peasant stands in for the upper class") |
 | 12 | Where does a returned piece go if its home province is empty? | To the province that started the game holding it, to be auctioned again as soon as possible |
 | 13 | One public works project per round, but the Emperor's booklet allows "any number of sections" | One project per round. A project may be any number of sections of the same work |
 | 14 | What does reclaiming a raided square do? | Removes the marker. The square still can never be raided again |
@@ -264,6 +264,14 @@ The details, settled by Manish on 2026-10-25:
 **Why.** Read literally, a palace round would also need the Pagoda, which one project a round (Note 13) forbids. All the playthroughs use this reading. Confirmed by Manish on 2026-10-26.
 
 **Recorded in** rulebook Sections 12 and 20, and the reference cards.
+
+### The Silk Peasant stands in for the upper class
+
+**Ruling.** In the peasant game, the four- or five-player table with the Emperor and three Peasants and no Official, Gentry or Scholar, a Silk Peasant who completes the objective may take the throne, as in "Becoming Emperor" (Section 11). Silk becomes the peasants' upper class. The Wheat and Rice Peasants still climb first, and either may go straight to Silk.
+
+**Why.** At 4–5 players the table is either the upper class or the peasants, never a mix (Section 4), so in the peasant game a climbing Peasant has no upper-class seat to take. Under Note 11 alone, a completed set only shuffles the peasants among themselves, and the Silk Peasant's set leads nowhere. The agent-played pilot showed it: Paddy completed his set in Year 3 and could only move from Rice to Silk. Letting any Peasant take the throne directly was considered and turned down: sets come early at a small table, the Emperor can't bid to block one, and the throne would change hands with every set. With the Silk Peasant standing in, the ladder keeps the full game's pace: two climbs for Wheat and Rice alike (to Silk, then to the throne), and the Emperor sees each one coming. The booklets' "Becoming Emperor" boilerplate, which every Peasant carries, supports it. Decided by Manish on 2026-10-27.
+
+**Recorded in** rulebook Section 11 (with Note 11 and its appendix entry), the Silk Peasant in Section 24, the rules on one page, the Silk Peasant's reference card, and `playthrough-sim/engine.py` (`swap`).
 
 ### Paying for a Public Work pays the Harvest Pile
 

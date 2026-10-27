@@ -176,7 +176,7 @@ REPLACE = {
     2: "The Emperor or any other player.",
     3: "The Emperor or any other player.",
     4: "The Emperor or any other player.",
-    5: "The Gentry, Scholar, Official or another Peasant. Never the throne directly.",
+    5: "The Gentry, Scholar, Official or another Peasant. With no upper class at the table, the throne.",
     6: "The Official, Scholar or another Peasant. Never the throne directly.",
     7: "The Gentry, Scholar, Official or another Peasant. Never the throne directly.",
     8: "Any player, including the Emperor.",

@@ -60,7 +60,7 @@ The build stops with an error naming the player and the problem if a script:
 | Makes a payment that would put a player in debt while they still hold realia | Note 7 |
 | Lets a player in debt bid, pay a share of a public work, buy a soldier, change seats (other than by Chaos acclamation) or pay in a voluntary deal; or lets anyone bid or deal beyond the grain in hand | Note 7 |
 | Changes seats without every piece the seat requires, or with less than 20 grain in hand | Section 11 |
-| Puts anyone but the Official, Gentry, Scholar or Warlord on the throne | Section 11, Note 11 |
+| Puts anyone but the Official, Gentry, Scholar or Warlord on the throne (the Silk Peasant may take it when no upper class is at the table) | Section 11, Note 11 |
 | Moves a peasant anywhere but Provinces 2–7 | Section 11 |
 | Splits a public work so the shares don't sum to its cost | — |
 
