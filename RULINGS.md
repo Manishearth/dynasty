@@ -129,6 +129,14 @@ The eight-player wildcard came the same night: with the Emperor left out, the Wa
 **Recorded in** rulebook Section 14 (with a note on guarding a piece), the Warlord in Section 27, Appendices C and G, the Warlord's reference card, and `playthrough-sim/engine.py` (`hire_soldier`).
 
 
+### A new Warlord
+
+**Ruling.** When the Warlord's seat changes hands, for example when the Warlord takes the throne and the old Emperor becomes the Warlord, the army stays with the seat. The new Warlord takes over the soldiers where they stand, with the same cap: the starting army + 1. The new Warlord's objective starts afresh and counts only the raids they make themselves. Their targets are every other player who now holds realia, still leaving out the Emperor.
+
+**Why.** No booklet covers it, and the engine was quietly carrying the old Warlord's raids over. The objective is about things done ("raid a different piece of realia from each other player"), and the pieces the old Warlord raided have already gone home: taking the throne returns all realia (Section 11). Every other seat works the same way, since a new occupant's progress is only what they themselves hold. The army stays because the Warlord's soldiers are mercenaries paid in grain ("accumulate wealth enough to buy more soldiers"): they serve whoever holds the desert, not a person. Letting the army follow its old commander to the palace was considered and turned down: the new Warlord would start with nothing and rebuild at one soldier a round, and no rule covers an Emperor with an army. Decided by Manish on 2026-10-27, when the agent-played pilot put Rob on the throne and Reina in the desert.
+
+**Recorded in** rulebook Section 14 and `playthrough-sim/engine.py` (`swap`).
+
 ### Raiding realia: 5 or the piece
 
 **Ruling.** A Warlord who raids a square holding realia takes the 5 million or the piece itself. The booklet's third option, "the cost of the realia", is dropped.

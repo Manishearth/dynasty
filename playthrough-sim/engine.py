@@ -595,7 +595,8 @@ def _unplace_all(p):
 def swap(a, b, note, hover=None, draw=60, check=True, at=None):
     """Player in seat a replaces player in seat b. check=False for a Chaos acclamation.
     at: where the mover's pieces go in the new province, {code: square or [squares]}.
-    Bought soldiers stay with the player who bought them. The mover takes the displaced
+    Bought soldiers stay with the player who bought them; the Warlord's army stays with the
+    seat, and a new Warlord's objective starts afresh (RULINGS, "A new Warlord"). The mover takes the displaced
     player's grain whatever its sign, so a debt passes to the mover; the displaced player
     draws 60 from the pile. A Chaos acclamation (check=False) may seat a player in debt."""
     global pile
@@ -630,7 +631,11 @@ def swap(a, b, note, hover=None, draw=60, check=True, at=None):
     grain[pa] = round(grain[pa]+grain[pb], 2); grain[pb] = 0.0
     take = min(draw, max(0,pile)); grain[pb] = round(grain[pb]+take, 2); pile = round(pile-take, 2)
     seat[a], seat[b] = pb, pa
-    want = {t:([v] if isinstance(v,str) else list(v)) for t,v in (at or {}).items()}
+    if 8 in (a, b):                       # the army stays with the seat; the objective starts afresh
+        for s in SOLDIERS.values():
+            if s["side"] == "W": s["owner"] = seat[8]
+        warlord_got.clear()
+    want ={t:([v] if isinstance(v,str) else list(v)) for t,v in (at or {}).items()}
     assert {t:len(v) for t,v in want.items()} == {t:c for t,c in held[pa].items()}, \
         f"say where {SHORT[pa]}'s pieces go: {held[pa]}"
     for t, sqs in want.items():
