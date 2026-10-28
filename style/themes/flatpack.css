@@ -1,0 +1,88 @@
+/* flatpack — flat-pack assembly instructions. Two persons required. No tools needed but a table. */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700;900&display=swap");
+:root{
+  --canvas:#E9E9E6;--paper:#FFFFFF;--ink:#111;--ink-mid:#333;--ink-soft:#555;--ink-faint:#999;
+  --rule:#BDBDBD;--hairline:#E3E3E3;--tint:#F3F3F3;
+  /* the colours still say imperial, raids, water and realia (the key), so they stay */
+  --note-bg:#FFF;--water-bg:#F3F3F3;--on-accent:#fff;
+  --display:"Noto Sans",Verdana,sans-serif;
+  --body:"Noto Sans",Verdana,sans-serif;
+  --mono:"Noto Sans",Verdana,sans-serif;
+  --cover-bg:#fff;--cover-ink:#111;
+  --sheet-shadow:0 0 0 1px #CFCFCF;--heavy:1.5px;--radius:0;
+  --wordmark-size:4.6rem;
+  /* the little man */
+  --man:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 64' fill='%23fff' stroke='%23111' stroke-width='2.2' stroke-linejoin='round'%3E%3Ccircle cx='20' cy='10' r='7.5'/%3E%3Cpath d='M7 62V33q0-12 13-12t13 12v29z'/%3E%3C/svg%3E");
+  --bang:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='17.5' fill='%23fff' stroke='%23111' stroke-width='3'/%3E%3Cpath d='M20 9v14' stroke='%23111' stroke-width='5' stroke-linecap='round'/%3E%3Ccircle cx='20' cy='30' r='3' fill='%23111'/%3E%3C/svg%3E");
+}
+.rulebook .sheet{counter-increment:pg}
+.rulebook{counter-reset:pg}
+/* the part number, bottom right of every page */
+.rulebook .sheet:not(.cover)::after{content:"AA-1969-" counter(pg);position:absolute;right:3.4rem;bottom:1rem;
+  font:700 .62rem var(--display);letter-spacing:.04em;color:#999}
+
+/* big step numbers, small words */
+.sec-head{flex-direction:column;gap:.1rem;align-items:flex-start;border-bottom:0;margin-bottom:1.3rem}
+.sec-num{font:900 3.4rem/1 var(--display);color:var(--ink);letter-spacing:-.02em}
+.rulebook h2{font-size:1rem;letter-spacing:.06em;font-weight:700;color:var(--ink-soft)}
+.rulebook h3{font-size:.95rem;letter-spacing:.04em;display:flex;align-items:center;gap:.6rem}
+.rulebook h3::after{content:"";flex:1;border-top:1.5px solid var(--ink)}
+.rulebook h3.part{border-top:0;color:var(--ink)}
+.rulebook h4{color:var(--ink)}
+.eyebrow{color:var(--ink-faint)}
+.steps li::before{font:900 1.5rem/1 var(--display);color:var(--ink)}
+.disasters li::before{font:900 1.1rem/1.3 var(--display);color:var(--ink)}
+.toc .t-num{font-weight:900;color:var(--ink)}
+.toc a{border-bottom:1px solid var(--hairline)}
+a{color:var(--ink)}
+.neg{color:var(--ink);font-weight:700}
+
+/* the cover: a product name, and the two-person warning */
+.cover{text-align:left;padding:3.4rem 3.4rem 2.6rem;box-shadow:0 0 0 1px #CFCFCF}
+.wordmark{display:flex;font-weight:900;letter-spacing:.01em;margin-bottom:.4rem}
+.wordmark span{display:inline}
+.cover hr{margin:1.2rem 0;width:100%;border-top:1.5px solid var(--ink);opacity:1}
+.cover .sub{font-family:var(--display);letter-spacing:.08em;font-weight:700}
+.cover .meta{font-family:var(--display);color:var(--ink-soft)}
+.cover::after{content:"";display:block;height:6.5rem;margin-top:2.4rem;background:
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 100' fill='%23fff' stroke='%23111' stroke-width='2.2' stroke-linejoin='round'%3E%3Crect x='2' y='2' width='176' height='96' rx='10'/%3E%3Ccircle cx='50' cy='26' r='9'/%3E%3Cpath d='M34 90V53q0-15 16-15t16 15v37z'/%3E%3Ccircle cx='112' cy='26' r='9'/%3E%3Cpath d='M96 90V53q0-15 16-15t16 15v37z'/%3E%3Cpath d='M68 12h26a6 6 0 0 1 6 6v8a6 6 0 0 1-6 6h-9l-6 6v-6h-11a6 6 0 0 1-6-6v-8a6 6 0 0 1 6-6z'/%3E%3Ccircle cx='158' cy='28' r='12'/%3E%3Cpath d='M152 28l5 5 8-10' fill='none' stroke-width='3'/%3E%3Crect x='190' y='2' width='108' height='96' rx='10'/%3E%3Ccircle cx='230' cy='26' r='9'/%3E%3Cpath d='M214 90V53q0-15 16-15t16 15v37z'/%3E%3Ccircle cx='278' cy='28' r='12'/%3E%3Cpath d='M272 22l12 12M284 22l-12 12' stroke-width='3'/%3E%3C/svg%3E") left center/auto 100% no-repeat}
+
+/* notes: the warning circle */
+.note{border:1.5px solid var(--ink);border-radius:10px;padding:.85rem 1.1rem .85rem 3.6rem;position:relative}
+.note::before{content:"";position:absolute;left:.85rem;top:.8rem;width:2rem;height:2rem;background:var(--bang) center/contain no-repeat}
+.note b,.note .n-lbl{color:var(--ink);font-family:var(--display);font-weight:900}
+.orig{border-left:1.5px solid var(--ink)}
+.rulebook .card{border:1.5px solid var(--ink);border-radius:10px}
+.rulebook thead th{font-family:var(--display);font-weight:700;letter-spacing:.04em}
+.band a{border-radius:6px;border-color:var(--ink);color:var(--ink);background:#fff}
+.band a.on{background:var(--ink)}
+.rulebook .say li::before{border-radius:3px;border-color:var(--ink)}
+.rulebook .say li.must::before{background:var(--ink)}
+.legend i{border-color:var(--ink);background:var(--ink);border-radius:3px}
+.follow nav a.on{border-left-color:var(--ink)}
+.follow nav .t-num,.follow-bar .lbl{color:var(--ink);font-weight:900}
+
+/* ---------- reference cards ---------- */
+/* Noto Sans runs too wide for a card's body; it keeps the headings */
+:root{--card-body:Arial,sans-serif;--card-shadow:0 0 0 1px #CFCFCF}
+.refcards .ch h2{font-family:var(--display);line-height:1.1;font-size:14pt}
+.refcards .top{box-shadow:0 0 0 1px #CFCFCF;display:flex;justify-content:space-between;align-items:flex-end;gap:2rem}
+.refcards .top::after{content:"";flex:none;width:5.4rem;height:4.3rem;background:var(--man) left/auto 100% no-repeat,var(--man) right/auto 100% no-repeat}
+.refcards .top h1{font-weight:900;letter-spacing:.04em;font-size:2.4rem}
+.refcards .top p{font-family:var(--display);letter-spacing:.04em;color:var(--ink-soft)}
+.pairlabel{font-family:var(--display);color:var(--ink);font-weight:900}
+.refcards .ch{border-top-width:.05in}
+.refcards .ch h2{font-weight:900}
+.refcards h3{font-family:var(--card-body);font-weight:900;letter-spacing:.06em;line-height:1.15;color:var(--ink)}
+.refcards ol.turn .n{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink);font-weight:900}
+.refcards .anytime{border:1.5px solid var(--ink);border-radius:8px}
+.refcards .cf::after{content:"   ·   AA-1969-R";white-space:pre}
+
+/* ---------- print ---------- */
+@media print{
+  :root{--sheet-shadow:none;--card-shadow:none}
+  .cover{box-shadow:none}
+  /* print takes the sheet's padding away; leave room for the part number */
+  .rulebook .sheet{padding-bottom:1.6rem}
+  .rulebook .sheet:not(.cover)::after{right:0;bottom:0}
+}

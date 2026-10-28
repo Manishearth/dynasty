@@ -73,6 +73,7 @@ ol.dis li span{margin-right:.4em}ol.dis li b{white-space:nowrap}
 .dense table.works,.dense table.pile{font-size:7.6pt}
 .dense td{padding:.015in .04in}
 .dense section{margin-bottom:.08in}
+.dense ul.duties,.dense ul.checks{font-size:8.8pt}
 .print{display:none}
 @media print{
   @page{size:letter landscape;margin:0}

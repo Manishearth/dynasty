@@ -94,6 +94,7 @@ body{background:var(--glitter),var(--leopard) 0 0/140px 140px,var(--airbrush);ba
 .toc a:hover{background:linear-gradient(90deg,#FFE3F7,#E0FBFF)}
 .rulebook .key span::before{border-radius:50%}
 .follow{background:rgba(255,247,253,.9) !important;backdrop-filter:blur(8px)}
+.follow nav .t-num,.follow-bar .lbl{color:#D61A77}
 .follow nav a.on{background:var(--rainbow);color:#fff;border-left-color:#FFE600;text-shadow:1px 1px 0 #3A0A5E}
 .follow nav a.on .t-num{color:#fff}
 @media (prefers-reduced-motion:reduce){*{animation:none !important}}

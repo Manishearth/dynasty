@@ -112,6 +112,8 @@ figcaption{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;color:v
 .follow nav a:hover{color:var(--vermilion)}
 .follow nav a.on{border-left-color:var(--vermilion);background:var(--paper);font-weight:700}
 .follow nav .t-num{flex:none;width:1.7rem;font-family:var(--mono);font-size:.74rem;color:var(--vermilion)}
+/* the original's vermilion is a shade too light for small numbers on the canvas */
+html:not([data-theme]) .follow nav .t-num{color:#B82517}
 .follow nav .t-part{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);padding:1.1rem .6rem .3rem .9rem}
 .follow-bar{display:none}
 @media screen and (min-width:76rem){

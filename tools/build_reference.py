@@ -447,10 +447,16 @@ def player_back(p):
             + foot())
 
 
+def dense(face):
+    """Tighter spacing and smaller lists (.dense), for a face that would otherwise overflow."""
+    return '<div class="dense">' + face + '</div>'
+
+
 def build():
-    cards = [("General", general_front(), '<div class="dense">' + general_back() + '</div>'),
-             ("Running the round", running_front(), running_back())]
-    cards += [(f"Province {p} · {ROLE[p]}", player_front(p), player_back(p)) for p in range(1, 9)]
+    cards = [("General", general_front(), dense(general_back())),
+             ("Running the round", running_front(), dense(running_back()))]
+    cards += [(f"Province {p} · {ROLE[p]}", dense(player_front(p)) if p == 8 else player_front(p), player_back(p))
+              for p in range(1, 9)]
 
     screen = "".join(
         f'<p class="pairlabel">{E(name)}</p><div class="pair"><div class="card">{f}</div>'

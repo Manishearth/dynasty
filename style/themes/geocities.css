@@ -46,7 +46,8 @@ body{background:
 .band a{border:2px outset #fff;background:#C0C0C0;color:#000}
 .band a.on{border-style:inset;background:#000080;color:#FFFF00}
 .toc a::before{content:"➤ ";color:#FF0000}
-.follow{background:#008080 !important}
+.follow{background:#006666 !important}
+.follow-bar .lbl{color:#000080}
 .follow nav a,.follow nav .t-part,.follow-title{color:#fff}
 .follow nav .t-num{color:#FFFF00}
 .follow nav a.on{background:#000080;color:#FFFF00}

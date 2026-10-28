@@ -78,7 +78,7 @@ body{
 .toc a{border-bottom:1px dashed var(--gold)}
 .follow{background:#5E0508 !important;border-right:3px double var(--gold) !important}
 .follow nav a,.follow nav .t-part{color:#F6E2B4}
-.follow nav a.on{background:var(--vermilion);color:var(--gold)}
+.follow nav a.on{background:#920D17;color:var(--gold)}
 .follow-title{color:var(--gold);border-bottom-color:var(--gold) !important;font-size:1.2rem !important;letter-spacing:.2em !important}
 .follow nav .t-num{color:var(--gold)}
 

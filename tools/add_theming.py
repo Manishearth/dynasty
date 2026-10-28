@@ -27,6 +27,12 @@ THEMES = [
     ("terminal", "Terminal"),
     ("manuscript", "Manuscript"),
     ("vaporwave", "Vaporwave"),
+    ("flatpack", "Flat-Pack"),
+    ("safety", "Safety Card"),
+    ("swiss", "Swiss Style"),
+    ("wargame", "Hex & Counter"),
+    ("bookshelf", "Bookshelf Game"),
+    ("handmedown", "Hand-Me-Down"),
 ]
 
 LOAD = """<script id="theme-load">

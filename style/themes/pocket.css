@@ -84,6 +84,8 @@ body{
 .rulebook .say li::before{content:"▶";border:0;top:.32rem;font-size:.7rem;color:#bbb}
 .rulebook .say li.must::before{color:var(--vermilion);background:none}
 .follow{background:#fff !important;border-right:4px solid #202020 !important}
+.follow nav .t-num,.follow-bar .lbl{color:#D9320C}
+.follow nav a.on .t-num{color:#D0300B}
 .follow nav a.on{background:#FFF7CC;border-left-color:#E3350D}
 .follow nav a.on::after{content:"◀";margin-left:auto;color:#E3350D;animation:blink 1s steps(1) infinite}
 @media (prefers-reduced-motion:reduce){*{animation:none !important}}

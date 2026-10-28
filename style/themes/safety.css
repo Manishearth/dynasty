@@ -1,0 +1,95 @@
+/* safety — the card in the seat pocket. Please read before play. In the event of a famine, Public Works will deploy. */
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap");
+:root{
+  --canvas:#2C3A4F;--paper:#FBF6E6;--ink:#1A1F2B;--ink-mid:#2E3546;--ink-soft:#4A5268;--ink-faint:#8A90A0;
+  --rule:#C9C0A4;--hairline:#E6DEC6;--tint:#F1E8CC;
+  --vermilion:#D3261B;--pink:#E06A00;--cobalt:#1B4FA0;--walnut:#7A5A2E;--slate:#3D5568;--upper:#1A1F2B;
+  --note-bg:#FFF2B8;--must-bg:#FADAD6;--water-bg:#DCE7F6;--on-accent:#fff;
+  --display:"Barlow Condensed","Arial Narrow",sans-serif;
+  --body:"Barlow",Arial,sans-serif;
+  --mono:"Barlow Condensed","Arial Narrow",sans-serif;
+  --cover-bg:#FBF6E6;--cover-ink:#1A1F2B;
+  --navy:#16326B;--yellow:#FFC20E;--green:#0A8A3A;
+  --sheet-shadow:0 2px 0 rgba(0,0,0,.35);--radius:14px;--heavy:3px;
+  --h-track:.6;--wordmark-size:4.4rem;
+  --hazard:repeating-linear-gradient(-45deg,var(--yellow) 0 10px,#1A1F2B 10px 20px);
+}
+/* the band across the top of every panel */
+.rulebook .sheet{padding-top:4.4rem;overflow:hidden}
+.rulebook .sheet:not(.cover)::before{content:"SAFETY INFORMATION   ·   DYNASTY 1969   ·   PLEASE READ BEFORE PLAY";white-space:pre;
+  position:absolute;top:0;left:0;right:0;padding:.45rem 3.4rem;background:var(--navy);color:#fff;
+  font:700 .78rem/1.3 var(--display);letter-spacing:.14em}
+.sec-head{border-bottom:var(--heavy) solid var(--navy);gap:.8rem;align-items:center}
+.sec-num{background:var(--navy);color:#fff;font:800 1.3rem/1 var(--display);min-width:2.3rem;height:2.3rem;
+  display:inline-flex;align-items:center;justify-content:center;border-radius:8px;padding:0 .4rem}
+.rulebook h2{font-size:1.75rem;font-weight:800;color:var(--navy)}
+.rulebook h3{font-size:1.15rem;font-weight:800;color:var(--navy)}
+.rulebook h3 .h-num{color:var(--vermilion)}
+.rulebook h4{font-weight:700}
+.rulebook h3.part{border-top-color:var(--navy)}
+.eyebrow{font-weight:700;letter-spacing:.18em}
+
+/* the cover: the instructions you never read */
+.cover{border:var(--heavy) solid var(--navy);box-shadow:none;padding-top:3rem;padding-bottom:2.4rem}
+.cover::before{content:"⚠  PLEASE READ BEFORE PLAY  ·  DO NOT REMOVE FROM TABLE  ⚠";display:block;margin:-3rem -3.4rem 2.6rem;padding:.55rem 1rem;
+  background:var(--yellow);color:#1A1F2B;font:800 .95rem/1.2 var(--display);letter-spacing:.14em;border-bottom:var(--heavy) solid #1A1F2B}
+.wordmark{display:flex;justify-content:center;gap:.08em;color:var(--navy);font-weight:800}
+.wordmark span{display:inline}
+.cover hr{border-top:var(--heavy) solid var(--navy);opacity:1;width:8rem}
+.cover .sub{font-weight:700;letter-spacing:.24em}
+.cover .meta{font-family:var(--body);font-size:.8rem;color:var(--ink-soft)}
+/* three pictograms: fasten your belt, no dice, the exit */
+.cover::after{content:"";display:block;height:7rem;margin:2.2rem auto 0;max-width:30rem;background:
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 330 100' font-family='Arial Narrow,Arial,sans-serif' font-weight='700'%3E%3Cg fill='%23FBF6E6' stroke='%2316326B' stroke-width='3'%3E%3Crect x='2' y='2' width='96' height='96' rx='12'/%3E%3Crect x='117' y='2' width='96' height='96' rx='12'/%3E%3Crect x='232' y='2' width='96' height='96' rx='12'/%3E%3C/g%3E%3Cg fill='%2316326B'%3E%3Ccircle cx='50' cy='22' r='8'/%3E%3Cpath d='M38 34h24l4 30H34z'/%3E%3Crect x='32' y='64' width='36' height='8' rx='2'/%3E%3Cpath d='M34 72h8v16h-8zM58 72h8v16h-8z'/%3E%3C/g%3E%3Crect x='26' y='50' width='48' height='7' rx='2' fill='%23FFC20E' stroke='%231A1F2B' stroke-width='2'/%3E%3Crect x='44' y='47' width='12' height='13' rx='2' fill='%23C9C0A4' stroke='%231A1F2B' stroke-width='2'/%3E%3Cg transform='translate(165 52) rotate(-12)'%3E%3Crect x='-24' y='-24' width='48' height='48' rx='9' fill='%23fff' stroke='%231A1F2B' stroke-width='3'/%3E%3Cg fill='%231A1F2B'%3E%3Ccircle cx='-12' cy='-12' r='5'/%3E%3Ccircle cx='0' cy='0' r='5'/%3E%3Ccircle cx='12' cy='12' r='5'/%3E%3C/g%3E%3C/g%3E%3Ccircle cx='165' cy='50' r='38' fill='none' stroke='%23D3261B' stroke-width='7'/%3E%3Cpath d='M138 23l54 54' stroke='%23D3261B' stroke-width='7'/%3E%3Crect x='244' y='30' width='72' height='40' rx='5' fill='%230A8A3A'/%3E%3Ctext x='280' y='59' text-anchor='middle' font-size='24' fill='%23fff' letter-spacing='2'%3EEXIT%3C/text%3E%3Cpath d='M262 84h30l-7-6M292 84l-7 6' fill='none' stroke='%230A8A3A' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat}
+
+/* notes: the yellow caution panel */
+.note{background:var(--note-bg);border:2px solid #1A1F2B;border-left:2px solid #1A1F2B;border-radius:10px;position:relative;padding-left:3.4rem}
+.note::before{content:"!";position:absolute;left:.9rem;top:.8rem;width:0;height:0;border-left:.95rem solid transparent;border-right:.95rem solid transparent;
+  border-bottom:1.65rem solid #1A1F2B;color:var(--yellow);font:800 1.05rem/2rem var(--display);text-indent:-.2rem;text-align:center}
+.note b,.note .n-lbl{color:#1A1F2B;font-family:var(--display);font-weight:800;font-size:.85rem}
+.orig{border-left:4px solid var(--navy)}
+.rulebook .card{border:2px solid var(--navy);border-radius:12px;background:#fff}
+.rulebook .card h3{color:var(--navy)}
+.rulebook table{border-radius:0}
+.rulebook thead th{background:var(--navy);color:#fff;font-family:var(--display);font-weight:700;font-size:.82rem;border-bottom:0}
+.rulebook tbody tr:nth-child(even) td{background:rgba(255,194,14,.12)}
+.band a{border-radius:8px;font-family:var(--display);font-weight:700}
+.steps li::before{background:var(--navy);color:#fff;width:1.6rem;height:1.6rem;border-radius:50%;text-align:center;font:800 .95rem/1.6rem var(--display)}
+.disasters li::before{color:var(--vermilion);font-family:var(--display);font-weight:800;font-size:1.1rem}
+.rulebook .say li::before{border-radius:50%;border-color:var(--navy)}
+.rulebook .say li.must::before{border-color:var(--vermilion)}
+.toc .t-num{font-weight:800}
+.follow nav .t-num{font-weight:800}
+/* the hazard stripe along the foot of every panel */
+.rulebook .sheet:not(.cover)::after{content:"";position:absolute;left:0;right:0;bottom:0;height:8px;background:var(--hazard)}
+
+/* the contents sidebar sits on paper: the canvas is too dark behind ink */
+.follow,.follow.open{background:var(--paper)}
+.follow nav a.on{background:#fff}
+
+/* ---------- reference cards ---------- */
+:root{--card-body:"Barlow",Arial,sans-serif;--card-mono:"Barlow Condensed","Arial Narrow",sans-serif;--card-shadow:0 2px 0 rgba(0,0,0,.35)}
+.refcards .top{background:var(--navy);color:#fff;border-bottom:8px solid transparent;border-image:var(--hazard) 0 0 8 0 stretch}
+.refcards .top h1{font-weight:800;letter-spacing:.12em;font-size:2.4rem}
+.refcards .top h1::after{content:"  ·  SEAT POCKET EDITION";white-space:pre;font-size:.45em;letter-spacing:.16em;color:var(--yellow);vertical-align:middle}
+.refcards .intro{border:2px solid var(--navy)}
+.pairlabel{color:#fff;font-family:var(--display);font-weight:800;letter-spacing:.2em}
+.refcards .card{border-radius:12px}
+.refcards .ch h2{font-family:var(--display);font-weight:800;font-size:17pt}
+.refcards h3{font-family:var(--display);font-weight:800;font-size:8.6pt;color:var(--navy);border-bottom-color:var(--navy)}
+.refcards ol.turn .n{background:var(--navy);font-family:var(--display)}
+.refcards .anytime{background:var(--note-bg);border:1.5px solid #1A1F2B;border-radius:6px}
+.refcards .cf::after{content:"   ·   KEEP IN SEAT POCKET";white-space:pre}
+
+/* ---------- print ---------- */
+@media print{
+  :root{--sheet-shadow:none;--card-shadow:none;--paper:#FFFFFF;--cover-bg:#FFFFFF}
+  body{background:#fff}
+  /* print takes the sheet's padding away: the band and stripe sit at the page's edge, the text clear of them */
+  .rulebook .sheet{padding-top:2.4rem;padding-bottom:1.2rem;overflow:visible}
+  .rulebook .sheet:not(.cover)::before{padding-left:.8rem}
+  .rulebook .cover{padding:0 2.5rem 2.4rem}
+  .cover::before{margin:0 -2.5rem 4rem}
+  .rulebook tbody tr:nth-child(even) td{background:#FFF8DA}
+  .refcards .card{border-radius:0}
+}

@@ -68,7 +68,7 @@ body{background:repeating-linear-gradient(92deg,#3B2A1A 0 14px,#40301E 14px 22px
 .follow{background:#2E2015 !important;border-right:2px solid var(--gold) !important}
 .follow nav a,.follow nav .t-part{color:#E8D4A6}
 .follow-title{color:var(--gold-hi);border-bottom-color:var(--gold) !important}
-.follow nav a.on{background:var(--vermilion);color:var(--gold-hi)}
+.follow nav a.on,.follow nav a.on .t-num{background:var(--vermilion);color:var(--gold-hi)}
 .follow nav .t-num{color:var(--gold)}
 
 /* ---------- reference cards ---------- */

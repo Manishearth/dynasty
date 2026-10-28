@@ -1,0 +1,98 @@
+/* bookshelf — a 1960s bookshelf game: a slipcase box, geometric cover art, Futura, harvest gold and avocado. */
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700;800&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap");
+:root{
+  --canvas:#3F3A33;--paper:#F8F2E2;--ink:#2A241D;--ink-mid:#3D362C;--ink-soft:#6A5E4C;--ink-faint:#A89A82;
+  --rule:#D6C9AC;--hairline:#EAE0C8;--tint:#F0E6CC;
+  --vermilion:#D9531E;--pink:#C8941A;--cobalt:#2C7A78;--walnut:#7B5A33;--slate:#5E6B3A;--upper:#2A241D;
+  --note-bg:#F6E7BE;--must-bg:#F7D7C4;--water-bg:#D9EAE7;--on-accent:#fff;
+  --orange:#D9531E;--gold:#E3A72F;--avocado:#7C8A3A;--teal:#2C7A78;
+  --display:"Jost",Futura,"Century Gothic",sans-serif;
+  --body:"Libre Caslon Text",Georgia,serif;
+  --mono:"Jost",Futura,"Century Gothic",sans-serif;
+  --cover-bg:#F8F2E2;--cover-ink:#2A241D;
+  --sheet-shadow:0 2px 0 rgba(0,0,0,.25);--radius:0;--heavy:3px;
+  --h-case:lowercase;--h-track:.4;--wordmark-size:5.4rem;--body-size:15.5px;
+  --stripes:linear-gradient(var(--orange) 0 33.3%,var(--gold) 33.3% 66.6%,var(--avocado) 66.6%);
+}
+/* the three-colour stripe down the spine of every page */
+.rulebook .sheet{padding-left:4.6rem}
+.rulebook .sheet::before{content:"";position:absolute;left:1.6rem;top:0;bottom:0;width:.9rem;background:var(--stripes)}
+.rulebook .sheet::before{background:linear-gradient(90deg,var(--orange) 0 33.3%,var(--gold) 33.3% 66.6%,var(--avocado) 66.6%)}
+.sec-head{border-bottom:0;align-items:center;gap:.9rem}
+.sec-num{font:700 1.2rem/1 var(--display);color:#fff;background:var(--orange);width:2.6rem;height:2.6rem;border-radius:50%;
+  display:inline-flex;align-items:center;justify-content:center;flex:none}
+.sheet:nth-of-type(3n+1) .sec-num{background:var(--teal)}
+.sheet:nth-of-type(3n+2) .sec-num{background:var(--avocado)}
+.rulebook h2{font-weight:500;font-size:2rem;letter-spacing:.02em}
+.rulebook h3{font-weight:700;font-size:1.12rem;letter-spacing:.03em;color:var(--orange)}
+.rulebook h3 .h-num{color:var(--ink)}
+.rulebook h3.part{border-top:var(--heavy) solid var(--gold);color:var(--orange)}
+.rulebook h4{font-weight:700;letter-spacing:.06em}
+.eyebrow,caption,thead th,figcaption,.key,.who,.toc .t-part{letter-spacing:.14em;font-weight:500}
+.lede{font-style:italic;font-size:1.12rem}
+.toc .t-num{font-weight:700;color:var(--orange)}
+.toc a{border-bottom:1px solid var(--hairline)}
+
+/* the cover: the slipcase art — interlocking circles and bars */
+.cover{padding:3.2rem 3rem 2.6rem;position:relative;overflow:hidden;
+  background:
+    radial-gradient(circle at 18% 22%,var(--gold) 0 4.2rem,transparent 4.25rem),
+    radial-gradient(circle at 28% 22%,rgba(217,83,30,.92) 0 4.2rem,transparent 4.25rem),
+    radial-gradient(circle at calc(100% - 3rem) calc(100% - 3rem),var(--teal) 0 5.4rem,transparent 5.45rem),
+    radial-gradient(circle at calc(100% - 9.5rem) calc(100% - 3rem),rgba(124,138,58,.9) 0 3.4rem,transparent 3.45rem),
+    var(--paper)}
+.rulebook .cover::before{left:0;width:100%;height:1.2rem;top:auto;bottom:0}
+.cover .sub:first-child{text-align:right;font-family:var(--display);letter-spacing:.3em;font-weight:500}
+.wordmark{display:flex;justify-content:center;font-family:var(--display);font-weight:800;letter-spacing:.18em;text-transform:lowercase;margin-top:5.4rem;color:var(--ink)}
+.wordmark span{display:inline}
+.cover hr{border-top:var(--heavy) solid var(--orange);opacity:1;width:7rem}
+.cover .sub{font-family:var(--display);letter-spacing:.3em;font-weight:500}
+.cover p[style]{font-family:var(--body);font-style:italic}
+.cover .meta{font-family:var(--display);font-size:.78rem;letter-spacing:.04em;margin:2.4rem auto 9rem;max-width:24rem;color:var(--ink-soft)}
+.cover::after{content:"a bookshelf game · no. 1969 in the series";position:absolute;left:3rem;bottom:2.2rem;
+  font:500 .78rem var(--display);letter-spacing:.24em;color:var(--ink-soft)}
+
+.note{background:var(--note-bg);border-left:0;border-radius:1.2rem;padding:1rem 1.3rem}
+.note b,.note .n-lbl{color:var(--orange);font-family:var(--display);font-weight:700}
+.orig{border-left:var(--heavy) solid var(--gold)}
+.rulebook .card{border:0;background:#fff;border-radius:1.2rem;box-shadow:inset 0 0 0 2px var(--ink)}
+.rulebook thead th{border-bottom:var(--heavy) solid var(--orange);font-weight:700}
+.rulebook tbody tr:last-child td{border-bottom:var(--heavy) solid var(--ink)}
+.band a{border-radius:2rem;font-family:var(--display);font-weight:500}
+.band a.on{background:var(--orange);border-color:var(--orange)}
+.steps li::before,.disasters li::before{font-family:var(--display);color:var(--orange);font-size:1.15rem}
+.rulebook .say li::before{border-radius:50%;border-color:var(--ink-soft)}
+.follow nav a.on{border-left-color:var(--orange)}
+
+/* the contents sidebar sits on paper: the canvas is too dark behind ink */
+.follow,.follow.open{background:var(--paper)}
+.follow nav a.on{background:#fff}
+/* the orange is too light for small numbers on paper */
+.toc .t-num,.follow nav .t-num,.follow-bar .lbl{color:#BA4719}
+
+/* ---------- reference cards ---------- */
+:root{--card-body:"Jost",Futura,"Century Gothic",sans-serif;--card-shadow:0 2px 0 rgba(0,0,0,.25)}
+.refcards .top{background:radial-gradient(circle at 92% 50%,var(--gold) 0 3rem,transparent 3.05rem),radial-gradient(circle at 86% 50%,rgba(217,83,30,.9) 0 3rem,transparent 3.05rem),var(--paper);
+  border-bottom:1rem solid transparent;border-image:linear-gradient(90deg,var(--orange) 0 33.3%,var(--gold) 33.3% 66.6%,var(--avocado) 66.6%) 0 0 1 0 stretch}
+.refcards .top h1{text-transform:lowercase;letter-spacing:.2em;font-weight:800;font-size:2.4rem}
+.refcards .top p{text-transform:lowercase;letter-spacing:.16em}
+.pairlabel{color:var(--gold);text-transform:lowercase;letter-spacing:.3em;font-family:var(--display)}
+.refcards .card{border-radius:0}
+.refcards .ch h2{text-transform:lowercase;letter-spacing:.08em;font-weight:800}
+.refcards h3{font-family:var(--display);color:var(--orange);text-transform:lowercase;letter-spacing:.1em;font-size:8.6pt}
+.refcards ol.turn .n{background:var(--orange)}
+.refcards ol.turn li:nth-child(3n+2) .n{background:var(--gold)}
+.refcards ol.turn li:nth-child(3n) .n{background:var(--avocado)}
+.refcards .anytime{border:0;background:var(--note-bg);border-radius:.12in}
+
+/* ---------- print ---------- */
+@media print{
+  :root{--paper:#FFFFFF;--cover-bg:#FFFFFF;--sheet-shadow:none;--card-shadow:none;--note-bg:#FBF0D2}
+  body{background:#fff}
+  /* print takes the padding away: keep the spine stripe, and the text clear of it */
+  .rulebook .sheet{padding-left:.42in}
+  .rulebook .sheet::before{left:0;width:.16in}
+  .rulebook .cover{padding:3rem 2.4rem 2rem 2.4rem;min-height:9.5in}
+  .rulebook .cover::before{width:100%;height:.25in}
+  .rulebook .card{box-shadow:inset 0 0 0 1.5px var(--ink)}
+}

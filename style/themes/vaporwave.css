@@ -69,8 +69,9 @@ body::before{content:"";position:fixed;left:-50%;right:-50%;bottom:0;height:38vh
 .band a.on{background:linear-gradient(#FF3FA4,#8F5BFF);box-shadow:inset 2px 2px #808080}
 .toc a:hover{background:linear-gradient(90deg,#FFE0F0,#E6FBFF)}
 .follow{background:rgba(26,6,56,.85) !important;border-right:2px solid #00F0FF !important;backdrop-filter:blur(6px)}
+.follow-bar .lbl{color:#C6317F}
 .follow nav a,.follow nav .t-part,.follow-title{color:#F6D2FF}
-.follow nav a.on{background:linear-gradient(90deg,#FF3FA4,#8F5BFF);color:#fff}
+.follow nav a.on{background:linear-gradient(90deg,#C6317F,#6B3FD9);color:#fff}
 .follow nav .t-num{color:#00F0FF}
 @media (prefers-reduced-motion:reduce){*{animation:none !important}}
 
