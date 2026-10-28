@@ -6,8 +6,8 @@
 # The trial year that came before this game is in trial-year1/.
 setup([1,5,6,7,8], "peasant-collapse", "The peasant game",
       "Five players · eight years · ends in collapse",
-      "The Emperor, three peasants and the Warlord, each played by its own agent. The Storyteller referees with the engine.",
-      short="5 players · agents")
+      "The Emperor, three peasants and the Warlord. No Official, no Gentry, no Scholar, so no rent. The peasants trade seats twice and the Warlord raids his way to the throne, but nobody ever buys new land: once the population triples, every income is negative, every player falls into debt, and in Year 8 the table gives up.",
+      short="5 players · 8 years")
 
 # ============================== SETUP ==============================
 R(0, "Setup", None, "Five players: the Emperor, the three peasants and the Warlord (rulebook Section 4 and Appendix A). Nobody sits in Provinces 2, 3 or 4, so nothing is owed to them, and their table jobs go to whoever the Emperor names (Note 3).")

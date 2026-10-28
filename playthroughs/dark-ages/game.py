@@ -5,7 +5,7 @@
 # Each chapter opens with a "# ===== CHAPTER N: <title>" marker.
 setup([1, 2, 3, 5, 6, 8], "dark-ages", "The Dark Ages",
       "Six players · in progress",
-      "Six players. The population doubles in the third year and the harvests fail. The table revolts, and nobody can win the acclamation for a while.",
+      "Six players and a hard deck: the Emperor, the Official, the Gentry, the Silk and Rice Peasants, and the Warlord. No Scholar, so the Emperor chooses who reads the cards.",
       short="6 players")
 
 # ============================== SETUP ==============================
