@@ -145,8 +145,10 @@ ROUND_ONE = [
 CHAOS = [
     "<b>Stopped:</b> no tax, no salaries, no Public Works, and so no new harvest squares (no Emperor to share the cost).",
     "<b>Still on:</b> harvests are paid, and the Warlord still rides. The fallen Emperor keeps Province 1 for now.",
+    "<b>The treasury is sealed:</b> nobody may spend it. Province 1’s harvest, raids on it and the Emperor’s cards still go in or out, and the new Emperor inherits it, debt and all.",
+    "<b>No set takes the throne:</b> only the acclamation does. A set can still replace any other seat.",
     "It ends when a new Emperor is acclaimed, even mid-round: the new Emperor then declares tax, builds and pays salaries that round.",
-    "<b>The count:</b> each claimant's grain, soldiers and friends (backers, one claim each). Leading one is enough if no rival leads another; otherwise whoever leads more wins. A tie leads nobody. The fallen Emperor can't claim.",
+    "<b>The count:</b> each claimant's grain, the soldiers they command and their friends (other players backing them, one claim each). Leading one is enough if no rival leads another; otherwise whoever leads more wins. A tie leads nobody. The fallen Emperor can't claim.",
 ]
 END_CHECKS = [
     "The population counter shows the current figure.",
@@ -477,7 +479,7 @@ def build():
 <body class="refcards">
 <div class="screen">
 <div class="wrap">
-<header class="top"><h1 data-theme-unlock>Reference Cards</h1><p>Dynasty (1969) · a general card, a card for running the round, and one card per province, two-sided</p></header>
+<header class="top"><h1 data-theme-unlock>Reference Cards</h1><p>Dynasty · a general card, a card for running the round, and one card per province, two-sided</p></header>
 <div class="intro">
 <p>Every player gets the <b>general card</b> (the round, the realia, the money and the public works) and the
 <b>card for their own province</b> (income table, duties, objective, what they are owed, personal disasters).

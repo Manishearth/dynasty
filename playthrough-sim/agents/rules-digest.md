@@ -163,6 +163,9 @@ Only works in occupied provinces are owed (`owed()` in the engine). With all eig
 - **Calling one off:** once two others agree, the Emperor may answer (pay, cut the tax, promise anything). The caller and each backer then stands by it or takes it back, and it stands only with the caller and two others still behind it. The players settle any question of who answered first; no seat order decides it (R: Calling off a revolt).
 - **Under Chaos,** set `CHAOS = True` in `game.py` at the revolt and `CHAOS = False` at the acclamation: the engine then refuses works and new land, and `briefs.py` stops offering land.
 - **Chaos:** no tax, salaries or works until a new Emperor is acclaimed by counting grain, soldiers and friends. A claimant who leads in one count is acclaimed if no rival leads in another; otherwise the claimant who leads in more counts (R: Counting the acclamation). Harvests are still paid and the Warlord still rides.
+- **No seat change takes the throne under Chaos:** a set or the Warlord's objective can still replace any other seat (R: No seat change takes the throne under Chaos).
+- **The sealed treasury:** at the revolt nobody may spend the reserve on anything voluntary. Province 1's harvest, raids on it, the Emperor's disasters and the "Emperor" cards still run through it. The deposed Emperor has no purse and can't claim. The new Emperor takes it whatever its sign, and the deposed Emperor takes their old seat and draws 60 (R: The sealed treasury).
+- **The counts:** soldiers are those the claimant commands (the Warlord's army, or those bought for the claimant's province, moving or not; Province 1's count for nobody). Friends are the other players backing the claim. Soldiers are still for sale under Chaos, at 20 from the Warlord.
 
 ## Ending and scoring (§18, N18)
 

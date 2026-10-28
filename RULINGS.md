@@ -235,11 +235,27 @@ The details, settled by Manish on 2026-10-25:
 
 ### Counting the acclamation after a revolt
 
-**Ruling.** Anyone but the deposed Emperor may claim the throne, the Warlord included. Each claimant's grain in hand, soldiers on the board and friends (players backing that claim, one claim each) are counted. A claimant who leads in one count is acclaimed if no rival leads in another; otherwise the claimant who leads in more of the three is acclaimed. A tie in a count leads nobody. With no winner, Chaos goes on, and the table may count again whenever the claims change. The deposed Emperor may back a claimant, but their grain isn't counted.
+**Ruling.** Anyone but the deposed Emperor may claim the throne, the Warlord included. Each claimant's grain in hand, soldiers on the board that the claimant commands, and friends (other players backing that claim, one claim each) are counted. The Warlord commands their army; anyone else, the soldiers bought for their province, even ones that can't move yet. Soldiers bought for Province 1 count for nobody, since the deposed Emperor can't claim. A claimant isn't their own friend. Buying soldiers stays open under Chaos, and the Warlord must sell at 20, so a claimant can buy past the Warlord's count. A claimant who leads in one count is acclaimed if no rival leads in another; otherwise the claimant who leads in more of the three is acclaimed. A tie in a count leads nobody. With no winner, Chaos goes on, and the table may count again whenever the claims change. The deposed Emperor may back a claimant, but their grain isn't counted.
 
 **Why.** Section 16 lists the qualifications ("the most money, the most friends, the most soldiers, or any combination") but not how to settle rival claims. The Warlord's starting army nearly always gives the Warlord the most soldiers, so "any one qualification wins" would hand the Warlord the throne after almost every revolt. Counting the three lets a soldiers-only claim block rather than win, keeps friends as real a resource as grain, and makes a split table pay for its revolt with a longer Chaos. Rich proposed it at the table in game 7; adopted into the rulebook by Manish on 2026-10-27.
 
-**Recorded in** rulebook Section 16, Appendices C and G, the "Running the round" card, and games 2 and 7.
+**Recorded in** rulebook Section 16, Appendices C and G, the "Running the round" card, and games 2 and 7. Which soldiers count, and that a claimant isn't their own friend, settled by Manish on 2026-10-28 while the second Dark Ages game was planned.
+
+### No seat change takes the throne under Chaos
+
+**Ruling.** While Chaos lasts the throne passes only by acclamation. A completed set can't take it, and nor can the Warlord's objective ("change places with anyone, the throne included"). Either can still replace any other seat.
+
+**Why.** Settled by Manish on 2026-10-28, while the second Dark Ages game was planned: with the throne empty, the acclamation is the only way onto it.
+
+**Recorded in** rulebook Sections 11 and 16; `playthrough-sim/engine.py` (`swap()`) and `briefs.py`.
+
+### The sealed treasury
+
+**Ruling.** At the revolt the imperial reserve is sealed. Nobody may spend it on anything voluntary: no deals, gifts, bribes, soldiers or bids. Province 1 still runs on it: its harvest income (positive or negative), raids on it, the Emperor's personal disasters, and cards that pay or charge "the Emperor" (the chest, share, utility and breach cards) go into or out of it; the share and utility cards pay into it as a card, not a tax. The deposed Emperor has no purse: they stay in Province 1, may back a claimant and make promises, and can't claim. At the acclamation the new Emperor takes the treasury whatever its sign, in debt if it has run negative (a displaced player's debt passes to the mover), and the deposed Emperor takes the new Emperor's old seat and draws 60 from the Pile.
+
+**Why.** A deposed Emperor who knows the reserve will pass to a rival shouldn't be able to spend it: use-it-or-lose-it would make emptying the treasury on friends the best play in any Chaos. Sealed, the reserve is out of reach, and Province 1's consumption (60 × the multiple a year, with no tax coming in) drains it visibly, so Chaos costs the next Emperor something everyone can count. Rejected: a free purse for the deposed Emperor beside the sealed treasury (two purses for one seat); the fallen Emperor keeping the grain (a power broker, and nothing left to rebuild with); spendable but not at auction (use-it-or-lose-it). Settled by Manish on 2026-10-28, replacing his first answer in the Dark Ages Director's session ("they can use the money, but not at an auction").
+
+**Recorded in** rulebook Section 16 and Note 17; `playthrough-sim/engine.py` and `briefs.py`.
 
 ### Rent in Round One
 
