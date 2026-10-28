@@ -8,4 +8,16 @@ One folder per game, each the complete record of a game played by agents: the sc
 | `peasant-collapse/` | **"The peasant game"**: the Emperor, three peasants and the Warlord, five players, eight years. Nobody bought new land, the population tripled, every player fell into debt, and the table gave up in Year 8: an economic collapse. See its `REPORT.md`. | yes |
 | `trial-year1/` | A first trial year of the peasant table, played before the tools were fixed. Kept for reference. | no |
 
+### Up next
+
+Seeded and waiting for a Director, in the suggested order. Each folder holds the setup (`game.py`), a recommended deck (`seed.md`), the arc to nudge towards and the levers for it (`scenario.md`), and empty ledger, log, narration and agent-id files. The Director starts from `../playthrough-sim/agents/DIRECTOR.md`.
+
+| Folder | Table | The arc |
+|---|---|---|
+| `short-game/` | 4: the Emperor and the upper class, eight rounds | A race for the throne, decided in the last two rounds |
+| `peasant-rematch/` | 4: the Emperor and the peasants, no Warlord | The peasant game's own deck again, now with land bought ahead: a design check, steered lightly |
+| `seven-quiet/` | 7: no Warlord | A peasant climbs twice to the throne through grain politics alone |
+| `six-warlord/` | 6, with the Warlord | The Warlord's campaign: a near miss or a late success |
+| `dark-ages/` | 6, with the Warlord | An early revolt, a stretch of Chaos, then a recovery |
+
 The peasant game was played as `playthrough-sim/pilot/` and first filed as `peasant-failure/`, so its logs and handoffs still mention those paths.
