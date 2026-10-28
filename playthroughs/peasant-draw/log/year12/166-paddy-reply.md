@@ -1,0 +1,6 @@
+move: read
+say: "Fortune and Misfortune. Plenty for everyone, and trouble for some. All provinces collect a good harvest, so read the good-harvest row. Population stays at six hundred million, that's times six. And provinces 2, 4, 6 and 8 play a Personal Disaster. Two and four are empty, eight isn't at this table... so that's six. That's me." (turns his booklet open, sighs) "Well, I said I'd turn it fair. Silke, I heard you. The Bowl goes up this year whatever happens, and we'll talk price when we get there."
+aside: Good harvest for the whole of China, and I'm the only one at the table the trouble lands on. It's my own hand that turned it, so I can hardly complain. I'll read my disaster out straight, same as the card, and hope the good rice covers whatever it costs me.
+whisper: none
+---
+Ruling: the card read correctly: Fortune and Misfortune, a good harvest for every province, the population holds at x6 (600 million), and Provinces 2, 4, 6 and 8 play a personal disaster; 2 and 4 are empty and 8 has no seat at this table, so only Province 6 plays one: the Rice Peasant's first, 4, after the harvest. The engine's incomes at x6, good harvest: Reina -160, Graham -40, Paddy -20, Silke +20. The stage direction in the say is left out of the spoken line in game.py.

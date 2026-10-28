@@ -3,18 +3,32 @@
 const ALL=JSON.parse(document.getElementById('data').textContent);
 let D,E,RS,SH,RO,NM,ACT, cur=0, curRound=0, curGame=0;
 
-/* ---------- game selector ---------- */
-const gamesEl=document.getElementById('games');
+/* ---------- game selector: a dropdown of every game ---------- */
+const gamesEl=document.getElementById('games'), gameBtn=document.getElementById('gamebtn');
 ALL.games.forEach((g,i)=>{
-  const b=document.createElement('button'); b.className='game';
-  b.innerHTML='<b>'+esc(g.meta.title)+'</b><span class="long">'+esc(g.meta.subtitle)+'</span><span class="brief">'+esc(g.meta.short)+'</span>';
-  b.onclick=()=>loadGame(i,true);
+  const b=document.createElement('button'); b.className='game'; b.setAttribute('role','menuitemradio');
+  b.innerHTML='<b>'+esc(g.meta.title)+'</b><span>'+esc(g.meta.subtitle)+'</span>';
+  b.onclick=()=>{closeGames(true);loadGame(i,true);};
   gamesEl.appendChild(b);
 });
+function openGames(){gamesEl.hidden=false;gameBtn.setAttribute('aria-expanded','true');gamesEl.children[curGame].focus();}
+function closeGames(focus){gamesEl.hidden=true;gameBtn.setAttribute('aria-expanded','false');if(focus)gameBtn.focus();}
+gameBtn.onclick=()=>gamesEl.hidden?openGames():closeGames(false);
+gamesEl.addEventListener('keydown',e=>{
+  const bs=[...gamesEl.children], k=bs.indexOf(document.activeElement);
+  if(e.key==='ArrowDown')bs[(k+1)%bs.length].focus();
+  else if(e.key==='ArrowUp')bs[(k+bs.length-1)%bs.length].focus();
+  else if(e.key==='Home')bs[0].focus();
+  else if(e.key==='End')bs[bs.length-1].focus();
+  else if(e.key==='Escape')closeGames(true);
+  else if(e.key==='Tab')closeGames(false);
+  if(e.key!=='Tab'&&e.key!=='Enter'&&e.key!==' '){e.preventDefault();e.stopPropagation();}});
+addEventListener('click',e=>{if(!gamesEl.hidden&&!e.target.closest('.gamepick'))closeGames(false);});
 function loadGame(i,push){
   curGame=i; D=ALL.games[i]; E=D.entries; RS=D.rounds; SH=D.short; RO=D.role; NM=D.names;
   ACT=new Set(D.active.map(String));
-  [...gamesEl.children].forEach((b,j)=>{b.classList.toggle('on',j===i);b.setAttribute('aria-pressed',j===i);});
+  [...gamesEl.children].forEach((b,j)=>{b.classList.toggle('on',j===i);b.setAttribute('aria-checked',j===i);});
+  gameBtn.innerHTML='<b>'+esc(D.meta.title)+'</b><span>'+esc(D.meta.subtitle)+'</span>';
   document.getElementById('blurb').textContent=D.meta.blurb;
   const n=(D.need[Object.keys(D.need)[0]]||[]).length;
   document.getElementById('objtitle').textContent='Objectives — '+(n?WORDS[n]+' pieces and 20 million':'');

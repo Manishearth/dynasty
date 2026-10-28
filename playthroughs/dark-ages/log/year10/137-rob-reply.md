@@ -1,0 +1,5 @@
+diary: Years 9-10. The desert had a bad two years. The sandstorm took half my grain, and then I sold Silke a soldier and walked W2 right up next to him, and she took him off the board with my own twenty in her pocket. I'll admit that one was funny, even from where I was standing. Rich tried the same thing, bought a lad off me and parked him straight beside W1, so I captured him and took ten from the garden on the way. That paid for a new W2 on T24, so the crown's twenty bought me a fresh soldier. I'm down to about seven grain, which is thin, but I've got three men again, and the lesson is in ink now: one raider can't beat a guard, so W2 and W3 will go for the Scroll together from four rounds out, and Silke will have to pick which one to stop. Rich has a hundred and eighty-eight, the Wall's going up over Clark's roof at last, and Clark is still counting. W1 is sitting in Rich's garden three steps from both palaces. Paddy keeps bringing his purse round and I keep pouring the tea, but nothing leaves the tent until Silke's Scroll is in there with the rest.
+
+---
+
+Ruling: filed word for word in diaries/rob.md under Years 9-10.

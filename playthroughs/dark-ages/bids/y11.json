@@ -1,0 +1,25 @@
+{
+ "step": 1,
+ "lots": [
+  {"lot": "0:CH", "min": 2},
+  {"lot": "0:DJ", "min": 2}
+ ],
+ "bids": {
+  "Clark": {
+   "0:CH": {"ceiling": 0, "keep": {"Reina": 45}},
+   "0:DJ": {"ceiling": 0, "keep": {"Reina": 55}}
+  },
+  "Reina": {
+   "0:DJ": {"ceiling": 80}
+  },
+  "Silke": {
+   "0:CH": {"ceiling": 600},
+   "0:DJ": {"ceiling": 0, "keep": {"Paddy": 200}}
+  },
+  "Paddy": {
+   "0:DJ": {"ceiling": 200}
+  },
+  "Rob": "pass"
+ },
+ "note": "Ceilings from 154-157. Rob holds 1.5, under the minimum, so he isn't asked."
+}

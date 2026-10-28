@@ -1,0 +1,6 @@
+move: Ask Silke for a loan of 18 before the harvest is paid, to be paid back at this year's auction out of what the Bowl fetches (and the 6 the crown owes me for the tax and the cards), on top of the 6 I already owe her. No land this year.
+say: "I'll not pretend otherwise: two grain, twenty out, and a disaster still to read. Without help the Pile takes my Deed and my Customs House at two apiece. Silke, would you lend me eighteen now? You'll have it back at the auction, out of whatever the Bowl brings and the six the crown owes me, and the six I already owe you as well. I'll not ask you to forgive anything. I'd sooner pay what I owe."
+aside: Silke wants the Bowl, and I'm the man who has it, so this is the one year she's likely to lend into a hole. I'd rather owe her honestly for a fortnight than watch the paddies give up the Deed and the House for four grain.
+whisper: none
+---
+Ruling: legal; an ask, nothing changes hands yet. It goes to Silke in her prompt. The numbers as stated hold (2 grain, -20, a disaster of 4 to come); 2 + 18 covers the harvest but not the disaster, which is his own count and gets no note. The repayment terms are a promise only (no deal is binding); the crown's 6 is owed on the slate, payable when the crown can pay.

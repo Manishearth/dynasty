@@ -16,19 +16,18 @@ ROOT = os.path.dirname(os.path.dirname(HERE))
 sys.path.insert(0, os.path.dirname(HERE))
 import build
 
-GAMES = ["full-game", "short-game", "peasant-game", "highway-robbery", "western-front",
-         "peasant-collapse", "dark-ages"]
+GAMES = ["full-game", "short-game", "highway-robbery", "western-front",
+         "peasant-collapse", "dark-ages", "peasant-draw"]
 # The last finished year to show (the script is cut at the next year's marker): moved on by the
 # Director as each year closes. Drop the game from here once its game.py has its own ending
 # (RESULT = export(...)).
 IN_PROGRESS = {}    # e.g. {"full-game": 12} while a game is being played
 # A game not started yet shows its setup only, until its first year is played.
-IN_PROGRESS.update({g: 0 for g in ("peasant-game", "dark-ages")})
-IN_PROGRESS.update({"peasant-game": 6})
+IN_PROGRESS.update({g: 0 for g in ("dark-ages",)})
+IN_PROGRESS.update({"dark-ages": 4})
 # The game selector's title and subtitle while a game is still being played (its game.py keeps
 # its own until the game ends, when the subtitle gets the result).
-IN_PROGRESS_TITLE = {"peasant-game": ("The peasant's game", "Four players · in progress"),
-                     "dark-ages": ("The Dark Ages", "Six players · not started")}
+IN_PROGRESS_TITLE = {"dark-ages": ("The Dark Ages", "Six players · in progress")}
 # The line under the game picker while a game is being played: the table and the story so far,
 # updated by the Director as the story moves (its game.py gets the full story when it ends).
 IN_PROGRESS_BLURB = {}

@@ -1,0 +1,8 @@
+move: tax 30%; build Winter Palace (split: crown pays all 20); salaries Official 30; land: the crown pays 10 of every 20 on any province's new squares this year (half of each), and 2 squares for Province 1, which the crown pays in full
+say: "Thirty percent again, friends. Doubled families deserve an undoubled tax, and you may tell your grandchildren the Baron reign never squeezed a cradle. The crown pays half of every new field in China, and I'm raising a Winter Palace so the canals can reach Silke and Paddy next. Clark, your thirty, as promised: not one grain short and not one day late. I heard you mention 'more mouths', and I heard that thirty is what I promised."
+aside: "The Winter Palace is cheap, and it opens the way to the coastal canals, which buys me two grateful peasants against any move on this chair. Half a subsidy on every square keeps me safe from revolt without paying for Clark's whole farm, and those two squares of my own should stop the crown losing money every year."
+whisper: none
+
+---
+Ruling: tax 30% (24 from the four +20 provinces; Rob's income is 0, so nothing from him either way). Winter Palace, crown alone, 20: one project. Salaries: Clark 30 at the year's end (as Official and I Ching reader together, as last year). Land: the crown pays 10 a square toward Silke's and Paddy's squares this year; 2 sea squares for Province 1 at 20 each, crown in full. A follow-up (039) asks where the Winter Palace and the two squares go.
+Aside misstatement: "Clark's whole farm" -- Clark can't buy new land until all four Wall links above Province 2 stand (none do); only Silke and Paddy (and the crown) may buy this year. Stated plainly in Rich's next prompt.

@@ -172,14 +172,24 @@ header .piece img{filter:brightness(0) invert(1)}
 .hint-touch,body.touch .hint-mouse{display:none}
 body.touch .hint-touch{display:block}
 
-.games{display:flex;gap:.5rem;margin:1rem 0 0;overflow-x:auto;padding-bottom:.15rem}
-.game{flex:none;text-align:left;border:1.5px solid rgba(255,255,255,.55);background:transparent;color:#fff;
-  padding:.55rem .8rem;cursor:pointer;font-family:var(--disp);min-width:11rem}
-.game b{display:block;font-size:.88rem;letter-spacing:.04em}
-.game span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;opacity:.85;margin-top:.15rem}
-.game:hover{border-color:#fff}
-.game.on{background:#fff;color:var(--verm);border-color:#fff}
-.game:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.gamepick{position:relative;margin:1rem 0 0;max-width:30rem}
+.gamebtn{display:block;width:100%;text-align:left;border:1.5px solid rgba(255,255,255,.55);background:transparent;color:#fff;
+  padding:.55rem 2.4rem .55rem .8rem;cursor:pointer;font-family:var(--disp);position:relative}
+.gamebtn::after{content:"";position:absolute;right:.95rem;top:50%;width:.45rem;height:.45rem;margin-top:-.38rem;
+  border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg)}
+.gamebtn[aria-expanded=true]::after{transform:rotate(-135deg);margin-top:-.1rem}
+.gamebtn:hover{border-color:#fff}
+.gamebtn:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.gamebtn b,.game b{display:block;font-size:.88rem;letter-spacing:.04em}
+.gamebtn span,.game span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;opacity:.85;margin-top:.15rem}
+.games{position:absolute;left:0;right:0;top:calc(100% + .3rem);z-index:60;background:var(--paper);color:var(--ink);
+  border:2px solid var(--ink);box-shadow:0 8px 22px rgba(0,0,0,.28);max-height:70vh;overflow-y:auto}
+.games[hidden]{display:none}
+.game{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid var(--rule);background:transparent;
+  color:inherit;padding:.55rem .8rem .55rem 1rem;cursor:pointer;font-family:var(--disp)}
+.game:last-child{border-bottom:0}
+.game:hover,.game:focus-visible{background:var(--canvas);outline:none}
+.game.on{color:var(--verm);box-shadow:inset 4px 0 0 var(--verm)}
 header .blurb{font-family:var(--disp);font-size:.88rem;letter-spacing:0;text-transform:none;opacity:.95;
   margin:.75rem 0 0;max-width:46rem;line-height:1.45}
 .worktot{font-family:var(--mono);font-size:.68rem;color:var(--soft);margin-top:.3rem}
@@ -192,13 +202,8 @@ table.res td.stk img{width:1.35em;height:1.35em;vertical-align:-.3em}
 .legend .riv{background:#8CC3DD;height:.25rem;border:1px solid #2F6C92;border-radius:2px}
 .legend .land{background:#4F8FD8;opacity:.75;border:1px solid #175FB5}
 .legend .empty{background:repeating-linear-gradient(45deg,#E6DFCB 0 2px,#D3CAB2 2px 4px)}
-.game .brief{display:none}
 @media (max-width:640px){
   header{padding:1.2rem 1rem 1rem}
-  .games{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.35rem;overflow:visible}
-  .game{min-width:0;padding:.45rem .5rem}
-  .game b{font-size:.78rem;letter-spacing:.02em}
-  .game .long{display:none}.game .brief{display:block;font-size:.6rem;letter-spacing:.02em}
 }
 .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
 @media (max-width:640px){.final{padding:1.1rem 1rem 1.6rem}.final table{font-size:.78rem}.final th,.final td{padding:.38rem .35rem}}
@@ -207,7 +212,10 @@ table.res td.stk img{width:1.35em;height:1.35em;vertical-align:-.3em}
 <body>
 <header>
   <h1>Dynasty — Playthroughs</h1>
-  <div class="games" id="games" role="group" aria-label="Choose a playthrough"></div>
+  <div class="gamepick">
+    <button class="gamebtn" id="gamebtn" aria-haspopup="true" aria-expanded="false" aria-controls="games"></button>
+    <div class="games" id="games" role="menu" aria-label="Choose a playthrough" hidden></div>
+  </div>
   <p class="blurb" id="blurb"></p>
 </header>
 <nav class="tabs" id="tabs"></nav>

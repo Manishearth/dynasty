@@ -1,0 +1,69 @@
+{
+ "step": 1,
+ "lots": [
+  {
+   "lot": "2:CH",
+   "min": 2
+  },
+  {
+   "lot": "3:LD",
+   "min": 3
+  },
+  {
+   "lot": "5:DJ",
+   "min": 3
+  },
+  {
+   "lot": "6:WB",
+   "min": 2
+  }
+ ],
+ "bids": {
+  "Clark": {
+   "3:LD": {
+    "ceiling": 12,
+    "keep": {
+     "Paddy": 14
+    }
+   },
+   "5:DJ": {
+    "ceiling": 16
+   },
+   "6:WB": {
+    "ceiling": 16
+   }
+  },
+  "Reina": {
+   "2:CH": {
+    "ceiling": 9
+   },
+   "5:DJ": {
+    "ceiling": 11.5
+   },
+   "6:WB": {
+    "ceiling": 11.5
+   }
+  },
+  "Silke": {
+   "2:CH": {
+    "ceiling": 8
+   },
+   "6:WB": {
+    "ceiling": 7
+   }
+  },
+  "Paddy": {
+   "2:CH": {
+    "ceiling": 8
+   },
+   "3:LD": {
+    "ceiling": 9
+   },
+   "5:DJ": {
+    "ceiling": 8
+   }
+  },
+  "Rob": "pass"
+ },
+ "note": "Ceilings from 019-023; live raises on 5:DJ and 6:WB from 024 (Clark 16) and 025 (Reina 11.5)."
+}

@@ -1,0 +1,24 @@
+{
+ "step": 1,
+ "lots": [
+  {"lot": "3:LD", "min": 10},
+  {"lot": "5:DJ", "min": 2},
+  {"lot": "6:WB", "min": 2}
+ ],
+ "bids": {
+  "Rich": {
+   "3:LD": {"ceiling": 12},
+   "5:DJ": {"ceiling": 12},
+   "6:WB": {"ceiling": 16}
+  },
+  "Reina": "pass",
+  "Silke": {
+   "6:WB": {"ceiling": 1459}
+  },
+  "Paddy": {
+   "3:LD": {"ceiling": 375},
+   "5:DJ": {"ceiling": 400}
+  }
+ },
+ "note": "Ceilings from 172-175. Clark is Emperor and doesn't bid; Rob is in debt and can't."
+}

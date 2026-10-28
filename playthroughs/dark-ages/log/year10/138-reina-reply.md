@@ -1,0 +1,5 @@
+diary: Two years of fat harvests, and I've counted out more grain to the coast than I ever spent as Empress. I'm past a hundred now, though I still hold no pieces and Province 3 can't grow by a single field. I asked for ten each year with no conditions and both of them paid it gladly, and I warned Silke about the Scroll, and she did better than guard it: she bought Rob's own soldier and used it to knock W2 off the board. Rich has finished his own Wall and started on Clark's, he's paid Clark's thirty for nine years running, and he's buying fields in the north-east sea. He's even rebuilt his reserve. A crown like that won't be overthrown by complaints, and Clark knows it, so he just keeps counting. Rob is the danger, and he's poor and down to three soldiers, with two of them four rounds from that Scroll. What comes next is the same patient work. I keep the grain, I keep the coast, and I watch for the first set to change hands, because my Wall above Province 3 still has nothing built on it, and nobody at this table is going to build it for me.
+
+---
+
+Ruling: filed word for word in diaries/reina.md under Years 9-10.

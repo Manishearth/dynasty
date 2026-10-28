@@ -1,0 +1,8 @@
+move: tax 30%; build Great Wall above Province 1, the last 2 links (80, crown pays all; nobody else needs to agree); salaries Official 30; land: 10 a square on every peasant's new square this year (double the usual 5, because it's a good harvest), and two squares for Province 1, F22 and G23 (40, from the crown)
+say: "Thirty percent, my friends, the same as it's been for eight years. A good harvest doesn't give me licence to get greedy. The last two links of the Wall go up over Province 1, paid with real grain as I promised. In a year like this the crown pays ten a square on every new field on the coast, not five. And Clark, here's your thirty, not one grain short, so you can write that under whatever heading you like."
+aside: "Two hundred and forty in, and once the Wall, the land and Clark's thirty are paid, I'll finish the year with something like two hundred left. That's the first real cushion this crown has had, and it's there for the day I have to buy Rob a reason to look away from Silke's beach. Doubling the land money to ten costs me pennies next to Silke's five hundred, and it's much harder to call a revolt against a man who paid for your fields twice over."
+whisper: none
+
+---
+
+Ruling: tax 30% (Rob's income 0; he pays by choice), the last two Wall links above Province 1 (80, crown), 10 a square on the peasants' land, Clark 30 at the year's end. F22 and G23 are already Province 1's own squares (as F21 in Year 7, 098). With all four links standing after the build, Province 1's strip opens as well as the sea; Rich gets a land prompt after the build listing the squares he can buy.

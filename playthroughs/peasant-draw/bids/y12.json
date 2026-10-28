@@ -1,0 +1,16 @@
+{
+ "step": 1,
+ "lots": [
+  {"lot": "6:WB", "min": 2},
+  {"lot": "7:VA", "min": 2},
+  {"lot": "0:LD", "min": 2},
+  {"lot": "0:CH", "min": 2}
+ ],
+ "bids": {
+  "Graham": {},
+  "Paddy": {},
+  "Silke": {
+   "6:WB": {"ceiling": 10}
+  }
+ }
+}

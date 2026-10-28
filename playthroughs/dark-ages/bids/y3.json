@@ -1,0 +1,28 @@
+{
+ "step": 1,
+ "lots": [
+  {"lot": "2:CH", "min": 2},
+  {"lot": "5:DJ", "min": 4},
+  {"lot": "6:WB", "min": 4}
+ ],
+ "bids": {
+  "Clark": {
+   "5:DJ": {"ceiling": 0, "keep": {"Reina": 35}},
+   "6:WB": {"ceiling": 0, "keep": {"Reina": 20}}
+  },
+  "Reina": {
+   "5:DJ": {"ceiling": 28},
+   "6:WB": {"ceiling": 14}
+  },
+  "Silke": {
+   "2:CH": {"ceiling": 8},
+   "6:WB": {"ceiling": 4}
+  },
+  "Paddy": {
+   "2:CH": {"ceiling": 16},
+   "5:DJ": {"ceiling": 12}
+  },
+  "Rob": "pass"
+ },
+ "note": "Ceilings from 043-047."
+}

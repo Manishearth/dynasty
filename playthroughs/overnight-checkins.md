@@ -90,3 +90,25 @@ The peasant's game is paused after Year 10, waiting on Manish. Nothing is broken
   - Every finished game re-runs to the same grain, pile and entry count.
 - **Peasant's game:** rewound to the end of Year 6 (old Years 7-10 are in outtakes/). The Chapter 7 Storyteller is replaying Years 7-8. IN_PROGRESS is now 6.
 - **Page:** rebuilt, 7 games, 1,995 entries. Uncommitted.
+
+## 10:53
+
+- **Peasant's game: progressing.** The first take of Years 7-10 is restored as the live record (the Years 7-8 replay is in outtakes/years7-8-replay/). The Chapter 6 Storyteller is running a closing scene before Year 11: the table may agree to stop and score. Last finished year: 10.
+- **Dark Ages: blocked on Manish.** The deck (seed 350), actor's notes and setup are done. Its seven Storytellers aren't parked yet, because the app won't let a session start sessions on a turn begun by another session's message. It needs Manish to type a go-ahead in the Director's session.
+- **Highway Rob-bery** and **Western Front:** finished.
+- **Usage:** 5% of the 5-hour window (it resets at 11:10), 26% weekly.
+- **Page:** the peasant's game is back to Year 10. Rebuilt: 7 games, 2,123 entries. Uncommitted.
+
+## 12:53
+
+- **Peasant's game: progressing.** Year 11 is finished; the closing vote didn't end the game. The Chapter 9 Storyteller is playing Year 12, with a third vote on stopping after its salaries. If anyone still says no, it stops before Year 13 for Manish. Last finished year: 11.
+- **Dark Ages: progressing.** Manish's go-ahead got it moving. Chapters 1-2 are done (Years 1-4); Storyteller 3 is playing Chapter 3 (Years 5-6), with a revolt looking close. Last finished year: 4.
+- **Highway Rob-bery** and **Western Front:** finished.
+- **Usage:** 6% of the 5-hour window (resets 16:20), 28% weekly.
+- **Page:** peasant's game through Year 11, the Dark Ages through Year 4 (subtitle now "in progress"). Rebuilt: 7 games, 2,275 entries. Uncommitted.
+
+## 13:05 (peasant's game finished)
+
+- **Peasant's game: finished.** An agreed stop after Year 12 (Note 19): everyone in the seat they drew, Reina winning by keeping the throne. Dropped from IN_PROGRESS; the page shows it in full (313 entries).
+- **Page:** rebuilt: 7 games, 2,306 entries. Uncommitted.
+- **For Manish:** the Director's open rules question (should a mid-game agreed stop be allowed, and can one player block it?) and three briefs.py notes in peasant-game-status.md.
