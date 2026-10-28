@@ -74,6 +74,10 @@ SendMessage the Director only: at the end of each year (one short paragraph: wha
 - Add the round's rows to `log.md`, with the tokens each completion notice reported.
 - Record usage at the start and end of a session (`get_usage`).
 
+## Rulings made during the game
+
+A rule Manish settles mid-game goes in the ledger, the log and `RULINGS.md`, but never on the page as news ("a new ruling, taking effect now"). The page plays as though the rule had always been there. If the table needs it, state the rule plainly at the point where it applies. A player who asks for a ruling at the table, and gets an answer, is part of the game and stays.
+
 ## Two traps in the tools
 
 - **`act(deltas=...)` is keyed by player id, not seat.** After a seat change the two differ, so look the player up with `pid(seat)`.

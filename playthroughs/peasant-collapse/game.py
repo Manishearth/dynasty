@@ -241,7 +241,7 @@ march({"W1":"O21", "W2":"Q23", "W3":"R14"}, "Robert Land marches: W3 steps onto 
  take={"W3": ("BB", "T14")})
 say("Rob", "Graham, my lad's just come through your garden gate and he's very taken with your brush. He'll be keeping it. Paddy, he's one step from your customs house now, so put the kettle on. And Silke, lovely scroll, that. It'd look even better in the desert.")
 salaries({7:5}, text="Reina pays Graham his 5 for reading the cards.")
-act("A table ruling from Manish, taking effect now: with no Official, Gentry or Scholar at this table, the Silk Peasant stands in for the upper class. A Silk Peasant who completes the Silk set (a Scroll, a Brush, the Vase and the Bowl) and holds 20 grain may take the throne: they return their realia, the Emperor hands over the whole reserve, draws 60 and takes the Silk seat. The Rice and Wheat Peasants still climb to Silk first.", map_hl=[1,5])
+act("With no Official, Gentry or Scholar at this table, the Silk Peasant stands in for the upper class. A Silk Peasant who completes the Silk set (a Scroll, a Brush, the Vase and the Bowl) and holds 20 grain may take the throne: they return their realia, the Emperor hands over the whole reserve, draws 60 and takes the Silk seat. The Rice and Wheat Peasants still climb to Silk first.", map_hl=[1,5])
 
 # ===== CHAPTER 3: Next Year's Another Year
 # ============================== YEAR 5 ==============================
@@ -321,7 +321,7 @@ say("Reina", "Take the book, darling, it's all in there, and you'll find your ta
 # ===== CHAPTER 4: A Lovely Thing to Owe
 # ============================== YEAR 7 ==============================
 R(7, "The seed rots", "dribble3")
-act("A table ruling from Manish, taking effect now: a new Warlord keeps the army where it stands and starts the objective afresh. Reina commands W1, W2 and W3; only raids she makes herself count. Her targets are every other player in a realia-holding seat (Graham, Silke and Paddy), and the Emperor is still left out, so Rob is safe while he holds the throne.", map_hl=[8,5,6,7])
+act("A new Warlord keeps the army where it stands and starts the objective afresh. Reina commands W1, W2 and W3; only raids she makes herself count. Her targets are every other player in a realia-holding seat (Graham, Silke and Paddy), and the Emperor is still left out, so Rob is safe while he holds the throne.", map_hl=[8,5,6,7])
 act("Graham turns the I Ching card: Bad Harvest. Every province collects a bad harvest, and with the population doubled, every province eats more than it grows.", map_hl=[1,5,6,7,8])
 harvest("Silke pays out the harvest; this year every province pays into the Harvest Pile instead.")
 act("Every province pays the pile this year: Rob 110, Graham 70, Paddy 70, Silke 60 (her canal section earns her 10) and Reina 40. Silke falls to 32 in debt and Paddy to 10 in debt; neither holds a piece on the board to sell back. Until a debt is paid that player can't bid, buy, trade, give grain or change seats, and every grain they receive pays it first. A player in debt is a cause for revolt.", map_hl=[6,7])
