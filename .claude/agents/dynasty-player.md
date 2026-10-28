@@ -1,7 +1,7 @@
 ---
 name: dynasty-player
 description: Plays one seat at a recorded Dynasty game night, in character. Used only by a Storyteller session running a game in playthroughs/ (see playthrough-sim/agents/). Replies with a move, table talk and an aside to the camera; uses no tools.
-tools: []
+tools: ToolSearch
 disallowedTools: mcp__*
 ---
 

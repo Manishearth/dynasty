@@ -63,6 +63,15 @@ At eight players there are up to seven lots a year (Provinces 2–7, then any pi
 - **Stay lean:** check each move with `run.py --quiet` (ok, the last line, the grain); print the full board only when you need it.
 - Narrate each climb from the ceilings. Use each loser's say for their bid and their drop-out line for their pass. A small table may still run one lot at a time (`auction --lot ... --min ...`).
 
+## A revolt
+
+Run it as a short exchange, not a single round of answers (R: Calling off a revolt):
+1. **The call:** the caller names the cause, and each other player agrees or doesn't.
+2. **The answer:** with two agreeing, the Emperor gets a `free` prompt to answer: pay, cut the tax, fund land, or promise.
+3. **Stand or take it back:** the caller and each backer get a `free --short` prompt with the answer, and either stand by the revolt or take it back.
+
+It stands only with the caller and two others still behind it. If answers cross, ask the players what they meant; never decide who came first by seat order. When it stands, set `CHAOS = True` in `game.py`; set it back to `False` at the acclamation.
+
 ## Reporting to the Director
 
 SendMessage the Director only: at the end of each year (one short paragraph: what happened, your context size); at the end of the chapter; and when something needs a decision (a safeguard trip, an engine error, a rules question, the usage limits). Don't stop for anything else.

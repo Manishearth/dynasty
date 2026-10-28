@@ -137,7 +137,7 @@ def setup(active, key, title, subtitle, blurb, short=""):
     global ACTIVE, PLAYERS, seat, grain, stock, held, bonus, raids, pw, pw_at, board, pile_stock, land, pop_cards
     global pile, ENTRIES, ROUNDS, META, MULT, CUR_Q, CUR_INC, CUR_HARV, CUR_ROUND
     global dis_next, used_cards, pending_bonus, warlord_got, SOLDIERS, ARMY, NORAID
-    global _troops_round, _done, _named, hired
+    global _troops_round, _done, _named, hired, LAST_BUILD, CHAOS
     ACTIVE = sorted(active)
     PLAYERS = list(ACTIVE)
     seat = {s:s for s in ACTIVE}
@@ -161,6 +161,8 @@ def setup(active, key, title, subtitle, blurb, short=""):
     _troops_round = None
     _done = set(); _named = set()
     hired = {}             # round -> soldiers the Warlord hired (RULINGS.md, reinforcements)
+    LAST_BUILD = None      # the round the last public work was built in (one project a round, N13)
+    CHAOS = False          # set True by the script after a revolt, False once an Emperor is acclaimed
     ENTRIES = []; ROUNDS = []
     MULT = 1; CUR_Q = {}; CUR_INC = {}; CUR_HARV = {}; CUR_ROUND = None
     dis_next = {s:0 for s in ACTIVE}
@@ -403,6 +405,9 @@ def build(name, cost, split, wall=None, canal=None, key=None, hover=None, text=N
     """split: {seat: amount}. wall/canal: {seat: n}. key: 'Summer Palace', 'irr2', ...
     at: where a palace ('G20') or a cut-out ('P14:Q15') goes; the Wall and the Canal
     have printed places on the map, built in link and section order."""
+    global LAST_BUILD
+    assert not CHAOS, "no public works under Chaos (Note 17)"
+    LAST_BUILD = CUR_ROUND
     d = {}
     for s,a in split.items(): d[pid(s)] = d.get(pid(s),0)-a
     assert abs(sum(split.values())-cost) < 1e-6, (name, cost, split)
@@ -451,6 +456,7 @@ def buy_land(s, squares, split, text, hover=None):
     the Warlord can raid it."""
     global pile
     assert CUR_ROUND and CUR_ROUND >= 1
+    assert not CHAOS, "no new land under Chaos: there's no Emperor to share the cost (RULINGS, readings)"
     assert s in ACTIVE and s in LAND_WHERE, f"Province {s} can't develop new land"
     assert MULT >= 2, f"the population must have doubled before anyone develops (it's x{MULT:g})"
     if s in (2, 3): assert pw["wall"][s] == 4, f"Province {s} needs all four Wall links above it first"
@@ -627,7 +633,7 @@ def swap(a, b, note, hover=None, draw=60, check=True, at=None):
     held[pb] = {}
     _unplace_all(pb); _unplace_all(pa)
     grain[pa] = round(grain[pa]+grain[pb], 2); grain[pb] = 0.0
-    take = min(draw, max(0,pile)); grain[pb] = round(grain[pb]+take, 2); pile = round(pile-take, 2)
+    grain[pb] = round(grain[pb]+draw, 2); pile = round(pile-draw, 2)   # in full, even below zero (RULINGS)
     seat[a], seat[b] = pb, pa
     for s in SOLDIERS.values():           # bought soldiers stay with the seat too (RULINGS)
         if s["side"] == "B" and s["owner"] in (pa, pb): s["owner"] = pb if s["owner"] == pa else pa

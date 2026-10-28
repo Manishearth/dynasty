@@ -132,7 +132,7 @@ The board is `../map.json`, the same geometry as `../map.svg`: 30 × 22 squares,
 
 ## The Harvest Pile
 
-The pile is a real bank. It starts at 2,500 million — the face value of the bags in the box — and the Setup round deals 60 from it to each player.
+The pile is a bank that never runs out. It starts at 2,500 million — the face value of the bags in the box — and the Setup round deals 60 from it to each player. The rulebook sets no limit, so every payout is made in full and the pile may go below zero, as it did in All's Quiet on the Western Front (`RULINGS.md`).
 
 **Out:** every positive income, the 60 dealt at setup, and 60 to each player displaced by a seat change.
 **In:** every negative income, each auction price less the seller's commission, 15 of each soldier sale, disasters, repair levies, and damages.

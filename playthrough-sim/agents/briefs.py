@@ -333,6 +333,15 @@ def last_round(ns):
     LAST_ROUND = <n> has one; every other game runs to §18's ending, unchanged."""
     return ns.get("LAST_ROUND")
 
+def auctions_begun(ns):
+    """True once this year's auctions have started: the public-works step (land included) is over."""
+    start = ns["ROUNDS"][-1]["start"] if ns["ROUNDS"] else 0
+    return any(e["k"] == "lot" for e in ns["ENTRIES"][start:])
+
+def works_done(ns):
+    """True once this year's one project (N13) is built, or its works step is over."""
+    return ns.get("LAST_BUILD") == ns["CUR_ROUND"] or auctions_begun(ns)
+
 def endgame_note(ns):
     """Near the end, new land may never pay back: a square pays from next year's harvest, and the game
     ends the moment the last owed work is built (§18), or after the agreed last round (Note 19). From the
@@ -344,21 +353,30 @@ def endgame_note(ns):
                 "(Note 19, §18). A square of new land pays from next year's harvest, so a square bought now never pays back. "
                 "Grain in hand breaks ties at the end.")
     left = [(w, (n - ns["built_count"](w)) * c) for w, n, c in ns["owed"]() if ns["built_count"](w) < n]
-    if last and r == last - 1 and len(left) != 1:   # one work left can end it sooner: that note says so
+    years = len(left) + works_done(ns)            # one project a year; this year's counts only if still to come
+    if last and r == last - 1 and years != 1:     # one work left can end it sooner: that note says so
         return (f"**One round after this one:** the table stops after Year {last} (Note 19). A square of new land bought now "
                 f"pays back once at best, from Year {last}'s harvest. Grain in hand breaks ties at the end.")
-    if len(left) > 2 or not left: return None     # nothing owed: the game is over
+    if years > 2 or not left: return None         # nothing owed: the game is over
     what = " and ".join(f"the {w} ({c:g})" for w, c in left)
-    if len(left) <= 1:
-        return (f"**The game can end this year:** {what or 'nothing'} is still owed, and the game ends the moment the last work "
+    if years == 1:
+        return (f"**The game can end this year:** {what} is still owed, and the game ends the moment the last work "
                 "is built, before the auction (§18). A square of new land pays from next year's harvest, so a square bought now "
                 "may never pay back. Grain in hand breaks ties at the end.")
+    if len(left) == 1:
+        done = ("this year's project is already built" if ns.get("LAST_BUILD") == r else "this year's works step is over")
+        return (f"**The game can end next year:** {what} is still owed, and {done} (one project a year, §12), "
+                "so it can go up next year at the earliest, and the game ends the moment it does "
+                "(§18). A square of new land bought now pays back once if the game ends next year, and 20 more for every year "
+                "it runs on.")
     return (f"**The game can end next year:** two projects are still owed, {what}, one a year (§12), and the game ends the "
-            "moment the last is built (§18). A square of new land bought now pays back once, from next year's harvest, at best.")
+            "moment the last is built (§18). A square of new land bought now pays back once if the game ends next year, "
+            "and 20 more for every year it runs on.")
 
 def land_open(ns, seat):
     """None if the seat may buy new land now, else why not (§13, engine buy_land)."""
     if seat not in ns["LAND_WHERE"] or seat not in ns["ACTIVE"]: return "no new land for this seat"
+    if ns.get("CHAOS"): return "no new land under Chaos: there's no Emperor to share the cost"
     if ns["MULT"] < 2: return f"the population hasn't doubled (x{ns['MULT']:g})"
     if seat in (2, 3) and ns["pw"]["wall"][seat] < 4:
         return f"your strip opens once all four Wall links above you stand ({ns['pw']['wall'][seat]} of 4 built)"
@@ -389,15 +407,18 @@ def land_line(ns, seat):
     n = lambda k: f"{k:g} square" + ("" if k == 1 else "s")
     ahead = f" If the next population card comes (x{nxt:g}), you'd need {n(sq(nxt))} more than you have." if nxt else ""
     shut = land_open(ns, seat)
-    if m >= 2 and not shut and endgame_note(ns):
-        return "- " + endgame_note(ns) + (f" Your average-year income now: {avg(m):+g}." if seat != 1 else
+    end = endgame_note(ns)
+    next_year = bool(end) and end.startswith("**The game can end next year")   # two projects: the break-even line stays
+    if m >= 2 and not shut and end and not next_year:
+        return "- " + end + (f" Your average-year income now: {avg(m):+g}." if seat != 1 else
             " As Emperor, keep enough in the reserve to build what's still owed: a crown in debt can't pay a share of a work (N7).")
     if m >= 2 and not shut:
         return (f"- **New land is open** (Section 13): 20 a square, and the Emperor may pay any part of it. Each adds 20 "
                 f"to every harvest from next year, so it pays for itself in one year. Your average-year income now: {avg(m):+g}; "
                 f"to break even you'd need {n(sq(m))} more than you have.{ahead} Buy ahead: in debt you can't pay your share."
                 + (" As Emperor you may pay any part of anyone's squares, even all of it: every square you fund raises "
-                   "that province's taxable income and what it can put toward the works." if seat == 1 else ""))
+                   "that province's taxable income and what it can put toward the works." if seat == 1 else "")
+                + (" " + end if next_year else ""))
     if m >= 2:
         return (f"- **New land is shut to you for now:** {shut}. Your average-year income now: {avg(m):+g}; "
                 f"to break even you'd need {n(sq(m))}.{ahead}")
@@ -599,7 +620,13 @@ def menu_rent(ns):
             "", "Peasants' grain now: " + ", ".join(f"{SH[ns['pid'](s)]} {ns['grain'][ns['pid'](s)]:g}" for s in (5, 6, 7) if s in A) + "."]
     return "\n".join(out)
 
-def menu_collect(ns, rate):
+def salary_line(ns, player, seat, job):
+    """The holder of the seat is owed its salary; an appointee doing the job isn't (rules-digest step 9)."""
+    if seat_of(ns, player) == seat: return "The Emperor owes you a salary of at least 5 at the end of the year."
+    return (f"You do this as the Emperor's appointee, not as the {job}: you're paid only what the Emperor chooses to pay "
+            "you, at the end of the year.")
+
+def menu_collect(ns, rate, player):
     """The Official collects the tax the Emperor declared and delivers it to the crown."""
     SH = ns["SHORT"]; A = ns["ACTIVE"]; inc = ns["CUR_INC"]; r = float(rate) / 100
     rows = [f"{SH[ns['pid'](s)]} {ns['pay_down'](max(0, inc[s]) * r):g}" for s in A if s not in (1, 8)] if inc else []
@@ -607,10 +634,10 @@ def menu_collect(ns, rate):
     out = ["## Your move: collecting the tax", "",
            f"The Emperor has declared **{rate}%**. Owed on this year's harvest income, rounded down to the half million: "
            + (", ".join(rows) + f"; {tot:g} in all" if rows else "nothing paid out yet") + "." + (" The Warlord may refuse to pay (and usually does)." if has_warlord(ns) else "") + " You collect it and deliver it to the crown, and you make certain nobody cheats.",
-           "", "The Emperor owes you a salary of at least 5 at the end of the year."]
+           "", salary_line(ns, player, 2, "Official")]
     return "\n".join(out)
 
-def menu_iching(ns):
+def menu_iching(ns, player):
     """The Scholar turns the year's card (already applied by the engine) and keeps the counter."""
     rd = ns["ROUNDS"][-1]; prev = ns["ROUNDS"][-2]["mult"] if len(ns["ROUNDS"]) > 1 else 1
     m = ns["MULT"]
@@ -624,7 +651,7 @@ You turn this year's card and read it aloud to the table:
 
 {pop} Announce the figure and the multiple, so everyone reads the right row of their income table. If the card names provinces that play a personal disaster, each plays the next one in their booklet.
 
-The Emperor owes you a salary of at least 5 at the end of the year."""
+{salary_line(ns, player, 4, "Scholar")}"""
 
 def menu_land(ns, player):
     SH = ns["SHORT"]; p = pid_of(ns, player); seat = ns["sid"](p)
@@ -678,7 +705,8 @@ def continuity(ns, player):
 def land_reminder(ns, player):
     """From the first doubling, new land rides along in every free menu of an eligible seat."""
     seat = seat_of(ns, player)
-    if seat in ns["LAND_WHERE"] and not land_open(ns, seat) and ns["grain"][pid_of(ns, player)] >= 0 and not ns["all_built"]():
+    if (seat in ns["LAND_WHERE"] and not land_open(ns, seat) and ns["grain"][pid_of(ns, player)] >= 0 and not ns["all_built"]()
+            and not auctions_begun(ns)):
         return ("**New land is open to you** this year (your card gives your numbers): squares you can buy now: "
                 f"{ranges(ns, land_frontier(ns, seat))}. Add `land <squares>; I pay <n>, asking the crown for <n>` to your move if you want any."
                 + (" " + endgame_note(ns) if endgame_note(ns) else ""))
@@ -714,9 +742,9 @@ def prompt(n, player, kind, lot=None, minimum=None, menu=None, dry=False, lots=N
     elif kind == "rent":
         parts.append(menu_rent(ns)); fmt = "move: rent <n> from each peasant | rent <name> <n>, ... | no rent\n" + FORMAT_TAIL
     elif kind == "collect":
-        parts.append(menu_collect(ns, rate)); fmt = "move: collect as declared | <anything else you do>\n" + FORMAT_TAIL
+        parts.append(menu_collect(ns, rate, player)); fmt = "move: collect as declared | <anything else you do>\n" + FORMAT_TAIL
     elif kind == "iching":
-        parts.append(menu_iching(ns)); fmt = "move: read\n" + FORMAT_TAIL
+        parts.append(menu_iching(ns, player)); fmt = "move: read\n" + FORMAT_TAIL
     elif kind == "land":
         parts.append(menu_land(ns, player)); fmt = fmt_land(ns, player) + FORMAT_TAIL
     elif kind == "diary":     # the chapter's close: the entry only, no move, say or aside

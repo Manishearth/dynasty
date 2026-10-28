@@ -56,7 +56,7 @@ These are Manish's standing preferences, gathered from the conversations. Treat 
 **Rules fidelity**
 - These are **authored** games: a person wrote every choice. The engine does all the arithmetic and refuses illegal moves, so every number on the page follows from the rules. Use the guards; never weaken one to make a story fit. Change the story instead.
 - The I Ching deck is the real twenty-card deck in a game-consistent order, never repeating a card within a game. The page shows the reworded text from `i-ching.json`.
-- The Harvest Pile is a real bank: 2,500 at the start, less 60 per player.
+- The Harvest Pile is a bank that never runs out: 2,500 at the start, less 60 per player, and it pays in full even below zero.
 - Disasters are applied in booklet order. Public-works bonuses start the round after the work is built. Seat changes need the complete set and 20 grain in hand.
 - **Be strict about soldiers** (Note 16). Every soldier, the Warlord's included, moves at most one square a round, diagonals allowed; a Warlord soldier raids the square it steps onto; crossing a river or a public work costs 5; bought soldiers start in their owner's province and can't move until it's been raided, and then move after the Warlord's; capture is horizontal or vertical only. The engine tracks every square and refuses illegal moves.
 - **Placement is a choice.** Every piece placed on the board goes on a square the player picks, and the hover says why. Realia is placed the moment it's bought or traded (Note 10). Palaces go on chosen squares of Province 1; cut-outs at their suggested sizes. A player keeps a precious piece deep inside their province, away from the frontier; the Warlord thinks about the same geography from the other side.

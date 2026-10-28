@@ -160,6 +160,8 @@ Only works in occupied provinces are owed (`owed()` in the engine). With all eig
 ## Revolt and Chaos (§16, N17)
 
 - **Who may revolt:** any player, if two others agree that one of these causes exists: the Emperor is unjust; taxes are consistently excessive; the reserve is too low; the works have been delayed too long; the Emperor can't control the Warlord; the Emperor won't subsidise new land; or any player is in debt.
+- **Calling one off:** once two others agree, the Emperor may answer (pay, cut the tax, promise anything). The caller and each backer then stands by it or takes it back, and it stands only with the caller and two others still behind it. The players settle any question of who answered first; no seat order decides it (R: Calling off a revolt).
+- **Under Chaos,** set `CHAOS = True` in `game.py` at the revolt and `CHAOS = False` at the acclamation: the engine then refuses works and new land, and `briefs.py` stops offering land.
 - **Chaos:** no tax, salaries or works until a new Emperor is acclaimed by counting grain, soldiers and friends. A claimant who leads in one count is acclaimed if no rival leads in another; otherwise the claimant who leads in more counts (R: Counting the acclamation). Harvests are still paid and the Warlord still rides.
 
 ## Ending and scoring (§18, N18)

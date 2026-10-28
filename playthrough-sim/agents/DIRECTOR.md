@@ -54,7 +54,7 @@ Manish wants each game nudged towards its arc. The Director may steer, between c
 |---|---|---|
 | The deck | The seed, chosen before Chapter 1 with `deck_scout.py` | Never reorder the deck once play has started |
 | Actor's notes | The **Playing it** line in `ledger.md` | A stance, never a move. Change it between chapters, never mid-chapter |
-| Storyteller's tips | A public `note --to <Player>` beginning "Storyteller's tip:" | Strategy from what the table can see; at most one per player per chapter; never the deck, anyone's asides, whispers or limits. Each tip goes in `ledger.md` under "Storyteller's tips" |
+| Storyteller's tips | A public `note` beginning "Storyteller's tip:" and naming the player. File it without `--to`, which would show the note only to that player | Strategy from what the table can see; at most one per player per chapter; never the deck, anyone's asides, whispers or limits. Each tip goes in `ledger.md` under "Storyteller's tips" |
 | Length | Where a chapter or the game stops. For an agreed short game (Note 19), set `LAST_ROUND = n` in `game.py`, and `briefs.py` puts the round count, the scoring and the late-land warning on every card | Say so at the table before the last chapter starts |
 
 Never steer by misstating a rule, the board or anyone's grain; by changing what the engine computes; by writing a player's words; by passing one player another's hidden information; or by reading an agent's transcript. The players' choices stay theirs. **If the game goes somewhere else, let it,** record what happened, and change the subtitle. A design-check game (its `scenario.md` says so) is steered lightly or not at all, since its result is evidence.

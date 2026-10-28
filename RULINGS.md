@@ -21,7 +21,7 @@ These are the numbered notes, as of this writing. Appendix F has the full text a
 |---|---|---|
 | 1 | The can numbers the Warlord 5 and the peasants 6–8 | The map and all eight booklets win: peasants are 5–7 and the Warlord is 8 |
 | 2 | The can leaves the Warlord out of the seven-player game | It stands. The Warlord's booklet lists armies for 5–6 and 8+ players only |
-| 3 | Who does the Official's, Gentry's and Scholar's jobs when nobody holds the seat? | No Official: the Emperor collects tax or appoints a collector. No Scholar: the Emperor appoints someone to read I Ching and count population, and pays them the 5 salary. No Gentry: the Emperor appoints someone to bank the Harvest Pile, and nobody collects rent |
+| 3 | Who does the Official's, Gentry's and Scholar's jobs when nobody holds the seat? | No Official: the Emperor collects tax or appoints a collector. No Scholar: the Emperor appoints someone to read I Ching and count population. An appointee is paid only what the Emperor chooses; only the holder of the Official's or Scholar's seat is owed a salary (Manish, 2026-10-28). No Gentry: the Emperor appoints someone to bank the Harvest Pile, and nobody collects rent |
 | 4 | What about unoccupied provinces? | The crown need not build there (Emperor's booklet). Their realia stays in the box, and no rent is owed for an empty peasant province |
 | 5 | What order does a round go in? | The can's Order of Play, with rents (start of round), salaries (end of round) and provincial soldiers (after the Warlord moves) slotted in from the booklets. Round One skips only the card and the harvest and starts at rent (step 3) |
 | 6 | The printed income tables end at inconsistent populations | Consumption is always proportional to population. Tables are indexed by multiple (×1 to ×6); the cards cap the nation at 600 million, which is ×6 |
@@ -225,6 +225,14 @@ The details, settled by Manish on 2026-10-25:
 
 **Recorded in** rulebook Section 8 (the general rule), restated in Sections 9 (tax), 10 (commission) and 15 (disasters) and in the worked round (Appendix D); `playthrough-sim/engine.py` (`pay_down`).
 
+### Calling off a revolt
+
+**Ruling.** No seat order or fixed priority settles a revolt; the players do, at the table. Once a revolt is called and two others agree, the Emperor may answer it: pay off a debt, lower the tax, fund land, or promise anything at all. Then the caller and each backer either stands by the revolt or takes it back. It stands only if the caller and at least two others still back it. Removing the cause doesn't end a revolt on its own, and a promise doesn't bind (see "Deals are not binding"); each player judges for themselves whether the answer is enough. If answers cross, the players say what they meant; the Storyteller doesn't rule on who came first.
+
+**Why.** In Highway Rob-bery's last year, Reina paid off the debt behind Clark's revolt in the same round as the agreements came in, and the Director had to choose between "the agreements stand" and "the Emperor's answer comes first". Manish preferred neither: the players decide in situ, and a revolter may take the revolt back if the ruler makes promises. Settled by Manish on 2026-10-28. It replaces the Director's overnight precedent in that game's ledger (197).
+
+**Recorded in** `playthrough-sim/agents/rules-digest.md` and `STORYTELLER.md`.
+
 ### Counting the acclamation after a revolt
 
 **Ruling.** Anyone but the deposed Emperor may claim the throne, the Warlord included. Each claimant's grain in hand, soldiers on the board and friends (players backing that claim, one claim each) are counted. A claimant who leads in one count is acclaimed if no rival leads in another; otherwise the claimant who leads in more of the three is acclaimed. A tie in a count leads nobody. With no winner, Chaos goes on, and the table may count again whenever the claims change. The deposed Emperor may back a claimant, but their grain isn't counted.
@@ -340,7 +348,7 @@ The engine in `playthrough-sim/` makes some assumptions so it can keep a ledger.
 - **Debt follows Note 7.** The engine refuses a payment that would put a player in debt while they still hold realia (the script must call `sell_back` first), refuses bids, purchases, voluntary deals (`act(..., deal=True)`), shares of public works and soldier purchases by a player in debt or beyond their grain, and refuses a seat change by a player in debt, except a Chaos acclamation.
 - **Payments round down to the half million.** Commissions, tax and fractional disasters go through `pay_down`, so no ledger ever shows a quarter million.
 - **Disasters follow the seat.** A player who moves into a province carries on that booklet's disasters where the last occupant left off.
-- **The Harvest Pile is finite.** It starts at 2,500 million, the face value of the bags in the box, less the 60 dealt to each player.
+- **The Harvest Pile never runs out.** It starts at 2,500 million, the face value of the bags in the box, less the 60 dealt to each player. The rulebook only lists the bags; it sets no limit. So the pile pays every payout in full, and may stand below zero (All's Quiet on the Western Front, from Year 10; Manish, 2026-10-28).
 - **Warlord's objective:** one piece of realia from each other realia-holding player (not the Emperor); a later raid on the same player replaces the earlier entry. A palace raid charges 20 and doesn't count.
 - **Every soldier is tracked square by square.** The engine refuses a step longer than one square, a second move in a round, a province's soldiers moving before the Warlord's, a bought soldier moving before its province is raided, a diagonal capture, and a raid the Warlord's disaster forbids. Tolls and raids are computed from the squares, not chosen by the script.
 - **The Warlord's disasters.** "No raids on Provinces 5, 6 or 7" and "no raids this year" stop raids only; the Warlord's soldiers may still walk onto squares that don't raid.
