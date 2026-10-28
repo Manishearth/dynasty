@@ -1,0 +1,16 @@
+{
+ "step": 1,
+ "lots": [
+  {"lot": "2:CH", "min": 3},
+  {"lot": "3:LD", "min": 2},
+  {"lot": "4:BB", "min": 15},
+  {"lot": "5:DJ", "min": 800},
+  {"lot": "6:WB", "min": 40},
+  {"lot": "7:VA", "min": 10}
+ ],
+ "bids": {
+  "Clark": {"3:LD": {"ceiling": 25}, "6:WB": {"ceiling": 25}, "7:VA": {"ceiling": 30}},
+  "Reina": {"2:CH": {"ceiling": 80, "keep": {"Noah": 120}}, "3:LD": {"ceiling": 80, "keep": {"Paddy": 120}}, "4:BB": {"ceiling": 80, "keep": {"Paddy": 120}}},
+  "Paddy": {"3:LD": {"ceiling": 63}, "4:BB": {"ceiling": 57}, "6:WB": {"ceiling": 71}}
+ }
+}

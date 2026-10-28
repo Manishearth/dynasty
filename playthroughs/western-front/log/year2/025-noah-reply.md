@@ -1,0 +1,7 @@
+move: change places now with Reina
+say: "I won't dress it up. Clark holds a Deed, a Brush, a Jar, a Bowl and a Vase, which is a full set, and he has the grain to use it, so whoever waits loses the throne. Your Majesty, you paid me well and kept every word you gave, and I'm sorry it's you. I take the crown, my five pieces go home to their provinces, and you draw sixty and take the Scholar's chair. Clark, I'll pay you your ten this year as promised, and every year after. That's a promise, and I keep mine."
+aside: "Clark could have swapped seats with the throne the moment his Vase landed, so I've moved first, and I've done it out loud. Now I've got the crown reserve, nine hundred and thirty of works still owed, and a table that knows exactly how I got here."
+whisper: none
+
+---
+Ruling: legal. swap(4, 1) after lot 5, before lots 6 and 7. Noah returns all five pieces to stock (Customs House to 2, Deed to 3, Jar to 5, Bowl to 6, Vase to 7), keeps his 46.5 and takes Reina's reserve of 126. Reina draws 60 and becomes the Scholar in Province 4. Noah's "Clark holds ... a Bowl and a Vase" anticipates lots 6 and 7, which the limits have already settled for Clark; not corrected. Reina, now a bidder with 60 grain, is asked for her limits on lots 6 and 7 before they are sold (026): she joins the auction at the point she joined the bidders. Salaries now fall to Noah as Emperor (asked at year's end).

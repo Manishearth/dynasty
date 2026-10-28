@@ -1,0 +1,30 @@
+{
+ "step": 1,
+ "lots": [
+  {"lot": "6:WB", "min": 10},
+  {"lot": "7:VA", "min": 8}
+ ],
+ "bids": {
+  "Reina": {
+   "6:WB": {"ceiling": 4},
+   "7:VA": {"ceiling": 5, "keep": {"Graham": 15}}
+  },
+  "Graham": {
+   "7:VA": {"ceiling": 52}
+  },
+  "Silke": {
+   "6:WB": {"ceiling": 21},
+   "7:VA": {"ceiling": 15}
+  },
+  "Paddy": {
+   "6:WB": {"ceiling": 35}
+  },
+  "Rich": {
+   "7:VA": {"ceiling": 20}
+  },
+  "Noah": {
+   "6:WB": {"ceiling": 15}
+  }
+ },
+ "note": "Year 6, lots 6-7 after Paddy replaced Rich (124, 125)."
+}

@@ -1,0 +1,50 @@
+{
+ "step": 1,
+ "lots": [
+  {"lot": "2:CH", "min": 3},
+  {"lot": "3:LD", "min": 5},
+  {"lot": "4:BB", "min": 5},
+  {"lot": "5:DJ", "min": 15},
+  {"lot": "6:WB", "min": 9},
+  {"lot": "7:VA", "min": 10}
+ ],
+ "bids": {
+  "Clark": {
+   "3:LD": {"ceiling": 8},
+   "4:BB": {"ceiling": 10},
+   "5:DJ": {"ceiling": 8},
+   "6:WB": {"ceiling": 10, "keep": {"Silke": 22}},
+   "7:VA": {"ceiling": 10, "keep": {"Silke": 22}}
+  },
+  "Reina": {
+   "2:CH": {"ceiling": 4},
+   "4:BB": {"ceiling": 8},
+   "5:DJ": {"ceiling": 4},
+   "6:WB": {"ceiling": 4, "keep": {"Silke": 15}},
+   "7:VA": {"ceiling": 4, "keep": {"Silke": 15}}
+  },
+  "Paddy": {
+   "2:CH": {"ceiling": 14},
+   "3:LD": {"ceiling": 12},
+   "7:VA": {"ceiling": 8}
+  },
+  "Silke": {
+   "6:WB": {"ceiling": 69},
+   "7:VA": {"ceiling": 63}
+  },
+  "Rich": {
+   "2:CH": {"ceiling": 13},
+   "3:LD": {"ceiling": 12},
+   "4:BB": {"ceiling": 14},
+   "5:DJ": {"ceiling": 13},
+   "7:VA": {"ceiling": 17, "keep": {"Silke": 31}}
+  },
+  "Noah": {
+   "2:CH": {"ceiling": 28},
+   "3:LD": {"ceiling": 28},
+   "5:DJ": {"ceiling": 28},
+   "6:WB": {"ceiling": 28}
+  }
+ },
+ "note": "Year 7, log 146-151."
+}

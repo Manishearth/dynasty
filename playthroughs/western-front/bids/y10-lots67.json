@@ -1,0 +1,6 @@
+{"step":1,"lots":[{"lot":"6:WB","min":12},{"lot":"7:VA","min":10}],
+"bids":{"Clark":{"6:WB":{"ceiling":12},"7:VA":{"ceiling":12}},
+"Graham":{"6:WB":{"ceiling":25},"7:VA":{"ceiling":30}},
+"Rich":{"6:WB":{"ceiling":200}},
+"Reina":{"7:VA":{"ceiling":15}}},
+"note":"Year 10, lots 6-7 after Rich replaced Reina (235, 236). Reina now sells lot 6 at Rich's 12."}

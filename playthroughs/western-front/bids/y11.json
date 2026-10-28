@@ -1,0 +1,90 @@
+{
+ "step": 1,
+ "lots": [
+  {
+   "lot": "2:CH",
+   "min": 3
+  },
+  {
+   "lot": "3:LD",
+   "min": 40
+  },
+  {
+   "lot": "4:BB",
+   "min": 11
+  },
+  {
+   "lot": "5:DJ",
+   "min": 400
+  },
+  {
+   "lot": "6:WB",
+   "min": 10
+  },
+  {
+   "lot": "7:VA",
+   "min": 15
+  }
+ ],
+ "bids": {
+  "Clark": {
+   "3:LD": {
+    "ceiling": 35
+   },
+   "5:DJ": {
+    "ceiling": 20
+   },
+   "6:WB": {
+    "ceiling": 25
+   },
+   "7:VA": {
+    "ceiling": 25
+   }
+  },
+  "Rich": {
+   "5:DJ": {
+    "ceiling": 900
+   }
+  },
+  "Graham": {
+   "2:CH": {
+    "ceiling": 120
+   },
+   "3:LD": {
+    "ceiling": 160
+   },
+   "4:BB": {
+    "ceiling": 160
+   },
+   "6:WB": {
+    "ceiling": 180
+   }
+  },
+  "Reina": {
+   "2:CH": {
+    "ceiling": 30
+   },
+   "3:LD": {
+    "ceiling": 30
+   },
+   "4:BB": {
+    "ceiling": 30
+   },
+   "7:VA": {
+    "ceiling": 35
+   }
+  },
+  "Paddy": {
+   "3:LD": {
+    "ceiling": 45
+   },
+   "4:BB": {
+    "ceiling": 40
+   },
+   "6:WB": {
+    "ceiling": 40
+   }
+  }
+ },
+ "note": "Year 11, log 250-255. Silke in debt: no bids."
+}

@@ -1,0 +1,13 @@
+{
+ "step": 1,
+ "lots": [{"lot": "2:CH", "min": 3}, {"lot": "3:LD", "min": 3}, {"lot": "4:BB", "min": 3}, {"lot": "5:DJ", "min": 5}, {"lot": "6:WB", "min": 4}, {"lot": "7:VA", "min": 4}],
+ "bids": {
+  "Clark": {"3:LD": {"keep": {"Noah": 7}}, "5:DJ": {"keep": {"Noah": 7}}, "6:WB": {"ceiling": 14}, "7:VA": {"ceiling": 14}},
+  "Rich": {"2:CH": {"ceiling": 8}, "4:BB": {"ceiling": 8}, "5:DJ": {"ceiling": 8}, "6:WB": {"ceiling": 8, "keep": {"Clark": 11}}, "7:VA": {"ceiling": 8, "keep": {"Clark": 11}}},
+  "Noah": {"3:LD": {"ceiling": 12}, "5:DJ": {"ceiling": 14}},
+  "Silke": {"2:CH": {"ceiling": 8}, "3:LD": {"ceiling": 7}, "4:BB": {"ceiling": 8}, "6:WB": {"ceiling": 8}, "7:VA": {"ceiling": 8}},
+  "Paddy": {"2:CH": {"ceiling": 7}, "3:LD": {"ceiling": 7}, "4:BB": {"ceiling": 6}, "5:DJ": {"ceiling": 8}, "7:VA": {"ceiling": 7}},
+  "Graham": {"2:CH": {"ceiling": 7}, "3:LD": {"ceiling": 7}, "4:BB": {"ceiling": 6}, "5:DJ": {"ceiling": 8}, "6:WB": {"ceiling": 7}}
+ },
+ "note": "Ceilings from 017-022; minimums as each seller named them. Clark's Deed and Jar bids are keep-from Noah only."
+}

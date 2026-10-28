@@ -1,0 +1,90 @@
+{
+ "step": 1,
+ "lots": [
+  {
+   "lot": "2:CH",
+   "min": 3
+  },
+  {
+   "lot": "3:LD",
+   "min": 2
+  },
+  {
+   "lot": "4:BB",
+   "min": 9
+  },
+  {
+   "lot": "5:DJ",
+   "min": 250
+  },
+  {
+   "lot": "6:WB",
+   "min": 12
+  },
+  {
+   "lot": "7:VA",
+   "min": 10
+  }
+ ],
+ "bids": {
+  "Clark": {
+   "3:LD": {
+    "ceiling": 30
+   },
+   "5:DJ": {
+    "ceiling": 15
+   },
+   "6:WB": {
+    "ceiling": 12
+   },
+   "7:VA": {
+    "ceiling": 12
+   }
+  },
+  "Graham": {
+   "2:CH": {
+    "ceiling": 25
+   },
+   "4:BB": {
+    "ceiling": 25
+   },
+   "5:DJ": {
+    "ceiling": 30
+   },
+   "6:WB": {
+    "ceiling": 25
+   },
+   "7:VA": {
+    "ceiling": 30
+   }
+  },
+  "Reina": {
+   "3:LD": {
+    "ceiling": 190
+   },
+   "4:BB": {
+    "ceiling": 190
+   },
+   "7:VA": {
+    "ceiling": 220
+   }
+  },
+  "Rich": {
+   "5:DJ": {
+    "ceiling": 410
+   }
+  },
+  "Paddy": {
+   "2:CH": {
+    "ceiling": 30
+   },
+   "3:LD": {
+    "ceiling": 25
+   },
+   "4:BB": {
+    "ceiling": 20
+   }
+  }
+ },
+ "note": "Year 10, log 226-231. 3:LD reopens at 2 (unsold in Year 9). Silke in debt: no bids."
+}

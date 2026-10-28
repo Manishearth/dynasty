@@ -1,0 +1,26 @@
+## At the table since your last turn
+
+Graham: "Paddy, you kept clear of my Vase and I kept clear of your Jar, and you said you'd understand if I came for the chair. I'm coming for it. Three years ago I was paying fifteen for a Deed nobody wanted. Now I'll keep the book, and I'll write it in ink. Clark, you'll get the salary the count earns, and Noah, the Scholar's chair is a good place to start from. I'd know."
+
+Graham takes the Vase at 21 (Rich stopped at 20), completing the Scholar's set, and takes the throne from Paddy after the last lot. He returns all five pieces to stock and takes the reserve, 205 (264.5 in all). Paddy draws 60 and plays the Scholar, in Province 4.
+
+(Storyteller's note: Paddy, not Noah, takes the Scholar's chair: the displaced Emperor plays the seat the mover left. Noah stays the Wheat Peasant.)
+
+Graham: "Clark declared ten for the Official and five for the Scholar this year, and a declaration from the throne doesn't change because a new man is sitting in it. Clark, here's your ten, the same as you promised Rich. Paddy, five, the chair's rate, which is what I was paid in it, and it'll rise when the book says so."
+
+Salaries: Graham pays the Official, Clark, 10 and the Scholar, Paddy, 5, as Clark declared.
+
+End of Years 5 and 6. Seats now: Graham Emperor (249.5 in the reserve after salaries), Clark Official (70), Reina Gentry (43.5), Paddy Scholar (65), Silke Silk Peasant (81), Rich Rice Peasant (65.5), Noah Wheat Peasant (88). Silke holds a Customs House, Deed and Brush; Noah a Brush; nobody else holds a piece. 690 of the works are still owed; Province 3's Wall is finished.
+
+## Clark's diary
+
+The evening's chapter is over. Write Clark Grafton's diary entry for Years 5–6: a few sentences in Clark's own voice, about what happened, what it cost, and what comes next. Nobody at the table reads it.
+
+## Your reply
+
+Reply in exactly this format:
+
+```
+diary: <the entry, a few sentences>
+
+```

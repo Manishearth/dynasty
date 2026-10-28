@@ -1,0 +1,7 @@
+{"step":1,"lots":[{"lot":"6:WB","min":10},{"lot":"7:VA","min":15}],
+"bids":{"Clark":{"6:WB":{"ceiling":25},"7:VA":{"ceiling":25}},
+"Graham":{"6:WB":{"ceiling":180}},
+"Reina":{"7:VA":{"ceiling":35}},
+"Paddy":{"6:WB":{"ceiling":40}},
+"Noah":{"6:WB":{"ceiling":20},"7:VA":{"ceiling":20}}},
+"note":"Year 11, lots 6-7 after Rich took the throne (258, 259)."}

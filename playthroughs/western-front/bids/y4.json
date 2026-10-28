@@ -1,0 +1,94 @@
+{
+ "step": 1,
+ "lots": [
+  {
+   "lot": "2:CH",
+   "min": 3
+  },
+  {
+   "lot": "3:LD",
+   "min": 2
+  },
+  {
+   "lot": "4:BB",
+   "min": 2
+  },
+  {
+   "lot": "5:DJ",
+   "min": 5
+  },
+  {
+   "lot": "6:WB",
+   "min": 15
+  },
+  {
+   "lot": "7:VA",
+   "min": 20
+  }
+ ],
+ "bids": {
+  "Clark": {
+   "7:VA": {
+    "ceiling": 60
+   }
+  },
+  "Rich": {
+   "6:WB": {
+    "ceiling": 60
+   },
+   "7:VA": {
+    "keep": {
+     "Clark": 14
+    }
+   }
+  },
+  "Reina": {
+   "2:CH": {
+    "ceiling": 22
+   },
+   "3:LD": {
+    "ceiling": 20
+   },
+   "5:DJ": {
+    "ceiling": 22
+   }
+  },
+  "Silke": {
+   "2:CH": {
+    "ceiling": 9
+   },
+   "3:LD": {
+    "ceiling": 11
+   },
+   "4:BB": {
+    "ceiling": 21,
+    "keep": {
+     "Graham": 23
+    }
+   }
+  },
+  "Paddy": {
+   "3:LD": {
+    "ceiling": 14
+   },
+   "5:DJ": {
+    "ceiling": 10
+   }
+  },
+  "Graham": {
+   "2:CH": {
+    "ceiling": 16
+   },
+   "4:BB": {
+    "ceiling": 32
+   },
+   "5:DJ": {
+    "ceiling": 17
+   },
+   "6:WB": {
+    "ceiling": 10
+   }
+  }
+ },
+ "note": "Ceilings from 064-069; minimums as each seller named them."
+}

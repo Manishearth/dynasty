@@ -1,0 +1,37 @@
+{
+ "step": 1,
+ "lots": [
+  {"lot": "2:CH", "min": 3},
+  {"lot": "3:LD", "min": 21},
+  {"lot": "5:DJ", "min": 2},
+  {"lot": "6:WB", "min": 12},
+  {"lot": "7:VA", "min": 10}
+ ],
+ "bids": {
+  "Clark": {
+   "3:LD": {"ceiling": 8},
+   "5:DJ": {"ceiling": 6},
+   "6:WB": {"ceiling": 8},
+   "7:VA": {"ceiling": 7}
+  },
+  "Silke": {
+   "5:DJ": {"ceiling": 301, "keep": {"Rich": 301}}
+  },
+  "Paddy": {
+   "2:CH": {"ceiling": 2}
+  },
+  "Reina": {
+   "2:CH": {"ceiling": 20},
+   "3:LD": {"ceiling": 20},
+   "6:WB": {"ceiling": 2, "keep": {"Noah": 150}},
+   "7:VA": {"ceiling": 20}
+  },
+  "Rich": {
+   "5:DJ": {"ceiling": 200}
+  },
+  "Noah": {
+   "6:WB": {"ceiling": 329}
+  }
+ },
+ "note": "Year 9, log 197-202. 5:DJ reopens at 2 (unsold in Year 8)."
+}

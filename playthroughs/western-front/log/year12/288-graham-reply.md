@@ -1,0 +1,6 @@
+move: replace Noah
+say: "Noah, I've got you written down four times for saying sorry, and once for the fourth grain you wouldn't take back. That one is to your credit, so I'm not saying sorry to you now. The Gentry's chair is mine, and the silk coast is yours. It's the best field in China, and the crown paid for most of it."
+aside: "That's one rung up. I keep my grain, take Noah's two hundred and thirty-eight, and all I'll need next year is a single Jar. The only Jars in China are on the coast I'm handing him, so now we'll see what Noah thinks a chair's price is."
+whisper: none
+---
+Ruling: legal; Graham (Silk) replaces Noah (Gentry) at the year's end. The Deed goes back to Province 3's stock; his Customs House, Brush, Bowl and Vase move to Province 3, and he is asked for their squares. Noah returns nothing (holds nothing), draws 60 from the Pile (paid in full under the provisional reading; the Pile is negative), and becomes the Silk Peasant with Province 5's land and the four Jars in stock. Aside misstates Noah's grain: 254, not 238 (his Deed's quarter, 16, came in at lot 3); the board in his next prompt shows it. (The agent's trailing note confirming earlier rulings left out of the filed reply.)

@@ -1,0 +1,7 @@
+move: tax 30%; build Province 7 Reservoir (split: crown pays all 60); salaries Official 10, Scholar 10
+say: "Here are the sums, all of them. Thirty percent of thirty-five is ten and a half from each of you, sixty-three in all. The crown had a hundred and ninety-nine and a half, so with the tax that's two sixty-two and a half. Sixty goes on the Reservoir in Graham's province, which is twenty more harvest for him every year, and twenty goes to Clark and Reina, ten each as I promised. That leaves a hundred and eighty-two and a half, and the works owed come down from nine hundred and thirty to eight-seventy. Reina, I haven't forgotten whose hand turned the card. Graham, this one's yours, and Silke and Paddy, the Winter Palace comes next so your canals can follow."
+aside: "Rich has been telling the peasants the crown keeps its grain. A reservoir they can see answers that better than anything I could say, and Graham gets an extra twenty every harvest from now on. I kept the tax at thirty so nobody can say I took more than the land can give, and I'm keeping the rest in reserve because when the population doubles I'll need it for new land."
+whisper: none
+
+---
+Ruling: legal. Tax 30% (63). The Province 7 Reservoir is the crown's own work (60, paid in full); no prerequisite. It adds 20 to Province 7's harvest from next year. Salaries 10/10 at the end of the year. The Reservoir's square is asked of Noah (039).

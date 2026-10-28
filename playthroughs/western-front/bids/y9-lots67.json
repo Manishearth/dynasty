@@ -1,0 +1,14 @@
+{
+ "step": 1,
+ "lots": [
+  {"lot": "6:WB", "min": 12},
+  {"lot": "7:VA", "min": 10}
+ ],
+ "bids": {
+  "Clark": {"6:WB": {"ceiling": 8}, "7:VA": {"ceiling": 7}},
+  "Graham": {"6:WB": {"ceiling": 14}, "7:VA": {"ceiling": 15}},
+  "Reina": {"6:WB": {"ceiling": 2, "keep": {"Noah": 150}}, "7:VA": {"ceiling": 20}},
+  "Noah": {"6:WB": {"ceiling": 329}}
+ },
+ "note": "Year 9 lots 6-7 after Silke took the throne; Graham's limits (205)."
+}

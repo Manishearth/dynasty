@@ -1,0 +1,7 @@
+move: 5:DJ R20; replace Reina
+say: Reina, you told me plainly you were one piece from a chair, and I'm grateful, truly, because you've always been straight with me. That's why I'm so terribly sorry to do this. The Silk Peasant's coast, if you'll allow me, and the rice shore is yours, with the canal Graham built running right through it. Two-fifty was the table's price, and I'm afraid this is what it bought.
+aside: Reina was four pieces down with five hundred and sixty-six in her purse and a Vase coming up at ten, so she was the one person who could sit down right behind me, and now that purse is mine and her set's back in the stock. Seven hundred and forty-six grain and fifty-seven squares of coast, and this time I've kept enough back to stop whoever's behind me.
+whisper: none
+
+---
+Ruling: legal. Jar on R20; the Rice set is complete (180 grain). Rich replaces Reina as the Silk Peasant after lot 5 (peasant for peasant, Section 11). The Pile holds 942.5, so the displaced player's draw of 60 is paid in full. Rich keeps 180 + 566 = 746; the Jar goes back to Province 5's stock; he carries the Brush, Customs House, Deed and Vase to Province 5 (squares asked in 235) and as Silk Peasant needs a Wooden Bowl, lot 6. Reina returns her four pieces, draws 60 and plays the Rice Peasant. Aside: "Four pieces down": she held four of five; "a Vase coming up at ten": Paddy's minimum. Not corrected.

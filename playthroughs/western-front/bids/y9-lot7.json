@@ -1,0 +1,11 @@
+{
+ "step": 1,
+ "lots": [{"lot": "7:VA", "min": 10}],
+ "bids": {
+  "Clark": {"7:VA": {"ceiling": 7}},
+  "Graham": {"7:VA": {"ceiling": 15}},
+  "Noah": {"7:VA": {"ceiling": 180}},
+  "Reina": {"7:VA": {"ceiling": 20}}
+ },
+ "note": "Year 9 lot 7 after Noah replaced Paddy as Scholar (207). Paddy now sells."
+}

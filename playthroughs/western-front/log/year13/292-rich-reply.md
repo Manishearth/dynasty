@@ -1,0 +1,6 @@
+move: tax 20%; build Marble Pagoda (split: the crown pays all 20); salaries Official 20, Scholar 115; land: the crown pays 10 per square of every other province's new land; no squares for Province 1
+say: "Friends, a gentle twenty percent, because Heaven flooded half of you this year and I won't add to it. And the crown lays the last stone: the Marble Pagoda, all twenty from my own reserve, just as I told Clark the mortar was ready. Clark, your twenty, and Silke, a hundred and fifteen, both declared where everyone can hear them. It's been an honour to be robbed by every one of you, and terribly sorry, Graham, but your Jar will have to wait."
+aside: "The Pagoda is the last work, the game ends the moment it's built, and that comes before the auction, so Graham never gets his chance at the Jar and Rich Baron finishes on the throne. I kept the tax low so nobody has a reason to revolt in the one step that's left before the stone goes in."
+whisper: none
+---
+Ruling: legal. Tax 20% (582), collected first; then the works step: the Marble Pagoda at the crown's whole cost, the only project this year, so it may go up. The crown places it (asked next, in parallel with the collection). The game ends the moment it is built (§18): no land, auction or salaries follow, so the declared salaries are never paid.

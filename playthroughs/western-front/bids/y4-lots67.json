@@ -1,0 +1,10 @@
+{
+ "step": 1,
+ "lots": [{"lot": "6:WB", "min": 15}, {"lot": "7:VA", "min": 20}],
+ "bids": {
+  "Clark": {"7:VA": {"ceiling": 60}},
+  "Rich": {"6:WB": {"ceiling": 60}, "7:VA": {"keep": {"Clark": 14}}},
+  "Noah": {"6:WB": {"ceiling": 20}, "7:VA": {"ceiling": 22}}
+ },
+ "note": "Lots 6-7 of Year 4, after Reina took the throne: Clark's and Rich's limits from 064-065, Noah's (now Scholar) from 072."
+}

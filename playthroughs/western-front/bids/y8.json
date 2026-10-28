@@ -1,0 +1,42 @@
+{
+ "step": 1,
+ "lots": [
+  {"lot": "2:CH", "min": 3},
+  {"lot": "3:LD", "min": 9},
+  {"lot": "4:BB", "min": 10},
+  {"lot": "5:DJ", "min": 300},
+  {"lot": "6:WB", "min": 61},
+  {"lot": "7:VA", "min": 10}
+ ],
+ "bids": {
+  "Clark": {
+   "3:LD": {"ceiling": 5},
+   "4:BB": {"ceiling": 14},
+   "7:VA": {"ceiling": 5}
+  },
+  "Silke": {
+   "5:DJ": {"ceiling": 125}
+  },
+  "Paddy": {
+   "2:CH": {"ceiling": 10},
+   "3:LD": {"ceiling": 8}
+  },
+  "Reina": {
+   "2:CH": {"ceiling": 15},
+   "3:LD": {"ceiling": 15},
+   "4:BB": {"ceiling": 12},
+   "6:WB": {"ceiling": 35, "keep": {"Noah": 130}},
+   "7:VA": {"ceiling": 15}
+  },
+  "Rich": {
+   "2:CH": {"ceiling": 23},
+   "3:LD": {"ceiling": 21},
+   "5:DJ": {"ceiling": 19},
+   "7:VA": {"ceiling": 27}
+  },
+  "Noah": {
+   "6:WB": {"ceiling": 100}
+  }
+ },
+ "note": "Year 8, log 168-173."
+}

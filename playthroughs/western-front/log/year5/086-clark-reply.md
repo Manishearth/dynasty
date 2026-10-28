@@ -1,0 +1,7 @@
+move: tax 30%; build Great Wall above Province 3, two links (split: crown 60, Reina 20); salaries Official 5, Scholar 10; land: crown pays 15 of every 20-grain square for any province this year, and 2 squares for Province 1
+say: "Thirty percent, and only the coast and the wheat pay it, since nobody owes tax on a loss. That's nine grain each, friends, which buys you a rainy year at the crown's expense. Reina, you've asked four times, so I wrote it down four times. Two links of your Wall: the crown lays sixty and you lay twenty, and the stones go up with your name on them too. Anyone breaking new ground this year pays five a square, and the crown covers the other fifteen. Noah, ten again, good book. Rich, five, other book, and he knows the page."
+aside: "Every square I pay for is a province that owes me tax next year, and every stone on Reina's Wall is one she can't say I never laid. I'm not buying her goodwill, I'm buying her a debt."
+whisper: none
+
+---
+Ruling: legal. Tax 30% on Silke, Paddy, Graham (+30 each): 9 each, 27. Project: two links of the Great Wall above Province 3 (Summer Palace stands), 80, crown 60 and Reina 20 if she agrees (asked, 088). Salaries 5/10 at year end. Land: crown pays 15 a square for any province. Note to all: this year only Silke, Paddy and Graham can buy (Rich and Reina need all four links above them; no free square touches Province 4). Province 1's two squares asked of Clark (089).
