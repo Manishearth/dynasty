@@ -413,12 +413,24 @@ function step(d){
   const el=document.querySelector('[data-i="'+k+'"]');
   if(el) el.scrollIntoView({block:'center',behavior:'smooth'});
 }
+/* a year at a time: the first step of the next or previous tab (Setup, the years, then Result) */
+function year(d){
+  const k=Math.max(0,Math.min(RS.length,curRound+d));
+  if(k===curRound)return;
+  showRound(k); select(k===RS.length?E.length-1:RS[k].start);
+  tabs.children[k].scrollIntoView({block:'nearest',inline:'nearest'});
+  const top=script.getBoundingClientRect().top+scrollY-tabs.offsetHeight;
+  if(scrollY>top)scrollTo({top});
+}
 document.getElementById('prev').onclick=()=>step(-1);
 document.getElementById('next').onclick=()=>step(1);
 addEventListener('keydown',e=>{
   if(e.target.closest&&e.target.closest('input,textarea'))return;
-  if(e.key==='ArrowRight'){step(1);e.preventDefault();}
-  if(e.key==='ArrowLeft'){step(-1);e.preventDefault();}});
+  if(e.ctrlKey||e.metaKey||e.altKey)return;
+  if(e.key==='ArrowRight'){e.shiftKey?year(1):step(1);e.preventDefault();}
+  if(e.key==='ArrowLeft'){e.shiftKey?year(-1):step(-1);e.preventDefault();}
+  if(e.key===']'){year(1);e.preventDefault();}
+  if(e.key==='['){year(-1);e.preventDefault();}});
 /* a game that lives on the other page (an old link): send the address there */
 const FORWARD=/*FORWARD*/{};
 function fromHash(){
