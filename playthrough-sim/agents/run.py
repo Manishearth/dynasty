@@ -4,6 +4,7 @@ run_ns does (cards.py, then engine.py, then the script), then print the state.
 Run from the game's folder (playthroughs/<name>/), where game.py, state/ and the logs live:
 
   python ../../playthrough-sim/agents/run.py                 # ledger tail + board + soldiers
+  python ../../playthrough-sim/agents/run.py --quiet         # legality check only: ok + the last line + grain
   python ../../playthrough-sim/agents/run.py --snapshot NAME # also save state/NAME.json
   python ../../playthrough-sim/agents/run.py --steps W1      # the squares W1 can step to, with raids and tolls
   python ../../playthrough-sim/agents/run.py --script other.py   # another script
@@ -48,7 +49,9 @@ def steps(ns, sid):
             if foe and dr and dc: continue          # an enemy square is entered only by capture, never diagonally
             if raid and o in ns["NORAID"].get(ns["CUR_ROUND"], ()):
                 out.append(f"{q} [{g}] BARRED: no raids on Province {o} this round (the step would have to raid)"); continue
-            out.append(f"{q} [{g}] raid={'10' if raid and o == 1 else ('5' if raid else '-')}"
+            # a palace or the Pagoda costs the Emperor 20 (engine march()); any other square of Province 1, 10
+            pal = any(q in ns["pw_at"].get(k, ()) for k in ns["PALACES"])
+            out.append(f"{q} [{g}] raid={('20 (palace)' if pal else '10' if o == 1 else '5') if raid else '-'}"
                        f"{' piece='+piece if piece else ''}{' CAPTURES '+','.join(foe) if foe else ''}"
                        f" tolls={ns['tolls'](s['sq'], q)}")
     return out
@@ -56,15 +59,20 @@ def steps(ns, sid):
 if __name__ == "__main__":
     ns = run_ns()
     E, SH = ns["ENTRIES"], ns["SHORT"]
-    for e in E[-12:]:
+    if "--quiet" in sys.argv:            # a legality check: the script ran clean; just the last line and the grain
+        e = E[-1]
+        print(f"ok: {len(E)} entries, round {ns['CUR_ROUND']}. last: {e['t'][:90]}")
+        print("grain:", " ".join(f"{SH[p]} {ns['grain'][p]:g}" for p in ns["PLAYERS"]), f"| pile {ns['pile']:g}")
+    for e in ([] if "--quiet" in sys.argv else E[-12:]):
         g = e["state"]["grain"]
         print(f"{e['k']:3} {(e.get('who') or ''):6} {e['t'][:70]:70} | " +
               " ".join(f"{SH[int(k)][:3]}{v:g}" for k, v in g.items()) + f" | pile {e['state']['pile']:g}")
-    print(board_text(ns))
-    print("soldiers:", {i: s["sq"] for i, s in ns["SOLDIERS"].items()})
-    print("realia:", {q: (v["realia"], SH[v["owner"]]) for q, v in ns["board"].items() if v.get("realia")})
-    print("stock:", ns["stock"], "held:", {SH[p]: dict(h) for p, h in ns["held"].items() if h})
-    print("grain:", {SH[p]: ns["grain"][p] for p in ns["PLAYERS"]}, "pile:", ns["pile"])
+    if "--quiet" not in sys.argv:
+        print(board_text(ns))
+        print("soldiers:", {i: s["sq"] for i, s in ns["SOLDIERS"].items()})
+        print("realia:", {q: (v["realia"], SH[v["owner"]]) for q, v in ns["board"].items() if v.get("realia")})
+        print("stock:", ns["stock"], "held:", {SH[p]: dict(h) for p, h in ns["held"].items() if h})
+        print("grain:", {SH[p]: ns["grain"][p] for p in ns["PLAYERS"]}, "pile:", ns["pile"])
     a = sys.argv[1:]
     if "--steps" in a:
         for l in steps(ns, a[a.index("--steps")+1]): print(" ", l)

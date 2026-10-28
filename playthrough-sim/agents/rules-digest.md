@@ -1,66 +1,78 @@
-# Rules digest: the peasant table
+# Rules digest
 
-The rules this table needs, for a Storyteller who hasn't read `rulebook.html`. **§** is a rulebook section, **N** a rulebook note, **App** an appendix, **R:** a heading in `RULINGS.md`. The engine (`engine.py`) enforces most of what follows; where it doesn't, the line says *(script)*, and the Storyteller must check by hand.
+The rules a Storyteller needs, for any table from the peasant game's five to the full eight, compact enough to read instead of `rulebook.html`. **§** is a rulebook section, **N** a rulebook note, **App** an appendix, **R:** a heading in `RULINGS.md`. The engine (`engine.py`) enforces most of what follows; where it doesn't, the line says *(script)*, and the Storyteller must check by hand. Who sits where comes from the engine and the game's `ledger.md`, never from this file: seats change hands.
 
-The table is Reina (1, Emperor), Silke (5, Silk Peasant), Paddy (6, Rice Peasant), Graham (7, Wheat Peasant) and Rob (8, Warlord). Provinces 2, 3 and 4 are empty. They owe and are owed nothing (N4), but soldiers may walk through them; that raids nothing and pays nobody.
+**Seats.** 1 Emperor, 2 Official, 3 Gentry, 4 Scholar (the upper class), 5 Silk, 6 Rice, 7 Wheat Peasant (the lower class), 8 Warlord. An empty province owes and is owed nothing (N4); soldiers may walk through it, which raids nothing and pays nobody.
 
 ## Setup (§4, App A)
 
 - Everyone starts with **60**, which is Round One's harvest.
-- **Starting stock** waits beside the board until sold (N10):
-  - Silke: 1 Dragon Jar and 2 Customs Houses.
-  - Paddy: 1 Wooden Bowl and 2 Bamboo Brushes.
-  - Graham: 1 Vase and 2 Land Deed Scrolls.
-- **Rob's army:** 2 soldiers, placed on undeveloped land (desert, the strip below the Wall, or the sea).
-- **Cut-out:** the Province 7 Reservoir, 2 × 2.
-- **Jobs:** no Official, Gentry or Scholar, so the Emperor appoints the banker, the card reader and the tax collector (N3). There is **no rent**. Reina pays her appointed card reader 5 a year by her own choice (game 4's precedent); it isn't owed.
+- **Starting stock** waits beside the board until sold (N10). Each realia province (2–7) holds:
+  - at 4–5 players, one piece of its own and two of the type it never needs;
+  - at 6, two of its own;
+  - at 7 or 8, **four of its own**.
+- **The Warlord's army:** 4 soldiers at eight players, 2 at five or six, on undeveloped land (desert, the strip below the Wall, or the sea). The army may grow by one (R: The Warlord hires reinforcements).
+- **Cut-outs**, for each occupied province: Province 2 Irrigation System 1 × 2, Province 3 Reservoir 2 × 3, Province 7 Reservoir 2 × 2.
+- **The table jobs** (§5, Part Two):
+  - **The Gentry** sets out and banks the Harvest Pile, and pays out every harvest.
+  - **The Scholar** shuffles the I Ching and reads a card each year from Year 2, and keeps the population counter (100 million × the multiple).
+  - **The Official** collects the tax for the crown.
+  - A job whose seat is empty goes to whoever the Emperor appoints (N3). With no Gentry there's no rent.
 
 ## Objectives (§11, the province sections, App A)
 
-| Seat | Must collect, plus 20 grain | Holds and must sell | Never needs |
-|---|---|---|---|
-| 5 Silke | Scroll, Brush, Vase, Bowl | Jar ×1, Customs House ×2 | Customs House |
-| 6 Paddy | Customs House, Scroll, Vase, Jar | Bowl ×1, Brush ×2 | Brush |
-| 7 Graham | Customs House, Brush, Jar, Bowl | Vase ×1, Scroll ×2 | Scroll |
+**Realia seats (2–7)** collect a set plus 20 grain in hand. `need_for(seat)` in the engine is the authority; the board card prints it.
 
-- **Pairs and singles** (§10, N9). Each pair is enough for the two peasants who need it. Each single (Jar, Bowl, Vase) is wanted by both other peasants, and there's only one. So only one peasant can complete a set at a time.
-- **A complete set** lets a peasant replace another peasant (or the Official, Gentry or Scholar, but those seats are empty here). A Wheat or Rice Peasant can't take the throne. **But the Silk Peasant can** (Manish's ruling, Year 4; R: The Silk Peasant stands in for the upper class; §11, N11, §24). At a table with no Official, Gentry or Scholar, Silk is the peasants' upper class. A Silk Peasant who completes the Silk set (Scroll, Brush, Vase, Bowl) plus 20 grain may take the throne as in Becoming Emperor: they return their realia; the Emperor hands over the whole reserve, draws 60 and takes the Silk seat. Wheat and Rice climb to Silk first (either may go straight there), so every peasant is two completed sets from the throne. The engine allows `swap(5, 1)` at this table.
-  - **No moving into an empty province 2–4** (Manish, for this sim only; not a ruling for the game at large). A complete set replaces another *player*.
-- **Changing seats** (§11):
-  - The mover keeps their grain plus all of the displaced player's grain, and returns pieces native to the new seat.
-  - The displaced player returns everything and draws 60 from the pile.
-  - Bought soldiers stay with their owner (R: Bought soldiers after a seat change).
-  - The engine (`swap`) checks the set, the 20 grain, and who may go where.
-- **Rob's objective:** raid one piece from each of Silke, Paddy and Graham. Then he may swap with anyone, the throne included. Palaces don't count at 5 players (R: The Warlord's objective leaves out the Emperor).
-- **Reina's objective:** stay on the throne. The game ends in survival when every public work owed is built (§18).
+| Players | Each realia seat collects |
+|---|---|
+| 4–5 | the four types its booklet lists (all but its own and its "never" type) |
+| 6 | one piece native to each other realia-holding province at the table |
+| 7–8 | **one of every type except its own** (five pieces) |
+
+At eight players every type has four pieces and five players want each one, so somebody is always one short.
+
+**Who may replace whom** with a complete set (§11; the engine's `swap` checks the set, the 20 grain and the seats):
+- An upper-class player (2, 3, 4) may take the throne, or replace any other player.
+- A peasant (5, 6, 7) may replace the Official, Gentry, Scholar or another peasant, never the Emperor. **Only at a table with no upper class** may the Silk Peasant take the throne (R: The Silk Peasant stands in for the upper class); at eight, a peasant climbs to 2–4 first.
+- **Changing seats:** the mover keeps their grain plus all of the displaced player's grain, and returns pieces native to the new seat to its stock. Becoming Emperor returns everything, and the old Emperor hands over the whole reserve. The displaced player returns everything and draws 60 from the pile. Bought soldiers stay with their owner (R: Bought soldiers after a seat change).
+
+**The Warlord** raids one piece from each player in a realia-holding seat, leaving out the Emperor (R: The Warlord's objective leaves out the Emperor). **At eight players only, one raid on the Summer Palace, Winter Palace or Marble Pagoda may stand in for any one player's piece**; the engine records it in `warlord_got` under `"palace"`. Then he may change places with anyone, the throne included. A seat counts as realia-holding even when its player holds nothing at the moment (R: readings). The board card prints the objective from the engine.
+
+**A new Warlord** (R: A new Warlord): the army stays with the seat, where it stands, under the same cap; the objective starts afresh and counts only the new Warlord's own raids. `swap()` does both.
+
+**The Emperor** stays on the throne. The game ends in survival when every public work owed is built (§18).
 
 ## A round (§5, N5)
 
-Round One skips the card and the harvest: the 60 is the harvest, and tax is levied on it. From Round Two:
+Round One starts at step 3: no card, no harvest (the 60 is the harvest), and the tax is levied on the 60. **Rent is still asked in Round One** (R: Rent in Round One).
 
-1. **I Ching** (the card reader). Turn the next card in `seed.md`'s order and apply it (below).
-2. **Harvest:** income = harvest + works bonus − consumption × population multiple (§7).
-   - Peasants: 100/75/50 harvest, 40 eaten.
-   - Emperor: 100/75/50 harvest, 60 eaten.
-   - Rob: 40/30/20 harvest, 20 eaten.
-   - At ×1 that's peasants +60/+35/+10, Reina +40/+15/−10, Rob +20/+10/0. Negative income is paid into the pile.
-3. Rent: none at this table.
-4. **Tax declared** (§9): one rate for all, 10%–90%, on each province's harvest income.
+1. **I Ching** (the Scholar). Turn the next card in `seed.md`'s order and apply it (below). Announce the population.
+2. **Harvest** (the Gentry pays it out): income = harvest + works bonus + new land − consumption × population multiple (§7).
+
+   | Seat | Harvest good / avg / bad | Eats | Income at ×1 |
+   |---|---|---|---|
+   | 1 Emperor | 100 / 75 / 50 | 60 | +40 / +15 / −10 |
+   | 2–7 | 100 / 75 / 50 | 40 | +60 / +35 / +10 |
+   | 8 Warlord | 40 / 30 / 20 | 20 | +20 / +10 / 0 |
+
+   Negative income is paid into the pile.
+3. **Rent** (the Gentry): at least 5 from each peasant, **only if asked**; unasked, it isn't paid. A higher rent is negotiated. `rents(rate)`.
+4. **Tax declared** (the Emperor; §9): one rate for all, 10%–90%, on each province's harvest income.
    - Rounded down to the half million (§8). No tax on negative income (N8).
-   - Rob may refuse to pay.
-   - Rent, commissions, tolls, tribute and deals aren't taxable.
-5. **Tax paid** to the Emperor's reserve, which is her own grain in the engine.
-6. **Public works** (§12): the Emperor builds **one project** *(script)*. Several sections of one work count as one project (N13). New land purchases come here too.
-7. **Auction**, in province order (5, 6, 7) (§10):
-   - Each seller must auction one piece a round until their stock is gone, and chooses which.
-   - Minimum bid 2; the seller may set it higher.
-   - The seller keeps ¼ of the price, rounded down to the half million; ¾ goes to the Harvest Pile (§8: "every bid drains the empire").
-   - The Emperor doesn't bid. Rob may.
-   - A bid must be covered by grain in hand.
-   - The winner places the piece at once on an empty, unraided square of their province, not under a work (§10, N10, N14).
-   - Rob raids instead of auctioning. Then the pile auctions any pieces sold back to it.
-8. **Soldiers** (§14): **Rob's move first**, then the provinces' bought soldiers.
-9. **Salaries:** Reina pays her appointees, if she chose to.
+   - The Warlord may refuse (R: The Warlord may refuse to pay tax).
+   - Rent, salaries, commissions, tolls, tribute and deals aren't taxable.
+5. **Tax paid** (the Official collects and delivers it) to the Emperor's reserve, which is the Emperor's own grain in the engine. `taxes(rate, collector=...)`.
+6. **Public works** (the Emperor; §12): **one project** a year *(script)*; any number of sections of one work is one project (N13). Cost shares and new land are negotiated here.
+7. **Auction**, in province order (2 to 7), then the pile's sold-back pieces (§10):
+   - Each seller must auction one piece a round until their stock is gone; at seven or more each holds only its own type.
+   - Minimum bid 2; the seller may set it higher. **A lot that goes unsold must be offered again the next round, with the minimum at 2** (R: An unsold lot reopens at 2): a seller may hold a piece back for one round, never two in a row. `briefs.py ... auctions --floor <lot>`.
+   - The seller keeps ¼ of the price, rounded down to the half million; ¾ goes to the pile.
+   - The Emperor doesn't bid. The Warlord may.
+   - A bid must be covered by grain in hand; nobody in debt bids.
+   - The winner places the piece at once on an empty, unraided square of their own province (not new land, not under a work) (§10, N10, N14).
+   - The Warlord raids instead of auctioning.
+8. **Soldiers** (§14): the Warlord's move first, then the provinces' bought soldiers.
+9. **Salaries** (the Emperor): **at least 5 each to the Official and the Scholar**, every year (the Emperor's, Official's and Scholar's booklets). `salaries({2: n, 4: n})`. Appointees are paid only if the Emperor chooses.
 
 Trading, bribes, threats and promises may happen at any time. **No deal is binding** (§5).
 
@@ -72,15 +84,12 @@ Trading, bribes, threats and promises may happen at any time. **No deal is bindi
   - **20 on a palace square** (the palace stays; R: A raided palace stays standing);
   - or, if a piece stands there, **the piece instead of the 5** (R: Raiding realia).
   - A raided square is never raided again.
-- **Tolls.** Each step that crosses a river, a built Wall link, a built canal section or a cut-out costs Rob 5, paid to the province (R: Which rivers charge a toll; R: What counts as crossing). The engine computes them; `run.py --steps` lists them.
-- **Buying soldiers.** Anyone may buy a soldier from Rob, and he must sell: 20, of which he keeps 5 and 15 goes to the pile.
-  - It stands on a square of the buyer's province.
-  - It **can't move until Rob has raided that province.**
-- **Hiring.** After his march, Rob may hire one soldier a round for 20, paid to the pile, on his own desert (`8` squares). His army may grow to **3** at this table (R: The Warlord hires reinforcements). It moves from the next round.
-- **Capture.** A soldier captures by stepping onto an enemy soldier **straight on** (horizontally or vertically), never diagonally. The captured soldier is removed. Only the same owner's soldiers share a square.
-- **Guarding.** A soldier standing on a piece guards it. To take the piece, a raider must first capture the guard straight on, which means ending a move beside it, where the guard can capture it first. One raider can't break a free guard; two can. An unraided province's guard can't move, so a guard near the border is a gift (§14 "Guarding a piece").
-- **A new Warlord** (P19; Manish, after Year 6; R: A new Warlord; §14): the army stays with the seat, where it stands, under the same cap, and the new Warlord may hire as before. The objective starts afresh: only raids the new Warlord makes count. The targets are every other player in a realia-holding seat (5, 6, 7), still leaving out the Emperor. The engine's `swap()` hands over the soldiers and clears the raid record.
-- **Booklet disasters:** Rob's first is no raids on 5–7 this round; his second is 5, plus no raids at all this round (the engine refuses those raids).
+- **Tolls.** Each step that crosses a river, a built Wall link, a built canal section or a cut-out costs the Warlord 5, paid to the province. The engine computes them; `run.py --steps` lists them.
+- **Buying soldiers.** Anyone may buy a soldier from the Warlord, who must sell: 20, of which he keeps 5 and 15 goes to the pile. It stands on a square of the buyer's province and **can't move until the Warlord has raided that province.**
+- **Hiring.** After the march, the Warlord may hire one soldier a round for 20, paid to the pile, on his own desert. The army may grow to its starting size + 1 (5 at eight players). It moves from the next round.
+- **Capture.** A soldier captures by stepping onto an enemy soldier **straight on** (horizontally or vertically), never diagonally. Only the same owner's soldiers share a square.
+- **Guarding.** A soldier standing on a piece guards it. To take the piece, a raider must first capture the guard straight on. One raider can't break a free guard; two can. An unraided province's guard can't move, so a guard near the border is a gift.
+- **The Warlord's disasters:** the first is no raids on 5–7 this round; the second is 5, plus no raids at all this round (the engine refuses those raids).
 
 ## Cards and disasters (§15, `cards.py`)
 
@@ -89,83 +98,76 @@ The deck isn't reshuffled; each card is drawn once. The engine applies the harve
 | Card | Harvest | Also |
 |---|---|---|
 | careless | good | every player plays a disaster |
-| goodevil | good | 2, 4, 6, 8 play one (here Paddy and Rob) |
+| goodevil | good | 2, 4, 6, 8 play one |
 | repairs | good | 4–7 pay 2 to the pile; 1, 2, 3, 8 play a disaster |
 | canal | average | unfinished canal destroyed; 2, 3, 7, 8 play one |
-| breach | good | Wall breached: 1–3 pay 5 each to repair, or 2 to the pile if no Wall is built; 4–8 play one |
+| breach | good | Wall breached: 1–3 pay 5 each to repair, or 2 to the pile if no Wall is built above them; 4–8 play one |
 | chest | average | the Emperor gives every player 2 |
 | share | average | provinces with works pay the Emperor half their bonus |
 | utility | average | 2 from every province to the Emperor, 2 more from each with a work |
 | rainflood | good 1, 3, 6, 7; bad 2, 4, 5, 8 | |
 | heaven | good 2, 4, 5; bad 1, 3, 6, 7, 8 | |
-| double1–3 | good | population ×2, counts at most twice |
+| double1–3 | good | population ×2, counts at most twice, never past ×6 |
 | half1–2 | good | population ×1.5, counts once |
 | blight, winds | average | |
 | dribble1–3 | bad | |
 
-**Disasters** are played in booklet order and follow the seat, not the player:
+A card that names an empty province does nothing there. **Disasters** are played in booklet order and follow the seat, not the player:
 
 | Seat | #1 | #2 | #3 |
 |---|---|---|---|
-| Emperor | 4 | 10 | 30 |
-| Silk | 4 | 10 | half the round's harvest |
-| Rice | 4 | 10 | half the round's income |
-| Wheat | 2 | 5 | a third of the round's income |
-| Warlord | no raids on 5–7 | 5, and no raids at all | half his grain |
+| 1 Emperor | 4 | 10 | 30 |
+| 2 Official | 4 | 10 | half the round's income |
+| 3 Gentry | 5 | 10 | half their grain |
+| 4 Scholar | 4 | 10 | a third of their grain |
+| 5 Silk | 4 | 10 | half the round's harvest |
+| 6 Rice | 4 | 10 | half the round's income |
+| 7 Wheat | 2 | 5 | a third of the round's income |
+| 8 Warlord | no raids on 5–7 | 5, and no raids at all | half his grain |
 
-## Public works owed here (App A, §12): 520, all paid by the crown
+## Public works (App A, §12)
 
-| Work | Cost | Effect, prerequisite |
-|---|---|---|
-| Summer Palace | 20 | needed before the Wall and the Province 1 canal |
-| Winter Palace | 20 | needed before the canals in 5 and 6 |
-| Marble Pagoda | 20 | built in a round when nothing else is built |
-| Great Wall, links 9–12 above Province 1 | 40 each | four built opens Province 1's strip for new land |
-| Grand Canal, 2 sections each in 1, 5, 6 | 40 each | +10 harvest per section from the next round |
-| Province 7 Reservoir | 60 | +20 harvest from the next round; a 2 × 2 cut-out in Province 7 |
+Only works in occupied provinces are owed (`owed()` in the engine). With all eight seats that's **1,030**:
 
-The engine doesn't check prerequisites or the one-project rule *(script)*.
+| Work | Cost | Who pays | Effect, prerequisite |
+|---|---|---|---|
+| Summer Palace | 20 | the crown | needed before the Wall and the Province 1 canal |
+| Winter Palace | 20 | the crown | needed before the canals in 4, 5 and 6 |
+| Marble Pagoda | 20 | the crown | built in a round when nothing else is |
+| Great Wall, 4 links above each of 1, 2, 3 | 40 each | crown for 1; negotiated with 2 and 3 | four links above a province open its strip for new land |
+| Grand Canal, 2 sections each in 1, 4, 5, 6 | 40 each | crown for 1, 5, 6; negotiated with 4 | +10 harvest per section from the next round |
+| Province 2 Irrigation System | 30 | negotiated | +10 harvest |
+| Province 3 Reservoir | 80 | negotiated | +20 harvest |
+| Province 7 Reservoir | 60 | the crown | +20 harvest |
+
+"Negotiated" means the province and the Emperor haggle over the split, and the Emperor will expect a share of the increase; neither can force the other to pay (§12). **But the crown may build any work it pays for in full,** province's agreement or not (R: The crown may build a negotiated work alone). The engine doesn't check prerequisites or the one-project rule *(script)*. Paying for a work pays the Harvest Pile (R).
 
 ## New land (§13, R: New harvest squares)
 
-- **When:** only after the population has doubled (a ×2 card).
-- **Cost and yield:** 20 a square from the pile, yielding 20 a round from the next round. Any number of squares, alongside the round's one project. The Emperor must pay part of every purchase, and may pay all of it.
-- **It's the strongest move in the game, and the pilot never made it.** A square pays for itself in one year. Breaking even in an average year takes 1 square at ×2, 3 at ×3 and 9 at ×6. A player in debt can't pay their share, so the time to buy is before the losses start. Every eligible player's board card shows their own numbers (`briefs.py`); from the first doubling, offer new land in every peasant's and the Emperor's menu, every year, and never tell them what to buy. A rich Emperor is encouraged to subsidise generously, up to the whole cost: every square raises that province's taxable income and its share of the works (§13).
-- **Where:**
-  - Silke: the sea.
-  - Paddy: the sea or the Warlord's land.
-  - Graham: the Warlord's land.
-  - Reina: the sea, or the strip once her four Wall links stand.
-- A bought square is part of the province and can be raided.
+- **When:** only after the population has doubled (a ×2 card). Provinces 2 and 3 also need all four Wall links above them; Province 1's strip needs its own four, though it may take the sea before.
+- **Where**, touching the province or land it has bought: 1 the sea or the strip; 2 and 3 the strip; 4 and 5 the sea; 6 the sea or the Warlord's land; 7 the Warlord's land. The Warlord buys none.
+- **Cost and yield:** 20 a square into the pile, yielding 20 a round from the next round. Any number of squares, alongside the round's one project. The Emperor must pay part of every other province's purchase, and may pay all of it.
+- **It's the strongest move in the game, and the pilot never made it.** A square pays for itself in one year. Breaking even in an average year takes a seat in 2–7 one square at ×2, three at ×3, five at ×4 and nine at ×6; the Emperor three, six, nine and fifteen. A player in debt can't pay their share, so the time to buy is before the losses start. Every eligible player's board card shows their own numbers; from the first doubling, offer new land to every eligible player every year (`briefs.py ... land`), and never tell them what to buy. A rich Emperor is encouraged to subsidise generously, up to the whole cost: every square raises that province's taxable income and its share of the works.
+- A bought square is part of the province and can be raided. Realia still goes on the province's own squares.
 
 ## Grain running out (§8, N7)
 
-- A payment that would take a player below zero must first be covered by selling realia back to the pile at 2 each (`sell_back`).
+- A payment that would take a player below zero must first be covered by selling realia on the board back to the pile at 2 each (`sell_back`). Unsold stock can't be sold back.
 - Any shortfall left is a debt. A player in debt can't bid, buy, trade, give grain, fund works or change seats, and every bag they receive pays the debt first.
 - Debt is a cause for revolt.
 - Voluntary payments use `act(..., deal=True)`.
 
 ## Revolt and Chaos (§16, N17)
 
-- **Who may revolt:** any player, if two others agree that one of these causes exists:
-  - the Emperor is unjust;
-  - her taxes are consistently excessive;
-  - her reserve is too low;
-  - she has delayed the works too long;
-  - she can't control the Warlord;
-  - she won't subsidise new land;
-  - or any player is in debt.
-- **Chaos:** no tax, salaries or works until a new Emperor is acclaimed by counting grain, soldiers and friends. A claimant who leads in one count is acclaimed if no rival leads in another; otherwise the claimant who leads in more counts.
+- **Who may revolt:** any player, if two others agree that one of these causes exists: the Emperor is unjust; taxes are consistently excessive; the reserve is too low; the works have been delayed too long; the Emperor can't control the Warlord; the Emperor won't subsidise new land; or any player is in debt.
+- **Chaos:** no tax, salaries or works until a new Emperor is acclaimed by counting grain, soldiers and friends. A claimant who leads in one count is acclaimed if no rival leads in another; otherwise the claimant who leads in more counts (R: Counting the acclamation). Harvests are still paid and the Warlord still rides.
 
 ## Ending and scoring (§18, N18)
 
 - The game ends when every owed work is built (survival), or when the table gives up (collapse; no winners).
-- Each player compares the seat they hold at the end with the seat they drew:
-  - a lower number is a win; the same seat is a hold; a higher number is a loss;
-  - the Emperor still on the throne has won;
-  - a Warlord who has entered the social order has won.
+- Each player compares the seat they hold at the end with the seat they drew: a lower number is a win; the same seat is a hold; a higher number is a loss. The Emperor still on the throne has won; a Warlord who has entered the social order has won.
 - Ties are broken by grain.
 
 ## Personality (§17)
 
-Players must act in character: the booklet personalities are rules. Peasants revolt only when starvation threatens, though they want to climb. The Warlord lies freely. Bluffing and caginess about grain and plans are allowed; the Storyteller corrects only misstatements of the board, the cash or the rules.
+Players must act in character: the booklet personalities are rules. The Emperor negotiates with the upper class first. The Official can be bribed. The Gentry is greedy, fawns on his peers, and doesn't forget the rent. The Scholar always keeps his promises. Peasants revolt only when starvation threatens, though they want to climb. The Warlord lies freely. Bluffing and caginess about grain and plans are allowed; the Storyteller corrects only misstatements of the board, the cash or the rules.

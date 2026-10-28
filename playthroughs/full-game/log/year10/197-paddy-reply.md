@@ -1,0 +1,5 @@
+move: (diary)
+Years 9–10. I started Year Nine in the Gentry's chair with two hundred and forty-five grain and every piece but a Wooden Bowl, and by the end of the same market I was a wheat farmer. Graham showed his set and took the throne off Silke, and while I was still clapping Clark showed his and took my seat and every grain I had. I drew sixty from the Pile and bought Noah's Bowl for thirty-one anyway, out of stubbornness mostly, and put it on S16 at the back of Clark's old fields. I'd been one piece short for a whole year and I never thought to worry about anyone else being one piece short, and that's the lesson I'll keep. This year I bid small on everything and only got the Brush, for twenty-one, after Noah stood aside at twenty like the decent man he is, and it's on S17 beside the Bowl. Then Reina did to Clark exactly what Clark did to me, two lots after he'd done it, so I'm not the only one on the floor now. I've sixty-seven and a half grain, a Bowl and a Brush, and I still need a Customs House, a Deed and a Jar. Next time I get close I'm showing straight away.
+
+---
+Ruling: the diary goes word for word under ## Years 9–10.

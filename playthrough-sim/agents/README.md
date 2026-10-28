@@ -4,13 +4,15 @@ The reusable code and notes for games played by agents rather than written by ha
 
 | File | What it is |
 |---|---|
+| `DIRECTOR.md` | How the Director runs a game: choosing the deck, the actors' notes, a Storyteller per chapter, checking each chapter, steering toward the game's `scenario.md` |
 | `STORYTELLER.md` | How a Storyteller runs a chapter: launching players, turns, auctions by ceiling, narration, closing. Start here. |
 | `rules-digest.md` | The rules a Storyteller needs, compact enough to read instead of the rulebook, with section numbers |
 | `storyteller-voice.md` | The narrator's voice, shared by every game |
 | `player-agent.md` | The player agent: how it's launched and continued, and the check that it has no tools |
 | `run.py` | The referee: runs a game's `game.py` through the engine and prints the state (`--steps`, `--snapshot`) |
 | `geo.py` | Board geometry for prompts (reach, distances, safe squares), computed by the engine, never by hand |
-| `briefs.py` | Writes every prompt from the engine state and the table talk, logs it once, and resolves ceiling auctions |
+| `briefs.py` | Writes every prompt from the engine state and the table talk, logs it once, and resolves ceiling auctions. Works at any table: the seats, roles, objectives and table jobs come from the engine. Menus for the Emperor's year, the Official's tax, the Gentry's rent, the Scholar's card, new land, the march, and a year's auctions in one prompt |
+| `deck_scout.py` | Scouts I Ching deck orders before a game: what a seed's shuffle does to each year (harvests, population, incomes, disasters), and a search for seeds that fit a test |
 | `snapshot_setup.py` | Saves `state/setup.json`, the state before Year 1 |
 | `build_real.py` | Builds `playthroughs-real.html` from the games it lists |
 

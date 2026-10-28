@@ -1,0 +1,123 @@
+{
+ "step": 1,
+ "lots": [
+  {
+   "lot": "2:CH",
+   "min": 2
+  },
+  {
+   "lot": "3:LD",
+   "min": 2
+  },
+  {
+   "lot": "4:BB",
+   "min": 2
+  },
+  {
+   "lot": "5:DJ",
+   "min": 2
+  },
+  {
+   "lot": "6:WB",
+   "min": 2
+  },
+  {
+   "lot": "7:VA",
+   "min": 2
+  }
+ ],
+ "bids": {
+  "Clark": {
+   "3:LD": {
+    "ceiling": 7
+   },
+   "4:BB": {
+    "ceiling": 5
+   },
+   "6:WB": {
+    "ceiling": 6
+   }
+  },
+  "Rich": {
+   "2:CH": {
+    "ceiling": 7
+   },
+   "4:BB": {
+    "ceiling": 6
+   },
+   "5:DJ": {
+    "ceiling": 6
+   },
+   "6:WB": {
+    "ceiling": 5
+   },
+   "7:VA": {
+    "ceiling": 6
+   }
+  },
+  "Noah": {
+   "2:CH": {
+    "ceiling": 8
+   },
+   "3:LD": {
+    "ceiling": 7
+   },
+   "5:DJ": {
+    "ceiling": 5
+   }
+  },
+  "Silke": {
+   "2:CH": {
+    "ceiling": 4
+   },
+   "3:LD": {
+    "ceiling": 4
+   },
+   "4:BB": {
+    "ceiling": 4
+   },
+   "6:WB": {
+    "ceiling": 5
+   },
+   "7:VA": {
+    "ceiling": 7
+   }
+  },
+  "Paddy": {
+   "2:CH": {
+    "ceiling": 5
+   },
+   "3:LD": {
+    "ceiling": 4
+   },
+   "4:BB": {
+    "ceiling": 4
+   },
+   "5:DJ": {
+    "ceiling": 4
+   },
+   "7:VA": {
+    "ceiling": 5
+   }
+  },
+  "Graham": {
+   "2:CH": {
+    "ceiling": 4
+   },
+   "3:LD": {
+    "ceiling": 4
+   },
+   "4:BB": {
+    "ceiling": 4
+   },
+   "5:DJ": {
+    "ceiling": 4
+   },
+   "6:WB": {
+    "ceiling": 4
+   }
+  },
+  "Rob": "pass"
+ },
+ "note": "Ceilings after one live raise each (013-016)."
+}

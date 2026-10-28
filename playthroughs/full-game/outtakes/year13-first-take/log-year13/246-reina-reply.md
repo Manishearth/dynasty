@@ -1,0 +1,7 @@
+move: tax 20%; build Province 2 Irrigation System (split: the crown pays all 30, Graham pays nothing); salaries Official 8, Scholar 8; land: the crown pays the full 20 on every square any province buys this year, and two squares for Province 1 at F18 and F19
+say: A rotten harvest is no year to squeeze anyone, so it's twenty percent, the lowest the law allows, and Graham, the crown is building your irrigation out of its own purse, all thirty of it. And every new square anyone buys this year, the treasury pays in full. Nobody at this table will have a revolt clause to wave at me, darling. Not one.
+aside: Gentle tax, the last work owed paid off and every field subsidised means no peasant has a single §16 grievance to sign, and that leaves me free to watch the auction hall. Silke needs one Deed and Rich sells them, so that's the cart I'm watching this spring.
+whisper: none
+
+---
+Ruling: tax 20% (50 owed: Graham 10, Rich 2, Clark 18, Noah 14, Paddy 6; Silke and Rob have negative incomes). Build the Province 2 Irrigation System, the crown paying all 30; Graham is asked to agree in his collect prompt. Salaries 8/8 declared. Land: the crown pays 20 of every 20 this year; Province 1 asks for F18 and F19 (checked by the engine at the land step). Aside slip: the last work owed ends the game in the works step, so if it is built there is no auction this year (§18); a note to Reina states this for her next prompt.

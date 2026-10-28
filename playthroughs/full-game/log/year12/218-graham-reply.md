@@ -1,0 +1,7 @@
+move: tax 30%; build Great Wall above Province 3, all four links (split: the crown pays 140, Rich pays 20); salaries Official 8, Scholar 8; land: the crown pays 15 of every 20 on every other province's squares this year, and Province 1 buys six squares, E16, E17, E18, E19, E20 and E21, for 120
+say: "Thirty percent of nothing is nothing, so the rate stays where it's always been. The crown pays fifteen of every twenty on new land, for every field at this table, and that includes the ones that don't like me. Rich, four links of Wall over your province for twenty of yours, and the crown puts in the other hundred and forty. Reina, Silke, eight each, as always."
+aside: "Reina is one Deed away from my chair and Rich is the one selling Deeds, so a hundred and forty of Wall is the most polite thing I can put in front of the man who decides who gets one. I'm also buying six squares on the E column, because a throne with minus eighty-five a year doesn't need anyone to take it, it just falls over."
+whisper: To Rich: The Wall's yours for twenty. All I'd ask is that a Deed doesn't go to Reina cheap this spring. Make her pay what my chair is worth.
+
+---
+Ruling: legal. Tax 30% (no positive incomes, so nothing is owed: Reina's collect is folded into her land prompt). The Wall above Province 3, four links, 140 crown / 20 Rich, asked of Rich in 219. Salaries 8/8 at year end. Land: the crown pays 15 of every 20 on other provinces' squares; Province 1 buys E16–E21 (120), all on its frontier.

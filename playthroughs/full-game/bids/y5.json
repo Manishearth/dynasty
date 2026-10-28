@@ -1,0 +1,20 @@
+{
+ "step": 1,
+ "lots": [
+  {"lot": "2:CH", "min": 2},
+  {"lot": "3:LD", "min": 2},
+  {"lot": "4:BB", "min": 2},
+  {"lot": "5:DJ", "min": 15},
+  {"lot": "6:WB", "min": 5},
+  {"lot": "7:VA", "min": 40}
+ ],
+ "bids": {
+  "Graham": {"7:VA": {"ceiling": 125}},
+  "Reina": {"5:DJ": {"ceiling": 30}, "7:VA": {"ceiling": 100, "keep": {"Graham": 122}}},
+  "Noah": {"2:CH": {"ceiling": 50}, "6:WB": {"ceiling": 50}},
+  "Silke": {"3:LD": {"ceiling": 64}, "4:BB": {"ceiling": 18}},
+  "Paddy": {"2:CH": {"ceiling": 14}, "3:LD": {"ceiling": 22}, "4:BB": {"ceiling": 12}, "7:VA": {"ceiling": 15, "keep": {"Graham": 28}}},
+  "Clark": {"2:CH": {"ceiling": 12}, "3:LD": {"ceiling": 10}, "4:BB": {"ceiling": 10}, "6:WB": {"ceiling": 8}},
+  "Rob": "pass"
+ }
+}

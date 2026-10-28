@@ -1,0 +1,5 @@
+move: (diary)
+Years 9–10. I spent a hundred and sixty grain of the crown's money on Rich's Wall so that the throne would be less worth taking, and Graham took it anyway, by the next lot, with four hundred and ninety in it and his own canal still wet. He said it wasn't a grievance, and I believe him, and it still stung. I'm the Scholar now, reading cards in Province 4 with eight a year from the man I used to pay eight. This year I sold my Brush to Paddy for twenty-one and lost every lot I wanted by a grain or two again: the Jar at twenty-four, the Bowl at thirty, the Vase at eighteen. It's the same thread as Year 3, coming round again. Then Reina took Clark's chair, and she is now one Dragon Jar from Graham's six hundred and eighteen, and the Jars are Clark's to sell now. Clark has twenty-four grain and a grudge against her. So I hold nothing, I have a hundred and thirty-four grain, and I'm squeezed back to where I see most clearly. Next spring I'm watching Clark's Jars more closely than anything else on the board.
+
+---
+Ruling: the diary goes word for word under ## Years 9–10.

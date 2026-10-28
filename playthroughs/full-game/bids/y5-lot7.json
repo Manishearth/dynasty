@@ -1,0 +1,10 @@
+{
+ "step": 1,
+ "lots": [{"lot": "7:VA", "min": 40}],
+ "bids": {
+  "Graham": {"7:VA": {"ceiling": 125}},
+  "Reina": {"7:VA": {"ceiling": 100, "keep": {"Graham": 122}}},
+  "Paddy": {"7:VA": {"ceiling": 15, "keep": {"Graham": 28}}},
+  "Rob": "pass", "Silke": "pass", "Clark": "pass"
+ }
+}

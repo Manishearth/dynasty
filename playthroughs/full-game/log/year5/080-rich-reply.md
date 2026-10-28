@@ -1,0 +1,7 @@
+move: tax 30%; build Winter Palace (split: none, the crown pays all 20); salaries Official 8, Scholar 6
+say: "Thirty again, my friends. It's moderate, it's civilised, and it's not a grain more. Noah, your five has become six, the same as last year, because a Scholar who reminds the Emperor who paid for the ditch should be paid for his candour. Graham, your eight, with my thanks for collecting it. And this year I'm building something small, a Winter Palace, so that the canals can one day come down to the coast and Silke and Paddy can split their extra with me too. Rob, I'm told the desert is lovely in winter. The nine you owe will keep."
+aside: "Twenty grain buys me the right to dig canals into three more provinces, and every one of them pays the crown half its extra, so it's a cheap palace that earns its keep. Meanwhile I'm watching Graham: Scroll, Brush, Jar and Bowl in a neat row on his squares and Customs Houses in his pocket. All he's missing is a Vase, and Clark has two of those and a long memory, so I keep the granary at a hundred and eighty for the evening Graham knocks on my door."
+whisper: none
+
+---
+Ruling: tax 30%, the Winter Palace (20, the crown), salaries 8/6 at year end. The Emperor's Share is this year's card only: a canal in Provinces 4-6 adds to that province's harvest, and pays the crown half only if the card comes again (it won't; each card is drawn once). Note filed to all; stated plainly in Rich's next prompt. His square for the palace asked in 081.

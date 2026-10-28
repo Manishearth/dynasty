@@ -1,0 +1,107 @@
+{
+ "step": 1,
+ "lots": [
+  {
+   "lot": "2:CH",
+   "min": 10
+  },
+  {
+   "lot": "3:LD",
+   "min": 8
+  },
+  {
+   "lot": "4:BB",
+   "min": 6
+  },
+  {
+   "lot": "5:DJ",
+   "min": 20
+  },
+  {
+   "lot": "6:WB",
+   "min": 5
+  },
+  {
+   "lot": "7:VA",
+   "min": 10
+  }
+ ],
+ "bids": {
+  "Rich": {
+   "3:LD": {
+    "ceiling": 14
+   },
+   "4:BB": {
+    "ceiling": 15
+   },
+   "5:DJ": {
+    "ceiling": 20
+   },
+   "6:WB": {
+    "ceiling": 15
+   },
+   "7:VA": {
+    "ceiling": 14
+   }
+  },
+  "Noah": {
+   "4:BB": {
+    "ceiling": 18
+   },
+   "5:DJ": {
+    "ceiling": 20
+   },
+   "6:WB": {
+    "ceiling": 18
+   },
+   "7:VA": {
+    "ceiling": 18
+   }
+  },
+  "Graham": {
+   "2:CH": {
+    "ceiling": 15
+   },
+   "3:LD": {
+    "ceiling": 18
+   },
+   "5:DJ": {
+    "ceiling": 22
+   },
+   "6:WB": {
+    "ceiling": 26
+   }
+  },
+  "Reina": {
+   "2:CH": {
+    "ceiling": 20,
+    "keep": {
+     "Paddy": 50
+    }
+   },
+   "3:LD": {
+    "ceiling": 16
+   },
+   "4:BB": {
+    "ceiling": 24
+   },
+   "6:WB": {
+    "ceiling": 26
+   },
+   "7:VA": {
+    "ceiling": 20
+   }
+  },
+  "Paddy": {
+   "2:CH": {
+    "ceiling": 86
+   }
+  },
+  "Clark": {
+   "3:LD": {
+    "ceiling": 35
+   }
+  },
+  "Rob": "pass"
+ }
+}

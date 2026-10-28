@@ -6,12 +6,12 @@ Read first: the latest `handoff/chapter-N.md` (if any), `rules-digest.md`, `stor
 
 ## A chapter
 
-A chapter is two or three years, named in your brief. Stop at the end of the last one.
+A chapter is two years, named in your brief. Stop at the end of the last one. **Stop rule:** if your context passes about 450k, finish the year you're in and end the chapter there (diaries and close as usual), and tell the Director.
 
 1. **Launch a fresh `dynasty-player` agent for every seat**, with `python briefs.py prompt <NNN> <Player> launch --menu <file>` at that player's first turn of the chapter. The launch carries the character sheet, the player's `ledger.md` entry and their diary (`diaries/<name>.md`). Add the chapter's agent ids to `agent-ids.md`.
 2. **Play the years** as below.
 3. **Narrate** in the voice of `storyteller-voice.md`: a chapter title, a line to open each year, and a line at each turning point. They go only into `narration.md`, under the chapter's heading, each tagged with the log number it follows. **The narrator isn't part of the game and won't appear on the playthrough page,** so never put narration in `game.py`. The script's own `act()` lines (plain events, as before) must give every say and aside the context it needs on their own. Mark each chapter's start in the script with a `# ===== CHAPTER N: <title>` comment.
-4. **Diaries.** After the last round, send each player: "Write <name>'s diary entry for these years, a few sentences in their voice." Append each reply, word for word, to `diaries/<name>.md` under a `## Years A–B` heading.
+4. **Diaries.** After the last round, file the closing catch-up as `event` lines, then send each player `briefs.py prompt <NNN> <Player> diary --years "Years A–B"`. It carries the catch-up as table talk and asks only for the entry (reply `diary: ...`), then run `seen all`. Append each reply, word for word, to `diaries/<name>.md` under a `## Years A–B` heading.
 5. **Close:** ledger current, a snapshot per round, `log.md` rows, usage at the start and end. Then stop and report.
 
 ## Each turn
@@ -21,7 +21,7 @@ A chapter is two or three years, named in your brief. Stop at the end of the las
    - `python geo.py --rounds 2` prints reach and out-of-reach squares, and each piece's distance from each soldier.
    - Never work out a distance by hand.
 2. **Write the prompt once.** `python briefs.py prompt <NNN> <Player> <auction|march|free|launch> ...` builds it from the engine state and from everything said since that player's last prompt. It writes `log/yearN/NNN-player-prompt.md` and prints the text; send that text unchanged with SendMessage. For a `free` decision, write only the menu in a scratch file and pass `--menu`.
-   - **Every prompt opens with the player's board card** (from Chapter 2; Manish's call). `briefs.py` generates it from the engine and `geo.py`, for that player only and in the same layout every time: grain, what they hold and still need, each Warlord soldier's distance in rounds to each of their pieces and to their nearest unraided square, their squares out of reach this year and next, and whether their province has been raided (so whether soldiers they buy can move). Rob's card gives each soldier's distance to every piece. Never write or edit a card by hand; the players stay tool-less, and this is how they see the board.
+   - **Every prompt opens with the player's board card** (from Chapter 2; Manish's call). `briefs.py` generates it from the engine and `geo.py`, for that player only and in the same layout every time: grain, what they hold and still need, each Warlord soldier's distance in rounds to each of their pieces and to their nearest unraided square, their squares out of reach this year and next, and whether their province has been raided (so whether soldiers they buy can move). The Warlord's card gives the objective (from the engine's raid record, the palace wildcard included at eight players) and each soldier's distance to every piece and unraided palace; the Emperor's gives the distance to each palace. Never write or edit a card by hand; the players stay tool-less, and this is how they see the board.
 3. **Record the reply.**
    - Write it to `log/yearN/NNN-player-reply.md`, word for word, then `---` and your ruling.
    - Then `python briefs.py heard <NNN> <reply file>` files its say and whisper as table talk.
@@ -34,14 +34,38 @@ A chapter is two or three years, named in your brief. Stop at the end of the las
 
 ## New land, every year once it opens
 
-From the first doubling, new land (§13) is a standing option in the Public Works step: every peasant and the Emperor gets a `free` prompt for it each year, listing it beside soldiers and deals, even when nobody has asked. The board card already gives each player their own numbers (a square pays for itself in a year; how many they need now and after the next card). Offer it plainly and never steer: the choice, and the cost of not buying, is theirs. The pilot, Peasant Failure, never bought a square and collapsed into debt.
+From the first doubling, new land (§13) is a standing option in the Public Works step: every eligible seat (the peasants, the Scholar, the Official and Gentry once their Wall links stand, and the Emperor through `crown`) gets a `land` prompt for it each year, even when nobody has asked. It lists the squares they can buy now; any `free` prompt to an eligible seat also carries a one-line reminder. The board card already gives each player their own numbers (a square pays for itself in a year; how many they need now and after the next card). Offer it plainly and never steer: the choice, and the cost of not buying, is theirs. The pilot, the peasant game (`playthroughs/peasant-collapse/`), never bought a square and collapsed into debt.
 
-## Auctions, by ceiling
+## The table jobs, step by step
 
-- One prompt per bidder per lot (`briefs.py prompt ... auction --lot <seat>:<code> --min <n>`). Each bidder replies once: pass or a ceiling, an optional `keep from <name> up to <n>`, a square, say, aside, and `if I drop out:`.
-- Put the limits in a JSON file and run `python briefs.py resolve bids.json`. It prints the winner, the price (one step over the runner-up's limit against the winner), each bidder's highest bid, and a `lot()` ladder. Ties go by seat order.
-- Narrate the climb from the ceilings. Use each loser's say for their bid and their drop-out line for their pass.
-- If the resolver prints `CLOSE`, send just the top two one live raise-or-pass message each.
+Each job is its holder's own prompt, so the upper class plays its part in the year. With the seat empty, the Emperor's appointee does it in a `free` prompt, or it's a plain `act()`.
+
+| Step | Who | Prompt |
+|---|---|---|
+| 1 I Ching | Scholar | `iching`, after `R(n, card)` runs: the card text and the population counter |
+| 2–3 Harvest, rent | Gentry | `rent`, after `harvest()` runs: the payout and the rent (unasked, none) |
+| 4, 6, 9 Tax, works, salaries | Emperor | `crown`: the taxable incomes, the tax at each rate, every work owed with who pays and what must stand first, salaries, and new land from the first doubling |
+| 5 Tax paid | Official | `collect --rate <n>`: what each owes |
+| 6 New land | each eligible seat | `land` (below) |
+| 7 Auctions | every bidder | `auctions` (below) |
+| 8 March | Warlord | `march` |
+
+A shared work's split, a bribe or a subsidy goes to the other party as a `free` prompt. Ask in table order and keep it moving: one prompt per player per step at most.
+
+## Auctions, batched by year
+
+At eight players there are up to seven lots a year (Provinces 2–7, then any pieces sold back to the pile), so each bidder gets **one prompt a year** for all of them.
+
+- `briefs.py prompt <NNN> <Player> auctions --lots 2:CH,3:LD,4:BB,5:DJ,6:WB,7:VA` (add `0:<code>` for a pile lot) to every player but the Emperor, the Warlord included. Each replies once: for every lot, pass or a ceiling and an optional `keep from <name> up to <n>`; for their own lot, its minimum; one `if I drop out:` line.
+- Put everything in one JSON file (`bids/yN.json`) and run `python briefs.py resolve bids/yN.json`. It settles the lots **in order**: a winner's grain drops and a seller's quarter is added before the next lot, and any later limit above a bidder's remaining grain is cut to it. For each lot it prints the winner, the price (one step over the runner-up's limit against the winner), each bidder's highest bid and a `lot()` ladder. Ties go by seat order.
+- Then send each lot's buyer one short message, `briefs.py prompt ... place --lot <seat>:<code>[,<seat>:<code>] --price <n>[,<n>]`, asking where to put it (one message for every lot a buyer won), and play the `lot()` calls in order with those squares.
+- **Live raise only for a near-tie:** the resolver prints `CLOSE` only when the winner's limit is within one step of the runner-up's and the price is 10 or more. Then send just the top two one raise-or-pass message each, covering all their close lots at once, as a `free --short` prompt (no state block: they have just seen it). Otherwise the ceilings stand.
+- **Stay lean:** check each move with `run.py --quiet` (ok, the last line, the grain); print the full board only when you need it.
+- Narrate each climb from the ceilings. Use each loser's say for their bid and their drop-out line for their pass. A small table may still run one lot at a time (`auction --lot ... --min ...`).
+
+## Reporting to the Director
+
+SendMessage the Director only: at the end of each year (one short paragraph: what happened, your context size); at the end of the chapter; and when something needs a decision (a safeguard trip, an engine error, a rules question, the usage limits). Don't stop for anything else.
 
 ## End of each round
 

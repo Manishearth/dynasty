@@ -1,0 +1,408 @@
+{
+ "entry": 450,
+ "round": 11,
+ "state": {
+  "grain": {
+   "1": 581.0,
+   "2": 73.5,
+   "3": 33.0,
+   "4": 126.5,
+   "5": 183.0,
+   "6": 109.5,
+   "7": 694.0,
+   "8": 208.5
+  },
+  "seat": {
+   "1": 7,
+   "2": 1,
+   "3": 3,
+   "4": 5,
+   "5": 2,
+   "6": 4,
+   "7": 6,
+   "8": 8
+  },
+  "held": {
+   "1": {
+    "BB": 1,
+    "VA": 1,
+    "WB": 1,
+    "DJ": 1
+   },
+   "2": {
+    "VA": 1
+   },
+   "3": {
+    "WB": 1
+   },
+   "4": {
+    "CH": 1,
+    "BB": 1,
+    "VA": 1
+   },
+   "5": {},
+   "6": {
+    "WB": 1,
+    "BB": 1
+   },
+   "7": {},
+   "8": {
+    "LD": 1,
+    "CH": 1,
+    "DJ": 1
+   }
+  },
+  "stock": {
+   "2": {
+    "CH": 2
+   },
+   "3": {
+    "LD": 3
+   },
+   "4": {
+    "BB": 1
+   },
+   "5": {
+    "DJ": 2
+   },
+   "6": {
+    "WB": 1
+   },
+   "7": {
+    "VA": 1
+   }
+  },
+  "pile_stock": {},
+  "raids": {
+   "1": 2,
+   "2": 9,
+   "3": 9,
+   "4": 6,
+   "5": 12,
+   "6": 4,
+   "7": 1,
+   "8": 0
+  },
+  "pw": {
+   "Summer Palace": 1,
+   "Winter Palace": 1,
+   "Marble Pagoda": 1,
+   "wall": {
+    "1": 4,
+    "2": 4,
+    "3": 0
+   },
+   "canal": {
+    "1": 2,
+    "4": 2,
+    "5": 2,
+    "6": 2
+   },
+   "irr2": 0,
+   "res3": 1,
+   "res7": 1
+  },
+  "at": {
+   "Summer Palace": [
+    "G26"
+   ],
+   "res7": [
+    "O16",
+    "O17",
+    "P16",
+    "P17"
+   ],
+   "Winter Palace": [
+    "H21"
+   ],
+   "res3": [
+    "K14",
+    "K15",
+    "K16",
+    "L14",
+    "L15",
+    "L16"
+   ],
+   "Marble Pagoda": [
+    "G18"
+   ]
+  },
+  "bonus": {
+   "1": 20,
+   "2": 0,
+   "3": 20,
+   "4": 20,
+   "5": 20,
+   "6": 20,
+   "7": 20,
+   "8": 0
+  },
+  "board": {
+   "L22": {
+    "raid": true
+   },
+   "J15": {
+    "raid": true
+   },
+   "H10": {
+    "raid": true
+   },
+   "L17": {
+    "raid": true
+   },
+   "O19": {
+    "raid": true
+   },
+   "S22": {
+    "raid": true
+   },
+   "Q25": {
+    "raid": true
+   },
+   "I11": {
+    "raid": true
+   },
+   "K16": {
+    "raid": true
+   },
+   "N20": {
+    "raid": true
+   },
+   "R23": {
+    "raid": true
+   },
+   "I10": {
+    "raid": true
+   },
+   "E8": {
+    "realia": "LD",
+    "owner": 8
+   },
+   "M21": {
+    "raid": true
+   },
+   "Q24": {
+    "raid": true
+   },
+   "P18": {
+    "raid": true
+   },
+   "I9": {
+    "raid": true
+   },
+   "I15": {
+    "raid": true
+   },
+   "F8": {
+    "realia": "CH",
+    "owner": 8
+   },
+   "I14": {
+    "raid": true
+   },
+   "T22": {
+    "realia": "DJ",
+    "owner": 8
+   },
+   "P19": {
+    "raid": true
+   },
+   "J12": {
+    "raid": true
+   },
+   "H15": {
+    "raid": true
+   },
+   "K21": {
+    "raid": true
+   },
+   "P24": {
+    "raid": true
+   },
+   "P20": {
+    "raid": true
+   },
+   "K12": {
+    "raid": true
+   },
+   "H16": {
+    "raid": true
+   },
+   "K20": {
+    "raid": true
+   },
+   "O24": {
+    "raid": true
+   },
+   "P21": {
+    "raid": true
+   },
+   "S16": {
+    "realia": "WB",
+    "owner": 6
+   },
+   "J11": {
+    "raid": true
+   },
+   "G15": {
+    "raid": true
+   },
+   "J21": {
+    "raid": true
+   },
+   "N24": {
+    "raid": true
+   },
+   "O22": {
+    "raid": true
+   },
+   "S17": {
+    "realia": "BB",
+    "owner": 6
+   },
+   "L25": {
+    "realia": "VA",
+    "owner": 2
+   },
+   "K11": {
+    "raid": true
+   },
+   "H14": {
+    "raid": true
+   },
+   "I21": {
+    "raid": true
+   },
+   "M24": {
+    "raid": true
+   },
+   "O21": {
+    "raid": true
+   },
+   "S23": {
+    "realia": "CH",
+    "owner": 4
+   },
+   "S24": {
+    "realia": "BB",
+    "owner": 4
+   },
+   "G12": {
+    "realia": "BB",
+    "owner": 1
+   },
+   "H12": {
+    "realia": "VA",
+    "owner": 1
+   },
+   "I12": {
+    "realia": "WB",
+    "owner": 1
+   },
+   "J14": {
+    "realia": "DJ",
+    "owner": 1
+   },
+   "J17": {
+    "realia": "WB",
+    "owner": 3
+   },
+   "S25": {
+    "realia": "VA",
+    "owner": 4
+   },
+   "I13": {
+    "raid": true
+   },
+   "H21": {
+    "raid": true
+   },
+   "L24": {
+    "raid": true
+   },
+   "N21": {
+    "raid": true
+   }
+  },
+  "land": {},
+  "sol": [
+   [
+    "W1",
+    "W",
+    "J12",
+    8
+   ],
+   [
+    "W2",
+    "W",
+    "I13",
+    8
+   ],
+   [
+    "W3",
+    "W",
+    "H21",
+    8
+   ],
+   [
+    "W4",
+    "W",
+    "L24",
+    8
+   ],
+   [
+    "W5",
+    "W",
+    "N21",
+    8
+   ]
+  ],
+  "pile": 491.0,
+  "mult": 1.5,
+  "rob": {
+   "2": "LD",
+   "4": "CH",
+   "6": "DJ",
+   "palace": "Winter Palace"
+  }
+ },
+ "soldiers": {
+  "W1": {
+   "side": "W",
+   "owner": 8,
+   "sq": "J12",
+   "home": 8,
+   "moved": 11
+  },
+  "W2": {
+   "side": "W",
+   "owner": 8,
+   "sq": "I13",
+   "home": 8,
+   "moved": 11
+  },
+  "W3": {
+   "side": "W",
+   "owner": 8,
+   "sq": "H21",
+   "home": 8,
+   "moved": 11
+  },
+  "W4": {
+   "side": "W",
+   "owner": 8,
+   "sq": "L24",
+   "home": 8,
+   "moved": 11
+  },
+  "W5": {
+   "side": "W",
+   "owner": 8,
+   "sq": "N21",
+   "home": 8,
+   "moved": 11
+  }
+ },
+ "mult": 1.5,
+ "cards_drawn": null
+}

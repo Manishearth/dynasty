@@ -1,0 +1,7 @@
+move: I8; show the set and replace Rich
+say: The Jar goes on I8 under the Wall, darlings, and the set goes on the table: Brush, Vase, Customs House, Bowl and Jar. Rich, my dear, you bought my whole set one polite grain at a time in Year Two, and you were one Bowl away from doing it again, so I'll have the Official's chair back now, please, and the ledger that goes with it. Your Majesty, keep the throne warm. I can count to one auction.
+aside: If I take the throne now, Rich finishes his set on lot 5 and takes it straight off me with all 1,194 grain, so I'm taking his seat instead. That sends his Deed and the rest of his pieces back to stock and ends his set before it's finished. I finish on 578 with nobody at the table holding a set, so I'm the one who decides next year which chair I want.
+whisper: none
+
+---
+Ruling: legal (§11: the Gentry may replace the Official). The Jar goes on I8, then Reina shows the Gentry's set after lot 4 and replaces Rich as the Official, in Province 2: she keeps her 464 and takes Rich's 114 (578). Her Customs House, native to Province 2, goes back to its stock; her Brush, Vase, Bowl and Jar move with her (squares asked after the swap; provisional until then). Rich returns his Brush, Vase, Jar and the Deed he won in lot 2 (placed provisionally on G16 and returned), draws 60 and becomes the Gentry, in Province 3, which sells the Deeds. Lot 5 is re-settled from the same limits (ledger precedent): Rich's 52 on the Bowl, set as the Official, stands under his 60 and still wins at 27. Lot 6 unchanged.
