@@ -64,3 +64,12 @@ body{counter-reset:line}
 /* the taxpayer's figures, written in by hand */
 .refcards table.income td:not(:first-child){font-family:"Segoe Print","Bradley Hand","Comic Sans MS",cursive;color:#1A3BD6;font-size:9.5pt}
 .refcards .cf::after{content:"   ·   Cat. No. 1969R";white-space:pre}
+
+/* ---------- print ---------- */
+@media print{
+  /* the outline would cut across the page wherever a section starts or ends */
+  :root{--sheet-shadow:none}
+  body{background:#fff}
+  /* print takes the sheet's padding away; leave room for the footer line */
+  .rulebook .sheet{padding-bottom:1.8rem}
+}

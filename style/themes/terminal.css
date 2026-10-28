@@ -87,8 +87,23 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;
 .refcards ul.checks li::before{border-color:var(--ink)}
 
 /* ---------- print ---------- */
+/* on paper: a line-printer listing on green-bar paper, in dark green ink */
 @media print{
+  :root{
+    --canvas:#fff;--paper:#fff;--ink:#0B3D14;--ink-soft:#3C6E47;--ink-mid:#1F5A2A;--ink-faint:#6E9C77;
+    --rule:#8FC39A;--hairline:#CFE8D4;--tint:#EAF6EC;
+    --vermilion:#9A5B00;--pink:#B0144E;--cobalt:#00728A;--upper:#0B3D14;--slate:#00728A;
+    --note-bg:#fff;--must-bg:#FFF3D6;--water-bg:#E3F5FA;--on-accent:#fff;
+    --cover-bg:#fff;--sheet-shadow:none;--card-shadow:none;--glyph-filter:none;
+  }
   /* the scanlines would add a blank page, and the glow prints as a second copy of every word */
   body::after{display:none}
-  body{text-shadow:none}
+  body{text-shadow:none;background:#fff}
+  .rulebook .sheet{background:repeating-linear-gradient(#fff 0 3rem,#EAF6EC 3rem 6rem)}
+  .rulebook h2::after,.refcards .top h1::after{content:none}
+  .rulebook strong{color:var(--ink)}
+  .wordmark span{box-shadow:none}
+  .rulebook .card{box-shadow:none;background:#fff}
+  .note{box-shadow:inset 0 0 0 3px #fff,inset 0 0 0 4px var(--pink)}
+  .rulebook figure svg,.rulebook figure img{filter:none}
 }

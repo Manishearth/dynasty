@@ -92,3 +92,19 @@ body::before{content:"";position:fixed;left:-50%;right:-50%;bottom:0;height:38vh
 .refcards h3{color:var(--pink);border-bottom:1px solid #00C2D9}
 .refcards ol.turn .n{background:linear-gradient(#FF3FA4,#8F5BFF)}
 .refcards .anytime{border:2px solid #C0C0C0;box-shadow:inset -1px -1px #808080,inset 1px 1px #fff;background:#F0F0F0}
+
+/* ---------- print ---------- */
+/* on paper: white pages; the sun and the gradient lettering stay, the night sky and the grid go */
+@media print{
+  :root{--paper:#FFFFFF;--cover-ink:var(--ink);--sheet-shadow:none;--card-shadow:none}
+  body{background:#fff}
+  body::before{display:none}
+  .cover{color:var(--ink)}
+  .cover::before{box-shadow:none;background:repeating-linear-gradient(180deg,transparent 0 58%,#fff 58% 61%,transparent 61% 68%,#fff 68% 72%,transparent 72% 78%,#fff 78% 83%,transparent 83%),
+             linear-gradient(#FFE66B,#FF6EC7 70%,#FF3FA4)}
+  .wordmark span,.refcards .top h1{background:linear-gradient(180deg,#FF3FA4 0%,#8F5BFF 50%,#00C2D9 100%);-webkit-background-clip:text;background-clip:text;filter:none}
+  .cover .meta{color:var(--ink-soft)}
+  .rulebook .sheet:not(.cover){box-shadow:inset -2px -2px #808080,inset 2px 2px #fff}
+  .note{background:#F4F4F4}
+  .rulebook .card{box-shadow:inset -2px -2px #808080,inset 2px 2px #fff}
+}

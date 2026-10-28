@@ -122,3 +122,27 @@ body{background:var(--glitter),var(--leopard) 0 0/140px 140px,var(--airbrush);ba
 .refcards th{color:#FF1F8E}
 .refcards .anytime{border:2px dashed #FF1F8E;border-radius:10px;background:#FFF0FB}
 .refcards ul.checks li::before{border-color:#FF1F8E;border-radius:50%}
+
+/* ---------- print ---------- */
+/* on paper: white pages framed in rainbow; the critters and bubble letters stay, the airbrushed sky goes */
+@media print{
+  :root{--paper:#FFFFFF;--note-bg:#FFFFFF;--cover-bg:#FFFFFF;--sheet-shadow:none;--card-shadow:none}
+  body{background:#fff}
+  .rulebook .sheet{background:var(--paper)}
+  /* stickers sit inside the page, not off its edge */
+  .rulebook .sheet::after{top:0;right:0;animation:none}
+  .rulebook .sheet:not(.cover)::before{display:none}
+  .rulebook .cover{background:#fff;border:8px solid transparent;background:linear-gradient(#fff,#fff) padding-box,var(--rainbow) border-box;padding:3rem 2rem}
+  .rulebook .sheet.cover::before{animation:none;filter:none}
+  .rulebook .sheet.cover::after{color:#FFE600;-webkit-text-stroke:2px #FF1F8E}
+  .wordmark span{animation:none}
+  /* a white outline vanishes on white paper and eats the letters */
+  .rulebook h3{-webkit-text-stroke:0;text-shadow:2px 2px 0 #FFE600}
+  .cover .sub,.cover .meta,.cover p{color:var(--ink);text-shadow:none}
+  .cover .meta{background:#F4EBFF}
+  .cover hr::after{color:#FF1F8E}
+  .note{background:linear-gradient(#fff,#fff) padding-box,var(--rainbow) border-box}
+  .rulebook thead th{background:#fff;color:#FF1F8E;text-shadow:none;border-bottom:4px solid transparent;border-image:var(--rainbow) 1}
+  .rulebook .card{box-shadow:none}
+  .refcards .card{background:var(--paper)}
+}

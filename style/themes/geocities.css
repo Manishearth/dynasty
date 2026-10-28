@@ -68,3 +68,17 @@ body{background:
 .refcards th{color:#000080}
 .refcards ol.turn .n{background:#000080;color:#FFFF00;border-radius:0}
 .refcards .anytime{border:2px dashed #FF00FF;background:#FFFF99}
+
+/* ---------- print ---------- */
+/* on paper: the page goes white and the starfield goes; the colours stay loud */
+@media print{
+  :root{--paper:#FFFFFF;--cover-bg:#FFFFFF;--cover-ink:#000080;--note-bg:#FFFFCC;--sheet-shadow:none;--card-shadow:none}
+  body{background:#fff}
+  .sec-num{animation:none}
+  .wordmark{color:#FF00FF;text-shadow:3px 3px 0 #FFD700,5px 5px 0 #0000FF}
+  .wordmark span:nth-child(odd){color:#0000FF}
+  /* the banner stops scrolling (it would widen the page), and moves inside the cover */
+  .cover::before{animation:none;text-indent:0;text-align:center;margin:0 0 2.5rem;white-space:normal;padding:.3rem 1rem}
+  .cover::after{color:#808080}
+  .rulebook .card{background:#F0F0F0}
+}
