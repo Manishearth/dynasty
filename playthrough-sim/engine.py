@@ -611,7 +611,7 @@ def swap(a, b, note, hover=None, draw=60, check=True, at=None):
         assert grain[pa] >= 0, f"{SHORT[pa]} is in debt and can't change seats"
         if b == 1: assert a in (2,3,4,8) or (a == 5 and not set(ACTIVE) & {2,3,4}), \
             "only the Official, Gentry, Scholar or Warlord may take the throne (or the Silk Peasant, with no upper class at the table)"
-        if a in (5,6,7): assert b in (2,3,4,5,6,7), "a peasant may replace the Gentry, Scholar, Official or a peasant"
+        if a in (5,6,7) and b != 1: assert b in (2,3,4,5,6,7), "a peasant may replace the Gentry, Scholar, Official or a peasant"
     if b in REALIA:                      # pieces native to the new seat go back to auction
         t = REALIA[b]
         if t in held[pa]:
