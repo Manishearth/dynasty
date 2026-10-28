@@ -33,7 +33,7 @@ var t,q=/[?&]theme=([\w-]+)/.exec(location.search);
 try{t=localStorage.getItem('dynasty-theme')}catch(e){}
 /* ?theme=name for testing, and for printing from a fresh browser */
 if(q)t=q[1];
-if(t&&["original", "imperial", "lisafrank", "pocket", "geocities", "taxform", "terminal", "manuscript", "vaporwave", "flatpack", "safety", "swiss", "wargame", "bookshelf", "handmedown"].indexOf(t)>0){
+if(t&&["original", "imperial", "wargame", "manuscript", "lisafrank", "pocket", "flatpack", "geocities", "taxform", "terminal", "vaporwave", "safety", "swiss", "bookshelf", "handmedown"].indexOf(t)>0){
   document.write('<link rel="stylesheet" id="theme-css" href="style/themes/'+t+'.css">');
   document.documentElement.setAttribute('data-theme',t);
 }
@@ -63,7 +63,7 @@ Print the first sheet again for more general cards.</p>
 <script id="theme-pick">
 /* Five quick clicks on the title show the theme picker (tools/add_theming.py). */
 (function(){
-var T=[["original", "Original"], ["imperial", "Imperial"], ["lisafrank", "Trapper Keeper"], ["pocket", "Pocket Monsters"], ["geocities", "GeoCities"], ["taxform", "Form 1969-EZ"], ["terminal", "Terminal"], ["manuscript", "Manuscript"], ["vaporwave", "Vaporwave"], ["flatpack", "Flat-Pack"], ["safety", "Safety Card"], ["swiss", "Swiss Style"], ["wargame", "Hex & Counter"], ["bookshelf", "Bookshelf Game"], ["handmedown", "Hand-Me-Down"]],title=document.querySelector('[data-theme-unlock]'),n=0,last=0;
+var T=[["original", "Original"], ["imperial", "Imperial"], ["wargame", "Hex & Counter"], ["manuscript", "Manuscript"], ["lisafrank", "Trapper Keeper"], ["pocket", "Pocket Monsters"], ["flatpack", "Flat-Pack"], ["geocities", "GeoCities"], ["taxform", "Form 1969-EZ"], ["terminal", "Terminal"], ["vaporwave", "Vaporwave"], ["safety", "Safety Card"], ["swiss", "Swiss Style"], ["bookshelf", "Bookshelf Game"], ["handmedown", "Hand-Me-Down"]],title=document.querySelector('[data-theme-unlock]'),n=0,last=0;
 if(!title)return;
 title.addEventListener('click',function(){
   var now=Date.now();
