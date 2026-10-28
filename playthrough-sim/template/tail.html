@@ -416,7 +416,12 @@ addEventListener('keydown',e=>{
   if(e.target.closest&&e.target.closest('input,textarea'))return;
   if(e.key==='ArrowRight'){step(1);e.preventDefault();}
   if(e.key==='ArrowLeft'){step(-1);e.preventDefault();}});
-function fromHash(){return Math.max(0,ALL.games.findIndex(g=>'#'+g.meta.key===location.hash));}
+/* a game that lives on the other page (an old link): send the address there */
+const FORWARD=/*FORWARD*/{};
+function fromHash(){
+  const k=location.hash.slice(1);
+  if(FORWARD[k])location.replace(FORWARD[k]+location.hash);
+  return Math.max(0,ALL.games.findIndex(g=>g.meta.key===k));}
 addEventListener('hashchange',()=>{const i=fromHash(); if(i!==curGame) loadGame(i,false);});
 /* ---------- piece glyphs in running text ---------- */
 /* Every piece name the page writes gets its glyph in front (the board legend

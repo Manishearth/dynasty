@@ -40,7 +40,7 @@ A Storyteller's reports to you come out of its own allowance, not yours. Keep th
 
 **Status, without messages.** After each finished year that you've checked, add one line to `<game>-status.md` in the shared notes folder named in your startup prompt: what happened, the grain, any steering, and the last year rebuilt on the page. It costs no messages, and the main session reads it in the morning.
 
-**The page.** `build_real.py` rebuilds every game into one file, `playthroughs-real.html`, so two Directors rebuilding at once would race.
+**The page.** `build_real.py` rebuilds every game into one file, `playthrough.html`, so two Directors rebuilding at once would race.
 - **If your startup brief says you're the only Director running:** you own the page. Rebuild live after each checked year, without asking: set your game's `IN_PROGRESS` entry to that year, run `python playthrough-sim/agents/build_real.py` from the repo root, and note it in your status file. Touch only your game's lines in `build_real.py`.
 - **Otherwise:** don't rebuild, and don't edit `build_real.py`. The status file records your last finished year, and the main session rebuilds every game at once in the morning.
 

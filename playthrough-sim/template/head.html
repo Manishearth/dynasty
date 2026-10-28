@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dynasty Playthroughs</title>
+<title>/*PAGE_TITLE*/</title>
 <style>
 :root{
   --canvas:#E4DDCB;--paper:#fff;--ink:#16150F;--soft:#5C584A;--rule:#C9C1AC;
@@ -16,6 +16,9 @@ body{margin:0;background:var(--canvas);color:var(--ink);
 a{color:var(--verm)}
 header{background:var(--verm);color:#fff;padding:1.6rem 1.4rem 1.3rem}
 header h1{font:700 1.5rem/1.1 var(--disp);letter-spacing:.16em;text-transform:uppercase;margin:0}
+header .sibling{display:inline-block;margin-top:.5rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;
+  color:#fff;opacity:.9;text-underline-offset:.2em}
+header .sibling:hover{opacity:1}
 header p{margin:.5rem 0 0;font-family:var(--mono);font-size:.76rem;letter-spacing:.1em;
   text-transform:uppercase;opacity:.92}
 .tabs{display:flex;gap:2px;overflow-x:auto;background:#D8D1BE;padding:0 .5rem;
@@ -211,7 +214,8 @@ table.res td.stk img{width:1.35em;height:1.35em;vertical-align:-.3em}
 </head>
 <body>
 <header>
-  <h1>Dynasty — Playthroughs</h1>
+  <h1>/*PAGE_HEADING*/</h1>
+  <a class="sibling" href="/*OTHER_HREF*/">/*OTHER_LABEL*/</a>
   <div class="gamepick">
     <button class="gamebtn" id="gamebtn" aria-haspopup="true" aria-expanded="false" aria-controls="games"></button>
     <div class="games" id="games" role="menu" aria-label="Choose a playthrough" hidden></div>

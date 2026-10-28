@@ -1,4 +1,4 @@
-"""Build ../../playthroughs-real.html from the agent-played games in ../../playthroughs/.
+"""Build ../../playthrough.html from the agent-played games in ../../playthroughs/.
 
 Usage (from the repo root):  python playthrough-sim/agents/build_real.py [out.html]
 
@@ -61,6 +61,12 @@ def run(game):
     return res
 build.run = run
 
+# The page's title and heading, and the link to the older scripted games (playthrough-scripted.html),
+# where an old address (playthrough.html#full and the like) is sent on to.
+PAGE = dict(title="Dynasty Playthroughs", heading="Dynasty — Playthroughs",
+            other_href="playthrough-scripted.html", other_label="The older scripted games →")
+
 if __name__ == "__main__":
-    out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, "playthroughs-real.html")
-    build.main(out, [os.path.join(ROOT, "playthroughs", g, "game.py") for g in GAMES])
+    out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, "playthrough.html")
+    build.main(out, [os.path.join(ROOT, "playthroughs", g, "game.py") for g in GAMES], PAGE,
+               {k: "playthrough-scripted.html" for k in build.keys(build.GAMES)})

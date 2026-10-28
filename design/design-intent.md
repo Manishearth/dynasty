@@ -33,10 +33,10 @@ These are Manish's standing preferences, gathered from the conversations. Treat 
 - Piece names in running text get glyphs, via `tools/add_glyphs.py`. Each glyph is sized so its ink runs from the baseline to the cap height, whatever its shape (`inline_css()` in `tools/glyphs.py` measures each one), so the small versions all read at the same height as the text.
 - **Reservoir is capitalised wherever its glyph appears**: "the Reservoir", "two Reservoirs". `add_glyphs.py` and the playthrough page do this themselves (the `CAPITALISE` set), so new text can't slip.
 
-## The playthroughs (`playthrough.html`)
+## The playthroughs (`playthrough.html`, and the scripted games in `playthrough-scripted.html`)
 
 **What the page is**
-- A game selector at the top, one button per game, linked to the URL hash (`#full`, `#trashfire`, `#short`, `#peasant`, `#robbed`). Under it, a **Setup** tab, one tab per year, and a Result tab.
+- A game selector at the top, a dropdown of every game, linked to the URL hash (`#full-game`; on the scripted page `#full`, `#trashfire` and so on, and the agent page sends those on to it). A link under the heading goes to the other page. Under it, a **Setup** tab, one tab per year, and a Result tab.
 - The transcript separates **actions** from **dialogue**. Auction lots expand to show the bid ladder.
 - Side panels: an **annotated board**, an **objectives tracker** (each realia province's set, plus the Warlord's), **public works** (owed vs built, with a running total) and **players** (seat, grain, the Harvest Pile).
 - **The board is the real map**, drawn the way `map.svg` draws it: the page lays `map-board.svg` (the map without its frame, coordinates, title, legend or labels) under its own marks, and draws the Wall and Canal in the map's style once built. It shows provinces, undeveloped land, the strip below the Wall, beyond the Wall, the sea, rivers, the Wall links and canal sections (dashed until built), palaces and cut-outs where they were placed, realia on their squares, raid squares, and every soldier. A line that moves soldiers draws the steps as arrows.

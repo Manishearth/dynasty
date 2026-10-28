@@ -1,6 +1,6 @@
 # The page: build pipeline and data format
 
-`playthrough.html` is one self-contained file: HTML and CSS, a JSON block holding every game, and the JavaScript that renders them. Nothing is fetched at runtime, so the file works from disk, from GitHub Pages, or as an email attachment.
+Each playthrough page (`playthrough.html`, the agent-played games, and `playthrough-scripted.html`, the scripted ones) is one self-contained file: HTML and CSS, a JSON block holding every game, and the JavaScript that renders them. Nothing is fetched at runtime, so the file works from disk, from GitHub Pages, or as an email attachment.
 
 - [The build](#the-build)
 - [The data format](#the-data-format)
@@ -25,7 +25,7 @@ template/tail.html   ─┘
 
 `head.html` ends inside `<script id="data" type="application/json">`; `tail.html` begins with the closing `</script>`. The page reads the data with `JSON.parse(document.getElementById('data').textContent)`.
 
-The build is deterministic: the same scripts always produce a byte-identical page, so a diff of `playthrough.html` reflects only real changes.
+The build is deterministic: the same scripts always produce a byte-identical page, so a diff of either page reflects only real changes.
 
 ## The data format
 

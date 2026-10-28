@@ -6,7 +6,7 @@ The goal is a modern, unofficial revival:
 
 1. **A modern rulebook** (`rulebook.html`). General concepts first (Part One), then one section per province (Part Two), then appendices: setup by player count, a worked round, reference cards, editor's notes and rulings, and an explainer's cheat sheet.
 2. **A single list of rulings** (`RULINGS.md`). Every question the originals leave open, how it was settled and why, including the assumptions the playthrough engine makes, plus the open questions waiting for Manish.
-3. **Annotated playthroughs** (`playthrough.html`). Seven independent games played by the same eight friends, each in the province their name puns on, on the real board, shown year by year with a Setup tab first. Each line is an action or a piece of in-character dialogue, and hovering shows what the players were thinking. A board, an objectives tracker, public works and player panels follow along.
+3. **Annotated playthroughs** (`playthrough.html`). Games played by AI agents, one `dynasty-player` agent to a seat, refereed through the engine (`playthrough-sim/agents/`). The older scripted playthroughs (`playthrough-scripted.html`) are seven independent games, each written start to finish by one author, played by the same eight friends, each in the province their name puns on, on the real board, shown year by year with a Setup tab first. Each line is an action or a piece of in-character dialogue, and hovering shows what the players were thinking. A board, an objectives tracker, public works and player panels follow along.
 4. **Reusable, copyright-clean assets.** A redrawn map (`map.svg`, `map.json`), a reworded I Ching card list (`i-ching.html`, `i-ching.json`), printable reference cards (`reference-cards.html`), and piece glyphs (`images/`).
 
 The repo is `C:\Users\manishearth\dev\dynasty-new`, pushed to GitHub as `Manishearth/dynasty` on the `main` branch, licensed CC BY-SA 4.0. The original scans and photos are kept **off** GitHub, on manishearth.net/dynasty. The older folder `C:\Users\manishearth\dev\dynasty` still holds the scans and the pre-clean history; don't work there.
@@ -27,10 +27,10 @@ The repo is `C:\Users\manishearth\dev\dynasty-new`, pushed to GitHub as `Manishe
 | `tools/add_theming.py` | Writes the theme loader and the hidden theme picker into a page; holds the list of themes | the theming session |
 | `RULINGS.md` | Every ruling, clarification and engine assumption, with reasons; the open rules questions | Every session adds to it |
 | `design/` | These design documents | Every session keeps them current |
-| `playthrough.html` | Generated. Never edit by hand; rebuild it | `playthrough-sim/build.py` |
-| `playthrough-sim/` | Generator for the playthrough page: the engine, the cards, seven game scripts, page templates, and docs | the playthrough sessions |
+| `playthrough.html` | Generated: the games played by agents. Never edit by hand; rebuild it | `playthrough-sim/agents/build_real.py` |
+| `playthrough-scripted.html` | Generated: the older scripted games. Never edit by hand; rebuild it | `playthrough-sim/build.py` |
+| `playthrough-sim/` | Generator for both playthrough pages: the engine, the cards, seven scripted games, page templates, and docs | the playthrough sessions |
 | `playthrough-sim/README.md`, `docs/*.md` | Writing a game, the engine API, the rules model, the page format | the playthrough sessions |
-| `playthroughs-real.html` | Generated: the games played by agents. Will eventually replace `playthrough.html` | `playthrough-sim/agents/build_real.py` |
 | `playthrough-sim/agents/` | Tools and notes for games played by agents: the Storyteller's notes, prompt generator, referee, geometry, page builder | the Director and Storyteller sessions |
 | `playthroughs/<name>/` | One agent-played game's full record: `game.py`, the logs, ledger, diaries, narration, snapshots, handoffs | that game's Director and Storytellers |
 | `.claude/agents/dynasty-player.md` | The tool-less player agent each seat is played by | the Director and Storyteller sessions |
@@ -46,8 +46,8 @@ The repo is `C:\Users\manishearth\dev\dynasty-new`, pushed to GitHub as `Manishe
 ## Building
 
 ```sh
-python3 playthrough-sim/build.py                       # rebuild playthrough.html (all seven games)
-python3 playthrough-sim/agents/build_real.py           # rebuild playthroughs-real.html (the agent-played games)
+python3 playthrough-sim/agents/build_real.py           # rebuild playthrough.html (the agent-played games)
+python3 playthrough-sim/build.py                       # rebuild playthrough-scripted.html (the seven scripted games)
 python3 playthrough-sim/trace.py game1_full.py          # ledger: everyone's grain after every line
 python3 playthrough-sim/trace.py game1_full.py --board 57   # the board after entry 57
 python3 tools/add_glyphs.py rulebook.html  # re-run after editing rulebook text
@@ -60,15 +60,15 @@ python3 tools/glyphs.py                                 # regenerate images/
 
 These need Python 3.9 or later and no other dependencies. The playthrough build is deterministic: the same scripts always produce a byte-identical page. Use that to check that a refactor changed nothing. `add_glyphs.py` is idempotent too: running it twice changes nothing. Every generator writes UTF-8 with Unix line endings, on Windows as well.
 
-The pages are plain files: open them straight from disk in a browser (for example `file:///C:/Users/manishearth/dev/dynasty-new/playthrough.html#full`). Glyphs load from `images/` and styles from `style/` beside them. Scripts are written into each page, not loaded from `.js` files, so they run from disk. There's no need for a preview server; give Manish file links to open.
+The pages are plain files: open them straight from disk in a browser (for example `file:///C:/Users/manishearth/dev/dynasty-new/playthrough.html#full-game`). Glyphs load from `images/` and styles from `style/` beside them. Scripts are written into each page, not loaded from `.js` files, so they run from disk. There's no need for a preview server; give Manish file links to open.
 
 ## Working in parallel
 
 Manish usually runs several sessions at once: one on the rulebook, one on the playthroughs, one on the map and cards. They share this repo.
 
-- **Stay inside the files your task owns.** For playthrough work that's `playthrough-sim/` and the generated `playthrough.html`. Treat everything else as read-only unless Manish says otherwise.
+- **Stay inside the files your task owns.** For playthrough work that's `playthrough-sim/` and the generated `playthrough.html` and `playthrough-scripted.html`. Treat everything else as read-only unless Manish says otherwise.
 - **`RULINGS.md` and `design/` are shared.** Add to them with small, targeted edits, never a wholesale rewrite, so you don't overwrite another session's entries.
-- **Stage paths explicitly** when committing (`git add playthrough-sim playthrough.html`), never `git add -A`, so another session's work in progress doesn't land in your commit.
+- **Stage paths explicitly** when committing (`git add playthrough-sim playthrough.html playthrough-scripted.html`), never `git add -A`, so another session's work in progress doesn't land in your commit.
 - **Check before writing** to a file another session might be editing: look at `git status` and the diff, and never overwrite newer work.
 - Commit when Manish asks. He has allowed pushing to `main` on request.
 

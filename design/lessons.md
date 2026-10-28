@@ -28,7 +28,7 @@ Mistakes caught along the way, worth not repeating. Add to this when something s
 - A browser can cache the old page while you test: add a query string (`?v=2`) after rebuilding.
 
 **Files**
-- **Never hand-edit `playthrough.html`**; rebuild it.
+- **Never hand-edit `playthrough.html` or `playthrough-scripted.html`**; rebuild them.
 - **Stay in your own files.** Other sessions edit the rulebook, the map, `RULINGS.md` and these docs at the same time. Stage paths explicitly when committing.
 - Before editing the rulebook, check for parallel edits. Apply changes to the current text, then re-run `add_glyphs.py` and check the diff.
 - `add_glyphs.py` matches piece names in prose, and once matched "Three reservoirs" in a booklet description. Reword or check the diff after every run.

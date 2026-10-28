@@ -11,7 +11,8 @@ The original scans can be found on https://manishearth.net/dynasty/.
 | `index.html` | The landing page: links to everything below and to the original scans |
 | `rulebook.html` | The rules, rewritten as one modern rulebook |
 | `RULINGS.md` | Every rules question settled so far, with reasons. Add yours here |
-| `playthrough.html` | Seven annotated example games: two at eight players, a four-player short game, a five-player peasant game, two six-player games and a seven-player game |
+| `playthrough.html` | Annotated games played by AI agents, one to a seat; their records are in `playthroughs/` |
+| `playthrough-scripted.html` | The older scripted playthroughs: seven example games, each written start to finish by one author: two at eight players, a four-player short game, a five-player peasant game, two six-player games and a seven-player game |
 | `map.svg` | The board, redrawn: seven provinces on a 30 × 22 grid (rows A–V, columns 1–30). Drawn as named layers, so Inkscape can show or hide each one |
 | `map-board.svg` | The board's ground alone, without frame, labels or printed works, for pages that draw on top of it (the playthrough does) |
 | `map.json` | The same board as data: which region each square belongs to, plus the rivers, coast, Great Wall links and Grand Canal sections |
@@ -21,7 +22,7 @@ The original scans can be found on https://manishearth.net/dynasty/.
 | `style/` | The stylesheets for the rulebook and the reference cards: `base.css` (the palette, shared), one layout file per page, and `themes/`, alternative looks unlocked by clicking a page's title five times quickly |
 | `images/` | One SVG glyph per piece: the six realia, the public works and the soldier |
 | `tools/` | Scripts that generate the map, the I Ching cards, the reference cards and the glyphs |
-| `playthrough-sim/` | The engine and game scripts that generate `playthrough.html`, with their own [documentation](playthrough-sim/README.md) |
+| `playthrough-sim/` | The engine and game scripts that generate both playthrough pages, with their own [documentation](playthrough-sim/README.md) |
 
 ## Regenerating
 
@@ -34,7 +35,8 @@ python3 tools/build_events.py   # i-ching.html, i-ching.json
 python3 tools/build_reference.py # reference-cards.html
 python3 tools/add_glyphs.py rulebook.html   # put a glyph before every piece name
 python3 tools/add_glyphs.py i-ching.html
-python3 playthrough-sim/build.py # playthrough.html
+python3 playthrough-sim/agents/build_real.py # playthrough.html
+python3 playthrough-sim/build.py # playthrough-scripted.html
 ```
 
 `add_glyphs.py` can be run again safely: it removes the glyphs it added before adding them back.

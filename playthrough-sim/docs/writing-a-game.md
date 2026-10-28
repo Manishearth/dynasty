@@ -65,7 +65,7 @@ setup([1,5,6,7,8], "peasant", "The peasant game",
 | Argument | Meaning |
 |---|---|
 | `active` | The seats in play. The player count decides starting realia, objectives and the size of the Warlord's army. |
-| `key` | The game's id in the page address: `playthrough.html#peasant` opens this game. |
+| `key` | The game's id in the page address: `playthrough-scripted.html#peasant` opens this game (and `playthrough.html#peasant` forwards there). |
 | `title`, `subtitle`, `short` | The game-selector button: title, the full subtitle, and the short subtitle used on phones. |
 | `blurb` | The paragraph under the header. |
 
