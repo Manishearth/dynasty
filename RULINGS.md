@@ -297,6 +297,14 @@ The details, settled by Manish on 2026-10-25:
 
 **Recorded in** rulebook Section 10 (The auction), the rules on one page, Appendix G, and the general and round reference cards. The engine doesn't enforce minimums; the agent tools (`rules-digest.md`, `briefs.py --floor`) carry the rule, and the full game applies it from Year 9.
 
+### The crown may build a negotiated work alone
+
+**Ruling.** The crown may build a negotiated work alone if it pays the whole cost. A province's agreement governs only its own share: it can refuse to pay, but it can't stop a work the crown pays for in full. Note 7 still applies: a crown in debt can't pay for a work.
+
+**Why.** Section 12: "the province player and the Emperor haggle over the split… Neither side can force the other." The split is what's negotiated, and forcing means forcing someone to pay. Read as a veto, it would let one province hold the game open for ever, since the game ends only when every work is built (Section 18). It came up in the agent-played full game, Year 13: the Official, Graham, refused the Province 2 Irrigation System even at the crown's whole cost, with an extra 100 on top, so that the game wouldn't end. Manish: "Yes, crown can", on 2026-10-28.
+
+**Recorded in** rulebook Section 12 ("Who pays") and Appendix G. The engine's `build()` already takes any split.
+
 ## I Ching cards
 
 The deck in `i-ching.json` is reworded. Its effects follow the 1969 cards, and these are the readings it settles on.
