@@ -1,0 +1,6 @@
+move: take the throne
+say: I'll take the throne. Reina, you've been a better Emperor than this table had any right to expect: you dug my canal, you paid your share of every field, and you kept your word to the last grain. The coast is a good province and it'll feed you well. Graham, Silke, I'm not taking a neighbour's seat. I'll keep the tax honest and get on with the works we still owe.
+aside: Taking Graham's grain or Silke's would have meant robbing someone who just dealt fairly with me, so the throne's the only climb I can make with a clear conscience. It comes with the hungriest province on the board and 220 of works still owed, so now I find out whether being careful with every grain works for a whole empire.
+whisper: none
+---
+Ruling: legal (Section 11; R: The Silk Peasant stands in for the upper class). Paddy replaces Reina as Emperor: he keeps his 90.5 and takes the crown's reserve of 27.5, 118 in all, and returns every piece he holds to its home province's stock (the Customs House to 5, the Brush and the Wooden Bowl to 6, the Deed and the Vase to 7). Reina returns nothing (she held none), draws 60 from the pile and becomes the Silk Peasant of Province 5, with its canal sections and its four squares of new land. The salaries step (the Emperor's) is now Paddy's: asked in 072, with the appointments.

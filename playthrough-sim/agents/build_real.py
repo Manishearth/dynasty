@@ -16,14 +16,13 @@ ROOT = os.path.dirname(os.path.dirname(HERE))
 sys.path.insert(0, os.path.dirname(HERE))
 import build
 
-GAMES = ["full-game", "short-game", "highway-robbery", "western-front",
-         "peasant-collapse", "protection-money", "peasant-draw", "peasant-thrive"]
+GAMES = ["full-game", "short-game", "peasant-thrive", "highway-robbery", "western-front",
+         "peasant-collapse", "protection-money", "peasant-draw"]
 # The last finished year to show (the script is cut at the next year's marker): moved on by the
 # Director as each year closes. Drop the game from here once its game.py has its own ending
 # (RESULT = export(...)).
 IN_PROGRESS = {}    # e.g. {"full-game": 12} while a game is being played
 # A game not started yet shows its setup only, until its first year is played.
-IN_PROGRESS.update({"peasant-thrive": 3})
 # The game selector's title and subtitle while a game is still being played (its game.py keeps
 # its own until the game ends, when the subtitle gets the result).
 IN_PROGRESS_TITLE = {}
@@ -34,8 +33,7 @@ IN_PROGRESS_BLURB = {}
 def run_partial(path, year):
     stop = f"# ============================== YEAR {year + 1} "
     ns = {"SIM_DIR": build.HERE}
-    for p in (os.path.join(build.HERE, "cards.py"), os.path.join(build.HERE, "engine.py")):
-        exec(compile(open(p, encoding="utf-8").read(), p, "exec"), ns)
+    build.load_engine(ns)
     src = open(path, encoding="utf-8").read()
     if stop in src: src = src[:src.index(stop)]
     exec(compile(src, path, "exec"), ns)

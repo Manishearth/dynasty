@@ -192,6 +192,7 @@ say("Paddy","Agreed. And he raided me in Year One and nobody's done anything abo
 say("Rich","Majesty, I'm not part of this.", TH(
  ("Rich","Not part of it, and not against it. If there's no Emperor, there's no tax, and nobody stops rent. I'll be loyal right up to the moment there's nothing left to be loyal to."),
  ("Clark","He's not part of it. He's just sitting very still and smiling.")))
+CHAOS = True    # the page burns the board's edges until the acclamation
 act("REVOLT. Clark, Silke and Paddy stand against the throne. The price of revolt is CHAOS: no tax is declared, no salaries are paid and no public works are built until a new Emperor emerges. The harvest is still paid, the rent is still owed, and the Warlord still rides.", TH(
  ("Reina","Two years of building, two hundred and eighty-four in the reserve, and the Wall a sixth done."),
  ("Clark","Nobody pays anything to anyone in Province 1 until we've chosen who sits there."),
@@ -342,6 +343,7 @@ say("Paddy","Then I'm behind Rich too. Clark's not claiming, and I want my land.
 say("Rob","Most soldiers. I still claim.", TH(
  ("Rob","One of three. A man with three friends and the most grain beats a man with two soldiers and no friends. I knew that before anyone said it. I've spent three years hoping nobody would agree on anything."),
  ("Reina","He'd have had it in Year 4 for one rice farmer.")))
+CHAOS = False
 act("The third count. Most grain: Rich, 155.5. Most soldiers: Rob, 2. Most friends: Rich, with Silke, Clark and Paddy behind him. Rich leads in two of the three. Richard Baron is acclaimed Emperor.", TH(
  ("Rich","Three years ago I said I wasn't part of this. I wasn't. I was just standing nearest the door when it opened."),
  ("Clark","I lit the fire, I came third in the first count, and I'm the one who put him on the throne. For twenty, and a Wall."),

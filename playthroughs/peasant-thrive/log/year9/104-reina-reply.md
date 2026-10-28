@@ -1,0 +1,5 @@
+diary: Year 9, and it ended the way I said it would in Year 1. The Wall, the Reservoir, the canals, the palaces and now the Pagoda are all standing, all five hundred and twenty of it, and every one of them is still at the table. I just didn't think I'd be sitting in the Silk Peasant's chair watching Paddy lay the last stone. I read him an honest card, an average year and two grain of charity, and he answered it by finishing the works before I could get a word to Silke about her Bowl. I can't even call it a betrayal. He told the table in plain words he'd sooner finish the reign honestly, and he did. What it cost me was patience. I spent a hundred and seventy-two on a Brush, a Vase and a Deed, all three are still on my squares, and the one piece I was missing stayed in Silke's stock until the clock ran out. I end on a hundred and sixty-eight grain, the poorest at the table, a deposed Empress with a full set of realia less one Bowl. Next time I'll remember that the person who builds the last work decides when the game ends, and that I gave that job to the crown myself in Year 1.
+
+---
+
+Ruling: filed word for word under `## Year 9`.

@@ -126,3 +126,9 @@ The peasant's game is paused after Year 10, waiting on Manish. Nothing is broken
 - **Dark Ages: finished.** An agreed stop after Year 12 with no revolt ever called: Clark, Silke and Paddy won, Rob held, Reina and Rich lost. Dropped from IN_PROGRESS and IN_PROGRESS_TITLE; the page shows it in full, subtitled "no revolt, the Official on the throne".
 - **Page:** rebuilt, 8 games, 2,625 entries; Peasant thrive is the only live game (through Year 3). Uncommitted.
 - **For later:** the Director's tool gaps in dark-ages/REPORT.md ("Engine and tool gaps").
+
+## 15:40 (Peasant thrive finished)
+
+- **Peasant thrive: finished.** Survival in Year 9 on seed 8535: all 520 in works built, nobody ever in debt, no rewinds. Paddy (drew Rice) won on the throne; Graham held; Silke and Reina lost. Dropped from IN_PROGRESS; the page shows it in full.
+- **Page:** rebuilt, 8 games, 2,756 entries. No game is in progress. Uncommitted.
+- **For Manish:** the report's possible ruling on the game ending when the last work is built, before that year's auctions.

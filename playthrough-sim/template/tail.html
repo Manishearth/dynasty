@@ -155,6 +155,9 @@ function select(k){
 function paint(e){
   const s=e.state, hl=new Set(e.hl||[]);
   drawMap(s,hl,e.mv); drawWorks(s); drawPlayers(s,hl); drawObjectives(s);
+  /* under Chaos the board burns at the edges */
+  const m=document.getElementById('map'); m.classList.toggle('chaos',!!s.chaos);
+  m.setAttribute('aria-label',s.chaos?'The board, under Chaos':'The board');
 }
 /* piece glyphs: one SVG per piece in images/, shared with the rulebook */
 const IMG={CH:'customs-house',LD:'land-deed-scroll',BB:'bamboo-brush',DJ:'dragon-jar',WB:'wooden-bowl',VA:'vase'};

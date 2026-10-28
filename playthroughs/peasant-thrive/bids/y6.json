@@ -1,0 +1,8 @@
+{"step": 1,
+ "lots": [{"lot": "5:DJ", "min": 2}, {"lot": "6:WB", "min": 120}],
+ "bids": {
+  "Graham": {"5:DJ": {"ceiling": 52}},
+  "Silke": {"5:DJ": {"ceiling": 75}, "6:WB": {"ceiling": 77, "keep": {"Paddy": 77}}},
+  "Paddy": {"6:WB": {"ceiling": 120}}
+ },
+ "note": "Ceilings from 064-066; minimums set by each seller in the same replies. The Jar was CLOSE at 45 each: live raises 067 (Graham to 52) and 068 (Silke to 75)."}

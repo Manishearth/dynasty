@@ -112,7 +112,20 @@ body.touch .lotrow{padding:.9rem}
 .tip .dsol{color:#F4EFE2}.tip .dsol.b{color:#5B9BE6}
 .tip .piece img{filter:brightness(0) invert(1)}
 /* ---- map ---- */
-.map{background:#EFE4CB;border:2px solid var(--ink);margin-bottom:1rem;line-height:0}
+.map{background:#EFE4CB;border:2px solid var(--ink);margin-bottom:1rem;line-height:0;position:relative}
+/* Chaos: a fiery border, glowing in and out, with a tag in the corner */
+.map.chaos{border-color:#B3260E;animation:fire-out 1.8s ease-in-out infinite alternate}
+.map.chaos::before{content:"";position:absolute;inset:0;pointer-events:none;
+  box-shadow:inset 0 0 0 2px #F28A1E,inset 0 0 22px 6px rgba(226,74,16,.55);animation:fire-in 1.3s ease-in-out infinite alternate}
+.map.chaos::after{content:"Chaos";position:absolute;top:.4rem;left:.4rem;line-height:1;font:700 .66rem/1 var(--mono);
+  letter-spacing:.16em;text-transform:uppercase;color:#fff;background:#B3260E;padding:.25rem .45rem;border:1px solid #F28A1E}
+@keyframes fire-out{from{box-shadow:0 0 6px 1px rgba(242,138,30,.55),0 0 14px 3px rgba(179,38,14,.35)}
+  to{box-shadow:0 0 10px 3px rgba(242,138,30,.8),0 0 22px 6px rgba(179,38,14,.5)}}
+@keyframes fire-in{from{box-shadow:inset 0 0 0 2px #F28A1E,inset 0 0 16px 4px rgba(226,74,16,.45)}
+  to{box-shadow:inset 0 0 0 2px #FFB347,inset 0 0 28px 9px rgba(226,74,16,.65)}}
+@media (prefers-reduced-motion:reduce){.map.chaos,.map.chaos::before{animation:none}
+  .map.chaos{box-shadow:0 0 10px 3px rgba(242,138,30,.7)}}
+@media print{.map.chaos,.map.chaos::before{animation:none}}
 #map svg{width:100%;height:auto;display:block}
 .cell{background:#F6F2E6;padding:.42rem .45rem;min-height:4.9rem;position:relative}
 .wall{min-height:0;padding:.3rem;text-align:center;background:#EFEADC;

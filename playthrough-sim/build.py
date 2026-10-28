@@ -20,11 +20,20 @@ def keys(scripts):
         if m: out.append(m.group(1))
     return out
 
+def load_engine(ns):
+    """Load the cards and the engine into ns. Every entry's state also records whether Chaos holds
+    (the engine's CHAOS flag), so the page can show it on the board."""
+    for p in (os.path.join(HERE, "cards.py"), os.path.join(HERE, "engine.py")):
+        exec(compile(open(p, encoding="utf-8").read(), p, "exec"), ns)
+    snap = ns["snap"]
+    ns["snap"] = lambda: dict(snap(), chaos=bool(ns.get("CHAOS")))
+
 def run_ns(game):
     """Run one game script in a fresh namespace and return the namespace."""
     ns = {"SIM_DIR": HERE}
-    for p in (os.path.join(HERE, "cards.py"), os.path.join(HERE, "engine.py"), os.path.join(HERE, game)):
-        exec(compile(open(p, encoding="utf-8").read(), p, "exec"), ns)
+    load_engine(ns)
+    p = os.path.join(HERE, game)
+    exec(compile(open(p, encoding="utf-8").read(), p, "exec"), ns)
     return ns
 
 def run(game):

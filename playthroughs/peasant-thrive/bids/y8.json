@@ -1,0 +1,8 @@
+{"step": 1,
+ "lots": [{"lot": "6:WB", "min": 60}, {"lot": "7:LD", "min": 20}],
+ "bids": {
+  "Reina": {"6:WB": {"ceiling": 110}, "7:LD": {"ceiling": 123}},
+  "Graham": {"7:LD": {"ceiling": 0, "keep": {"Reina": 90}}},
+  "Silke": {"6:WB": {"ceiling": 165}}
+ },
+ "note": "Ceilings from 092-094; minimums set by each seller in the same replies (Graham 60, Silke 20)."}

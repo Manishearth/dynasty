@@ -629,6 +629,7 @@ say("Rich","Agreed. She built her own canal and the peasants' reservoir is still
  ("Rich","I paid forty toward my own reservoir when I was Gentry. Now I'm in Province 6 paying seven a year to a man who used to grow rice. I'd like the table shaken, please."),
  ("Paddy","He's voting to burn it down because I put his rent up. Fair enough.")))
 say("Silke","Agreed. I keep the population chart. It says this ends one way.")
+CHAOS = True    # the page burns the board's edges until the acclamation
 act("REVOLT. Four players stand against the throne. The price of revolt is CHAOS: no tax, no salaries, no public works until a new Emperor emerges.", TH(
  ("Reina","Four. I needed them to only ever find two."),
  ("Graham","Four causes, counting Clark's debt, four voices, and none of us had to invent a single one of them."),
@@ -675,6 +676,7 @@ say("Noah","I'll back Graham. Not out of love — because a Warlord on the thron
 say("Paddy","The Harvest Pile goes with Graham. On one condition: the rents stand.", TH(
  ("Paddy","I'm required to be greedy and I'm using it. Backing Graham costs nothing and buys a throne that owes me."),
  ("Graham","He's selling me the bank for a rent guarantee. Ten years ago we were both peasants. I'm going to say yes and I'm going to think about it later.")))
+CHAOS = False
 act("Graham Garner is acclaimed Emperor — most friends, and with Noah and Paddy behind him, more grain than the Warlord. Robert Land is outnumbered and undefeated.", TH(
  ("Rob","Kept my territory, my four soldiers and every bag I took, less thirty in tolls, most of it to the river along Province 4 for walking beside it. Never once entered the social order, which was the single thing I needed to do to win. Ten years of being the most effective player at this table and I finish exactly where I started."),
  ("Reina","Province 7. The wheat fields. He's putting me in the one province whose public work never got built, and he doesn't have to say anything at all.")),
