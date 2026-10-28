@@ -377,6 +377,7 @@ Judgement calls made while writing the games. None overrides a rule; each fills 
 Raise these with Manish before relying on an answer.
 
 - **A negative Emperor.** Under Note 7 a crown in debt can't pay toward public works; it still declares and collects tax. Does it still owe salaries (they're payments owed, so they'd deepen the debt), or does an empty reserve excuse them? "Too low a grain reserve" is already a revolt cause, which may be all that's needed. No playthrough has an Emperor in debt.
+- **A piece nobody wants, even at 2.** In the short game, Rich's Bowl went unsold at 150 in Year 6, then drew no bid at 2 in Years 7 or 8, and ended the game in stock. The unsold-lot rule only says it goes up again at 2. Re-offering it every round costs nothing, so this may need no ruling. The alternative would be to send it to the Harvest Pile after one round unsold at 2.
 - **Selling soldiers back.** The rules give no price for selling a soldier back to the Warlord or the pile, so the playthroughs never do it. Should a player in trouble be able to?
 - **The strip along the southern river between Provinces 3 and 7.** No dotted border seems to claim it, so `map.json` treats it as the Warlord's undeveloped land. Check against the cloth.
 

@@ -23,8 +23,10 @@ The Director is one session per game. It never plays a seat or referees a move: 
 ## Each chapter
 
 - **Wake the next Storyteller** with the chapter's brief. Don't brief a chapter before the last one has closed.
-- **Check the record** when it reports: `run.py` runs clean, `game.py` has the chapter marker, the ledger and diaries are current, and the narration isn't in `game.py`.
+- **Check the record** when it reports: `run.py` runs clean, `game.py` has the chapter marker, the ledger and diaries are current, and the narration isn't in `game.py`. Check its figures against the engine (`run_ns`: seats, stock, `held`, `owed()`), not against the Storyteller's prose. The short game's check caught a handoff that said 1,030 owed in works at a table that owed 810.
+- **Revisit every actor's note** before the next chapter. A note goes stale once its character changes seats or sells the piece it names. Rewrite it only between chapters, and log each rewrite in `seed.md`.
 - **Write the handoff** (`handoff/chapter-N.md`): where the game stands, open threads, and any steering for the next chapter.
+- **Leave `game.py` alone mid-chapter.** If it needs a change while a Storyteller is playing, ask the Storyteller to make it. To see how far a chapter has got, look at the times on its `log/` files, not at its transcript.
 - **Record each finished year** in your status file (below). Rebuild the page only if you're the only Director running.
 
 ## Messages and the page
@@ -42,6 +44,8 @@ A Storyteller's reports to you come out of its own allowance, not yours. Keep th
 - **If your startup brief says you're the only Director running:** you own the page. Rebuild live after each checked year, without asking: set your game's `IN_PROGRESS` entry to that year, run `python playthrough-sim/agents/build_real.py` from the repo root, and note it in your status file. Touch only your game's lines in `build_real.py`.
 - **Otherwise:** don't rebuild, and don't edit `build_real.py`. The status file records your last finished year, and the main session rebuilds every game at once in the morning.
 
+**Shared tools.** `engine.py`, `briefs.py`, `run.py` and the guides serve every game. Before changing one, ask the main session, since another Director may be in the same file. After the change, compare `briefs.py ... --dry` prompts against HEAD for every game, and make sure only the cases you meant to change differ.
+
 ## Steering
 
 Manish wants each game nudged towards its arc. The Director may steer, between chapters, with these levers:
@@ -51,11 +55,15 @@ Manish wants each game nudged towards its arc. The Director may steer, between c
 | The deck | The seed, chosen before Chapter 1 with `deck_scout.py` | Never reorder the deck once play has started |
 | Actor's notes | The **Playing it** line in `ledger.md` | A stance, never a move. Change it between chapters, never mid-chapter |
 | Storyteller's tips | A public `note --to <Player>` beginning "Storyteller's tip:" | Strategy from what the table can see; at most one per player per chapter; never the deck, anyone's asides, whispers or limits. Each tip goes in `ledger.md` under "Storyteller's tips" |
-| Length | Where a chapter or the game stops (Note 19 for an agreed short game) | Say so at the table before the last chapter starts |
+| Length | Where a chapter or the game stops. For an agreed short game (Note 19), set `LAST_ROUND = n` in `game.py`, and `briefs.py` puts the round count, the scoring and the late-land warning on every card | Say so at the table before the last chapter starts |
 
 Never steer by misstating a rule, the board or anyone's grain; by changing what the engine computes; by writing a player's words; by passing one player another's hidden information; or by reading an agent's transcript. The players' choices stay theirs. **If the game goes somewhere else, let it,** record what happened, and change the subtitle. A design-check game (its `scenario.md` says so) is steered lightly or not at all, since its result is evidence.
 
 List every piece of steering in `seed.md`'s steering log when it happens: what, when and why.
+
+**Rules corrections aren't steering, but they can decide a game.** The Storyteller must correct any public misstatement of the rules. In the short game, its note that pieces on the board may be traded was followed at once by the trade that took the throne. Expect this, and report it in `REPORT.md` under "Not steering, but…".
+
+**What a small table does to the auction.** At four or five seats each seller holds two types and chooses which goes up. A seller sells the other type first and holds the key piece back, so the unsold-lot rule rarely fires. A scenario meant to test that rule needs sellers who hold only one type.
 
 ## The end
 

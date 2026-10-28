@@ -74,6 +74,11 @@ SendMessage the Director only: at the end of each year (one short paragraph: wha
 - Add the round's rows to `log.md`, with the tokens each completion notice reported.
 - Record usage at the start and end of a session (`get_usage`).
 
+## Two traps in the tools
+
+- **`act(deltas=...)` is keyed by player id, not seat.** After a seat change the two differ, so look the player up with `pid(seat)`.
+- **Bash drops non-ASCII text silently,** and fails on heredocs with backticks. Write files with the Write and Edit tools instead.
+
 ## Framing (unchanged)
 
 - Never ask a player for its reasoning or thinking, or why it "really" did something. Never ask it to justify a move afterwards.

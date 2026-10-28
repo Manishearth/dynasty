@@ -4,7 +4,7 @@
 # The narrator's lines are not part of the game: they live in narration.md, never here.
 # Each chapter opens with a "# ===== CHAPTER N: <title>" marker.
 setup([1, 2, 3, 4], "short-game", "The short game",
-      "Four players · eight rounds · the throne taken in the last round",
+      "Four players · predecided to end at 8 rounds",
       "The Emperor and the three upper provinces, and the table agrees to stop after eight rounds. No peasants and no army: a race for the throne. "
       "Each seller holds the one piece both rivals need, and keeps it back while selling everything else. Clark buys his way onto the "
       "throne in Year 3. Noah finishes a set in Year 5 and takes the Official's chair instead. By the last round Rich and Noah are each "
