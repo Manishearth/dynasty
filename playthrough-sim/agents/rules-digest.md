@@ -88,7 +88,7 @@ Trading, bribes, threats and promises may happen at any time. **No deal is bindi
 - **Buying soldiers.** Anyone may buy a soldier from the Warlord, who must sell: 20, of which he keeps 5 and 15 goes to the pile. It stands on a square of the buyer's province and **can't move until the Warlord has raided that province.**
 - **Hiring.** After the march, the Warlord may hire one soldier a round for 20, paid to the pile, on his own desert. The army may grow to its starting size + 1 (5 at eight players). It moves from the next round.
 - **Capture.** A soldier captures by stepping onto an enemy soldier **straight on** (horizontally or vertically), never diagonally. Only the same owner's soldiers share a square.
-- **Guarding.** A soldier standing on a piece guards it. To take the piece, a raider must first capture the guard straight on. One raider can't break a free guard; two can. An unraided province's guard can't move, so a guard near the border is a gift.
+- **Guarding.** A soldier standing on a piece guards it. To take the piece, a raider must first capture the guard straight on, so it must end a move straight beside the guard, where the guard may capture it first. That's why one raider can't break a guard that's free to move, and two can (one as the bait). An unraided province's guard can't move, so a guard near the border is a gift.
 - **The Warlord's disasters:** the first is no raids on 5–7 this round; the second is 5, plus no raids at all this round (the engine refuses those raids).
 
 ## Cards and disasters (§15, `cards.py`)

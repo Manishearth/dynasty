@@ -1,0 +1,8 @@
+{"step": 1,
+ "lots": [{"lot": "5:DJ", "min": 15}, {"lot": "6:WB", "min": 2}, {"lot": "7:VA", "min": 10}],
+ "bids": {
+  "Silke": {"6:WB": {"ceiling": 38}, "7:VA": {"ceiling": 36}},
+  "Paddy": {"5:DJ": {"ceiling": 45}, "7:VA": {"ceiling": 45}},
+  "Graham": {"5:DJ": {"ceiling": 60, "keep": {"Paddy": 70}}, "6:WB": {"ceiling": 50}}
+ },
+ "note": "Ceilings from 027-029. Minimums set by each seller in the same replies."}

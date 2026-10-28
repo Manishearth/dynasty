@@ -1,0 +1,5 @@
+diary: I said in Year 4 that the man paid to guard the crown was the one best placed to take it, and on the last night Clark took it with a set he'd been holding since Year 2. He didn't need a revolt clause. He only needed Rich to run out of years. The coast paid me fifty and twenty-five two years running without my having to ask twice, and when I stood aside for Silke on the Customs House she remembered it. Three seats changed hands in one evening, and nobody touched mine. I finish with a hundred and seven grain, the most I've had since I lost the chair. But I started on the throne and I finish in Province 3, so by the table's count that's a loss, and no amount of honest bookkeeping changes that. What it cost was the lesson from Year 1: I counted my reserve when I should have counted the sets, and after that I never got near a set of my own. The palace on G24 is still standing, and I built it, so I can live with that. Next time I sit in the chair I'll watch the pieces on the board first and count the grain after.
+
+---
+
+Ruling: appended to the diary under "## Years 11-12".

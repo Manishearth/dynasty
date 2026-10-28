@@ -12,7 +12,7 @@ The original scans can be found on https://manishearth.net/dynasty/.
 | `rulebook.html` | The rules, rewritten as one modern rulebook |
 | `RULINGS.md` | Every rules question settled so far, with reasons. Add yours here |
 | `playthrough.html` | Annotated games played by AI agents, one to a seat; their records are in `playthroughs/` |
-| `playthrough-scripted.html` | The older scripted playthroughs: seven example games, each written start to finish by one author: two at eight players, a four-player short game, a five-player peasant game, two six-player games and a seven-player game |
+| `playthrough-scripted.html` | The older scripted playthroughs: seven example games, each written start to finish by one agent: two at eight players, a four-player short game, a five-player peasant game, two six-player games and a seven-player game |
 | `map.svg` | The board, redrawn: seven provinces on a 30 × 22 grid (rows A–V, columns 1–30). Drawn as named layers, so Inkscape can show or hide each one |
 | `map-board.svg` | The board's ground alone, without frame, labels or printed works, for pages that draw on top of it (the playthrough does) |
 | `map.json` | The same board as data: which region each square belongs to, plus the rivers, coast, Great Wall links and Grand Canal sections |

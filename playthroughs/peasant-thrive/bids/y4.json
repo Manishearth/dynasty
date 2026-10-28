@@ -1,0 +1,8 @@
+{"step": 1,
+ "lots": [{"lot": "5:DJ", "min": 60}, {"lot": "6:BB", "min": 2}, {"lot": "7:LD", "min": 60}],
+ "bids": {
+  "Graham": {"7:LD": {"ceiling": 90}},
+  "Paddy": {"5:DJ": {"ceiling": 75}},
+  "Silke": {"6:BB": {"ceiling": 12}}
+ },
+ "note": "Ceilings from 035-037; minimums set by each seller in the same replies. Graham's 'keep from Reina up to 120' on 7:LD is void: the Emperor doesn't bid."}

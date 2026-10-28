@@ -112,3 +112,17 @@ The peasant's game is paused after Year 10, waiting on Manish. Nothing is broken
 - **Peasant's game: finished.** An agreed stop after Year 12 (Note 19): everyone in the seat they drew, Reina winning by keeping the throne. Dropped from IN_PROGRESS; the page shows it in full (313 entries).
 - **Page:** rebuilt: 7 games, 2,306 entries. Uncommitted.
 - **For Manish:** the Director's open rules question (should a mid-game agreed stop be allowed, and can one player block it?) and three briefs.py notes in peasant-game-status.md.
+
+## 14:53
+
+- **Dark Ages: finishing.** All twelve years are played (state/year12.json) and game.py has its ending; the Director is writing REPORT.md and hasn't declared it done yet. Page shows it through Year 12, still marked in progress.
+- **Peasant thrive: progressing.** Manish chose a seed and play began; Chapter 2 (Years 3-4) is running, with the later chapters' Storytellers parked. Last finished year: 3. Added to the page (GAMES, last) through Year 3.
+- **Unlucky peasants rematch** (peasant-draw), **Highway Rob-bery**, **Western Front:** finished.
+- **Usage:** 18% of the 5-hour window (resets 16:20), 31% weekly. Nothing blocked.
+- **Page** (now playthrough.html): rebuilt, 8 games, 2,625 entries. Uncommitted.
+
+## 15:05 (the Dark Ages finished)
+
+- **Dark Ages: finished.** An agreed stop after Year 12 with no revolt ever called: Clark, Silke and Paddy won, Rob held, Reina and Rich lost. Dropped from IN_PROGRESS and IN_PROGRESS_TITLE; the page shows it in full, subtitled "no revolt, the Official on the throne".
+- **Page:** rebuilt, 8 games, 2,625 entries; Peasant thrive is the only live game (through Year 3). Uncommitted.
+- **For later:** the Director's tool gaps in dark-ages/REPORT.md ("Engine and tool gaps").

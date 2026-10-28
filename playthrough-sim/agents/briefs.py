@@ -16,6 +16,7 @@ Run from the game's folder (playthroughs/<name>/), as python ../../playthrough-s
   python briefs.py prompt 022 Clark collect --rate 40        # the Official: collects the declared tax
   python briefs.py prompt 022 Noah iching                    # the Scholar: reads the card, the population
   python briefs.py prompt 022 Paddy land                     # new land (from the first doubling)
+     (--offer "half of every square": what the Emperor said in the crown's year they'd pay)
   python briefs.py prompt 099 Paddy diary --years "Years 11-12"   # the chapter-end diary entry (reply: diary: ...)
   python briefs.py prompt 022 Silke auctions --lots 2:CH,3:LD,5:DJ   # every lot of the year at once
      (--floor 3:LD: lots unsold last round, which must open at 2)
@@ -23,6 +24,7 @@ Run from the game's folder (playthroughs/<name>/), as python ../../playthrough-s
   python briefs.py prompt 022 Silke auction --lot 6:BB --min 5       # one lot (small tables)
   python briefs.py prompt 022 Rob march
   python briefs.py prompt 022 Paddy free --menu menu.md      # any other decision; the menu is your text
+     (--land: add the new-land reminder, for a decision in the public works step; --offer as for land)
 
   python briefs.py resolve bids.json                         # settle one lot, or a year's lots, from ceilings
   add --dry to any prompt to print it without writing the log or marking it seen
@@ -581,8 +583,11 @@ def menu_crown(ns):
     if inc:
         rows = [f"{SH[ns['pid'](s)]} {inc[s]:+g}" for s in A if s != 1]
         out.append("**Taxable income this year** (harvest income only; none is owed on a negative income): " + ", ".join(rows) + ".")
-        def take(r, skip=(8,)): return sum(ns["pay_down"](max(0, inc[s]) * r) for s in A if s not in (1,) + skip)
-        out.append("**The tax at each rate**" + (" (the Warlord may refuse)" if has_warlord(ns) else "") + ": " + ", ".join(f"{r}% {take(r/100):g}" for r in (20, 30, 40, 50, 60)) + ".")
+        def take(r): return sum(ns["pay_down"](max(0, inc[s]) * r) for s in A if s != 1)
+        def war(r): return f" ({SH[ns['pid'](8)]} {ns['pay_down'](max(0, inc[8]) * r):g})" if has_warlord(ns) else ""
+        out.append("**The tax at each rate**" + (", with the Warlord's part, which the Warlord may refuse to pay"
+                                                  if has_warlord(ns) else "") + ": "
+                   + ", ".join(f"{r}% {take(r/100):g}{war(r/100)}" for r in (20, 30, 40, 50, 60)) + ".")
     else:
         out.append("**Taxable income:** not paid out yet this year.")
     left = sum(max(0, n - ns["built_count"](w)) * c for w, n, c in ns["owed"]())
@@ -629,11 +634,13 @@ def salary_line(ns, player, seat, job):
 def menu_collect(ns, rate, player):
     """The Official collects the tax the Emperor declared and delivers it to the crown."""
     SH = ns["SHORT"]; A = ns["ACTIVE"]; inc = ns["CUR_INC"]; r = float(rate) / 100
-    rows = [f"{SH[ns['pid'](s)]} {ns['pay_down'](max(0, inc[s]) * r):g}" for s in A if s not in (1, 8)] if inc else []
-    tot = sum(ns["pay_down"](max(0, inc[s]) * r) for s in A if s not in (1, 8)) if inc else 0
+    rows = [f"{SH[ns['pid'](s)]} {ns['pay_down'](max(0, inc[s]) * r):g}" for s in A if s != 1] if inc else []
+    tot = sum(ns["pay_down"](max(0, inc[s]) * r) for s in A if s != 1) if inc else 0
     out = ["## Your move: collecting the tax", "",
            f"The Emperor has declared **{rate}%**. Owed on this year's harvest income, rounded down to the half million: "
-           + (", ".join(rows) + f"; {tot:g} in all" if rows else "nothing paid out yet") + "." + (" The Warlord may refuse to pay (and usually does)." if has_warlord(ns) else "") + " You collect it and deliver it to the crown, and you make certain nobody cheats.",
+           + (", ".join(rows) + f"; {tot:g} in all" if rows else "nothing paid out yet") + "."
+           + (" The Warlord may refuse to pay their part." if has_warlord(ns) else "")
+           + " You collect it and deliver it to the crown, and you make certain nobody cheats.",
            "", salary_line(ns, player, 2, "Official")]
     return "\n".join(out)
 
@@ -653,7 +660,11 @@ You turn this year's card and read it aloud to the table:
 
 {salary_line(ns, player, 4, "Scholar")}"""
 
-def menu_land(ns, player):
+def offer_line(offer):
+    """What the Emperor said in the crown's year they'd pay toward each square (--offer, the Storyteller's words)."""
+    return f" **The crown's offer this year:** {offer}." if offer else ""
+
+def menu_land(ns, player, offer=None):
     SH = ns["SHORT"]; p = pid_of(ns, player); seat = ns["sid"](p)
     shut = land_open(ns, seat)
     if shut: return f"## New land\n\nNot this year: {shut}."
@@ -661,7 +672,7 @@ def menu_land(ns, player):
     front = land_frontier(ns, seat)
     share = ("You pay; you may buy any number of squares." if seat == 1 else
              "The cost is shared with the Emperor, who must pay some part of every square and may pay all of it; "
-             "say what you'll pay and what you're asking the crown for.")
+             "say what you'll pay and what you're asking the crown for." + offer_line(offer))
     return f"""## Your move: new land (Section 13)
 
 New land is open to you this year, in the public works step. Each square costs 20 to the Harvest Pile and adds 20 to your harvest every year from next year, so it pays for itself in a single year. {share}
@@ -702,17 +713,18 @@ def continuity(ns, player):
         if body: out.append(f"## {player}'s diary so far, in {'her' if CAST[p][0] == 'she' else 'his'} own words\n\n{body}")
     return ("\n" + "\n\n".join(out) + "\n") if out else ""
 
-def land_reminder(ns, player):
-    """From the first doubling, new land rides along in every free menu of an eligible seat."""
+def land_reminder(ns, player, offer=None):
+    """From the first doubling, new land can ride along in a free menu of an eligible seat (--land)."""
     seat = seat_of(ns, player)
     if (seat in ns["LAND_WHERE"] and not land_open(ns, seat) and ns["grain"][pid_of(ns, player)] >= 0 and not ns["all_built"]()
             and not auctions_begun(ns)):
         return ("**New land is open to you** this year (your card gives your numbers): squares you can buy now: "
                 f"{ranges(ns, land_frontier(ns, seat))}. Add `land <squares>; I pay <n>, asking the crown for <n>` to your move if you want any."
-                + (" " + endgame_note(ns) if endgame_note(ns) else ""))
+                + (offer_line(offer) if seat != 1 else "") + (" " + endgame_note(ns) if endgame_note(ns) else ""))
     return None
 
-def prompt(n, player, kind, lot=None, minimum=None, menu=None, dry=False, lots=None, rate=None, price=None, short=False, floor=None, years=None):
+def prompt(n, player, kind, lot=None, minimum=None, menu=None, dry=False, lots=None, rate=None, price=None, short=False, floor=None, years=None,
+           offer=None, land=False):
     ns = run_ns(); pid_of(ns, player)
     parts = []
     # "launch" carries a --menu file; "launch:<kind>" (launch:crown, launch:auctions, ...) carries that kind's menu
@@ -746,7 +758,7 @@ def prompt(n, player, kind, lot=None, minimum=None, menu=None, dry=False, lots=N
     elif kind == "iching":
         parts.append(menu_iching(ns, player)); fmt = "move: read\n" + FORMAT_TAIL
     elif kind == "land":
-        parts.append(menu_land(ns, player)); fmt = fmt_land(ns, player) + FORMAT_TAIL
+        parts.append(menu_land(ns, player, offer)); fmt = fmt_land(ns, player) + FORMAT_TAIL
     elif kind == "diary":     # the chapter's close: the entry only, no move, say or aside
         full_ = ns["NAMES"][pid_of(ns, player)]
         parts.append(f"## {player}'s diary\n\nThe evening's chapter is over. Write {full_}'s diary entry for "
@@ -755,7 +767,7 @@ def prompt(n, player, kind, lot=None, minimum=None, menu=None, dry=False, lots=N
         fmt = "diary: <the entry, a few sentences>\n"
     else:
         parts.append(open(menu, encoding="utf-8").read().strip()); fmt = "move: <your choice>\n" + FORMAT_TAIL
-        rem = land_reminder(ns, player) if kind == "free" else None
+        rem = land_reminder(ns, player, offer) if kind == "free" and land else None
         if rem: parts.append(rem)
     if not launch and kind != "diary": parts.append(WHISPER)
     parts.append("## Your reply\n\nReply in exactly this format:\n\n```\n" + fmt.format(short=player) + "\n```")
@@ -861,7 +873,7 @@ if __name__ == "__main__":
     elif a[0] == "prompt":
         prompt(a[1], a[2], a[3], lot=opt("--lot"), minimum=float(opt("--min")) if opt("--min") else None, menu=opt("--menu"),
                dry="--dry" in a, lots=opt("--lots"), rate=opt("--rate"), price=opt("--price"), floor=opt("--floor"), years=opt("--years"),
-               short="--short" in a)
+               short="--short" in a, offer=opt("--offer"), land="--land" in a)
     elif a[0] == "resolve": resolve(a[1])
     elif a[0] == "seen":       # after a message sent by hand to everyone (the closing catch-up): all of them are up to date
         ns = run_ns()

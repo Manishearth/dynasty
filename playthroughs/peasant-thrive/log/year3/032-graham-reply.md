@@ -1,0 +1,6 @@
+move: I replace Silke; CH P24, BB P23, WB P22
+say: "Silke, in Year One you offered me the Brush and then outbid me by a grain. I wrote it down. The Reservoir's yours now, twenty a year, and I hope it treats you as well as it treated me. Majesty, I'll look after your two canal sections in Province 5 properly."
+aside: "I'm swapping the Reservoir's twenty for her canals' twenty and taking 190 grain, and the Silk Peasant is the only seat at this table that leads to the throne. All I need now is a Deed and Paddy's Vase, and I'll be counting every grain until I have them."
+whisper: none
+---
+Ruling: legal (Section 11): a peasant with a full set and 20 in hand may replace another peasant. swap(7, 5). Graham takes Silke's 120.5 with his own 69.5 = 190; the Dragon Jar, native to Province 5, goes back into Province 5's stock; the Customs House, Brush and Bowl go on P24, P23, P22. Silke returns her Brush (to Province 6's stock, the province that started with Brushes, since Province 4 is empty) and her Land Deed Scroll (to Province 7's stock, likewise for Province 3), draws 60 and sits as the Wheat Peasant. Aside checks: the canals in Province 5 add 20 from Year 4, as the Reservoir does in Province 7.
