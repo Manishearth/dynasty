@@ -289,6 +289,14 @@ The details, settled by Manish on 2026-10-25:
 
 **Recorded in** rulebook Section 5 (the money diagram) and Section 8 (the table of what goes into the pile), and the general reference card. The engine and the playthroughs follow in a later change.
 
+### An unsold lot reopens at 2
+
+**Ruling.** A lot that draws no bid at its minimum stays in the seller's stock, and that same piece must be offered again the next round, with the minimum at 2. A seller may hold a piece back for one round, never two in a row.
+
+**Why.** "Must auction" is the rules' check on hoarding (General Instructions: "One of the penalties of hoarding…"), and an unmeetable minimum hoards in all but name. One round of holding back keeps the bargaining move (Noah's 365 minimum in the full game's Year 6, priced half a grain past Reina's reach) without letting a piece be kept out of play for good. Approved by Manish on 2026-10-27, during the agent-played full game.
+
+**Recorded in** rulebook Section 10 (The auction), the rules on one page, Appendix G, and the general and round reference cards. The engine doesn't enforce minimums; the agent tools (`rules-digest.md`, `briefs.py --floor`) carry the rule, and the full game applies it from Year 9.
+
 ## I Ching cards
 
 The deck in `i-ching.json` is reworded. Its effects follow the 1969 cards, and these are the readings it settles on.
@@ -347,7 +355,7 @@ Judgement calls made while writing the games. None overrides a rule; each fills 
 - **Returned pieces are re-auctioned at the next auction step**, which is the same round's if the seat change comes before the auction (Section 10, "as soon as possible").
 - **A player may decline the throne.** Noah, holding every piece but one in game 2, chooses not to buy the last: nothing obliges a player to complete a set.
 - **Rent is negotiable, and an agreed rate stays with the seat.** The Gentry may agree a rate with the peasants for a concession; each later Gentry collects the same (game 6).
-- **A seller's minimum bid may be anything**, even tied to one player's grain. A lot nobody meets stays in stock and is offered again every round, and a player may pay the seller to keep a minimum where it is (game 6, a private deal).
+- **A seller's minimum bid may be anything for one round**, even tied to one player's grain. A lot nobody meets reopens at 2 the next round (see "An unsold lot reopens at 2" under Clarifications). Game 6, written before that ruling, has a player pay the seller to keep an unreachable minimum for several years, which is no longer allowed past one round.
 - **A seat change may be declared after the round's card is turned and before the harvest**, so the mover collects the new province's harvest (game 6). Section 5 allows deals "at any point in the round".
 - **"Sharing the cost" of new land** is satisfied by any share from the crown, even 1 a square (game 6).
 - **A revolt short of two supporters simply doesn't happen** (game 6).
