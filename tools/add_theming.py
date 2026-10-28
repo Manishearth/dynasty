@@ -9,9 +9,8 @@ original look from style/base.css. The scripts are written into each page rather
 than loaded from a .js file, so that they work when the page is opened straight
 from disk. The page marks its title with data-theme-unlock: five quick clicks on
 it show the picker. The choice is kept in localStorage, which every page shares,
-and applies to the screen only unless the picker's "Print it too" box is ticked;
-then the theme prints as well, and html[data-theme-print] tells the page's own
-print rules (the rulebook's white cover) to step aside.
+and applies to print as well; html[data-theme] tells the page's own print rules
+(the rulebook's white cover) to step aside for the theme.
 """
 import json
 import re
@@ -33,14 +32,13 @@ THEMES = [
 LOAD = """<script id="theme-load">
 /* Apply the saved theme before the page draws (tools/add_theming.py). */
 (function(){
-var t,p,q=/[?&]theme=(\\w+)/.exec(location.search);
-try{t=localStorage.getItem('dynasty-theme');p=localStorage.getItem('dynasty-theme-print')==='1'}catch(e){}
-/* ?theme=name&print=1 for testing, and for printing from a fresh browser */
-if(q){t=q[1];p=/[?&]print=1/.test(location.search);}
+var t,q=/[?&]theme=([\\w-]+)/.exec(location.search);
+try{t=localStorage.getItem('dynasty-theme')}catch(e){}
+/* ?theme=name for testing, and for printing from a fresh browser */
+if(q)t=q[1];
 if(t&&%s.indexOf(t)>0){
-  document.write('<link rel="stylesheet" id="theme-css" media="'+(p?'all':'screen')+'" href="style/themes/'+t+'.css">');
+  document.write('<link rel="stylesheet" id="theme-css" href="style/themes/'+t+'.css">');
   document.documentElement.setAttribute('data-theme',t);
-  if(p)document.documentElement.setAttribute('data-theme-print','');
 }
 })();
 </script>
@@ -60,25 +58,10 @@ function set(t){
   var l=document.getElementById('theme-css');
   if(t==='original'){if(l)l.parentNode.removeChild(l);document.documentElement.removeAttribute('data-theme');}
   else{
-    if(!l){l=document.createElement('link');l.rel='stylesheet';l.id='theme-css';l.media=media();document.head.appendChild(l);}
+    if(!l){l=document.createElement('link');l.rel='stylesheet';l.id='theme-css';document.head.appendChild(l);}
     l.href='style/themes/'+t+'.css';document.documentElement.setAttribute('data-theme',t);
   }
   try{localStorage.setItem('dynasty-theme',t)}catch(e){}
-  mark();
-}
-/* data-theme-print tells the page's own print rules to step aside for the theme */
-function mark(){
-  var h=document.documentElement;
-  if(printing()&&document.getElementById('theme-css'))h.setAttribute('data-theme-print','');
-  else h.removeAttribute('data-theme-print');
-}
-/* themes are for the screen unless "Print it too" is ticked */
-function printing(){try{return localStorage.getItem('dynasty-theme-print')==='1'}catch(e){return false}}
-function media(){return printing()?'all':'screen';}
-function setPrint(on){
-  try{localStorage.setItem('dynasty-theme-print',on?'1':'0')}catch(e){}
-  var l=document.getElementById('theme-css');if(l)l.media=media();
-  mark();
 }
 function show(){
   try{getSelection().removeAllRanges()}catch(e){}
@@ -90,11 +73,7 @@ function show(){
   sel.addEventListener('change',function(){set(sel.value);});
   x.type='button';x.textContent='\\u00d7';x.setAttribute('aria-label','Close');
   x.addEventListener('click',function(){box.parentNode.removeChild(box);});
-  var pr=document.createElement('label'),cb=document.createElement('input');
-  cb.type='checkbox';cb.checked=printing();
-  cb.addEventListener('change',function(){setPrint(cb.checked);});
-  pr.appendChild(cb);pr.appendChild(document.createTextNode(' Print it too'));
-  box.appendChild(sel);box.appendChild(pr);box.appendChild(x);document.body.appendChild(box);sel.focus();
+  box.appendChild(sel);box.appendChild(x);document.body.appendChild(box);sel.focus();
 }
 })();
 </script>

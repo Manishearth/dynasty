@@ -94,6 +94,31 @@ body{
 .refcards .anytime{border:1px dashed var(--gold-deep);background:rgba(226,177,60,.08)}
 
 /* ---------- print ---------- */
+/* on paper: white pages, red and gold ink, no lacquer */
 @media print{
+  :root{
+    --paper:#FFFFFF;--tint:#FBEFD6;--hairline:#F1DFB8;
+    --note-bg:#FFFFFF;--must-bg:#FCE9E4;--water-bg:#E6F3EF;
+    --cover-bg:#FFFFFF;--cover-ink:var(--vermilion);
+    /* the gold frame would cut across the page wherever a section starts or ends */
+    --sheet-shadow:none;
+  }
+  body{background:#fff}
+  /* the cover: white, framed in red and gold; the wordmark's seals are red stamps */
+  .cover{border:6px double var(--vermilion);box-shadow:inset 0 0 0 4px #fff,inset 0 0 0 6px var(--gold)}
+  .cover::before,.cover::after{filter:none}
   .wordmark{font-size:3.4rem}
+  .wordmark span{background:var(--vermilion);color:#fff;box-shadow:none}
+  .cover hr{border-top-color:var(--gold-deep)}
+  .cover .meta{color:var(--ink-mid)}
+  /* notes: a red-bordered slip instead of a red envelope */
+  .note{background:#fff;color:var(--ink);border:2px solid var(--vermilion);box-shadow:inset 0 0 0 3px #fff,inset 0 0 0 4px var(--gold)}
+  .note b,.note .n-lbl{color:var(--vermilion)}
+  .note a{color:var(--vermilion)}
+  .note .piece img{filter:var(--glyph-filter)}
+  .rulebook thead th{background:#fff;color:var(--vermilion);border-bottom:3px double var(--vermilion)}
+  .rulebook tbody tr:nth-child(even) td{background:rgba(226,177,60,.08)}
+  .rulebook .card{background:#fff}
+  .band a{background:#fff}
+  .band a.on{box-shadow:none}
 }

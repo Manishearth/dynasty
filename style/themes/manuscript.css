@@ -87,3 +87,22 @@ body{background:repeating-linear-gradient(92deg,#3B2A1A 0 14px,#40301E 14px 22px
 .refcards h3{color:var(--vermilion);font-weight:400;letter-spacing:.06em;font-size:9pt;border-bottom:1px solid var(--rule)}
 .refcards ol.turn .n{background:radial-gradient(circle at 35% 30%,var(--gold-hi),var(--gold) 55%,#8C6414);color:var(--ink);font-family:"Cinzel Decorative",serif}
 .refcards .anytime{border:3px double var(--walnut)}
+
+/* ---------- print ---------- */
+/* on paper: fresh white vellum, no stains, a narrower painted margin */
+@media print{
+  :root{
+    --paper:#FFFFFF;--tint:#F4EAD2;--hairline:#E6D7B6;
+    --note-bg:#FFFFFF;--must-bg:#F7E6DC;--water-bg:#E8ECEE;
+    --cover-bg:#FFFFFF;
+  }
+  body{background:#fff}
+  /* print takes the sheet's padding away; keep the text off the painted margin */
+  .rulebook .sheet{background:var(--paper);border-left-width:.6rem;padding-left:1.1rem}
+  /* the cover is a sheet too; give it back its patterned frame */
+  .rulebook .cover{padding:4rem 2.5rem;border:14px solid transparent;border-image:repeating-linear-gradient(45deg,var(--gold) 0 6px,var(--vermilion) 6px 12px,var(--gold) 12px 18px,var(--cobalt) 18px 24px) 14}
+  .rulebook figure svg{filter:none}
+  .rulebook .card{background:#fff}
+  .band a{background:#fff}
+  .refcards .intro,.refcards .card{background:var(--paper)}
+}

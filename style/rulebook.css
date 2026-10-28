@@ -167,10 +167,10 @@ h3.part{border-top:var(--heavy) solid var(--ink);padding-top:.8rem;margin-top:2.
   .wrap{max-width:none;padding:0}
   .sheet{box-shadow:none;padding:0;margin:0}
   .sheet+.sheet{break-before:page}
-  /* a white cover saves ink; a theme that prints (data-theme-print) keeps its own */
-  html:not([data-theme-print]) .cover{background:#fff;color:var(--ink);padding:6rem 0 0;border-bottom:2px solid var(--ink)}
-  html:not([data-theme-print]) .cover hr{opacity:1}
-  html:not([data-theme-print]) .wordmark{color:var(--vermilion)}
+  /* a white cover saves ink; a theme (data-theme) keeps its own */
+  html:not([data-theme]) .cover{background:#fff;color:var(--ink);padding:6rem 0 0;border-bottom:2px solid var(--ink)}
+  html:not([data-theme]) .cover hr{opacity:1}
+  html:not([data-theme]) .wordmark{color:var(--vermilion)}
   h2,h3,h4,.eyebrow,.sec-head,caption{break-after:avoid}
   :is(h2,h3,h4,.eyebrow,.sec-head)+*{break-before:avoid}
   p,li,dd{orphans:3;widows:3}
