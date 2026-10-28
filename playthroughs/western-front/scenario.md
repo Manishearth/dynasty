@@ -1,10 +1,10 @@
-# Scenario: Seven at the table
+# Scenario: All's Quiet on the Western Front
 
 For the Director. Read `playthrough-sim/agents/DIRECTOR.md` first: it says how to start a game, how far steering may go, and how the parked Storytellers work.
 
 **The table:** 7 players: Reina Osorio (Emperor, 1), Clark Grafton (Official, 2), Richard Baron (Gentry, 3), Noah Tall (Scholar, 4), Silke Weber (Silk Peasant, 5), Paddy Doyle (Rice Peasant, 6), Graham Garner (Wheat Peasant, 7). About 10 years, in two-year chapters.
 
-**Working title:** "Seven at the table", subtitle "Seven players · no Warlord · in progress". Write the real subtitle once the game ends (players · years · how it ended), in `game.py`'s `setup()`.
+**Working title:** "All's Quiet on the Western Front", subtitle "Seven players · no Warlord · in progress". Write the real subtitle once the game ends (players · years · how it ended), in `game.py`'s `setup()`.
 
 **Target arc: a peasant climbs twice, to the throne, through grain politics alone.** Rents, retainers, minimum bids and bought favours do the work the Warlord does in other games. Land opens early (Year 4), and the provinces that buy it pull away. Acceptable alternative: an upper-class player takes the throne, if a peasant got as far as an upper-class seat on the way.
 

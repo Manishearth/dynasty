@@ -1,10 +1,10 @@
-# Scenario: The Warlord's game
+# Scenario: Highway Rob-bery
 
 For the Director. Read `playthrough-sim/agents/DIRECTOR.md` first: it says how to start a game, how far steering may go, and how the parked Storytellers work.
 
 **The table:** 6 players: Reina Osorio (Emperor, 1), Clark Grafton (Official, 2), Richard Baron (Gentry, 3), Silke Weber (Silk Peasant, 5), Paddy Doyle (Rice Peasant, 6), Robert Land (Warlord, 8). About 10 years, in two-year chapters.
 
-**Working title:** "The Warlord's game", subtitle "Six players · in progress". Write the real subtitle once the game ends (players · years · how it ended), in `game.py`'s `setup()`.
+**Working title:** "Highway Rob-bery", subtitle "Six players · in progress". Write the real subtitle once the game ends (players · years · how it ended), in `game.py`'s `setup()`.
 
 **Target arc: the Warlord's campaign is the story.** Rob raids his way to four pieces, one from each realia-holding player, and enters the social order, while the table pays more and more to stop him. The ideal ending is a near miss or a late success that the table could have prevented with one more soldier. Acceptable alternative: the provinces' bought soldiers stop him for good, if it takes them real grain and a real coalition.
 

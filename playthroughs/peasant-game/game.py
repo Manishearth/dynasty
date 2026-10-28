@@ -1,11 +1,11 @@
-# The peasant rematch: an agent-played game of Dynasty. Scenario and steering: scenario.md; deck: seed.md.
+# The peasant's game: an agent-played game of Dynasty. Scenario and steering: scenario.md; deck: seed.md.
 # Every say and aside is the reply of the agent playing that seat (see log/yearN/).
 # The Storyteller writes the act lines and refs the moves; the engine keeps the books.
 # The narrator's lines are not part of the game: they live in narration.md, never here.
 # Each chapter opens with a "# ===== CHAPTER N: <title>" marker.
-setup([1, 5, 6, 7], "peasant-rematch", "The peasant rematch",
+setup([1, 5, 6, 7], "peasant-game", "The peasant's game",
       "Four players · in progress",
-      "The Emperor and the three peasants, no Warlord, and the same deck that ruined the peasant game. This time the rulebook tells them to buy land early and ahead.",
+      "The Emperor and the three peasants, no Warlord, and the same deck that ruined the last peasant table. This time the rulebook tells them to buy land early and ahead.",
       short="4 players")
 
 # ============================== SETUP ==============================

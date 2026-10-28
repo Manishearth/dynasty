@@ -1,9 +1,9 @@
-# Seven at the table: an agent-played game of Dynasty. Scenario and steering: scenario.md; deck: seed.md.
+# All's Quiet on the Western Front: an agent-played game of Dynasty. Scenario and steering: scenario.md; deck: seed.md.
 # Every say and aside is the reply of the agent playing that seat (see log/yearN/).
 # The Storyteller writes the act lines and refs the moves; the engine keeps the books.
 # The narrator's lines are not part of the game: they live in narration.md, never here.
 # Each chapter opens with a "# ===== CHAPTER N: <title>" marker.
-setup([1, 2, 3, 4, 5, 6, 7], "seven-quiet", "Seven at the table",
+setup([1, 2, 3, 4, 5, 6, 7], "western-front", "All's Quiet on the Western Front",
       "Seven players · no Warlord · in progress",
       "Seven players and no Warlord: no raids, no soldiers, nobody in the desert. Everything is fought over with grain instead.",
       short="7 players")

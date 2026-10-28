@@ -1,9 +1,9 @@
-# The Warlord's game: an agent-played game of Dynasty. Scenario and steering: scenario.md; deck: seed.md.
+# Highway Rob-bery: an agent-played game of Dynasty. Scenario and steering: scenario.md; deck: seed.md.
 # Every say and aside is the reply of the agent playing that seat (see log/yearN/).
 # The Storyteller writes the act lines and refs the moves; the engine keeps the books.
 # The narrator's lines are not part of the game: they live in narration.md, never here.
 # Each chapter opens with a "# ===== CHAPTER N: <title>" marker.
-setup([1, 2, 3, 5, 6, 8], "six-warlord", "The Warlord's game",
+setup([1, 2, 3, 5, 6, 8], "highway-robbery", "Highway Rob-bery",
       "Six players · in progress",
       "Six players: the Emperor, the Official, the Gentry, the Silk and Rice Peasants, and the Warlord with two soldiers, hiring more as the grain comes in.",
       short="6 players")

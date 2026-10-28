@@ -4,7 +4,7 @@
 # The narrator's lines are not part of the game: they live in narration.md, never here.
 # Each chapter opens with a "# ===== CHAPTER N: <title>" marker. Seed and deck order: seed.md.
 # The trial year that came before this game is in trial-year1/.
-setup([1,5,6,7,8], "peasant-collapse", "The peasant game",
+setup([1,5,6,7,8], "peasant-collapse", "Peasant collapse",
       "Five players · eight years · ends in collapse",
       "The Emperor, three peasants and the Warlord. No Official, no Gentry, no Scholar, so no rent. The peasants trade seats twice and the Warlord raids his way to the throne, but nobody ever buys new land: once the population triples, every income is negative, every player falls into debt, and in Year 8 the table gives up.",
       short="5 players · 8 years")

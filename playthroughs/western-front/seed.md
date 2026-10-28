@@ -1,4 +1,4 @@
-# Chance and steering in Seven at the table
+# Chance and steering in All's Quiet on the Western Front
 
 The Director nudges this game towards the arc in `scenario.md`. Any steering is the Director's, made before the game or between chapters through a handoff, and is listed below when it happens. A Storyteller never steers on its own.
 
