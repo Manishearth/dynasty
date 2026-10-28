@@ -1,0 +1,9 @@
+{
+ "step": 1,
+ "lots": [{"lot": "3:WB", "min": 2}],
+ "bids": {
+  "Noah": {"3:WB": {"ceiling": 0, "keep": {"Reina": 22}}},
+  "Reina": "pass"
+ },
+ "note": "Ceilings from 097 and 099; Rich is the seller (098). The Bowl opens at 2 (unsold in Year 7)."
+}

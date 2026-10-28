@@ -23,11 +23,10 @@ GAMES = ["full-game", "short-game", "peasant-game", "highway-robbery", "western-
 # (RESULT = export(...)).
 IN_PROGRESS = {}    # e.g. {"full-game": 12} while a game is being played
 # A game not started yet shows its setup only, until its first year is played.
-IN_PROGRESS.update({g: 0 for g in ("short-game", "peasant-game", "highway-robbery", "western-front", "dark-ages")})
+IN_PROGRESS.update({g: 0 for g in ("peasant-game", "highway-robbery", "western-front", "dark-ages")})
 # The game selector's title and subtitle while a game is still being played (its game.py keeps
 # its own until the game ends, when the subtitle gets the result).
-IN_PROGRESS_TITLE = {"short-game": ("The short game", "Four players · eight rounds · not started"),
-                     "peasant-game": ("The peasant's game", "Four players · not started"),
+IN_PROGRESS_TITLE = {"peasant-game": ("The peasant's game", "Four players · not started"),
                      "western-front": ("All's Quiet on the Western Front", "Seven players · no Warlord · not started"),
                      "highway-robbery": ("Highway Rob-bery", "Six players · not started"),
                      "dark-ages": ("The Dark Ages", "Six players · not started")}

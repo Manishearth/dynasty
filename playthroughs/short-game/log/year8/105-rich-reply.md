@@ -1,0 +1,5 @@
+diary: Two years, and I finished on the throne, which is two seats higher than the one I drew. The Customs House cost me two grain because Noah had priced it out of everyone's reach for a year, and then I lost the Brush to him by one grain, the same one grain he'd been losing by all game. I thought that was the end of it. Then the Storyteller reminded us that pieces on the board can change hands, and Noah was sitting on twenty-two grain and a Brush he couldn't use. Sixty bought it, and I promised him the throne and nobody else's chair. I kept that promise to the letter, so he's the Official now, richer than when he drew the Scholar. Clark wrote my two Wall links in his book under favours owed, and I'm sorry he never got to collect, though not very sorry. I paid the salaries at the minimum because Clark's seven had been Clark's promise and not mine. I'm leaving with a hundred and thirty-four and a half in the crown's reserve, an unsold Bowl, and the throne. Nothing comes next, since the lamps are out, and that suits me: an Emperor nobody can depose is the best kind.
+
+---
+
+Filed word for word in diaries/rich.md under ## Years 7–8.

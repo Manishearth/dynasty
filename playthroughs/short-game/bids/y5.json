@@ -1,0 +1,10 @@
+{
+ "step": 1,
+ "lots": [{"lot": "3:LD", "min": 95}, {"lot": "4:BB", "min": 40}],
+ "bids": {
+  "Reina": {"4:BB": {"ceiling": 40, "keep": {"Rich": 50}}},
+  "Rich": "pass",
+  "Noah": {"3:LD": {"ceiling": 107}}
+ },
+ "note": "Ceilings from 059-061; minimums as named in 057-058."
+}

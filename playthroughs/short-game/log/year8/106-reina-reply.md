@@ -1,0 +1,5 @@
+diary: I said I'd play for a full granary and decide who sat on the throne, and I got half of that. I finished the night with a hundred and sixty-five, the most grain at the table, all of it from eight squares of sea that Clark paid for and then taxed at forty percent. Deciding who sat on the throne was beyond me. I sold the Brush to Noah for thirty-two and told myself I was watching the Vase, and the whole time the real threat was the Brush itself going straight across to Rich for sixty. I did warn Clark, out loud and in good time, and much good it did him: a warning only helps a man who has some way of acting on it. Rich's first act as Emperor was to cut my salary to five, which is about what an Empress who started in the chair and finished as the Scholar of Province 4 ought to expect. I drew the throne and I lost it, and I lost it in Year 3, not tonight. My granary is the largest at the table, and nobody has to pay for my roof, but none of that counts for much when I'm scored from the bottom seat.
+
+---
+
+Filed word for word in diaries/reina.md under ## Years 7–8.

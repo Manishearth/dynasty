@@ -92,7 +92,9 @@ def table_text(ns):
     for s in A:
         f = full(ns, ns["pid"](s))
         who.append(f"{f} is the {R[s]}, holding {WHERE[s]}." if s == 8 else f"{f} is the {R[s]} ({WHERE[s]}).")
-    out = f"{NUM[len(A)].capitalize()} players, about ten years. " + " ".join(who)
+    last = last_round(ns)
+    length = f"{NUM[last] if last < len(NUM) else last} rounds, then the table stops (Note 19)" if last else "about ten years"
+    out = f"{NUM[len(A)].capitalize()} players, {length}. " + " ".join(who)
     empty = [s for s in range(2, 8) if s not in A]
     if empty:
         out += f" Province{'s' if len(empty) > 1 else ''} {', '.join(map(str, empty))} {'are' if len(empty) > 1 else 'is'} empty: nothing is owed there and nobody is paid."
@@ -164,6 +166,10 @@ def mark_seen(player):
     json.dump(s, open(SEEN, "w", encoding="utf-8"), indent=1)
 
 # ------------------------------------------------------------------ state, from the engine
+def has_warlord(ns):
+    """Seat 8 is at the table. Without it nothing raids and no soldiers are sold, so the prompts never mention them."""
+    return 8 in ns["ACTIVE"]
+
 def free_squares(ns, seat):
     """Squares a newly bought piece may stand on: the seat's own, unraided, empty, not under a work."""
     busy = {q for v in ns["pw_at"].values() for q in v}
@@ -218,10 +224,11 @@ def state_block(ns, player):
     st = [f"{SH[ns['pid'](s)]}: " + ", ".join(f"{n} {R[t]}" for t, n in v.items()) for s, v in ns["stock"].items() if v]
     if ns["pile_stock"]: st.append("the Harvest Pile (sold back): " + ", ".join(f"{n} {R[t]}" for t, n in ns["pile_stock"].items()))
     lines.append("- **Still beside the board (unsold):** " + ("; ".join(st) or "nothing") + ".")
-    sol = [f"{i} on {s['sq']}" + ("" if s["side"] == "W" else f" ({SH[s['owner']]}'s)") for i, s in ns["SOLDIERS"].items()]
-    lines.append("- **Soldiers:** " + (", ".join(sol) or "none yet") + ".")
-    raided = sorted({ns["owner"](q) for q, v in ns["board"].items() if v.get("raid")} - {None})
-    lines.append("- **Provinces raided so far** (their bought soldiers may move): " + (", ".join(map(str, raided)) or "none") + ".")
+    if has_warlord(ns):
+        sol = [f"{i} on {s['sq']}" + ("" if s["side"] == "W" else f" ({SH[s['owner']]}'s)") for i, s in ns["SOLDIERS"].items()]
+        lines.append("- **Soldiers:** " + (", ".join(sol) or "none yet") + ".")
+        raided = sorted({ns["owner"](q) for q, v in ns["board"].items() if v.get("raid")} - {None})
+        lines.append("- **Provinces raided so far** (their bought soldiers may move): " + (", ".join(map(str, raided)) or "none") + ".")
     left = sum(max(0, n - ns["built_count"](w)) * c for w, n, c in ns["owed"]())
     lines.append(f"- **Population** x{ns['MULT']:g}. **Public works still owed:** {left:g}.")
     if seat in ns["REALIA"]:
@@ -250,6 +257,11 @@ def board_card(ns, player):
     sol = {i: s["sq"] for i, s in ns["SOLDIERS"].items() if s["side"] == "W"}
     raided = lambda q: ns["board"].get(q, {}).get("raid")
     out = [f"## Your board card ({'Setup' if not ns['CUR_ROUND'] else 'Year %d' % ns['CUR_ROUND']}, from the engine)", ""]
+    last = last_round(ns)
+    if last:
+        out.append(f"- **The short game:** {'Setup' if not ns['CUR_ROUND'] else 'Year %d' % ns['CUR_ROUND']} of {last}. The table stops after "
+                   f"Year {last} and scores from where everyone sits (Note 19, §18): a lower-numbered province than you drew wins, "
+                   "the same one holds, the Emperor wins by keeping the throne, and the larger grain surplus breaks ties.")
     have = ", ".join(f"{R[v['realia']]} {q}" for q, v in ns["board"].items() if v.get("realia") and v["owner"] == p)
     if seat == 8:
         out.append(f"- **Grain** {ns['grain'][p]:g}. **Army** {len(sol)} of {ns['ARMY']+1}. **Objective:** " + objective_text(ns))
@@ -316,11 +328,25 @@ def may_replace(ns, seat):
         head = "the Official, Gentry, Scholar or another peasant, not the Emperor (a peasant climbs to the upper class first)"
     return head + ": " + ", ".join(f"{SH[ns['pid'](s)]} ({ns['ROLE'][s]})" for s in ok)
 
+def last_round(ns):
+    """The agreed last round of a short game (Note 19), or None. Only a game whose game.py sets
+    LAST_ROUND = <n> has one; every other game runs to §18's ending, unchanged."""
+    return ns.get("LAST_ROUND")
+
 def endgame_note(ns):
     """Near the end, new land may never pay back: a square pays from next year's harvest, and the game
-    ends the moment the last owed work is built (§18). From the engine's owed() and built_count(); the
-    Great Wall or the Grand Canal, any number of sections, is one project (N13). None until it matters."""
+    ends the moment the last owed work is built (§18), or after the agreed last round (Note 19). From the
+    engine's owed() and built_count(); the Great Wall or the Grand Canal, any number of sections, is one
+    project (N13). None until it matters."""
+    last, r = last_round(ns), ns["CUR_ROUND"] or 0
+    if last and r >= last:
+        return (f"**This is the last round:** the table agreed to stop after Year {last} and score from where everyone sits "
+                "(Note 19, §18). A square of new land pays from next year's harvest, so a square bought now never pays back. "
+                "Grain in hand breaks ties at the end.")
     left = [(w, (n - ns["built_count"](w)) * c) for w, n, c in ns["owed"]() if ns["built_count"](w) < n]
+    if last and r == last - 1 and len(left) != 1:   # one work left can end it sooner: that note says so
+        return (f"**One round after this one:** the table stops after Year {last} (Note 19). A square of new land bought now "
+                f"pays back once at best, from Year {last}'s harvest. Grain in hand breaks ties at the end.")
     if len(left) > 2 or not left: return None     # nothing owed: the game is over
     what = " and ".join(f"the {w} ({c:g})" for w, c in left)
     if len(left) <= 1:
@@ -393,8 +419,9 @@ def wants_of(ns, sell, typ):
             and typ in ns["need_for"](s) and not ns["held"][ns["pid"](s)].get(typ)]
 
 def where_text(ns, seat):
-    return ("a square of your desert (name one)" if seat == 8 else
-            f"a square of your province. Out of every Warlord soldier's reach for two rounds: {ranges(ns, safe_squares(ns, seat))}")
+    if seat == 8: return "a square of your desert (name one)"
+    if not has_warlord(ns): return f"a square of your province. Free squares: {ranges(ns, free_squares(ns, seat))}"
+    return f"a square of your province. Out of every Warlord soldier's reach for two rounds: {ranges(ns, safe_squares(ns, seat))}"
 
 def menu_auction(ns, player, lot, minimum):
     R = ns["RNAME"]; sell, typ, left, seller = lot_parts(ns, lot)
@@ -466,7 +493,7 @@ def menu_place(ns, player, lot, price):
     one = len(lots) == 1
     return f"""## You won {' and '.join(won)}
 
-Place {'it' if one else 'each'} now (Note 10), {'on' if one else 'each on its own'} {where_text(ns, seat_of(ns, player))}. A piece can't go on a raided square or under a work."""
+Place {'it' if one else 'each'} now (Note 10), {'on' if one else 'each on its own'} {where_text(ns, seat_of(ns, player))}. A piece can't go {'on a raided square or ' if has_warlord(ns) else ''}under a work."""
 
 def menu_march(ns):
     out = ["## Your move: the march", "", "Each soldier steps one square (diagonals allowed) or stands still. raid=5 (10 in Province 1) takes 5 from that province's player, or the piece standing there instead; '-' raids nothing. Tolls are 5 each, paid to the province."]
@@ -534,7 +561,7 @@ def menu_crown(ns):
         rows = [f"{SH[ns['pid'](s)]} {inc[s]:+g}" for s in A if s != 1]
         out.append("**Taxable income this year** (harvest income only; none is owed on a negative income): " + ", ".join(rows) + ".")
         def take(r, skip=(8,)): return sum(ns["pay_down"](max(0, inc[s]) * r) for s in A if s not in (1,) + skip)
-        out.append("**The tax at each rate** (the Warlord may refuse): " + ", ".join(f"{r}% {take(r/100):g}" for r in (20, 30, 40, 50, 60)) + ".")
+        out.append("**The tax at each rate**" + (" (the Warlord may refuse)" if has_warlord(ns) else "") + ": " + ", ".join(f"{r}% {take(r/100):g}" for r in (20, 30, 40, 50, 60)) + ".")
     else:
         out.append("**Taxable income:** not paid out yet this year.")
     left = sum(max(0, n - ns["built_count"](w)) * c for w, n, c in ns["owed"]())
@@ -579,8 +606,7 @@ def menu_collect(ns, rate):
     tot = sum(ns["pay_down"](max(0, inc[s]) * r) for s in A if s not in (1, 8)) if inc else 0
     out = ["## Your move: collecting the tax", "",
            f"The Emperor has declared **{rate}%**. Owed on this year's harvest income, rounded down to the half million: "
-           + (", ".join(rows) + f"; {tot:g} in all" if rows else "nothing paid out yet") + ". The Warlord may refuse to pay "
-           "(and usually does). You collect it and deliver it to the crown, and you make certain nobody cheats.",
+           + (", ".join(rows) + f"; {tot:g} in all" if rows else "nothing paid out yet") + "." + (" The Warlord may refuse to pay (and usually does)." if has_warlord(ns) else "") + " You collect it and deliver it to the crown, and you make certain nobody cheats.",
            "", "The Emperor owes you a salary of at least 5 at the end of the year."]
     return "\n".join(out)
 
@@ -614,8 +640,7 @@ def menu_land(ns, player):
 New land is open to you this year, in the public works step. Each square costs 20 to the Harvest Pile and adds 20 to your harvest every year from next year, so it pays for itself in a single year. {share}
 
 **Squares you can buy now** (each must touch your province or land you've already bought, so buying opens the next ring): {ranges(ns, front)}.
-New land can be raided like any other square of your province.
-{chr(10) + endgame_note(ns) + chr(10) if endgame_note(ns) else ''}
+{'New land can be raided like any other square of your province.' + chr(10) if has_warlord(ns) else ''}{chr(10) + endgame_note(ns) + chr(10) if endgame_note(ns) else ''}
 Your board card above gives your own numbers. Buying nothing is also a choice."""
 
 def fmt_land(ns, player):

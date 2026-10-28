@@ -1,0 +1,10 @@
+{
+ "step": 1,
+ "lots": [{"lot": "2:CH", "min": 2}, {"lot": "3:WB", "min": 2}, {"lot": "4:BB", "min": 25}],
+ "bids": {
+  "Noah": {"3:WB": {"ceiling": 0, "keep": {"Reina": 12}}, "4:BB": {"ceiling": 30, "keep": {"Rich": 60}}},
+  "Rich": {"2:CH": {"ceiling": 50}, "4:BB": {"ceiling": 31}},
+  "Reina": "pass"
+ },
+ "note": "Ceilings from 087-089; CH and WB open at 2 (unsold in Year 6); Brush minimum 25 as named in 086."
+}

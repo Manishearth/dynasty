@@ -1,0 +1,5 @@
+diary: Years Three and Four. I sold the Customs House to Noah for forty-one and bought the Deed and the Brush for eighty-three between them, leaving myself twenty-seven and a half, just enough. Then I declared the set and took the throne. Sixty-three for a crown is the best bargain ever entered in this ledger. I'll admit, here and nowhere else, that I told the table nobody else could finish, and then all four of my pieces went back into stock, which I hadn't read in the rules. I had to start the next page in a hurry. So the tax went to half, the crown's reserve is up to 209, the Winter Palace is built, and Rich has taken the Reservoir promise in exchange for keeping the Deed home for a year. I intend to honour it, give or take a split. Reina is keeping a ledger of her own now, which flatters me. The problem is Noah: he needs one Deed, he has 115 and a half, and next year Rich has to put it up. That gives me one year to make Rich love the Reservoir more than he loves Noah's grain, or to make Noah's purse much thinner. All of it is written down.
+
+---
+
+Ruling: filed word for word under ## Years 3–4 in diaries/clark.md.

@@ -4,7 +4,7 @@ The Director is one session per game. It never plays a seat or referees a move: 
 
 ## Before Chapter 1
 
-1. **Read** the game's `scenario.md`, then `STORYTELLER.md`, `rules-digest.md` and the game's `seed.md`.
+1. **Read** the game's `scenario.md`, then `STORYTELLER.md`, `rules-digest.md` and the game's `seed.md`. Check whether your startup brief says **you're the only Director running**. That decides whether you may rebuild the page (see "Messages and the page" below). If it doesn't say, assume you aren't.
 2. **Test the deck.** The I Ching deck is the game's only chance. Run `deck_scout.py` on the recommended seed and on the alternatives, from the game's folder:
 
    ```sh
@@ -25,8 +25,22 @@ The Director is one session per game. It never plays a seat or referees a move: 
 - **Wake the next Storyteller** with the chapter's brief. Don't brief a chapter before the last one has closed.
 - **Check the record** when it reports: `run.py` runs clean, `game.py` has the chapter marker, the ledger and diaries are current, and the narration isn't in `game.py`.
 - **Write the handoff** (`handoff/chapter-N.md`): where the game stands, open threads, and any steering for the next chapter.
-- **Rebuild the page** once the main session says it's clear (`build_real.py`, with the game in `GAMES` and its last checked year in `IN_PROGRESS`).
-- **Report to the main session once a year** of play, briefly, not after every step.
+- **Record each finished year** in your status file (below). Rebuild the page only if you're the only Director running.
+
+## Messages and the page
+
+**The message cap.** The desktop app lets a session send about 10 messages to other sessions after Manish last typed in it. Past that it pauses them until he types again, and overnight nobody does. So spend messages only where nothing else will do:
+- **Wake each chapter's Storyteller:** one message per chapter.
+- **A note to a Storyteller** only when something truly needs one.
+- **One message to the main session when the game ends.** None during play, unless something needs Manish's decision. Then the game waits for the morning.
+
+A Storyteller's reports to you come out of its own allowance, not yours. Keep the Storyteller reporting at the end of each year and of the chapter (`STORYTELLER.md`), and don't reply unless you must.
+
+**Status, without messages.** After each finished year that you've checked, add one line to `<game>-status.md` in the shared notes folder named in your startup prompt: what happened, the grain, any steering, and the last year rebuilt on the page. It costs no messages, and the main session reads it in the morning.
+
+**The page.** `build_real.py` rebuilds every game into one file, `playthroughs-real.html`, so two Directors rebuilding at once would race.
+- **If your startup brief says you're the only Director running:** you own the page. Rebuild live after each checked year, without asking: set your game's `IN_PROGRESS` entry to that year, run `python playthrough-sim/agents/build_real.py` from the repo root, and note it in your status file. Touch only your game's lines in `build_real.py`.
+- **Otherwise:** don't rebuild, and don't edit `build_real.py`. The status file records your last finished year, and the main session rebuilds every game at once in the morning.
 
 ## Steering
 
@@ -47,6 +61,7 @@ List every piece of steering in `seed.md`'s steering log when it happens: what, 
 
 - Give the game its title and subtitle in `game.py`'s `setup()` (players · years · how it ended), and the result and epilogue in `export()`; pass `no_winners=True` for a collapse.
 - Write `REPORT.md`: what happened, what the rules did, and anything that needs a ruling.
-- Drop the game from `IN_PROGRESS` in `build_real.py`, rebuild, and update `playthroughs/README.md`.
+- If you own the page, drop the game from `IN_PROGRESS` in `build_real.py` and rebuild. Otherwise, say in your status file and your final message that it's ready to drop. Either way, update `playthroughs/README.md`.
+- Send the main session your one message: the result, and where `REPORT.md` is.
 
 The framing rules from `STORYTELLER.md` hold for the Director too: the aside is a line to the camera, never a request for reasoning, and no one reads an agent's transcript.

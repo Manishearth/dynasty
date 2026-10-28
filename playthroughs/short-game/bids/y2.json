@@ -1,0 +1,10 @@
+{
+ "step": 1,
+ "lots": [{"lot": "2:DJ", "min": 10}, {"lot": "3:WB", "min": 8}, {"lot": "4:VA", "min": 10}],
+ "bids": {
+  "Clark": "pass",
+  "Rich": {"4:VA": {"ceiling": 18}},
+  "Noah": {"2:DJ": {"ceiling": 18}, "3:WB": {"ceiling": 16}}
+ },
+ "note": "Ceilings from 019-021; minimums as named in 016-018."
+}
