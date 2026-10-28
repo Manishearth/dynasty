@@ -1,0 +1,6 @@
+move: Ask the table to lend the crown 29 grain before the harvest is paid, so it ends at +0.5 and not -28.5. Repay 31 out of this year's tax, collected later this same year. Asked of Reina first, then Silke, and Paddy may put in part.
+say: "Here's the year in numbers. The crown has one and a half and owes thirty, so it's twenty-eight and a half short. Reina, your coast just made sixty: lend the crown twenty-nine now and you get thirty-one back from this year's tax, not next year's. Here's where the money goes, so nobody's surprised. You earn a hundred and forty between you; at thirty percent that's forty-two, and the crown owes thirty-one to the lender, fifteen to Silke and nine in salaries. Forty percent covers all of it with one grain to spare, and that's the rate I'll set. I'm telling you now, before anybody's paid, so it isn't a surprise later."
+aside: "The crown can't earn its way out, because the provinces earn it and I can only tax them. So I borrow against this year's tax, name the rate before the harvest, and the table can see every grain is going back to them."
+whisper: none
+---
+Ruling: a public request for a loan, not binding. The numbers check: 140 of taxable income; 30% is 18 + 9 + 15 = 42; 40% is 24 + 12 + 20 = 56, against 31 + 15 + 9 = 55 owed. Goes to Reina, then Silke; Paddy only if a part is still wanted.

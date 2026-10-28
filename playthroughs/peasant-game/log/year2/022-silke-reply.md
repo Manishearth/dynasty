@@ -1,0 +1,3 @@
+diary: Two years in, and I hold both brushes in the empire and a deed for my coast. It cost me seventeen grain, and the Jar paid four of that back. Graham's quiet "you already had a brush" stung more than I let on, but he's out of the race for good now, and I'd buy it again. Paddy is the one to watch: he has the Jar and a scroll, he needs my last Customs House and Graham's Vase, and I need his Bowl and that same Vase. Next year my Customs House goes up and Paddy will expect it, so I'll set the price where it hurts him. Whoever gets the Vase decides this game, so I'm keeping my fifty-five dry and letting everyone think I'm only the girl who reads the cards.
+---
+Ruling: filed word for word under ## Years 1–2 in diaries/silke.md.

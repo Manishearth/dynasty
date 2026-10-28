@@ -1,0 +1,8 @@
+move: read
+say: "The Emperor's Share. 'The Emperor would like to remind you who paid for the ditch.' Every province gets an average harvest. Any province with a Public Works splits the extra harvest it brings in fifty-fifty with the Emperor this round, and that includes my Reservoir, which I seem to have paid for twice now. Population holds at three hundred million, times three, so read the x3 row, average column, and nobody plays a disaster. And Graham, I don't mean any disrespect, but the book says the card reader gets at least five, not three. I'll take five at the end of the year, the same as Silke paid it and I paid it."
+
+aside: "I built that Reservoir with the crown's grain, and now the crown takes half of what it brings in, so I'm making sure the salary is right in the same breath. With twenty-three in hand and Jar and Brush on the shelf, all I need is Paddy's Bowl and somebody's Customs House, so this year I'm being nice to Paddy and Silke."
+
+whisper: none
+---
+Ruling: read correctly. The Emperor's Share, an average harvest for every province, the population holds at x3, no disasters. Incomes: Graham -5 (75, the canal's 20 and four squares' 80, less 180), Silke -5 (75 and 40, less 120), Paddy +15 (75 and 60, less 120), Reina +55 (75, the Reservoir's 20 and 80, less 120). The Share (not applied by the engine): only Province 7 has a work outside the crown's own province, so Reina pays Graham half the Reservoir's 20, 10, after the harvest. The salary claim: the "at least 5" in her prompt is the seated Scholar's due; an appointed reader's pay is the Emperor's choice (N3, as for every appointee at this table). A note to the table says so; the misstatement started in the Storyteller's prompt, not with Reina.

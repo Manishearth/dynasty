@@ -1,0 +1,5 @@
+diary: Two years in, and the Official owns nothing but a ledger and sixty-seven and a half grain, which is still more than anyone below the crown. I ran a clean count, corrected the Empress on her own tax, and set the price on the last Customs House high enough that Rich paid twenty-six for it. That was a fine bit of leverage until I remembered it also handed him his full set. Paddy outbid me on the Jar by one grain and Silke on the Bowl by one, and every piece in the kingdom is now sold, so my own set can only come from someone else's board. That means Rob's soldiers, or a deal. My whisper to Rob came back at me in public, neat handwriting and all, and that page goes under "lessons", not "grievances". Rich now has his set and the grain to come for my seat, Silke has hers and none of the grain, and Rob has three men and no reason to love me. So next year I make myself too useful to replace. I'll keep counting the tax honestly, sell what I know to whoever's frightened of Rich, and keep enough grain saved that when a set comes loose, it falls to me.
+
+---
+
+Ruling: filed word for word in diaries/clark.md under Setup–Year 2.

@@ -1,0 +1,5 @@
+diary: My own fields ate eighty-five a year, and by Year 11 I'd sold my Customs House and Jar back to the pile for two grain apiece and still ended up under, then a hundred and four under. Rich and Silke paid their five and not a grain more, which is exactly what I taught them, so I can't complain. I watched my Jar go to Rich for a hundred and thirteen and could only sit there in debt. Then Reina wiped out every grain of it in one breath, Clark used that same debt to bring her down, and I backed Rob because I'd counted it and he was taking the chair whatever I did. He laid my Reservoir himself, and that was the last stone in China. So I finish with nothing in my purse and nothing on the board, but I sat down a rice farmer and I'm getting up the Gentry, one seat higher than where I started. I can't fully say how a man climbs while losing everything, but I'll take it. I'll be telling people about those grains for years.
+
+---
+
+Ruling: recorded word for word under ## Years 11–12 in diaries/paddy.md.

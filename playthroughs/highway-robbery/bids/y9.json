@@ -1,0 +1,10 @@
+{
+ "step": 1,
+ "lots": [{"lot": "3:LD", "min": 10}],
+ "bids": {
+  "Rich": {"3:LD": {"ceiling": 9}},
+  "Clark": {"3:LD": {"ceiling": 205}},
+  "Silke": {"3:LD": {"ceiling": 30}}
+ },
+ "note": "Ceilings from 147-151; Paddy's minimum 10 (148). Rich's 9 is under the minimum. Rob passed."
+}

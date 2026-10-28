@@ -1,0 +1,5 @@
+diary: I took the throne back, and I did it the way it was taken from me: one polite sentence, with grain in my purse. It was expensive. Nineteen for the Bowl and forty-one for the Jar, because Rich wouldn't stop until forty, and I lost the Jar to Silke at thirty-one the year before. Then Silke spent her own reign generously, and I came into a hundred and sixty-five of her reserve. The two sets I bought both went back to stock the moment I sat down, and every piece I chased is up for auction again, which means somebody else is already saving for my chair. Paddy needs only a Jar and is down to eight grain, Rich has eighty-two and an empty board, and Silke is sitting where I sat, with sixty and a grudge she's too gracious to show. With twice the mouths my palaces are barely paying their way, so the works have to start again, and I'll pay Rob his ten a year gladly rather than see him burn the Winter Palace. This time I won't save a hoard for someone to inherit: I'll spend the reserve on canals and land as fast as it comes in, and keep a close eye on whoever buys the Jar.
+
+---
+
+Ruling: filed word for word in diaries/reina.md.

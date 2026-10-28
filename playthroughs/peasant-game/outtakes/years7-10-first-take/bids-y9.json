@@ -1,0 +1,19 @@
+{
+ "step": 1,
+ "lots": [
+  {"lot": "5:DJ", "min": 2},
+  {"lot": "6:BB", "min": 2},
+  {"lot": "7:VA", "min": 2}
+ ],
+ "bids": {
+  "Reina": {
+   "6:BB": {"ceiling": 0, "keep": {"Silke": 25}},
+   "7:VA": {"ceiling": 42}
+  },
+  "Paddy": {},
+  "Silke": {
+   "5:DJ": {"ceiling": 20},
+   "6:BB": {"ceiling": 15}
+  }
+ }
+}

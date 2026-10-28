@@ -1,0 +1,5 @@
+diary: Two years in, and I've a Land Deed and a Dragon Jar sitting up in the top corner of my paddies, which is more than I'd have bet on when I sat down with thirty-seven grain. The floods were good to the south-east, and I spent nearly all of it in one night: twenty for the Deed, fifteen for the Jar, and I lost the last Customs House to Rich by a single grain at twenty-six, which I'll be chewing on for a while. That leaves me one piece short, and there are no more in the stock, but there are two Customs Houses on the board, Rich's and Silke's, and both of them have their full sets already. So one of them might part with a spare for the right price, or for a friend's word, and Silke owes me a kindness for that Bowl. Rob's man is camped at S20 and already took five off me. If he walks two squares further, my little collection is in trouble, so next year I need to make a deal for that Customs House before the Warlord makes his house call.
+
+---
+
+Ruling: filed word for word in diaries/paddy.md under Setup–Year 2.

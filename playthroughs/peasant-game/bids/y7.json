@@ -1,0 +1,12 @@
+{
+ "lots": [
+  {"lot": "6:BB", "min": 2},
+  {"lot": "0:VA", "min": 2},
+  {"lot": "0:LD", "min": 2}
+ ],
+ "bids": {
+  "Paddy": {"0:VA": {"ceiling": 4}},
+  "Graham": {}
+ },
+ "note": "Year 7 (replayed). Reina in debt, can't bid; the Emperor doesn't bid."
+}

@@ -1,0 +1,14 @@
+{
+ "step": 1,
+ "lots": [
+  {"lot": "2:CH", "min": 15},
+  {"lot": "5:DJ", "min": 6},
+  {"lot": "6:WB", "min": 8}
+ ],
+ "bids": {
+  "Clark": {"5:DJ": {"ceiling": 40, "keep": {"Reina": 48}}, "6:WB": {"ceiling": 40, "keep": {"Reina": 48}}},
+  "Reina": {"2:CH": {"ceiling": 30, "keep": {"Paddy": 40}}, "5:DJ": {"ceiling": 25}, "6:WB": {"ceiling": 25}},
+  "Paddy": {"2:CH": {"ceiling": 38}}
+ },
+ "note": "Ceilings from 048-052; minimums as named by each seller. Silke and Rob passed on every lot."
+}

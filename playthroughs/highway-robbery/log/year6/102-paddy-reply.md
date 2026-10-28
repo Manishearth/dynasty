@@ -1,0 +1,5 @@
+diary: I finally won one. Silke's Customs House went to me at twenty-five, a grain past Clark, and the next year I took the Land Deed back at twenty-three, a grain past Rich, so going a grain past careful did what I hoped it would. Rob's lad still carried my old Scroll off to the desert, and I lost the Jar to Silke by a single grain, which makes three of those now, but my new pieces sit side by side at S24 and S25, about as far from his soldiers as my paddies go. I spent nearly everything to get here. Thirty went on three squares of land and ten on the fourth, with the crown paying half, and the Deed took most of the rest, so I'm down to eight grain and a five-grain toll to Rob. Still, the land and the canal should bring in eighty-five in an average year. The thrones keep changing hands, Silke's, then Reina's again, and each time a Dragon Jar goes back in the stock. One is sitting there for Year 7, and it's the only piece I'm missing. Next year I'll have a full purse for it, and if I can keep twenty grain on top, I might be sitting at the upper table before I've quite worked out how I got there.
+
+---
+
+Ruling: filed word for word in diaries/paddy.md.

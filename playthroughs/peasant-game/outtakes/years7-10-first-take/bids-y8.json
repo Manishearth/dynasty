@@ -1,0 +1,19 @@
+{
+ "step": 1,
+ "lots": [
+  {"lot": "5:CH", "min": 2},
+  {"lot": "6:WB", "min": 6},
+  {"lot": "7:LD", "min": 6}
+ ],
+ "bids": {
+  "Silke": {
+   "6:WB": {"ceiling": 13},
+   "7:LD": {"ceiling": 8}
+  },
+  "Paddy": {},
+  "Reina": {
+   "5:CH": {"ceiling": 4},
+   "6:WB": {"ceiling": 26}
+  }
+ }
+}

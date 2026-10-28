@@ -1,0 +1,13 @@
+{
+ "step": 1,
+ "lots": [
+  {"lot": "7:LD", "min": 53}
+ ],
+ "bids": {
+  "Reina": {
+   "7:LD": {"ceiling": 53}
+  },
+  "Paddy": {},
+  "Silke": {}
+ }
+}

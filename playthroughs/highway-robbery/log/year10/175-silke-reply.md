@@ -1,0 +1,5 @@
+diary: Two years ago I said I'd stop watching anybody but myself, and I mostly managed it: I paid Paddy his five and not a grain more, bought eleven squares of coast at half price, and went from sixty grain to a hundred and sixty-four and a half on fields that will make three hundred and thirty-five in an average year. But I still have nothing on the board. I lost the Scroll to Clark at thirty-one against my thirty and the Customs House to Rich at sixty-one against my sixty, which makes it five pieces in four years I've lost by a single grain, and Rich is now one Scroll short of a set, when he came to the coast with nine grain. Both Scrolls left in China are in Rob's sand, and Rob only needs a piece from me and one from Rich, so if I buy pieces I'm also helping him finish. The Wall and the Reservoir can't both go up before Year 12, so I've got two years at most. Next time I set a limit I'll add two grain to it, because the grain I saved on all those auctions is worth nothing if I finish the game with an empty board.
+
+---
+
+Ruling: filed word for word under Years 9–10.

@@ -1,0 +1,6 @@
+move: Ask the table for a loan to the crown of 13 grain before the harvest is paid, so it ends at +0.5 and not -12.5. Repay 15 from the crown's tax next year (13 plus 2). Asked of Reina first; Silke if Reina declines.
+say: "No need to apologise, Paddy, you read the card you were dealt. Here's the year: the crown has seventeen and a half and owes thirty, so after the harvest it's twelve and a half in debt. A crown in debt can't pay its share of anyone's squares, and with three hundred million to feed, all of you will need squares. Reina, lend the crown thirteen now and I'll pay you back fifteen out of next year's tax. I paid you exactly what I promised last year, and I'll do it again. Silke, if Reina won't, the same terms go to you."
+aside: "If the crown goes into debt, I can't fund a square, and then nobody can buy land in a famine. Thirteen now keeps the chest above zero. I've asked Reina first because she's the one I've paid in full. If Silke turns down a loan that would fund land in her own province, she'll be doing it in front of everyone, same as the canal."
+whisper: none
+---
+Ruling: a public request for a loan, legal at any time (§5); not binding. The numbers are right: 17.5 less 30 is -12.5, and 13 leaves +0.5. Goes to Reina, then Silke, in their pre-harvest prompts.

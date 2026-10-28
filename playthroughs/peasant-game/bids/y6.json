@@ -1,0 +1,11 @@
+{
+ "step": 1,
+ "lots": [
+  {"lot": "6:BB", "min": 2}
+ ],
+ "bids": {
+  "Reina": {},
+  "Graham": {}
+ },
+ "note": "Year 6 (replayed): both bidders passed; the Brush goes unsold and reopens in Year 7 at 2. Not run through resolve."
+}

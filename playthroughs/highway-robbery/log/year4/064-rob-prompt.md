@@ -1,0 +1,22 @@
+## At the table since your last turn
+
+Rob's W3 takes Paddy's Dragon Jar from Q20 and sets it on T17 in the desert: his first piece. W1 raids I13 (5 from Silke) and W2 raids M24 (5 from Clark).
+
+(Storyteller's note: Rob's W1 on I13 is three rounds from Silke's Deed (H16) and Bowl (I16), not four.)
+
+Rich: "Silke, my lady, congratulations on the book. I declared ten for the Official and the Official gets ten, every grain, exactly as she asked. Rob, five for the almanac again. The stars were very good to the crown last year, and I'm hoping they stay sentimental. Clark, welcome to the coast, old friend. I promised its next canal to Province 5, and a promise to a province outlasts whoever's living in it."
+
+Year 4 closes. Rich pays Silke 10 as the Official and Rob 5 as the reader. Grain: Rich (Emperor) 200, Rob 120, Silke (Official) 85.5, Paddy 55.5, Clark (Silk Peasant) 55, Reina (Gentry) 48.5. On the board: Reina's Customs House M10; Silke's Land Deed H16 and Wooden Bowl I16 (she needs a Dragon Jar); Paddy's Land Deed Q19; Rob holds Paddy's Dragon Jar on T17, his first piece. Back in stock for Year 5's auction: a Customs House (Province 2), a Dragon Jar (Province 5) and a Wooden Bowl (Province 6). Rob's soldiers: W1 I13, W2 M24, W3 Q20.
+
+## Rob's diary
+
+The evening's chapter is over. Write Robert Land's diary entry for Years 3-4: a few sentences in Rob's own voice, about what happened, what it cost, and what comes next. Nobody at the table reads it.
+
+## Your reply
+
+Reply in exactly this format:
+
+```
+diary: <the entry, a few sentences>
+
+```

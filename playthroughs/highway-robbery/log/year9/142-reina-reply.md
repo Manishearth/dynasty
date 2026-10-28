@@ -1,0 +1,8 @@
+move: tax 40%; build Great Wall above Province 1, all four links (160, the crown pays it all); salaries Official 10 (and Rob's reader pay stays at 10); land: I pay half of every other province's squares this year (10 a square), plus two squares for Province 1 at G18 and G19, paid in full by the crown
+say: "Forty percent again, and again it falls on the two harvests that doubled. Clark, two hundred and eighty is a fine year, and the crown is only asking for its share of it. This year I'm putting up the whole Wall above my province, all four links, so the north-east stops being one long invitation. I'll pay half of any square anyone buys, and the sum is half, so nobody can say I promised more. Rich, your ten. Rob, your ten, and you can keep your eyes on the bowls as long as your hands stay off my palaces."
+aside: "The Wall is a hundred and sixty grain of stone that nobody can inherit and Rob can't walk through, and it still leaves me close to two hundred for the one thing I truly need this year. If any Wooden Bowl comes loose from that board, I'll be the one buying it, never Paddy."
+whisper: To Rob: If your men happen to lift a Wooden Bowl this year, sell it to me and not to Paddy. Whatever he offers you, I'll pay more, from the crown, the same day, and nobody at the table needs to hear the price.
+
+---
+
+Ruling: 40% is 168 (Clark 112, Silke 56). The four links above Province 1 are one project (N13), 160 from the crown. G18 and G19 are already Province 1's own fields, so they aren't new land: as (106), a short land prompt lists what she may buy (with all four links up, her strip opens). Aside: after the tax and the Wall the reserve is 188.5, so "close to two hundred" stands. The whisper to Rob is filed for Rob only.

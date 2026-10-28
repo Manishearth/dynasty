@@ -1,0 +1,5 @@
+diary: I wrote that whoever bought the Dragon Jar would decide whether I kept the chair, and I was right, only it went cheaper than I'd planned for. Silke paid thirty-one, I never got a bid in to make it cost her everything, and she walked up the steps with my two hundred and fifty-seven in her pocket while I was still thanking Clark for his gratitude. I kept every word I'd given: forty percent and not fifty, the canal to Province 5, ten to the Official, and in the end I'm the one keeping the lady's book. I lost the Scroll by a grain, the Jar by a grain and the Bowl by a grain, and that pattern ought to shame a man who calls himself a calculator. Reina took the chair back within the year using the same arithmetic Silke used on me, which tells me the throne goes to whoever is patient and holds a full purse, not to whoever has been kind. So I'll be patient. I have eighty-two, an empty board, and three pieces in stock next year. Clark has a Bowl and Paddy needs only a Jar, so next year I bid a grain past careful myself, collect Reina's tax to the half million, and smile at her the whole way up.
+
+---
+
+Ruling: filed word for word in diaries/rich.md.

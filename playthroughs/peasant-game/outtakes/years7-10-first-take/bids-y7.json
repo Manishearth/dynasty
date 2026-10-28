@@ -1,0 +1,23 @@
+{
+ "step": 1,
+ "lots": [
+  {"lot": "5:DJ", "min": 8},
+  {"lot": "6:BB", "min": 2},
+  {"lot": "0:VA", "min": 2},
+  {"lot": "0:LD", "min": 2}
+ ],
+ "bids": {
+  "Graham": {
+   "0:VA": {"ceiling": 10},
+   "0:LD": {"ceiling": 7}
+  },
+  "Paddy": {
+   "0:VA": {"ceiling": 4}
+  },
+  "Reina": {
+   "5:DJ": {"ceiling": 10},
+   "6:BB": {"ceiling": 4},
+   "0:VA": {"ceiling": 0, "keep": {"Graham": 6}}
+  }
+ }
+}

@@ -1,0 +1,6 @@
+move: Ask the table for a pre-harvest loan of 29 to the crown, repaid at 33 out of next year's tax. Reina first, since the sun is on her silk this year; Silke if Reina declines. Silke's 15 from last year is still paid first, as promised.
+say: The crown holds one and a half, and the north is down thirty, so I'll ask for exactly what it needs: twenty-nine before the harvest, thirty-three back out of next year's tax, after Silke's fifteen. Reina, you're the one province Heaven smiled on, so I'm asking you first, and in front of everyone. A crown in debt can't put a grain into anyone's field at the next population card, and that includes yours.
+aside: This year's tax on a hundred and forty of income is about forty-two, which covers Silke's fifteen and leaves enough to start on Reina's thirty-three, so the numbers hold. If Reina won't lend to the crown, she's telling us she means to take it, and the whole table will have heard her say no.
+whisper: none
+---
+Ruling: a public request for a loan, legal at any time (§5); not binding. The numbers are right: 1.5 less 30 is -28.5, and 29 leaves +0.5. The aside's tax figure holds: 30% of +60, +30 and +50 is 18, 9 and 15, 42. Goes to Reina, then Silke, in their pre-harvest prompts.

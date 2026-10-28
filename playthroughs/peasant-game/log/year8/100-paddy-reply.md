@@ -1,0 +1,5 @@
+diary: Years 7 and 8. The bad harvest hit me when I had four and a half grain, and I had to choose between selling the Dragon Jar to Graham and watching all three of my pots go back to the Pile at two apiece. I sold it, eighteen in the end, because Graham paid me the extra six when he didn't have to, and I won't forget that. Then the Vase came round at last, for two grain, and nobody else even wanted it. So now it sits on R22 where the Jar used to be, and the one piece I'm missing is the one I sold, on Graham's shelf, and he won't part with it for twenty. I can't decide whether that's funny or sad. I put another ten into R27, and that's four squares of new land now. I've eight grain, I don't owe anybody anything, and next year the paddies should feed me better than they ever have. Reina's thirty in the hole and nobody will carry her, and Graham's sitting on a full set saying he won't use it. I mean to keep saving, and if Graham ever needs grain more than he needs that Jar, I'll be the one at the table who has it.
+
+---
+
+Ruling: filed word for word under `## Years 7–8` in diaries/paddy.md.

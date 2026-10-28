@@ -1,0 +1,5 @@
+diary: Years 7–8. The ox went lame on the coast, and I asked Graham for twenty-nine in front of everyone. He lent the crown twenty and bought Paddy's Jar instead, so my Vase and my Scroll went back to the Pile at two each, and Paddy picked up the Vase for two. That's the same Vase I paid twenty-three and a half to keep away from him. I'm thirty in debt now and I hold nothing. I can't bid, I can't buy land, and I can't claim, and in two years I've gone from a woman nobody needed to fear to one nobody needs to answer. I offered Graham my vote for his grain, and he was right to refuse, because a promise with no date on it isn't worth much at his table. What hurts is that everyone has been kind about it: Paddy won't vote me down, and Silke keeps promising me the coast canal "once I'm clear," which is the one condition I can't meet. The throne has gone out of my reach. What's left is to keep the coast out of a revolt, find someone at this table who needs a friend more than he needs grain, and make sure that whoever ends this game owes me a little for how it ended.
+
+---
+
+Ruling: filed word for word under `## Years 7–8` in diaries/reina.md.

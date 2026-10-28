@@ -1,0 +1,7 @@
+{"step": 1,
+ "lots": [{"lot": "5:DJ", "min": 4}, {"lot": "6:BB", "min": 4}, {"lot": "7:LD", "min": 2}],
+ "bids": {
+  "Silke": {"6:BB": {"ceiling": 8}, "7:LD": {"ceiling": 6}},
+  "Paddy": {"5:DJ": {"ceiling": 14, "keep": {"Graham": 18}}, "7:LD": {"ceiling": 6}},
+  "Graham": {"5:DJ": {"ceiling": 12, "keep": {"Paddy": 16}}, "6:BB": {"ceiling": 4}}
+ }}

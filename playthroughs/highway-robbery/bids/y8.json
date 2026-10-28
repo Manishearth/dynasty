@@ -1,0 +1,10 @@
+{
+ "step": 1,
+ "lots": [{"lot": "5:DJ", "min": 2}],
+ "bids": {
+  "Rich": {"5:DJ": {"ceiling": 34}},
+  "Silke": {"5:DJ": {"ceiling": 15, "keep": {"Paddy": 45}}},
+  "Paddy": {"5:DJ": {"ceiling": 61}}
+ },
+ "note": "Ceilings from 127-130; the lot reopens at 2 (unsold in Year 7). Rob passed."
+}

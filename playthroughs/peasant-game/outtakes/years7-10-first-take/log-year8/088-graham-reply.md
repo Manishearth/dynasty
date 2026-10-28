@@ -1,0 +1,6 @@
+move: tax 30%; build Grand Canal in Province 5, one section (split: Silke 20, the crown 20; if Silke declines, the crown builds nothing this year); land: the crown pays 2 a square toward any province's new squares, none for Province 1
+say: Thirty percent. That's twenty-one, and it's less than anyone here has paid under the last crown. Silke, one canal section in your province, twenty from you and twenty from me, and it's plus ten on your harvest every year after. Reina, it's three, as I said when I gave you the job. I don't pay more than I said, and I don't pay less.
+aside: The crown goes to forty-one and a half, spends twenty on the canal and still has enough left for wages, and a modest tax is the cheapest protection against a revolt I can buy. The canal also gets Silke putting grain into my works instead of saving it against me.
+whisper: none
+---
+Ruling: tax 30%: Paddy 4.5, Reina 16.5, 21 in all; the crown goes to 41.5. The work: one section of the Grand Canal in Province 5 (40), the Grand Canal being this year's one project; the crown's work, shared only if Silke agrees, so it goes to her with her land prompt. Land: 2 a square offered to every province, none for Province 1. "Less than anyone here has paid under the last crown": Silke taxed 30% in Year 4 too; table history, not the board, so no note.

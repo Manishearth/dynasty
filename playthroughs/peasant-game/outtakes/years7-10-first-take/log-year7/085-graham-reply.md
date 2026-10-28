@@ -1,0 +1,6 @@
+move: Leave the Vase and Scroll on P24 and P25, then take the throne with the complete Silk set and 20.5 grain in hand. I take the crown at -3, which leaves me 17.5.
+say: That's the Bowl, the Brush, the Vase and the Scroll, and twenty in hand. Silke, I'm taking the throne. The crown's three short and I'll cover it; you draw sixty, which is more than the crown has had all year. Paddy, Reina: the tax will be what I can show you the numbers for.
+aside: Seven years ago Silke paid six for a brush she didn't need to keep me off a set, and today I finished a better one and took her chair for seventeen and a half. One more project to build, and the throne is where I want to be standing when the last one goes up.
+whisper: none
+---
+Ruling: legal. The Silk Peasant may take the throne at a table with no upper class (R: The Silk Peasant stands in for the upper class), with the complete Silk set (Bowl, Brush, Vase, Scroll) and 20.5 in hand, not in debt. `swap(5, 1)`: every piece Graham holds goes back to stock; he takes the crown's -3 and holds 17.5; Silke draws 60 and becomes the Silk Peasant with Province 5. The aside's "one more project" misstates the works: two projects are still owed, the Great Wall and the Grand Canal; stated plainly in his next prompt. The table jobs and this year's salaries are now his to settle (precedent 033).

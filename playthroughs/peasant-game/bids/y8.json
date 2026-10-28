@@ -1,0 +1,12 @@
+{
+ "step": 1,
+ "lots": [
+  {"lot": "6:BB", "min": 2},
+  {"lot": "0:LD", "min": 2}
+ ],
+ "bids": {
+  "Paddy": {},
+  "Graham": {}
+ },
+ "note": "Year 8 (replayed): both bidders passed on both lots; Reina in debt, can't bid. Both unsold, up again in Year 9 at 2. Not run through resolve."
+}

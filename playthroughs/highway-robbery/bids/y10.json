@@ -1,0 +1,10 @@
+{
+ "step": 1,
+ "lots": [{"lot": "2:CH", "min": 50}, {"lot": "6:WB", "min": 30}],
+ "bids": {
+  "Rich": {"2:CH": {"ceiling": 70, "keep": {"Silke": 110}}, "6:WB": {"ceiling": 60}},
+  "Silke": {"2:CH": {"ceiling": 60}},
+  "Paddy": {"6:WB": {"ceiling": 33}}
+ },
+ "note": "Ceilings from 162-166; Clark's minimum 50 (162), Silke's 30 (165). Clark passed on the Bowl; Paddy passed on the Customs House; Rob passed on both."
+}

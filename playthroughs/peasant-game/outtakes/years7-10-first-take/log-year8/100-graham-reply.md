@@ -1,0 +1,6 @@
+move: Salaries: Reina 6 (3 each for the bank and the I Ching, as promised), Paddy 3 for the tax. The crown keeps 17.5. Next year's jobs: Paddy collects the tax and reads the I Ching; Silke banks the Harvest Pile, at 3 a year for each job. No land for Province 1.
+say: Reina, six, as I promised. I don't change the price after the work's done. Next year the cards go to Paddy and the bank goes to Silke, three a job, and Paddy keeps the tax. Silke, the Vase and the Scroll are on your shelf now. Set your minimums the way you'd want them set if you were sitting in this chair.
+aside: Reina holds three of the Silk pieces and has fifty-six grain, and the last two she needs are on Silke's shelf. Paying her in full keeps my word, and moving the jobs to Silke and Paddy puts the next year's grain in the hands of the two people who decide what those pieces cost her.
+whisper: none
+---
+Ruling: salaries 6 to Reina, 3 to Paddy; the crown ends at 17.5. Jobs from Year 9: Paddy the tax and the I Ching, Silke the bank, 3 a job. "The Vase and the Scroll are on your shelf": they are in Province 7's stock, Silke's to auction. The aside's "three of the Silk pieces" is wrong: Reina holds two of the four (the Bowl and the Brush; the Customs House isn't in the Silk set); stated in his next prompt.

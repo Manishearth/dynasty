@@ -1,0 +1,5 @@
+diary: Two years ago I was counting crockery. This year I sat on the throne with three hundred and forty grain in the reserve, and I lost it to Reina inside a year, with my own words in her notebook. I bought the Jar for thirty-one, took Rich's chair and his purse, finished Clark's canal, paid half of everybody's new land, and bought four squares of sea that Reina now harvests. That's a hundred and sixty grain of the crown's money I spent making the kingdom rich enough for someone else to buy a set and take it off me. I should have bid Rich's last forty on that Jar myself and kept it off the board. Now I'm the Gentry with sixty grain and an empty board, and the worst of it is Paddy: Customs House, Scroll, and one Jar short of a set, with eight grain in his pocket. He needs that Jar and twenty grain. I run the Harvest Pile, I set the rent, and the Jar's in Clark's stock next year, so I'll be counting Paddy's grain out loud every year until I can buy my way back up.
+
+---
+
+Ruling: filed word for word in diaries/silke.md.

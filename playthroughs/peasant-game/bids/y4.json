@@ -1,0 +1,44 @@
+{
+ "step": 1,
+ "lots": [
+  {
+   "lot": "5:CH",
+   "min": 2
+  },
+  {
+   "lot": "6:WB",
+   "min": 6
+  },
+  {
+   "lot": "7:VA",
+   "min": 10
+  }
+ ],
+ "bids": {
+  "Reina": {
+   "6:WB": {
+    "ceiling": 8
+   },
+   "7:VA": {
+    "ceiling": 26
+   }
+  },
+  "Paddy": {
+   "5:CH": {
+    "ceiling": 10
+   },
+   "7:VA": {
+    "ceiling": 22.5
+   }
+  },
+  "Graham": {
+   "6:WB": {
+    "ceiling": 12,
+    "keep": {
+     "Reina": 15
+    }
+   }
+  }
+ },
+ "raise": "Year 4 live raise on 7:VA: Reina 22 -> 26, Paddy 21 (vs Reina) -> 22.5"
+}

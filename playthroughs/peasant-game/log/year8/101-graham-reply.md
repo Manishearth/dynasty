@@ -1,0 +1,5 @@
+diary: Years 7 and 8. I paid eighteen for the Jar in a rotten year, six more than Paddy asked of a man with nothing, and now the Wheat set sits complete on Q15 to Q18. Since Paddy needs only the Jar for his own set, it will stay on my shelf whatever he offers. Silke took fifteen of the only harvest in China, then ten for the ditch I half paid for, then twenty-seven and a half more, and now she owes me thirty, five of it a salary she wrote on a slate rather than pay. I bought one square for ten and turned down Reina's thirty, because a promise with no date on it isn't a number. Paddy's rival set and Reina's debt both work for me. I end with twenty-two: enough to move the set, nowhere near enough to be comfortable. The Wall or the Canal can end this any year now. I'll keep the best farm on the board, collect the thirty first out of next year's tax as she promised in front of everyone, and if she doesn't pay, the set is there to remind her that a peasant can climb.
+
+---
+
+Ruling: filed word for word under `## Years 7–8` in diaries/graham.md.

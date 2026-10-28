@@ -1,0 +1,10 @@
+{
+ "step": 1,
+ "lots": [{"lot": "0:CH", "min": 2}, {"lot": "0:DJ", "min": 2}],
+ "bids": {
+  "Silke": {"0:CH": {"ceiling": 112}, "0:DJ": {"ceiling": 112}},
+  "Clark": {"0:DJ": {"ceiling": 52}},
+  "Rich": {"0:DJ": {"ceiling": 10, "keep": {"Silke": 351}}}
+ },
+ "note": "Ceilings from 186-189. The pile's lots, minimum 2. Clark and Rich passed on the Customs House; Rob passed on both; Paddy, in debt, can't bid."
+}

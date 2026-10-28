@@ -1,0 +1,6 @@
+move: tax 40%; build nothing; land: the crown pays 1 a square on any square bought by another province this year; no squares for Province 1
+say: Forty percent, and here's every grain of it. Fifty-six comes in. Fifteen goes to Silke and thirty-three to Reina, both in full, today, which leaves eight and a half. Nothing gets built this year because I won't start a forty-grain work on money I've already promised away, and I'll pay one a square on anyone's new land.
+aside: Thirty percent wouldn't have covered both loans, and I've never once paid a debt late at this table, so I'm not going to start the year the crown owes the two richest players in China. Province 1 is still five short and I can't buy its square this year, so next year's tax has to buy the north its square.
+whisper: none
+---
+Ruling: tax 40% on Reina +60, Paddy +30, Silke +50: 24, 12 and 20, 56 in all; the crown 0.5 to 56.5. Both loans repaid in full as deals: Silke 15, Reina 33; the crown to 8.5 (his count is right). No work this year (legal). Land: 1 a square from the crown on any other province's square, a standing public offer; no squares for Province 1. Land prompts go to Reina, Paddy and Silke in table order. The aside's "five short" is Province 1's average-year -5 on his card; right.
