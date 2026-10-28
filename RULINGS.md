@@ -197,9 +197,9 @@ The eight-player wildcard came the same night: with the Emperor left out, the Wa
 
 ### Bought soldiers after a seat change
 
-**Ruling.** A bought soldier belongs to the player who bought it, and stays where it stands when that player changes seats. It still can't move until the Warlord has raided the province it was bought in.
+**Ruling.** Every soldier stays with its seat, as the Warlord's army does (A new Warlord). On a seat change, the soldiers bought for the mover's old seat pass to the displaced player, who now holds that seat, and the displaced player's soldiers pass to the mover. They stay where they stand, and still can't move until the Warlord has raided the province they were bought in.
 
-**Why.** Soldiers are bought with the player's own grain, and on a seat change the mover keeps their grain. Recommended to Manish on 2026-10-25, who asked which made more sense and hasn't overruled it. What happens to a *displaced* player's soldiers is unsettled (see Open questions); the engine refuses that case, and no playthrough needs it.
+**Why.** A bought soldier guards a province, and its player rarely has reason to send it anywhere else, so it belongs with the province, like the Warlord's army. Decided by Manish on 2026-10-28, for Highway Rob-bery, where bought soldiers are the provinces' only defence and seats are expected to change often; the engine had refused to displace a player who owned soldiers. It replaces the 2026-10-25 recommendation that a soldier stays with the player who bought it. The engine's `swap()` applies it. Of the scripted games, `game1_full` and `game2_trashfire` had movers who owned soldiers: their soldiers now change owner at the swap, and nothing else in either game changes.
 
 ### Running out of grain (Note 7)
 
@@ -379,8 +379,7 @@ Raise these with Manish before relying on an answer.
 - **A negative Emperor.** Under Note 7 a crown in debt can't pay toward public works; it still declares and collects tax. Does it still owe salaries (they're payments owed, so they'd deepen the debt), or does an empty reserve excuse them? "Too low a grain reserve" is already a revolt cause, which may be all that's needed. No playthrough has an Emperor in debt.
 - **Selling soldiers back.** The rules give no price for selling a soldier back to the Warlord or the pile, so the playthroughs never do it. Should a player in trouble be able to?
 - **The strip along the southern river between Provinces 3 and 7.** No dotted border seems to claim it, so `map.json` treats it as the Warlord's undeveloped land. Check against the cloth.
-- **A displaced player's bought soldiers.** When a player is replaced in a seat change, do their soldiers go to the player who replaced them, stay theirs, or return to the Warlord's stock? The booklets don't say. No playthrough needs an answer yet; the engine refuses the case.
 
 - **The Warlord's soldiers when they change seats.** When the Warlord completes their objective and takes another seat (game 5), who commands the Warlord soldiers standing on the board, and the bought soldiers of the player they displace? Game 5 stops at that moment, so it doesn't need an answer.
 
-(Answered on 2026-10-25 and moved to Clarifications: which rivers charge a toll, and who is paid for crossing a Wall link or canal section. Answered on 2026-10-26: the Pagoda rule.)
+(Answered on 2026-10-25 and moved to Clarifications: which rivers charge a toll, and who is paid for crossing a Wall link or canal section. Answered on 2026-10-26: the Pagoda rule. Answered on 2026-10-28: a displaced player's bought soldiers stay with the seat, see "Bought soldiers after a seat change".)

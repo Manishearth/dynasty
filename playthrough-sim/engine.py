@@ -595,8 +595,8 @@ def _unplace_all(p):
 def swap(a, b, note, hover=None, draw=60, check=True, at=None):
     """Player in seat a replaces player in seat b. check=False for a Chaos acclamation.
     at: where the mover's pieces go in the new province, {code: square or [squares]}.
-    Bought soldiers stay with the player who bought them; the Warlord's army stays with the
-    seat, and a new Warlord's objective starts afresh (RULINGS, "A new Warlord"). The mover takes the displaced
+    Every soldier stays with its seat: bought ones pass to whoever now holds the seat they were
+    bought for, the Warlord's army likewise, and a new Warlord's objective starts afresh (RULINGS, "A new Warlord"). The mover takes the displaced
     player's grain whatever its sign, so a debt passes to the mover; the displaced player
     draws 60 from the pile. A Chaos acclamation (check=False) may seat a player in debt."""
     global pile
@@ -612,9 +612,7 @@ def swap(a, b, note, hover=None, draw=60, check=True, at=None):
         if b == 1: assert a in (2,3,4,8) or (a == 5 and not set(ACTIVE) & {2,3,4}), \
             "only the Official, Gentry, Scholar or Warlord may take the throne (or the Silk Peasant, with no upper class at the table)"
         if a in (5,6,7): assert b in (2,3,4,5,6,7), "a peasant may replace the Gentry, Scholar, Official or a peasant"
-    assert not [i for i,s in SOLDIERS.items() if s["owner"] == pb and s["side"] == "B"], \
-        f"{SHORT[pb]} owns soldiers; the engine has no ruling for a displaced player's soldiers"
-    if b in REALIA:                       # pieces native to the new seat go back to auction
+    if b in REALIA:                      # pieces native to the new seat go back to auction
         t = REALIA[b]
         if t in held[pa]:
             stock.setdefault(b,{}); stock[b][t] = stock[b].get(t,0)+held[pa].pop(t)
@@ -631,7 +629,9 @@ def swap(a, b, note, hover=None, draw=60, check=True, at=None):
     grain[pa] = round(grain[pa]+grain[pb], 2); grain[pb] = 0.0
     take = min(draw, max(0,pile)); grain[pb] = round(grain[pb]+take, 2); pile = round(pile-take, 2)
     seat[a], seat[b] = pb, pa
-    if 8 in (a, b):                       # the army stays with the seat; the objective starts afresh
+    for s in SOLDIERS.values():           # bought soldiers stay with the seat too (RULINGS)
+        if s["side"] == "B" and s["owner"] in (pa, pb): s["owner"] = pb if s["owner"] == pa else pa
+    if 8 in (a, b):                      # the army stays with the seat; the objective starts afresh
         for s in SOLDIERS.values():
             if s["side"] == "W": s["owner"] = seat[8]
         warlord_got.clear()
