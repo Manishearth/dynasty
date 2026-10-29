@@ -104,11 +104,14 @@ Written up for the main session in the shared notes (`dark-ages-chaos-rulings.md
 - **`briefs.py` prompts:** the `acclaim` prompt kind, the `REVOLT_LINE` flag, and `direction.md` support in launches.
 - **Docs:** `STORYTELLER.md` (the revolt procedure, and "Rules misreadings") and `DIRECTOR.md` (mid-chapter steering, notes that never name the Director).
 
+**Fixed after the game** (Manish, 2026-10-28). Every game's script still runs clean, and in other games' prompts the only changes are the ones these fixes intend:
+- **The Warlord's tribute** could be placed on another province's bought land on the desert. Now the engine's `_place` refuses it, and `briefs.py`'s march menu no longer lists those squares. Worked round by hand during play.
+- **The land lists** offered desert squares holding the Warlord's pieces (Paddy's T23, T24 and U21). Now `land_frontier` leaves them out, and the engine's `buy_land` refuses them.
+- **The march menu's "Taking a piece" lines** offered a diagonal step onto a guarded piece. Now they list only soldiers whose step list offers that raid.
+- **The crown prompt** now carries the squares Province 1 can buy.
+- **The actor's brief** is documented in `DIRECTOR.md`, as an advanced technique for when the other levers have failed.
+
 **Still open:**
-- **The Warlord's tribute** can be placed on another province's bought land on the desert (`briefs.py`'s march list and the engine's `_place`). It was worked round by hand.
-- **The land lists** offered squares already taken (Paddy's T23, T24, U21).
-- **The march menu** once offered a diagonal step onto a guarded piece.
-- **The crown prompt** doesn't carry Province 1's own land list.
 - **`warlord_got`** keeps one raid per province, so a later take overwrites an earlier one on the card. It's harmless, since the objective counts provinces.
 - **The harness:** Bash drops non-ASCII text and `$VAR`s. Every Storyteller wrote files with Write, Edit or small scripts.
 

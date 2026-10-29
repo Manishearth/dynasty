@@ -55,6 +55,7 @@ Manish wants each game nudged towards its arc. The Director may steer, between c
 | The deck | The seed, chosen before Chapter 1 with `deck_scout.py` | Never reorder the deck once play has started |
 | Actor's notes | The **Playing it** line in `ledger.md` | A stance, never a move. Change it between chapters, never mid-chapter |
 | Storyteller's tips | A public `note` beginning "Storyteller's tip:" and naming the player. File it without `--to`, which would show the note only to that player | Strategy from what the table can see; at most one per player per chapter; never the deck, anyone's asides, whispers or limits. Each tip goes in `ledger.md` under "Storyteller's tips" |
+| An actor's brief | `direction.md`, carried in every launch prompt. **Advanced: only when the other levers have failed**; see below | The story's shape, never a move; never mentioned at the table |
 | Length | Where a chapter or the game stops. For an agreed short game (Note 19), set `LAST_ROUND = n` in `game.py`, and `briefs.py` puts the round count, the scoring and the late-land warning on every card | Say so at the table before the last chapter starts |
 
 Never steer by misstating a rule, the board or anyone's grain; by changing what the engine computes; by writing a player's words; by passing one player another's hidden information; or by reading an agent's transcript. The players' choices stay theirs. **If the game goes somewhere else, let it,** record what happened, and change the subtitle. A design-check game (its `scenario.md` says so) is steered lightly or not at all, since its result is evidence.
@@ -62,6 +63,25 @@ Never steer by misstating a rule, the board or anyone's grain; by changing what 
 List every piece of steering in `seed.md`'s steering log when it happens: what, when and why.
 
 **Mid-chapter steering is allowed when a situation calls for it** (Manish, 2026-10-28): a rules misreading that is steering the game, or a move that shuts off the arc. Send the Storyteller a message. A changed actor's note reaches a player already launched only if the Storyteller passes it on, so ask it to send the note to that player alone (`note --to`), framed as "a note on playing your character", **never naming the Director**. In the Dark Ages a note sent as "the Director's direction" turned up in Reina's diary as "whatever the Director in my head says". Prefer waiting for the next launch when you can. Log it in `seed.md` like any other steering.
+
+### An advanced technique: the actor's brief
+
+**Don't use it unless the levers above have failed and the game must still be steered** (Manish, 2026-10-28). A brief turns a game played by rational characters into a story told by actors. Its result shows what a cast can be led into, not what the rules produce, so say so in `REPORT.md`. Never use it in a design-check game.
+
+**Why it exists.** In the Dark Ages, actor's notes, tips and a revolt line on every card brought no revolt in six years. After a restart with harder notes, a revolt was called every year and bought off every year, because each player took the sensible line for their seat. A brief got the revolt in the first year it was tried, and every move was still the player's own.
+
+**How it works.** Write `direction.md` in the game's folder. `briefs.py` (`direction()`) puts it in every launch prompt, under "The story tonight (for you as the actor, never for the table)". It has three kinds of `##` section:
+- **The story:** the whole cast is told they're actors and given the shape of the story: what has happened and what happens next ("the table moves in the year of the doubling"). It never gives the cards, a bid, a square or a number, and it ends with "Play so that this story happens, for reasons your character truly has, in your character's voice."
+- **A section per player, headed with their name:** that character's part, a stance a sentence or two long, like an actor's note but tied to the story.
+- **The rule:** never mention the brief, a director, a script or the plan, in say, aside, whisper or diary, and give the character's own reasons for everything.
+
+The Dark Ages' `direction.md` is a worked example.
+
+**Running it:**
+- **Rewrite it between chapters** as the story moves on. A brief that still says "Chaos holds" once Chaos should end will keep it going. Keep only the current version in the file, and describe earlier ones in `seed.md`.
+- **Mid-chapter changes** go through the Storyteller by `note --to`, as above: never call them the Director's direction.
+- **Read the record for leaks** after every chapter: any mention of a brief, a story, a script or a director in a say, an aside or a diary. In the Dark Ages none leaked in fourteen years with the rule in place. If one leaks, rewind past it or keep it out of the page, and tighten the rule.
+- **Log it in `seed.md`'s steering log** like any other lever: when it began, and every rewrite.
 
 **Rules corrections aren't steering, but they can decide a game.** The Storyteller must correct any public misstatement of the rules. In the short game, its note that pieces on the board may be traded was followed at once by the trade that took the throne. Expect this, and report it in `REPORT.md` under "Not steering, but…".
 

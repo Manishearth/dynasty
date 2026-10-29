@@ -430,6 +430,7 @@ def land_frontier(ns, seat):
     mine = ns["squares_of"](seat)
     return [ns["sqname"](r, c) for r in range(ns["ROWS"]) for c in range(ns["COLS"])
             if ns["GRID"][r][c] in ok and ns["sqname"](r, c) not in ns["land"]
+            and not ns["board"].get(ns["sqname"](r, c), {}).get("realia")   # the Warlord's pieces stand on his desert
             and any(ns["dist"](ns["sqname"](r, c), m) == 1 for m in mine)]
 
 def land_line(ns, seat):
@@ -563,9 +564,11 @@ def menu_march(ns):
         out += ["", f"**{i} on {s['sq']}:**"] + [f"- {l}" for l in steps(ns, i)] + ["- stay"]
     out += ["", "**Taking a piece:** a step marked `piece=` raids a square with realia on it. You take the piece or the 5; "
             "to take the piece, add `take: <soldier> <square of your desert>`, where it will stand (an empty desert square)."]
-    desert = [q for q in ns["squares"](8) if not ns["board"].get(q, {}).get("realia")]
+    desert = [q for q in ns["squares"](8) if q not in ns["land"] and not ns["board"].get(q, {}).get("realia")]
     for q, v in ns["board"].items():
-        near = [i for i, s in ns["SOLDIERS"].items() if s["side"] == "W" and ns["dist"](q, s["sq"]) == 1]
+        # only soldiers whose step list offers this square as a raid (no diagonal step onto a guard, no raided square)
+        near = [i for i, s in ns["SOLDIERS"].items() if s["side"] == "W"
+                and any(l.startswith(q + " ") and "piece=" in l and "raid=-" not in l for l in steps(ns, i))]
         if v.get("realia") and v["owner"] != ns["pid"](8) and near:
             best = sorted(desert, key=lambda d: (ns["dist"](d, q), d))[:4]
             out.append(f"- {ns['SHORT'][v['owner']]}'s {ns['RNAME'][v['realia']]} on {q} ({', '.join(near)} can step there): "
@@ -640,6 +643,8 @@ def menu_crown(ns):
         out.append("- **new land:** the share you'll pay of other provinces' squares this year (you must pay some part of each, "
                    "and may pay all), and any squares for Province 1. A rich Emperor does well to pay a large share: every square raises "
                    "that province's taxable income for good. Refusing to subsidise new land is a cause for revolt (§16).")
+        if not land_open(ns, 1):
+            out.append(f"  **Squares Province 1 can buy now** (each must touch the province or land it has already bought): {ranges(ns, land_frontier(ns, 1))}.")
         end = endgame_note(ns)
         if end: out.append("  " + end + " Keep enough in the reserve to build what's still owed: a crown in debt can't pay a share of a work (N7).")
     return "\n".join(out)

@@ -480,6 +480,7 @@ def buy_land(s, squares, split, text, hover=None):
         if s == 1 and region(q) == "n":
             assert pw["wall"][1] == 4, f"the strip below the Wall opens to Province 1 only once its four links stand ({q})"
         assert q not in land, f"{q} has already been developed"
+        assert not board.get(q, {}).get("realia"), f"{q} holds the Warlord's {RNAME[board[q]['realia']]}"
         assert any(dist(q, m) == 1 for m in mine), f"{q} doesn't touch Province {s} or its new land"
         mine.add(q)
     for t,a in split.items():
@@ -516,8 +517,9 @@ def disaster(s, text, hover=None):
 def _place(code, owner, at):
     """A bought or traded piece goes on a square of its owner's province at once (Note 10)."""
     s = sid(owner)
-    ok = region(at) == "8" if s == 8 else prov(at) == s
-    assert ok, f"{SHORT[owner]}'s {RNAME[code]} must go in Province {s}, not {at}"
+    ok = region(at) == "8" and at not in land if s == 8 else prov(at) == s
+    where = "the desert nobody has bought" if s == 8 else f"Province {s}"
+    assert ok, f"{SHORT[owner]}'s {RNAME[code]} must go in {where}, not {at}"
     cell = board.get(at, {})
     assert not cell.get("realia"), f"{at} already holds a {RNAME[cell.get('realia','')] if cell.get('realia') else ''}"
     assert not cell.get("raid"), f"{at} has been raided; realia can't go there"
