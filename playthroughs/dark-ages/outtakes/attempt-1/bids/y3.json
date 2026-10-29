@@ -1,0 +1,16 @@
+{
+ "step": 1,
+ "lots": [
+  {"lot": "2:CH", "min": 2},
+  {"lot": "5:DJ", "min": 6},
+  {"lot": "6:WB", "min": 2}
+ ],
+ "bids": {
+  "Clark": {"5:DJ": {"ceiling": 55, "keep": {"Reina": 62}}},
+  "Reina": {"2:CH": {"ceiling": 16}, "6:WB": {"ceiling": 24}},
+  "Silke": {"2:CH": {"ceiling": 20}, "6:WB": {"ceiling": 21}},
+  "Paddy": "pass",
+  "Rob": "pass"
+ },
+ "note": "Ceilings from 048-052. Reina publicly stood aside on the Jar for Clark. WB limits after the live raise (053, 054): Reina 24, Silke 21."
+}

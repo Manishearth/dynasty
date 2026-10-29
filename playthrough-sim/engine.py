@@ -137,7 +137,7 @@ def setup(active, key, title, subtitle, blurb, short=""):
     global ACTIVE, PLAYERS, seat, grain, stock, held, bonus, raids, pw, pw_at, board, pile_stock, land, pop_cards
     global pile, ENTRIES, ROUNDS, META, MULT, CUR_Q, CUR_INC, CUR_HARV, CUR_ROUND
     global dis_next, used_cards, pending_bonus, warlord_got, SOLDIERS, ARMY, NORAID
-    global _troops_round, _done, _named, hired, LAST_BUILD, CHAOS
+    global _troops_round, _done, _named, hired, LAST_BUILD, CHAOS, CALLED
     ACTIVE = sorted(active)
     PLAYERS = list(ACTIVE)
     seat = {s:s for s in ACTIVE}
@@ -162,7 +162,8 @@ def setup(active, key, title, subtitle, blurb, short=""):
     _done = set(); _named = set()
     hired = {}             # round -> soldiers the Warlord hired (RULINGS.md, reinforcements)
     LAST_BUILD = None      # the round the last public work was built in (one project a round, N13)
-    CHAOS = False          # set True by the script after a revolt, False once an Emperor is acclaimed
+    CALLED = None          # a revolt called and not yet settled: play waits (revolt_called)
+    CHAOS = False          # set by revolt() (or the script) after a revolt; cleared once acclamation() seats an Emperor
     ENTRIES = []; ROUNDS = []
     MULT = 1; CUR_Q = {}; CUR_INC = {}; CUR_HARV = {}; CUR_ROUND = None
     dis_next = {s:0 for s in ACTIVE}
@@ -281,6 +282,7 @@ def _apply(d):
 def _spend(p, amount, what):
     """A voluntary payment: refused in debt, or beyond the grain in hand."""
     assert grain[p] >= 0, f"{SHORT[p]} is in debt ({grain[p]:g}) and can't {what}"
+    assert not (CHAOS and p == pid(1)), f"the treasury is sealed under Chaos: {SHORT[p]} can't {what} (RULINGS)"
     assert amount <= grain[p] + 1e-9, f"{SHORT[p]} has {grain[p]:g} and can't {what} for {amount:g}"
 
 def act(text, hover=None, deltas=None, map_hl=None, pile_delta=0, big=False, moves=None, deal=False):
@@ -307,6 +309,7 @@ def say(who, text, hover=None):
 def R(n, title, card=None, card_text=None):
     """Start a round. n=0 is the Setup round. card is a key in CARDS (None for rounds 0 and 1)."""
     global MULT, CUR_Q, CUR_ROUND
+    _waiting("R")
     if n == 1:
         missing = {"grain","stock"} - _done
         if ARMY: missing |= {"army"} - _done
@@ -340,6 +343,7 @@ def income(s, q=None):
 def harvest(note=None, hover_extra=None):
     """The Gentry (or appointee) pays each province its income for the year."""
     global pile
+    _waiting("harvest")
     d = {}; parts = []
     for s in ACTIVE:
         inc = income(s); d[pid(s)] = inc
@@ -353,6 +357,7 @@ def harvest(note=None, hover_extra=None):
 
 def rents(rate=5, note=None, hover=None):
     """Each occupied peasant province pays the Gentry. Does nothing with no Gentry."""
+    _waiting("rents")
     if 3 not in ACTIVE: return
     d = {}; g = pid(3)
     for s in (5,6,7):
@@ -365,6 +370,8 @@ def taxes(rate, skip=(8,), collector=None, hover=None, extra=None):
     """The Emperor's tax at `rate` (0.30 = 30%) on this round's income; negative income
     pays nothing. skip: seats that refuse (the Warlord by default).
     extra: {seat: additional taxable income}. Returns the total collected."""
+    _waiting("taxes")
+    assert not CHAOS, "no tax under Chaos (Note 17)"
     d = {}; e = pid(1); lines = []
     for s in ACTIVE:
         if s == 1 or s in skip: continue
@@ -381,6 +388,8 @@ def taxes(rate, skip=(8,), collector=None, hover=None, extra=None):
 def salaries(pay=None, text=None, hover=None):
     """The Emperor pays salaries. Default: 5 each to the Official and Scholar if present.
     pay: {seat: amount} for appointees (the peasant game pays its card reader this way)."""
+    _waiting("salaries")
+    assert not CHAOS, "no salaries under Chaos (Note 17)"
     pay = pay or {s:5 for s in (2,4) if s in ACTIVE}
     if not pay: return
     e = pid(1); d = {e:0}
@@ -406,6 +415,7 @@ def build(name, cost, split, wall=None, canal=None, key=None, hover=None, text=N
     at: where a palace ('G20') or a cut-out ('P14:Q15') goes; the Wall and the Canal
     have printed places on the map, built in link and section order."""
     global LAST_BUILD
+    _waiting("build")
     assert not CHAOS, "no public works under Chaos (Note 17)"
     LAST_BUILD = CUR_ROUND
     d = {}
@@ -455,6 +465,7 @@ def buy_land(s, squares, split, text, hover=None):
     20 to the province's harvest from the next round. It becomes part of the province:
     the Warlord can raid it."""
     global pile
+    _waiting("buy_land")
     assert CUR_ROUND and CUR_ROUND >= 1
     assert not CHAOS, "no new land under Chaos: there's no Emperor to share the cost (RULINGS, readings)"
     assert s in ACTIVE and s in LAND_WHERE, f"Province {s} can't develop new land"
@@ -533,6 +544,7 @@ def lot(sell, typ, ladder, hover=None, at=None):
     the winner's province where they place it. A bid must be covered by the bidder's
     grain, and nobody in debt may bid."""
     global pile
+    _waiting("lot")
     src = pile_stock if sell == PILE else stock.get(sell,{})
     assert src.get(typ), f"{'The Harvest Pile' if sell == PILE else 'Province %d' % sell} has no {RNAME[typ]} to sell"
     assert at, f"say where the winner puts the {RNAME[typ]}: at='H12'"
@@ -606,6 +618,7 @@ def swap(a, b, note, hover=None, draw=60, check=True, at=None):
     player's grain whatever its sign, so a debt passes to the mover; the displaced player
     draws 60 from the pile. A Chaos acclamation (check=False) may seat a player in debt."""
     global pile
+    _waiting("swap")
     pa, pb = pid(a), pid(b)
     if check:
         if a == 8:
@@ -615,6 +628,7 @@ def swap(a, b, note, hover=None, draw=60, check=True, at=None):
             assert not missing, f"{SHORT[pa]} can't change seats; missing {missing}"
             assert grain[pa] >= 20, f"{SHORT[pa]} needs 20 grain in hand, has {grain[pa]}"
         assert grain[pa] >= 0, f"{SHORT[pa]} is in debt and can't change seats"
+        assert not (CHAOS and b == 1), "under Chaos the throne passes only by acclamation (RULINGS): acclamation()"
         if b == 1: assert a in (2,3,4,8) or (a == 5 and not set(ACTIVE) & {2,3,4}), \
             "only the Official, Gentry, Scholar or Warlord may take the throne (or the Silk Peasant, with no upper class at the table)"
         if a in (5,6,7) and b != 1: assert b in (2,3,4,5,6,7), "a peasant may replace the Gentry, Scholar, Official or a peasant"
@@ -647,6 +661,77 @@ def swap(a, b, note, hover=None, draw=60, check=True, at=None):
     for t, sqs in want.items():
         for q in sqs: _place(t, pa, q)
     ENTRIES.append(dict(k="act", t=note, h=_norm(hover), who=None, d={}, hl=[a,b], state=snap(), big=True, mv=[]))
+
+def _waiting(what):
+    assert not CALLED, f"a revolt is called and not yet settled, so play waits ({what}): revolt() or revolt_dropped() first (RULINGS)"
+
+def revolt_called(text, hover=None):
+    """A revolt is called with two others agreeing (Section 16). Until it stands (revolt()) or is
+    dropped (revolt_dropped()), play waits: only talk, persuasion, deals and the Emperor's answer,
+    and no seat change, no step of the round (RULINGS, calling off a revolt; Manish, 2026-10-28)."""
+    global CALLED
+    assert not CHAOS and not CALLED, "a revolt is already under way"
+    CALLED = text
+    act(text, hover, map_hl=list(ACTIVE), big=True)
+
+def revolt_dropped(text, hover=None):
+    """The revolt fails: the caller and two others no longer all back it. Play resumes."""
+    global CALLED
+    assert CALLED, "no revolt has been called"
+    CALLED = None
+    act(text, hover, map_hl=list(ACTIVE))
+
+def revolt(text, hover=None):
+    """A revolt stands (Section 16, RULINGS "Calling off a revolt"): Chaos begins. Until an Emperor is
+    acclaimed there is no tax, salaries, public works or new land, and the treasury in Province 1 is
+    sealed: the deposed Emperor can't spend it, though Province 1's harvest, raids, disasters and card
+    effects still run through it (RULINGS, the sealed treasury)."""
+    global CHAOS, CALLED
+    assert not CHAOS, "Chaos has already begun"
+    CHAOS = True; CALLED = None
+    act(text, hover, map_hl=list(ACTIVE), big=True)
+
+def acclaim_counts(claims):
+    """claims: {claimant seat: [backer seats]}. Each claimant's grain in hand, soldiers on the board
+    (the ones they control: the Warlord's army, or soldiers bought for their province) and friends
+    (the players backing them, never themselves). Returns ({seat: (grain, soldiers, friends)},
+    {count: leading seat or None}, the acclaimed seat or None) (RULINGS, counting the acclamation)."""
+    backers = [b for bs in claims.values() for b in bs]
+    assert 1 not in claims, "the deposed Emperor can't claim the throne"
+    assert len(backers) == len(set(backers)), "each player backs one claim at most"
+    assert not set(backers) & set(claims), "a claimant isn't their own friend, and can't back a rival"
+    counts = {s: (grain[pid(s)], sum(1 for o in SOLDIERS.values() if o["owner"] == pid(s)), len(bs))
+              for s, bs in claims.items()}
+    lead = {}
+    for i, k in enumerate(("grain", "soldiers", "friends")):
+        top = max((c[i] for c in counts.values()), default=0)
+        at = [s for s, c in counts.items() if c[i] == top]
+        lead[k] = at[0] if len(at) == 1 and top > 0 else None   # a tie leads nobody
+    n = {s: sum(1 for v in lead.values() if v == s) for s in claims}
+    best = max(n.values(), default=0)
+    win = [s for s, v in n.items() if v == best]
+    return counts, lead, (win[0] if best and len(win) == 1 else None)
+
+def acclamation(claims, text=None, hover=None):
+    """Count the acclamation under Chaos (RULINGS, counting the acclamation). A claimant who leads in
+    one count is acclaimed if no rival leads in another; otherwise the one who leads in more of the
+    three. With a winner, they take the throne and the sealed treasury, whatever its sign, the deposed
+    Emperor takes their seat and draws 60, and Chaos ends. Returns the acclaimed seat, or None."""
+    global CHAOS
+    assert CHAOS, "an acclamation is counted only under Chaos"
+    counts, lead, win = acclaim_counts(claims)
+    word = {"grain": "grain", "soldiers": "soldiers", "friends": "friends"}
+    rows = [f"{SHORT[pid(s)]}: grain {c[0]:g}, soldiers {c[1]}, friends {c[2]}"
+            + (" (" + ", ".join(SHORT[pid(b)] for b in claims[s]) + ")" if claims[s] else "") for s, c in counts.items()]
+    leads = "; ".join(f"most {word[k]}: " + (SHORT[pid(v)] if v else "nobody") for k, v in lead.items())
+    res = (f"{NAMES[pid(win)]} is acclaimed Emperor." if win else "No Emperor emerges. Chaos goes on.")
+    act(text or f"The acclamation is counted. {leads}. {res}",
+        hover or ("The claims: " + "; ".join(rows) + "."), map_hl=sorted(claims), big=bool(win))
+    if win:
+        new = NAMES[pid(win)]; old = NAMES[pid(1)]
+        swap(win, 1, f"{new} takes the throne of Province 1 and the sealed treasury. {old} takes {new}'s seat as the {ROLE[win]}.", check=False)
+        CHAOS = False
+    return win
 
 WORD = "zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty".split()
 def spell(n):
@@ -695,6 +780,7 @@ def march(moves, text=None, hover=None, take=None):
     province raids it: 5, or 10 in Province 1; a palace square costs the Emperor 20.
     take: {soldier: (code, square)} to take the realia on the raided square as tribute,
     placing it on a square of the Warlord's territory. Tolls are paid automatically."""
+    _waiting("march")
     assert 8 in ACTIVE
     assert _troops_round != CUR_ROUND, "the Warlord moves before the provinces' soldiers"
     take = take or {}
@@ -749,6 +835,7 @@ def hire_soldier(at, text, hover=None):
     reinforcements"): 20 to the Harvest Pile, on a square of his own territory, at most one
     a round, and his army may grow to one more than it started with. It moves next round."""
     global pile
+    _waiting("hire_soldier")
     assert 8 in ACTIVE
     assert hired.get(CUR_ROUND, 0) == 0, "the Warlord hires at most one soldier a round"
     assert rob_n() < ARMY + 1, f"the Warlord's army may grow only to {ARMY + 1}"
@@ -766,6 +853,7 @@ def sell_soldiers(buys, text, hover=None):
     """buys: [(seat, square), ...]; each pays the Warlord 20 for a soldier standing on
     that square of the buyer's province. He keeps 5 of each and 15 goes to the pile."""
     global pile
+    _waiting("sell_soldiers")
     d = {}; w = pid(8)
     for s, q in buys:
         p = pid(s)
@@ -785,6 +873,7 @@ def troops(moves, text, hover=None):
     A bought soldier can't move until the Warlord has raided the province it was bought in.
     Stepping horizontally or vertically onto a Warlord soldier captures it."""
     global _troops_round
+    _waiting("troops")
     mv = []; notes = []
     for i, to in moves.items():
         s, frm = _step(i, to)

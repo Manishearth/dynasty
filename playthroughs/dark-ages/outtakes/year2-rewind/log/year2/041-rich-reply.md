@@ -1,0 +1,5 @@
+diary: Two years in and the ledger is kinder to me than to anyone else at that table, except perhaps the man in the tent. I paid sixty in tax, twenty-nine for three trinkets and nothing at all for the Reservoir, which Her Majesty has promised to half-fund, and I mean to hold her to every grain of that promise next spring. One word in favour of Rob's revolt and one word against it bought that, and it bought me a reputation I'm quite happy to have: Rich can be bought, and he stays bought. The set is the real prize. Clark has one too and he's poorer than me, so he'll be watching mine the way I'm watching his, and whichever of us moves first will need friends. Silke thinks I owe her for the rent, Paddy thinks I overpaid him, and both are good feelings to leave in a peasant. Next year I'll collect the Reservoir, smile at the throne, keep well over twenty grain in hand, and keep an eye on Rob's soldier four rounds from my pieces, and on whoever starts courting him.
+
+---
+
+Ruling: filed word for word in diaries/rich.md. (The prompt was sent with the catch-up condensed by hand; the file holds the full generated text.)

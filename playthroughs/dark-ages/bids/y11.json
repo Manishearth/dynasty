@@ -1,0 +1,12 @@
+{
+ "step": 1,
+ "lots": [{"lot": "0:WB", "min": 2}],
+ "bids": {
+  "Reina": {"0:WB": {"ceiling": 12}},
+  "Rich": {"0:WB": {"ceiling": 12}},
+  "Silke": {"0:WB": {"ceiling": 3, "keep": {"Rich": 15}}},
+  "Paddy": "pass",
+  "Rob": "pass"
+ },
+ "note": "Ceilings from 175-179; the pile's lot opens at 2."
+}

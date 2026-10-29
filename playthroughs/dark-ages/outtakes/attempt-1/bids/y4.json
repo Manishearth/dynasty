@@ -1,0 +1,16 @@
+{
+ "step": 1,
+ "lots": [
+  {"lot": "3:LD", "min": 2},
+  {"lot": "5:DJ", "min": 8},
+  {"lot": "6:WB", "min": 2}
+ ],
+ "bids": {
+  "Rich": {"3:LD": {"ceiling": 10}, "5:DJ": {"ceiling": 14}, "6:WB": {"ceiling": 10}},
+  "Reina": {"5:DJ": {"ceiling": 35}},
+  "Silke": {"6:WB": {"ceiling": 46}},
+  "Paddy": {"3:LD": {"ceiling": 60}},
+  "Rob": "pass"
+ },
+ "note": "Ceilings from 067-071."
+}

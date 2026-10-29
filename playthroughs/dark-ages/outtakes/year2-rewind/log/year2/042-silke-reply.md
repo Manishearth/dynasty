@@ -1,0 +1,5 @@
+diary: Two years in, and I've counted every grain of mine that's gone. Sixty to the crown counting this year's five, ten in rent to Rich, five to Rob's boat, twenty on a soldier, and not one piece of the set to show for it, because Paddy and Rich bid one grain past me each time and the last Customs House is now sitting on Paddy's coast. I started with twenty-five and finish on twenty-four, while the reserve has gone from nothing to two hundred and twenty. Clark and Rich each hold a full set, and Rich's set can unseat me whenever it pleases him. I let the revolt go for twenty grain and a soldier, and I'd do it again rather than crown the man who robbed my beach. But I've learned the price of my backing, and next time Reina will pay more for it. My soldier is standing beside Rob's boat now. The moment he can move, he goes after it, and the moment that tax gets called "consistently excessive," I'm calling it myself.
+
+---
+
+Ruling: filed word for word in diaries/silke.md. (The prompt was sent with the catch-up condensed by hand; the file holds the full generated text.)

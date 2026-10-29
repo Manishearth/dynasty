@@ -66,11 +66,17 @@ At eight players there are up to seven lots a year (Provinces 2–7, then any pi
 ## A revolt
 
 Run it as a short exchange, not a single round of answers (R: Calling off a revolt):
-1. **The call:** the caller names the cause, and each other player agrees or doesn't.
+1. **The call:** the caller names the cause, and each other player agrees or doesn't. With two agreeing, call `revolt_called("...")`. **From then on play waits** (Manish, 2026-10-28): no step of the round and no seat change, a set included, until the revolt stands or is dropped. Anyone may argue, persuade, promise or deal in the meantime, and the engine refuses everything else.
 2. **The answer:** with two agreeing, the Emperor gets a `free` prompt to answer: pay, cut the tax, fund land, or promise.
 3. **Stand or take it back:** the caller and each backer get a `free --short` prompt with the answer, and either stand by the revolt or take it back.
 
-It stands only with the caller and two others still behind it. If answers cross, ask the players what they meant; never decide who came first by seat order. When it stands, set `CHAOS = True` in `game.py`; set it back to `False` at the acclamation.
+It stands only with the caller and two others still behind it. If answers cross, ask the players what they meant; never decide who came first by seat order. If it fails, call `revolt_dropped("...")` and play resumes where it stopped. When it stands, call `revolt("...")` in `game.py`, which starts Chaos. The engine then refuses tax, salaries, works, new land, any voluntary payment out of the sealed treasury, and any seat change onto the throne. Every board card carries the Chaos line.
+
+**The acclamation.** Give each player an `acclaim` prompt (`briefs.py prompt 031 Silke acclaim --claims "Rich:Paddy;Rob"`, with the claims so far): claim, back one claimant, or stand aside. Then count them with `acclamation({claimant_seat: [backer seats]})`. It records the three counts. With a winner, it seats them on the throne with the treasury and ends Chaos; with none, Chaos goes on, and the table may count again whenever the claims change.
+
+## Rules misreadings
+
+Correct any public misstatement of the rules, as always. That includes reasoning a player states, in public or in an aside, that rests on a wrong rule. For example, "a revolt only hands Rich the throne" is wrong when no set can take the throne under Chaos. Correct the rule with a public `note`, never the plan, and file it in the ledger's rulings. If a misreading seems to be steering the game away from its arc, or a rule's consequence looks unintended, tell the Director straight away. Don't wait for the end of the year: the Director may steer mid-chapter when a situation calls for it (Manish, 2026-10-28).
 
 ## Reporting to the Director
 

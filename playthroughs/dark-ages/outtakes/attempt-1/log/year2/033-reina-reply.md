@@ -1,0 +1,5 @@
+diary: Two years in, and the dynasty already has something to show for itself: the Summer Palace at G20, out of every soldier's reach, and both sections of the Grand Canal dug through Province 1, which will pay me twenty a year for as long as I hold the seat. I taxed forty percent both years. It was fair, a share of what the heavens gave, so the flooded fields paid four. But Clark has started saying "consistently" out loud, Rob says the desert votes, and Silke now knows from the Storyteller exactly how a revolt is called. Three voices is all it takes. The man I really watch is Rich, smiling and generous with a full set on his fields that lets him take my chair whenever he likes; Clark and Paddy are each one piece short of the same. Next year I'll ease the rate a little without calling it a concession, start on the Winter Palace so the coast's canals open, and let Paddy and Silke see that the works are coming to them. The reserve is healthy, around 142, and I mean to keep it that way. A crown that bends breaks, but a crown that builds where people can see it gives them fewer reasons to bend it.
+
+---
+
+Ruling: appended to diaries/reina.md under Years 1-2.

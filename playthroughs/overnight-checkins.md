@@ -132,3 +132,31 @@ The peasant's game is paused after Year 10, waiting on Manish. Nothing is broken
 - **Peasant thrive: finished.** Survival in Year 9 on seed 8535: all 520 in works built, nobody ever in debt, no rewinds. Paddy (drew Rice) won on the throne; Graham held; Silke and Reina lost. Dropped from IN_PROGRESS; the page shows it in full.
 - **Page:** rebuilt, 8 games, 2,756 entries. No game is in progress. Uncommitted.
 - **For Manish:** the report's possible ruling on the game ending when the last work is built, before that year's auctions.
+
+## 16:53
+
+- **Dark Ages (second attempt): progressing.** Chapter 3 is being played by Storyteller 3; last finished year 5. No revolt yet: Clark, the Emperor, is closing every cause on purpose. The Director steered mid-chapter with a public tip to Rob (the Warlord may call a revolt and claim) and says the next decision may be Manish's if that doesn't produce one.
+- **Every other game:** finished.
+- **Usage:** 3% of the 5-hour window (resets 21:20), 35% weekly. Nothing blocked.
+- **Page:** the Dark Ages added (GAMES, last) through Year 5. Rebuilt: 9 games, 2,944 entries. Uncommitted.
+
+## 18:53
+
+- The Dark Ages (second attempt): progressing. The Director restarted it from Year 2 with Chaos starting earlier. Year 3 is the last finished year; Storyteller 7 is playing Year 4 (the chest card, paid out of the sealed treasury). Chaos is holding, the treasury is up to 231, and nobody has been acclaimed.
+- Every other game: finished.
+- Nothing blocked. No messages sent.
+- Usage: 11% of the 5-hour window (resets 21:20), 37% weekly.
+- Page: dark-ages IN_PROGRESS 5 -> 3, to match the restart. Rebuilt playthrough.html: 9 games, 2858 entries. Uncommitted.
+
+## 20:53
+
+- The Dark Ages (second attempt): progressing, last finished year 12. Chapter 6 is closed. Storyteller 12 is playing the last chapter. All three Grand Canals are built; what's left is the Province 2 Irrigation System (Year 13) and the Marble Pagoda (Year 14). The game ends at the last build.
+- Every other game: finished.
+- Nothing blocked. No messages sent.
+- Two briefs.py bugs the Director logged for the main session (the Storytellers are working round both): Paddy's land list offers squares he already owns, and the march menu offered a diagonal step onto a guarded piece. Not fixed during the check-in.
+- Usage: 20% of the 5-hour window (resets 21:20), 39% weekly.
+- Page: dark-ages IN_PROGRESS 4 -> 12. Rebuilt playthrough.html: 9 games, 3118 entries. Uncommitted.
+
+## 21:03 (Director report)
+
+- The Dark Ages (second attempt): finished in Year 14, in survival. Clark is Emperor. dark-ages dropped from IN_PROGRESS. Rebuilt playthrough.html: 9 games, 3155 entries, all finished. Uncommitted.

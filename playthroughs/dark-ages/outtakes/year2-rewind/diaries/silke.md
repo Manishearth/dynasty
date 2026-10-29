@@ -1,0 +1,9 @@
+# Silke Weber's diary
+
+## Setup to Year 2
+
+Two years in, and I've counted every grain of mine that's gone. Sixty to the crown counting this year's five, ten in rent to Rich, five to Rob's boat, twenty on a soldier, and not one piece of the set to show for it, because Paddy and Rich bid one grain past me each time and the last Customs House is now sitting on Paddy's coast. I started with twenty-five and finish on twenty-four, while the reserve has gone from nothing to two hundred and twenty. Clark and Rich each hold a full set, and Rich's set can unseat me whenever it pleases him. I let the revolt go for twenty grain and a soldier, and I'd do it again rather than crown the man who robbed my beach. But I've learned the price of my backing, and next time Reina will pay more for it. My soldier is standing beside Rob's boat now. The moment he can move, he goes after it, and the moment that tax gets called "consistently excessive," I'm calling it myself.
+
+## Years 3–4
+
+Four years in, I've paid the crown eighty-two and a half and Rich twenty in rent, and I'm sitting on fifty-nine and a half while the reserve sits on three hundred and forty-one. I called the excessive-tax revolt in Year 3 and nobody backed me. I backed Rob's in Year 4, and that time Reina paid Rich forty to walk away and paid me nothing. That's twice now my landlord has been bought off a cause he admitted was real. The one good night was the beach: my soldier, bought with the crown's own twenty, took Rob's man on Q24, and for a whole season mine and Clark's were the only soldiers on the board. Now I've learned that calling it alone makes me look shrill, and that Reina will always buy Rich before she buys me. So next year I won't be the one calling it. Paddy will be. He's promised it in public and he's promised me in private, and if nothing gets built south of my beach, I'll be standing right behind him with the only soldier on the coast.

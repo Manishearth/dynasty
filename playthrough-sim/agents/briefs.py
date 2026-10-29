@@ -23,6 +23,7 @@ Run from the game's folder (playthroughs/<name>/), as python ../../playthrough-s
   python briefs.py prompt 022 Silke place --lot 5:DJ --price 12      # a buyer places what they won (short)
   python briefs.py prompt 022 Silke auction --lot 6:BB --min 5       # one lot (small tables)
   python briefs.py prompt 022 Rob march
+  python briefs.py prompt 022 Silke acclaim --claims "Rich:Paddy;Rob"   # under Chaos: claim, back or stand aside, with the count
   python briefs.py prompt 022 Paddy free --menu menu.md      # any other decision; the menu is your text
      (--land: add the new-land reminder, for a decision in the public works step; --offer as for land)
 
@@ -264,6 +265,12 @@ def board_card(ns, player):
         out.append(f"- **The short game:** {'Setup' if not ns['CUR_ROUND'] else 'Year %d' % ns['CUR_ROUND']} of {last}. The table stops after "
                    f"Year {last} and scores from where everyone sits (Note 19, §18): a lower-numbered province than you drew wins, "
                    "the same one holds, the Emperor wins by keeping the throne, and the larger grain surplus breaks ties.")
+    if ns.get("CALLED"):
+        out.append("- **A revolt has been called** and is not yet settled, so play waits: no step of the round and no seat change "
+                   "until it stands or is dropped. Anyone may argue, persuade, promise or deal; the Emperor may answer it. It stands "
+                   "only if the caller and two others still back it.")
+    if ns.get("CHAOS"): out.append(chaos_line(ns, p, seat))
+    elif ns.get("REVOLT_LINE"): out.append(REVOLT_LINE)
     have = ", ".join(f"{R[v['realia']]} {q}" for q, v in ns["board"].items() if v.get("realia") and v["owner"] == p)
     if seat == 8:
         out.append(f"- **Grain** {ns['grain'][p]:g}. **Army** {len(sol)} of {ns['ARMY']+1}. **Objective:** " + objective_text(ns))
@@ -283,6 +290,10 @@ def board_card(ns, player):
         need = [R[t] for t in ns["need_for"](seat) if not ns["held"][p].get(t)]
         out.append(f"- **Grain** {ns['grain'][p]:g}. **Hold:** {have or 'nothing'}. **Still need:** {', '.join(need) or 'nothing'}, and 20 grain. "
                    f"**With the set you may replace:** {may_replace(ns, seat)}.")
+    elif ns.get("CHAOS"):
+        out.append(f"- **Deposed.** You still sit in Province 1, beside the sealed treasury ({ns['grain'][p]:g}): you can't spend it, "
+                   "and you can't claim the throne. You may back one claimant, and promise anything. At the acclamation you take "
+                   "the new Emperor's old seat and draw 60 from the Harvest Pile.")
     else:
         left = sum(max(0, n - ns["built_count"](w)) * c for w, n, c in ns["owed"]())
         out.append(f"- **Grain (the crown's reserve)** {ns['grain'][p]:g}. **Objective:** keep the throne. **Works still owed:** {left:g}.")
@@ -318,11 +329,38 @@ def board_card(ns, player):
     if land: out.append(land)
     return "\n".join(out)
 
+# Only a game whose game.py sets REVOLT_LINE = True puts this on every card (the Dark Ages, from 2026-10-28).
+REVOLT_LINE = ("- **Revolt** (§16): at any step, any player may call a revolt by naming a cause, if two others agree it exists. "
+               "The causes: the Emperor is unjust; taxes are consistently excessive; the reserve is too low; the works have been "
+               "delayed too long; the Emperor can't control the Warlord; the Emperor won't subsidise new land; any player is in debt. "
+               "The Emperor may answer it (pay, cut the tax, promise anything), and it stands only if the caller and two others still "
+               "back it. Then comes Chaos: no tax, salaries, public works or new land until a new Emperor is acclaimed. "
+               "Under Chaos no set can take the throne: it passes only by acclamation, counted on grain in hand, soldiers "
+               "on the board and friends.")
+
+def chaos_line(ns, p, seat):
+    """Under Chaos (§16, N17, RULINGS: the sealed treasury, counting the acclamation), on every card."""
+    e = ns["pid"](1)
+    line = ("- **Chaos** (§16): there is no Emperor. Until one is acclaimed there's no tax, no salaries, no public works and "
+            "no new land; the harvest, the rent, the auctions and the Warlord carry on. "
+            f"The treasury in Province 1 is sealed ({ns['grain'][e]:g}): nobody may spend it, Province 1's harvest, raids and "
+            "disasters still run through it, and the acclaimed Emperor inherits it, debt and all. No seat change takes the throne. "
+            "Anyone but the deposed Emperor may claim it, and the claims are counted on grain in hand, soldiers on the board "
+            "and friends (the players backing a claim; nobody is their own friend). Lead one count with no rival leading another, "
+            "or lead more counts than anyone, and you're acclaimed; otherwise Chaos goes on.")
+    if seat != 1:
+        n = sum(1 for o in ns["SOLDIERS"].values() if o["owner"] == p)
+        line += f" **If you claim:** grain {ns['grain'][p]:g}, soldiers {n}."
+    return line
+
 def may_replace(ns, seat):
     """Who a complete set lets this seat replace (§11), as the engine's swap() checks it."""
     SH, A = ns["SHORT"], ns["ACTIVE"]
     upper_empty = not set(A) & {2, 3, 4}
-    if seat in (2, 3, 4) or (seat == 5 and upper_empty):
+    if (seat in (2, 3, 4) or (seat == 5 and upper_empty)) and ns.get("CHAOS"):
+        ok = [s for s in A if s not in (seat, 8, 1)]
+        head = "any other player, but not the throne (under Chaos it passes only by acclamation)"
+    elif seat in (2, 3, 4) or (seat == 5 and upper_empty):
         ok = [s for s in A if s != seat and s != 8]
         head = "the Emperor (the throne) or any other player"
     else:
@@ -579,6 +617,7 @@ def works_lines(ns):
 def menu_crown(ns):
     """The Emperor's year: the tax rate, the one project, the salaries, and new land."""
     SH = ns["SHORT"]; A = ns["ACTIVE"]; inc = ns["CUR_INC"]; e = ns["pid"](1)
+    assert not ns.get("CHAOS"), "no crown's year under Chaos: there is no Emperor"
     out = ["## Your move: the crown's year", ""]
     if inc:
         rows = [f"{SH[ns['pid'](s)]} {inc[s]:+g}" for s in A if s != 1]
@@ -631,8 +670,41 @@ def salary_line(ns, player, seat, job):
     return (f"You do this as the Emperor's appointee, not as the {job}: you're paid only what the Emperor chooses to pay "
             "you, at the end of the year.")
 
+def parse_claims(ns, claims):
+    """--claims "Rich:Silke,Paddy;Rob": each claimant by short name, then their backers. -> {seat: [seats]}."""
+    out = {}
+    for part in filter(None, (claims or "").split(";")):
+        who, _, back = part.partition(":")
+        out[seat_of(ns, who.strip())] = [seat_of(ns, b.strip()) for b in back.split(",") if b.strip()]
+    return out
+
+def menu_acclaim(ns, player, claims):
+    """Under Chaos: claim the throne, back a claimant, or stand aside, with the count as the claims stand now."""
+    assert ns.get("CHAOS"), "an acclamation is counted only under Chaos"
+    SH = ns["SHORT"]; seat = seat_of(ns, player); cl = parse_claims(ns, claims)
+    out = ["## Your move: the acclamation", ""]
+    if cl:
+        counts, lead, win = ns["acclaim_counts"](cl)
+        for s, c in counts.items():
+            out.append(f"- **{SH[ns['pid'](s)]}** claims: grain {c[0]:g}, soldiers {c[1]}, friends {c[2]}"
+                       + (" (" + ", ".join(SH[ns['pid'](b)] for b in cl[s]) + ")" if cl[s] else "") + ".")
+        out.append("- **Leading now:** " + "; ".join(f"{k} " + (SH[ns['pid'](v)] if v else "nobody")
+                                                     for k, v in lead.items()) + ". "
+                   + (f"As the claims stand, {SH[ns['pid'](win)]} would be acclaimed." if win else "As the claims stand, nobody would be acclaimed."))
+    else:
+        out.append("- **Nobody has claimed the throne yet.**")
+    out.append("A tie in a count leads nobody.")
+    out.append("")
+    if seat == 1:
+        out.append("You're the deposed Emperor: you can't claim, but you may back one claimant, or stand aside.")
+    else:
+        out.append("Claim the throne yourself, back one claimant (your backing counts as one friend for them), or stand aside. "
+                   "A claimant can't back anyone. The claims can be counted again whenever they change.")
+    return "\n".join(out)
+
 def menu_collect(ns, rate, player):
     """The Official collects the tax the Emperor declared and delivers it to the crown."""
+    assert not ns.get("CHAOS"), "no tax under Chaos"
     SH = ns["SHORT"]; A = ns["ACTIVE"]; inc = ns["CUR_INC"]; r = float(rate) / 100
     rows = [f"{SH[ns['pid'](s)]} {ns['pay_down'](max(0, inc[s]) * r):g}" for s in A if s != 1] if inc else []
     tot = sum(ns["pay_down"](max(0, inc[s]) * r) for s in A if s != 1) if inc else 0
@@ -696,7 +768,18 @@ This is a performance, so stay in {player}'s voice. Use no tools and read no fil
 {table_text(ns)}
 
 {WHISPER}
-""" + continuity(ns, player)
+""" + continuity(ns, player) + direction(player)
+
+def direction(player):
+    """For a launch: the actor's brief from the game's direction.md, if it has one (the Dark Ages, from
+    2026-10-28, on Manish's word). The shared story, then this player's own part. Never shown to the table."""
+    if not os.path.exists("direction.md"): return ""
+    txt = open("direction.md", encoding="utf-8").read()
+    parts = {h.split("\n", 1)[0].strip(): h.split("\n", 1)[1].strip() for h in txt.split("\n## ")[1:] if "\n" in h}
+    out = [parts.get("The story", "")]
+    if parts.get(player): out.append(f"**Your part, {player}:** " + parts[player])
+    out.append(parts.get("The rule", ""))
+    return "\n## The story tonight (for you as the actor, never for the table)\n\n" + "\n\n".join(x for x in out if x) + "\n"
 
 def continuity(ns, player):
     """For a launch: the character's ledger entry and their diary so far, if any."""
@@ -724,7 +807,7 @@ def land_reminder(ns, player, offer=None):
     return None
 
 def prompt(n, player, kind, lot=None, minimum=None, menu=None, dry=False, lots=None, rate=None, price=None, short=False, floor=None, years=None,
-           offer=None, land=False):
+           offer=None, land=False, claims=None):
     ns = run_ns(); pid_of(ns, player)
     parts = []
     # "launch" carries a --menu file; "launch:<kind>" (launch:crown, launch:auctions, ...) carries that kind's menu
@@ -759,6 +842,8 @@ def prompt(n, player, kind, lot=None, minimum=None, menu=None, dry=False, lots=N
         parts.append(menu_iching(ns, player)); fmt = "move: read\n" + FORMAT_TAIL
     elif kind == "land":
         parts.append(menu_land(ns, player, offer)); fmt = fmt_land(ns, player) + FORMAT_TAIL
+    elif kind == "acclaim":
+        parts.append(menu_acclaim(ns, player, claims)); fmt = "move: claim the throne | back <claimant> | stand aside\n" + FORMAT_TAIL
     elif kind == "diary":     # the chapter's close: the entry only, no move, say or aside
         full_ = ns["NAMES"][pid_of(ns, player)]
         parts.append(f"## {player}'s diary\n\nThe evening's chapter is over. Write {full_}'s diary entry for "
@@ -873,7 +958,8 @@ if __name__ == "__main__":
     elif a[0] == "prompt":
         prompt(a[1], a[2], a[3], lot=opt("--lot"), minimum=float(opt("--min")) if opt("--min") else None, menu=opt("--menu"),
                dry="--dry" in a, lots=opt("--lots"), rate=opt("--rate"), price=opt("--price"), floor=opt("--floor"), years=opt("--years"),
-               short="--short" in a, offer=opt("--offer"), land="--land" in a)
+               short="--short" in a, offer=opt("--offer"), land="--land" in a,
+               claims=opt("--claims"))
     elif a[0] == "resolve": resolve(a[1])
     elif a[0] == "seen":       # after a message sent by hand to everyone (the closing catch-up): all of them are up to date
         ns = run_ns()

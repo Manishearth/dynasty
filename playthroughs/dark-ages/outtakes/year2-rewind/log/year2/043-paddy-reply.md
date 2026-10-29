@@ -1,0 +1,5 @@
+diary: Two years in, and I've paid the crown sixty, Rich ten, and Rob five off my own front field. It hurts more than the sixty did, because nobody asked for it. Heaven gave us a good harvest in the floods, and I'm thankful, but I've learned that a good year mostly means more people know your address. I wouldn't back Rob's revolt and I'm still glad of it. A man doesn't hand the keys to the fellow trying the lock. Still, I noticed the crown only found its purse once the shouting started, and none of that money came south. I've a Customs House and a Land Deed tucked away at the back of the rice, and every Dragon Jar is now in Clark's hands or Rich's. Clark counts too cleverly for my liking, so if a jar ever comes my way, I'd sooner it came from Rich, honestly traded. Next year I'll keep my grain close, watch that boat on Q24, and see whether the crown means to build anything on the coast or only talk about it.
+
+---
+
+Ruling: filed word for word in diaries/paddy.md. (The prompt was sent with the catch-up condensed by hand; the file holds the full generated text.)

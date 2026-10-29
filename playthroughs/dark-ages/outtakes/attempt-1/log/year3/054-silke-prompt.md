@@ -1,0 +1,42 @@
+## Your board card (Year 3, from the engine)
+
+- **Revolt** (§16): at any step, any player may call a revolt by naming a cause, if two others agree it exists. The causes: the Emperor is unjust; taxes are consistently excessive; the reserve is too low; the works have been delayed too long; the Emperor can't control the Warlord; the Emperor won't subsidise new land; any player is in debt. The Emperor may answer it (pay, cut the tax, promise anything), and it stands only if the caller and two others still back it. Then comes Chaos: no tax, salaries, public works or new land until a new Emperor is acclaimed. Under Chaos no set can take the throne: it passes only by acclamation, counted on grain in hand, soldiers on the board and friends.
+- **Grain** 56.5. **Hold:** Land Deed Scroll P26. **Still need:** Customs House, Wooden Bowl, and 20 grain. **With the set you may replace:** the Official, Gentry, Scholar or another peasant, not the Emperor (a peasant climbs to the upper class first): Clark (Official), Reina (Gentry), Paddy (Rice Peasant).
+- **Warlord soldiers to your pieces** (rounds): Land Deed Scroll P26: W1 16, W2 8, W3 17.
+- **Nearest unraided square of yours:** W1 9 (O19), W2 1 (O19), W3 10 (O19).
+- **Free squares for a new piece out of every Warlord soldier's reach this year:** L24–L25, M24–M25, N20, N23–N25, O20–O26, P20–P25. **This year and next:** L24–L25, M24–M25, N23–N25, O21–O26, P21–P25.
+- **Your province has not been raided, so soldiers you buy cannot move yet.**
+- **New land opens when the population doubles** (now x1). Then each square costs 20 and adds 20 a year. At x2 you'd need 1 square to break even in an average year, and more after the next card; save for them.
+
+## At the table since your last turn
+
+Silke sets her Dragon Jar's minimum at 6.
+
+Paddy: "I'm out of all three. I've a Jar and a Customs House already and no use for another, and I'll not push up a price just to watch three-quarters of it go into the Pile. The Bowl goes at two, the floor. Silke, if it ends up on the coast I'll be glad of it. All I ask, in front of everyone, is that when you've a Deed you can spare, or the next one comes up, I get the first fair word on it."
+
+Paddy sets his Wooden Bowl's minimum at 2.
+
+Rob: "Pass, pass and pass. Buy whatever you like, friends. Every piece you put on the board is one more thing for me to come and visit. And congratulations on the throne, Your Majesty. Three hundred and fifty grain and not one soldier. I'd sleep with a lamp on."
+
+## Your move: one live raise on the Wooden Bowl
+
+The first two lots are settled: Silke takes Clark's Customs House for 17 (Reina stopped at 16), and Clark takes Silke's Dragon Jar for 6, unopposed. On Paddy's Wooden Bowl, Reina's limit and Silke's are both 16, and a tie goes by seat order, to Reina (the Gentry's seat comes before the Silk Peasant's). Grain now: Reina 60, Silke 41.
+
+Each of you gets one raise-or-pass: name your final limit on the Bowl (higher than 16 to raise), or stand at 16. The final limits settle it as ceilings.
+
+**Whispers** exist for a genuinely private deal, one that can't be made in public. They're still rare: most turns, write "none".
+
+## Your reply
+
+Reply in exactly this format:
+
+```
+move: <your choice>
+say: <what Silke says out loud to the whole table, a line or two>
+aside: <one or two sentences, no more, that Silke says to the camera, talking the audience through the move. The other players can't hear it.>
+whisper: <"none", or "To <name>: ..." (rare: only a genuinely private deal)>
+```
+
+
+---
+(Sent with the board card replaced by a one-line note that it was unchanged.)

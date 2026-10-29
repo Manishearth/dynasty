@@ -1,0 +1,72 @@
+{
+ "step": 1,
+ "lots": [
+  {
+   "lot": "2:CH",
+   "min": 2
+  },
+  {
+   "lot": "3:LD",
+   "min": 3
+  },
+  {
+   "lot": "5:DJ",
+   "min": 3
+  },
+  {
+   "lot": "6:WB",
+   "min": 2
+  }
+ ],
+ "bids": {
+  "Clark": {
+   "5:DJ": {
+    "ceiling": 0,
+    "keep": {
+     "Rich": 4
+    }
+   },
+   "6:WB": {
+    "ceiling": 0,
+    "keep": {
+     "Rich": 4
+    }
+   }
+  },
+  "Rich": {
+   "5:DJ": {
+    "ceiling": 10
+   },
+   "6:WB": {
+    "ceiling": 10
+   }
+  },
+  "Silke": {
+   "2:CH": {
+    "ceiling": 4
+   },
+   "3:LD": {
+    "ceiling": 4
+   },
+   "6:WB": {
+    "ceiling": 4,
+    "keep": {
+     "Rich": 7
+    }
+   }
+  },
+  "Paddy": {
+   "2:CH": {
+    "ceiling": 12
+   },
+   "3:LD": {
+    "ceiling": 12
+   },
+   "5:DJ": {
+    "ceiling": 13
+   }
+  },
+  "Rob": "pass"
+ },
+ "note": "Ceilings from 034-038; minimums as named by each seller. Live raise on 5:DJ (039-040): Paddy to 13, Rich passes at 10."
+}

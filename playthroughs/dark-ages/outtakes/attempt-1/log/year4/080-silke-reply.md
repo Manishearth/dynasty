@@ -1,0 +1,5 @@
+diary: Two years ago I was down to seventeen and a half and holding a Deed nobody could use, and tonight I'm going home with a full set on P24 to P26 and fifty-eight and a half in hand. It cost me seventeen for the Customs House, eleven for the Bowl, and the twenty-two Reina paid out of spite before that. I'll take the lesson: she trades for pieces on the table, never for promises. Meanwhile the throne changed hands twice in two years, Rich then Clark, and each of them paid twenty percent and called it kindness while three-quarters of every auction went into the Pile. Paddy has a set too, and I gave him my word on the Deed and kept it, so the coast has two sets and owes each other something for once. Clark has promised the next works to Reina, and my canal sections are still just talk. Next year I read the I Ching at five a year, I keep the set back until a chair is worth taking, and Rich, sitting in the Official's chair with nothing, is the man who ought to be nervous.
+
+---
+
+Ruling: appended to diaries/silke.md under Years 3-4.

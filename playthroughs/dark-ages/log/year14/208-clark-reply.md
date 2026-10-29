@@ -1,0 +1,7 @@
+move: tax 20%; build Marble Pagoda on G22 (split: the crown pays all 20); salaries Official 10 (and Silke 3 for the reading); land: the crown pays the full 20 a square on every province's new squares; no new squares for Province 1
+say: "Twenty percent, the same as the last two years, average harvest or not. Reina, you'll want this line for your ledger: the Marble Pagoda goes up this year on G22, between my two palaces, the crown paying the whole twenty, with nothing else built beside it. Silke, your eighteen goes into it, so call it even, as you asked. That's every work this table ever asked of me: the Wall, three canals, the Reservoir, the Irrigation and now the Pagoda, each one written down first and built after. Rob, you can admire the roofs from I17 like everyone else. The figure is still nothing."
+aside: "Fourteen years of the ledger, and the last line is struck off by the man who wrote it, and the chair stays exactly where it is. I'm keeping the twenty a square because the land terms are in the book too, and I'm not breaking a promise on the last page."
+whisper: none
+
+---
+Ruling: tax 20% (458), collected by Reina. One project: the Marble Pagoda on G22 (Province 1, no piece or work on it), the crown paying 20. It is the last owed work, so the game ends the moment it stands (Section 18): no land, auction, march or salaries follow. "Between my two palaces": G22 is two squares past the palaces on G20 and H20, not between them; flavour, the game ends before any note.

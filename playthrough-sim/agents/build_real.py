@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.dirname(HERE))
 import build
 
 GAMES = ["full-game", "short-game", "peasant-thrive", "highway-robbery", "western-front",
-         "peasant-collapse", "protection-money", "peasant-draw"]
+         "peasant-collapse", "protection-money", "peasant-draw", "dark-ages"]
 # The last finished year to show (the script is cut at the next year's marker): moved on by the
 # Director as each year closes. Drop the game from here once its game.py has its own ending
 # (RESULT = export(...)).

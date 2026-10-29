@@ -1,0 +1,7 @@
+move: tax 30%; build Grand Canal in Province 6, both sections, 80 (split: the crown pays all 80); salaries Official 10; land: the crown keeps last year's terms, all 20 of each province's first two squares and 10 a square beyond that; no new squares for Province 1 this year
+say: Thirty percent, the rate I set last year. I won't raise it in a lean year, and I won't cut it while I'm building. Paddy, both sections of your canal go in this year, as written, all 80 from the crown, and that's twenty more grain on your harvest every year from now on. Reina gets her 10, Silke gets her 3, and the land terms stand: the crown pays the whole of your first two squares and half of every one after. Rich, I've seen the Wall above Province 3, and it's in the ledger behind Silke's canal. Come to me with your share and we'll talk about when.
+aside: That's one promise kept to the letter and on time, the first canal in the first full year, and I'm paying for it with the crown's grain, not with a heavier tax. The reserve gets thin after this, so the land I fund is the real plan: every square bought now is grain the treasury can count on later.
+whisper: none
+
+---
+Ruling: tax 30% (48: Silke 27, Paddy 21; Reina, Rich and Rob have negative incomes). One project: both sections of the Province 6 Grand Canal, 80, the crown alone (the Winter Palace stands). Salaries: Official 10, and Silke 3 for the reading. Land: the crown pays 20 on each province's first two squares this year, 10 beyond. Open to Silke and Paddy; Provinces 2 and 3 need their Wall links. Province 1 buys none.

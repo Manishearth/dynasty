@@ -1,0 +1,69 @@
+{
+ "step": 1,
+ "lots": [
+  {
+   "lot": "2:CH",
+   "min": 2
+  },
+  {
+   "lot": "3:LD",
+   "min": 3
+  },
+  {
+   "lot": "5:DJ",
+   "min": 8
+  },
+  {
+   "lot": "6:WB",
+   "min": 2
+  }
+ ],
+ "bids": {
+  "Clark": {
+   "5:DJ": {
+    "ceiling": 11
+   },
+   "6:WB": {
+    "ceiling": 11
+   }
+  },
+  "Rich": {
+   "5:DJ": {
+    "ceiling": 0,
+    "keep": {
+     "Clark": 10
+    }
+   },
+   "6:WB": {
+    "ceiling": 0,
+    "keep": {
+     "Clark": 9
+    }
+   }
+  },
+  "Silke": {
+   "2:CH": {
+    "ceiling": 13
+   },
+   "3:LD": {
+    "ceiling": 20
+   },
+   "6:WB": {
+    "ceiling": 8
+   }
+  },
+  "Paddy": {
+   "2:CH": {
+    "ceiling": 18
+   },
+   "3:LD": {
+    "ceiling": 18
+   },
+   "5:DJ": {
+    "ceiling": 14
+   }
+  },
+  "Rob": "pass"
+ },
+ "note": "Ceilings from 022-026; Silke's and Paddy's on CH and LD are their final limits after the live raise (027, 028)."
+}

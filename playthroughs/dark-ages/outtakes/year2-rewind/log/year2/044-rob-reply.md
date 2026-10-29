@@ -1,0 +1,5 @@
+diary: Two years and I've never paid the crown a grain, and I've finished up richer than anyone at the table except the reserve itself, eighty-five in the tent. My revolt nearly took. Silke and Rich both signed it, and then Reina bought them back with a promised Reservoir and twenty grain apiece, and two of those coins came to me when I sold my own lads to guard against me. Best joke of the night, and I got paid for it. I haven't raided a single piece yet, and that's the real bill. Clark's put my old soldier on his Deed, so W1 goes for the Bowl at I15 and then turns east to Rich's lovely new set at L14 and L10, while W2 creeps south toward Paddy's Deed at S20 and stays out of reach of Silke's boy. Rich went back on the revolt the moment a Reservoir was offered, so I'll remember that when his crops come in, and I'll call the next one the moment that Reservoir's late.
+
+---
+
+Ruling: filed word for word in diaries/rob.md. (The prompt was sent with the catch-up condensed by hand; the file holds the full generated text.)

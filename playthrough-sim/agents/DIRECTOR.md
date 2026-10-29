@@ -24,7 +24,7 @@ The Director is one session per game. It never plays a seat or referees a move: 
 
 - **Wake the next Storyteller** with the chapter's brief. Don't brief a chapter before the last one has closed.
 - **Check the record** when it reports: `run.py` runs clean, `game.py` has the chapter marker, the ledger and diaries are current, and the narration isn't in `game.py`. Check its figures against the engine (`run_ns`: seats, stock, `held`, `owed()`), not against the Storyteller's prose. The short game's check caught a handoff that said 1,030 owed in works at a table that owed 810.
-- **Revisit every actor's note** before the next chapter. A note goes stale once its character changes seats or sells the piece it names. Rewrite it only between chapters, and log each rewrite in `seed.md`.
+- **Revisit every actor's note** before the next chapter. A note goes stale once its character changes seats or sells the piece it names. Rewrite it between chapters, or mid-chapter when a situation calls for it (see "Steering"), and log each rewrite in `seed.md`.
 - **Write the handoff** (`handoff/chapter-N.md`): where the game stands, open threads, and any steering for the next chapter.
 - **Leave `game.py` alone mid-chapter.** If it needs a change while a Storyteller is playing, ask the Storyteller to make it. To see how far a chapter has got, look at the times on its `log/` files, not at its transcript.
 - **Record each finished year** in your status file (below). Rebuild the page only if you're the only Director running.
@@ -60,6 +60,8 @@ Manish wants each game nudged towards its arc. The Director may steer, between c
 Never steer by misstating a rule, the board or anyone's grain; by changing what the engine computes; by writing a player's words; by passing one player another's hidden information; or by reading an agent's transcript. The players' choices stay theirs. **If the game goes somewhere else, let it,** record what happened, and change the subtitle. A design-check game (its `scenario.md` says so) is steered lightly or not at all, since its result is evidence.
 
 List every piece of steering in `seed.md`'s steering log when it happens: what, when and why.
+
+**Mid-chapter steering is allowed when a situation calls for it** (Manish, 2026-10-28): a rules misreading that is steering the game, or a move that shuts off the arc. Send the Storyteller a message. A changed actor's note reaches a player already launched only if the Storyteller passes it on, so ask it to send the note to that player alone (`note --to`), framed as "a note on playing your character", **never naming the Director**. In the Dark Ages a note sent as "the Director's direction" turned up in Reina's diary as "whatever the Director in my head says". Prefer waiting for the next launch when you can. Log it in `seed.md` like any other steering.
 
 **Rules corrections aren't steering, but they can decide a game.** The Storyteller must correct any public misstatement of the rules. In the short game, its note that pieces on the board may be traded was followed at once by the trade that took the throne. Expect this, and report it in `REPORT.md` under "Not steering, but…".
 

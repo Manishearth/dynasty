@@ -1,0 +1,9 @@
+# Reina Osorio's diary
+
+## Setup to Year 2
+
+Two years on the throne, and I nearly lost it to a man in a tent who has never paid me one grain. The Summer Palace stands, the reserve is up to 220, and I held the rate at fifty without bending. But the price was the Winter Palace, forty grain handed to Rob for his own soldiers, and a promise of forty more for Rich's reservoir. Rich decided that vote, and he knows it. Now he and Clark both hold complete sets, and the way Rich bid up those trinkets tells me he is buying a claim, not ornaments. Clark held the line for me and wrote it in his book, and a loyal man who keeps a ledger will expect to be paid for it eventually. Next year I keep my word on the reservoir, keep the coast guarded so Silke stays mine, and watch the man with the Customs House. The monuments will have to wait a season, but they are only waiting.
+
+## Years 3–4
+
+Two more years, and the rate never moved. Fifty in the fat year and fifty in the ordinary one, and two revolts called over it, both of them dropped. The reserve stands at three hundred and forty-one, the Reservoir is dug as I promised, and the Winter Palace finally sits beside the Summer one on G21. But I've paid Rich twice for the same ditch now, and he enjoyed telling the whole table exactly what his vote costs. A man who sells his loyalty every spring has to be bought again every spring. Clark's raise was cheaper and will last longer: he keeps a ledger, but he keeps it for me. Silke is lost to me, I think, and I let her go too easily, and Paddy has given me one year out loud, which is more honest than any of the others. So next year the coast gets its first canal section, whatever the Director in my head says about the provinces waiting. A canal is still a monument, and I would rather choose what I build than have a coastal revolt choose it for me. Rob has one soldier again, standing next to Rich's Bowl, and I hope Rich notices that the crown didn't put him there.

@@ -1,0 +1,36 @@
+## Your board card (Year 5, from the engine)
+
+- **Revolt** (§16): at any step, any player may call a revolt by naming a cause, if two others agree it exists. The causes: the Emperor is unjust; taxes are consistently excessive; the reserve is too low; the works have been delayed too long; the Emperor can't control the Warlord; the Emperor won't subsidise new land; any player is in debt. The Emperor may answer it (pay, cut the tax, promise anything), and it stands only if the caller and two others still back it. Then comes Chaos: no tax, salaries, public works or new land until a new Emperor is acclaimed. Under Chaos no set can take the throne: it passes only by acclamation, counted on grain in hand, soldiers on the board and friends.
+- **Grain** 193.5. **Hold:** Customs House L10, Dragon Jar M12, Wooden Bowl L14. **Still need:** nothing, and 20 grain. **With the set you may replace:** the Emperor (the throne) or any other player: Reina (Emperor), Clark (Official), Silke (Silk Peasant), Paddy (Rice Peasant).
+- **Warlord soldiers to your pieces** (rounds): Customs House L10: W1 5; Dragon Jar M12: W1 3; Wooden Bowl L14: W1 1.
+- **Nearest unraided square of yours:** W1 1 (L14).
+- **Free squares for a new piece out of every Warlord soldier's reach this year:** H9–H11, I8–I11, J9–J11, J17–J18, K9–K10, K14–K18, L9, L17–L18, M9–M11, M13. **This year and next:** H9–H11, I8–I11, J9–J11, J17–J18, K9–K10, K18, L9, L18, M9–M11.
+- **Your province has not been raided, so soldiers you buy cannot move yet.**
+- **New land opens when the population doubles** (now x1). Then each square costs 20 and adds 20 a year. At x2 you'd need 0 squares to break even in an average year, and more after the next card; save for them. Your only new land is the strip below the Wall, which also needs all four links above you built (0 of 4 now).
+
+## At the table since your last turn
+
+Rich pays out the harvest: Reina +15, Clark, Silke and Paddy +35 each, Rich +55 (the Reservoir's +20), Rob +10. He asks the minimum rent; Silke and Paddy pay him 5 each.
+
+Reina: "Fifty again: the fifth year running, and you can set your calendars by it. In return the crown digs the first section of the Grand Canal through Province 6, at the crown's own cost. Paddy, you gave me a year out loud. Here's what I give you for it, and it'll still be paying you ten a harvest long after this drought is forgotten. Clark keeps his fifteen."
+
+Reina declares 50% for the fifth year: 17.5 each from Clark, Silke and Paddy, 27.5 from Rich, 5 from Rob (who refuses his). The crown digs the first section of the Province 6 Grand Canal, all 40 from the reserve (+10 to Paddy's harvest from next year), and pays Clark 15 at the year's end.
+
+The Emperor has declared a tax of 50% this year: you owe 27.5. Before the Official collects it: pay it, or call a revolt (name the cause), or say you'd back one.
+
+This question goes to Clark, Rich, Silke, Paddy and Rob at the same time; you will hear the others' answers afterwards.
+
+move: pay | call a revolt: <cause> | back a revolt: <cause>
+
+**Whispers** exist for a genuinely private deal, one that can't be made in public. They're still rare: most turns, write "none".
+
+## Your reply
+
+Reply in exactly this format:
+
+```
+move: <your choice>
+say: <what Rich says out loud to the whole table, a line or two>
+aside: <one or two sentences, no more, that Rich says to the camera, talking the audience through the move. The other players can't hear it.>
+whisper: <"none", or "To <name>: ..." (rare: only a genuinely private deal)>
+```

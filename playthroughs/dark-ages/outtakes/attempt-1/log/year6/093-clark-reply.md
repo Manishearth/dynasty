@@ -1,0 +1,7 @@
+move: tax 20%; build Grand Canal in Province 5, both sections (split: crown pays all 80); salaries Official 15; appointee 5; land: the crown pays 15 of every 20 on any square Silke or Paddy buys this year, and buys 4 squares on the sea for Province 1 (80 from the reserve)
+say: "Twenty percent, four years running now. Silke, you said the coast has paid into every year and had no canal back, so both sections go in Province 5 this year, all eighty from the crown. On new land, the crown pays fifteen of every twenty on any square either of you buys on the sea, and Paddy, the desert edge too. Nobody at this table is going into debt on my watch, and nobody will be able to say I wouldn't pay for land. Rich, it's fifteen again. Rob, I've got a page with your name on it, and the Bowl has its own line."
+aside: "That's a canal for Silke, three-quarters of every peasant square and four squares to get the crown's own books out of the red. It costs a lot, but it shuts the debt cause and the new-land cause in one move, and it leaves Rob as the only thing anyone could hold against me. Nobody pays for land when there's a revolt on, so I want every peasant's harvest tied to this chair."
+whisper: none
+
+---
+Ruling: legal. Tax 20%: Rich 4, Reina 8, Silke 4, Paddy 8 (Rob 0), 24. After collection: both Province 5 canal sections (crown 80); land: the crown pays 15 of 20 on Silke's and Paddy's squares, and buys 4 sea squares for Province 1 (80). Salaries Rich 15, Silke 5. "Four years running": the throne has set 20% in Years 3 (after Rich's swap) to 6; true of the throne.

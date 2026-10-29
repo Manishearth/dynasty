@@ -1,0 +1,17 @@
+{
+ "step": 1,
+ "lots": [
+  {"lot": "2:CH", "min": 4},
+  {"lot": "3:LD", "min": 4},
+  {"lot": "5:DJ", "min": 3},
+  {"lot": "6:WB", "min": 2}
+ ],
+ "bids": {
+  "Clark": {"6:WB": {"ceiling": 0, "keep": {"Rich": 10}}},
+  "Rich": {"5:DJ": {"ceiling": 22}, "6:WB": {"ceiling": 22}},
+  "Silke": {"2:CH": {"ceiling": 6}, "3:LD": {"ceiling": 6}, "6:WB": {"ceiling": 8, "keep": {"Rich": 9.5}}},
+  "Paddy": {"2:CH": {"ceiling": 11}, "3:LD": {"ceiling": 10}, "5:DJ": {"ceiling": 10}},
+  "Rob": {"5:DJ": {"ceiling": 0, "keep": {"Rich": 9}}}
+ },
+ "note": "Ceilings from 029-033; minimums as named by each seller."
+}
