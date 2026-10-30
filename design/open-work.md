@@ -19,7 +19,6 @@ What's still to do, what's waiting on Manish, and the known issues. Take an item
 
 ## The rulebook
 
-- **Section 19**: the short-game paragraph ends with `<span class="cost">Note 19</span>`, but `.cost` chips are for sums of money. It should probably be a plain reference. Flag it to the rulebook session rather than fixing it silently.
 - **Appendix D, the worked round**, has the Warlord pay the Rice Peasant a river toll on the way to raid Province 6 in Round One. On the real map no river lies between the desert and Province 6, so the example may want a different province.
 
 ## The reference cards

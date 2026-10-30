@@ -95,7 +95,7 @@ Two readings the playthroughs add, from the booklets' wording: each province dev
 
 **Why.** The Emperor's booklet: "You or Provinces 2 and 3 may develop the New Land below the Great Wall when 4 sections in each Province have been built." So the Emperor is gated too, which the rulebook had missed. "4 sections in each Province" could mean all twelve links, but the Official's and Gentry's booklets gate their land on "all four links", their own, and only the per-province reading lets all three booklets agree. Settled by Manish on 2026-10-25. The playthroughs had Reina buy strip squares with two and three of her links built; both purchases are now sea.
 
-**Recorded in** rulebook Section 13, Province 1's table in Section 20, Appendices C and G, the reference cards, and `playthrough-sim/engine.py` (`buy_land`).
+**Recorded in** rulebook Section 13, Province 1's table in Section 19, Appendices C and G, the reference cards, and `playthrough-sim/engine.py` (`buy_land`).
 
 ### Which Wall links are above which province
 
@@ -118,7 +118,7 @@ At eight players the objective was close to impossible (seven targets, four sold
 
 The eight-player wildcard came the same night: with the Emperor left out, the Warlord had no objective reason ever to enter Province 1, and an eight-player Warlord still rarely finished. Manish chose "warlord can raid one of the emperor's palaces/pagodas in lieu of collecting realia from one player", at eight players only. It lets the Warlord skip his worst target and gives the Emperor a reason to guard a palace. Simulated campaigns (`design/warlord-balance.md`) put it at +5 to +15 points of completion at eight players.
 
-**Recorded in** rulebook Sections 11 and 14, the Warlord in Section 27, Appendices C and G, the reference cards, and `playthrough-sim/engine.py` (a palace raid enters `warlord_got` as the wildcard only at eight players).
+**Recorded in** rulebook Sections 11 and 14, the Warlord in Section 26, Appendices C and G, the reference cards, and `playthrough-sim/engine.py` (a palace raid enters `warlord_got` as the wildcard only at eight players).
 
 ### The Warlord hires reinforcements
 
@@ -126,7 +126,7 @@ The eight-player wildcard came the same night: with the Emperor left out, the Wa
 
 **Why.** A balance choice, made by Manish on 2026-10-27 after simulated campaigns. The Warlord's booklet hints at it ("Your only desire is to accumulate wealth enough to buy more soldiers who can defeat the Imperial Army"; "Add soldiers if necessary") but gives no rule, and without one the Warlord's grain had no use and every lost soldier was permanent, so he never risked one. Manish first suggested capping the army at the number of players; `tools/warlord_sim.py` found that far too easy (the objective completed in 67–85% of medium-defence games). The starting army plus one keeps the objective possible but contested: about 60% / 40% completion at eight players with medium / high defence, 44% / 14% at six, 60% / 37% at five. A "home guard" (bought soldiers moving inside their own province before the first raid) was also tested and barely changed anything, so the 1969 rule stays. Hiring after the march, on the Warlord's own land, means a new soldier never appears and raids in the same turn: every province sees it coming. See `design/warlord-balance.md`.
 
-**Recorded in** rulebook Section 14 (with a note on guarding a piece), the Warlord in Section 27, Appendices C and G, the Warlord's reference card, and `playthrough-sim/engine.py` (`hire_soldier`).
+**Recorded in** rulebook Section 14 (with a note on guarding a piece), the Warlord in Section 26, Appendices C and G, the Warlord's reference card, and `playthrough-sim/engine.py` (`hire_soldier`).
 
 
 ### A new Warlord
@@ -143,7 +143,7 @@ The eight-player wildcard came the same night: with the Emperor left out, the Wa
 
 **Why.** The Warlord's booklet offers "either 5 million bags of grain, the realia or the cost of the realia", but realia have no cost: nothing prints a price, and a piece sells for whatever the auction brings. "The cost of the structure" belongs to the Emperor's buildings (below), and the rulebook had blurred the two. Simplified by Manish on 2026-10-27.
 
-**Recorded in** rulebook Section 14 (with a reminder that the Warlord needs one piece from every player), the Warlord in Section 27, Appendices C and G, and the reference cards. The playthrough engine never offered the cost option (`march(take=...)` takes the piece or the 5).
+**Recorded in** rulebook Section 14 (with a reminder that the Warlord needs one piece from every player), the Warlord in Section 26, Appendices C and G, and the reference cards. The playthrough engine never offered the cost option (`march(take=...)` takes the piece or the 5).
 
 ### A raided palace stays standing
 
@@ -151,7 +151,7 @@ The eight-player wildcard came the same night: with the Emperor left out, the Wa
 
 **Why.** The Emperor's booklet calls the three buildings realia ("any realia (the Summer Palace, Winter Palace and Marble Pagoda)"), and the Warlord's booklet lets the Warlord demand "either 5 million bags of grain, the realia or the cost of the realia" when raiding realia. Read together, that would let the Warlord carry off a palace. But the Emperor's booklet names one outcome for these buildings, "you must pay him the cost of the structure", and taking one would un-build a public work: the game can't end until every work stands, and no rule says how to rebuild one. Settled by Manish on 2026-10-27.
 
-**Recorded in** rulebook Section 14, Province 1 in Section 20, Appendices C and G, the Emperor's and Warlord's reference cards, and `playthrough-sim/engine.py` (a palace raid charges 20 and leaves the palace on the board).
+**Recorded in** rulebook Section 14, Province 1 in Section 19, Appendices C and G, the Emperor's and Warlord's reference cards, and `playthrough-sim/engine.py` (a palace raid charges 20 and leaves the palace on the board).
 
 ### Is the Province 1 Wall owed when Provinces 2 and 3 are empty?
 
@@ -181,7 +181,7 @@ The eight-player wildcard came the same night: with the Emperor left out, the Wa
 
 **Why.** The originals don't close the sea, and this is a balance choice, made to give the Warlord's objective a fair chance. The Warlord's booklet says soldiers "may move anywhere on the board" and "may begin the game on any square in any undeveloped land", and rulebook Section 3 counts the sea as undeveloped land. The sea was closed on 2026-10-25 only to keep Note 16's claim that "Provinces 4 and 5 can be reached only through the gap", which was our own editorial reading, not 1969 text. With the sea closed, the deepest squares of Provinces 1, 4 and 5 were 5, 6 and 7 steps from the army's possible starts; with it open, 3 each, and the coast bypasses the southern river's tolls into 4 and 5. **A table that prefers a closed coast can keep soldiers off the sea**, at the cost of an objective that is rarely completed at eight players. Approved by Manish on 2026-10-27.
 
-**Recorded in** rulebook Sections 3, 4, 13 and 14, the Warlord in Section 27, Note 16 in Appendix F, Appendices C and G, the reference cards, and `playthrough-sim/engine.py` (`UNDEVELOPED`, `_step`).
+**Recorded in** rulebook Sections 3, 4, 13 and 14, the Warlord in Section 26, Note 16 in Appendix F, Appendices C and G, the reference cards, and `playthrough-sim/engine.py` (`UNDEVELOPED`, `_step`).
 
 ### Moving onto a square
 
@@ -303,7 +303,7 @@ The details, settled by Manish on 2026-10-25:
 
 **Why.** At 4–5 players the table is either the upper class or the peasants, never a mix (Section 4), so in the peasant game a climbing Peasant has no upper-class seat to take. Under Note 11 alone, a completed set only shuffles the peasants among themselves, and the Silk Peasant's set leads nowhere. The agent-played pilot showed it: Paddy completed his set in Year 3 and could only move from Rice to Silk. Letting any Peasant take the throne directly was considered and turned down: sets come early at a small table, the Emperor can't bid to block one, and the throne would change hands with every set. With the Silk Peasant standing in, the ladder keeps the full game's pace: two climbs for Wheat and Rice alike (to Silk, then to the throne), and the Emperor sees each one coming. The booklets' "Becoming Emperor" boilerplate, which every Peasant carries, supports it. Decided by Manish on 2026-10-27.
 
-**Recorded in** rulebook Section 11 (with Note 11 and its appendix entry), the Silk Peasant in Section 24, the rules on one page, the Silk Peasant's reference card, and `playthrough-sim/engine.py` (`swap`).
+**Recorded in** rulebook Section 11 (with Note 11 and its appendix entry), the Silk Peasant in Section 23, the rules on one page, the Silk Peasant's reference card, and `playthrough-sim/engine.py` (`swap`).
 
 ### Paying for a Public Work pays the Harvest Pile
 
