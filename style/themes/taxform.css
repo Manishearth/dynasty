@@ -17,7 +17,7 @@ body{counter-reset:line}
 .rulebook .sheet::before{content:"Form 1969-EZ   ·   Imperial Grain Revenue Service   ·   OMB No. 0008-PROVINCES";
   position:absolute;top:0;left:0;right:0;padding:.35rem 3.4rem;background:#000;color:#fff;
   font:700 .7rem/1.4 var(--display);letter-spacing:.06em;white-space:pre}
-.rulebook .sheet::after{content:"For Paperwork Reduction Act Notice, see Appendix F.   Cat. No. 1969X";
+.rulebook .sheet::after{content:"For Paperwork Reduction Act Notice, see Appendix E.   Cat. No. 1969X";
   position:absolute;bottom:.5rem;right:3.4rem;font:.62rem var(--display);color:#555;white-space:pre}
 .rulebook h2{font-weight:900;font-size:1.25rem}
 .sec-head{border-bottom:3px solid #000}

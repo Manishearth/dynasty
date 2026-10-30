@@ -19,7 +19,7 @@ What's still to do, what's waiting on Manish, and the known issues. Take an item
 
 ## The rulebook
 
-- **Appendix D, the worked round**, has the Warlord pay the Rice Peasant a river toll on the way to raid Province 6 in Round One. On the real map no river lies between the desert and Province 6, so the example may want a different province.
+- **Appendix C, the worked round**, has the Warlord pay the Rice Peasant a river toll on the way to raid Province 6 in Round One. On the real map no river lies between the desert and Province 6, so the example may want a different province.
 
 ## The reference cards
 

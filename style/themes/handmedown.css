@@ -34,10 +34,10 @@
 #s18::after{content:"Mom wins.\A Mom always\A wins."}
 #p1::after{content:"Eric cried"}
 #p8::after{content:"(see Aunt Ruth)";color:var(--pencil)}
-#apf::after{content:"who IS the\A editor??"}
-#apg::after{content:"we just\A shout";transform:rotate(5deg)}
+#ape::after{content:"who IS the\A editor??"}
+#apf::after{content:"we just\A shout";transform:rotate(5deg)}
 /* coffee */
-#s3,#p4,#apc{background-image:var(--ring),linear-gradient(225deg,var(--canvas) 0 1.3rem,#D8C79C 1.3rem 1.45rem,#E9DAB0 1.45rem 2.6rem,transparent 2.6rem),radial-gradient(ellipse at center,var(--paper) 55%,#E8D7A8 100%) !important;
+#s3,#p4,#apb{background-image:var(--ring),linear-gradient(225deg,var(--canvas) 0 1.3rem,#D8C79C 1.3rem 1.45rem,#E9DAB0 1.45rem 2.6rem,transparent 2.6rem),radial-gradient(ellipse at center,var(--paper) 55%,#E8D7A8 100%) !important;
   background-size:7.6rem 7.6rem,3.6rem 3.6rem,auto !important;background-position:calc(100% - 1.4rem) calc(100% - 3rem),top right,center !important;background-repeat:no-repeat !important}
 
 /* the cover: taped back together, priced at a yard sale, and claimed */
@@ -73,6 +73,6 @@
   .wordmark{color:var(--vermilion)}
   .cover hr{opacity:1}
   .rulebook .sheet:not(.cover)::after{right:0;top:3.4rem;width:1.2in}
-  #s3,#p4,#apc{background:var(--ring) calc(100% - .2in) 2in/7.6rem 7.6rem no-repeat,#fff !important}
+  #s3,#p4,#apb{background:var(--ring) calc(100% - .2in) 2in/7.6rem 7.6rem no-repeat,#fff !important}
   .refcards .card{background:#fff}
 }

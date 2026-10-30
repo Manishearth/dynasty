@@ -65,6 +65,7 @@ table.inc td:nth-child(2),table.inc tr:last-child th:nth-child(2){color:var(--in
 table.inc td:nth-child(3){font-weight:700}
 table.inc th.grp{text-align:center;border-bottom:.5px solid var(--rule);padding-bottom:0}
 table.inc th.blank{border-bottom:0}
+table.works td:first-child{width:50%} table.works td:nth-child(2){white-space:nowrap}
 @media screen and (max-width:640px){
   table{font-size:.84rem}
   th,td{padding:.38rem .3rem}

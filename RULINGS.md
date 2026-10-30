@@ -4,7 +4,7 @@ Every rules question this project has settled, in one place. The 1969 game sprea
 
 **Everyone working on this repo, human or Claude, adds their rulings here.** That includes clarifications that never become a numbered rulebook note, and the assumptions the playthrough engine makes. If you decide how a rule works, write it down here before you build on it. If a question comes up that you can't settle from the sources, put it under [Open questions](#open-questions) and ask Manish. Don't invent an answer.
 
-Each entry gives the question, the ruling, the reasoning, and where it's recorded. "Note N" means the numbered note in `rulebook.html`: a pink box where the rule applies, repeated in Appendix F with the original wording. Notes are numbered in reading order, so adding one renumbers every later note. When that happens, update this file and every `Note N` reference in `playthrough-sim/`.
+Each entry gives the question, the ruling, the reasoning, and where it's recorded. "Note N" means the numbered note in `rulebook.html`: a pink box where the rule applies, repeated in Appendix E with the original wording. Notes are numbered in reading order, so adding one renumbers every later note. When that happens, update this file and every `Note N` reference in `playthrough-sim/`.
 
 - [Rulebook notes](#rulebook-notes)
 - [Clarifications](#clarifications)
@@ -15,7 +15,7 @@ Each entry gives the question, the ruling, the reasoning, and where it's recorde
 
 ## Rulebook notes
 
-These are the numbered notes, as of this writing. Appendix F has the full text and the original wording.
+These are the numbered notes, as of this writing. Appendix E has the full text and the original wording.
 
 | Note | Question | Ruling |
 |---|---|---|
@@ -42,7 +42,7 @@ These are the numbered notes, as of this writing. Appendix F has the full text a
 
 ## Clarifications
 
-These follow from the rules rather than overriding them, so they get a plain sentence in the rulebook (or none) rather than a numbered note. Rulebook Appendix G lists each one in its Clarifications table, and its I Ching table mirrors the card readings below: when you add or change one here, change it there too.
+These follow from the rules rather than overriding them, so they get a plain sentence in the rulebook (or none) rather than a numbered note. Rulebook Appendix F lists each one in its Clarifications table, and its I Ching table mirrors the card readings below: when you add or change one here, change it there too.
 
 ### Raiding a public work
 
@@ -95,7 +95,7 @@ Two readings the playthroughs add, from the booklets' wording: each province dev
 
 **Why.** The Emperor's booklet: "You or Provinces 2 and 3 may develop the New Land below the Great Wall when 4 sections in each Province have been built." So the Emperor is gated too, which the rulebook had missed. "4 sections in each Province" could mean all twelve links, but the Official's and Gentry's booklets gate their land on "all four links", their own, and only the per-province reading lets all three booklets agree. Settled by Manish on 2026-10-25. The playthroughs had Reina buy strip squares with two and three of her links built; both purchases are now sea.
 
-**Recorded in** rulebook Section 13, Province 1's table in Section 19, Appendices C and G, the reference cards, and `playthrough-sim/engine.py` (`buy_land`).
+**Recorded in** rulebook Section 13, Province 1's table in Section 19, Appendices B and F, the reference cards, and `playthrough-sim/engine.py` (`buy_land`).
 
 ### Which Wall links are above which province
 
@@ -103,7 +103,7 @@ Two readings the playthroughs add, from the booklets' wording: each province dev
 
 **Why.** The cloth prints twelve links in a row spelling GREAT WALL, with no province numbers, and the booklets only say "four links above your province". The provinces don't sit neatly under the Wall: links 9–12 (W, A, L, L) are clearly over Province 1, east of the river; Province 2 sits inside the river's northern loop, under only about two links; and Province 3 lies south of Province 2, nowhere under the Wall, so its links stand over the Warlord's land. Twelve links, three provinces and "four links" each leave one split that keeps the provinces in their west-to-east order. Settled by Manish on 2026-10-25.
 
-**Recorded in** rulebook Section 12 and Appendix G, `map.svg` (labels), and `tools/build_map.py` (`WALL_GROUPS`, which writes `above_province` in `map.json`).
+**Recorded in** rulebook Section 12 and Appendix F, `map.svg` (labels), and `tools/build_map.py` (`WALL_GROUPS`, which writes `above_province` in `map.json`).
 
 ### The Warlord's objective leaves out the Emperor
 
@@ -118,7 +118,7 @@ At eight players the objective was close to impossible (seven targets, four sold
 
 The eight-player wildcard came the same night: with the Emperor left out, the Warlord had no objective reason ever to enter Province 1, and an eight-player Warlord still rarely finished. Manish chose "warlord can raid one of the emperor's palaces/pagodas in lieu of collecting realia from one player", at eight players only. It lets the Warlord skip his worst target and gives the Emperor a reason to guard a palace. Simulated campaigns (`design/warlord-balance.md`) put it at +5 to +15 points of completion at eight players.
 
-**Recorded in** rulebook Sections 11 and 14, the Warlord in Section 26, Appendices C and G, the reference cards, and `playthrough-sim/engine.py` (a palace raid enters `warlord_got` as the wildcard only at eight players).
+**Recorded in** rulebook Sections 11 and 14, the Warlord in Section 26, Appendices B and F, the reference cards, and `playthrough-sim/engine.py` (a palace raid enters `warlord_got` as the wildcard only at eight players).
 
 ### The Warlord hires reinforcements
 
@@ -126,7 +126,7 @@ The eight-player wildcard came the same night: with the Emperor left out, the Wa
 
 **Why.** A balance choice, made by Manish on 2026-10-27 after simulated campaigns. The Warlord's booklet hints at it ("Your only desire is to accumulate wealth enough to buy more soldiers who can defeat the Imperial Army"; "Add soldiers if necessary") but gives no rule, and without one the Warlord's grain had no use and every lost soldier was permanent, so he never risked one. Manish first suggested capping the army at the number of players; `tools/warlord_sim.py` found that far too easy (the objective completed in 67–85% of medium-defence games). The starting army plus one keeps the objective possible but contested: about 60% / 40% completion at eight players with medium / high defence, 44% / 14% at six, 60% / 37% at five. A "home guard" (bought soldiers moving inside their own province before the first raid) was also tested and barely changed anything, so the 1969 rule stays. Hiring after the march, on the Warlord's own land, means a new soldier never appears and raids in the same turn: every province sees it coming. See `design/warlord-balance.md`.
 
-**Recorded in** rulebook Section 14 (with a note on guarding a piece), the Warlord in Section 26, Appendices C and G, the Warlord's reference card, and `playthrough-sim/engine.py` (`hire_soldier`).
+**Recorded in** rulebook Section 14 (with a note on guarding a piece), the Warlord in Section 26, Appendices B and F, the Warlord's reference card, and `playthrough-sim/engine.py` (`hire_soldier`).
 
 
 ### A new Warlord
@@ -143,7 +143,7 @@ The eight-player wildcard came the same night: with the Emperor left out, the Wa
 
 **Why.** The Warlord's booklet offers "either 5 million bags of grain, the realia or the cost of the realia", but realia have no cost: nothing prints a price, and a piece sells for whatever the auction brings. "The cost of the structure" belongs to the Emperor's buildings (below), and the rulebook had blurred the two. Simplified by Manish on 2026-10-27.
 
-**Recorded in** rulebook Section 14 (with a reminder that the Warlord needs one piece from every player), the Warlord in Section 26, Appendices C and G, and the reference cards. The playthrough engine never offered the cost option (`march(take=...)` takes the piece or the 5).
+**Recorded in** rulebook Section 14 (with a reminder that the Warlord needs one piece from every player), the Warlord in Section 26, Appendices B and F, and the reference cards. The playthrough engine never offered the cost option (`march(take=...)` takes the piece or the 5).
 
 ### A raided palace stays standing
 
@@ -151,7 +151,7 @@ The eight-player wildcard came the same night: with the Emperor left out, the Wa
 
 **Why.** The Emperor's booklet calls the three buildings realia ("any realia (the Summer Palace, Winter Palace and Marble Pagoda)"), and the Warlord's booklet lets the Warlord demand "either 5 million bags of grain, the realia or the cost of the realia" when raiding realia. Read together, that would let the Warlord carry off a palace. But the Emperor's booklet names one outcome for these buildings, "you must pay him the cost of the structure", and taking one would un-build a public work: the game can't end until every work stands, and no rule says how to rebuild one. Settled by Manish on 2026-10-27.
 
-**Recorded in** rulebook Section 14, Province 1 in Section 19, Appendices C and G, the Emperor's and Warlord's reference cards, and `playthrough-sim/engine.py` (a palace raid charges 20 and leaves the palace on the board).
+**Recorded in** rulebook Section 14, Province 1 in Section 19, Appendices B and F, the Emperor's and Warlord's reference cards, and `playthrough-sim/engine.py` (a palace raid charges 20 and leaves the palace on the board).
 
 ### Is the Province 1 Wall owed when Provinces 2 and 3 are empty?
 
@@ -181,7 +181,7 @@ The eight-player wildcard came the same night: with the Emperor left out, the Wa
 
 **Why.** The originals don't close the sea, and this is a balance choice, made to give the Warlord's objective a fair chance. The Warlord's booklet says soldiers "may move anywhere on the board" and "may begin the game on any square in any undeveloped land", and rulebook Section 3 counts the sea as undeveloped land. The sea was closed on 2026-10-25 only to keep Note 16's claim that "Provinces 4 and 5 can be reached only through the gap", which was our own editorial reading, not 1969 text. With the sea closed, the deepest squares of Provinces 1, 4 and 5 were 5, 6 and 7 steps from the army's possible starts; with it open, 3 each, and the coast bypasses the southern river's tolls into 4 and 5. **A table that prefers a closed coast can keep soldiers off the sea**, at the cost of an objective that is rarely completed at eight players. Approved by Manish on 2026-10-27.
 
-**Recorded in** rulebook Sections 3, 4, 13 and 14, the Warlord in Section 26, Note 16 in Appendix F, Appendices C and G, the reference cards, and `playthrough-sim/engine.py` (`UNDEVELOPED`, `_step`).
+**Recorded in** rulebook Sections 3, 4, 13 and 14, the Warlord in Section 26, Note 16 in Appendix E, Appendices B and F, the reference cards, and `playthrough-sim/engine.py` (`UNDEVELOPED`, `_step`).
 
 ### Moving onto a square
 
@@ -215,7 +215,7 @@ The details, settled by Manish on 2026-10-25:
 
 **Why.** Nothing in the originals covers it. Note 8 covers only tax on a negative income. The hints: the Rice Peasant's fire ("you must borrow grain"), the General Instructions' "deficit spending program", and the peasants who revolt "only if the alternative is death or starvation".
 
-**Recorded in** rulebook Section 8 and Note 7, with the hints in Appendix F, and the seventh cause in Section 16; `playthrough-sim/engine.py` (`sell_back`, `lot(PILE, ...)`, the debt guards).
+**Recorded in** rulebook Section 8 and Note 7, with the hints in Appendix E, and the seventh cause in Section 16; `playthrough-sim/engine.py` (`sell_back`, `lot(PILE, ...)`, the debt guards).
 
 ### Rounding to the half million
 
@@ -223,7 +223,7 @@ The details, settled by Manish on 2026-10-25:
 
 **Why.** The smallest bag in the box is half a million, so a quarter million can't change hands. Rounding in the payer's favour means nobody is ever asked for grain the rules didn't strictly demand. Set by Manish on 2026-10-25.
 
-**Recorded in** rulebook Section 8 (the general rule), restated in Sections 9 (tax), 10 (commission) and 15 (disasters) and in the worked round (Appendix D); `playthrough-sim/engine.py` (`pay_down`).
+**Recorded in** rulebook Section 8 (the general rule), restated in Sections 9 (tax), 10 (commission) and 15 (disasters) and in the worked round (Appendix C); `playthrough-sim/engine.py` (`pay_down`).
 
 ### Calling off a revolt
 
@@ -239,7 +239,7 @@ The details, settled by Manish on 2026-10-25:
 
 **Why.** Section 16 lists the qualifications ("the most money, the most friends, the most soldiers, or any combination") but not how to settle rival claims. The Warlord's starting army nearly always gives the Warlord the most soldiers, so "any one qualification wins" would hand the Warlord the throne after almost every revolt. Counting the three lets a soldiers-only claim block rather than win, keeps friends as real a resource as grain, and makes a split table pay for its revolt with a longer Chaos. Rich proposed it at the table in game 7; adopted into the rulebook by Manish on 2026-10-27.
 
-**Recorded in** rulebook Section 16, Appendices C and G, the "Running the round" card, and games 2 and 7. Which soldiers count, and that a claimant isn't their own friend, settled by Manish on 2026-10-28 while the second Dark Ages game was planned.
+**Recorded in** rulebook Section 16, Appendices B and F, the "Running the round" card, and games 2 and 7. Which soldiers count, and that a claimant isn't their own friend, settled by Manish on 2026-10-28 while the second Dark Ages game was planned.
 
 ### No seat change takes the throne under Chaos
 
@@ -319,7 +319,7 @@ The details, settled by Manish on 2026-10-25:
 
 **Why.** "Must auction" is the rules' check on hoarding (General Instructions: "One of the penalties of hoarding…"), and an unmeetable minimum hoards in all but name. One round of holding back keeps the bargaining move (Noah's 365 minimum in the full game's Year 6, priced half a grain past Reina's reach) without letting a piece be kept out of play for good. Approved by Manish on 2026-10-27, during the agent-played full game.
 
-**Recorded in** rulebook Section 10 (The auction), the rules on one page, Appendix G, and the general and round reference cards. The engine doesn't enforce minimums; the agent tools (`rules-digest.md`, `briefs.py --floor`) carry the rule, and the full game applies it from Year 9.
+**Recorded in** rulebook Section 10 (The auction), the rules on one page, Appendix F, and the general and round reference cards. The engine doesn't enforce minimums; the agent tools (`rules-digest.md`, `briefs.py --floor`) carry the rule, and the full game applies it from Year 9.
 
 ### The crown may build a negotiated work alone
 
@@ -327,7 +327,7 @@ The details, settled by Manish on 2026-10-25:
 
 **Why.** Section 12: "the province player and the Emperor haggle over the split… Neither side can force the other." The split is what's negotiated, and forcing means forcing someone to pay. Read as a veto, it would let one province hold the game open for ever, since the game ends only when every work is built (Section 18). It came up in the agent-played full game, Year 13: the Official, Graham, refused the Province 2 Irrigation System even at the crown's whole cost, with an extra 100 on top, so that the game wouldn't end. Manish: "Yes, crown can", on 2026-10-28.
 
-**Recorded in** rulebook Section 12 ("Who pays") and Appendix G. The engine's `build()` already takes any split.
+**Recorded in** rulebook Section 12 ("Who pays") and Appendix F. The engine's `build()` already takes any split.
 
 ## I Ching cards
 
@@ -377,7 +377,7 @@ Judgement calls made while writing the games. None overrides a rule; each fills 
 - **The Warlord's objective counts raids, not holdings.** "A different piece of realia from each other realia-holding player" is met by the raid itself: a piece since sold back or on still counts, and a piece once sold to a player counts when raided back from that player. Game 5 takes a Customs House, Jar, Scroll and Vase from four different players.
 - **"Realia-holding" means the seat, not what's in hand.** Every player in Provinces 2–7 is on the Warlord's list, even one who holds no piece at the moment; such a player blocks the objective until they own something to raid. Only the Emperor (and the Warlord) are off it. Game 5's Year 7 auction turns on this: if Clark took the throne, Reina would sit in Province 2 with nothing in hand and every reason to stay that way, so Rob pays 120 to stop him (games 4 and 5). Confirmed by Manish on 2026-10-27, over the other reading (an empty-handed player simply drops off the list).
 - **The Warlord may sell raided realia privately**, to anyone, as an ordinary trade; the buyer places it at once (Note 10). Games 4 and 5.
-- **Unsold stock is sold only at auction.** A province's unsold stock belongs to the province, not to its player, until it is auctioned (§10: "Each type of realia belongs to one province, and that province's player is the one who sells it"; Appendix E, the worked seat change: "The unsold Brush was never the player's: it stays with Province 4"). A seller can't sell a piece out of stock by private trade. Pieces on the board can be traded at any time. Decided in the agent-played full game, Year 13, when the Scholar offered the Gentry 65 for a Land Deed from his stock. Approved by Manish on 2026-10-27. The engine's `give()` already moves only placed pieces.
+- **Unsold stock is sold only at auction.** A province's unsold stock belongs to the province, not to its player, until it is auctioned (§10: "Each type of realia belongs to one province, and that province's player is the one who sells it"; Appendix D, the worked seat change: "The unsold Brush was never the player's: it stays with Province 4"). A seller can't sell a piece out of stock by private trade. Pieces on the board can be traded at any time. Decided in the agent-played full game, Year 13, when the Scholar offered the Gentry 65 for a Land Deed from his stock. Approved by Manish on 2026-10-27. The engine's `give()` already moves only placed pieces.
 - **Private deals are allowed for anything**, including paying a player to leave a piece unguarded or a Gentry to hold a piece (games 3 and 5). The engine records only the grain.
 - **A bought soldier may be placed on its buyer's own realia** (games 4 and 5); it then guards the piece, since the Warlord can take it only by capturing first, straight on.
 - **Twenty in hand caps a useful bid.** A player who must keep 20 to change seats can't usefully bid past their grain less 20 for a piece that completes their set (game 5, Year 7).

@@ -65,7 +65,7 @@ Every number mirrors the rulebook and `RULINGS.md`, but **the script hardcodes t
 | Table in the script | What it holds | Source |
 |---|---|---|
 | `TURN` | The nine steps of a round | Section 5, Note 5 |
-| `SCRIPT`, `ROUND_ONE`, `CHAOS`, `END_CHECKS`, `ANYTIME` | The Running the round card | Sections 5, 8–16, Appendix C, Notes 5, 7, 8, 13, 17; `RULINGS.md` |
+| `SCRIPT`, `ROUND_ONE`, `CHAOS`, `END_CHECKS`, `ANYTIME` | The Running the round card | Sections 5, 8–16, Appendix B, Notes 5, 7, 8, 13, 17; `RULINGS.md` |
 | `MONEY`, `PILE_OUT`, `PILE_IN` | Fixed sums; the Harvest Pile | Sections 7–14 |
 | `WORKS`, `OWED`, `OWED_NOTE` | Public works, costs, who pays, bonuses | Section 12, each province's booklet section |
 | `STATS`, `income_table()` | Population, consumption and harvest; the income rows ×1 to ×6 | Section 7, Note 6 |
