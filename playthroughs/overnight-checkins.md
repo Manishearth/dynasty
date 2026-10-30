@@ -160,3 +160,15 @@ The peasant's game is paused after Year 10, waiting on Manish. Nothing is broken
 ## 21:03 (Director report)
 
 - The Dark Ages (second attempt): finished in Year 14, in survival. Clark is Emperor. dark-ages dropped from IN_PROGRESS. Rebuilt playthrough.html: 9 games, 3155 entries, all finished. Uncommitted.
+
+## 22:53
+
+- No live games: all nine on the page are finished, the Dark Ages last (Year 14, survival). Its Director has been idle since 22:31. Nothing blocked. No messages sent.
+- Usage: 0% of the new 5-hour window (resets 02:30), 39% weekly.
+- Page: IN_PROGRESS is empty. Rebuilt playthrough.html: 9 games, unchanged from the pushed version.
+
+## 00:53
+
+- No live games; no session active since 22:31. Nothing blocked. No messages sent.
+- Usage: 0% of the 5-hour window (resets 02:30), 39% weekly.
+- Page: unchanged (9 games, all finished). No rebuild needed.

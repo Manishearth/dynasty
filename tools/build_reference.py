@@ -29,7 +29,7 @@ REALIA = {2: "Customs House", 3: "Land Deed Scroll", 4: "Bamboo Brush",
           5: "Dragon Jar", 6: "Wooden Bowl", 7: "Vase"}
 PLURAL = {2: "Customs Houses", 3: "Land Deed Scrolls", 4: "Bamboo Brushes",
           5: "Dragon Jars", 6: "Wooden Bowls", 7: "Vases"}
-ROLE = {1: "Emperor", 2: "Official", 3: "Gentry / Landholder", 4: "Scholar",
+ROLE = {1: "Emperor", 2: "Official", 3: "Gentry", 4: "Scholar",
         5: "Silk Peasant", 6: "Rice Peasant", 7: "Wheat Peasant", 8: "Warlord"}
 # The emblem in a province card's header: the realia it sells, or the Emperor's Winter Palace.
 MARK = {1: "winter-palace", 2: "customs-house", 3: "land-deed-scroll", 4: "bamboo-brush",
@@ -68,7 +68,7 @@ TURN = [
     ("Emperor", "Public Works",
      "Build one project. Cost-shares and new harvest squares are negotiated and bought now."),
     ("All, from Province 1 up", "Auction",
-     "Each player auctions one piece of their realia. The Warlord raids instead."),
+     "Each player auctions one piece of their realia."),
     ("Provinces", "Soldiers",
      "After the Warlord has moved, your soldiers may move one square."),
     ("Emperor", "Salaries",
@@ -77,14 +77,14 @@ TURN = [
 
 MONEY = [
     ("Harvest", "Good 100 · average 75 · bad 50. Warlord 40 · 30 · 20."),
-    ("Tax", "10–90% of harvest income only. None on a loss or from the Emperor."),
+    ("Tax", "10–90% of income. None on a loss."),
     ("Rent", "5 or more from each Peasant to the Gentry, if demanded."),
     ("Salaries", "5 or more each to the Official and the Scholar."),
     ("Auction", "Minimum bid 2 (the seller may set it higher; an unsold lot reopens at 2 next round). Seller keeps 25%; 75% goes to the Pile. The Emperor never bids."),
     ("Sell back", "Any realia to the Pile for 2."),
     ("Raid", "5 per new square, 10 in Province 1. Realia: 5 or the piece. Palace or pagoda: its full cost. Other works: an ordinary raid."),
     ("Soldiers", "20 each from the Warlord, who keeps 25%; the rest to the Pile."),
-    ("Crossing water", "The Warlord pays 5 per soldier that crosses a river or a public work, to that province."),
+    ("Crossing water", "The Warlord pays 5 per soldier that crosses a river, a canal, a cut-out or the Great Wall, to that province."),
     ("New harvest square", "Only once your population has doubled (×2). 20 from the Pile; yields +20 every round after. Share cost and yield with the Emperor."),
     ("Changing seats", "Complete your set and hold 20. The player you replace draws 60 from the Pile."),
 ]
@@ -128,7 +128,7 @@ SCRIPT = [
      "One project: any number of sections of one work. Palaces before what needs them; nothing else built means the Marble Pagoda. Cost shares paid; new harvest squares bought from the Pile."),
     ("Auction", "Provinces 2 to 7, in order",
      "Province 2, what are you selling?",
-     "One piece each; minimum bid 2, and an unsold lot reopens at 2 next round. The Emperor never bids. Seller keeps ¼, rounded down to the half million; the rest to the Pile. The buyer places it at once. Then the Pile auctions anything sold back to it. The Warlord raids instead."),
+     "One piece each; minimum bid 2, and an unsold lot reopens at 2 next round. The Emperor never bids. Seller keeps ¼, rounded down to the half million; the rest to the Pile. The buyer places it at once. Then the Pile auctions anything sold back to it."),
     ("Soldiers", "Provinces",
      "Anyone moving soldiers?",
      "Only after the Warlord’s have moved; one square each. A bought soldier stays put until its province has been raided."),
@@ -214,8 +214,8 @@ DUTIES = {
         "Any other square is an ordinary raid; works there are undamaged.",
         "Sell soldiers to anyone who asks: 20 each, you keep 25%.",
         "After moving, you may hire one soldier: 20 to the Pile, on your own land, up to one more than you started with.",
-        "Pay 5 per soldier that crosses a river or a public work, the Great Wall included. The Wall stands outside the provinces, so it can't be raided.",
-        "Pay your tax, or refuse: only soldiers or politics can make you. You hold no realia and never auction."],
+        "Pay 5 per soldier that crosses a river, a canal, a cut-out or the Great Wall. The Wall stands outside the provinces, so it can't be raided.",
+        "Pay your tax, or refuse: only soldiers or politics can make you. You have no realia of your own and never auction; a piece you raid or buy you may keep or sell privately."],
 }
 
 OWED = {
