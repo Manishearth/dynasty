@@ -1,4 +1,5 @@
 # Game 6 — All's Quiet on the Western Front. Seven players, no Warlord, ten years.
+LAND_BLOCK = 1   # played before harvest squares were found to cover 2 x 2 map squares: one square each (engine buy_land)
 setup([1,2,3,4,5,6,7], "quiet", "All's Quiet on the Western Front",
       "Seven players · ten years · no Warlord",
       "Seven players and no Warlord: no raids, no soldiers, and nobody in the desert. Everything is fought over with grain instead: rents, retainers and minimum bids. The Emperor pays a man every year to keep one Dragon Jar off the market, the population doubles, the peasants farm the Warlord's empty land, and a silk farmer climbs twice to the throne.",

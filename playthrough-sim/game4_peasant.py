@@ -384,14 +384,14 @@ build("Great Wall — 2 links above Province 1", 80, {5:80}, wall={1:2}, hover=T
  ("Paddy","Eighty, all mine. Two links of wall above a province I don't live in."),
  ("Reina","My Wall, Paddy's money. It still counts as a public work built by the crown, and I'm not going to ask anyone whether it should."),
  ("","Paddy pays the 80.")))
-buy_land(7, ["T16","T17"], {7:30, 1:10}, "New land: Silke buys two squares of the Warlord's land below Province 7, T16 and T17. Silke pays 30, the crown 10.", TH(
+buy_land(7, ["T15","T17"], {7:30, 1:10}, "New land: Silke buys two squares of the Warlord's land below Province 7, T15 and T17. Silke pays 30, the crown 10.", TH(
  ("Silke","Province 7's booklet only lets it develop the desert, so it's the desert. The south edge, under the wheat, four rows from his soldier on P17. Thirty of my own for forty next year."),
  ("Rob","They're on my sand, and I can walk on sand. Four rows is four years. Somebody keep this game going."),
  ("Reina","Five a square from the crown. It's Paddy's money and he's sitting right there.")))
-buy_land(6, ["R25","S26"], {6:30, 1:10}, "New land: Graham buys two squares of sea off the coast of Province 6, R25 and S26. Graham pays 30, the crown 10.", TH(
+buy_land(6, ["R26","T26"], {6:30, 1:10}, "New land: Graham buys two squares of sea off the coast of Province 6, R26 and T26. Graham pays 30, the crown 10.", TH(
  ("Graham","Province 6 is the only booklet that offers a choice: the sea or the Warlord's land. The sea, off the far end of the rice fields. He can walk on water now, but the nearer of these is six squares from either of his soldiers, and I've been raided out of one province already."),
  ("Rob","Six years' walk, for a game that's got one left. He's bought the one bit of sea I'll never reach.")))
-buy_land(5, ["M26","N26"], {5:30, 1:10}, "New land: Paddy buys two squares of sea beside his corner, M26 and N26. Paddy pays 30, the crown 10.", TH(
+buy_land(5, ["L26","N27"], {5:30, 1:10}, "New land: Paddy buys two squares of sea beside his corner, L26 and N27. Paddy pays 30, the crown 10.", TH(
  ("Paddy","Next to the Scroll and the Vase, in the sea. The crown's ten is my ten, handed over two minutes ago. The rulebook says the cost is shared with the Emperor. It doesn't say whose money it was first."),
  ("Graham","He's subsidising himself through the Emperor. That's either a loophole or the whole point of the office.")))
 act("Paddy puts up the Customs House that came back to him, Graham the Bowl, and Silke the Scroll. Nobody bids.", TH(

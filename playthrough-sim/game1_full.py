@@ -477,19 +477,19 @@ build("Marble Pagoda", 20, {1:20}, key="Marble Pagoda", at="F17", hover=TH(
  ("Reina","F17, the north-west corner of Province 1, the one square of the throne room his soldiers have never walked toward."),
  ("Rob","She's right. I'd have walked there eventually. I'd have told her first."),
  ("","Reina pays the 20.")))
-buy_land(1, ["F23", "F24", "F25", "F26", "H25"], {1:100}, "New land: Reina buys five squares of sea for Province 1, along the coast at F23 to F26 and H25.", TH(
+buy_land(1, ["E23", "E25", "F27", "H26", "H28"], {1:100}, "New land: Reina buys five squares of sea for Province 1, along the coast at E23, E25, F27, H26 and H28.", TH(
  ("Reina","A hundred, all from the crown, because it's the crown's own land. A hundred a year from next year: the throne room stops starving. The strip under the Wall stays shut to me until my own four links stand, and two are built. So, the sea. His soldier on G25 is one step from four of these. He can raid each square once, at ten. Each one pays twenty a year for ever."),
  ("Rob","The sea, right beside my soldier. Ten a square when I step on one, and she keeps the harvest. She's done the sum before I could.")))
-buy_land(4, ["K25", "J25", "K26"], {4:45, 1:15}, "New land: Silke buys three squares of sea for Province 4, at K25, J25 and K26, the crown paying 15.", TH(
+buy_land(4, ["J25", "J27", "L26"], {4:45, 1:15}, "New land: Silke buys three squares of sea for Province 4, at J25, J27 and L26, the crown paying 15.", TH(
  ("Silke","Forty-five from me. The sea's as open to his soldiers as the desert, and the nearest is three steps up the coast on G25. But that one's going to Reina's palace, and from there a raid on me is five a square. Sixty a year from next year."),
  ("Rob","She's bought land beside the road I'm walking. I'll remember it's there.")))
-buy_land(5, ["M26", "N26", "O27"], {5:45, 1:15}, "New land: Paddy buys three squares of sea for Province 5, at M26, N26 and O27, the crown paying 15.", TH(
+buy_land(5, ["N27", "N29", "P27"], {5:45, 1:15}, "New land: Paddy buys three squares of sea for Province 5, at N27, N29 and P27, the crown paying 15.", TH(
  ("Paddy","Forty-five. My corner of the province gets a coast. Sixty a year, and his nearest soldier's six steps off."),
  ("Clark","Minuted. Paddy: three squares, forty-five in, sixty a year back. It reads better than he'd like.")))
-buy_land(6, ["Q26", "R25"], {6:30, 1:10}, "New land: Noah buys two squares of sea for Province 6, at Q26 and R25, the crown paying 10.", TH(
+buy_land(6, ["R26", "T25"], {6:30, 1:10}, "New land: Noah buys two squares of sea for Province 6, at R26 and T25, the crown paying 10.", TH(
  ("Noah","Thirty is most of what I've got. Two squares, forty a year. The arithmetic is the only thing in this game that's ever been on my side, and it finally is."),
  ("Rich","Noah's bought the sea with his last thirty. I'm about to do something stupider.")))
-buy_land(7, ["Q12", "R12"], {7:30, 1:10}, "New land: Rich buys two squares of the Warlord's desert for Province 7, at Q12 and R12, the crown paying 10.", TH(
+buy_land(7, ["P11", "R11"], {7:30, 1:10}, "New land: Rich buys two squares of the Warlord's desert for Province 7, at P11 and R11, the crown paying 10.", TH(
  ("Rich","Province 7 has no sea. The only land I can develop is his. Two squares of the desert, thirty from me, forty a year, and both of them standing in his own country."),
  ("Rob","He's farming my desert. I'd like to announce now, a year ahead as always, that I'll be visiting it."),
  ("Graham","He's built a wheat field in the Warlord's front garden. It's the bravest thing anybody's done tonight.")))
@@ -555,7 +555,7 @@ build("Great Wall — the last 6 links, two above each of Provinces 1, 2 and 3",
 say("Clark","Minuted, with a star: the Great Wall, all twelve links. This year: the crown eighty, Graham a hundred, Silke thirty, Paddy thirty.", TH(
  ("Clark","Four hundred and eighty, split by the people it protects and the people the land made rich enough to pay."),
  ("Noah","Twelve links. The Wall I said would never be finished, finished by wheat in the desert and rice in the sea.")))
-buy_land(3, ["G9", "G10", "G11"], {3:45, 1:15}, "New land: with the Wall above Province 3 finished, Graham buys three squares of the strip below it, G9, G10 and G11, the crown paying 15.", TH(
+buy_land(3, ["F9", "E11", "E13"], {3:45, 1:15}, "New land: with the Wall above Province 3 finished, Graham buys three squares of the strip below it, F9, E11 and E13, the crown paying 15.", TH(
  ("Graham","The Wall's done, so the strip is mine to farm. Forty-five, and sixty a year from next year. I've waited since last year's card."),
  ("Rob","The strip below the Wall, right by my western soldier's road. I'll announce it next year.")))
 say("Clark","I can't, Majesty. Nine and a half. The fifteen is more than I have.", TH(

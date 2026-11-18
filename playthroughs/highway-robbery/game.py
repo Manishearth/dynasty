@@ -3,6 +3,7 @@
 # The Storyteller writes the act lines and refs the moves; the engine keeps the books.
 # The narrator's lines are not part of the game: they live in narration.md, never here.
 # Each chapter opens with a "# ===== CHAPTER N: <title>" marker.
+LAND_BLOCK = 1   # played before harvest squares were found to cover 2 x 2 map squares: one square each (engine buy_land)
 setup([1, 2, 3, 5, 6, 8], "highway-robbery", "Highway Rob-bery",
       "Six players · twelve years · the Warlord on the throne",
       "Six players, two pieces of each realia and three collectors for every type, so somebody is always one short. "

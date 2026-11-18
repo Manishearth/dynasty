@@ -367,14 +367,14 @@ build("Winter Palace", 20, {1:20}, key="Winter Palace", at="G18", hover=TH(
 say("Silke","Majesty. Four squares of sea, and the crown pays half.", TH(
  ("Silke","M26, N26, O27 and P27, down the coast of Province 5. Forty of mine and forty of his, and next year they pay me eighty. He can walk on the sea like anywhere else, but his nearest soldier is four steps off and about to stand on a palace. Five a raid if he comes; twenty a year a square if he doesn't."),
  ("Rich","Half of every square. To the letter.")))
-buy_land(1, ["H25", "I25", "J25", "G27"], {1:80}, "New land: Rich buys four squares of sea for Province 1, at H25, I25, J25 and G27, and pays for them alone.", TH(
+buy_land(1, ["H25", "J25", "J27", "F27"], {1:80}, "New land: Rich buys four squares of sea for Province 1, at H25, J25, J27 and F27, and pays for them alone.", TH(
  ("Rich","Province 1 eats a hundred and twenty a year and harvests a hundred on its best year. Eighty a year from the sea makes the throne pay for itself. The strip's shut to me until the last two links above my province stand, so it's the sea. His soldier on I24 is one step from three of them. He can take ten from each once. They pay twenty a year each for ever."),
  ("Reina","Eighty on the crown's own land, the year he takes the crown. I'd have done the same. I'd have done it in Year 5.")))
-buy_land(5, ["M26", "N26", "O27", "P27"], {5:40, 1:40}, "New land: Silke buys four squares of sea along the coast of Province 5, at M26, N26, O27 and P27. Silke pays 40, the crown 40.", TH(
+buy_land(5, ["L26", "N27", "P27", "P29"], {5:40, 1:40}, "New land: Silke buys four squares of sea along the coast of Province 5, at L26, N27, P27 and P29. Silke pays 40, the crown 40.", TH(
  ("Silke","Eighty a year from next year, on a province that loses five on an average harvest."),
  ("Clark","He's keeping the promise. I'm watching how he keeps mine.")))
-buy_land(6, ["Q26", "R25", "S26", "T23"], {6:40, 1:40}, "New land: Paddy buys three squares of sea off Province 6, at Q26, R25 and S26, and one square of the Warlord's desert below it, at T23. Paddy pays 40, the crown 40.", TH(
- ("Paddy","Three in the sea and one on his sand. My booklet's the only one that offers both. The sea squares are four and five steps from his southern soldier, and T23 is three: if he spends a year walking to one square of desert, that's a year he isn't walking to my pieces."),
+buy_land(6, ["R26", "T25", "S28", "T22"], {6:40, 1:40}, "New land: Paddy buys three squares of sea off Province 6, at R26, T25 and S28, and one square of the Warlord's desert below it, at T22. Paddy pays 40, the crown 40.", TH(
+ ("Paddy","Three in the sea and one on his sand. My booklet's the only one that offers both. The sea squares are four and five steps from his southern soldier, and T22 is three: if he spends a year walking to one square of desert, that's a year he isn't walking to my pieces."),
  ("Rob","He's put a field in my desert and three in the sea. I can walk on all of it."),
  ("Rich","Half of four squares. Two hundred and forty in land this year, a hundred and sixty of it the crown's, and I'm still the only one who can afford to be Emperor.")))
 lot(2,"CH",[
@@ -447,10 +447,10 @@ build("Grand Canal — 2 sections each in Provinces 1, 5 and 6", 240, {1:240}, c
  ("Silke","The canal in Province 5, the first system. To the letter."),
  ("Reina","Two hundred and forty in one year. The land pays for it. I was taxing for it before there was any land."),
  ("","Rich pays the 240.")))
-buy_land(5, ["L26"], {5:10, 1:10}, "New land: Silke buys one more square of sea, at L26, beside her corner. Silke pays 10, the crown 10.", TH(
+buy_land(5, ["L28"], {5:10, 1:10}, "New land: Silke buys one more square of sea, at L28, beside her corner. Silke pays 10, the crown 10.", TH(
  ("Silke","One more. Five squares. I could buy more, and the crown couldn't pay its half."),
  ("Rich","After the canal I've got sixty-four and a half. Half of every square. I can afford half of two.")))
-buy_land(6, ["T25"], {6:10, 1:10}, "New land: Paddy buys one more square of sea, at T25, off the bottom corner of Province 6. Paddy pays 10, the crown 10.", TH(
+buy_land(6, ["U27"], {6:10, 1:10}, "New land: Paddy buys one more square of sea, at U27, off the bottom corner of Province 6. Paddy pays 10, the crown 10.", TH(
  ("Paddy","The sea this time. One square of desert is a test. Two would be a gift. He can walk on the sea too, but at least it isn't his."),
  ("Rob","He's learning. Slowly. One square a year, like my soldiers.")))
 march({"W1":"J23", "W2":"S22"}, "Robert Land raids Province 1 at J23 and Province 6 at S22.", TH(
@@ -477,7 +477,7 @@ build("Great Wall — 4 links above Province 2", 160, {1:120, 2:40}, wall={2:4},
  ("Rich","Links 5 to 8. The Wall above Province 2 before anybody else's, including mine."),
  ("Clark","My strip's open. Four links, and the land under them is mine to develop the day they stand."),
  ("Reina","Six links of Wall now, and four of them are Clark's. I built the first two.")))
-buy_land(2, ["F12", "F13", "F14"], {2:45, 1:15}, "New land: Clark buys three squares of the strip below the Wall, at F12, F13 and F14. Clark pays 45, the crown 15.", TH(
+buy_land(2, ["E13", "E15", "D17"], {2:45, 1:15}, "New land: Clark buys three squares of the strip below the Wall, at E13, E15 and D17. Clark pays 45, the crown 15.", TH(
  ("Clark","Forty-five of mine, fifteen of his. He promised Silke half and never promised me anything about land. I wrote my own contract and forgot a clause."),
  ("Rich","Five a square for Clark. I'm entirely within the letter."),
  ("Rob","The strip. My northern soldier's on the other side of the country, and walking.")))
@@ -519,10 +519,10 @@ build("Great Wall — the last 6 links, four above Province 3 and two above Prov
  ("Rich","Links 1 to 4, and 11 and 12. Twelve of twelve. Reina started the Wall in Year 2, I finished it in Year 9, and there were three years in between when nobody was allowed to lay a stone."),
  ("Reina","The thing I was taxing them for. It's finished, and it's his."),
  ("Clark","Every strip on the map is open now.")))
-buy_land(3, ["G10", "G11"], {3:30, 1:10}, "New land: Reina buys two squares of the strip below the Wall, at G10 and G11, above Province 3. Reina pays 30, the crown 10.", TH(
+buy_land(3, ["F9", "E11"], {3:30, 1:10}, "New land: Reina buys two squares of the strip below the Wall, at F9 and E11, above Province 3. Reina pays 30, the crown 10.", TH(
  ("Reina","Forty for the Wall, thirty for the land under it. I'm a landlord with land."),
  ("Rich","Five a square, to the former Emperor. I'm told that's generous.")))
-buy_land(2, ["F15", "F16"], {2:30, 1:10}, "New land: Clark buys two more squares of the strip, at F15 and F16. Clark pays 30, the crown 10.", TH(
+buy_land(2, ["D19", "C21"], {2:30, 1:10}, "New land: Clark buys two more squares of the strip, at D19 and C21. Clark pays 30, the crown 10.", TH(
  ("Clark","Five squares. A hundred a year from my strip, and I'm the man who blocked it for a year."),))
 march({"W1":"I21"}, "Robert Land's northern soldier raids Province 1 at I21, crossing the Grand Canal to get there. The southern soldier stands still.", TH(
  ("Rob","Five to Rich for crossing his canal, ten from Rich for the raid. Five a year for walking into the most expensive province on the board."),

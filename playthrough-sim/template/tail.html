@@ -195,7 +195,7 @@ function holdings(s){
   Object.entries(pw.canal||{}).forEach(([q,n])=>work(q,'canal',n));
   work(2,'irr2',pw.irr2); work(3,'res3',pw.res3); work(7,'res7',pw.res7);
   ['Summer Palace','Winter Palace','Marble Pagoda'].forEach(k=>work(1,k,pw[k]));
-  Object.values(s.land||{}).forEach(seat=>work(seat,'land',1));
+  Object.values(s.land||{}).forEach(seat=>work(seat,'land',1/((s.lblock||1)*(s.lblock||1))));
   (s.sol||[]).forEach(v=>add(v[3],'s:'+v[1],1));
   return H;
 }
@@ -258,9 +258,11 @@ function drawMap(s,hl,mv){
   for(let c=0;c<C;c++) svg+='<text x="'+((c+.5)*CW)+'" y="4.4" text-anchor="middle" '+gl+'>'+(c+1)+'</text>';
   for(let r=0;r<R;r++) svg+='<text x="1.3" y="'+((r+.5)*CW+1.6)+'" '+gl+'>'+String.fromCharCode(65+r)+'</text>';
   /* new harvest squares (Section 13): the rulebook's green squares */
-  for(const q in (s.land||{})){
+  /* each covers lblock x lblock squares, drawn from its top-left corner (lb); older games have 1 x 1 */
+  const LB=s.lblock||1, LQ=LB>1?(s.lb||{}):(s.land||{});
+  for(const q in LQ){
     const [r,c]=sqrc(q);
-    svg+='<rect x="'+(c*CW+1)+'" y="'+(r*CW+1)+'" width="'+(CW-2)+'" height="'+(CW-2)+'" fill="#3E9A55" fill-opacity=".6" stroke="#1F6234" stroke-width=".9"><title>New harvest square, Province '+s.land[q]+'</title></rect>';
+    svg+='<rect x="'+(c*CW+1)+'" y="'+(r*CW+1)+'" width="'+(LB*CW-2)+'" height="'+(LB*CW-2)+'" fill="#3E9A55" fill-opacity=".6" stroke="#1F6234" stroke-width=".9"><title>New harvest square, Province '+LQ[q]+'</title></rect>';
   }
   /* the Wall: four printed links above each of provinces 3, 2 and 1, drawn as on the map once built */
   for(const p in M.wall){

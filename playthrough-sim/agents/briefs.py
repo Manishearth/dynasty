@@ -423,15 +423,18 @@ def land_open(ns, seat):
     return None
 
 def land_frontier(ns, seat):
-    """The undeveloped squares this seat may buy next: the ground its booklet names, touching the
-    province or its new land (more open up as squares are bought). From the engine's tables."""
+    """Where this seat may put its next harvest square, named by its top-left corner: every square it
+    covers (2 x 2) on the ground its booklet names, undeveloped, and touching the province or its new
+    land (more open up as squares are bought). From the engine's tables."""
     ok = ns["LAND_WHERE"][seat]
     if seat == 1 and ns["pw"]["wall"][1] < 4: ok = ok.replace("n", "")
-    mine = ns["squares_of"](seat)
-    return [ns["sqname"](r, c) for r in range(ns["ROWS"]) for c in range(ns["COLS"])
-            if ns["GRID"][r][c] in ok and ns["sqname"](r, c) not in ns["land"]
-            and not ns["board"].get(ns["sqname"](r, c), {}).get("realia")   # the Warlord's pieces stand on his desert
-            and any(ns["dist"](ns["sqname"](r, c), m) == 1 for m in mine)]
+    mine = ns["squares_of"](seat); n = ns["LAND_BLOCK"]
+    def fits(cells):
+        return all(ns["region"](q) in ok and q not in ns["land"]
+                   and not ns["board"].get(q, {}).get("realia")   # the Warlord's pieces stand on his desert
+                   for q in cells) and any(ns["dist"](q, m) == 1 for q in cells for m in mine)
+    return [ns["sqname"](r, c) for r in range(ns["ROWS"] - n + 1) for c in range(ns["COLS"] - n + 1)
+            if fits(ns["block"](ns["sqname"](r, c)))]
 
 def land_line(ns, seat):
     """New land (Section 13): what a square earns, and how many this province needs to break
@@ -644,7 +647,7 @@ def menu_crown(ns):
                    "and may pay all), and any squares for Province 1. A rich Emperor does well to pay a large share: every square raises "
                    "that province's taxable income for good. Refusing to subsidise new land is a cause for revolt (§16).")
         if not land_open(ns, 1):
-            out.append(f"  **Squares Province 1 can buy now** (each must touch the province or land it has already bought): {ranges(ns, land_frontier(ns, 1))}.")
+            out.append(f"  **Squares Province 1 can buy now**, by top-left corner (each covers 2 x 2 map squares and must touch the province or land it has already bought): {ranges(ns, land_frontier(ns, 1))}.")
         end = endgame_note(ns)
         if end: out.append("  " + end + " Keep enough in the reserve to build what's still owed: a crown in debt can't pay a share of a work (N7).")
     return "\n".join(out)
@@ -754,7 +757,7 @@ def menu_land(ns, player, offer=None):
 
 New land is open to you this year, in the public works step. Each square costs 20 to the Harvest Pile and adds 20 to your harvest every year from next year, so it pays for itself in a single year. {share}
 
-**Squares you can buy now** (each must touch your province or land you've already bought, so buying opens the next ring): {ranges(ns, front)}.
+**Squares you can buy now**, each named by its top-left corner (a harvest square covers 2 x 2 squares of the map, must touch your province or land you've already bought, and can't overlap another; buying opens the next ring): {ranges(ns, front)}.
 {'New land can be raided like any other square of your province.' + chr(10) if has_warlord(ns) else ''}{chr(10) + endgame_note(ns) + chr(10) if endgame_note(ns) else ''}
 Your board card above gives your own numbers. Buying nothing is also a choice."""
 

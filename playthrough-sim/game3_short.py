@@ -232,8 +232,8 @@ say("Noah","Majesty, if Rich sells, that treasury is Clark's by tonight. Better 
  ("Clark","He's haggling with my money. In front of me."),
  ("Reina","He's right, which is the annoying thing about Noah.")))
 say("Reina","Half, then.", "Thirty that Clark won't get, and Noah owes me a kindness. If he's wrong about Rich, half of it comes back to me next round as tax on his sea.")
-buy_land(4, ["K25","J25","K26"], {4:30, 1:30}, "New land: Noah buys three squares of sea off Province 4, K25, J25 and K26. Reina and Noah pay 30 each.", TH(
- ("Noah","K25 and J25 against the coast at K24, and K26 behind them. Sixty more harvest next round, which is the difference between eating into my store and paying tax."),
+buy_land(4, ["J25","H25","K27"], {4:30, 1:30}, "New land: Noah buys three squares of sea off Province 4, J25, H25 and K27. Reina and Noah pay 30 each.", TH(
+ ("Noah","J25 and H25 against the coast at K24, and K27 behind them. Sixty more harvest next round, which is the difference between eating into my store and paying tax."),
  ("Reina","Thirty of the treasury into the sea. I'd rather it was there than in Clark's hands, if it comes to that."),
  ("","Cost split: Noah 30, Reina 30. 20 a square into the Harvest Pile; each yields 20 a round from next year.")))
 say("Clark","Rich. Seventy. And you keep the commission on whatever you sell me next.", TH(

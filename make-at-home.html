@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Make Dynasty at Home</title>
+<style>
+:root{
+  --canvas:#E4DDCB;--paper:#fff;--ink:#16150F;--soft:#5C584A;--rule:#C9C1AC;--verm:#C8291A;
+  --disp:"Helvetica Neue",Helvetica,Arial,sans-serif;--mono:"Courier New",Courier,monospace;
+  --raid:#F2A7B8;--harvest:#7DBF8A;--red:#C8291A;--blue:#2F5D8A;
+  --sq:25mm;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--canvas);color:var(--ink);font:16px/1.6 var(--disp)}
+a{color:var(--verm)}
+header{background:var(--verm);color:#fff;padding:2.2rem 1.4rem 1.8rem}
+header .in,main{max-width:46rem;margin:0 auto}
+header a{color:#fff}
+h1{font:700 1.7rem/1.1 var(--disp);letter-spacing:.16em;text-transform:uppercase;margin:0}
+header p{margin:.7rem 0 0;max-width:36rem;font-size:.95rem;line-height:1.5;opacity:.95}
+.back{font:700 .74rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;opacity:.9}
+main{padding:1.6rem 1rem 3rem}
+h2{font:700 .74rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin:2.2rem 0 .7rem}
+h3{font-size:1rem;margin:1.4rem 0 .3rem}
+p{margin:.5rem 0}
+.box{background:var(--paper);border:1px solid var(--rule);padding:1rem 1.1rem}
+table{width:100%;border-collapse:collapse;background:var(--paper);border:1px solid var(--rule);font-size:.92rem}
+th,td{text-align:left;vertical-align:top;padding:.5rem .7rem;border-top:1px solid var(--rule)}
+th{font:700 .7rem/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--soft);border-top:0}
+td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;width:3rem}
+td img{width:1.3em;height:1.3em;vertical-align:-.3em;margin-right:.35em}
+.sw{display:inline-block;width:1em;height:1em;vertical-align:-.15em;margin-right:.35em;border:1px solid rgba(0,0,0,.35)}
+.note{color:var(--soft);font-size:.88rem}
+.controls{display:flex;flex-wrap:wrap;gap:.8rem 1.4rem;align-items:end}
+.controls label{display:flex;flex-direction:column;font:700 .7rem/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--soft);gap:.3rem}
+select,button{font:inherit;font-size:.95rem;padding:.35rem .5rem;border:1px solid var(--rule);background:#fff;color:var(--ink)}
+button{cursor:pointer;background:var(--ink);color:#fff;border-color:var(--ink)}
+button:hover{background:var(--verm);border-color:var(--verm)}
+.summary{margin-top:.8rem;font-size:.92rem}
+.preview{position:relative;margin-top:.8rem;max-width:100%;aspect-ratio:30/22;overflow:hidden;border:1px solid var(--rule);background:#fff}
+.preview img{position:absolute;width:111.6667%;left:-5.8333%;top:-17.0455%}
+.preview .cut{position:absolute;border:1.5px dashed var(--verm)}
+.preview .cut span{position:absolute;left:3px;top:1px;font:700 .7rem/1 var(--mono);color:var(--verm);background:rgba(255,255,255,.8);padding:1px 2px}
+
+/* pieces, at real size: one map square is var(--sq) */
+.sheet{display:flex;flex-wrap:wrap;gap:2mm;background:#fff;border:1px solid var(--rule);padding:4mm;margin-top:.6rem}
+.pc{width:var(--sq);height:var(--sq);border:.3mm solid #3B2E1E;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font:700 calc(var(--sq)*.13)/1.05 var(--disp);text-align:center;background:#FBF7EC;overflow:hidden;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact}
+.pc img{width:58%;height:58%}
+.pc.w2{width:calc(var(--sq)*2)} .pc.h2{height:calc(var(--sq)*2)} .pc.h3{height:calc(var(--sq)*3)}
+.pc.bar{width:calc(var(--sq)*1.5);height:calc(var(--sq)*.5);flex-direction:row;gap:4%;font-size:calc(var(--sq)*.15)}
+.pc.bar img{width:auto;height:80%}
+.pc.raid{background:var(--raid);border-style:dashed}
+.pc.harvest{background:var(--harvest);border-style:dashed}
+.pc.cutout{background:#BFD7E6}
+.pc.sol-r{background:#F3D2CC} .pc.sol-b{background:#CFDCEA}
+.pc.round{border-radius:50%}
+.group{margin-top:1rem}
+.group h3{margin:0 0 .2rem}
+
+#tiles{display:none}
+@media (max-width:600px){
+  header{padding:1.6rem 1rem 1.4rem}
+  h1{font-size:1.35rem}
+  th:nth-child(4),td:nth-child(4){display:none}
+}
+@media print{
+  body{background:#fff}
+  header,button{display:none}
+  body.p-board main{display:none}
+  body.p-board #tiles{display:block}
+  body.p-pieces main{padding:0}
+  body.p-pieces main>*:not(#pieces),body.p-pieces #pieces>h2,body.p-pieces #pieces>p{display:none}
+  .sheet{border:0;padding:0}
+  .group{break-inside:avoid}
+  .tile{position:relative;overflow:hidden;break-after:page;outline:.2mm solid #999;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .tile img{position:absolute;max-width:none}
+  .tile span{position:absolute;right:1mm;bottom:1mm;font:700 8pt/1 var(--mono);color:#555;background:rgba(255,255,255,.8);padding:.5mm 1mm}
+}
+</style>
+<style id="page-size"></style>
+</head>
+<body>
+<header>
+  <div class="in">
+    <a class="back" href="index.html">← Dynasty</a>
+    <h1 style="margin-top:.8rem">Make it at home</h1>
+    <p>Everything you need to build a playable copy of Dynasty: what to print, what to cut, and what to borrow from other games. Most of it prints from this site; the rest is paper and a few tokens.</p>
+  </div>
+</header>
+<main>
+
+<h2>Everything in the box</h2>
+<table>
+  <thead><tr><th>Count</th><th>Item</th><th>Make it from</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td class="n">1</td><td>The board</td><td><a href="#board">Print it below</a>, or <a href="map.svg">open the full map</a></td><td>30 × 22 squares, rows A–V, columns 1–30</td></tr>
+    <tr><td class="n">8</td><td>Province booklets</td><td>The rulebook's Part Two: <a href="rulebook.html#p1">1</a> · <a href="rulebook.html#p2">2</a> · <a href="rulebook.html#p3">3</a> · <a href="rulebook.html#p4">4</a> · <a href="rulebook.html#p5">5</a> · <a href="rulebook.html#p6">6</a> · <a href="rulebook.html#p7">7</a> · <a href="rulebook.html#p8">8</a></td><td>One per seat; each lists that province's realia and objective</td></tr>
+    <tr><td class="n">20</td><td>I Ching cards</td><td><a href="i-ching.html">Print-and-cut cards</a></td><td>Playing-card size, nine to a sheet</td></tr>
+    <tr><td class="n">9</td><td>Reference cards</td><td><a href="reference-cards.html">Printable cards</a></td><td>Optional, but they speed up a first game</td></tr>
+    <tr><td class="n">24</td><td><img src="images/customs-house.svg" alt="">Realia, six kinds × 4</td><td><a href="#pieces">Tokens below</a>, or any six kinds of small objects</td><td>Customs House, Land Deed Scroll, Bamboo Brush, Dragon Jar, Wooden Bowl, Vase</td></tr>
+    <tr><td class="n">3</td><td><img src="images/summer-palace.svg" alt="">Imperial buildings</td><td>Tokens below</td><td>Summer Palace, Winter Palace, Marble Pagoda</td></tr>
+    <tr><td class="n">12</td><td><img src="images/great-wall.svg" alt="">Great Wall links</td><td>Tokens below, or matchsticks</td><td>Laid along the twelve links printed on the map</td></tr>
+    <tr><td class="n">8</td><td><img src="images/grand-canal.svg" alt="">Grand Canal sections</td><td>Tokens below, or blue string</td><td>Two each in Provinces 1, 4, 5 and 6</td></tr>
+    <tr><td class="n">16</td><td><img src="images/soldier.svg" alt="">Soldiers, 8 + 8</td><td>Pawns or meeples in two colours, or tokens below</td><td>The Warlord's army in one colour, mercenaries for sale in the other</td></tr>
+    <tr><td class="n">40</td><td><span class="sw" style="background:var(--raid)"></span>Raid squares</td><td>Pink paper, cut to <b>1 × 1</b> map square</td><td>Mark ground the Warlord has plundered</td></tr>
+    <tr><td class="n">40</td><td><span class="sw" style="background:var(--harvest)"></span>Harvest squares</td><td>Green paper, cut to <b>2 × 2</b> map squares</td><td>New land and sea; the board has room for about 80, and 40 covers most games</td></tr>
+    <tr><td class="n">3</td><td><img src="images/irrigation.svg" alt="">Cut-outs</td><td>Card, cut to size</td><td>Province 2 Irrigation System <b>1 × 2</b>, Province 3 Reservoir <b>2 × 3</b>, Province 7 Reservoir <b>2 × 2</b></td></tr>
+    <tr><td class="n"></td><td>Grain</td><td>Poker chips, or a ledger</td><td>Counted in millions of bags. Chips of 1, 5, 10 and 50 work well; a shared spreadsheet works better for long games</td></tr>
+  </tbody>
+</table>
+<p class="note">The rulebook's <a href="rulebook.html#s2">Components</a> section has the same list, with what each wooden piece looked like in the 1969 box.</p>
+
+<h2>Choose a size</h2>
+<div class="box">
+  <div class="controls">
+    <label>One map square
+      <select id="sq">
+        <option value="19.05">¾ inch</option>
+        <option value="25.4" selected>1 inch</option>
+        <option value="31.75">1¼ inch</option>
+        <option value="20">2 cm</option>
+        <option value="25">2.5 cm</option>
+        <option value="30">3 cm</option>
+      </select>
+    </label>
+    <label>Paper
+      <select id="paper">
+        <option value="letter" selected>US Letter</option>
+        <option value="a4">A4</option>
+      </select>
+    </label>
+  </div>
+  <p class="note" style="margin-top:.8rem">Every piece is sized in map squares, so pick the square first. One inch suits most pawns and meeples; a soldier and a piece of realia should both fit on one square.</p>
+</div>
+
+<h2 id="board">The board</h2>
+<div class="box">
+  <p>The board prints in tiles that break on grid lines, so each seam lines up with a printed square. Trim each sheet to its outline, then tape the tiles together from the back, left to right and top to bottom, in the order numbered here. A print shop can also print <a href="map.svg">the full map</a> as one poster; scale it so one square comes out at the size you chose.</p>
+  <div class="summary" id="board-summary"></div>
+  <div class="preview" id="preview" aria-label="How the board splits into sheets"><img src="map.svg" alt=""></div>
+  <p style="margin-top:.9rem"><button type="button" id="print-board">Print the board tiles</button></p>
+  <p class="note">Print at 100% (“actual size”), not “fit to page”, with background graphics on.</p>
+</div>
+
+<div id="pieces">
+<h2>Pieces to print and cut</h2>
+<p>Everything below is drawn at real size for the square you chose. Glue the sheets to thin card before cutting, and the tokens will stand up to a whole game. If you use real pawns for the soldiers or real objects for the realia, skip those groups.</p>
+<p style="margin:.7rem 0"><button type="button" id="print-pieces">Print the pieces</button> <span class="note">Each group fits together on as few sheets as it can.</span></p>
+<div id="sheet-root"></div>
+</div>
+
+<h2>Borrowing from other games</h2>
+<div class="box">
+  <p><b>Soldiers:</b> pawns from any game, in two colours. Risk infantry or Catan settlers are the right size for a one-inch square.</p>
+  <p><b>Realia:</b> six kinds of anything, four of each: chess pieces by type, coloured cubes, Lego bricks, beads. Label which is which on a card beside the board, using the icons above.</p>
+  <p><b>Wall and Canal:</b> matchsticks or craft sticks for the twelve Wall links, blue pipe cleaner or string for the eight canal sections. The map prints where each one goes.</p>
+  <p><b>Grain:</b> the money of the game. Poker chips are easiest. Every number in the rules is a whole number of millions of bags.</p>
+</div>
+
+</main>
+<div id="tiles"></div>
+
+<script>
+const IMG = n => `images/${n}.svg`;
+const GROUPS = [
+  ["Realia", "Four of each.", [
+    ["customs-house","Customs House"],["land-deed-scroll","Land Deed Scroll"],
+    ["bamboo-brush","Bamboo Brush"],["dragon-jar","Dragon Jar"],
+    ["wooden-bowl","Wooden Bowl"],["vase","Vase"]].flatMap(([i,n]) =>
+      Array(4).fill(`<div class="pc round"><img src="${IMG(i)}" alt=""><span>${n}</span></div>`))],
+  ["Imperial buildings", "One each, built in Province 1.", [
+    ["summer-palace","Summer Palace"],["winter-palace","Winter Palace"],["marble-pagoda","Marble Pagoda"]].map(([i,n]) =>
+      `<div class="pc"><img src="${IMG(i)}" alt=""><span>${n}</span></div>`)],
+  ["Great Wall links", "Twelve, laid along the links printed on the map.",
+    Array(12).fill(`<div class="pc bar"><img src="${IMG("great-wall")}" alt=""></div>`)],
+  ["Grand Canal sections", "Two in each of Provinces 1, 4, 5 and 6.",
+    Array(8).fill(`<div class="pc bar"><img src="${IMG("grand-canal")}" alt=""></div>`)],
+  ["Soldiers", "Eight of each colour. The Warlord picks one colour; the other is sold to the provinces.",
+    [...Array(8).fill(`<div class="pc round sol-r"><img src="${IMG("soldier")}" alt=""></div>`),
+     ...Array(8).fill(`<div class="pc round sol-b"><img src="${IMG("soldier")}" alt=""></div>`)]],
+  ["Cut-outs", "Placed on empty squares of their own province once built.", [
+    `<div class="pc cutout w2"><img src="${IMG("irrigation")}" alt="" style="height:50%;width:auto"><span>Irrigation · P2</span></div>`,
+    `<div class="pc cutout w2 h3"><img src="${IMG("reservoir")}" alt="" style="width:40%;height:auto"><span>Reservoir · Province 3</span></div>`,
+    `<div class="pc cutout w2 h2"><img src="${IMG("reservoir")}" alt="" style="width:40%;height:auto"><span>Reservoir · Province 7</span></div>`]],
+  ["Raid squares", "Forty, one map square each. Pink paper works as well as printing these.",
+    Array(40).fill(`<div class="pc raid"></div>`)],
+  ["Harvest squares", "Each covers 2 × 2 map squares. Forty covers most games; print more for long eight-player games.",
+    Array(40).fill(`<div class="pc harvest w2 h2"></div>`)],
+];
+document.getElementById("sheet-root").innerHTML = GROUPS.map(([h, note, items]) =>
+  `<div class="group"><h3>${h}</h3><p class="note">${note}</p><div class="sheet">${items.join("")}</div></div>`).join("");
+
+// the board: map.svg is 1340 x 1180 units, the 30 x 22 grid at (70, 150), 40 units a square
+const PAPER = {letter:[279.4, 215.9], a4:[297, 210]};   // landscape, mm
+const MARGIN = 10;
+function layout(){
+  const sq = +document.getElementById("sq").value, [pw, ph] = PAPER[document.getElementById("paper").value];
+  document.documentElement.style.setProperty("--sq", sq + "mm");
+  const cols = Math.floor((pw - 2*MARGIN) / sq), rows = Math.floor((ph - 2*MARGIN) / sq);
+  const nx = Math.ceil(30 / cols), ny = Math.ceil(22 / rows);
+  const inch = v => (v / 25.4).toFixed(1);
+  document.getElementById("board-summary").innerHTML =
+    `The board comes out <b>${(30*sq/10).toFixed(1)} × ${(22*sq/10).toFixed(1)} cm</b> (${inch(30*sq)} × ${inch(22*sq)} in), on <b>${nx*ny} sheets</b>, ${nx} across and ${ny} down, each holding up to ${cols} × ${rows} squares.`;
+  const pv = document.getElementById("preview");
+  pv.querySelectorAll(".cut").forEach(e => e.remove());
+  let n = 0, tiles = "";
+  for (let ty = 0; ty < ny; ty++) for (let tx = 0; tx < nx; tx++){
+    n++;
+    const x0 = tx*cols, y0 = ty*rows, w = Math.min(cols, 30 - x0), h = Math.min(rows, 22 - y0);
+    pv.insertAdjacentHTML("beforeend", `<div class="cut" style="left:${x0/30*100}%;top:${y0/22*100}%;width:${w/30*100}%;height:${h/22*100}%"><span>${n}</span></div>`);
+    tiles += `<div class="tile" style="width:${w*sq}mm;height:${h*sq}mm"><img src="map.svg" alt="" style="width:${1340/40*sq}mm;left:${-(70/40 + x0)*sq}mm;top:${-(150/40 + y0)*sq}mm"><span>${n} of ${nx*ny}</span></div>`;
+  }
+  document.getElementById("tiles").innerHTML = tiles;
+  document.getElementById("page-size").textContent =
+    `@page{size:${document.getElementById("paper").value} landscape;margin:${MARGIN}mm}`;
+}
+function printAs(cls){
+  document.body.classList.add(cls);
+  window.print();
+  document.body.classList.remove(cls);
+}
+document.getElementById("sq").addEventListener("change", layout);
+document.getElementById("paper").addEventListener("change", layout);
+document.getElementById("print-board").addEventListener("click", () => printAs("p-board"));
+document.getElementById("print-pieces").addEventListener("click", () => printAs("p-pieces"));
+layout();
+</script>
+</body>
+</html>

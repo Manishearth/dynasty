@@ -134,7 +134,7 @@ def setup(active, key, title, subtitle, blurb, short=""):
     Each player sits in their own province: the player id is the seat.
     The table starts empty: the Setup round (R(0, ...)) deals the grain, takes the
     starting stock out of the box and places the Warlord's army."""
-    global ACTIVE, PLAYERS, seat, grain, stock, held, bonus, raids, pw, pw_at, board, pile_stock, land, pop_cards
+    global ACTIVE, PLAYERS, seat, grain, stock, held, bonus, raids, pw, pw_at, board, pile_stock, land, land_blocks, pop_cards
     global pile, ENTRIES, ROUNDS, META, MULT, CUR_Q, CUR_INC, CUR_HARV, CUR_ROUND
     global dis_next, used_cards, pending_bonus, warlord_got, SOLDIERS, ARMY, NORAID
     global _troops_round, _done, _named, hired, LAST_BUILD, CHAOS, CALLED
@@ -153,7 +153,8 @@ def setup(active, key, title, subtitle, blurb, short=""):
           "wall":{1:0,2:0,3:0},"canal":{1:0,4:0,5:0,6:0},"irr2":0,"res3":0,"res7":0}
     pw_at = {}             # work key -> the squares it stands on
     board = {}             # square -> {"realia", "owner"} and/or {"raid": True}
-    land = {}              # new harvest square -> the province that bought it (Section 13)
+    land = {}              # map square under new land -> the province that bought it (Section 13)
+    land_blocks = {}       # each harvest square's top-left corner -> its province
     pop_cards = {2: 0, 1.5: 0}   # population changes that have taken effect, by kind
     SOLDIERS = {}          # id -> {"side": "W" or "B", "owner", "sq", "home", "moved"}
     ARMY = (4 if len(ACTIVE) >= 8 else 2) if 8 in ACTIVE else 0
@@ -259,7 +260,7 @@ def snap():
                 at={k:list(v) for k,v in pw_at.items()},
                 bonus={str(k):v for k,v in bonus.items()},
                 board={k:dict(v) for k,v in board.items()},
-                land={k:v for k,v in land.items()},
+                land={k:v for k,v in land.items()}, lblock=LAND_BLOCK, lb=dict(land_blocks),
                 sol=[[i, s["side"], s["sq"], s["owner"]] for i,s in SOLDIERS.items()],
                 pile=round(pile,2), mult=MULT,
                 rob={str(k):v for k,v in warlord_got.items()})
@@ -454,6 +455,14 @@ def build(name, cost, split, wall=None, canal=None, key=None, hover=None, text=N
         d, map_hl=list(split.keys()), pile_delta=cost)
 
 LAND_WHERE = {1:"nS", 2:"n", 3:"n", 4:"S", 5:"S", 6:"S8", 7:"8"}   # where each province may develop (its booklet)
+# A harvest square covers 2 x 2 squares of the map (Setup). Games played before that was found
+# set LAND_BLOCK = 1 at the top of their script and keep their one-square harvest squares.
+LAND_BLOCK = 2
+def block(q):
+    """The map squares a harvest square with top-left corner q covers."""
+    r, c = rc(q); n = LAND_BLOCK
+    assert r+n <= ROWS and c+n <= COLS, f"a harvest square at {q} runs off the board"
+    return [sqname(r+i, c+j) for i in range(n) for j in range(n)]
 def buy_land(s, squares, split, text, hover=None):
     """Province s buys new harvest squares from the Harvest Pile (Section 13), 20 each,
     any number in a round, alongside the round's one public work. Only once the
@@ -463,7 +472,8 @@ def buy_land(s, squares, split, text, hover=None):
     share the cost. Each square sits on the undeveloped land or sea the province's
     booklet names, touching the province or a square it has already bought, and adds
     20 to the province's harvest from the next round. It becomes part of the province:
-    the Warlord can raid it."""
+    the Warlord can raid it. squares: each harvest square's top-left corner; it covers
+    LAND_BLOCK x LAND_BLOCK squares of the map, each raided on its own like a cut-out's."""
     global pile
     _waiting("buy_land")
     assert CUR_ROUND and CUR_ROUND >= 1
@@ -474,18 +484,21 @@ def buy_land(s, squares, split, text, hover=None):
     cost = 20*len(squares)
     assert abs(sum(split.values())-cost) < 1e-6, (cost, split)
     if s != 1: assert split.get(1, 0) > 0, "the cost must be shared with the Emperor"
-    mine = set(squares_of(s))
-    for q in squares:
-        assert region(q) in LAND_WHERE[s], f"Province {s} develops {LAND_WHERE[s]!r} squares, not {q}"
-        if s == 1 and region(q) == "n":
-            assert pw["wall"][1] == 4, f"the strip below the Wall opens to Province 1 only once its four links stand ({q})"
-        assert q not in land, f"{q} has already been developed"
-        assert not board.get(q, {}).get("realia"), f"{q} holds the Warlord's {RNAME[board[q]['realia']]}"
-        assert any(dist(q, m) == 1 for m in mine), f"{q} doesn't touch Province {s} or its new land"
-        mine.add(q)
+    mine = set(squares_of(s)); new = []
+    for b in squares:
+        cells = block(b)
+        for q in cells:
+            assert region(q) in LAND_WHERE[s], f"Province {s} develops {LAND_WHERE[s]!r} squares, not {q} (harvest square {b})"
+            if s == 1 and region(q) == "n":
+                assert pw["wall"][1] == 4, f"the strip below the Wall opens to Province 1 only once its four links stand ({q})"
+            assert q not in land and q not in new, f"{q} has already been developed (harvest square {b})"
+            assert not board.get(q, {}).get("realia"), f"{q} holds the Warlord's {RNAME[board[q]['realia']]}"
+        assert any(dist(q, m) == 1 for q in cells for m in mine), f"harvest square {b} doesn't touch Province {s} or its new land"
+        mine.update(cells); new += cells
     for t,a in split.items():
         if a > 0: _spend(pid(t), a, f"pay toward new land in Province {s}")
-    for q in squares: land[q] = s
+    for q in new: land[q] = s
+    for b in squares: land_blocks[b] = s
     pending_bonus[s] = pending_bonus.get(s,0) + 20*len(squares)
     act(text, hover or ("Cost split: "+", ".join(f"{SHORT[pid(t)]} {a:g}" for t,a in split.items())+
         f". 20 a square into the Harvest Pile; each yields 20 a round from next year."),

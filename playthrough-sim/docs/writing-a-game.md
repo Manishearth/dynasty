@@ -207,10 +207,10 @@ Once the population has doubled, provinces may buy new harvest squares (rulebook
 
 ```python
 # Year 8 of the full game: the doubling has come, and the land rush starts.
-buy_land(4, ["K25", "J25", "K26"], {4: 45, 1: 15}, "New land: Silke buys three squares of sea for Province 4 ...", hover)
+buy_land(4, ["J25", "K27", "I27"], {4: 45, 1: 15}, "New land: Silke buys three squares of sea for Province 4 ...", hover)
 ```
 
-A square costs 20 and yields 20 a round from the next round, so it pays for itself in a year; once the doubling card comes, land is the best buy on the board and the incomes the doubling wrecked depend on it. The squares go where the booklet says, touching the province: sea is safe from soldiers, the Warlord's land isn't.
+Each harvest square covers 2 × 2 map squares and is named by its top-left corner; the three above cover J25–K26, K27–L28 and I27–J28. A square costs 20 and yields 20 a round from the next round, so it pays for itself in a year; once the doubling card comes, land is the best buy on the board and the incomes the doubling wrecked depend on it. The squares go where the booklet says, touching the province: sea is safe from soldiers, the Warlord's land isn't.
 
 ## Private trades
 

@@ -3,6 +3,7 @@
 # The Storyteller writes the act lines and refs the moves; the engine keeps the books.
 # The narrator's lines are not part of the game: they live in narration.md, never here.
 # Each chapter opens with a "# ===== CHAPTER N: <title>" marker. Seed and deck order: seed.md.
+LAND_BLOCK = 1   # played before harvest squares were found to cover 2 x 2 map squares: one square each (engine buy_land)
 setup([1,2,3,4,5,6,7,8], "full-game", "The full game",
       "Eight players · thirteen years · every work built",
       "All eight provinces, and a throne that changes hands at the auction table. Ten years pass without a population "
